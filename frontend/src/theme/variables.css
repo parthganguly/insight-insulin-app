@@ -1,0 +1,18 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+:root {
+    --ion-color-primary: #0077b3;
+    --ion-color-primary-rgb: 0, 119, 179;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #00699e;
+    --ion-color-primary-tint: #1a85bb;
+
+    --ion-background-color: #fbfbfb;
+}
+
+
+ion-fab-button {
+    --border-radius: 15px;
+}

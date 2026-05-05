@@ -1,0 +1,11 @@
+food_name,fii,aliases,source,confidence
+white bread,100,"bread loaf,sandwich bread,white loaf",starter_placeholder,0.7
+rice,79,"white rice,basmati rice,brown rice,jasmine rice,cooked rice",starter_placeholder,0.7
+banana,59,"ripe banana",starter_placeholder,0.75
+yogurt,60,"greek yogurt,plain yogurt,curd",starter_placeholder,0.7
+milk,24,"whole milk,skim milk,low fat milk",starter_placeholder,0.7
+egg,31,"eggs,boiled egg,fried egg",starter_placeholder,0.7
+beef,51,"steak,ground beef,beef steak,red meat",starter_placeholder,0.65
+potato,121,"boiled potato,baked potato",starter_placeholder,0.65
+lentils,58,"dal,cooked lentils",starter_placeholder,0.65
+oats,60,"oatmeal,rolled oats",starter_placeholder,0.7

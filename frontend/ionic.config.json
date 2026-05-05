@@ -1,0 +1,7 @@
+{
+	"name": "Insulin Spike Tracker",
+	"integrations": {
+		"capacitor": {}
+	},
+	"type": "react"
+}

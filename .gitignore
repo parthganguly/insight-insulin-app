@@ -1,0 +1,39 @@
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# env/secrets
+.env
+.env.*
+!.env.example
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# backend
+backend/venv/
+backend/.venv/
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*.pyc
+backend/app.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/*.db-journal
+backend/images/
+
+# caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# stale embedded backend artifacts inside frontend
+frontend/backend/__pycache__/
+frontend/backend/*/__pycache__/
+frontend/backend/*.pyc
+frontend/backend/decoded_image.png
