@@ -1,4 +1,4 @@
-INSIGHT Target Architecture
+# INSIGHT Target Architecture
 
 ## Status
 
@@ -246,11 +246,13 @@ MealRecognitionProvider
 ├── OnDeviceProvider
 ├── BarcodeProvider
 └── ManualEntryProvider
+```
 
 All recognition providers must return a versioned structured result.
 
 Conceptual contract:
 
+```text
 MealDraft
 FoodCandidate[]
 PortionEstimate
@@ -259,38 +261,40 @@ RecognitionEvidence
 Uncertainty
 Provider
 ModelVersion
+```
 
 Provider-specific data must not leak into the scientific scoring core.
 
 The application may use whichever provider performs best on the
 approved evaluation set, subject to user privacy choices.
 
-Accuracy architecture
+## Accuracy architecture
 
 Accuracy must be evaluated separately for:
 
-Dish identification
-Component identification
-Portion estimation
-Nutrition estimation
-FII mapping
-Final downstream score error
+- Dish identification
+- Component identification
+- Portion estimation
+- Nutrition estimation
+- FII mapping
+- Final downstream score error
 
 One generic confidence percentage must not represent all six.
 
 The user interface must keep separate:
 
-dish-name or recognition uncertainty
-nutrition-estimation uncertainty
-FII/source quality
-insulin-impact estimate quality
+- dish-name or recognition uncertainty
+- nutrition-estimation uncertainty
+- FII/source quality
+- insulin-impact estimate quality
 
 AI confidence is not equivalent to scientific confidence.
 
-Human confirmation boundary
+## Human confirmation boundary
 
 The authoritative pipeline is:
 
+```text
 image or manual input
         ↓
 AI-generated or manually created MealDraft
@@ -302,25 +306,26 @@ confirmed structured meal
 Rust scientific core
         ↓
 versioned insulin-demand estimate
+```
 
 The meal name may be freely edited by the user.
 
 A corrected name must not silently alter nutrition or scoring inputs
 unless the user confirms the resulting component changes.
 
-Backend during migration
+## Backend during migration
 
 Retain FastAPI and Python where they remain appropriate.
 
 Python/FastAPI should initially continue to own:
 
-AI-provider gateway
-model experimentation
-research pipelines
-evaluation tooling
-optional sync APIs
-administrative data processes
-current compatibility endpoints
+- AI-provider gateway
+- model experimentation
+- research pipelines
+- evaluation tooling
+- optional sync APIs
+- administrative data processes
+- current compatibility endpoints
 
 Do not rewrite functioning Python services in Rust merely for language
 uniformity.
@@ -328,7 +333,7 @@ uniformity.
 Rust may later own domain validation or sync services when a concrete
 benefit has been demonstrated.
 
-Cloud persistence
+## Cloud persistence
 
 Do not introduce cloud accounts or cloud sync until required by an
 approved product milestone.
@@ -336,39 +341,39 @@ approved product milestone.
 When cloud sync is introduced, PostgreSQL is the preferred primary
 server database for:
 
-accounts
-devices
-synchronisation state
-consent records
-provenance
-optional encrypted user backups
-research-participation metadata
+- accounts
+- devices
+- synchronisation state
+- consent records
+- provenance
+- optional encrypted user backups
+- research-participation metadata
 
 Private product sync and research contribution must use distinct
 logical data flows.
 
-Research system
+## Research system
 
 Research participation is optional and separate from ordinary product use.
 
 Research architecture must support:
 
-versioned consent
-granular consent categories
-pseudonymous participant identifiers
-withdrawal
-deletion where applicable
-separation of direct identifiers
-dataset provenance
-model provenance
-formula provenance
-immutable experiment records
-reproducible dataset snapshots
+- versioned consent
+- granular consent categories
+- pseudonymous participant identifiers
+- withdrawal
+- deletion where applicable
+- separation of direct identifiers
+- dataset provenance
+- model provenance
+- formula provenance
+- immutable experiment records
+- reproducible dataset snapshots
 
 A user must be able to use the core product without contributing
 research data.
 
-Current implementation
+## Current implementation
 
 The repository currently contains an Ionic React and Capacitor client
 and a FastAPI/Python backend.
@@ -376,100 +381,114 @@ and a FastAPI/Python backend.
 The current implementation provides valuable behavioural references,
 including:
 
-meal capture
-meal recognition
-meal review and correction
-meal persistence
-current FII resolution
-acute scoring
-chronic metrics
-estimate-quality concepts
-frontend presentation patterns
+- meal capture
+- meal recognition
+- meal review and correction
+- meal persistence
+- current FII resolution
+- acute scoring
+- chronic metrics
+- estimate-quality concepts
+- frontend presentation patterns
 
 The current implementation must remain runnable while native
 replacement work proceeds.
 
-Migration strategy
+## Migration strategy
 
 Migration is incremental.
 
-Phase 0 — Documentation and behavioural baseline
-preserve current source
-identify authoritative scientific documents
-create locked scoring fixtures
-create representative meal-recognition fixtures
-record current API contracts
-record expected UI behaviour
-establish CI
-Phase 1 — Rust scientific core
-create a Rust workspace
-implement domain value types
-port deterministic scoring logic
-add formula and dataset versioning
-reproduce or deliberately correct existing fixtures
-document every output difference
-Phase 2 — Compatibility integration
-expose the Rust core through Python or WebAssembly where useful
-compare current backend results with Rust results
-retain the current Ionic client
-do not remove existing scoring until parity is proven
-Phase 3 — Native Android client
-create Kotlin/Compose application
-integrate the Rust core through UniFFI
-add encrypted local storage
-implement meal logging and review
-integrate Android camera APIs
-preserve manual entry and correction
-validate behaviour against the existing client
-Phase 4 — Optional sync and cloud services
-add accounts only when required
-add PostgreSQL-backed sync
-keep local-first operation
-implement export and deletion
-maintain separate research-consent flows
-Phase 5 — Native iOS client
-create SwiftUI application
-integrate the same Rust core
-use Keychain-backed key protection
-validate parity with Android and locked scientific fixtures
-Phase 6 — Retire legacy client
+### Phase 0 — Documentation and behavioural baseline
+
+- preserve current source
+- identify authoritative scientific documents
+- create locked scoring fixtures
+- create representative meal-recognition fixtures
+- record current API contracts
+- record expected UI behaviour
+- establish CI
+
+### Phase 1 — Rust scientific core
+
+- create a Rust workspace
+- implement domain value types
+- port deterministic scoring logic
+- add formula and dataset versioning
+- reproduce or deliberately correct existing fixtures
+- document every output difference
+
+### Phase 2 — Compatibility integration
+
+- expose the Rust core through Python or WebAssembly where useful
+- compare current backend results with Rust results
+- retain the current Ionic client
+- do not remove existing scoring until parity is proven
+
+### Phase 3 — Native Android client
+
+- create Kotlin/Compose application
+- integrate the Rust core through UniFFI
+- add encrypted local storage
+- implement meal logging and review
+- integrate Android camera APIs
+- preserve manual entry and correction
+- validate behaviour against the existing client
+
+### Phase 4 — Optional sync and cloud services
+
+- add accounts only when required
+- add PostgreSQL-backed sync
+- keep local-first operation
+- implement export and deletion
+- maintain separate research-consent flows
+
+### Phase 5 — Native iOS client
+
+- create SwiftUI application
+- integrate the same Rust core
+- use Keychain-backed key protection
+- validate parity with Android and locked scientific fixtures
+
+### Phase 6 — Retire legacy client
 
 The Ionic/Capacitor client may be retired only after:
 
-native feature parity
-successful data migration
-scoring parity
-export validation
-privacy validation
-acceptance tests
-documented rollback path
-Non-goals for the first migration milestone
+- native feature parity
+- successful data migration
+- scoring parity
+- export validation
+- privacy validation
+- acceptance tests
+- documented rollback path
+
+## Non-goals for the first migration milestone
 
 Do not initially:
 
-rewrite the entire backend
-add Kubernetes
-create microservices
-add cloud accounts
-add provider-specific AI logic to the core
-train a custom vision model
-implement CGM personalisation
-implement medical diagnosis
-implement insulin dosing
-delete the existing client
-create an iOS application before Android foundations are stable
-Definition of architectural success
+- rewrite the entire backend
+- add Kubernetes
+- create microservices
+- add cloud accounts
+- add provider-specific AI logic to the core
+- train a custom vision model
+- implement CGM personalisation
+- implement medical diagnosis
+- implement insulin dosing
+- delete the existing client
+- create an iOS application before Android foundations are stable
+
+## Definition of architectural success
 
 The target architecture is successful when:
 
-one versioned Rust implementation owns scientific scoring
-Android and iOS consume the same scientific core
-AI providers are replaceable
-users can review AI output before scoring
-local data is encrypted
-cloud use remains optional
-research contribution remains separately consented
-every score can report its formula, dataset, and evidence provenance
-the current consumer-wellness boundary remains explicit
+- one versioned Rust implementation owns scientific scoring
+- Android and iOS consume the same scientific core
+- AI providers are replaceable
+- users can review AI output before scoring
+- local data is encrypted
+- cloud use remains optional
+- research contribution remains separately consented
+- every score can report its formula, dataset, and evidence provenance
+- the current consumer-wellness boundary remains explicit
 
-This preserves the project’s scientifically defensible status as an estimator rather than an individual diagnostic system. :contentReference[oaicite:0]{index=0} It also records the full native + Rust + encrypted local-first architecture we settled on. :contentReference[oaicite:1]{index=1}
+This preserves the project’s scientifically defensible status as an estimator rather than an individual diagnostic system. It also records the full native + Rust + encrypted local-first architecture we settled on.

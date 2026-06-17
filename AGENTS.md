@@ -137,62 +137,63 @@ The authoritative pipeline is:
 AI or manual MealDraft
 → user review or confirmation
 → deterministic Rust scoring
+```
 
 Do not merge:
 
-recognition confidence
-nutrition confidence
-FII source quality
-insulin-impact quality
+- recognition confidence
+- nutrition confidence
+- FII source quality
+- insulin-impact quality
 
 into one unexplained percentage.
 
-User naming and correction
+## User naming and correction
 
 The user must be able to:
 
-rename a meal
-correct components
-correct portions
-correct nutrition information
-reject AI output
-use manual entry
+- rename a meal
+- correct components
+- correct portions
+- correct nutrition information
+- reject AI output
+- use manual entry
 
 Changing only the meal title must not silently modify scoring inputs.
 
-Privacy rules
+## Privacy rules
 
 Never:
 
-use real user health data in tests
-put real photographs in fixtures without explicit permission
-copy production records into prompts
-print or expose .env contents
-commit API keys
-commit signing credentials
-put meal names, symptoms, notes, or images into telemetry
-retain images by default without a defined purpose
-treat research consent as part of general product consent
+- use real user health data in tests
+- put real photographs in fixtures without explicit permission
+- copy production records into prompts
+- print or expose .env contents
+- commit API keys
+- commit signing credentials
+- put meal names, symptoms, notes, or images into telemetry
+- retain images by default without a defined purpose
+- treat research consent as part of general product consent
 
 Use synthetic data in development.
 
-Data separation
+## Data separation
 
 Keep separate:
 
-operational telemetry
-product-improvement analytics
-private product data
-cloud synchronisation data
-research contribution
-model-training data
-identity data
-consent records
+- operational telemetry
+- product-improvement analytics
+- private product data
+- cloud synchronisation data
+- research contribution
+- model-training data
+- identity data
+- consent records
 
 Do not reuse data for another purpose merely because the user consented
 to one purpose.
 
-Cryptography rules
+## Cryptography rules
 
 Do not invent cryptographic algorithms.
 
@@ -200,94 +201,98 @@ Do not weaken encryption to make development easier.
 
 The target baseline is:
 
-encrypted SQLite
-platform-protected key material
-selective field encryption only when justified
-end-to-end encryption only through an approved design
+- encrypted SQLite
+- platform-protected key material
+- selective field encryption only when justified
+- end-to-end encryption only through an approved design
 
 Security-sensitive changes require independent review.
 
-High-risk files and changes
+## High-risk files and changes
 
 Treat these as high risk:
 
-scientific scoring
-FII resolution
-Rust FFI
-database migrations
-SQLCipher
-key management
-authentication
-account recovery
-consent
-research export
-telemetry
-raw image retention
-Health Connect
-HealthKit
-account deletion
-data export
-provider routing
+- scientific scoring
+- FII resolution
+- Rust FFI
+- database migrations
+- SQLCipher
+- key management
+- authentication
+- account recovery
+- consent
+- research export
+- telemetry
+- raw image retention
+- Health Connect
+- HealthKit
+- account deletion
+- data export
+- provider routing
 
 For high-risk changes:
 
-Plan before editing.
-Identify assumptions.
-Add or update tests.
-Run all relevant checks.
-Produce a risk summary.
-Require a different agent or human to review the actual diff.
-Agent workflow
+1. Plan before editing.
+2. Identify assumptions.
+3. Add or update tests.
+4. Run all relevant checks.
+5. Produce a risk summary.
+6. Require a different agent or human to review the actual diff.
+
+## Agent workflow
 
 Before editing:
 
-Read the relevant documentation.
-Inspect the actual implementation.
-Explain current behaviour.
-State whether the task affects current, migration, target, or deferred code.
-List assumptions.
-List files expected to change.
-List tests expected to change or be added.
-Identify privacy, security, and scientific risks.
+- Read the relevant documentation.
+- Inspect the actual implementation.
+- Explain current behaviour.
+- State whether the task affects current, migration, target, or deferred code.
+- List assumptions.
+- List files expected to change.
+- List tests expected to change or be added.
+- Identify privacy, security, and scientific risks.
 
 During editing:
 
-keep patches small
-avoid unrelated cleanup
-preserve compatibility unless removal is explicitly approved
-do not suppress failing tests
-do not replace documented decisions with preferences
-do not access secrets unnecessarily
+- keep patches small
+- avoid unrelated cleanup
+- preserve compatibility unless removal is explicitly approved
+- do not suppress failing tests
+- do not replace documented decisions with preferences
+- do not access secrets unnecessarily
 
 After editing:
 
-Run relevant formatters.
-Run relevant linters.
-Run relevant unit and integration tests.
-Run scientific golden fixtures when scoring is touched.
-Run migration tests when persistence is touched.
-Show changed files.
-Explain behaviour changes.
-Report unresolved risks honestly.
-Do not claim completion while required checks fail.
-Git rules
-Do not commit directly to main.
-Use one task per branch or worktree.
-Only one writing agent should edit a working tree at a time.
-Other agents should review committed or staged diffs.
-Do not force-push protected branches.
-Do not delete history.
-Do not merge while required CI checks fail.
-Definition of done
+1. Run relevant formatters.
+2. Run relevant linters.
+3. Run relevant unit and integration tests.
+4. Run scientific golden fixtures when scoring is touched.
+5. Run migration tests when persistence is touched.
+6. Show changed files.
+7. Explain behaviour changes.
+8. Report unresolved risks honestly.
+9. Do not claim completion while required checks fail.
+
+## Git rules
+
+- Do not commit directly to main.
+- Use one task per branch or worktree.
+- Only one writing agent should edit a working tree at a time.
+- Other agents should review committed or staged diffs.
+- Do not force-push protected branches.
+- Do not delete history.
+- Do not merge while required CI checks fail.
+
+## Definition of done
 
 A task is done only when:
 
-implementation matches the approved specification
-relevant tests pass
-no scientific formula was silently changed
-no privacy behaviour was silently changed
-no secret was exposed
-migrations and exports remain valid where relevant
-error paths are handled
-documentation is updated
-unresolved uncertainty is reported
+- implementation matches the approved specification
+- relevant tests pass
+- no scientific formula was silently changed
+- no privacy behaviour was silently changed
+- no secret was exposed
+- migrations and exports remain valid where relevant
+- error paths are handled
+- documentation is updated
+- unresolved uncertainty is reported
