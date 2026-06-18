@@ -37,3 +37,7 @@ frontend/backend/__pycache__/
 frontend/backend/*/__pycache__/
 frontend/backend/*.pyc
 frontend/backend/decoded_image.png
+
+# Claude Code local preferences
+CLAUDE.local.md
+.claude/settings.local.json
