@@ -1,95 +1,147 @@
 @AGENTS.md
 
-# Gemini Code Assist Instructions
+# Gemini Code Assist and Gemini CLI Instructions
 
-## Authority
+## First Authority
 
-- Read and obey `AGENTS.md` before planning, reviewing, or changing code.
-- For migration work, read only the relevant scientific and architectural documents for the task.
-- `docs/target-architecture.md` governs the approved target architecture.
-- Existing Ionic React/Capacitor code is the behavioural reference during migration, not the final target architecture.
+Before planning, reviewing, or changing anything in this repository,
+Gemini must read and obey `AGENTS.md` first.
 
-## Intended Gemini role
+If these instructions appear to conflict with `AGENTS.md`, stop and
+report the conflict instead of choosing silently.
 
-Gemini is primarily the Android specialist for this repository.
+## Primary Role
 
-Use Gemini for:
+Gemini's main role in this repository is Android and platform
+specialist.
 
-- Android Studio setup and project configuration
-- Kotlin and Jetpack Compose implementation details
-- Gradle configuration and build failures
-- Android emulator and device issues
-- Logcat analysis
+Gemini should help with:
+
+- Android Studio setup
+- Kotlin
+- Jetpack Compose
+- Gradle
+- emulator and device debugging
+- Logcat
 - Android permissions
-- Camera and media APIs
-- Android Keystore integration
-- Health Connect integration
-- accessibility and UI behaviour checks
-- Compose previews and Android-specific tests
+- Camera APIs
+- Android Keystore
+- Health Connect
+- accessibility and Android UI behaviour
 
-Do not use Gemini as the authority for:
+Gemini may also inspect the existing Ionic React/Capacitor client and
+FastAPI backend when needed to understand current behaviour, migration
+compatibility, or CI results.
 
-- scientific scoring formulas
-- FII mappings or fallback logic
-- acute-score, DIL, DII, rolling-trend, threshold, or confidence semantics
-- consent policy
-- research-data collection or model-training data policy
-- encryption policy or cryptographic design
-- overall architecture replacement
+## Current And Target Architecture
 
-## Architecture boundaries
+The existing Ionic React/Capacitor app is the current implementation
+and behavioural reference. It is not the final native architecture.
 
-The approved target Android direction is:
+The approved future native architecture remains:
 
 - Android: Kotlin + Jetpack Compose
-- shared scientific/domain core: Rust
-- language bindings: UniFFI
-- local database: SQLite with SQLCipher or equivalent encryption
-- key protection: Android Keystore
+- iOS later: SwiftUI
+- shared scientific/domain core: Rust through UniFFI
+- local storage: encrypted SQLite / SQLCipher or equivalent
+- key protection: Android Keystore / Apple Keychain
 - AI recognition: provider-neutral meal draft generation
-- scoring: deterministic Rust core, not UI code
+- deterministic scoring: backend/Rust-owned, not UI-owned
 
-Do not independently replace this with Flutter, React Native, Firebase, Supabase, Kotlin Multiplatform UI, a permanent WebView-first architecture, or a total backend rewrite.
+Gemini must not replace the approved architecture with:
 
-## Scientific and privacy safety
+- Flutter
+- React Native
+- Firebase
+- Supabase
+- Kotlin Multiplatform UI
+- a WebView-first design
 
-Never modify or reinterpret formulas, mappings, coefficients, thresholds, confidence semantics, datasets, or scientific claims unless the task explicitly approves a scientific change.
+Alternative architectures may be discussed only when an explicit issue
+asks for architecture reconsideration.
 
-Never use real user health data, meal photographs, production records, credentials, signing keys, API keys, or `.env` contents in prompts, tests, logs, screenshots, or fixtures.
+## Scientific Authority
 
-Use synthetic data only.
+Gemini must not be treated as the scientific authority for this
+repository.
 
-## Execution discipline
+Gemini must not change any of the following without explicit approval:
 
-Before editing Android, persistence, permissions, Keystore, Health Connect, camera, privacy, or migration code:
+- FII formulas
+- FII mappings
+- fallback scoring rules
+- source-quality/confidence semantics
+- thresholds
+- consent policy
+- research-data policy
+- encryption policy
+- privacy model
+- target architecture
 
-1. explain the current implementation
-2. state the target behaviour
-3. list exact files expected to change
-4. list tests or checks to run
-5. call out privacy, permission, and data-retention risks
+Gemini must not duplicate deterministic scoring inside UI code.
+Android UI may display approved backend or Rust-core outputs, but UI
+code must not become the scoring authority.
 
-After editing:
+## Privacy And Data Safety
 
-1. list changed files
-2. show relevant diff summary
-3. run relevant Gradle, frontend, backend, or repository checks
-4. report unresolved risks honestly
+Gemini must use synthetic data only.
 
-Do not commit, push, open pull requests, merge, change branches, install plugins, add MCP servers, or run external scripts unless explicitly requested.
+Gemini must not include any of the following in prompts, logs,
+screenshots, tests, fixtures, comments, or examples:
 
-## Android-specific guardrails
+- real meal photos
+- real health data
+- API keys
+- `.env` files or `.env` contents
+- signing keys
+- private notes
+- user identifiers
+- production records
+- meal names, symptoms, images, or health details from real users
 
-- Do not request broad Android permissions when a narrower permission or scoped API is sufficient.
-- Do not add background collection of meal, image, symptom, or device data without an approved product requirement.
-- Do not store meal photos, health notes, CGM data, or identifiers in logs.
-- Do not add analytics events containing meal names, symptoms, notes, images, or personal health details.
-- Do not duplicate the scientific scoring engine inside Compose screens.
-- UI may display score outputs returned by the approved backend or Rust core, but must not become the scoring authority.
+Gemini must not add telemetry, analytics, logging, screenshots, or
+debug dumps that expose private product data, research data, images,
+credentials, identifiers, notes, or health details.
 
-## Cost and scope discipline
+## Plan-First Areas
 
-- Keep changes narrow.
-- Prefer read-only inspection before proposing edits.
-- Do not perform broad repository rewrites.
-- Do not convert the current app to native Android unless the task explicitly asks for that migration step.
+Gemini must use plan-first behaviour before touching:
+
+- Android code
+- security-sensitive code
+- privacy-sensitive code
+- Android permissions
+- Android Keystore
+- Health Connect
+- Camera APIs
+- persistence
+- encryption
+- migration code
+
+Before editing those areas, Gemini should:
+
+1. inspect the current implementation
+2. explain current behaviour
+3. state whether the change affects current, migration, target, or deferred code
+4. list assumptions
+5. list exact files expected to change
+6. list checks expected to run
+7. identify privacy, security, permission, retention, and scientific risks
+
+## Execution Discipline
+
+Gemini should keep changes narrow and prefer read-only inspection before
+edits.
+
+Gemini must not commit, push, change branches, open pull requests,
+install plugins, or run external scripts unless explicitly asked.
+
+Gemini must not modify application code, CI, scientific documents,
+`AGENTS.md`, or `CLAUDE.md` while working on instruction-only tasks.
+
+After making an approved change, Gemini should report:
+
+- changed files
+- relevant diff summary
+- checks run
+- unresolved risks or skipped checks
