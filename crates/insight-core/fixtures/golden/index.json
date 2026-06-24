@@ -1,0 +1,38 @@
+{
+  "cases": [
+    {
+      "case_id": "ranking_relative_01",
+      "description": "Relative ranking: salad < dal meal < rice+chicken < chicken biryani < cake+ice cream",
+      "kind": "ranking",
+      "path": "cases/ranking_relative_01.json"
+    },
+    {
+      "case_id": "source_quality_hierarchy_01",
+      "description": "Yogurt-like variants should degrade from exact_fii -> mapped_fii -> macro_fallback",
+      "kind": "source_quality",
+      "path": "cases/source_quality_hierarchy_01.json"
+    },
+    {
+      "case_id": "monotonicity_biryani_portion_01",
+      "description": "Chicken biryani acute estimates should increase with 0.5x, 1x, 1.5x portions",
+      "kind": "monotonicity",
+      "path": "cases/monotonicity_biryani_portion_01.json"
+    },
+    {
+      "case_id": "chronic_low_then_high_01",
+      "description": "7 low-load days then 7 high-load days should show gradual rise in rolling chronic metrics",
+      "kind": "chronic_trend",
+      "path": "cases/chronic_low_then_high_01.json"
+    },
+    {
+      "case_id": "uncertainty_degradation_01",
+      "description": "Mixed-source meal should have lower estimate quality and confidence than all-exact control",
+      "kind": "uncertainty",
+      "path": "cases/uncertainty_degradation_01.json"
+    }
+  ],
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}

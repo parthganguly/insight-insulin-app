@@ -1,0 +1,130 @@
+{
+  "case_id": "uncertainty_degradation_01",
+  "description": "Mixed-source meal should have lower estimate quality and confidence than all-exact control",
+  "expected": {
+    "actual_scores": {
+      "control_meal": {
+        "acute_score": 1018.3333,
+        "mean_confidence": 0.7
+      },
+      "mixed_meal": {
+        "acute_score": 1224.6,
+        "mean_confidence": 0.6
+      }
+    },
+    "details": {
+      "control_estimate_quality": "high",
+      "control_sources": [
+        "exact_fii",
+        "exact_fii"
+      ],
+      "mixed_sources": [
+        "exact_fii",
+        "mapped_fii",
+        "macro_fallback",
+        "unknown"
+      ]
+    },
+    "estimate_quality": "low",
+    "failure_reason": null,
+    "kind": "uncertainty",
+    "pass": true,
+    "source_labels": [
+      "exact_fii",
+      "mapped_fii",
+      "macro_fallback",
+      "unknown"
+    ],
+    "test_id": "uncertainty_degradation_01"
+  },
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "input": {
+    "case_id": "uncertainty_degradation_01",
+    "description": "Mixed-source meal should have lower estimate quality and confidence than all-exact control",
+    "kind": "uncertainty",
+    "payload": {
+      "control_meal": {
+        "items": [
+          {
+            "carb_g": null,
+            "fat_g": null,
+            "fii": null,
+            "gi": null,
+            "kcal_per_unit": 180.0,
+            "name": "plain yogurt",
+            "protein_g": null,
+            "quantity": 1.0,
+            "sat_fat_g": null
+          },
+          {
+            "carb_g": null,
+            "fat_g": null,
+            "fii": null,
+            "gi": null,
+            "kcal_per_unit": 250.0,
+            "name": "rice",
+            "protein_g": null,
+            "quantity": 1.0,
+            "sat_fat_g": null
+          }
+        ],
+        "meal_id": "uncertainty_all_exact_control",
+        "meal_name": "all exact control meal"
+      },
+      "mixed_meal": {
+        "items": [
+          {
+            "carb_g": null,
+            "fat_g": null,
+            "fii": null,
+            "gi": null,
+            "kcal_per_unit": 180.0,
+            "name": "plain yogurt",
+            "protein_g": null,
+            "quantity": 1.0,
+            "sat_fat_g": null
+          },
+          {
+            "carb_g": null,
+            "fat_g": null,
+            "fii": null,
+            "gi": null,
+            "kcal_per_unit": 520.0,
+            "name": "chicken biryani",
+            "protein_g": null,
+            "quantity": 1.0,
+            "sat_fat_g": null
+          },
+          {
+            "carb_g": 30.0,
+            "fat_g": 5.0,
+            "fii": null,
+            "gi": 55,
+            "kcal_per_unit": 220.0,
+            "name": "fallback carb bowl",
+            "protein_g": 10.0,
+            "quantity": 1.0,
+            "sat_fat_g": 1.5
+          },
+          {
+            "carb_g": null,
+            "fat_g": null,
+            "fii": null,
+            "gi": null,
+            "kcal_per_unit": 0.0,
+            "name": "mystery mineral water",
+            "protein_g": null,
+            "quantity": 1.0,
+            "sat_fat_g": null
+          }
+        ],
+        "meal_id": "uncertainty_mixed_sources",
+        "meal_name": "mixed source meal"
+      }
+    }
+  },
+  "kind": "uncertainty",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}

@@ -1,0 +1,107 @@
+{
+  "case_id": "monotonicity_biryani_portion_01",
+  "description": "Chicken biryani acute estimates should increase with 0.5x, 1x, 1.5x portions",
+  "expected": {
+    "actual_scores": {
+      "mono_biryani_0_5x": {
+        "acute_score": 410.8,
+        "insulin_load_total": 123.24
+      },
+      "mono_biryani_1_5x": {
+        "acute_score": 1232.4,
+        "insulin_load_total": 369.72
+      },
+      "mono_biryani_1x": {
+        "acute_score": 821.6,
+        "insulin_load_total": 246.48
+      }
+    },
+    "details": {
+      "acute_scores": [
+        410.80000000000007,
+        821.6000000000001,
+        1232.4
+      ],
+      "insulin_loads": [
+        123.24000000000001,
+        246.48000000000002,
+        369.72
+      ]
+    },
+    "estimate_quality": "composite",
+    "failure_reason": null,
+    "kind": "monotonicity",
+    "pass": true,
+    "source_labels": [
+      "mapped_fii",
+      "mapped_fii",
+      "mapped_fii"
+    ],
+    "test_id": "monotonicity_biryani_portion_01"
+  },
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "input": {
+    "case_id": "monotonicity_biryani_portion_01",
+    "description": "Chicken biryani acute estimates should increase with 0.5x, 1x, 1.5x portions",
+    "kind": "monotonicity",
+    "payload": {
+      "meals": [
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 520.0,
+              "name": "chicken biryani",
+              "protein_g": null,
+              "quantity": 0.5,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "mono_biryani_0_5x",
+          "meal_name": "biryani 0.5x"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 520.0,
+              "name": "chicken biryani",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "mono_biryani_1x",
+          "meal_name": "biryani 1x"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 520.0,
+              "name": "chicken biryani",
+              "protein_g": null,
+              "quantity": 1.5,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "mono_biryani_1_5x",
+          "meal_name": "biryani 1.5x"
+        }
+      ]
+    }
+  },
+  "kind": "monotonicity",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}

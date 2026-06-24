@@ -1,0 +1,167 @@
+{
+  "case_id": "ranking_relative_01",
+  "description": "Relative ranking: salad < dal meal < rice+chicken < chicken biryani < cake+ice cream",
+  "expected": {
+    "actual_scores": {
+      "ranking_cake_icecream": {
+        "acute_score": 1650.0,
+        "insulin_load_total": 495.0,
+        "meal_name": "cake+ice cream"
+      },
+      "ranking_chicken_biryani": {
+        "acute_score": 821.6,
+        "insulin_load_total": 246.48,
+        "meal_name": "chicken biryani"
+      },
+      "ranking_dal_meal": {
+        "acute_score": 602.7667,
+        "insulin_load_total": 180.83,
+        "meal_name": "dal meal"
+      },
+      "ranking_rice_chicken": {
+        "acute_score": 804.4833,
+        "insulin_load_total": 241.345,
+        "meal_name": "rice+chicken"
+      },
+      "ranking_salad": {
+        "acute_score": 4.4,
+        "insulin_load_total": 1.32,
+        "meal_name": "salad"
+      }
+    },
+    "details": {
+      "actual_order_ids": [
+        "ranking_salad",
+        "ranking_dal_meal",
+        "ranking_rice_chicken",
+        "ranking_chicken_biryani",
+        "ranking_cake_icecream"
+      ],
+      "expected_order_ids": [
+        "ranking_salad",
+        "ranking_dal_meal",
+        "ranking_rice_chicken",
+        "ranking_chicken_biryani",
+        "ranking_cake_icecream"
+      ]
+    },
+    "estimate_quality": "composite",
+    "failure_reason": null,
+    "kind": "ranking",
+    "pass": true,
+    "source_labels": [
+      "macro_fallback",
+      "mapped_fii",
+      "mapped_fii",
+      "mapped_fii",
+      "user_confirmed"
+    ],
+    "test_id": "ranking_relative_01"
+  },
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "input": {
+    "case_id": "ranking_relative_01",
+    "description": "Relative ranking: salad < dal meal < rice+chicken < chicken biryani < cake+ice cream",
+    "kind": "ranking",
+    "payload": {
+      "expected_order_ids": [
+        "ranking_salad",
+        "ranking_dal_meal",
+        "ranking_rice_chicken",
+        "ranking_chicken_biryani",
+        "ranking_cake_icecream"
+      ],
+      "meals": [
+        {
+          "items": [
+            {
+              "carb_g": 8.0,
+              "fat_g": 5.0,
+              "fii": null,
+              "gi": 15,
+              "kcal_per_unit": 120.0,
+              "name": "garden salad",
+              "protein_g": 2.0,
+              "quantity": 1.0,
+              "sat_fat_g": 1.0
+            }
+          ],
+          "meal_id": "ranking_salad",
+          "meal_name": "salad"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 260.0,
+              "name": "dal rice",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "ranking_dal_meal",
+          "meal_name": "dal meal"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 470.0,
+              "name": "rice and chicken",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "ranking_rice_chicken",
+          "meal_name": "rice+chicken"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 520.0,
+              "name": "chicken biryani",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "ranking_chicken_biryani",
+          "meal_name": "chicken biryani"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 110,
+              "gi": null,
+              "kcal_per_unit": 450.0,
+              "name": "cake and ice cream",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "ranking_cake_icecream",
+          "meal_name": "cake+ice cream"
+        }
+      ]
+    }
+  },
+  "kind": "ranking",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}
