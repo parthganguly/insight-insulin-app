@@ -1,0 +1,125 @@
+{
+  "case_id": "source_quality_hierarchy_01",
+  "description": "Yogurt-like variants should degrade from exact_fii -> mapped_fii -> macro_fallback",
+  "expected": {
+    "actual_scores": {
+      "source_exact_fii": {
+        "acute_score": 360.0,
+        "estimate_quality": "high",
+        "mean_confidence": 0.7
+      },
+      "source_macro_fallback": {
+        "acute_score": 19.2,
+        "estimate_quality": "low",
+        "mean_confidence": 0.8
+      },
+      "source_mapped_fii": {
+        "acute_score": 360.0,
+        "estimate_quality": "medium",
+        "mean_confidence": 0.9
+      }
+    },
+    "details": {
+      "actual_qualities": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "actual_sources": [
+        "exact_fii",
+        "mapped_fii",
+        "macro_fallback"
+      ],
+      "expected_qualities": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "expected_sources": [
+        "exact_fii",
+        "mapped_fii",
+        "macro_fallback"
+      ]
+    },
+    "estimate_quality": "composite",
+    "failure_reason": null,
+    "kind": "source_quality",
+    "pass": true,
+    "source_labels": [
+      "exact_fii",
+      "mapped_fii",
+      "macro_fallback"
+    ],
+    "test_id": "source_quality_hierarchy_01"
+  },
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "input": {
+    "case_id": "source_quality_hierarchy_01",
+    "description": "Yogurt-like variants should degrade from exact_fii -> mapped_fii -> macro_fallback",
+    "kind": "source_quality",
+    "payload": {
+      "expected_sources": [
+        "exact_fii",
+        "mapped_fii",
+        "macro_fallback"
+      ],
+      "variants": [
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 180.0,
+              "name": "plain yogurt",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "source_exact_fii",
+          "meal_name": "yogurt exact"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 180.0,
+              "name": "greek yogurt bowl",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "source_mapped_fii",
+          "meal_name": "yogurt mapped"
+        },
+        {
+          "items": [
+            {
+              "carb_g": 16.0,
+              "fat_g": 4.0,
+              "fii": null,
+              "gi": 35,
+              "kcal_per_unit": 180.0,
+              "name": "cultured dairy cup",
+              "protein_g": 8.0,
+              "quantity": 1.0,
+              "sat_fat_g": 2.0
+            }
+          ],
+          "meal_id": "source_macro_fallback",
+          "meal_name": "yogurt-like fallback"
+        }
+      ]
+    }
+  },
+  "kind": "source_quality",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}

@@ -1,0 +1,89 @@
+{
+  "case_id": "chronic_low_then_high_01",
+  "description": "7 low-load days then 7 high-load days should show gradual rise in rolling chronic metrics",
+  "expected": {
+    "actual_scores": {
+      "high_day_insulin_load_total": 495.0,
+      "low_day_insulin_load_total": 1.32,
+      "rolling_7d_dil": [
+        1.32,
+        1.32,
+        1.32,
+        1.32,
+        1.32,
+        1.32,
+        1.32,
+        71.8457,
+        142.3714,
+        212.8971,
+        283.4229,
+        353.9486,
+        424.4743,
+        495.0
+      ]
+    },
+    "details": {
+      "first_high_value": 71.8457142857143,
+      "last_value": 495.00000000000006,
+      "transition_index": 6,
+      "transition_value": 1.32
+    },
+    "estimate_quality": "composite",
+    "failure_reason": null,
+    "kind": "chronic_trend",
+    "pass": true,
+    "source_labels": [
+      "macro_fallback",
+      "user_confirmed"
+    ],
+    "test_id": "chronic_low_then_high_01"
+  },
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "input": {
+    "case_id": "chronic_low_then_high_01",
+    "description": "7 low-load days then 7 high-load days should show gradual rise in rolling chronic metrics",
+    "kind": "chronic_trend",
+    "payload": {
+      "high_day_meal": {
+        "items": [
+          {
+            "carb_g": null,
+            "fat_g": null,
+            "fii": 110,
+            "gi": null,
+            "kcal_per_unit": 450.0,
+            "name": "cake and ice cream",
+            "protein_g": null,
+            "quantity": 1.0,
+            "sat_fat_g": null
+          }
+        ],
+        "meal_id": "chronic_high_day",
+        "meal_name": "chronic high day meal"
+      },
+      "high_days": 7,
+      "low_day_meal": {
+        "items": [
+          {
+            "carb_g": 8.0,
+            "fat_g": 5.0,
+            "fii": null,
+            "gi": 15,
+            "kcal_per_unit": 120.0,
+            "name": "garden salad",
+            "protein_g": 2.0,
+            "quantity": 1.0,
+            "sat_fat_g": 1.0
+          }
+        ],
+        "meal_id": "chronic_low_day",
+        "meal_name": "chronic low day meal"
+      },
+      "low_days": 7
+    }
+  },
+  "kind": "chronic_trend",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}

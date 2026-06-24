@@ -37,6 +37,10 @@ jobs:
         working-directory: backend
         run: python -m validation.run_validation
 
+      - name: Check golden fixture export
+        working-directory: backend
+        run: python -m validation.export_golden_fixtures --check --out ../crates/insight-core/fixtures/golden
+
   frontend:
     name: Frontend
     runs-on: ubuntu-latest
