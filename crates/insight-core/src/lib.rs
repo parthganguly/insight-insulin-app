@@ -1,5 +1,6 @@
 pub mod direct_fii;
 pub mod domain;
+pub mod fii_lookup;
 
 pub use direct_fii::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
@@ -10,3 +11,4 @@ pub use domain::{
     AcuteScore, EstimateSource, FiiValue, FormulaVersion, Grams, InsulinLoad, Kcal,
     ValueValidationError,
 };
+pub use fii_lookup::{lookup_exact_fii, normalize_food_name, FiiLookupError, FiiLookupResult};
