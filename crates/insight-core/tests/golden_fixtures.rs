@@ -3,7 +3,8 @@ use std::fs;
 use std::path::PathBuf;
 
 use insight_core::{
-    calculate_direct_fii_item_load, EstimateSource, FiiValue, FormulaVersion, Kcal,
+    calculate_direct_fii_item_load, calculate_direct_fii_meal_totals, DirectFiiMealItem,
+    EstimateSource, FiiValue, FormulaVersion, Kcal,
 };
 use serde::Deserialize;
 use serde_json::Value;
@@ -221,6 +222,35 @@ fn direct_fii_item_load_matches_supported_golden_fixture_items() {
 }
 
 #[test]
+fn direct_fii_meal_aggregation_matches_supported_golden_fixture_meals() {
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_cake_icecream");
+    assert_direct_fii_fixture_meal_matches_expected_total(
+        &ranking_fixture,
+        ranking_meal,
+        expected_nested_score(
+            &ranking_fixture.expected.actual_scores,
+            "ranking_cake_icecream",
+            "insulin_load_total",
+        ),
+    );
+
+    let chronic_fixture = read_golden_fixture("cases/chronic_low_then_high_01.json");
+    let chronic_payload = payload_object(&chronic_fixture.input);
+    let chronic_high_day_meal = chronic_payload
+        .get("high_day_meal")
+        .expect("chronic fixture should include high_day_meal");
+    assert_direct_fii_fixture_meal_matches_expected_total(
+        &chronic_fixture,
+        chronic_high_day_meal,
+        expected_score(
+            &chronic_fixture.expected.actual_scores,
+            "high_day_insulin_load_total",
+        ),
+    );
+}
+
+#[test]
 fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
     let index = read_golden_index();
     let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
@@ -264,11 +294,51 @@ fn assert_direct_fii_fixture_item_matches_expected_total(
     assert_approx_eq(estimate.item_insulin_load().value(), expected_insulin_load);
 }
 
+fn assert_direct_fii_fixture_meal_matches_expected_total(
+    fixture: &GoldenFixture,
+    meal: &Value,
+    expected_insulin_load: f64,
+) {
+    let items = direct_fii_meal_items(meal);
+    let expected_kcal = direct_fii_meal_kcal_total(meal);
+    let estimate = calculate_direct_fii_meal_totals(&items).unwrap();
+
+    assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert!(
+        fixture
+            .expected
+            .source_labels
+            .iter()
+            .any(|source| source == estimate.source().as_str()),
+        "{} should include direct-FII source label {:?}",
+        fixture.case_id,
+        estimate.source().as_str()
+    );
+    assert_approx_eq(estimate.meal_kcal_total().value(), expected_kcal);
+    assert_approx_eq(
+        estimate.meal_insulin_load_total().value(),
+        expected_insulin_load,
+    );
+}
+
 fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
     input
         .get("payload")
         .and_then(Value::as_object)
         .expect("fixture input should include payload object")
+}
+
+fn find_array_meal<'a>(input: &'a Value, collection_name: &str, meal_id: &str) -> &'a Value {
+    let payload = payload_object(input);
+    let meals = payload
+        .get(collection_name)
+        .and_then(Value::as_array)
+        .expect("fixture payload collection should be an array");
+    meals
+        .iter()
+        .find(|meal| meal.get("meal_id").and_then(Value::as_str) == Some(meal_id))
+        .expect("fixture should include expected meal id")
 }
 
 fn find_array_meal_item<'a>(
@@ -277,15 +347,7 @@ fn find_array_meal_item<'a>(
     meal_id: &str,
     item_name: &str,
 ) -> &'a Value {
-    let payload = payload_object(input);
-    let meals = payload
-        .get(collection_name)
-        .and_then(Value::as_array)
-        .expect("fixture payload collection should be an array");
-    let meal = meals
-        .iter()
-        .find(|meal| meal.get("meal_id").and_then(Value::as_str) == Some(meal_id))
-        .expect("fixture should include expected meal id");
+    let meal = find_array_meal(input, collection_name, meal_id);
     find_meal_item(meal, item_name)
 }
 
@@ -298,6 +360,34 @@ fn find_meal_item<'a>(meal: &'a Value, item_name: &str) -> &'a Value {
                 .find(|item| item.get("name").and_then(Value::as_str) == Some(item_name))
         })
         .expect("fixture meal should include expected item")
+}
+
+fn direct_fii_meal_items(meal: &Value) -> Vec<DirectFiiMealItem> {
+    meal_items(meal)
+        .iter()
+        .map(|item| {
+            DirectFiiMealItem::new(
+                Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+                number_field(item, "quantity"),
+                FiiValue::new(number_field(item, "fii")).unwrap(),
+            )
+            .unwrap()
+        })
+        .collect()
+}
+
+fn direct_fii_meal_kcal_total(meal: &Value) -> f64 {
+    meal_items(meal)
+        .iter()
+        .map(|item| number_field(item, "kcal_per_unit") * number_field(item, "quantity"))
+        .sum()
+}
+
+fn meal_items(meal: &Value) -> &[Value] {
+    meal.get("items")
+        .and_then(Value::as_array)
+        .map(Vec::as_slice)
+        .expect("fixture meal should include items")
 }
 
 fn number_field(value: &Value, field: &str) -> f64 {
