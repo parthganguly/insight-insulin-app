@@ -118,6 +118,7 @@ non_negative_value_type!(Kcal);
 non_negative_value_type!(Grams);
 non_negative_value_type!(FiiValue);
 non_negative_value_type!(InsulinLoad);
+non_negative_value_type!(AcuteScore);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -211,6 +212,7 @@ mod tests {
     numeric_value_tests!(grams_tests, Grams);
     numeric_value_tests!(fii_value_tests, FiiValue);
     numeric_value_tests!(insulin_load_tests, InsulinLoad);
+    numeric_value_tests!(acute_score_tests, AcuteScore);
 
     #[test]
     fn estimate_source_uses_current_backend_labels() {

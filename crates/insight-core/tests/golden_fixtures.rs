@@ -3,8 +3,9 @@ use std::fs;
 use std::path::PathBuf;
 
 use insight_core::{
-    calculate_direct_fii_item_load, calculate_direct_fii_meal_totals, DirectFiiMealItem,
-    EstimateSource, FiiValue, FormulaVersion, Kcal,
+    calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
+    calculate_direct_fii_meal_totals, DirectFiiMealItem, EstimateSource, FiiValue, FormulaVersion,
+    Kcal, REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
 use serde_json::Value;
@@ -51,6 +52,41 @@ const DIRECT_FII_SKIP_REASONS: &[DirectFiiSkipReason] = &[
         reason: "low day requires macro fallback and rolling outputs require chronic DIL/DII behavior",
     },
     DirectFiiSkipReason {
+        fixture_path: "cases/uncertainty_degradation_01.json",
+        input_path: "input.payload.mixed_meal and input.payload.control_meal",
+        reason: "case requires exact lookup, mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
+    },
+];
+
+#[derive(Debug)]
+struct DirectFiiAcuteSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const DIRECT_FII_ACUTE_SKIP_REASONS: &[DirectFiiAcuteSkipReason] = &[
+    DirectFiiAcuteSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "input.payload.meals excluding ranking_cake_icecream",
+        reason: "items have no explicit fii and require GI/protein fallback, FII lookup, mapped FII, or mixed-meal decomposition",
+    },
+    DirectFiiAcuteSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "input.payload.variants[*]",
+        reason: "items have no explicit fii and intentionally exercise exact lookup, mapped lookup, and macro fallback source hierarchy",
+    },
+    DirectFiiAcuteSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "chicken biryani items have no explicit fii and require mixed-meal decomposition or mapped FII",
+    },
+    DirectFiiAcuteSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
+        reason: "high_day_meal lacks an explicit expected acute_score, low_day_meal requires macro fallback, and rolling outputs require chronic DIL/DII behavior",
+    },
+    DirectFiiAcuteSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal and input.payload.control_meal",
         reason: "case requires exact lookup, mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
@@ -251,6 +287,21 @@ fn direct_fii_meal_aggregation_matches_supported_golden_fixture_meals() {
 }
 
 #[test]
+fn direct_fii_acute_score_matches_supported_golden_fixture_meal() {
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_cake_icecream");
+    assert_direct_fii_fixture_meal_matches_expected_acute_score(
+        &ranking_fixture,
+        ranking_meal,
+        expected_nested_score(
+            &ranking_fixture.expected.actual_scores,
+            "ranking_cake_icecream",
+            "acute_score",
+        ),
+    );
+}
+
+#[test]
 fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
     let index = read_golden_index();
     let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
@@ -261,6 +312,23 @@ fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
 
     assert_eq!(skip_paths, indexed_paths);
     for skip in DIRECT_FII_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn direct_fii_acute_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let skip_paths: BTreeSet<&str> = DIRECT_FII_ACUTE_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+
+    assert_eq!(skip_paths, indexed_paths);
+    for skip in DIRECT_FII_ACUTE_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());
@@ -320,6 +388,30 @@ fn assert_direct_fii_fixture_meal_matches_expected_total(
         estimate.meal_insulin_load_total().value(),
         expected_insulin_load,
     );
+}
+
+fn assert_direct_fii_fixture_meal_matches_expected_acute_score(
+    fixture: &GoldenFixture,
+    meal: &Value,
+    expected_acute_score: f64,
+) {
+    let items = direct_fii_meal_items(meal);
+    let estimate = calculate_direct_fii_acute_score(&items).unwrap();
+
+    assert_approx_eq(REFERENCE_MEAL_INSULIN_LOAD, 30.0);
+    assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert!(
+        fixture
+            .expected
+            .source_labels
+            .iter()
+            .any(|source| source == estimate.source().as_str()),
+        "{} should include direct-FII source label {:?}",
+        fixture.case_id,
+        estimate.source().as_str()
+    );
+    assert_approx_eq(estimate.acute_score().value(), expected_acute_score);
 }
 
 fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
