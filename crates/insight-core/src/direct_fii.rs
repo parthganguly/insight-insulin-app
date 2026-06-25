@@ -1,9 +1,11 @@
 use serde::{Deserialize, Serialize};
 
 use crate::domain::{
-    EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal, ValueValidationError,
+    AcuteScore, EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal, ValueValidationError,
     CURRENT_FORMULA_VERSION,
 };
+
+pub const REFERENCE_MEAL_INSULIN_LOAD: f64 = 30.0;
 
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct DirectFiiItemEstimate {
@@ -91,6 +93,37 @@ impl DirectFiiMealEstimate {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+pub struct DirectFiiAcuteEstimate {
+    meal_kcal_total: Kcal,
+    meal_insulin_load_total: InsulinLoad,
+    acute_score: AcuteScore,
+    source: EstimateSource,
+    formula_version: FormulaVersion,
+}
+
+impl DirectFiiAcuteEstimate {
+    pub const fn meal_kcal_total(self) -> Kcal {
+        self.meal_kcal_total
+    }
+
+    pub const fn meal_insulin_load_total(self) -> InsulinLoad {
+        self.meal_insulin_load_total
+    }
+
+    pub const fn acute_score(self) -> AcuteScore {
+        self.acute_score
+    }
+
+    pub const fn source(self) -> EstimateSource {
+        self.source
+    }
+
+    pub const fn formula_version(self) -> FormulaVersion {
+        self.formula_version
+    }
+}
+
 pub fn calculate_direct_fii_item_load(
     kcal_per_unit: Kcal,
     quantity: f64,
@@ -124,6 +157,23 @@ pub fn calculate_direct_fii_meal_totals(
     Ok(DirectFiiMealEstimate {
         meal_kcal_total: Kcal::new(meal_kcal_total)?,
         meal_insulin_load_total: InsulinLoad::new(meal_insulin_load_total)?,
+        source: EstimateSource::UserConfirmed,
+        formula_version: CURRENT_FORMULA_VERSION,
+    })
+}
+
+pub fn calculate_direct_fii_acute_score(
+    items: &[DirectFiiMealItem],
+) -> Result<DirectFiiAcuteEstimate, ValueValidationError> {
+    let meal_estimate = calculate_direct_fii_meal_totals(items)?;
+    let acute_score = AcuteScore::new(
+        (meal_estimate.meal_insulin_load_total().value() / REFERENCE_MEAL_INSULIN_LOAD) * 100.0,
+    )?;
+
+    Ok(DirectFiiAcuteEstimate {
+        meal_kcal_total: meal_estimate.meal_kcal_total(),
+        meal_insulin_load_total: meal_estimate.meal_insulin_load_total(),
+        acute_score,
         source: EstimateSource::UserConfirmed,
         formula_version: CURRENT_FORMULA_VERSION,
     })
@@ -223,6 +273,41 @@ mod tests {
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 280.0);
         assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
         assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    }
+
+    #[test]
+    fn calculates_direct_fii_acute_score_from_meal_aggregation() {
+        let items = [DirectFiiMealItem::new(
+            Kcal::new(450.0).unwrap(),
+            1.0,
+            FiiValue::new(110.0).unwrap(),
+        )
+        .unwrap()];
+
+        let estimate = calculate_direct_fii_acute_score(&items).unwrap();
+
+        assert_approx_eq(REFERENCE_MEAL_INSULIN_LOAD, 30.0);
+        assert_approx_eq(estimate.meal_kcal_total().value(), 450.0);
+        assert_approx_eq(estimate.meal_insulin_load_total().value(), 495.0);
+        assert_approx_eq(estimate.acute_score().value(), 1650.0);
+        assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    }
+
+    #[test]
+    fn calculates_multi_item_direct_fii_acute_score() {
+        let items = [
+            DirectFiiMealItem::new(Kcal::new(100.0).unwrap(), 2.0, FiiValue::new(50.0).unwrap())
+                .unwrap(),
+            DirectFiiMealItem::new(Kcal::new(150.0).unwrap(), 1.5, FiiValue::new(80.0).unwrap())
+                .unwrap(),
+        ];
+
+        let estimate = calculate_direct_fii_acute_score(&items).unwrap();
+
+        assert_approx_eq(estimate.meal_kcal_total().value(), 425.0);
+        assert_approx_eq(estimate.meal_insulin_load_total().value(), 280.0);
+        assert_approx_eq(estimate.acute_score().value(), 933.3333333333334);
     }
 
     #[test]
