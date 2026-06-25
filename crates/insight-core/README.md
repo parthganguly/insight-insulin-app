@@ -2,7 +2,7 @@
 
 Initial Rust domain skeleton for INSIGHT deterministic scoring work.
 
-This crate currently defines validated value types and source/version labels only. It does not port scoring formulas, FII mappings, thresholds, confidence semantics, scientific claims, Python bindings, UniFFI, Android, or iOS work.
+This crate currently defines validated value types, source/version labels, and the narrow direct user-provided FII item-load calculation. It does not port mixed-meal decomposition, FII mappings, fallback scoring, thresholds, confidence semantics, scientific claims, Python bindings, UniFFI, Android, or iOS work.
 
 ## Checks
 

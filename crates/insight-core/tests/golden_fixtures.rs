@@ -2,7 +2,11 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::fs;
 use std::path::PathBuf;
 
+use insight_core::{
+    calculate_direct_fii_item_load, EstimateSource, FiiValue, FormulaVersion, Kcal,
+};
 use serde::Deserialize;
+use serde_json::Value;
 
 const EXPECTED_SCHEMA_VERSION: u64 = 1;
 const EXPECTED_FORMULA_VERSION: &str = "current_backend_v1";
@@ -15,6 +19,41 @@ const KNOWN_SOURCE_LABELS: &[&str] = &[
     "macro_fallback",
     "user_confirmed",
     "unknown",
+];
+
+#[derive(Debug)]
+struct DirectFiiSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const DIRECT_FII_SKIP_REASONS: &[DirectFiiSkipReason] = &[
+    DirectFiiSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "input.payload.meals excluding ranking_cake_icecream",
+        reason: "items have no explicit fii and require GI/protein fallback, FII lookup, or mixed-meal decomposition",
+    },
+    DirectFiiSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "input.payload.variants[*]",
+        reason: "items have no explicit fii and intentionally exercise exact lookup, mapped lookup, and macro fallback source hierarchy",
+    },
+    DirectFiiSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "chicken biryani items have no explicit fii and require mixed-meal decomposition or mapped FII",
+    },
+    DirectFiiSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.low_day_meal and expected rolling chronic outputs",
+        reason: "low day requires macro fallback and rolling outputs require chronic DIL/DII behavior",
+    },
+    DirectFiiSkipReason {
+        fixture_path: "cases/uncertainty_degradation_01.json",
+        input_path: "input.payload.mixed_meal and input.payload.control_meal",
+        reason: "case requires exact lookup, mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
+    },
 ];
 
 #[derive(Debug, Deserialize)]
@@ -63,13 +102,22 @@ fn fixtures_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("fixtures/golden")
 }
 
+fn read_golden_index() -> GoldenIndex {
+    let index_path = fixtures_dir().join("index.json");
+    let index_text = fs::read_to_string(&index_path).expect("index fixture should be readable");
+    serde_json::from_str(&index_text).expect("index fixture should deserialize")
+}
+
+fn read_golden_fixture(relative_path: &str) -> GoldenFixture {
+    let fixture_path = fixtures_dir().join(relative_path);
+    let fixture_text = fs::read_to_string(&fixture_path).expect("case fixture should be readable");
+    serde_json::from_str(&fixture_text).expect("case fixture should deserialize")
+}
+
 #[test]
 fn golden_fixtures_deserialize_and_match_index() {
     let fixtures_dir = fixtures_dir();
-    let index_path = fixtures_dir.join("index.json");
-    let index_text = fs::read_to_string(&index_path).expect("index fixture should be readable");
-    let index: GoldenIndex =
-        serde_json::from_str(&index_text).expect("index fixture should deserialize");
+    let index = read_golden_index();
 
     assert_eq!(index.schema_version, EXPECTED_SCHEMA_VERSION);
     assert_eq!(index.formula_version, EXPECTED_FORMULA_VERSION);
@@ -88,11 +136,7 @@ fn golden_fixtures_deserialize_and_match_index() {
         assert!(seen_case_ids.insert(index_case.case_id.clone()));
         assert!(indexed_paths.insert(index_case.path.clone()));
 
-        let fixture_path = fixtures_dir.join(&index_case.path);
-        let fixture_text =
-            fs::read_to_string(&fixture_path).expect("case fixture should be readable");
-        let fixture: GoldenFixture =
-            serde_json::from_str(&fixture_text).expect("case fixture should deserialize");
+        let fixture = read_golden_fixture(&index_case.path);
 
         assert_eq!(fixture.schema_version, EXPECTED_SCHEMA_VERSION);
         assert_eq!(fixture.formula_version, EXPECTED_FORMULA_VERSION);
@@ -139,4 +183,148 @@ fn golden_fixtures_deserialize_and_match_index() {
     assert!(indexed_paths_by_case.contains_key("chronic_low_then_high_01"));
     assert!(indexed_paths_by_case.contains_key("uncertainty_degradation_01"));
     assert_eq!(actual_paths, indexed_paths);
+}
+
+#[test]
+fn direct_fii_item_load_matches_supported_golden_fixture_items() {
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_item = find_array_meal_item(
+        &ranking_fixture.input,
+        "meals",
+        "ranking_cake_icecream",
+        "cake and ice cream",
+    );
+    assert_direct_fii_fixture_item_matches_expected_total(
+        &ranking_fixture,
+        ranking_item,
+        expected_nested_score(
+            &ranking_fixture.expected.actual_scores,
+            "ranking_cake_icecream",
+            "insulin_load_total",
+        ),
+    );
+
+    let chronic_fixture = read_golden_fixture("cases/chronic_low_then_high_01.json");
+    let chronic_payload = payload_object(&chronic_fixture.input);
+    let chronic_high_day_meal = chronic_payload
+        .get("high_day_meal")
+        .expect("chronic fixture should include high_day_meal");
+    let chronic_item = find_meal_item(chronic_high_day_meal, "cake and ice cream");
+    assert_direct_fii_fixture_item_matches_expected_total(
+        &chronic_fixture,
+        chronic_item,
+        expected_score(
+            &chronic_fixture.expected.actual_scores,
+            "high_day_insulin_load_total",
+        ),
+    );
+}
+
+#[test]
+fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let skip_paths: BTreeSet<&str> = DIRECT_FII_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+
+    assert_eq!(skip_paths, indexed_paths);
+    for skip in DIRECT_FII_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+fn assert_direct_fii_fixture_item_matches_expected_total(
+    fixture: &GoldenFixture,
+    item: &Value,
+    expected_insulin_load: f64,
+) {
+    let estimate = calculate_direct_fii_item_load(
+        Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+        number_field(item, "quantity"),
+        FiiValue::new(number_field(item, "fii")).unwrap(),
+    )
+    .unwrap();
+
+    assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert!(
+        fixture
+            .expected
+            .source_labels
+            .iter()
+            .any(|source| source == estimate.source().as_str()),
+        "{} should include direct-FII source label {:?}",
+        fixture.case_id,
+        estimate.source().as_str()
+    );
+    assert_approx_eq(estimate.item_insulin_load().value(), expected_insulin_load);
+}
+
+fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
+    input
+        .get("payload")
+        .and_then(Value::as_object)
+        .expect("fixture input should include payload object")
+}
+
+fn find_array_meal_item<'a>(
+    input: &'a Value,
+    collection_name: &str,
+    meal_id: &str,
+    item_name: &str,
+) -> &'a Value {
+    let payload = payload_object(input);
+    let meals = payload
+        .get(collection_name)
+        .and_then(Value::as_array)
+        .expect("fixture payload collection should be an array");
+    let meal = meals
+        .iter()
+        .find(|meal| meal.get("meal_id").and_then(Value::as_str) == Some(meal_id))
+        .expect("fixture should include expected meal id");
+    find_meal_item(meal, item_name)
+}
+
+fn find_meal_item<'a>(meal: &'a Value, item_name: &str) -> &'a Value {
+    meal.get("items")
+        .and_then(Value::as_array)
+        .and_then(|items| {
+            items
+                .iter()
+                .find(|item| item.get("name").and_then(Value::as_str) == Some(item_name))
+        })
+        .expect("fixture meal should include expected item")
+}
+
+fn number_field(value: &Value, field: &str) -> f64 {
+    value
+        .get(field)
+        .and_then(Value::as_f64)
+        .expect("fixture field should be numeric")
+}
+
+fn expected_score(actual_scores: &Value, field: &str) -> f64 {
+    actual_scores
+        .get(field)
+        .and_then(Value::as_f64)
+        .expect("expected score field should be numeric")
+}
+
+fn expected_nested_score(actual_scores: &Value, meal_id: &str, field: &str) -> f64 {
+    actual_scores
+        .get(meal_id)
+        .and_then(|meal| meal.get(field))
+        .and_then(Value::as_f64)
+        .expect("expected nested score field should be numeric")
+}
+
+fn assert_approx_eq(actual: f64, expected: f64) {
+    assert!(
+        (actual - expected).abs() < 1e-9,
+        "expected {expected}, got {actual}"
+    );
 }
