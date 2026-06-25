@@ -31,6 +31,66 @@ impl DirectFiiItemEstimate {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct DirectFiiMealItem {
+    kcal_per_unit: Kcal,
+    quantity: f64,
+    fii: FiiValue,
+}
+
+impl DirectFiiMealItem {
+    pub fn new(
+        kcal_per_unit: Kcal,
+        quantity: f64,
+        fii: FiiValue,
+    ) -> Result<Self, ValueValidationError> {
+        validate_quantity(quantity)?;
+        Ok(Self {
+            kcal_per_unit,
+            quantity,
+            fii,
+        })
+    }
+
+    pub const fn kcal_per_unit(self) -> Kcal {
+        self.kcal_per_unit
+    }
+
+    pub const fn quantity(self) -> f64 {
+        self.quantity
+    }
+
+    pub const fn fii(self) -> FiiValue {
+        self.fii
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+pub struct DirectFiiMealEstimate {
+    meal_kcal_total: Kcal,
+    meal_insulin_load_total: InsulinLoad,
+    source: EstimateSource,
+    formula_version: FormulaVersion,
+}
+
+impl DirectFiiMealEstimate {
+    pub const fn meal_kcal_total(self) -> Kcal {
+        self.meal_kcal_total
+    }
+
+    pub const fn meal_insulin_load_total(self) -> InsulinLoad {
+        self.meal_insulin_load_total
+    }
+
+    pub const fn source(self) -> EstimateSource {
+        self.source
+    }
+
+    pub const fn formula_version(self) -> FormulaVersion {
+        self.formula_version
+    }
+}
+
 pub fn calculate_direct_fii_item_load(
     kcal_per_unit: Kcal,
     quantity: f64,
@@ -43,6 +103,27 @@ pub fn calculate_direct_fii_item_load(
     Ok(DirectFiiItemEstimate {
         item_kcal,
         item_insulin_load,
+        source: EstimateSource::UserConfirmed,
+        formula_version: CURRENT_FORMULA_VERSION,
+    })
+}
+
+pub fn calculate_direct_fii_meal_totals(
+    items: &[DirectFiiMealItem],
+) -> Result<DirectFiiMealEstimate, ValueValidationError> {
+    let mut meal_kcal_total = 0.0;
+    let mut meal_insulin_load_total = 0.0;
+
+    for item in items {
+        let item_estimate =
+            calculate_direct_fii_item_load(item.kcal_per_unit, item.quantity, item.fii)?;
+        meal_kcal_total += item_estimate.item_kcal().value();
+        meal_insulin_load_total += item_estimate.item_insulin_load().value();
+    }
+
+    Ok(DirectFiiMealEstimate {
+        meal_kcal_total: Kcal::new(meal_kcal_total)?,
+        meal_insulin_load_total: InsulinLoad::new(meal_insulin_load_total)?,
         source: EstimateSource::UserConfirmed,
         formula_version: CURRENT_FORMULA_VERSION,
     })
@@ -125,5 +206,34 @@ mod tests {
 
             assert!(matches!(err, ValueValidationError::NonFinite { .. }));
         }
+    }
+
+    #[test]
+    fn aggregates_multi_item_direct_fii_meal() {
+        let items = [
+            DirectFiiMealItem::new(Kcal::new(100.0).unwrap(), 2.0, FiiValue::new(50.0).unwrap())
+                .unwrap(),
+            DirectFiiMealItem::new(Kcal::new(150.0).unwrap(), 1.5, FiiValue::new(80.0).unwrap())
+                .unwrap(),
+        ];
+
+        let estimate = calculate_direct_fii_meal_totals(&items).unwrap();
+
+        assert_approx_eq(estimate.meal_kcal_total().value(), 425.0);
+        assert_approx_eq(estimate.meal_insulin_load_total().value(), 280.0);
+        assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    }
+
+    #[test]
+    fn rejects_invalid_meal_item_quantity() {
+        let err = DirectFiiMealItem::new(
+            Kcal::new(100.0).unwrap(),
+            f64::NAN,
+            FiiValue::new(50.0).unwrap(),
+        )
+        .unwrap_err();
+
+        assert!(matches!(err, ValueValidationError::NonFinite { .. }));
     }
 }
