@@ -12,5 +12,8 @@ pub use domain::{
     AcuteScore, EstimateSource, FiiValue, FormulaVersion, Grams, InsulinLoad, Kcal,
     ValueValidationError,
 };
-pub use exact_fii::{calculate_exact_fii_item_load, ExactFiiItemEstimate, ExactFiiItemLoadError};
+pub use exact_fii::{
+    calculate_exact_fii_item_load, calculate_exact_fii_meal_totals, ExactFiiItemEstimate,
+    ExactFiiItemLoadError, ExactFiiMealEstimate, ExactFiiMealItem,
+};
 pub use fii_lookup::{lookup_exact_fii, normalize_food_name, FiiLookupError, FiiLookupResult};
