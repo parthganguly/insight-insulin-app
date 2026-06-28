@@ -5,8 +5,9 @@ use std::path::PathBuf;
 use insight_core::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
     calculate_direct_fii_meal_totals, calculate_exact_fii_item_load,
-    calculate_exact_fii_meal_totals, lookup_exact_fii, DirectFiiMealItem, EstimateSource,
-    ExactFiiMealItem, FiiValue, FormulaVersion, Kcal, REFERENCE_MEAL_INSULIN_LOAD,
+    calculate_exact_fii_meal_totals, calculate_mapped_fii_item_load, lookup_exact_fii,
+    DirectFiiMealItem, EstimateSource, ExactFiiMealItem, FiiValue, FormulaVersion, Kcal,
+    REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
 use serde_json::Value;
@@ -205,6 +206,41 @@ const EXACT_FII_MEAL_SKIP_REASONS: &[ExactFiiMealSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal",
         reason: "mixed_meal combines exact lookup with mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
+    },
+];
+
+#[derive(Debug)]
+struct MappedFiiItemSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const MAPPED_FII_ITEM_SKIP_REASONS: &[MappedFiiItemSkipReason] = &[
+    MappedFiiItemSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "mapped ranking items require mixed-meal decomposition; the remaining items use macro fallback or direct provided FII",
+    },
+    MappedFiiItemSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "input.payload.variants[*]",
+        reason: "source_mapped_fii uses the explicit greek-yogurt-bowl decomposition rule, while the other variants use exact lookup or macro fallback",
+    },
+    MappedFiiItemSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "all chicken biryani items require mixed-meal decomposition",
+    },
+    MappedFiiItemSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
+        reason: "the meals use direct provided FII or macro fallback, and the expected outputs require chronic DIL/DII behavior",
+    },
+    MappedFiiItemSkipReason {
+        fixture_path: "cases/uncertainty_degradation_01.json",
+        input_path: "input.payload.control_meal and input.payload.mixed_meal",
+        reason: "the control uses exact lookup and the mapped mixed-meal item requires decomposition alongside fallback and unknown paths",
     },
 ];
 
@@ -524,6 +560,22 @@ fn exact_fii_meal_aggregation_matches_supported_golden_fixture_meals() {
 }
 
 #[test]
+fn mapped_fii_item_path_rejects_decomposition_only_golden_fixture_item() {
+    let fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let mapped_variant = find_array_meal(&fixture.input, "variants", "source_mapped_fii");
+    let item = find_meal_item(mapped_variant, "greek yogurt bowl");
+
+    assert!(item.get("fii").is_some_and(Value::is_null));
+    assert!(calculate_mapped_fii_item_load(
+        string_field(item, "name"),
+        Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+        number_field(item, "quantity"),
+    )
+    .unwrap()
+    .is_none());
+}
+
+#[test]
 fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
     let index = read_golden_index();
     let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
@@ -604,6 +656,23 @@ fn exact_fii_meal_skip_reasons_cover_unsupported_golden_fixture_paths() {
         assert!(indexed_paths.contains(supported_path));
     }
     for skip in EXACT_FII_MEAL_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn mapped_fii_item_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let skip_paths: BTreeSet<&str> = MAPPED_FII_ITEM_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+
+    assert_eq!(skip_paths, indexed_paths);
+    for skip in MAPPED_FII_ITEM_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());

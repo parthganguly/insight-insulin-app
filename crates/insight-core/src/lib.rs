@@ -2,6 +2,7 @@ pub mod direct_fii;
 pub mod domain;
 pub mod exact_fii;
 pub mod fii_lookup;
+pub mod mapped_fii;
 
 pub use direct_fii::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
@@ -16,4 +17,9 @@ pub use exact_fii::{
     calculate_exact_fii_item_load, calculate_exact_fii_meal_totals, ExactFiiItemEstimate,
     ExactFiiItemLoadError, ExactFiiMealEstimate, ExactFiiMealItem,
 };
-pub use fii_lookup::{lookup_exact_fii, normalize_food_name, FiiLookupError, FiiLookupResult};
+pub use fii_lookup::{
+    lookup_exact_fii, lookup_mapped_fii, normalize_food_name, FiiLookupError, FiiLookupResult,
+};
+pub use mapped_fii::{
+    calculate_mapped_fii_item_load, MappedFiiItemEstimate, MappedFiiItemLoadError,
+};

@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
 use std::fmt;
 
@@ -10,6 +10,13 @@ use crate::domain::{
 
 const FII_FOODS_CSV: &str = include_str!("../../../backend/fii_foods.csv");
 const DEFAULT_CONFIDENCE: f64 = 0.5;
+const MIXED_MEAL_WORD_MARKERS: &[&str] = &[
+    "bowl", "combo", "plate", "biryani", "curry", "sandwich", "burger", "meal",
+];
+const MAJOR_FOOD_TOKENS: &[&str] = &[
+    "rice", "potato", "chicken", "beef", "fish", "egg", "eggs", "toast", "bread", "oats", "milk",
+    "yogurt", "lentils", "dal", "beans", "noodles", "pasta",
+];
 
 #[derive(Debug)]
 pub enum FiiLookupError {
@@ -82,15 +89,17 @@ struct FiiData {
 
 #[derive(Debug)]
 struct FiiRow {
+    food_name: String,
+    aliases: Vec<String>,
     fii: FiiValue,
     confidence: f64,
 }
 
 impl FiiRow {
-    const fn to_lookup_result(&self) -> FiiLookupResult {
+    const fn to_lookup_result(&self, source: EstimateSource) -> FiiLookupResult {
         FiiLookupResult {
             fii: self.fii,
-            source: EstimateSource::ExactFii,
+            source,
             confidence: self.confidence,
             formula_version: CURRENT_FORMULA_VERSION,
         }
@@ -122,7 +131,7 @@ pub fn lookup_exact_fii(food_name: &str) -> Result<Option<FiiLookupResult>, FiiL
         .get(&normalized)
         .and_then(|row_index| data.rows.get(*row_index))
     {
-        return Ok(Some(row.to_lookup_result()));
+        return Ok(Some(row.to_lookup_result(EstimateSource::ExactFii)));
     }
 
     if let Some(row) = data
@@ -130,7 +139,36 @@ pub fn lookup_exact_fii(food_name: &str) -> Result<Option<FiiLookupResult>, FiiL
         .get(&normalized)
         .and_then(|row_index| data.rows.get(*row_index))
     {
-        return Ok(Some(row.to_lookup_result()));
+        return Ok(Some(row.to_lookup_result(EstimateSource::ExactFii)));
+    }
+
+    Ok(None)
+}
+
+pub fn lookup_mapped_fii(food_name: &str) -> Result<Option<FiiLookupResult>, FiiLookupError> {
+    let normalized = normalize_food_name(food_name);
+    if normalized.is_empty() {
+        return Ok(None);
+    }
+
+    let data = parse_fii_data()?;
+    if data.primary_index.contains_key(&normalized) || data.alias_index.contains_key(&normalized) {
+        return Ok(None);
+    }
+    if is_likely_mixed_meal(food_name) {
+        return Ok(None);
+    }
+
+    let query_tokens = tokenize(&normalized);
+    for row in &data.rows {
+        if is_token_subset_phrase(&query_tokens, &tokenize(&row.food_name)) {
+            return Ok(Some(row.to_lookup_result(EstimateSource::MappedFii)));
+        }
+        for alias in &row.aliases {
+            if is_token_subset_phrase(&query_tokens, &tokenize(alias)) {
+                return Ok(Some(row.to_lookup_result(EstimateSource::MappedFii)));
+            }
+        }
     }
 
     Ok(None)
@@ -179,7 +217,12 @@ fn parse_fii_data() -> Result<FiiData, FiiLookupError> {
             alias_index.entry(alias.clone()).or_insert(row_index);
         }
 
-        rows.push(FiiRow { fii, confidence });
+        rows.push(FiiRow {
+            food_name,
+            aliases,
+            fii,
+            confidence,
+        });
     }
 
     Ok(FiiData {
@@ -187,6 +230,56 @@ fn parse_fii_data() -> Result<FiiData, FiiLookupError> {
         primary_index,
         alias_index,
     })
+}
+
+fn tokenize(name: &str) -> Vec<String> {
+    normalize_food_name(name)
+        .split_whitespace()
+        .map(str::to_owned)
+        .collect()
+}
+
+fn is_token_subset_phrase(query_tokens: &[String], candidate_tokens: &[String]) -> bool {
+    if query_tokens.is_empty() || candidate_tokens.is_empty() {
+        return false;
+    }
+    if query_tokens.len() == 1 || candidate_tokens.len() == 1 {
+        return false;
+    }
+
+    let query_set: BTreeSet<&str> = query_tokens.iter().map(String::as_str).collect();
+    let candidate_set: BTreeSet<&str> = candidate_tokens.iter().map(String::as_str).collect();
+    if query_set.intersection(&candidate_set).count() < 2 {
+        return false;
+    }
+
+    query_set.is_subset(&candidate_set) || candidate_set.is_subset(&query_set)
+}
+
+fn is_likely_mixed_meal(food_name: &str) -> bool {
+    let raw = food_name.to_lowercase();
+    let normalized = normalize_food_name(food_name);
+    if normalized.is_empty() {
+        return false;
+    }
+    if normalized.contains(" and ") || normalized.contains(" with ") || raw.contains('+') {
+        return true;
+    }
+
+    let tokens: Vec<&str> = normalized.split_whitespace().collect();
+    if tokens
+        .iter()
+        .any(|token| MIXED_MEAL_WORD_MARKERS.contains(token))
+    {
+        return true;
+    }
+
+    tokens
+        .iter()
+        .filter(|token| MAJOR_FOOD_TOKENS.contains(token))
+        .collect::<BTreeSet<_>>()
+        .len()
+        >= 2
 }
 
 fn parse_aliases(aliases_raw: &str) -> Vec<String> {
@@ -264,5 +357,39 @@ mod tests {
     #[test]
     fn empty_food_name_has_no_lookup_result() {
         assert!(lookup_exact_fii(" ").unwrap().is_none());
+    }
+
+    #[test]
+    fn looks_up_backend_mapped_primary_phrase() {
+        let result = lookup_mapped_fii("fresh white bread").unwrap().unwrap();
+
+        assert_approx_eq(result.fii().value(), 100.0);
+        assert_eq!(result.source(), EstimateSource::MappedFii);
+        assert_approx_eq(result.confidence(), 0.7);
+        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV1);
+    }
+
+    #[test]
+    fn looks_up_backend_mapped_alias_phrase() {
+        let result = lookup_mapped_fii("fresh basmati rice").unwrap().unwrap();
+
+        assert_approx_eq(result.fii().value(), 79.0);
+        assert_eq!(result.source().as_str(), "mapped_fii");
+        assert_approx_eq(result.confidence(), 0.7);
+    }
+
+    #[test]
+    fn exact_matches_do_not_enter_mapped_lookup() {
+        assert!(lookup_mapped_fii("white bread").unwrap().is_none());
+        assert!(lookup_mapped_fii("basmati rice").unwrap().is_none());
+    }
+
+    #[test]
+    fn mapped_lookup_rejects_broad_and_mixed_names() {
+        assert!(lookup_mapped_fii("bread").unwrap().is_none());
+        assert!(lookup_mapped_fii("greek yogurt bowl").unwrap().is_none());
+        assert!(lookup_mapped_fii("white bread with milk")
+            .unwrap()
+            .is_none());
     }
 }
