@@ -21,5 +21,7 @@ pub use fii_lookup::{
     lookup_exact_fii, lookup_mapped_fii, normalize_food_name, FiiLookupError, FiiLookupResult,
 };
 pub use mapped_fii::{
-    calculate_mapped_fii_item_load, MappedFiiItemEstimate, MappedFiiItemLoadError,
+    calculate_exact_or_mapped_fii_meal_totals, calculate_mapped_fii_item_load,
+    ExactOrMappedFiiItemEstimate, ExactOrMappedFiiMealError, ExactOrMappedFiiMealEstimate,
+    ExactOrMappedFiiMealItem, MappedFiiItemEstimate, MappedFiiItemLoadError,
 };
