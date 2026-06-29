@@ -6,9 +6,10 @@ use insight_core::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
     calculate_direct_fii_meal_totals, calculate_exact_fii_item_load,
     calculate_exact_fii_meal_totals, calculate_exact_or_mapped_fii_meal_totals,
-    calculate_mapped_fii_item_load, calculate_unified_fii_item_load,
-    calculate_unified_fii_meal_totals, lookup_exact_fii, DirectFiiMealItem, EstimateSource,
-    ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Kcal, UnifiedFiiItem,
+    calculate_macro_fallback_item_load, calculate_mapped_fii_item_load,
+    calculate_unified_fii_item_load, calculate_unified_fii_meal_totals, lookup_exact_fii,
+    DirectFiiMealItem, EstimateSource, ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue,
+    FormulaVersion, Grams, Kcal, MacroFallbackKind, MacroFallbackNutrients, UnifiedFiiItem,
     REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
@@ -303,13 +304,13 @@ const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
 const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[
     UnifiedFiiSkipReason {
         fixture_path: "cases/ranking_relative_01.json",
-        input_path: "input.payload.meals excluding ranking_cake_icecream",
-        reason: "the remaining ranking meals require mixed-dish decomposition or macro fallback",
+        input_path: "input.payload.meals excluding ranking_salad and ranking_cake_icecream",
+        reason: "the remaining ranking meals require mixed-dish decomposition",
     },
     UnifiedFiiSkipReason {
         fixture_path: "cases/source_quality_hierarchy_01.json",
-        input_path: "input.payload.variants excluding source_exact_fii",
-        reason: "source_mapped_fii requires mixed-dish decomposition and source_macro_fallback requires macro fallback",
+        input_path: "input.payload.variants.source_mapped_fii",
+        reason: "source_mapped_fii requires mixed-dish decomposition",
     },
     UnifiedFiiSkipReason {
         fixture_path: "cases/monotonicity_biryani_portion_01.json",
@@ -318,13 +319,54 @@ const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[
     },
     UnifiedFiiSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "input.payload.low_day_meal and expected rolling chronic outputs",
-        reason: "low_day_meal requires macro fallback and rolling outputs require chronic DIL/DII behavior",
+        input_path: "expected rolling chronic outputs",
+        reason: "rolling outputs require chronic DIL/DII behavior",
     },
     UnifiedFiiSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal",
         reason: "mixed_meal requires decomposition, macro fallback, unknown fallback, confidence aggregation, and estimate-quality aggregation",
+    },
+];
+
+#[derive(Debug)]
+struct MacroFallbackSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const MACRO_FALLBACK_SUPPORTED_PATHS: &[&str] = &[
+    "cases/ranking_relative_01.json",
+    "cases/source_quality_hierarchy_01.json",
+    "cases/chronic_low_then_high_01.json",
+];
+
+const MACRO_FALLBACK_SKIP_REASONS: &[MacroFallbackSkipReason] = &[
+    MacroFallbackSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "input.payload.meals excluding ranking_salad",
+        reason: "the remaining meals use mixed-dish decomposition or provided FII",
+    },
+    MacroFallbackSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "input.payload.variants excluding source_macro_fallback",
+        reason: "the remaining variants use exact lookup or mixed-dish decomposition",
+    },
+    MacroFallbackSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "all chicken biryani meals require mixed-dish decomposition",
+    },
+    MacroFallbackSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.high_day_meal and expected rolling chronic outputs",
+        reason: "high_day_meal uses provided FII and rolling outputs require chronic DIL/DII behavior",
+    },
+    MacroFallbackSkipReason {
+        fixture_path: "cases/uncertainty_degradation_01.json",
+        input_path: "input.payload.mixed_meal",
+        reason: "fallback carb bowl is mixed by the existing bowl rule, and the meal also requires decomposition, unknown fallback, confidence aggregation, and estimate-quality aggregation",
     },
 ];
 
@@ -681,7 +723,7 @@ fn unified_fii_provided_paths_match_supported_golden_fixtures() {
     );
 
     assert_approx_eq(item_estimate.item_kcal().value(), 450.0);
-    assert_approx_eq(item_estimate.resolved_fii().value(), 110.0);
+    assert_approx_eq(item_estimate.resolved_fii().unwrap().value(), 110.0);
     assert_approx_eq(
         item_estimate.item_insulin_load().value(),
         ranking_expected_load,
@@ -755,6 +797,97 @@ fn unified_fii_lookup_paths_match_supported_golden_fixtures() {
 }
 
 #[test]
+fn isolated_macro_fallback_matches_supported_golden_fixture_items() {
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let source_meal = find_array_meal(&source_fixture.input, "variants", "source_macro_fallback");
+    let source_item = find_meal_item(source_meal, "cultured dairy cup");
+    assert_macro_fallback_fixture_item_matches_expected(
+        source_item,
+        expected_nested_score(
+            &source_fixture.expected.actual_scores,
+            "source_macro_fallback",
+            "acute_score",
+        ) / 100.0
+            * REFERENCE_MEAL_INSULIN_LOAD,
+        expected_nested_score(
+            &source_fixture.expected.actual_scores,
+            "source_macro_fallback",
+            "mean_confidence",
+        ),
+    );
+
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_salad");
+    assert_macro_fallback_fixture_item_matches_expected(
+        find_meal_item(ranking_meal, "garden salad"),
+        expected_nested_score(
+            &ranking_fixture.expected.actual_scores,
+            "ranking_salad",
+            "insulin_load_total",
+        ),
+        0.8,
+    );
+
+    let chronic_fixture = read_golden_fixture("cases/chronic_low_then_high_01.json");
+    let low_day_meal = payload_object(&chronic_fixture.input)
+        .get("low_day_meal")
+        .expect("chronic fixture should include low_day_meal");
+    assert_macro_fallback_fixture_item_matches_expected(
+        find_meal_item(low_day_meal, "garden salad"),
+        expected_score(
+            &chronic_fixture.expected.actual_scores,
+            "low_day_insulin_load_total",
+        ),
+        0.8,
+    );
+}
+
+#[test]
+fn unified_fii_macro_paths_match_supported_golden_fixtures() {
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let source_meal = find_array_meal(&source_fixture.input, "variants", "source_macro_fallback");
+    assert_unified_fii_fixture_meal_matches_expected(
+        &source_fixture,
+        source_meal,
+        "source_macro_fallback",
+    );
+
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_salad");
+    assert_unified_fii_fixture_meal_matches_expected(
+        &ranking_fixture,
+        ranking_meal,
+        "ranking_salad",
+    );
+
+    let chronic_fixture = read_golden_fixture("cases/chronic_low_then_high_01.json");
+    let low_day_meal = payload_object(&chronic_fixture.input)
+        .get("low_day_meal")
+        .expect("chronic fixture should include low_day_meal");
+    let estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(low_day_meal))
+        .unwrap()
+        .expect("chronic low day should resolve through macro fallback");
+
+    assert_eq!(estimate.item_estimates().len(), 1);
+    assert_eq!(
+        estimate.item_estimates()[0].source(),
+        EstimateSource::MacroFallback
+    );
+    assert_eq!(estimate.item_estimates()[0].resolved_fii(), None);
+    assert_eq!(
+        estimate.item_estimates()[0].macro_fallback_kind(),
+        Some(MacroFallbackKind::GiCarbProtein)
+    );
+    assert_approx_eq(
+        estimate.meal_insulin_load_total().value(),
+        expected_score(
+            &chronic_fixture.expected.actual_scores,
+            "low_day_insulin_load_total",
+        ),
+    );
+}
+
+#[test]
 fn mapped_fii_item_path_rejects_decomposition_only_golden_fixture_item() {
     let fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
     let mapped_variant = find_array_meal(&fixture.input, "variants", "source_mapped_fii");
@@ -791,6 +924,27 @@ fn unified_fii_path_rejects_decomposition_only_golden_fixture() {
             .unwrap()
             .is_none()
     );
+}
+
+#[test]
+fn macro_fallback_rejects_mixed_uncertainty_fixture_item() {
+    let fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let mixed_meal = payload_object(&fixture.input)
+        .get("mixed_meal")
+        .expect("uncertainty fixture should include mixed_meal");
+    let item = find_meal_item(mixed_meal, "fallback carb bowl");
+
+    assert!(calculate_macro_fallback_item_load(
+        string_field(item, "name"),
+        Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+        number_field(item, "quantity"),
+        macro_fallback_nutrients(item),
+    )
+    .unwrap()
+    .is_none());
+    assert!(calculate_unified_fii_item_load(&unified_fii_item(item))
+        .unwrap()
+        .is_none());
 }
 
 #[test]
@@ -938,6 +1092,28 @@ fn unified_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
         assert!(indexed_paths.contains(supported_path));
     }
     for skip in UNIFIED_FII_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn macro_fallback_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let supported_paths: BTreeSet<&str> = MACRO_FALLBACK_SUPPORTED_PATHS.iter().copied().collect();
+    let skip_paths: BTreeSet<&str> = MACRO_FALLBACK_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
+
+    assert_eq!(covered_paths, indexed_paths);
+    for supported_path in MACRO_FALLBACK_SUPPORTED_PATHS {
+        assert!(indexed_paths.contains(supported_path));
+    }
+    for skip in MACRO_FALLBACK_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());
@@ -1133,6 +1309,31 @@ fn assert_exact_or_mapped_fii_fixture_meal_matches_expected(
     );
 }
 
+fn assert_macro_fallback_fixture_item_matches_expected(
+    item: &Value,
+    expected_insulin_load: f64,
+    expected_confidence: f64,
+) {
+    let estimate = calculate_macro_fallback_item_load(
+        string_field(item, "name"),
+        Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+        number_field(item, "quantity"),
+        macro_fallback_nutrients(item),
+    )
+    .unwrap()
+    .expect("fixture item should resolve through isolated macro fallback");
+
+    assert_approx_eq(
+        estimate.item_kcal().value(),
+        number_field(item, "kcal_per_unit") * number_field(item, "quantity"),
+    );
+    assert_approx_eq(estimate.item_insulin_load().value(), expected_insulin_load);
+    assert_eq!(estimate.kind(), MacroFallbackKind::GiCarbProtein);
+    assert_eq!(estimate.source(), EstimateSource::MacroFallback);
+    assert_approx_eq(estimate.confidence(), expected_confidence);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+}
+
 fn assert_unified_fii_fixture_meal_matches_expected(
     fixture: &GoldenFixture,
     meal: &Value,
@@ -1268,6 +1469,18 @@ fn unified_fii_item(item: &Value) -> UnifiedFiiItem {
         provided_fii,
     )
     .unwrap()
+    .with_macro_nutrients(macro_fallback_nutrients(item))
+}
+
+fn macro_fallback_nutrients(item: &Value) -> MacroFallbackNutrients {
+    MacroFallbackNutrients::new(
+        optional_number_field(item, "gi"),
+        optional_grams_field(item, "carb_g"),
+        optional_grams_field(item, "protein_g"),
+        optional_grams_field(item, "fat_g"),
+        optional_grams_field(item, "sat_fat_g"),
+    )
+    .unwrap()
 }
 
 fn unified_fii_meal_items(meal: &Value) -> Vec<UnifiedFiiItem> {
@@ -1293,6 +1506,14 @@ fn number_field(value: &Value, field: &str) -> f64 {
         .get(field)
         .and_then(Value::as_f64)
         .expect("fixture field should be numeric")
+}
+
+fn optional_number_field(value: &Value, field: &str) -> Option<f64> {
+    value.get(field).and_then(Value::as_f64)
+}
+
+fn optional_grams_field(value: &Value, field: &str) -> Option<Grams> {
+    optional_number_field(value, field).map(|value| Grams::new(value).unwrap())
 }
 
 fn string_field<'a>(value: &'a Value, field: &str) -> &'a str {
