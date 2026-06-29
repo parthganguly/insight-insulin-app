@@ -6,8 +6,9 @@ use insight_core::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
     calculate_direct_fii_meal_totals, calculate_exact_fii_item_load,
     calculate_exact_fii_meal_totals, calculate_exact_or_mapped_fii_meal_totals,
-    calculate_mapped_fii_item_load, lookup_exact_fii, DirectFiiMealItem, EstimateSource,
-    ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Kcal,
+    calculate_mapped_fii_item_load, calculate_unified_fii_item_load,
+    calculate_unified_fii_meal_totals, lookup_exact_fii, DirectFiiMealItem, EstimateSource,
+    ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Kcal, UnifiedFiiItem,
     REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
@@ -282,6 +283,48 @@ const EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS: &[ExactOrMappedFiiMealSkipReason] =
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal",
         reason: "mixed_meal requires decomposition, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
+    },
+];
+
+#[derive(Debug)]
+struct UnifiedFiiSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
+    "cases/ranking_relative_01.json",
+    "cases/source_quality_hierarchy_01.json",
+    "cases/chronic_low_then_high_01.json",
+    "cases/uncertainty_degradation_01.json",
+];
+
+const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[
+    UnifiedFiiSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "input.payload.meals excluding ranking_cake_icecream",
+        reason: "the remaining ranking meals require mixed-dish decomposition or macro fallback",
+    },
+    UnifiedFiiSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "input.payload.variants excluding source_exact_fii",
+        reason: "source_mapped_fii requires mixed-dish decomposition and source_macro_fallback requires macro fallback",
+    },
+    UnifiedFiiSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "all chicken biryani meals require mixed-dish decomposition",
+    },
+    UnifiedFiiSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.low_day_meal and expected rolling chronic outputs",
+        reason: "low_day_meal requires macro fallback and rolling outputs require chronic DIL/DII behavior",
+    },
+    UnifiedFiiSkipReason {
+        fixture_path: "cases/uncertainty_degradation_01.json",
+        input_path: "input.payload.mixed_meal",
+        reason: "mixed_meal requires decomposition, macro fallback, unknown fallback, confidence aggregation, and estimate-quality aggregation",
     },
 ];
 
@@ -623,6 +666,95 @@ fn exact_or_mapped_fii_meal_aggregation_matches_supported_golden_fixture_meals()
 }
 
 #[test]
+fn unified_fii_provided_paths_match_supported_golden_fixtures() {
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_cake_icecream");
+    let ranking_item = find_meal_item(ranking_meal, "cake and ice cream");
+    let item = unified_fii_item(ranking_item);
+    let item_estimate = calculate_unified_fii_item_load(&item)
+        .unwrap()
+        .expect("ranking cake item should use provided FII");
+    let ranking_expected_load = expected_nested_score(
+        &ranking_fixture.expected.actual_scores,
+        "ranking_cake_icecream",
+        "insulin_load_total",
+    );
+
+    assert_approx_eq(item_estimate.item_kcal().value(), 450.0);
+    assert_approx_eq(item_estimate.resolved_fii().value(), 110.0);
+    assert_approx_eq(
+        item_estimate.item_insulin_load().value(),
+        ranking_expected_load,
+    );
+    assert_eq!(item_estimate.source(), EstimateSource::UserConfirmed);
+    assert_approx_eq(item_estimate.confidence(), 1.0);
+    assert_eq!(
+        item_estimate.formula_version(),
+        FormulaVersion::CurrentBackendV1
+    );
+
+    let ranking_estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(ranking_meal))
+        .unwrap()
+        .expect("ranking cake meal should use provided FII");
+    assert_approx_eq(
+        ranking_estimate.meal_insulin_load_total().value(),
+        ranking_expected_load,
+    );
+    assert_approx_eq(
+        ranking_estimate.meal_insulin_load_total().value() / REFERENCE_MEAL_INSULIN_LOAD * 100.0,
+        expected_nested_score(
+            &ranking_fixture.expected.actual_scores,
+            "ranking_cake_icecream",
+            "acute_score",
+        ),
+    );
+
+    let chronic_fixture = read_golden_fixture("cases/chronic_low_then_high_01.json");
+    let chronic_payload = payload_object(&chronic_fixture.input);
+    let high_day_meal = chronic_payload
+        .get("high_day_meal")
+        .expect("chronic fixture should include high_day_meal");
+    let high_day_estimate =
+        calculate_unified_fii_meal_totals(&unified_fii_meal_items(high_day_meal))
+            .unwrap()
+            .expect("chronic high day should use provided FII");
+
+    assert_approx_eq(
+        high_day_estimate.meal_insulin_load_total().value(),
+        expected_score(
+            &chronic_fixture.expected.actual_scores,
+            "high_day_insulin_load_total",
+        ),
+    );
+    assert!(high_day_estimate
+        .item_estimates()
+        .iter()
+        .all(|item| item.source() == EstimateSource::UserConfirmed && item.confidence() == 1.0));
+}
+
+#[test]
+fn unified_fii_lookup_paths_match_supported_golden_fixtures() {
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let source_exact_meal = find_array_meal(&source_fixture.input, "variants", "source_exact_fii");
+    assert_unified_fii_fixture_meal_matches_expected(
+        &source_fixture,
+        source_exact_meal,
+        "source_exact_fii",
+    );
+
+    let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let uncertainty_payload = payload_object(&uncertainty_fixture.input);
+    let exact_control_meal = uncertainty_payload
+        .get("control_meal")
+        .expect("uncertainty fixture should include control_meal");
+    assert_unified_fii_fixture_meal_matches_expected(
+        &uncertainty_fixture,
+        exact_control_meal,
+        "control_meal",
+    );
+}
+
+#[test]
 fn mapped_fii_item_path_rejects_decomposition_only_golden_fixture_item() {
     let fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
     let mapped_variant = find_array_meal(&fixture.input, "variants", "source_mapped_fii");
@@ -647,6 +779,18 @@ fn exact_or_mapped_fii_meal_path_rejects_decomposition_only_golden_fixture() {
     assert!(calculate_exact_or_mapped_fii_meal_totals(&items)
         .unwrap()
         .is_none());
+}
+
+#[test]
+fn unified_fii_path_rejects_decomposition_only_golden_fixture() {
+    let fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let mapped_variant = find_array_meal(&fixture.input, "variants", "source_mapped_fii");
+
+    assert!(
+        calculate_unified_fii_meal_totals(&unified_fii_meal_items(mapped_variant))
+            .unwrap()
+            .is_none()
+    );
 }
 
 #[test]
@@ -772,6 +916,28 @@ fn exact_or_mapped_fii_meal_skip_reasons_cover_unsupported_golden_fixture_paths(
         assert!(indexed_paths.contains(supported_path));
     }
     for skip in EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn unified_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let supported_paths: BTreeSet<&str> = UNIFIED_FII_SUPPORTED_PATHS.iter().copied().collect();
+    let skip_paths: BTreeSet<&str> = UNIFIED_FII_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
+
+    assert_eq!(covered_paths, indexed_paths);
+    for supported_path in UNIFIED_FII_SUPPORTED_PATHS {
+        assert!(indexed_paths.contains(supported_path));
+    }
+    for skip in UNIFIED_FII_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());
@@ -967,6 +1133,39 @@ fn assert_exact_or_mapped_fii_fixture_meal_matches_expected(
     );
 }
 
+fn assert_unified_fii_fixture_meal_matches_expected(
+    fixture: &GoldenFixture,
+    meal: &Value,
+    expected_score_id: &str,
+) {
+    let estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(meal))
+        .unwrap()
+        .expect("every fixture item should resolve through an allowed unified FII path");
+
+    assert_eq!(estimate.item_estimates().len(), meal_items(meal).len());
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert!(estimate.item_estimates().iter().all(|item| {
+        item.formula_version() == FormulaVersion::CurrentBackendV1
+            && fixture
+                .expected
+                .source_labels
+                .iter()
+                .any(|source| source == item.source().as_str())
+    }));
+    assert_approx_eq(estimate.meal_kcal_total().value(), meal_kcal_total(meal));
+
+    let acute_score =
+        estimate.meal_insulin_load_total().value() / REFERENCE_MEAL_INSULIN_LOAD * 100.0;
+    assert_approx_eq(
+        round_to_four_places(acute_score),
+        expected_nested_score(
+            &fixture.expected.actual_scores,
+            expected_score_id,
+            "acute_score",
+        ),
+    );
+}
+
 fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
     input
         .get("payload")
@@ -1054,6 +1253,25 @@ fn exact_or_mapped_fii_meal_items(meal: &Value) -> Vec<ExactOrMappedFiiMealItem>
             .unwrap()
         })
         .collect()
+}
+
+fn unified_fii_item(item: &Value) -> UnifiedFiiItem {
+    let provided_fii = item
+        .get("fii")
+        .and_then(Value::as_f64)
+        .map(|value| FiiValue::new(value).unwrap());
+
+    UnifiedFiiItem::new(
+        string_field(item, "name"),
+        Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+        number_field(item, "quantity"),
+        provided_fii,
+    )
+    .unwrap()
+}
+
+fn unified_fii_meal_items(meal: &Value) -> Vec<UnifiedFiiItem> {
+    meal_items(meal).iter().map(unified_fii_item).collect()
 }
 
 fn meal_kcal_total(meal: &Value) -> f64 {
