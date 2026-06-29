@@ -256,7 +256,7 @@ fn is_token_subset_phrase(query_tokens: &[String], candidate_tokens: &[String]) 
     query_set.is_subset(&candidate_set) || candidate_set.is_subset(&query_set)
 }
 
-fn is_likely_mixed_meal(food_name: &str) -> bool {
+pub(crate) fn is_likely_mixed_meal(food_name: &str) -> bool {
     let raw = food_name.to_lowercase();
     let normalized = normalize_food_name(food_name);
     if normalized.is_empty() {
