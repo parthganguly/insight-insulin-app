@@ -5,8 +5,9 @@ use std::path::PathBuf;
 use insight_core::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
     calculate_direct_fii_meal_totals, calculate_exact_fii_item_load,
-    calculate_exact_fii_meal_totals, calculate_mapped_fii_item_load, lookup_exact_fii,
-    DirectFiiMealItem, EstimateSource, ExactFiiMealItem, FiiValue, FormulaVersion, Kcal,
+    calculate_exact_fii_meal_totals, calculate_exact_or_mapped_fii_meal_totals,
+    calculate_mapped_fii_item_load, lookup_exact_fii, DirectFiiMealItem, EstimateSource,
+    ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Kcal,
     REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
@@ -241,6 +242,46 @@ const MAPPED_FII_ITEM_SKIP_REASONS: &[MappedFiiItemSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.control_meal and input.payload.mixed_meal",
         reason: "the control uses exact lookup and the mapped mixed-meal item requires decomposition alongside fallback and unknown paths",
+    },
+];
+
+#[derive(Debug)]
+struct ExactOrMappedFiiMealSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const EXACT_OR_MAPPED_FII_MEAL_SUPPORTED_PATHS: &[&str] = &[
+    "cases/source_quality_hierarchy_01.json",
+    "cases/uncertainty_degradation_01.json",
+];
+
+const EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS: &[ExactOrMappedFiiMealSkipReason] = &[
+    ExactOrMappedFiiMealSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "ranking_cake_icecream uses direct provided FII, while the remaining meals require mixed-meal decomposition or fallback scoring",
+    },
+    ExactOrMappedFiiMealSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "input.payload.variants excluding source_exact_fii",
+        reason: "source_mapped_fii requires the explicit greek-yogurt-bowl decomposition rule and source_macro_fallback requires macro fallback",
+    },
+    ExactOrMappedFiiMealSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "all chicken biryani items require mixed-meal decomposition",
+    },
+    ExactOrMappedFiiMealSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
+        reason: "the meals use direct provided FII or macro fallback, and the expected outputs require chronic DIL/DII behavior",
+    },
+    ExactOrMappedFiiMealSkipReason {
+        fixture_path: "cases/uncertainty_degradation_01.json",
+        input_path: "input.payload.mixed_meal",
+        reason: "mixed_meal requires decomposition, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
     },
 ];
 
@@ -560,6 +601,28 @@ fn exact_fii_meal_aggregation_matches_supported_golden_fixture_meals() {
 }
 
 #[test]
+fn exact_or_mapped_fii_meal_aggregation_matches_supported_golden_fixture_meals() {
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let source_exact_meal = find_array_meal(&source_fixture.input, "variants", "source_exact_fii");
+    assert_exact_or_mapped_fii_fixture_meal_matches_expected(
+        &source_fixture,
+        source_exact_meal,
+        "source_exact_fii",
+    );
+
+    let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let uncertainty_payload = payload_object(&uncertainty_fixture.input);
+    let exact_control_meal = uncertainty_payload
+        .get("control_meal")
+        .expect("uncertainty fixture should include control_meal");
+    assert_exact_or_mapped_fii_fixture_meal_matches_expected(
+        &uncertainty_fixture,
+        exact_control_meal,
+        "control_meal",
+    );
+}
+
+#[test]
 fn mapped_fii_item_path_rejects_decomposition_only_golden_fixture_item() {
     let fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
     let mapped_variant = find_array_meal(&fixture.input, "variants", "source_mapped_fii");
@@ -573,6 +636,17 @@ fn mapped_fii_item_path_rejects_decomposition_only_golden_fixture_item() {
     )
     .unwrap()
     .is_none());
+}
+
+#[test]
+fn exact_or_mapped_fii_meal_path_rejects_decomposition_only_golden_fixture() {
+    let fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let mapped_variant = find_array_meal(&fixture.input, "variants", "source_mapped_fii");
+    let items = exact_or_mapped_fii_meal_items(mapped_variant);
+
+    assert!(calculate_exact_or_mapped_fii_meal_totals(&items)
+        .unwrap()
+        .is_none());
 }
 
 #[test]
@@ -673,6 +747,31 @@ fn mapped_fii_item_skip_reasons_cover_unsupported_golden_fixture_paths() {
 
     assert_eq!(skip_paths, indexed_paths);
     for skip in MAPPED_FII_ITEM_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn exact_or_mapped_fii_meal_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let supported_paths: BTreeSet<&str> = EXACT_OR_MAPPED_FII_MEAL_SUPPORTED_PATHS
+        .iter()
+        .copied()
+        .collect();
+    let skip_paths: BTreeSet<&str> = EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
+
+    assert_eq!(covered_paths, indexed_paths);
+    for supported_path in EXACT_OR_MAPPED_FII_MEAL_SUPPORTED_PATHS {
+        assert!(indexed_paths.contains(supported_path));
+    }
+    for skip in EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());
@@ -830,6 +929,44 @@ fn assert_exact_fii_fixture_meal_matches_expected(
         .any(|source| source == estimate.source().as_str()));
 }
 
+fn assert_exact_or_mapped_fii_fixture_meal_matches_expected(
+    fixture: &GoldenFixture,
+    meal: &Value,
+    expected_score_id: &str,
+) {
+    assert!(meal_items(meal)
+        .iter()
+        .all(|item| item.get("fii").is_some_and(Value::is_null)));
+
+    let items = exact_or_mapped_fii_meal_items(meal);
+    let estimate = calculate_exact_or_mapped_fii_meal_totals(&items)
+        .unwrap()
+        .expect("every fixture item should resolve through exact or mapped FII lookup");
+
+    assert_eq!(estimate.item_estimates().len(), meal_items(meal).len());
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert!(estimate.item_estimates().iter().all(|item| {
+        item.formula_version() == FormulaVersion::CurrentBackendV1
+            && fixture
+                .expected
+                .source_labels
+                .iter()
+                .any(|source| source == item.source().as_str())
+    }));
+    assert_approx_eq(estimate.meal_kcal_total().value(), meal_kcal_total(meal));
+
+    let acute_score =
+        estimate.meal_insulin_load_total().value() / REFERENCE_MEAL_INSULIN_LOAD * 100.0;
+    assert_approx_eq(
+        round_to_four_places(acute_score),
+        expected_nested_score(
+            &fixture.expected.actual_scores,
+            expected_score_id,
+            "acute_score",
+        ),
+    );
+}
+
 fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
     input
         .get("payload")
@@ -896,6 +1033,20 @@ fn exact_fii_meal_items(meal: &Value) -> Vec<ExactFiiMealItem> {
         .iter()
         .map(|item| {
             ExactFiiMealItem::new(
+                string_field(item, "name"),
+                Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
+                number_field(item, "quantity"),
+            )
+            .unwrap()
+        })
+        .collect()
+}
+
+fn exact_or_mapped_fii_meal_items(meal: &Value) -> Vec<ExactOrMappedFiiMealItem> {
+    meal_items(meal)
+        .iter()
+        .map(|item| {
+            ExactOrMappedFiiMealItem::new(
                 string_field(item, "name"),
                 Kcal::new(number_field(item, "kcal_per_unit")).unwrap(),
                 number_field(item, "quantity"),
