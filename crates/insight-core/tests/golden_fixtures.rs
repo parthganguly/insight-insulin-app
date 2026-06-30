@@ -310,8 +310,8 @@ const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[
     },
     UnifiedFiiSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
-        input_path: "input.payload.mixed_meal",
-        reason: "the complete mixed_meal still requires unknown fallback, confidence aggregation, and estimate-quality aggregation",
+        input_path: "expected.actual_scores mean_confidence fields and expected.estimate_quality",
+        reason: "confidence aggregation and estimate-quality aggregation remain unported; item provenance and meal load parity are covered",
     },
 ];
 
@@ -1044,16 +1044,63 @@ fn macro_fallback_rejects_mixed_uncertainty_fixture_item() {
 }
 
 #[test]
-fn unified_fii_still_rejects_complete_uncertainty_meal_without_unknown_fallback() {
+fn unified_fii_unknown_fallback_matches_isolated_golden_fixture_item() {
+    let fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let mixed_meal = payload_object(&fixture.input)
+        .get("mixed_meal")
+        .expect("uncertainty fixture should include mixed_meal");
+    let item = find_meal_item(mixed_meal, "mystery mineral water");
+
+    let estimate = calculate_unified_fii_item_load(&unified_fii_item(item))
+        .unwrap()
+        .expect("unresolved fixture item should use terminal unknown fallback");
+
+    assert_approx_eq(estimate.item_kcal().value(), 0.0);
+    assert_approx_eq(estimate.item_insulin_load().value(), 0.0);
+    assert_eq!(estimate.source(), EstimateSource::Unknown);
+    assert_approx_eq(estimate.confidence(), 0.2);
+    assert_eq!(estimate.resolved_fii(), None);
+    assert_eq!(estimate.macro_fallback_kind(), None);
+    assert_eq!(estimate.decomposition(), None);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+}
+
+#[test]
+fn unified_fii_complete_uncertainty_meal_retains_unknown_without_aggregate_quality() {
     let fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
     let mixed_meal = payload_object(&fixture.input)
         .get("mixed_meal")
         .expect("uncertainty fixture should include mixed_meal");
 
-    assert!(
-        calculate_unified_fii_meal_totals(&unified_fii_meal_items(mixed_meal))
-            .unwrap()
-            .is_none()
+    let estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(mixed_meal))
+        .unwrap()
+        .expect("terminal unknown should keep the complete fixture meal resolvable");
+
+    let sources: Vec<EstimateSource> = estimate
+        .item_estimates()
+        .iter()
+        .map(|item| item.source())
+        .collect();
+    assert_eq!(
+        sources,
+        vec![
+            EstimateSource::ExactFii,
+            EstimateSource::MappedFii,
+            EstimateSource::MacroFallback,
+            EstimateSource::Unknown,
+        ]
+    );
+    assert_eq!(estimate.item_estimates()[3].resolved_fii(), None);
+    assert_approx_eq(
+        estimate.item_estimates()[3].item_insulin_load().value(),
+        0.0,
+    );
+
+    let acute_score =
+        estimate.meal_insulin_load_total().value() / REFERENCE_MEAL_INSULIN_LOAD * 100.0;
+    assert_approx_eq(
+        round_to_four_places(acute_score),
+        expected_nested_score(&fixture.expected.actual_scores, "mixed_meal", "acute_score"),
     );
 }
 
