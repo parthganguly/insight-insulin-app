@@ -10,6 +10,7 @@ use crate::decomposition::{
 use crate::direct_fii::calculate_direct_fii_item_load;
 use crate::domain::{
     EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal, ValueValidationError,
+    CURRENT_FORMULA_VERSION,
 };
 use crate::exact_fii::{calculate_exact_fii_item_load, ExactFiiItemLoadError};
 use crate::fii_lookup::is_likely_mixed_meal;
@@ -18,6 +19,8 @@ use crate::macro_fallback::{
     MacroFallbackKind, MacroFallbackNutrients,
 };
 use crate::mapped_fii::{calculate_mapped_fii_item_load, MappedFiiItemLoadError};
+
+const UNKNOWN_FALLBACK_CONFIDENCE: f64 = 0.2;
 
 #[derive(Debug)]
 pub enum UnifiedFiiScoringError {
@@ -206,7 +209,7 @@ impl UnifiedFiiMealEstimate {
     }
 }
 
-/// Reproduces backend precedence through decomposition, lookup, and macro fallback.
+/// Reproduces backend precedence through the terminal unknown placeholder.
 pub fn calculate_unified_fii_item_load(
     item: &UnifiedFiiItem,
 ) -> Result<Option<UnifiedFiiItemEstimate>, UnifiedFiiScoringError> {
@@ -289,7 +292,16 @@ pub fn calculate_unified_fii_item_load(
         }));
     }
 
-    Ok(None)
+    Ok(Some(UnifiedFiiItemEstimate {
+        item_kcal: Kcal::new(item.kcal_per_unit().value() * item.quantity())?,
+        item_insulin_load: InsulinLoad::new(0.0)?,
+        resolved_fii: None,
+        macro_fallback_kind: None,
+        decomposition: None,
+        source: EstimateSource::Unknown,
+        confidence: UNKNOWN_FALLBACK_CONFIDENCE,
+        formula_version: CURRENT_FORMULA_VERSION,
+    }))
 }
 
 fn unified_decomposition_estimate(estimate: DecomposedFiiItemEstimate) -> UnifiedFiiItemEstimate {
@@ -305,7 +317,7 @@ fn unified_decomposition_estimate(estimate: DecomposedFiiItemEstimate) -> Unifie
     }
 }
 
-/// Aggregates a non-empty meal only when every item resolves through an allowed path.
+/// Aggregates a non-empty meal while retaining terminal unknown placeholders.
 pub fn calculate_unified_fii_meal_totals(
     items: &[UnifiedFiiItem],
 ) -> Result<Option<UnifiedFiiMealEstimate>, UnifiedFiiScoringError> {
@@ -588,7 +600,7 @@ mod tests {
     }
 
     #[test]
-    fn rejects_whole_meal_when_any_item_is_unsupported() {
+    fn mixed_supported_and_unknown_meal_retains_both_items() {
         let items = [
             UnifiedFiiItem::new(
                 "plain yogurt",
@@ -601,18 +613,40 @@ mod tests {
                 .unwrap(),
         ];
 
-        assert!(calculate_unified_fii_meal_totals(&items).unwrap().is_none());
+        let estimate = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
+
+        assert_eq!(estimate.item_estimates().len(), 2);
+        assert_eq!(
+            estimate.item_estimates()[0].source(),
+            EstimateSource::UserConfirmed
+        );
+        assert_eq!(
+            estimate.item_estimates()[1].source(),
+            EstimateSource::Unknown
+        );
+        assert_approx_eq(estimate.meal_kcal_total().value(), 100.0);
+        assert_approx_eq(estimate.meal_insulin_load_total().value(), 50.0);
     }
 
     #[test]
-    fn decomposition_does_not_enable_partial_meal_scoring() {
-        let items = [
-            UnifiedFiiItem::new("chicken biryani", Kcal::new(520.0).unwrap(), 1.0, None).unwrap(),
-            UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None)
-                .unwrap(),
-        ];
+    fn unknown_only_meal_retains_zero_placeholder() {
+        let items =
+            [
+                UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None)
+                    .unwrap(),
+            ];
 
-        assert!(calculate_unified_fii_meal_totals(&items).unwrap().is_none());
+        let estimate = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
+
+        assert_eq!(estimate.item_estimates().len(), 1);
+        assert_eq!(
+            estimate.item_estimates()[0].source(),
+            EstimateSource::Unknown
+        );
+        assert_approx_eq(estimate.item_estimates()[0].confidence(), 0.2);
+        assert_eq!(estimate.item_estimates()[0].resolved_fii(), None);
+        assert_approx_eq(estimate.meal_kcal_total().value(), 0.0);
+        assert_approx_eq(estimate.meal_insulin_load_total().value(), 0.0);
     }
 
     #[test]
@@ -639,11 +673,21 @@ mod tests {
     }
 
     #[test]
-    fn returns_no_estimate_for_unresolved_item() {
-        let item = UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None)
-            .unwrap();
+    fn unresolved_item_returns_terminal_unknown_placeholder() {
+        let item =
+            UnifiedFiiItem::new("mystery mineral water", Kcal::new(80.0).unwrap(), 1.5, None)
+                .unwrap();
 
-        assert!(calculate_unified_fii_item_load(&item).unwrap().is_none());
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_approx_eq(estimate.item_kcal().value(), 120.0);
+        assert_approx_eq(estimate.item_insulin_load().value(), 0.0);
+        assert_eq!(estimate.resolved_fii(), None);
+        assert_eq!(estimate.macro_fallback_kind(), None);
+        assert_eq!(estimate.decomposition(), None);
+        assert_eq!(estimate.source(), EstimateSource::Unknown);
+        assert_approx_eq(estimate.confidence(), 0.2);
+        assert_eq!(estimate.formula_version(), CURRENT_FORMULA_VERSION);
     }
 
     #[test]
