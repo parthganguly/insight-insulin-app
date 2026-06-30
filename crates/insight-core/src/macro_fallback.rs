@@ -145,6 +145,23 @@ pub fn calculate_macro_fallback_item_load(
         return Ok(None);
     }
 
+    calculate_macro_fallback_after_validation(kcal_per_unit, quantity, nutrients)
+}
+
+pub(crate) fn calculate_macro_fallback_item_load_after_decomposition(
+    kcal_per_unit: Kcal,
+    quantity: f64,
+    nutrients: MacroFallbackNutrients,
+) -> Result<Option<MacroFallbackItemEstimate>, MacroFallbackItemLoadError> {
+    validate_non_negative(quantity, "Quantity")?;
+    calculate_macro_fallback_after_validation(kcal_per_unit, quantity, nutrients)
+}
+
+fn calculate_macro_fallback_after_validation(
+    kcal_per_unit: Kcal,
+    quantity: f64,
+    nutrients: MacroFallbackNutrients,
+) -> Result<Option<MacroFallbackItemEstimate>, MacroFallbackItemLoadError> {
     let item_kcal = Kcal::new(kcal_per_unit.value() * quantity)?;
 
     if let (Some(gi), Some(carb_g)) = (nutrients.gi(), nutrients.carb_g()) {

@@ -1,3 +1,4 @@
+pub mod decomposition;
 pub mod direct_fii;
 pub mod domain;
 pub mod exact_fii;
@@ -6,6 +7,11 @@ pub mod macro_fallback;
 pub mod mapped_fii;
 pub mod unified_fii;
 
+pub use decomposition::{
+    calculate_decomposed_fii_item_load, decompose_food_name_weighted, DecomposedComponentEstimate,
+    DecomposedFiiItemEstimate, DecompositionError, DecompositionPlan, DecompositionProvenance,
+    DecompositionRuleKind, WeightedDecompositionComponent,
+};
 pub use direct_fii::{
     calculate_direct_fii_acute_score, calculate_direct_fii_item_load,
     calculate_direct_fii_meal_totals, DirectFiiAcuteEstimate, DirectFiiItemEstimate,
