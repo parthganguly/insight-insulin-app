@@ -3,14 +3,19 @@ use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
+use crate::decomposition::{
+    calculate_decomposed_fii_item_load, DecomposedFiiItemEstimate, DecompositionError,
+    DecompositionProvenance,
+};
 use crate::direct_fii::calculate_direct_fii_item_load;
 use crate::domain::{
     EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal, ValueValidationError,
 };
 use crate::exact_fii::{calculate_exact_fii_item_load, ExactFiiItemLoadError};
+use crate::fii_lookup::is_likely_mixed_meal;
 use crate::macro_fallback::{
-    calculate_macro_fallback_item_load, MacroFallbackItemLoadError, MacroFallbackKind,
-    MacroFallbackNutrients,
+    calculate_macro_fallback_item_load_after_decomposition, MacroFallbackItemLoadError,
+    MacroFallbackKind, MacroFallbackNutrients,
 };
 use crate::mapped_fii::{calculate_mapped_fii_item_load, MappedFiiItemLoadError};
 
@@ -18,6 +23,7 @@ use crate::mapped_fii::{calculate_mapped_fii_item_load, MappedFiiItemLoadError};
 pub enum UnifiedFiiScoringError {
     ExactItem(ExactFiiItemLoadError),
     MappedItem(MappedFiiItemLoadError),
+    Decomposition(DecompositionError),
     MacroItem(MacroFallbackItemLoadError),
     InvalidValue(ValueValidationError),
 }
@@ -27,6 +33,7 @@ impl fmt::Display for UnifiedFiiScoringError {
         match self {
             Self::ExactItem(err) => write!(formatter, "exact-FII item failed: {err}"),
             Self::MappedItem(err) => write!(formatter, "mapped-FII item failed: {err}"),
+            Self::Decomposition(err) => write!(formatter, "dish decomposition failed: {err}"),
             Self::MacroItem(err) => write!(formatter, "macro-fallback item failed: {err}"),
             Self::InvalidValue(err) => write!(formatter, "invalid unified-FII input: {err}"),
         }
@@ -38,6 +45,7 @@ impl Error for UnifiedFiiScoringError {
         match self {
             Self::ExactItem(err) => Some(err),
             Self::MappedItem(err) => Some(err),
+            Self::Decomposition(err) => Some(err),
             Self::MacroItem(err) => Some(err),
             Self::InvalidValue(err) => Some(err),
         }
@@ -53,6 +61,12 @@ impl From<ExactFiiItemLoadError> for UnifiedFiiScoringError {
 impl From<MappedFiiItemLoadError> for UnifiedFiiScoringError {
     fn from(err: MappedFiiItemLoadError) -> Self {
         Self::MappedItem(err)
+    }
+}
+
+impl From<DecompositionError> for UnifiedFiiScoringError {
+    fn from(err: DecompositionError) -> Self {
+        Self::Decomposition(err)
     }
 }
 
@@ -120,43 +134,48 @@ impl UnifiedFiiItem {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct UnifiedFiiItemEstimate {
     item_kcal: Kcal,
     item_insulin_load: InsulinLoad,
     resolved_fii: Option<FiiValue>,
     macro_fallback_kind: Option<MacroFallbackKind>,
+    decomposition: Option<DecompositionProvenance>,
     source: EstimateSource,
     confidence: f64,
     formula_version: FormulaVersion,
 }
 
 impl UnifiedFiiItemEstimate {
-    pub const fn item_kcal(self) -> Kcal {
+    pub const fn item_kcal(&self) -> Kcal {
         self.item_kcal
     }
 
-    pub const fn item_insulin_load(self) -> InsulinLoad {
+    pub const fn item_insulin_load(&self) -> InsulinLoad {
         self.item_insulin_load
     }
 
-    pub const fn resolved_fii(self) -> Option<FiiValue> {
+    pub const fn resolved_fii(&self) -> Option<FiiValue> {
         self.resolved_fii
     }
 
-    pub const fn macro_fallback_kind(self) -> Option<MacroFallbackKind> {
+    pub const fn macro_fallback_kind(&self) -> Option<MacroFallbackKind> {
         self.macro_fallback_kind
     }
 
-    pub const fn source(self) -> EstimateSource {
+    pub const fn decomposition(&self) -> Option<&DecompositionProvenance> {
+        self.decomposition.as_ref()
+    }
+
+    pub const fn source(&self) -> EstimateSource {
         self.source
     }
 
-    pub const fn confidence(self) -> f64 {
+    pub const fn confidence(&self) -> f64 {
         self.confidence
     }
 
-    pub const fn formula_version(self) -> FormulaVersion {
+    pub const fn formula_version(&self) -> FormulaVersion {
         self.formula_version
     }
 }
@@ -187,7 +206,7 @@ impl UnifiedFiiMealEstimate {
     }
 }
 
-/// Scores provided, exact, mapped, then isolated non-mixed macro fallback paths.
+/// Reproduces backend precedence through decomposition, lookup, and macro fallback.
 pub fn calculate_unified_fii_item_load(
     item: &UnifiedFiiItem,
 ) -> Result<Option<UnifiedFiiItemEstimate>, UnifiedFiiScoringError> {
@@ -200,10 +219,21 @@ pub fn calculate_unified_fii_item_load(
             item_insulin_load: estimate.item_insulin_load(),
             resolved_fii: Some(provided_fii),
             macro_fallback_kind: None,
+            decomposition: None,
             source: estimate.source(),
             confidence: 1.0,
             formula_version: estimate.formula_version(),
         }));
+    }
+
+    if is_likely_mixed_meal(item.food_name()) {
+        if let Some(estimate) = calculate_decomposed_fii_item_load(
+            item.food_name(),
+            item.kcal_per_unit(),
+            item.quantity(),
+        )? {
+            return Ok(Some(unified_decomposition_estimate(estimate)));
+        }
     }
 
     if let Some(estimate) =
@@ -214,6 +244,7 @@ pub fn calculate_unified_fii_item_load(
             item_insulin_load: estimate.item_insulin_load(),
             resolved_fii: Some(estimate.looked_up_fii()),
             macro_fallback_kind: None,
+            decomposition: None,
             source: estimate.source(),
             confidence: estimate.confidence(),
             formula_version: estimate.formula_version(),
@@ -228,14 +259,20 @@ pub fn calculate_unified_fii_item_load(
             item_insulin_load: estimate.item_insulin_load(),
             resolved_fii: Some(estimate.looked_up_fii()),
             macro_fallback_kind: None,
+            decomposition: None,
             source: estimate.source(),
             confidence: estimate.confidence(),
             formula_version: estimate.formula_version(),
         }));
     }
 
-    if let Some(estimate) = calculate_macro_fallback_item_load(
-        item.food_name(),
+    if let Some(estimate) =
+        calculate_decomposed_fii_item_load(item.food_name(), item.kcal_per_unit(), item.quantity())?
+    {
+        return Ok(Some(unified_decomposition_estimate(estimate)));
+    }
+
+    if let Some(estimate) = calculate_macro_fallback_item_load_after_decomposition(
         item.kcal_per_unit(),
         item.quantity(),
         item.macro_nutrients(),
@@ -245,6 +282,7 @@ pub fn calculate_unified_fii_item_load(
             item_insulin_load: estimate.item_insulin_load(),
             resolved_fii: None,
             macro_fallback_kind: Some(estimate.kind()),
+            decomposition: None,
             source: estimate.source(),
             confidence: estimate.confidence(),
             formula_version: estimate.formula_version(),
@@ -252,6 +290,19 @@ pub fn calculate_unified_fii_item_load(
     }
 
     Ok(None)
+}
+
+fn unified_decomposition_estimate(estimate: DecomposedFiiItemEstimate) -> UnifiedFiiItemEstimate {
+    UnifiedFiiItemEstimate {
+        item_kcal: estimate.item_kcal(),
+        item_insulin_load: estimate.item_insulin_load(),
+        resolved_fii: None,
+        macro_fallback_kind: None,
+        decomposition: Some(estimate.provenance().clone()),
+        source: estimate.source(),
+        confidence: estimate.confidence(),
+        formula_version: estimate.formula_version(),
+    }
 }
 
 /// Aggregates a non-empty meal only when every item resolves through an allowed path.
@@ -333,6 +384,7 @@ mod tests {
         assert_approx_eq(estimate.item_insulin_load().value(), 75.0);
         assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
         assert_eq!(estimate.macro_fallback_kind(), None);
+        assert_eq!(estimate.decomposition(), None);
         assert_approx_eq(estimate.confidence(), 1.0);
         assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
     }
@@ -407,6 +459,73 @@ mod tests {
         assert_eq!(mapped_estimate.source(), EstimateSource::MappedFii);
         assert_eq!(exact_estimate.macro_fallback_kind(), None);
         assert_eq!(mapped_estimate.macro_fallback_kind(), None);
+        assert_eq!(exact_estimate.decomposition(), None);
+        assert_eq!(mapped_estimate.decomposition(), None);
+    }
+
+    #[test]
+    fn provided_fii_wins_before_likely_mixed_decomposition() {
+        let item = UnifiedFiiItem::new(
+            "chicken biryani",
+            Kcal::new(520.0).unwrap(),
+            1.0,
+            Some(FiiValue::new(50.0).unwrap()),
+        )
+        .unwrap();
+
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
+        assert_eq!(estimate.decomposition(), None);
+        assert_approx_eq(estimate.item_insulin_load().value(), 260.0);
+    }
+
+    #[test]
+    fn likely_mixed_decomposition_wins_before_macro_fallback() {
+        let item = UnifiedFiiItem::new("chicken biryani", Kcal::new(520.0).unwrap(), 1.0, None)
+            .unwrap()
+            .with_macro_nutrients(
+                MacroFallbackNutrients::new(
+                    Some(55.0),
+                    Some(Grams::new(30.0).unwrap()),
+                    Some(Grams::new(10.0).unwrap()),
+                    None,
+                    None,
+                )
+                .unwrap(),
+            );
+
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::MappedFii);
+        assert_eq!(estimate.macro_fallback_kind(), None);
+        assert!(estimate.decomposition().is_some());
+        assert_approx_eq(estimate.item_insulin_load().value(), 246.48);
+    }
+
+    #[test]
+    fn exact_lookup_wins_before_post_lookup_decomposition_retry() {
+        let item =
+            UnifiedFiiItem::new("plain yogurt", Kcal::new(180.0).unwrap(), 1.0, None).unwrap();
+
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::ExactFii);
+        assert_eq!(estimate.decomposition(), None);
+    }
+
+    #[test]
+    fn post_lookup_decomposition_retry_matches_backend() {
+        let item =
+            UnifiedFiiItem::new("greek yoghurt", Kcal::new(180.0).unwrap(), 1.0, None).unwrap();
+
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::MappedFii);
+        assert!(estimate.resolved_fii().is_none());
+        assert!(estimate.decomposition().is_some());
+        assert_approx_eq(estimate.item_insulin_load().value(), 108.0);
+        assert_approx_eq(estimate.confidence(), 0.9);
     }
 
     #[test]
@@ -486,6 +605,17 @@ mod tests {
     }
 
     #[test]
+    fn decomposition_does_not_enable_partial_meal_scoring() {
+        let items = [
+            UnifiedFiiItem::new("chicken biryani", Kcal::new(520.0).unwrap(), 1.0, None).unwrap(),
+            UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None)
+                .unwrap(),
+        ];
+
+        assert!(calculate_unified_fii_meal_totals(&items).unwrap().is_none());
+    }
+
+    #[test]
     fn rejects_empty_meal() {
         assert!(calculate_unified_fii_meal_totals(&[]).unwrap().is_none());
     }
@@ -517,7 +647,7 @@ mod tests {
     }
 
     #[test]
-    fn does_not_apply_macro_fallback_to_mixed_dishes() {
+    fn decomposition_miss_reaches_macro_fallback_like_backend() {
         let item = UnifiedFiiItem::new("fallback carb bowl", Kcal::new(220.0).unwrap(), 1.0, None)
             .unwrap()
             .with_macro_nutrients(
@@ -531,6 +661,15 @@ mod tests {
                 .unwrap(),
             );
 
-        assert!(calculate_unified_fii_item_load(&item).unwrap().is_none());
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::MacroFallback);
+        assert_eq!(estimate.decomposition(), None);
+        assert_eq!(
+            estimate.macro_fallback_kind(),
+            Some(MacroFallbackKind::GiCarbProtein)
+        );
+        assert_approx_eq(estimate.item_insulin_load().value(), 12.9);
+        assert_approx_eq(estimate.confidence(), 0.8);
     }
 }
