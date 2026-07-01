@@ -8,9 +8,10 @@ use insight_core::{
     calculate_exact_fii_item_load, calculate_exact_fii_meal_totals,
     calculate_exact_or_mapped_fii_meal_totals, calculate_macro_fallback_item_load,
     calculate_mapped_fii_item_load, calculate_unified_fii_item_load,
-    calculate_unified_fii_meal_totals, lookup_exact_fii, DirectFiiMealItem, EstimateQuality,
-    EstimateSource, ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Grams,
-    Kcal, MacroFallbackKind, MacroFallbackNutrients, UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
+    calculate_unified_fii_meal_totals, compute_chronic_series, lookup_exact_fii, ChronicDayInput,
+    DirectFiiMealItem, EstimateQuality, EstimateSource, ExactFiiMealItem, ExactOrMappedFiiMealItem,
+    FiiValue, FormulaVersion, Grams, Kcal, MacroFallbackKind, MacroFallbackNutrients,
+    UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
 use serde_json::Value;
@@ -54,7 +55,7 @@ const DIRECT_FII_SKIP_REASONS: &[DirectFiiSkipReason] = &[
     DirectFiiSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.low_day_meal and expected rolling chronic outputs",
-        reason: "low day requires macro fallback and rolling outputs require chronic DIL/DII behavior",
+        reason: "low day requires macro fallback, while rolling outputs belong to the chronic-series path rather than the isolated direct-FII item path",
     },
     DirectFiiSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -89,7 +90,7 @@ const DIRECT_FII_ACUTE_SKIP_REASONS: &[DirectFiiAcuteSkipReason] = &[
     DirectFiiAcuteSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "high_day_meal lacks an explicit expected acute_score, low_day_meal requires macro fallback, and rolling outputs require chronic DIL/DII behavior",
+        reason: "high_day_meal lacks an explicit acute-score expectation, low_day_meal requires macro fallback, and rolling outputs belong to the chronic-series path",
     },
     DirectFiiAcuteSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -126,7 +127,7 @@ const EXACT_FII_LOOKUP_SKIP_REASONS: &[ExactFiiLookupSkipReason] = &[
     ExactFiiLookupSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "high_day_meal uses direct provided FII, low_day_meal requires fallback scoring, and rolling outputs require chronic DIL/DII behavior",
+        reason: "the meals use provided FII or fallback scoring, while rolling outputs belong to the chronic-series path rather than exact lookup",
     },
     ExactFiiLookupSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -163,7 +164,7 @@ const EXACT_FII_ITEM_LOAD_SKIP_REASONS: &[ExactFiiItemLoadSkipReason] = &[
     ExactFiiItemLoadSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "high_day_meal uses direct provided FII, low_day_meal requires fallback scoring, and rolling outputs require chronic DIL/DII behavior",
+        reason: "the meals use provided FII or fallback scoring, while rolling outputs belong to the chronic-series path rather than exact item load",
     },
     ExactFiiItemLoadSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -203,7 +204,7 @@ const EXACT_FII_MEAL_SKIP_REASONS: &[ExactFiiMealSkipReason] = &[
     ExactFiiMealSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "high_day_meal uses direct provided FII, low_day_meal requires fallback scoring, and rolling outputs require chronic DIL/DII behavior",
+        reason: "the meals use provided FII or fallback scoring, while rolling outputs belong to the chronic-series path rather than exact meal aggregation",
     },
     ExactFiiMealSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -238,7 +239,7 @@ const MAPPED_FII_ITEM_SKIP_REASONS: &[MappedFiiItemSkipReason] = &[
     MappedFiiItemSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "the meals use direct provided FII or macro fallback, and the expected outputs require chronic DIL/DII behavior",
+        reason: "the meals use provided FII or macro fallback, while rolling outputs belong to the chronic-series path rather than mapped item load",
     },
     MappedFiiItemSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -278,7 +279,7 @@ const EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS: &[ExactOrMappedFiiMealSkipReason] =
     ExactOrMappedFiiMealSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "the meals use direct provided FII or macro fallback, and the expected outputs require chronic DIL/DII behavior",
+        reason: "the meals use provided FII or macro fallback, while rolling outputs belong to the chronic-series path rather than exact-or-mapped aggregation",
     },
     ExactOrMappedFiiMealSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -287,13 +288,6 @@ const EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS: &[ExactOrMappedFiiMealSkipReason] =
     },
 ];
 
-#[derive(Debug)]
-struct UnifiedFiiSkipReason {
-    fixture_path: &'static str,
-    input_path: &'static str,
-    reason: &'static str,
-}
-
 const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
     "cases/ranking_relative_01.json",
     "cases/source_quality_hierarchy_01.json",
@@ -301,12 +295,6 @@ const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
     "cases/chronic_low_then_high_01.json",
     "cases/uncertainty_degradation_01.json",
 ];
-
-const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[UnifiedFiiSkipReason {
-    fixture_path: "cases/chronic_low_then_high_01.json",
-    input_path: "expected rolling chronic outputs",
-    reason: "rolling outputs require chronic DIL/DII behavior",
-}];
 
 #[derive(Debug)]
 struct EstimateQualitySkipReason {
@@ -333,8 +321,8 @@ const ESTIMATE_QUALITY_SKIP_REASONS: &[EstimateQualitySkipReason] = &[
     },
     EstimateQualitySkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "expected.estimate_quality and expected rolling chronic outputs",
-        reason: "top-level composite is validation metadata and rolling outputs require unported chronic DIL/DII behavior",
+        input_path: "expected.estimate_quality",
+        reason: "top-level composite is multi-meal validation metadata, not a product meal estimate-quality category",
     },
 ];
 
@@ -363,8 +351,8 @@ const VALIDATION_MEAN_CONFIDENCE_SKIP_REASONS: &[ValidationMeanConfidenceSkipRea
     },
     ValidationMeanConfidenceSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "expected.actual_scores and expected rolling chronic outputs",
-        reason: "the fixture exports no mean_confidence expectation and chronic DIL/DII remains unported",
+        input_path: "expected.actual_scores",
+        reason: "the fixture exports no mean_confidence expectation",
     },
 ];
 
@@ -395,8 +383,8 @@ const DECOMPOSITION_SKIP_REASONS: &[DecompositionSkipReason] = &[
     },
     DecompositionSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "input.payload and expected rolling chronic outputs",
-        reason: "the fixture has no decomposition item and its rolling outputs require chronic DIL/DII",
+        input_path: "input.payload",
+        reason: "the fixture has no decomposition item",
     },
     DecompositionSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -436,8 +424,8 @@ const MACRO_FALLBACK_SKIP_REASONS: &[MacroFallbackSkipReason] = &[
     },
     MacroFallbackSkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "input.payload.high_day_meal and expected rolling chronic outputs",
-        reason: "high_day_meal uses provided FII and rolling outputs require chronic DIL/DII behavior",
+        input_path: "input.payload.high_day_meal",
+        reason: "high_day_meal uses provided FII rather than macro fallback",
     },
     MacroFallbackSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
@@ -961,6 +949,68 @@ fn unified_fii_macro_paths_match_supported_golden_fixtures() {
             "low_day_insulin_load_total",
         ),
     );
+}
+
+#[test]
+fn chronic_low_then_high_rolling_dil_matches_serialized_golden_output() {
+    let fixture = read_golden_fixture("cases/chronic_low_then_high_01.json");
+    let payload = payload_object(&fixture.input);
+    let low_day_meal = payload
+        .get("low_day_meal")
+        .expect("chronic fixture should include low_day_meal");
+    let high_day_meal = payload
+        .get("high_day_meal")
+        .expect("chronic fixture should include high_day_meal");
+    let low_day_estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(low_day_meal))
+        .unwrap()
+        .expect("chronic low day should resolve");
+    let high_day_estimate =
+        calculate_unified_fii_meal_totals(&unified_fii_meal_items(high_day_meal))
+            .unwrap()
+            .expect("chronic high day should resolve");
+    let low_days = payload
+        .get("low_days")
+        .and_then(Value::as_u64)
+        .expect("chronic fixture should include low_days") as usize;
+    let high_days = payload
+        .get("high_days")
+        .and_then(Value::as_u64)
+        .expect("chronic fixture should include high_days") as usize;
+
+    let day_inputs: Vec<ChronicDayInput> = (0..low_days + high_days)
+        .map(|offset| {
+            let meal = if offset < low_days {
+                low_day_estimate.clone()
+            } else {
+                high_day_estimate.clone()
+            };
+            ChronicDayInput::new(format!("2026-01-{:02}", offset + 1), vec![meal])
+        })
+        .collect();
+    let series = compute_chronic_series(&day_inputs).unwrap();
+    let expected_rolling_dil = fixture
+        .expected
+        .actual_scores
+        .get("rolling_7d_dil")
+        .and_then(Value::as_array)
+        .expect("chronic fixture should include rolling_7d_dil expectations");
+
+    assert_eq!(series.len(), expected_rolling_dil.len());
+    for (point, expected) in series.iter().zip(expected_rolling_dil) {
+        assert_approx_eq(
+            round_to_four_places(point.rolling_7d_dil().value()),
+            expected
+                .as_f64()
+                .expect("rolling_7d_dil expectation should be numeric"),
+        );
+    }
+
+    assert_approx_eq(series[0].daily_dil().value(), 1.32);
+    assert_approx_eq(series[0].total_daily_energy().value(), 120.0);
+    assert_approx_eq(series[0].daily_dii(), 1.32 / 120.0);
+    assert_approx_eq(series[low_days].daily_dil().value(), 495.0);
+    assert_approx_eq(series[low_days].total_daily_energy().value(), 450.0);
+    assert_approx_eq(series[low_days].daily_dii(), 495.0 / 450.0);
 }
 
 #[test]
@@ -1498,24 +1548,14 @@ fn exact_or_mapped_fii_meal_skip_reasons_cover_unsupported_golden_fixture_paths(
 }
 
 #[test]
-fn unified_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
+fn unified_fii_supported_paths_cover_every_golden_fixture() {
     let index = read_golden_index();
     let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
     let supported_paths: BTreeSet<&str> = UNIFIED_FII_SUPPORTED_PATHS.iter().copied().collect();
-    let skip_paths: BTreeSet<&str> = UNIFIED_FII_SKIP_REASONS
-        .iter()
-        .map(|skip| skip.fixture_path)
-        .collect();
-    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
 
-    assert_eq!(covered_paths, indexed_paths);
+    assert_eq!(supported_paths, indexed_paths);
     for supported_path in UNIFIED_FII_SUPPORTED_PATHS {
         assert!(indexed_paths.contains(supported_path));
-    }
-    for skip in UNIFIED_FII_SKIP_REASONS {
-        assert!(indexed_paths.contains(skip.fixture_path));
-        assert!(!skip.input_path.is_empty());
-        assert!(!skip.reason.is_empty());
     }
 }
 

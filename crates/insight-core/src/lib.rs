@@ -1,3 +1,4 @@
+pub mod chronic;
 pub mod decomposition;
 pub mod direct_fii;
 pub mod domain;
@@ -7,6 +8,7 @@ pub mod macro_fallback;
 pub mod mapped_fii;
 pub mod unified_fii;
 
+pub use chronic::{compute_chronic_series, ChronicDayInput, ChronicMetricPoint};
 pub use decomposition::{
     calculate_decomposed_fii_item_load, decompose_food_name_weighted, DecomposedComponentEstimate,
     DecomposedFiiItemEstimate, DecompositionError, DecompositionPlan, DecompositionProvenance,
