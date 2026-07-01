@@ -9,8 +9,8 @@ use crate::decomposition::{
 };
 use crate::direct_fii::calculate_direct_fii_item_load;
 use crate::domain::{
-    EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal, ValueValidationError,
-    CURRENT_FORMULA_VERSION,
+    EstimateQuality, EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal,
+    ValueValidationError, CURRENT_FORMULA_VERSION,
 };
 use crate::exact_fii::{calculate_exact_fii_item_load, ExactFiiItemLoadError};
 use crate::fii_lookup::is_likely_mixed_meal;
@@ -188,6 +188,7 @@ pub struct UnifiedFiiMealEstimate {
     item_estimates: Vec<UnifiedFiiItemEstimate>,
     meal_kcal_total: Kcal,
     meal_insulin_load_total: InsulinLoad,
+    estimate_quality: EstimateQuality,
     formula_version: FormulaVersion,
 }
 
@@ -202,6 +203,10 @@ impl UnifiedFiiMealEstimate {
 
     pub const fn meal_insulin_load_total(&self) -> InsulinLoad {
         self.meal_insulin_load_total
+    }
+
+    pub const fn estimate_quality(&self) -> EstimateQuality {
+        self.estimate_quality
     }
 
     pub const fn formula_version(&self) -> FormulaVersion {
@@ -317,6 +322,40 @@ fn unified_decomposition_estimate(estimate: DecomposedFiiItemEstimate) -> Unifie
     }
 }
 
+/// Reproduces the backend product category from resolved item source labels only.
+pub fn resolve_estimate_quality(item_sources: &[EstimateSource]) -> EstimateQuality {
+    if item_sources.is_empty() {
+        return EstimateQuality::Unknown;
+    }
+
+    if item_sources.iter().all(|source| {
+        matches!(
+            source,
+            EstimateSource::ExactFii | EstimateSource::UserConfirmed
+        )
+    }) {
+        return EstimateQuality::High;
+    }
+
+    if item_sources
+        .iter()
+        .all(|source| *source == EstimateSource::Unknown)
+    {
+        return EstimateQuality::Unknown;
+    }
+
+    if item_sources.iter().all(|source| {
+        matches!(
+            source,
+            EstimateSource::ExactFii | EstimateSource::MappedFii | EstimateSource::UserConfirmed
+        )
+    }) {
+        return EstimateQuality::Medium;
+    }
+
+    EstimateQuality::Low
+}
+
 /// Aggregates a non-empty meal while retaining terminal unknown placeholders.
 pub fn calculate_unified_fii_meal_totals(
     items: &[UnifiedFiiItem],
@@ -343,11 +382,16 @@ pub fn calculate_unified_fii_meal_totals(
     debug_assert!(item_estimates
         .iter()
         .all(|item| item.formula_version() == formula_version));
+    let item_sources: Vec<EstimateSource> = item_estimates
+        .iter()
+        .map(UnifiedFiiItemEstimate::source)
+        .collect();
 
     Ok(Some(UnifiedFiiMealEstimate {
         item_estimates,
         meal_kcal_total: Kcal::new(meal_kcal_total)?,
         meal_insulin_load_total: InsulinLoad::new(meal_insulin_load_total)?,
+        estimate_quality: resolve_estimate_quality(&item_sources),
         formula_version,
     }))
 }
@@ -377,6 +421,21 @@ mod tests {
             (actual - expected).abs() < 1e-9,
             "expected {expected}, got {actual}"
         );
+    }
+
+    fn synthetic_macro_fallback_item() -> UnifiedFiiItem {
+        UnifiedFiiItem::new("cultured dairy cup", Kcal::new(180.0).unwrap(), 1.0, None)
+            .unwrap()
+            .with_macro_nutrients(
+                MacroFallbackNutrients::new(
+                    Some(35.0),
+                    Some(Grams::new(16.0).unwrap()),
+                    Some(Grams::new(8.0).unwrap()),
+                    Some(Grams::new(4.0).unwrap()),
+                    Some(Grams::new(2.0).unwrap()),
+                )
+                .unwrap(),
+            )
     }
 
     #[test]
@@ -571,6 +630,7 @@ mod tests {
         assert_approx_eq(estimate.meal_kcal_total().value(), 640.0);
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 343.76);
         assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.estimate_quality(), EstimateQuality::Low);
         assert_eq!(estimate.item_estimates().len(), 4);
         assert_eq!(
             estimate.item_estimates()[0].source(),
@@ -626,6 +686,7 @@ mod tests {
         );
         assert_approx_eq(estimate.meal_kcal_total().value(), 100.0);
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 50.0);
+        assert_eq!(estimate.estimate_quality(), EstimateQuality::Low);
     }
 
     #[test]
@@ -647,6 +708,119 @@ mod tests {
         assert_eq!(estimate.item_estimates()[0].resolved_fii(), None);
         assert_approx_eq(estimate.meal_kcal_total().value(), 0.0);
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 0.0);
+        assert_eq!(estimate.estimate_quality(), EstimateQuality::Unknown);
+    }
+
+    #[test]
+    fn estimate_quality_matches_backend_source_set_rules() {
+        assert_eq!(resolve_estimate_quality(&[]), EstimateQuality::Unknown);
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::ExactFii]),
+            EstimateQuality::High
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::UserConfirmed]),
+            EstimateQuality::High
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::ExactFii, EstimateSource::UserConfirmed]),
+            EstimateQuality::High
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::MappedFii]),
+            EstimateQuality::Medium
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::ExactFii, EstimateSource::MappedFii]),
+            EstimateQuality::Medium
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::MacroFallback]),
+            EstimateQuality::Low
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::Unknown]),
+            EstimateQuality::Unknown
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::ExactFii, EstimateSource::Unknown]),
+            EstimateQuality::Low
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[
+                EstimateSource::ExactFii,
+                EstimateSource::MappedFii,
+                EstimateSource::MacroFallback,
+                EstimateSource::Unknown,
+            ]),
+            EstimateQuality::Low
+        );
+    }
+
+    #[test]
+    fn estimate_quality_boundaries_ignore_duplicates_and_source_order() {
+        let high = [EstimateSource::ExactFii, EstimateSource::UserConfirmed];
+        let medium = [EstimateSource::MappedFii, EstimateSource::ExactFii];
+
+        assert_eq!(resolve_estimate_quality(&high), EstimateQuality::High);
+        assert_eq!(
+            resolve_estimate_quality(&[high[0], high[1], EstimateSource::MappedFii]),
+            EstimateQuality::Medium
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[high[0], high[1], EstimateSource::MacroFallback]),
+            EstimateQuality::Low
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[medium[0], medium[1], EstimateSource::Unknown]),
+            EstimateQuality::Low
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::Unknown, EstimateSource::MappedFii]),
+            EstimateQuality::Low
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[EstimateSource::Unknown, EstimateSource::Unknown]),
+            EstimateQuality::Unknown
+        );
+        assert_eq!(
+            resolve_estimate_quality(&[
+                EstimateSource::MappedFii,
+                EstimateSource::ExactFii,
+                EstimateSource::MappedFii,
+            ]),
+            resolve_estimate_quality(&[EstimateSource::ExactFii, EstimateSource::MappedFii,])
+        );
+    }
+
+    #[test]
+    fn unified_meals_derive_quality_from_resolved_sources_only() {
+        let provided = UnifiedFiiItem::new(
+            "provided item",
+            Kcal::new(100.0).unwrap(),
+            1.0,
+            Some(FiiValue::new(50.0).unwrap()),
+        )
+        .unwrap();
+        let exact =
+            UnifiedFiiItem::new("plain yogurt", Kcal::new(180.0).unwrap(), 1.0, None).unwrap();
+        let mapped =
+            UnifiedFiiItem::new("fresh white bread", Kcal::new(120.0).unwrap(), 1.0, None).unwrap();
+        let decomposed =
+            UnifiedFiiItem::new("Greek yogurt bowl", Kcal::new(180.0).unwrap(), 1.0, None).unwrap();
+
+        for (items, expected) in [
+            (vec![provided.clone()], EstimateQuality::High),
+            (vec![exact.clone()], EstimateQuality::High),
+            (vec![exact.clone(), provided], EstimateQuality::High),
+            (vec![mapped.clone()], EstimateQuality::Medium),
+            (vec![decomposed], EstimateQuality::Medium),
+            (vec![exact, mapped], EstimateQuality::Medium),
+            (vec![synthetic_macro_fallback_item()], EstimateQuality::Low),
+        ] {
+            let estimate = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
+            assert_eq!(estimate.estimate_quality(), expected);
+        }
     }
 
     #[test]

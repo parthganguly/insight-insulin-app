@@ -8,9 +8,9 @@ use insight_core::{
     calculate_exact_fii_item_load, calculate_exact_fii_meal_totals,
     calculate_exact_or_mapped_fii_meal_totals, calculate_macro_fallback_item_load,
     calculate_mapped_fii_item_load, calculate_unified_fii_item_load,
-    calculate_unified_fii_meal_totals, lookup_exact_fii, DirectFiiMealItem, EstimateSource,
-    ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Grams, Kcal,
-    MacroFallbackKind, MacroFallbackNutrients, UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
+    calculate_unified_fii_meal_totals, lookup_exact_fii, DirectFiiMealItem, EstimateQuality,
+    EstimateSource, ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Grams,
+    Kcal, MacroFallbackKind, MacroFallbackNutrients, UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
 use serde_json::Value;
@@ -302,21 +302,39 @@ const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
     "cases/uncertainty_degradation_01.json",
 ];
 
-const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[
-    UnifiedFiiSkipReason {
-        fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "expected rolling chronic outputs",
-        reason: "rolling outputs require chronic DIL/DII behavior",
-    },
-    UnifiedFiiSkipReason {
-        fixture_path: "cases/source_quality_hierarchy_01.json",
-        input_path: "expected.actual_scores estimate_quality fields",
-        reason: "estimate-quality aggregation remains unported; validation-only mean confidence is covered separately",
-    },
-    UnifiedFiiSkipReason {
-        fixture_path: "cases/uncertainty_degradation_01.json",
+const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[UnifiedFiiSkipReason {
+    fixture_path: "cases/chronic_low_then_high_01.json",
+    input_path: "expected rolling chronic outputs",
+    reason: "rolling outputs require chronic DIL/DII behavior",
+}];
+
+#[derive(Debug)]
+struct EstimateQualitySkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const ESTIMATE_QUALITY_SUPPORTED_PATHS: &[&str] = &[
+    "cases/source_quality_hierarchy_01.json",
+    "cases/uncertainty_degradation_01.json",
+];
+
+const ESTIMATE_QUALITY_SKIP_REASONS: &[EstimateQualitySkipReason] = &[
+    EstimateQualitySkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
         input_path: "expected.estimate_quality",
-        reason: "estimate-quality aggregation remains unported; validation-only mean confidence is covered separately",
+        reason: "top-level composite is multi-meal validation metadata, not a product meal estimate-quality category",
+    },
+    EstimateQualitySkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "expected.estimate_quality",
+        reason: "top-level composite is multi-meal validation metadata, not a product meal estimate-quality category",
+    },
+    EstimateQualitySkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "expected.estimate_quality and expected rolling chronic outputs",
+        reason: "top-level composite is validation metadata and rolling outputs require unported chronic DIL/DII behavior",
     },
 ];
 
@@ -1101,7 +1119,7 @@ fn unified_fii_unknown_fallback_matches_isolated_golden_fixture_item() {
 }
 
 #[test]
-fn unified_fii_complete_uncertainty_meal_retains_unknown_without_aggregate_quality() {
+fn unified_fii_complete_uncertainty_meal_retains_unknown_with_low_estimate_quality() {
     let fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
     let mixed_meal = payload_object(&fixture.input)
         .get("mixed_meal")
@@ -1137,6 +1155,7 @@ fn unified_fii_complete_uncertainty_meal_retains_unknown_without_aggregate_quali
         round_to_four_places(acute_score),
         expected_nested_score(&fixture.expected.actual_scores, "mixed_meal", "acute_score"),
     );
+    assert_eq!(estimate.estimate_quality(), EstimateQuality::Low);
 }
 
 #[test]
@@ -1300,6 +1319,56 @@ fn validation_mean_confidence_matches_serialized_golden_outputs() {
 }
 
 #[test]
+fn unified_meal_estimate_quality_matches_serialized_golden_outputs() {
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    for (meal_id, expected_quality) in [
+        ("source_exact_fii", EstimateQuality::High),
+        ("source_mapped_fii", EstimateQuality::Medium),
+        ("source_macro_fallback", EstimateQuality::Low),
+    ] {
+        let meal = find_array_meal(&source_fixture.input, "variants", meal_id);
+        let estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(meal))
+            .unwrap()
+            .expect("source-quality fixture meal should resolve");
+
+        assert_eq!(estimate.estimate_quality(), expected_quality);
+        assert_eq!(
+            estimate.estimate_quality().as_str(),
+            expected_nested_quality(&source_fixture.expected.actual_scores, meal_id),
+        );
+    }
+
+    let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let uncertainty_payload = payload_object(&uncertainty_fixture.input);
+    let control_meal = uncertainty_payload
+        .get("control_meal")
+        .expect("uncertainty fixture should include control_meal");
+    let control_estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(control_meal))
+        .unwrap()
+        .expect("uncertainty control meal should resolve");
+    assert_eq!(control_estimate.estimate_quality(), EstimateQuality::High);
+    assert_eq!(
+        control_estimate.estimate_quality().as_str(),
+        string_field(
+            &uncertainty_fixture.expected.details,
+            "control_estimate_quality"
+        ),
+    );
+
+    let mixed_meal = uncertainty_payload
+        .get("mixed_meal")
+        .expect("uncertainty fixture should include mixed_meal");
+    let mixed_estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(mixed_meal))
+        .unwrap()
+        .expect("uncertainty mixed meal should resolve");
+    assert_eq!(mixed_estimate.estimate_quality(), EstimateQuality::Low);
+    assert_eq!(
+        mixed_estimate.estimate_quality().as_str(),
+        uncertainty_fixture.expected.estimate_quality,
+    );
+}
+
+#[test]
 fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
     let index = read_golden_index();
     let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
@@ -1444,6 +1513,29 @@ fn unified_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
         assert!(indexed_paths.contains(supported_path));
     }
     for skip in UNIFIED_FII_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn estimate_quality_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let supported_paths: BTreeSet<&str> =
+        ESTIMATE_QUALITY_SUPPORTED_PATHS.iter().copied().collect();
+    let skip_paths: BTreeSet<&str> = ESTIMATE_QUALITY_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
+
+    assert_eq!(covered_paths, indexed_paths);
+    for supported_path in ESTIMATE_QUALITY_SUPPORTED_PATHS {
+        assert!(indexed_paths.contains(supported_path));
+    }
+    for skip in ESTIMATE_QUALITY_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());
@@ -2049,6 +2141,14 @@ fn expected_nested_score(actual_scores: &Value, meal_id: &str, field: &str) -> f
         .and_then(|meal| meal.get(field))
         .and_then(Value::as_f64)
         .expect("expected nested score field should be numeric")
+}
+
+fn expected_nested_quality<'a>(actual_scores: &'a Value, meal_id: &str) -> &'a str {
+    actual_scores
+        .get(meal_id)
+        .and_then(|meal| meal.get("estimate_quality"))
+        .and_then(Value::as_str)
+        .expect("expected nested estimate_quality field should be a string")
 }
 
 fn assert_approx_eq(actual: f64, expected: f64) {
