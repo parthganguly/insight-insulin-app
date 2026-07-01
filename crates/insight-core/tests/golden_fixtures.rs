@@ -309,9 +309,44 @@ const UNIFIED_FII_SKIP_REASONS: &[UnifiedFiiSkipReason] = &[
         reason: "rolling outputs require chronic DIL/DII behavior",
     },
     UnifiedFiiSkipReason {
+        fixture_path: "cases/source_quality_hierarchy_01.json",
+        input_path: "expected.actual_scores estimate_quality fields",
+        reason: "estimate-quality aggregation remains unported; validation-only mean confidence is covered separately",
+    },
+    UnifiedFiiSkipReason {
         fixture_path: "cases/uncertainty_degradation_01.json",
-        input_path: "expected.actual_scores mean_confidence fields and expected.estimate_quality",
-        reason: "confidence aggregation and estimate-quality aggregation remain unported; item provenance and meal load parity are covered",
+        input_path: "expected.estimate_quality",
+        reason: "estimate-quality aggregation remains unported; validation-only mean confidence is covered separately",
+    },
+];
+
+#[derive(Debug)]
+struct ValidationMeanConfidenceSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const VALIDATION_MEAN_CONFIDENCE_SUPPORTED_PATHS: &[&str] = &[
+    "cases/source_quality_hierarchy_01.json",
+    "cases/uncertainty_degradation_01.json",
+];
+
+const VALIDATION_MEAN_CONFIDENCE_SKIP_REASONS: &[ValidationMeanConfidenceSkipReason] = &[
+    ValidationMeanConfidenceSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "expected.actual_scores",
+        reason: "the fixture exports ranking scores but no mean_confidence expectation",
+    },
+    ValidationMeanConfidenceSkipReason {
+        fixture_path: "cases/monotonicity_biryani_portion_01.json",
+        input_path: "expected.actual_scores",
+        reason: "the fixture exports monotonicity scores but no mean_confidence expectation",
+    },
+    ValidationMeanConfidenceSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "expected.actual_scores and expected rolling chronic outputs",
+        reason: "the fixture exports no mean_confidence expectation and chronic DIL/DII remains unported",
     },
 ];
 
@@ -1105,6 +1140,166 @@ fn unified_fii_complete_uncertainty_meal_retains_unknown_without_aggregate_quali
 }
 
 #[test]
+fn validation_mean_confidence_preserves_empty_zero_and_full_precision_behavior() {
+    assert_approx_eq(validation_mean_confidence([]), 0.0);
+    assert_approx_eq(validation_mean_confidence([0.0]), 0.0);
+    assert_approx_eq(validation_mean_confidence([0.0, 1.0]), 0.5);
+
+    let full_precision = validation_mean_confidence([0.7, 0.8, 0.2]);
+    assert_approx_eq(full_precision, (0.7 + 0.8 + 0.2) / 3.0);
+    assert_ne!(full_precision, round_to_four_places(full_precision));
+
+    assert!(calculate_unified_fii_meal_totals(&[]).unwrap().is_none());
+}
+
+#[test]
+fn validation_mean_confidence_uses_resolved_items_for_every_source_path() {
+    let cases = vec![
+        (
+            "provided FII",
+            UnifiedFiiItem::new(
+                "plain yogurt",
+                Kcal::new(100.0).unwrap(),
+                1.0,
+                Some(FiiValue::new(50.0).unwrap()),
+            )
+            .unwrap(),
+            EstimateSource::UserConfirmed,
+            1.0,
+            false,
+        ),
+        (
+            "exact FII",
+            UnifiedFiiItem::new("plain yogurt", Kcal::new(180.0).unwrap(), 1.0, None).unwrap(),
+            EstimateSource::ExactFii,
+            0.7,
+            false,
+        ),
+        (
+            "mapped FII",
+            UnifiedFiiItem::new("fresh white bread", Kcal::new(180.0).unwrap(), 1.0, None).unwrap(),
+            EstimateSource::MappedFii,
+            0.7,
+            false,
+        ),
+        (
+            "decomposition",
+            UnifiedFiiItem::new("Greek yogurt bowl", Kcal::new(180.0).unwrap(), 1.0, None).unwrap(),
+            EstimateSource::MappedFii,
+            0.9,
+            true,
+        ),
+        (
+            "macro fallback",
+            synthetic_macro_fallback_item(),
+            EstimateSource::MacroFallback,
+            0.8,
+            false,
+        ),
+        (
+            "unknown fallback",
+            UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None)
+                .unwrap(),
+            EstimateSource::Unknown,
+            0.2,
+            false,
+        ),
+    ];
+
+    for (label, item, expected_source, expected_confidence, expects_decomposition) in cases {
+        let estimate = calculate_unified_fii_meal_totals(&[item]).unwrap().unwrap();
+        let resolved_item = &estimate.item_estimates()[0];
+
+        assert_eq!(resolved_item.source(), expected_source, "{label}");
+        assert_eq!(
+            resolved_item.decomposition().is_some(),
+            expects_decomposition,
+            "{label}"
+        );
+        assert_approx_eq(
+            validation_mean_confidence(
+                estimate
+                    .item_estimates()
+                    .iter()
+                    .map(|item| item.confidence()),
+            ),
+            expected_confidence,
+        );
+    }
+}
+
+#[test]
+fn validation_mean_confidence_is_unweighted_for_mixed_source_meal() {
+    let items = vec![
+        UnifiedFiiItem::new("plain yogurt", Kcal::new(1_000.0).unwrap(), 1.0, None).unwrap(),
+        UnifiedFiiItem::new("chicken biryani", Kcal::new(520.0).unwrap(), 1.0, None).unwrap(),
+        synthetic_macro_fallback_item(),
+        UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None).unwrap(),
+    ];
+
+    let estimate = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
+    let sources: Vec<EstimateSource> = estimate
+        .item_estimates()
+        .iter()
+        .map(|item| item.source())
+        .collect();
+    assert_eq!(
+        sources,
+        vec![
+            EstimateSource::ExactFii,
+            EstimateSource::MappedFii,
+            EstimateSource::MacroFallback,
+            EstimateSource::Unknown,
+        ]
+    );
+    assert_approx_eq(
+        validation_mean_confidence(
+            estimate
+                .item_estimates()
+                .iter()
+                .map(|item| item.confidence()),
+        ),
+        0.6,
+    );
+}
+
+#[test]
+fn validation_mean_confidence_matches_serialized_golden_outputs() {
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    for meal_id in [
+        "source_exact_fii",
+        "source_mapped_fii",
+        "source_macro_fallback",
+    ] {
+        let meal = find_array_meal(&source_fixture.input, "variants", meal_id);
+        assert_approx_eq(
+            round_to_four_places(validation_mean_confidence_for_fixture_meal(meal)),
+            expected_nested_score(
+                &source_fixture.expected.actual_scores,
+                meal_id,
+                "mean_confidence",
+            ),
+        );
+    }
+
+    let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let uncertainty_payload = payload_object(&uncertainty_fixture.input);
+    for meal_id in ["control_meal", "mixed_meal"] {
+        let meal = uncertainty_payload
+            .get(meal_id)
+            .expect("uncertainty fixture should include expected meal");
+        assert_approx_eq(
+            round_to_four_places(validation_mean_confidence_for_fixture_meal(meal)),
+            expected_nested_score(
+                &uncertainty_fixture.expected.actual_scores,
+                meal_id,
+                "mean_confidence",
+            ),
+        );
+    }
+}
+
+#[test]
 fn direct_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
     let index = read_golden_index();
     let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
@@ -1249,6 +1444,31 @@ fn unified_fii_skip_reasons_cover_unsupported_golden_fixture_paths() {
         assert!(indexed_paths.contains(supported_path));
     }
     for skip in UNIFIED_FII_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
+fn validation_mean_confidence_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let supported_paths: BTreeSet<&str> = VALIDATION_MEAN_CONFIDENCE_SUPPORTED_PATHS
+        .iter()
+        .copied()
+        .collect();
+    let skip_paths: BTreeSet<&str> = VALIDATION_MEAN_CONFIDENCE_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
+
+    assert_eq!(covered_paths, indexed_paths);
+    for supported_path in VALIDATION_MEAN_CONFIDENCE_SUPPORTED_PATHS {
+        assert!(indexed_paths.contains(supported_path));
+    }
+    for skip in VALIDATION_MEAN_CONFIDENCE_SKIP_REASONS {
         assert!(indexed_paths.contains(skip.fixture_path));
         assert!(!skip.input_path.is_empty());
         assert!(!skip.reason.is_empty());
@@ -1733,6 +1953,51 @@ fn macro_fallback_nutrients(item: &Value) -> MacroFallbackNutrients {
 
 fn unified_fii_meal_items(meal: &Value) -> Vec<UnifiedFiiItem> {
     meal_items(meal).iter().map(unified_fii_item).collect()
+}
+
+fn synthetic_macro_fallback_item() -> UnifiedFiiItem {
+    UnifiedFiiItem::new("cultured dairy cup", Kcal::new(180.0).unwrap(), 1.0, None)
+        .unwrap()
+        .with_macro_nutrients(
+            MacroFallbackNutrients::new(
+                Some(35.0),
+                Some(Grams::new(16.0).unwrap()),
+                Some(Grams::new(8.0).unwrap()),
+                Some(Grams::new(4.0).unwrap()),
+                Some(Grams::new(2.0).unwrap()),
+            )
+            .unwrap(),
+        )
+}
+
+fn validation_mean_confidence_for_fixture_meal(meal: &Value) -> f64 {
+    let estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(meal))
+        .unwrap()
+        .expect("validation confidence fixture meal should resolve");
+
+    validation_mean_confidence(
+        estimate
+            .item_estimates()
+            .iter()
+            .map(|item| item.confidence()),
+    )
+}
+
+// Mirrors backend/validation/evaluators.py only; this is not a product/core API.
+fn validation_mean_confidence(confidences: impl IntoIterator<Item = f64>) -> f64 {
+    let mut total = 0.0;
+    let mut count = 0_usize;
+
+    for confidence in confidences {
+        total += confidence;
+        count += 1;
+    }
+
+    if count == 0 {
+        0.0
+    } else {
+        total / count as f64
+    }
 }
 
 fn meal_kcal_total(meal: &Value) -> f64 {
