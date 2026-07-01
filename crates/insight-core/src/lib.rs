@@ -18,8 +18,8 @@ pub use direct_fii::{
     DirectFiiMealEstimate, DirectFiiMealItem, REFERENCE_MEAL_INSULIN_LOAD,
 };
 pub use domain::{
-    AcuteScore, EstimateSource, FiiValue, FormulaVersion, Grams, InsulinLoad, Kcal,
-    ValueValidationError,
+    AcuteScore, EstimateQuality, EstimateSource, FiiValue, FormulaVersion, Grams, InsulinLoad,
+    Kcal, ValueValidationError,
 };
 pub use exact_fii::{
     calculate_exact_fii_item_load, calculate_exact_fii_meal_totals, ExactFiiItemEstimate,
@@ -38,6 +38,6 @@ pub use mapped_fii::{
     ExactOrMappedFiiMealItem, MappedFiiItemEstimate, MappedFiiItemLoadError,
 };
 pub use unified_fii::{
-    calculate_unified_fii_item_load, calculate_unified_fii_meal_totals, UnifiedFiiItem,
-    UnifiedFiiItemEstimate, UnifiedFiiMealEstimate, UnifiedFiiScoringError,
+    calculate_unified_fii_item_load, calculate_unified_fii_meal_totals, resolve_estimate_quality,
+    UnifiedFiiItem, UnifiedFiiItemEstimate, UnifiedFiiMealEstimate, UnifiedFiiScoringError,
 };

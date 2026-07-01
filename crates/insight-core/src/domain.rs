@@ -144,6 +144,26 @@ impl EstimateSource {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
+pub enum EstimateQuality {
+    High,
+    Medium,
+    Low,
+    Unknown,
+}
+
+impl EstimateQuality {
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::High => "high",
+            Self::Medium => "medium",
+            Self::Low => "low",
+            Self::Unknown => "unknown",
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum FormulaVersion {
     CurrentBackendV1,
 }
@@ -232,6 +252,27 @@ mod tests {
                 source
             );
         }
+    }
+
+    #[test]
+    fn estimate_quality_uses_backend_product_labels_only() {
+        let cases = [
+            (EstimateQuality::High, "\"high\""),
+            (EstimateQuality::Medium, "\"medium\""),
+            (EstimateQuality::Low, "\"low\""),
+            (EstimateQuality::Unknown, "\"unknown\""),
+        ];
+
+        for (quality, expected_json) in cases {
+            assert_eq!(quality.as_str(), expected_json.trim_matches('"'));
+            assert_eq!(serde_json::to_string(&quality).unwrap(), expected_json);
+            assert_eq!(
+                serde_json::from_str::<EstimateQuality>(expected_json).unwrap(),
+                quality
+            );
+        }
+
+        assert!(serde_json::from_str::<EstimateQuality>("\"composite\"").is_err());
     }
 
     #[test]
