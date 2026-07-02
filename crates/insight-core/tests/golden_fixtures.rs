@@ -8,10 +8,10 @@ use insight_core::{
     calculate_exact_fii_item_load, calculate_exact_fii_meal_totals,
     calculate_exact_or_mapped_fii_meal_totals, calculate_macro_fallback_item_load,
     calculate_mapped_fii_item_load, calculate_unified_fii_item_load,
-    calculate_unified_fii_meal_totals, compute_chronic_series, lookup_exact_fii, ChronicDayInput,
-    DirectFiiMealItem, EstimateQuality, EstimateSource, ExactFiiMealItem, ExactOrMappedFiiMealItem,
-    FiiValue, FormulaVersion, Grams, Kcal, MacroFallbackKind, MacroFallbackNutrients,
-    UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
+    calculate_unified_fii_meal_totals, compute_chronic_series, lookup_exact_fii, score_meal,
+    ChronicDayInput, DirectFiiMealItem, EstimateQuality, EstimateSource, ExactFiiMealItem,
+    ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Grams, Kcal, MacroFallbackKind,
+    MacroFallbackNutrients, UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
 use serde_json::Value;
@@ -294,6 +294,33 @@ const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
     "cases/monotonicity_biryani_portion_01.json",
     "cases/chronic_low_then_high_01.json",
     "cases/uncertainty_degradation_01.json",
+];
+
+#[derive(Debug)]
+struct ScoreMealSkipReason {
+    fixture_path: &'static str,
+    input_path: &'static str,
+    reason: &'static str,
+}
+
+const SCORE_MEAL_SUPPORTED_PATHS: &[&str] = &[
+    "cases/ranking_relative_01.json",
+    "cases/source_quality_hierarchy_01.json",
+    "cases/monotonicity_biryani_portion_01.json",
+    "cases/uncertainty_degradation_01.json",
+];
+
+const SCORE_MEAL_SKIP_REASONS: &[ScoreMealSkipReason] = &[
+    ScoreMealSkipReason {
+        fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
+        reason: "the fixture serializes no meal-level acute-score expectation, and rolling outputs belong to the chronic-series path rather than the scored-meal contract",
+    },
+    ScoreMealSkipReason {
+        fixture_path: "cases/ranking_relative_01.json",
+        input_path: "expected.actual_scores[*].main_insulin_drivers",
+        reason: "no golden fixture serializes main_insulin_drivers expectations, so driver assertions stay structural instead of inferring values",
+    },
 ];
 
 #[derive(Debug)]
@@ -1209,6 +1236,101 @@ fn unified_fii_complete_uncertainty_meal_retains_unknown_with_low_estimate_quali
 }
 
 #[test]
+fn score_meal_matches_issue_explicit_golden_acute_scores() {
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let ranking_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_cake_icecream");
+    let ranking_scored = score_meal(&unified_fii_meal_items(ranking_meal))
+        .unwrap()
+        .expect("ranking cake meal should produce a scored meal");
+    assert_approx_eq(
+        round_to_four_places(ranking_scored.acute_score().value()),
+        1650.0,
+    );
+
+    let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let mixed_meal = payload_object(&uncertainty_fixture.input)
+        .get("mixed_meal")
+        .expect("uncertainty fixture should include mixed_meal");
+    let mixed_scored = score_meal(&unified_fii_meal_items(mixed_meal))
+        .unwrap()
+        .expect("uncertainty mixed meal should produce a scored meal");
+    assert_approx_eq(
+        round_to_four_places(mixed_scored.acute_score().value()),
+        1224.6,
+    );
+}
+
+#[test]
+fn score_meal_matches_all_serialized_golden_acute_scores() {
+    let array_cases: [(&str, &str, &[&str]); 3] = [
+        (
+            "cases/ranking_relative_01.json",
+            "meals",
+            &[
+                "ranking_salad",
+                "ranking_dal_meal",
+                "ranking_rice_chicken",
+                "ranking_chicken_biryani",
+                "ranking_cake_icecream",
+            ],
+        ),
+        (
+            "cases/source_quality_hierarchy_01.json",
+            "variants",
+            &[
+                "source_exact_fii",
+                "source_mapped_fii",
+                "source_macro_fallback",
+            ],
+        ),
+        (
+            "cases/monotonicity_biryani_portion_01.json",
+            "meals",
+            &["mono_biryani_0_5x", "mono_biryani_1x", "mono_biryani_1_5x"],
+        ),
+    ];
+
+    for (path, collection, meal_ids) in array_cases {
+        let fixture = read_golden_fixture(path);
+        for meal_id in meal_ids {
+            let meal = find_array_meal(&fixture.input, collection, meal_id);
+            assert_score_meal_fixture_meal_matches_expected(&fixture, meal, meal_id);
+        }
+    }
+
+    let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
+    let uncertainty_payload = payload_object(&uncertainty_fixture.input);
+    for meal_id in ["control_meal", "mixed_meal"] {
+        let meal = uncertainty_payload
+            .get(meal_id)
+            .expect("uncertainty fixture should include expected meal");
+        assert_score_meal_fixture_meal_matches_expected(&uncertainty_fixture, meal, meal_id);
+    }
+}
+
+#[test]
+fn score_meal_skip_reasons_cover_unsupported_golden_fixture_paths() {
+    let index = read_golden_index();
+    let indexed_paths: BTreeSet<&str> = index.cases.iter().map(|case| case.path.as_str()).collect();
+    let supported_paths: BTreeSet<&str> = SCORE_MEAL_SUPPORTED_PATHS.iter().copied().collect();
+    let skip_paths: BTreeSet<&str> = SCORE_MEAL_SKIP_REASONS
+        .iter()
+        .map(|skip| skip.fixture_path)
+        .collect();
+    let covered_paths: BTreeSet<&str> = supported_paths.union(&skip_paths).copied().collect();
+
+    assert_eq!(covered_paths, indexed_paths);
+    for supported_path in SCORE_MEAL_SUPPORTED_PATHS {
+        assert!(indexed_paths.contains(supported_path));
+    }
+    for skip in SCORE_MEAL_SKIP_REASONS {
+        assert!(indexed_paths.contains(skip.fixture_path));
+        assert!(!skip.input_path.is_empty());
+        assert!(!skip.reason.is_empty());
+    }
+}
+
+#[test]
 fn validation_mean_confidence_preserves_empty_zero_and_full_precision_behavior() {
     assert_approx_eq(validation_mean_confidence([]), 0.0);
     assert_approx_eq(validation_mean_confidence([0.0]), 0.0);
@@ -1965,6 +2087,52 @@ fn assert_unified_fii_fixture_meal_matches_expected(
             "acute_score",
         ),
     );
+}
+
+fn assert_score_meal_fixture_meal_matches_expected(
+    fixture: &GoldenFixture,
+    meal: &Value,
+    expected_score_id: &str,
+) {
+    let items = unified_fii_meal_items(meal);
+    let scored = score_meal(&items)
+        .unwrap()
+        .expect("every supported fixture meal should produce a scored meal");
+    let unified = calculate_unified_fii_meal_totals(&items)
+        .unwrap()
+        .expect("every supported fixture meal should resolve through the unified path");
+
+    // The scored meal wraps the complete unified estimate unchanged.
+    assert_eq!(scored.unified_meal_estimate(), &unified);
+
+    // Runtime acute score is the raw, unrounded backend formula output;
+    // rounding happens only at the existing golden comparison boundary.
+    assert_eq!(
+        scored.acute_score().value(),
+        (unified.meal_insulin_load_total().value() / REFERENCE_MEAL_INSULIN_LOAD) * 100.0
+    );
+    assert_approx_eq(
+        round_to_four_places(scored.acute_score().value()),
+        expected_nested_score(
+            &fixture.expected.actual_scores,
+            expected_score_id,
+            "acute_score",
+        ),
+    );
+
+    // No golden fixture serializes main_insulin_drivers expectations, so the
+    // driver checks stay structural: at most three trimmed, non-blank
+    // original input item names.
+    let input_names: BTreeSet<&str> = meal_items(meal)
+        .iter()
+        .map(|item| string_field(item, "name").trim())
+        .collect();
+    assert!(scored.main_insulin_drivers().len() <= 3);
+    for driver in scored.main_insulin_drivers() {
+        assert!(!driver.is_empty());
+        assert_eq!(driver.trim(), driver);
+        assert!(input_names.contains(driver.as_str()));
+    }
 }
 
 fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
