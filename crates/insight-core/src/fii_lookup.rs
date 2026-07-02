@@ -8,7 +8,7 @@ use crate::domain::{
     EstimateSource, FiiValue, FormulaVersion, ValueValidationError, CURRENT_FORMULA_VERSION,
 };
 
-const FII_FOODS_CSV: &str = include_str!("../../../backend/fii_foods.csv");
+pub(crate) const FII_FOODS_CSV: &str = include_str!("../../../backend/fii_foods.csv");
 const DEFAULT_CONFIDENCE: f64 = 0.5;
 const MIXED_MEAL_WORD_MARKERS: &[&str] = &[
     "bowl", "combo", "plate", "biryani", "curry", "sandwich", "burger", "meal",

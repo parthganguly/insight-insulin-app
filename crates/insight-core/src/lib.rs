@@ -6,6 +6,8 @@ pub mod exact_fii;
 pub mod fii_lookup;
 pub mod macro_fallback;
 pub mod mapped_fii;
+pub mod metadata;
+pub mod scoring;
 pub mod unified_fii;
 
 pub use chronic::{compute_chronic_series, ChronicDayInput, ChronicMetricPoint};
@@ -39,6 +41,8 @@ pub use mapped_fii::{
     ExactOrMappedFiiItemEstimate, ExactOrMappedFiiMealError, ExactOrMappedFiiMealEstimate,
     ExactOrMappedFiiMealItem, MappedFiiItemEstimate, MappedFiiItemLoadError,
 };
+pub use metadata::{core_metadata, CoreMetadata};
+pub use scoring::{score_meal, ScoredMeal};
 pub use unified_fii::{
     calculate_unified_fii_item_load, calculate_unified_fii_meal_totals, resolve_estimate_quality,
     UnifiedFiiItem, UnifiedFiiItemEstimate, UnifiedFiiMealEstimate, UnifiedFiiScoringError,
