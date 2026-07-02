@@ -56,9 +56,16 @@ pub fn score_meal(items: &[UnifiedFiiItem]) -> Result<Option<ScoredMeal>, Unifie
     }))
 }
 
+/// Trims like Python `str.strip()`: Rust `char::is_whitespace` plus the ASCII
+/// separator controls U+001C..=U+001F, which Python's `str.isspace()` treats
+/// as whitespace but Rust does not.
+fn trim_python_strip(value: &str) -> &str {
+    value.trim_matches(|c: char| c.is_whitespace() || matches!(c, '\u{001c}'..='\u{001f}'))
+}
+
 /// Ranks original input item names by resolved per-item insulin load only,
-/// reproducing the backend's stable descending sort, trim, whitespace-only
-/// skip, exact case-sensitive dedupe, and top-three cutoff.
+/// reproducing the backend's stable descending sort, Python-`strip` trim,
+/// whitespace-only skip, exact case-sensitive dedupe, and top-three cutoff.
 fn resolve_main_insulin_drivers(
     items: &[UnifiedFiiItem],
     item_estimates: &[UnifiedFiiItemEstimate],
@@ -76,7 +83,7 @@ fn resolve_main_insulin_drivers(
 
     let mut ranked_names: Vec<String> = Vec::new();
     for (name, _insulin_load) in ranked_items {
-        let normalized_name = name.trim();
+        let normalized_name = trim_python_strip(name);
         if normalized_name.is_empty() || ranked_names.iter().any(|ranked| ranked == normalized_name)
         {
             continue;
@@ -360,6 +367,47 @@ mod tests {
         ];
 
         assert_eq!(driver_names(&items), ["cake", "rice"]);
+    }
+
+    #[test]
+    fn drivers_skip_names_of_only_ascii_separator_controls_like_python_strip() {
+        // Python `str.strip()` removes U+001C..=U+001F, so a name made only of
+        // those characters is skipped by the backend exactly like whitespace.
+        let items = [
+            provided_item("\u{001c}\u{001d}\u{001e}\u{001f}", 100.0, 1.0, 90.0),
+            provided_item("rice", 100.0, 1.0, 10.0),
+        ];
+
+        assert_eq!(driver_names(&items), ["rice"]);
+    }
+
+    #[test]
+    fn drivers_trim_ascii_separator_controls_like_python_strip() {
+        let items = [provided_item("\u{001c}rice\u{001f}", 100.0, 1.0, 50.0)];
+
+        assert_eq!(driver_names(&items), ["rice"]);
+    }
+
+    #[test]
+    fn drivers_dedupe_control_padded_and_whitespace_padded_duplicates_together() {
+        let items = [
+            provided_item("\u{001c}rice\u{001f}", 100.0, 1.0, 90.0),
+            provided_item(" rice ", 100.0, 1.0, 80.0),
+            provided_item("rice", 100.0, 1.0, 70.0),
+            provided_item("pasta", 100.0, 1.0, 10.0),
+        ];
+
+        assert_eq!(driver_names(&items), ["rice", "pasta"]);
+    }
+
+    #[test]
+    fn control_trimmed_dedupe_remains_case_sensitive() {
+        let items = [
+            provided_item("\u{001c}Rice\u{001f}", 100.0, 1.0, 90.0),
+            provided_item("\u{001d}rice\u{001e}", 100.0, 1.0, 80.0),
+        ];
+
+        assert_eq!(driver_names(&items), ["Rice", "rice"]);
     }
 
     #[test]
