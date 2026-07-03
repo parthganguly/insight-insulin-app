@@ -54,3 +54,13 @@ export const isUnknownSource = (source: string | undefined): boolean => source =
 export const isRoughEstimateSource = (source: string | undefined): boolean => source === "macro_fallback" || source === "mapped_fii";
 
 export const isProvidedFiiSource = (source: string | undefined): boolean => source === "user_confirmed";
+
+// Sources the frontend itself assigns to draft items before any backend save.
+// Backend-scored items always carry one of the standardized fii_source tokens
+// instead, so an explicit FII on a draft item can only come from a user edit.
+const DRAFT_ITEM_SOURCES = new Set<string | undefined>([undefined, "ai"]);
+
+export const shouldShowProvidedFiiDisclaimer = (source: string | undefined, fii: number | undefined): boolean => {
+	if (isProvidedFiiSource(source)) return true;
+	return fii !== undefined && DRAFT_ITEM_SOURCES.has(source);
+};

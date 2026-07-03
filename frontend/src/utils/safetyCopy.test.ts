@@ -12,6 +12,7 @@ import {
 	isProvidedFiiSource,
 	isRoughEstimateSource,
 	isUnknownSource,
+	shouldShowProvidedFiiDisclaimer,
 } from "./safetyCopy";
 
 describe("safety copy source labels", () => {
@@ -69,6 +70,35 @@ describe("source predicates", () => {
 		expect(isProvidedFiiSource("user_confirmed")).toBe(true);
 		expect(isProvidedFiiSource("exact_fii")).toBe(false);
 		expect(isProvidedFiiSource(undefined)).toBe(false);
+	});
+});
+
+describe("provided-FII disclaimer gating", () => {
+	it("shows the disclaimer for user_confirmed items regardless of the fii field", () => {
+		expect(shouldShowProvidedFiiDisclaimer("user_confirmed", 50)).toBe(true);
+		expect(shouldShowProvidedFiiDisclaimer("user_confirmed", undefined)).toBe(true);
+	});
+
+	it.each(["exact_fii", "mapped_fii", "macro_fallback", "unknown"])("does not show the disclaimer for %s even when an FII value exists", (source) => {
+		expect(shouldShowProvidedFiiDisclaimer(source, 50)).toBe(false);
+		expect(shouldShowProvidedFiiDisclaimer(source, undefined)).toBe(false);
+	});
+
+	it("shows the disclaimer for draft items where the user explicitly entered an FII", () => {
+		// Draft items carry no backend source (manual/re-log drafts) or the
+		// frontend "ai" marker; an explicit FII there can only come from a user edit.
+		expect(shouldShowProvidedFiiDisclaimer(undefined, 50)).toBe(true);
+		expect(shouldShowProvidedFiiDisclaimer("ai", 50)).toBe(true);
+	});
+
+	it("does not show the disclaimer for draft items without an entered FII", () => {
+		expect(shouldShowProvidedFiiDisclaimer(undefined, undefined)).toBe(false);
+		expect(shouldShowProvidedFiiDisclaimer("ai", undefined)).toBe(false);
+	});
+
+	it("stays source-based for unrecognized backend tokens instead of trusting a bare fii field", () => {
+		expect(shouldShowProvidedFiiDisclaimer("some_future_token", 50)).toBe(false);
+		expect(shouldShowProvidedFiiDisclaimer("provided", 50)).toBe(false);
 	});
 });
 

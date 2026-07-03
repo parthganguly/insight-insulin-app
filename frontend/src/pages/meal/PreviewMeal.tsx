@@ -12,7 +12,7 @@ import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { Meal } from "../../types/Meal";
 import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
-import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isProvidedFiiSource, isRoughEstimateSource, isUnknownSource } from "../../utils/safetyCopy";
+import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
 
 type ImpactPresentation = {
 	title: string;
@@ -409,7 +409,7 @@ const PreviewMeal = () => {
 												<NutrimentComponent nutrimentName='Total Carbs' nutrimentValue={`${calculateTotalItemCarbohydrates(modalItem)} g`} nutrimentIcon={pizza} nutrimentIconColor='#ffcc00ff' />
 												<NutrimentComponent nutrimentName='Total Saturated Fat' nutrimentValue={`${calculateTotalItemSaturatedFat(modalItem)} g`} nutrimentIcon={batteryCharging} nutrimentIconColor='#0091ffff' />
 												{modalItem.source ? <IonText>Source: {humanizeFiiSource(modalItem.source)}</IonText> : null}
-												{isProvidedFiiSource(modalItem.source) || modalItem.fii !== undefined ? (
+												{shouldShowProvidedFiiDisclaimer(modalItem.source, modalItem.fii) ? (
 													<IonText color='medium' style={{ fontSize: "0.85rem" }}>
 														{PROVIDED_FII_DISCLAIMER}
 													</IonText>
