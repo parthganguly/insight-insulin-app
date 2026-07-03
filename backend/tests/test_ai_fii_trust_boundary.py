@@ -73,7 +73,7 @@ class AiFiiTrustBoundaryTests(unittest.TestCase):
         self.assertNotEqual(confidence, 1.0)
         self.assertEqual(resolve_estimate_quality([source]), "high")
 
-    def post_item(self, *, name: str, fii_marker: object = ...):
+    def post_item(self, *, name: str, fii_marker: object = ..., fii_value_marker: object = ...):
         item = {
             "name": name,
             "quantity": 1.0,
@@ -87,6 +87,8 @@ class AiFiiTrustBoundaryTests(unittest.TestCase):
         }
         if fii_marker is not ...:
             item["fii"] = fii_marker
+        if fii_value_marker is not ...:
+            item["fii_value"] = fii_value_marker
 
         request = MealCreate.model_validate({"meal_name": "synthetic trust-boundary meal", "items": [item]})
         return asyncio.run(create_meal(request, FakeDb()))
@@ -134,6 +136,50 @@ class AiFiiTrustBoundaryTests(unittest.TestCase):
         self.assertEqual(item.confidence, 1.0)
         self.assertEqual(item.fii_source, "user_confirmed")
         self.assertEqual(item.fii, 50)
+
+    def test_non_positive_fii_value_is_neutralized_at_post_boundary(self) -> None:
+        for invalid_fii_value in (0, "", "   ", "0", -1):
+            with self.subTest(fii_value=invalid_fii_value):
+                response = self.post_item(name="fallback carb bowl", fii_value_marker=invalid_fii_value)
+                item = response.items[0]
+
+                self.assertGreater(item.insulin_load, 0.0)
+                self.assertEqual(item.fii_source, "macro_fallback")
+                self.assertEqual(item.confidence, 0.8)
+                self.assertNotEqual(item.fii_source, "user_confirmed")
+                self.assertEqual(response.estimate_quality, "low")
+                self.assertIsNone(item.fii)
+                self.assertIsNone(item.fii_value)
+
+    def test_explicit_fii_value_alone_uses_user_confirmed_path(self) -> None:
+        response = self.post_item(name="manual item", fii_value_marker=50)
+        item = response.items[0]
+
+        self.assertEqual(item.insulin_load, 110.0)
+        self.assertEqual(item.confidence, 1.0)
+        self.assertEqual(item.fii_source, "user_confirmed")
+        self.assertEqual(item.fii, 50)
+        self.assertEqual(item.fii_value, 50)
+
+    def test_positive_fii_value_takes_precedence_over_fii(self) -> None:
+        response = self.post_item(name="manual item", fii_marker=50, fii_value_marker=30)
+        item = response.items[0]
+
+        self.assertEqual(item.insulin_load, 66.0)
+        self.assertEqual(item.confidence, 1.0)
+        self.assertEqual(item.fii_source, "user_confirmed")
+        self.assertEqual(item.fii, 30)
+        self.assertEqual(item.fii_value, 30)
+
+    def test_zero_fii_value_falls_back_to_positive_fii(self) -> None:
+        response = self.post_item(name="manual item", fii_marker=50, fii_value_marker=0)
+        item = response.items[0]
+
+        self.assertEqual(item.insulin_load, 110.0)
+        self.assertEqual(item.confidence, 1.0)
+        self.assertEqual(item.fii_source, "user_confirmed")
+        self.assertEqual(item.fii, 50)
+        self.assertEqual(item.fii_value, 50)
 
 
 if __name__ == "__main__":
