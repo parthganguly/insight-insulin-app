@@ -4,7 +4,9 @@ from dataclasses import dataclass, field
 from typing import Literal, Optional
 
 
-ValidationKind = Literal["ranking", "source_quality", "monotonicity", "chronic_trend", "uncertainty"]
+ValidationKind = Literal[
+    "ranking", "source_quality", "monotonicity", "chronic_trend", "uncertainty", "driver_ranking"
+]
 
 
 @dataclass(frozen=True)

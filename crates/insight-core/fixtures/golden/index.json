@@ -29,6 +29,12 @@
       "description": "Mixed-source meal should have lower estimate quality and confidence than all-exact control",
       "kind": "uncertainty",
       "path": "cases/uncertainty_degradation_01.json"
+    },
+    {
+      "case_id": "driver_ranking_adversarial_01",
+      "description": "Synthetic main_insulin_drivers edge cases: trim/blank skip, case-sensitive dedupe, top-three cutoff, stable ties, zero-load/unknown retention, load-only ranking",
+      "kind": "driver_ranking",
+      "path": "cases/driver_ranking_adversarial_01.json"
     }
   ],
   "formula_version": "current_backend_v1",

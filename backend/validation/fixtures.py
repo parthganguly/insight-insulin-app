@@ -154,6 +154,49 @@ def build_validation_cases() -> list[ValidationCase]:
             _meal_item(name="mystery mineral water", quantity=1.0, kcal_per_unit=0.0),
         ],
     )
+    # Synthetic driver-parity edge cases. Loads are pinned by provided FII
+    # (insulin_load = fii/100 * kcal_per_unit * quantity), so ranking is exact.
+    driver_dedupe_cutoff = ValidationMeal(
+        meal_id="driver_dedupe_cutoff",
+        meal_name="driver dedupe cutoff meal",
+        items=[
+            _meal_item(name="   ", quantity=1.0, kcal_per_unit=100.0, fii=90),
+            _meal_item(name=" glow berry ", quantity=1.0, kcal_per_unit=100.0, fii=80),
+            _meal_item(name="Glow Berry", quantity=1.0, kcal_per_unit=100.0, fii=70),
+            _meal_item(name="glow berry", quantity=1.0, kcal_per_unit=100.0, fii=60),
+            _meal_item(name="amber fizz", quantity=1.0, kcal_per_unit=100.0, fii=50),
+            _meal_item(name="sun nectar", quantity=1.0, kcal_per_unit=100.0, fii=40),
+        ],
+    )
+    driver_tie_retention = ValidationMeal(
+        meal_id="driver_tie_retention",
+        meal_name="driver tie retention meal",
+        items=[
+            _meal_item(name="tie fruit one", quantity=1.0, kcal_per_unit=100.0, fii=50),
+            _meal_item(name="zero glow tea", quantity=1.0, kcal_per_unit=0.0, fii=40),
+            _meal_item(name="mystery moon snack", quantity=1.0, kcal_per_unit=120.0),
+        ],
+    )
+    driver_ranking_isolation = ValidationMeal(
+        meal_id="driver_ranking_isolation",
+        meal_name="driver ranking isolation meal",
+        items=[
+            _meal_item(name="giant feast platter", quantity=1.0, kcal_per_unit=1000.0, fii=1),
+            # U+001C/U+001F padding: Python str.strip() removes these ASCII
+            # separator controls, so the exported driver must be "spark grain".
+            _meal_item(name="\x1cspark grain\x1f", quantity=1.0, kcal_per_unit=300.0, fii=30),
+            _meal_item(name="small ember bite", quantity=1.0, kcal_per_unit=20.0, fii=99),
+            _meal_item(
+                name="vapor husk porridge",
+                quantity=1.0,
+                kcal_per_unit=220.0,
+                gi=50,
+                carb_g=30.0,
+                protein_g=10.0,
+            ),
+        ],
+    )
+
     uncertainty_all_exact = ValidationMeal(
         meal_id="uncertainty_all_exact_control",
         meal_name="all exact control meal",
@@ -204,5 +247,25 @@ def build_validation_cases() -> list[ValidationCase]:
             kind="uncertainty",
             description="Mixed-source meal should have lower estimate quality and confidence than all-exact control",
             payload={"mixed_meal": uncertainty_mixed, "control_meal": uncertainty_all_exact},
+        ),
+        ValidationCase(
+            case_id="driver_ranking_adversarial_01",
+            kind="driver_ranking",
+            description=(
+                "Synthetic main_insulin_drivers edge cases: trim/blank skip, case-sensitive dedupe, "
+                "top-three cutoff, stable ties, zero-load/unknown retention, load-only ranking"
+            ),
+            payload={
+                "meals": [
+                    driver_dedupe_cutoff,
+                    driver_tie_retention,
+                    driver_ranking_isolation,
+                ],
+                "expected_drivers": {
+                    "driver_dedupe_cutoff": ["glow berry", "Glow Berry", "amber fizz"],
+                    "driver_tie_retention": ["tie fruit one", "zero glow tea", "mystery moon snack"],
+                    "driver_ranking_isolation": ["spark grain", "small ember bite", "vapor husk porridge"],
+                },
+            },
         ),
     ]

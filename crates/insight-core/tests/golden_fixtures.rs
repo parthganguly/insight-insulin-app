@@ -62,6 +62,11 @@ const DIRECT_FII_SKIP_REASONS: &[DirectFiiSkipReason] = &[
         input_path: "input.payload.mixed_meal and input.payload.control_meal",
         reason: "case requires exact lookup, mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
     },
+    DirectFiiSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "meals mix provided-FII items with unknown and macro-fallback items and exist to exercise main_insulin_drivers parity through score_meal",
+    },
 ];
 
 #[derive(Debug)]
@@ -96,6 +101,11 @@ const DIRECT_FII_ACUTE_SKIP_REASONS: &[DirectFiiAcuteSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal and input.payload.control_meal",
         reason: "case requires exact lookup, mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
+    },
+    DirectFiiAcuteSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "meals mix provided-FII items with unknown and macro-fallback items; their acute scores are asserted through score_meal parity",
     },
 ];
 
@@ -134,6 +144,11 @@ const EXACT_FII_LOOKUP_SKIP_REASONS: &[ExactFiiLookupSkipReason] = &[
         input_path: "input.payload.control_meal and input.payload.mixed_meal",
         reason: "the fixture combines exact lookup with mapped FII, fallback, unknown, confidence degradation, and estimate-quality aggregation",
     },
+    ExactFiiLookupSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "all items use provided FII, macro fallback, or unknown fallback; the case has no exact-lookup expectation",
+    },
 ];
 
 #[derive(Debug)]
@@ -170,6 +185,11 @@ const EXACT_FII_ITEM_LOAD_SKIP_REASONS: &[ExactFiiItemLoadSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.control_meal and input.payload.mixed_meal",
         reason: "the fixture combines exact lookup with mapped FII, fallback, unknown, confidence degradation, and estimate-quality aggregation without an isolated exact-FII item-load expectation",
+    },
+    ExactFiiItemLoadSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "all items use provided FII, macro fallback, or unknown fallback; the case has no exact-FII item-load expectation",
     },
 ];
 
@@ -211,6 +231,11 @@ const EXACT_FII_MEAL_SKIP_REASONS: &[ExactFiiMealSkipReason] = &[
         input_path: "input.payload.mixed_meal",
         reason: "mixed_meal combines exact lookup with mapped FII, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
     },
+    ExactFiiMealSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "no meal resolves purely through exact FII lookup; items use provided FII, macro fallback, or unknown fallback",
+    },
 ];
 
 #[derive(Debug)]
@@ -245,6 +270,11 @@ const MAPPED_FII_ITEM_SKIP_REASONS: &[MappedFiiItemSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.control_meal and input.payload.mixed_meal",
         reason: "the control uses exact lookup and the mapped mixed-meal item requires decomposition alongside fallback and unknown paths",
+    },
+    MappedFiiItemSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "no item uses mapped FII; items use provided FII, macro fallback, or unknown fallback",
     },
 ];
 
@@ -286,6 +316,11 @@ const EXACT_OR_MAPPED_FII_MEAL_SKIP_REASONS: &[ExactOrMappedFiiMealSkipReason] =
         input_path: "input.payload.mixed_meal",
         reason: "mixed_meal requires decomposition, macro fallback, unknown fallback, confidence degradation, and estimate-quality aggregation",
     },
+    ExactOrMappedFiiMealSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "no meal resolves purely through exact or mapped lookup; items use provided FII, macro fallback, or unknown fallback",
+    },
 ];
 
 const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
@@ -294,6 +329,7 @@ const UNIFIED_FII_SUPPORTED_PATHS: &[&str] = &[
     "cases/monotonicity_biryani_portion_01.json",
     "cases/chronic_low_then_high_01.json",
     "cases/uncertainty_degradation_01.json",
+    "cases/driver_ranking_adversarial_01.json",
 ];
 
 #[derive(Debug)]
@@ -308,20 +344,14 @@ const SCORE_MEAL_SUPPORTED_PATHS: &[&str] = &[
     "cases/source_quality_hierarchy_01.json",
     "cases/monotonicity_biryani_portion_01.json",
     "cases/uncertainty_degradation_01.json",
+    "cases/driver_ranking_adversarial_01.json",
 ];
 
-const SCORE_MEAL_SKIP_REASONS: &[ScoreMealSkipReason] = &[
-    ScoreMealSkipReason {
-        fixture_path: "cases/chronic_low_then_high_01.json",
-        input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
-        reason: "the fixture serializes no meal-level acute-score expectation, and rolling outputs belong to the chronic-series path rather than the scored-meal contract",
-    },
-    ScoreMealSkipReason {
-        fixture_path: "cases/ranking_relative_01.json",
-        input_path: "expected.actual_scores[*].main_insulin_drivers",
-        reason: "no golden fixture serializes main_insulin_drivers expectations, so driver assertions stay structural instead of inferring values",
-    },
-];
+const SCORE_MEAL_SKIP_REASONS: &[ScoreMealSkipReason] = &[ScoreMealSkipReason {
+    fixture_path: "cases/chronic_low_then_high_01.json",
+    input_path: "input.payload.high_day_meal, input.payload.low_day_meal, and expected rolling chronic outputs",
+    reason: "the fixture serializes no meal-level acute-score or main_insulin_drivers expectation, and rolling outputs belong to the chronic-series path rather than the scored-meal contract",
+}];
 
 #[derive(Debug)]
 struct EstimateQualitySkipReason {
@@ -348,6 +378,11 @@ const ESTIMATE_QUALITY_SKIP_REASONS: &[EstimateQualitySkipReason] = &[
     },
     EstimateQualitySkipReason {
         fixture_path: "cases/chronic_low_then_high_01.json",
+        input_path: "expected.estimate_quality",
+        reason: "top-level composite is multi-meal validation metadata, not a product meal estimate-quality category",
+    },
+    EstimateQualitySkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
         input_path: "expected.estimate_quality",
         reason: "top-level composite is multi-meal validation metadata, not a product meal estimate-quality category",
     },
@@ -380,6 +415,11 @@ const VALIDATION_MEAN_CONFIDENCE_SKIP_REASONS: &[ValidationMeanConfidenceSkipRea
         fixture_path: "cases/chronic_low_then_high_01.json",
         input_path: "expected.actual_scores",
         reason: "the fixture exports no mean_confidence expectation",
+    },
+    ValidationMeanConfidenceSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "expected.actual_scores",
+        reason: "the fixture exports driver and acute-score expectations but no mean_confidence expectation",
     },
 ];
 
@@ -417,6 +457,11 @@ const DECOMPOSITION_SKIP_REASONS: &[DecompositionSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal excluding chicken biryani and all complete-meal outputs",
         reason: "the remaining items use exact lookup, macro fallback, or unported unknown fallback; complete outputs also aggregate confidence and estimate quality",
+    },
+    DecompositionSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload",
+        reason: "the fixture has no decomposition item",
     },
 ];
 
@@ -458,6 +503,11 @@ const MACRO_FALLBACK_SKIP_REASONS: &[MacroFallbackSkipReason] = &[
         fixture_path: "cases/uncertainty_degradation_01.json",
         input_path: "input.payload.mixed_meal",
         reason: "the isolated macro API remains non-mixed; unified fallback after a decomposition miss is covered separately, while the full meal still requires unknown and aggregate-quality behavior",
+    },
+    MacroFallbackSkipReason {
+        fixture_path: "cases/driver_ranking_adversarial_01.json",
+        input_path: "input.payload.meals[*]",
+        reason: "the single macro-fallback item exists to exercise driver ranking; its load is asserted through score_meal parity, and isolated macro parity is already covered by other fixtures",
     },
 ];
 
@@ -528,7 +578,7 @@ fn golden_fixtures_deserialize_and_match_index() {
     assert_eq!(index.formula_version, EXPECTED_FORMULA_VERSION);
     assert_eq!(index.generated_by, EXPECTED_GENERATOR);
     assert_eq!(index.warning, EXPECTED_WARNING);
-    assert_eq!(index.cases.len(), 5);
+    assert_eq!(index.cases.len(), 6);
 
     let known_source_labels: BTreeSet<&str> = KNOWN_SOURCE_LABELS.iter().copied().collect();
     let mut seen_case_ids = BTreeSet::new();
@@ -587,6 +637,7 @@ fn golden_fixtures_deserialize_and_match_index() {
     assert!(indexed_paths_by_case.contains_key("monotonicity_biryani_portion_01"));
     assert!(indexed_paths_by_case.contains_key("chronic_low_then_high_01"));
     assert!(indexed_paths_by_case.contains_key("uncertainty_degradation_01"));
+    assert!(indexed_paths_by_case.contains_key("driver_ranking_adversarial_01"));
     assert_eq!(actual_paths, indexed_paths);
 }
 
@@ -1261,8 +1312,8 @@ fn score_meal_matches_issue_explicit_golden_acute_scores() {
 }
 
 #[test]
-fn score_meal_matches_all_serialized_golden_acute_scores() {
-    let array_cases: [(&str, &str, &[&str]); 3] = [
+fn score_meal_matches_all_serialized_golden_acute_scores_and_drivers() {
+    let array_cases: [(&str, &str, &[&str]); 4] = [
         (
             "cases/ranking_relative_01.json",
             "meals",
@@ -1288,6 +1339,15 @@ fn score_meal_matches_all_serialized_golden_acute_scores() {
             "meals",
             &["mono_biryani_0_5x", "mono_biryani_1x", "mono_biryani_1_5x"],
         ),
+        (
+            "cases/driver_ranking_adversarial_01.json",
+            "meals",
+            &[
+                "driver_dedupe_cutoff",
+                "driver_tie_retention",
+                "driver_ranking_isolation",
+            ],
+        ),
     ];
 
     for (path, collection, meal_ids) in array_cases {
@@ -1306,6 +1366,86 @@ fn score_meal_matches_all_serialized_golden_acute_scores() {
             .expect("uncertainty fixture should include expected meal");
         assert_score_meal_fixture_meal_matches_expected(&uncertainty_fixture, meal, meal_id);
     }
+}
+
+#[test]
+fn score_meal_matches_adversarial_driver_golden_arrays() {
+    let fixture = read_golden_fixture("cases/driver_ranking_adversarial_01.json");
+    // Pinned oracle arrays: the same values are asserted by the Python
+    // validation run against the real backend resolver before export.
+    let expected: [(&str, &[&str]); 3] = [
+        (
+            "driver_dedupe_cutoff",
+            &["glow berry", "Glow Berry", "amber fizz"],
+        ),
+        (
+            "driver_tie_retention",
+            &["tie fruit one", "zero glow tea", "mystery moon snack"],
+        ),
+        (
+            "driver_ranking_isolation",
+            &["spark grain", "small ember bite", "vapor husk porridge"],
+        ),
+    ];
+
+    for (meal_id, expected_drivers) in expected {
+        let meal = find_array_meal(&fixture.input, "meals", meal_id);
+        let scored = score_meal(&unified_fii_meal_items(meal))
+            .unwrap()
+            .expect("adversarial driver fixture meal should produce a scored meal");
+
+        assert_eq!(scored.main_insulin_drivers(), expected_drivers);
+        assert_eq!(
+            expected_nested_drivers(&fixture.expected.actual_scores, meal_id),
+            expected_drivers,
+        );
+    }
+
+    // The original input name keeps its U+001C/U+001F padding in the fixture;
+    // only the resolver's Python-strip trim produces "spark grain".
+    let isolation_meal = find_array_meal(&fixture.input, "meals", "driver_ranking_isolation");
+    assert!(meal_items(isolation_meal)
+        .iter()
+        .any(|item| string_field(item, "name") == "\u{001c}spark grain\u{001f}"));
+}
+
+#[test]
+fn score_meal_drivers_keep_original_names_for_decomposed_and_mapped_golden_meals() {
+    // Cross-language proof that decomposition component names never leak into
+    // drivers: the serialized Python expectation is the original dish name.
+    let ranking_fixture = read_golden_fixture("cases/ranking_relative_01.json");
+    let biryani_meal = find_array_meal(&ranking_fixture.input, "meals", "ranking_chicken_biryani");
+    let biryani_scored = score_meal(&unified_fii_meal_items(biryani_meal))
+        .unwrap()
+        .expect("biryani meal should produce a scored meal");
+    assert!(biryani_scored.unified_meal_estimate().item_estimates()[0]
+        .decomposition()
+        .is_some());
+    assert_eq!(
+        biryani_scored.main_insulin_drivers(),
+        ["chicken biryani".to_string()]
+    );
+    assert_eq!(
+        expected_nested_drivers(
+            &ranking_fixture.expected.actual_scores,
+            "ranking_chicken_biryani"
+        ),
+        ["chicken biryani".to_string()]
+    );
+
+    let source_fixture = read_golden_fixture("cases/source_quality_hierarchy_01.json");
+    let mapped_meal = find_array_meal(&source_fixture.input, "variants", "source_mapped_fii");
+    let mapped_scored = score_meal(&unified_fii_meal_items(mapped_meal))
+        .unwrap()
+        .expect("mapped variant should produce a scored meal");
+    assert_eq!(
+        mapped_scored.main_insulin_drivers(),
+        ["greek yogurt bowl".to_string()]
+    );
+    assert_eq!(
+        expected_nested_drivers(&source_fixture.expected.actual_scores, "source_mapped_fii"),
+        ["greek yogurt bowl".to_string()]
+    );
 }
 
 #[test]
@@ -2120,19 +2260,12 @@ fn assert_score_meal_fixture_meal_matches_expected(
         ),
     );
 
-    // No golden fixture serializes main_insulin_drivers expectations, so the
-    // driver checks stay structural: at most three trimmed, non-blank
-    // original input item names.
-    let input_names: BTreeSet<&str> = meal_items(meal)
-        .iter()
-        .map(|item| string_field(item, "name").trim())
-        .collect();
-    assert!(scored.main_insulin_drivers().len() <= 3);
-    for driver in scored.main_insulin_drivers() {
-        assert!(!driver.is_empty());
-        assert_eq!(driver.trim(), driver);
-        assert!(input_names.contains(driver.as_str()));
-    }
+    // Exact cross-language driver parity: the serialized expectation is the
+    // real backend resolver's output for the same meal.
+    assert_eq!(
+        scored.main_insulin_drivers(),
+        expected_nested_drivers(&fixture.expected.actual_scores, expected_score_id).as_slice()
+    );
 }
 
 fn payload_object(input: &Value) -> &serde_json::Map<String, Value> {
@@ -2349,6 +2482,22 @@ fn expected_nested_score(actual_scores: &Value, meal_id: &str, field: &str) -> f
         .and_then(|meal| meal.get(field))
         .and_then(Value::as_f64)
         .expect("expected nested score field should be numeric")
+}
+
+fn expected_nested_drivers(actual_scores: &Value, meal_id: &str) -> Vec<String> {
+    actual_scores
+        .get(meal_id)
+        .and_then(|meal| meal.get("main_insulin_drivers"))
+        .and_then(Value::as_array)
+        .expect("expected nested main_insulin_drivers field should be an array")
+        .iter()
+        .map(|driver| {
+            driver
+                .as_str()
+                .expect("expected driver entry should be a string")
+                .to_string()
+        })
+        .collect()
 }
 
 fn expected_nested_quality<'a>(actual_scores: &'a Value, meal_id: &str) -> &'a str {

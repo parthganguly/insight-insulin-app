@@ -5,10 +5,19 @@
     "actual_scores": {
       "control_meal": {
         "acute_score": 1018.3333,
+        "main_insulin_drivers": [
+          "rice",
+          "plain yogurt"
+        ],
         "mean_confidence": 0.7
       },
       "mixed_meal": {
         "acute_score": 1224.6,
+        "main_insulin_drivers": [
+          "chicken biryani",
+          "plain yogurt",
+          "fallback carb bowl"
+        ],
         "mean_confidence": 0.6
       }
     },

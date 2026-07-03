@@ -6,16 +6,25 @@
       "source_exact_fii": {
         "acute_score": 360.0,
         "estimate_quality": "high",
+        "main_insulin_drivers": [
+          "plain yogurt"
+        ],
         "mean_confidence": 0.7
       },
       "source_macro_fallback": {
         "acute_score": 19.2,
         "estimate_quality": "low",
+        "main_insulin_drivers": [
+          "cultured dairy cup"
+        ],
         "mean_confidence": 0.8
       },
       "source_mapped_fii": {
         "acute_score": 360.0,
         "estimate_quality": "medium",
+        "main_insulin_drivers": [
+          "greek yogurt bowl"
+        ],
         "mean_confidence": 0.9
       }
     },
