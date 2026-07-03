@@ -1,0 +1,292 @@
+{
+  "case_id": "driver_ranking_adversarial_01",
+  "description": "Synthetic main_insulin_drivers edge cases: trim/blank skip, case-sensitive dedupe, top-three cutoff, stable ties, zero-load/unknown retention, load-only ranking",
+  "expected": {
+    "actual_scores": {
+      "driver_dedupe_cutoff": {
+        "acute_score": 1300.0,
+        "main_insulin_drivers": [
+          "glow berry",
+          "Glow Berry",
+          "amber fizz"
+        ]
+      },
+      "driver_ranking_isolation": {
+        "acute_score": 439.3333,
+        "main_insulin_drivers": [
+          "spark grain",
+          "small ember bite",
+          "vapor husk porridge"
+        ]
+      },
+      "driver_tie_retention": {
+        "acute_score": 166.6667,
+        "main_insulin_drivers": [
+          "tie fruit one",
+          "zero glow tea",
+          "mystery moon snack"
+        ]
+      }
+    },
+    "details": {
+      "actual_drivers": {
+        "driver_dedupe_cutoff": [
+          "glow berry",
+          "Glow Berry",
+          "amber fizz"
+        ],
+        "driver_ranking_isolation": [
+          "spark grain",
+          "small ember bite",
+          "vapor husk porridge"
+        ],
+        "driver_tie_retention": [
+          "tie fruit one",
+          "zero glow tea",
+          "mystery moon snack"
+        ]
+      },
+      "expected_drivers": {
+        "driver_dedupe_cutoff": [
+          "glow berry",
+          "Glow Berry",
+          "amber fizz"
+        ],
+        "driver_ranking_isolation": [
+          "spark grain",
+          "small ember bite",
+          "vapor husk porridge"
+        ],
+        "driver_tie_retention": [
+          "tie fruit one",
+          "zero glow tea",
+          "mystery moon snack"
+        ]
+      }
+    },
+    "estimate_quality": "composite",
+    "failure_reason": null,
+    "kind": "driver_ranking",
+    "pass": true,
+    "source_labels": [
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "unknown",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "user_confirmed",
+      "macro_fallback"
+    ],
+    "test_id": "driver_ranking_adversarial_01"
+  },
+  "formula_version": "current_backend_v1",
+  "generated_by": "python -m validation.export_golden_fixtures",
+  "input": {
+    "case_id": "driver_ranking_adversarial_01",
+    "description": "Synthetic main_insulin_drivers edge cases: trim/blank skip, case-sensitive dedupe, top-three cutoff, stable ties, zero-load/unknown retention, load-only ranking",
+    "kind": "driver_ranking",
+    "payload": {
+      "expected_drivers": {
+        "driver_dedupe_cutoff": [
+          "glow berry",
+          "Glow Berry",
+          "amber fizz"
+        ],
+        "driver_ranking_isolation": [
+          "spark grain",
+          "small ember bite",
+          "vapor husk porridge"
+        ],
+        "driver_tie_retention": [
+          "tie fruit one",
+          "zero glow tea",
+          "mystery moon snack"
+        ]
+      },
+      "meals": [
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 90,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": "   ",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 80,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": " glow berry ",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 70,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": "Glow Berry",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 60,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": "glow berry",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 50,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": "amber fizz",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 40,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": "sun nectar",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "driver_dedupe_cutoff",
+          "meal_name": "driver dedupe cutoff meal"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 50,
+              "gi": null,
+              "kcal_per_unit": 100.0,
+              "name": "tie fruit one",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 40,
+              "gi": null,
+              "kcal_per_unit": 0.0,
+              "name": "zero glow tea",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 120.0,
+              "name": "mystery moon snack",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 30,
+              "gi": null,
+              "kcal_per_unit": 0.0,
+              "name": "pebble dew broth",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "driver_tie_retention",
+          "meal_name": "driver tie retention meal"
+        },
+        {
+          "items": [
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 1,
+              "gi": null,
+              "kcal_per_unit": 1000.0,
+              "name": "giant feast platter",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 30,
+              "gi": null,
+              "kcal_per_unit": 300.0,
+              "name": "\u001cspark grain\u001f",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 99,
+              "gi": null,
+              "kcal_per_unit": 20.0,
+              "name": "small ember bite",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": 30.0,
+              "fat_g": null,
+              "fii": null,
+              "gi": 50,
+              "kcal_per_unit": 220.0,
+              "name": "vapor husk porridge",
+              "protein_g": 10.0,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "driver_ranking_isolation",
+          "meal_name": "driver ranking isolation meal"
+        }
+      ]
+    }
+  },
+  "kind": "driver_ranking",
+  "schema_version": 1,
+  "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
+}
