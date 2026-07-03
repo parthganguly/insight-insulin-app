@@ -12,6 +12,7 @@ import { batteryCharging, chevronForward, flame, pizza } from "ionicons/icons";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
+import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((s) => s.meals);
@@ -125,8 +126,9 @@ const Dashboard: React.FC = () => {
 									<p style={{ marginTop: "1rem", textAlign: "center" }}>
 										{chronicScore === undefined
 											? chronicError ?? "Long-term backend trend data is unavailable right now."
-											: "7-day rolling insulin-demand trend from saved backend meal data."}
+											: "7-day rolling insulin-demand trend from meals you logged."}
 									</p>
+									<p style={{ marginTop: "0.5rem", textAlign: "center", fontSize: "0.8rem" }}>{CHRONIC_TREND_DISCLAIMER}</p>
 								</IonText>
 							</IonCardContent>
 						</IonCard>
