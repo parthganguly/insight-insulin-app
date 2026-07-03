@@ -17,7 +17,6 @@ from chronic_service import build_chronic_series_from_daily_maps
 from db import create_tables, get_db
 from db_models import MealDB
 from api.meals import router as meals_router
-from utils import save_base64_images
 
 
 # Load environment variables from .env file
@@ -54,8 +53,8 @@ async def extract_meal(data: AiMealExtractRequest):
             raise HTTPException(status_code=400, detail=str(e))
         meal_id = str(uuid.uuid4())
 
-        save_base64_images(data.images, folder="images")
-
+        # Uploaded images are kept in memory only for the AI extraction call
+        # and must never be written to disk by default (issue #48).
         meal_data: dict = {
             "id": meal_id,
             "name": meal.name,
