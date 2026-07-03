@@ -1,6 +1,6 @@
 import config from "../../config.json"; // adjust path as needed
 import { Meal } from "../types/Meal";
-import { MealItem } from "../types/MealItem";
+import { MealItem, Unit } from "../types/MealItem";
 
 type NumberLike = number | string | null | undefined;
 
@@ -98,7 +98,52 @@ const toNonEmptyString = (value: unknown): string | undefined => {
 	return trimmed.length > 0 ? trimmed : undefined;
 };
 
-const mapDraftMealItemToCreatePayload = (item: MealItem): CreateMealItemPayload => {
+const toMealUnit = (value: unknown): Unit => {
+	if (typeof value === "string" && Object.values(Unit).includes(value as Unit)) {
+		return value as Unit;
+	}
+	return Unit.Servings;
+};
+
+const normalizeAiDensityValue = (value: number | undefined, unit: Unit, maxPerSingleUnit: number): number | undefined => {
+	if (value === undefined || !Number.isFinite(value)) return value;
+	if (unit !== Unit.Grams && unit !== Unit.Milliliters) return value;
+
+	const looksLikePerHundredUnits = value > maxPerSingleUnit;
+	return looksLikePerHundredUnits ? value / 100 : value;
+};
+
+export const normalizeAiExtractedItem = (item: unknown): MealItem => {
+	const source = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
+	const servingUnit = toMealUnit(source.unit ?? source.servingUnit);
+	const kcalPerUnit = normalizeAiDensityValue(toNumberWithDefault((source.kcalPerUnit ?? source.kcalPerServing) as NumberLike, 0), servingUnit, 9.5) ?? 0;
+	const carbPerUnit = normalizeAiDensityValue(toNumberWithDefault((source.carb_g ?? source.carbPerServing_g) as NumberLike, 0), servingUnit, 1) ?? 0;
+	const proteinPerUnitRaw = source.protein_g === undefined ? undefined : toOptionalNumber(source.protein_g as NumberLike);
+	const fatPerUnitRaw = source.fat_g === undefined ? undefined : toOptionalNumber(source.fat_g as NumberLike);
+	const satFatPerUnit = normalizeAiDensityValue(toNumberWithDefault((source.satFat_g ?? source.satFatPerServing_g) as NumberLike, 0), servingUnit, 1) ?? 0;
+
+	const aiDraftItem: Omit<MealItem, "fii"> = {
+		id: typeof source.id === "string" && source.id.trim() ? source.id : crypto.randomUUID(),
+		name: typeof source.name === "string" && source.name.trim() ? source.name : "New Item",
+		image: typeof source.image === "string" ? source.image : undefined,
+		servingSize: 1,
+		servingUnit,
+		amount: toNumberWithDefault((source.quantity ?? source.amount) as NumberLike, 0),
+		kcalPerServing: kcalPerUnit,
+		carbPerServing_g: carbPerUnit,
+		proteinPerServing_g: normalizeAiDensityValue(proteinPerUnitRaw, servingUnit, 1),
+		fatPerServing_g: normalizeAiDensityValue(fatPerUnitRaw, servingUnit, 1),
+		satFatPerServing_g: satFatPerUnit,
+		source: "ai",
+		gi: toNumberWithDefault(source.gi as NumberLike, 0),
+	};
+
+	// MealItem still models the legacy/manual FII field as required. AI drafts
+	// intentionally omit it until the user explicitly enters a value.
+	return aiDraftItem as MealItem;
+};
+
+export const mapDraftMealItemToCreatePayload = (item: MealItem): CreateMealItemPayload => {
 	const flexibleItem = item as MealItem & {
 		quantity?: NumberLike;
 		unit?: string;
@@ -111,6 +156,8 @@ const mapDraftMealItemToCreatePayload = (item: MealItem): CreateMealItemPayload 
 		satFat_g?: NumberLike;
 	};
 
+	const explicitFii = toOptionalNumber(flexibleItem.fii);
+
 	return {
 		name: toNonEmptyString(flexibleItem.name) ?? "Unnamed item",
 		quantity: toNumberWithDefault(flexibleItem.quantity ?? flexibleItem.amount, 0),
@@ -121,7 +168,7 @@ const mapDraftMealItemToCreatePayload = (item: MealItem): CreateMealItemPayload 
 		fat_g: toOptionalNumber(flexibleItem.fat_g ?? flexibleItem.fatPerServing_g),
 		satFat_g: toOptionalNumber(flexibleItem.satFat_g ?? flexibleItem.satFatPerServing_g),
 		gi: toOptionalNumber(flexibleItem.gi),
-		fii: toOptionalNumber(flexibleItem.fii),
+		...(explicitFii === undefined ? {} : { fii: explicitFii }),
 	};
 };
 

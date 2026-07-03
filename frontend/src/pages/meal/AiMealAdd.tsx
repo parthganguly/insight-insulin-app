@@ -3,10 +3,9 @@ import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { useState } from "react";
 import { useIonRouter } from "@ionic/react";
 import { arrowForward, camera, trash } from "ionicons/icons";
-import { fetchAiMealFromAPI } from "../../api/api";
+import { fetchAiMealFromAPI, normalizeAiExtractedItem } from "../../api/api";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { MealItem, Unit } from "../../types/MealItem";
 import { MealEstimate } from "../../types/Meal";
 
 const AiMealAdd = () => {
@@ -24,6 +23,11 @@ const AiMealAdd = () => {
 	const { meal, setMeal } = useCurrentMealStore();
 	const [isLoading, setLoading] = useState(false);
 
+	const toNumber = (value: unknown, fallback = 0): number => {
+		const parsed = typeof value === "number" ? value : Number(value);
+		return Number.isFinite(parsed) ? parsed : fallback;
+	};
+
 	const resetExtractionState = () => {
 		setImages([]);
 		setTextualData("");
@@ -39,26 +43,6 @@ const AiMealAdd = () => {
 		resetExtractionState();
 	});
 
-	const toNumber = (value: unknown, fallback = 0): number => {
-		const parsed = typeof value === "number" ? value : Number(value);
-		return Number.isFinite(parsed) ? parsed : fallback;
-	};
-
-	const toMealUnit = (value: unknown): Unit => {
-		if (typeof value === "string" && Object.values(Unit).includes(value as Unit)) {
-			return value as Unit;
-		}
-		return Unit.Servings;
-	};
-
-	const normalizeAiDensityValue = (value: number | undefined, unit: Unit, maxPerSingleUnit: number): number | undefined => {
-		if (value === undefined || !Number.isFinite(value)) return value;
-		if (unit !== Unit.Grams && unit !== Unit.Milliliters) return value;
-
-		const looksLikePerHundredUnits = value > maxPerSingleUnit;
-		return looksLikePerHundredUnits ? value / 100 : value;
-	};
-
 	const normalizeEstimate = (raw: unknown): MealEstimate | undefined => {
 		if (!raw || typeof raw !== "object") return undefined;
 		const src = raw as Record<string, unknown>;
@@ -71,33 +55,6 @@ const AiMealAdd = () => {
 			confidence: Math.min(1, Math.max(0, toNumber(src.confidence, 0.5))),
 			serving_type: typeof src.serving_type === "string" ? src.serving_type : "plate",
 			serving_count: toNumber(src.serving_count, 1) || 1,
-		};
-	};
-
-	const normalizeAiExtractedItem = (item: unknown): MealItem => {
-		const source = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
-		const servingUnit = toMealUnit(source.unit ?? source.servingUnit);
-		const kcalPerUnit = normalizeAiDensityValue(toNumber(source.kcalPerUnit ?? source.kcalPerServing, 0), servingUnit, 9.5) ?? 0;
-		const carbPerUnit = normalizeAiDensityValue(toNumber(source.carb_g ?? source.carbPerServing_g, 0), servingUnit, 1) ?? 0;
-		const proteinPerUnitRaw = source.protein_g === undefined ? undefined : toNumber(source.protein_g);
-		const fatPerUnitRaw = source.fat_g === undefined ? undefined : toNumber(source.fat_g);
-		const satFatPerUnit = normalizeAiDensityValue(toNumber(source.satFat_g ?? source.satFatPerServing_g, 0), servingUnit, 1) ?? 0;
-
-		return {
-			id: typeof source.id === "string" && source.id.trim() ? source.id : crypto.randomUUID(),
-			name: typeof source.name === "string" && source.name.trim() ? source.name : "New Item",
-			image: typeof source.image === "string" ? source.image : undefined,
-			servingSize: 1,
-			servingUnit,
-			amount: toNumber(source.quantity ?? source.amount, 0),
-			kcalPerServing: kcalPerUnit,
-			carbPerServing_g: carbPerUnit,
-			proteinPerServing_g: normalizeAiDensityValue(proteinPerUnitRaw, servingUnit, 1),
-			fatPerServing_g: normalizeAiDensityValue(fatPerUnitRaw, servingUnit, 1),
-			satFatPerServing_g: satFatPerUnit,
-			source: typeof source.source === "string" ? source.source : "ai",
-			fii: toNumber(source.fii, 0),
-			gi: toNumber(source.gi, 0),
 		};
 	};
 
