@@ -12,6 +12,7 @@ import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { Meal } from "../../types/Meal";
 import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
+import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isProvidedFiiSource, isRoughEstimateSource, isUnknownSource } from "../../utils/safetyCopy";
 
 type ImpactPresentation = {
 	title: string;
@@ -105,35 +106,37 @@ const PreviewMeal = () => {
 		if (quality === "low" || quality === "unknown" || typeof savedMeal.acute_score !== "number" || !Number.isFinite(savedMeal.acute_score)) {
 			return {
 				title: "Hard to estimate from this meal",
-				description: "This saved meal has limited modeling confidence, so the insulin-impact estimate could be off.",
+				description: "This saved meal has limited data quality, so the insulin-demand estimate could be off.",
 				color: "#95a5a6",
 			};
 		}
 
 		if (savedMeal.acute_score < 35) {
 			return {
-				title: "Likely steadier energy",
-				description: "Based on the saved nutrition, this meal may be less likely to leave you feeling heavy or crashed later.",
+				title: "Lower relative insulin demand",
+				description: "Meals like this tend to create a smaller estimated insulin demand. This is a general tendency, not a personal prediction.",
 				color: "#2ecc71",
 			};
 		}
 
 		if (savedMeal.acute_score < 60) {
 			return {
-				title: "May feel a bit heavy or sleepy later",
-				description: "Based on the saved nutrition, this meal may lead to a softer dip in energy afterward.",
+				title: "Moderate relative insulin demand",
+				description: "Meals like this tend to create a moderate estimated insulin demand. This is a general tendency, not a personal prediction.",
 				color: "#f1c40f",
 			};
 		}
 
 		return {
-			title: "More likely to feel sluggish, hungry again soon, or crash after",
-			description: "Based on the saved nutrition, this meal may create a larger insulin demand and a rougher energy swing later.",
+			title: "Higher relative insulin demand",
+			description: "Meals like this tend to create a larger estimated insulin demand. This is a general tendency, not a personal prediction.",
 			color: "#e74c3c",
 		};
 	};
 
 	const impactPresentation = !isAiDraftFlow ? getImpactPresentation(meal) : null;
+	const estimateQualityCopy = !isAiDraftFlow && meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality) : null;
+	const hasUnknownItems = !isAiDraftFlow && meal.items.some((item) => isUnknownSource(item.source));
 	const visibleImpactDrivers = !isAiDraftFlow ? (meal.main_insulin_drivers ?? []).filter((driver) => driver.trim().length > 0).slice(0, 3) : [];
 	const itemWhyLines = !isAiDraftFlow
 		? meal.items
@@ -405,7 +408,22 @@ const PreviewMeal = () => {
 												<NutrimentComponent nutrimentName='Total Calories' nutrimentValue={`${calculateTotalItemCalories(modalItem)} kcal`} nutrimentIcon={flame} nutrimentIconColor='#ff5151ff' />
 												<NutrimentComponent nutrimentName='Total Carbs' nutrimentValue={`${calculateTotalItemCarbohydrates(modalItem)} g`} nutrimentIcon={pizza} nutrimentIconColor='#ffcc00ff' />
 												<NutrimentComponent nutrimentName='Total Saturated Fat' nutrimentValue={`${calculateTotalItemSaturatedFat(modalItem)} g`} nutrimentIcon={batteryCharging} nutrimentIconColor='#0091ffff' />
-												{modalItem.source ? <IonText>Source: {modalItem.source}</IonText> : null}
+												{modalItem.source ? <IonText>Source: {humanizeFiiSource(modalItem.source)}</IonText> : null}
+												{isProvidedFiiSource(modalItem.source) || modalItem.fii !== undefined ? (
+													<IonText color='medium' style={{ fontSize: "0.85rem" }}>
+														{PROVIDED_FII_DISCLAIMER}
+													</IonText>
+												) : null}
+												{isRoughEstimateSource(modalItem.source) ? (
+													<IonText color='medium' style={{ fontSize: "0.85rem" }}>
+														{ROUGH_ESTIMATE_NOTICE}
+													</IonText>
+												) : null}
+												{isUnknownSource(modalItem.source) ? (
+													<IonText color='medium' style={{ fontSize: "0.85rem" }}>
+														{UNKNOWN_ITEMS_NOTICE}
+													</IonText>
+												) : null}
 
 												<IonButton onClick={() => setModalItem(null)}>
 													<IonIcon slot='icon-only' icon={save} />
@@ -480,10 +498,27 @@ const PreviewMeal = () => {
 					{impactPresentation && (
 						<IonCard style={{ borderRadius: "16px", boxShadow: "0 2px 10px rgba(0, 0, 0, 0.18)", borderLeft: `6px solid ${impactPresentation.color}` }}>
 							<IonCardHeader>
-								<IonCardTitle style={{ fontSize: "1rem", color: impactPresentation.color }}>How This Meal May Feel</IonCardTitle>
+								<IonCardTitle style={{ fontSize: "1rem", color: impactPresentation.color }}>Estimated Insulin Demand</IonCardTitle>
 								<IonText color='medium' style={{ fontSize: "0.82rem", marginTop: "2px", display: "block" }}>
-									Estimated after save from the meal nutrition and insulin-impact model.
+									{MEAL_SCORE_DISCLAIMER}
 								</IonText>
+								{estimateQualityCopy && (
+									<div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
+										<span
+											style={{
+												padding: "4px 10px",
+												borderRadius: "999px",
+												background: "#f4f6f8",
+												fontSize: "0.78rem",
+												fontWeight: 600,
+											}}>
+											Data quality: {estimateQualityCopy.label}
+										</span>
+										<IonText color='medium' style={{ fontSize: "0.78rem" }}>
+											<span>{estimateQualityCopy.description}</span>
+										</IonText>
+									</div>
+								)}
 							</IonCardHeader>
 							<IonCardContent>
 								<IonText>
@@ -492,6 +527,11 @@ const PreviewMeal = () => {
 								<IonText color='medium'>
 									<p style={{ marginTop: 0 }}>{impactPresentation.description}</p>
 								</IonText>
+								{hasUnknownItems && (
+									<IonText color='warning'>
+										<p style={{ marginTop: "8px", marginBottom: 0, fontSize: "0.85rem" }}>{UNKNOWN_ITEMS_NOTICE}</p>
+									</IonText>
+								)}
 								{visibleImpactDrivers.length > 0 && (
 									<div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "12px" }}>
 										{visibleImpactDrivers.map((driver) => (
@@ -632,6 +672,10 @@ const PreviewMeal = () => {
 							</IonButton>
 						</div>
 
+						<IonText color='medium'>
+							<p style={{ fontSize: "0.75rem", margin: "1rem 0 5rem", textAlign: "center" }}>{APP_DISCLAIMER}</p>
+						</IonText>
+
 						<IonActionSheet
 							trigger='open-meal-item-action-sheet'
 							header='Actions'
@@ -691,7 +735,7 @@ const PreviewMeal = () => {
 							</IonFabList>
 						</IonFab>
 
-						<IonLoading isOpen={isSubmitting} message='Calculating insulin response...' />
+						<IonLoading isOpen={isSubmitting} message='Estimating insulin demand…' />
 						<IonToast isOpen={showToast} message={toastMessage} duration={2200} color={toastColor} onDidDismiss={() => setShowToast(false)} />
 				</>
 			</IonContent>
