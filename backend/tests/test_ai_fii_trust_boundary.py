@@ -1,10 +1,27 @@
+import asyncio
 import importlib
 import sys
 import unittest
 from unittest.mock import patch
 
+from api.meals import create_meal
 from estimate_quality import resolve_estimate_quality
+from models import MealCreate
 from scoring_service import compute_insulin_load_item
+
+
+class FakeDb:
+    def __init__(self) -> None:
+        self.meal = None
+
+    def add(self, meal: object) -> None:
+        self.meal = meal
+
+    def commit(self) -> None:
+        pass
+
+    def refresh(self, meal: object) -> None:
+        self.meal = meal
 
 
 class AiFiiTrustBoundaryTests(unittest.TestCase):
@@ -56,40 +73,67 @@ class AiFiiTrustBoundaryTests(unittest.TestCase):
         self.assertNotEqual(confidence, 1.0)
         self.assertEqual(resolve_estimate_quality([source]), "high")
 
-    def test_missing_ai_fii_does_not_enter_zero_value_provided_path(self) -> None:
-        insulin_load, confidence, source = compute_insulin_load_item(
-            food_name="mystery mineral water",
-            quantity=1.0,
-            kcal_per_unit=0.0,
-            fii=None,
-            gi=None,
-            carb_g=None,
-            protein_g=None,
-            fat_g=None,
-            sat_fat_g=None,
-        )
+    def post_item(self, *, name: str, fii_marker: object = ...):
+        item = {
+            "name": name,
+            "quantity": 1.0,
+            "unit": "serving",
+            "kcalPerUnit": 220.0,
+            "gi": 55,
+            "carb_g": 30.0,
+            "protein_g": 10.0,
+            "fat_g": 5.0,
+            "satFat_g": 1.5,
+        }
+        if fii_marker is not ...:
+            item["fii"] = fii_marker
 
-        self.assertEqual(insulin_load, 0.0)
-        self.assertEqual(confidence, 0.2)
-        self.assertEqual(source, "unknown")
-        self.assertEqual(resolve_estimate_quality([source]), "unknown")
+        request = MealCreate.model_validate({"meal_name": "synthetic trust-boundary meal", "items": [item]})
+        return asyncio.run(create_meal(request, FakeDb()))
+
+    def test_stale_client_zero_is_neutralized_at_post_boundary(self) -> None:
+        response = self.post_item(name="fallback carb bowl", fii_marker=0)
+        item = response.items[0]
+
+        self.assertGreater(item.insulin_load, 0.0)
+        self.assertEqual(item.confidence, 0.8)
+        self.assertEqual(item.fii_source, "macro_fallback")
+        self.assertNotEqual(item.fii_source, "user_confirmed")
+        self.assertNotEqual(item.confidence, 1.0)
+        self.assertEqual(response.estimate_quality, "low")
+        self.assertIsNone(item.fii)
+        self.assertIsNone(item.fii_value)
+
+    def test_blank_and_negative_fii_are_neutralized_at_post_boundary(self) -> None:
+        for invalid_fii in ("", "   ", "0", -1):
+            with self.subTest(fii=invalid_fii):
+                response = self.post_item(name="fallback carb bowl", fii_marker=invalid_fii)
+                item = response.items[0]
+
+                self.assertEqual(item.fii_source, "macro_fallback")
+                self.assertEqual(item.confidence, 0.8)
+                self.assertEqual(response.estimate_quality, "low")
+                self.assertIsNone(item.fii)
+
+    def test_missing_and_null_fii_use_deterministic_lookup(self) -> None:
+        for fii_marker in (..., None):
+            with self.subTest(fii=fii_marker):
+                response = self.post_item(name="plain yogurt", fii_marker=fii_marker)
+                item = response.items[0]
+
+                self.assertGreater(item.insulin_load, 0.0)
+                self.assertEqual(item.fii_source, "exact_fii")
+                self.assertEqual(item.confidence, 0.7)
+                self.assertIsNone(item.fii)
 
     def test_explicit_user_fii_still_uses_user_confirmed_path(self) -> None:
-        insulin_load, confidence, source = compute_insulin_load_item(
-            food_name="manual item",
-            quantity=1.0,
-            kcal_per_unit=100.0,
-            fii=50,
-            gi=None,
-            carb_g=None,
-            protein_g=None,
-            fat_g=None,
-            sat_fat_g=None,
-        )
+        response = self.post_item(name="manual item", fii_marker=50)
+        item = response.items[0]
 
-        self.assertEqual(insulin_load, 50.0)
-        self.assertEqual(confidence, 1.0)
-        self.assertEqual(source, "user_confirmed")
+        self.assertEqual(item.insulin_load, 110.0)
+        self.assertEqual(item.confidence, 1.0)
+        self.assertEqual(item.fii_source, "user_confirmed")
+        self.assertEqual(item.fii, 50)
 
 
 if __name__ == "__main__":

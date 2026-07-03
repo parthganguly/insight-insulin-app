@@ -1,6 +1,7 @@
 import config from "../../config.json"; // adjust path as needed
 import { Meal } from "../types/Meal";
 import { MealItem, Unit } from "../types/MealItem";
+import { normalizeExplicitFii } from "../utils/fiiTrustBoundary";
 
 type NumberLike = number | string | null | undefined;
 
@@ -122,7 +123,7 @@ export const normalizeAiExtractedItem = (item: unknown): MealItem => {
 	const fatPerUnitRaw = source.fat_g === undefined ? undefined : toOptionalNumber(source.fat_g as NumberLike);
 	const satFatPerUnit = normalizeAiDensityValue(toNumberWithDefault((source.satFat_g ?? source.satFatPerServing_g) as NumberLike, 0), servingUnit, 1) ?? 0;
 
-	const aiDraftItem: Omit<MealItem, "fii"> = {
+	const aiDraftItem: MealItem = {
 		id: typeof source.id === "string" && source.id.trim() ? source.id : crypto.randomUUID(),
 		name: typeof source.name === "string" && source.name.trim() ? source.name : "New Item",
 		image: typeof source.image === "string" ? source.image : undefined,
@@ -138,9 +139,7 @@ export const normalizeAiExtractedItem = (item: unknown): MealItem => {
 		gi: toNumberWithDefault(source.gi as NumberLike, 0),
 	};
 
-	// MealItem still models the legacy/manual FII field as required. AI drafts
-	// intentionally omit it until the user explicitly enters a value.
-	return aiDraftItem as MealItem;
+	return aiDraftItem;
 };
 
 export const mapDraftMealItemToCreatePayload = (item: MealItem): CreateMealItemPayload => {
@@ -156,7 +155,7 @@ export const mapDraftMealItemToCreatePayload = (item: MealItem): CreateMealItemP
 		satFat_g?: NumberLike;
 	};
 
-	const explicitFii = toOptionalNumber(flexibleItem.fii);
+	const explicitFii = normalizeExplicitFii(flexibleItem.fii);
 
 	return {
 		name: toNonEmptyString(flexibleItem.name) ?? "Unnamed item",
@@ -184,8 +183,8 @@ const normalizeMealModelingItem = (item: unknown): MealModelingItemResponse => {
 		fat_g: toOptionalNumber(source.fat_g as NumberLike),
 		satFat_g: toOptionalNumber((source.satFat_g ?? source.sat_fat_g) as NumberLike),
 		gi: toOptionalNumber(source.gi as NumberLike),
-		fii_value: toOptionalNumber(source.fii_value as NumberLike),
-		fii: toOptionalNumber(source.fii as NumberLike),
+		fii_value: normalizeExplicitFii(source.fii_value),
+		fii: normalizeExplicitFii(source.fii),
 		kcal_item: toNumberWithDefault(source.kcal_item as NumberLike, 0),
 		insulin_load: toNumberWithDefault(source.insulin_load as NumberLike, 0),
 		confidence: toNumberWithDefault(source.confidence as NumberLike, 0),

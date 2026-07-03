@@ -11,6 +11,7 @@ import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemC
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { Meal } from "../../types/Meal";
+import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
 
 type ImpactPresentation = {
 	title: string;
@@ -68,22 +69,24 @@ const PreviewMeal = () => {
 		name: backendMeal.meal_name,
 		timestamp: toTimestamp(backendMeal.created_at, Date.now()),
 		isAiDraft: false,
-		items: backendMeal.items.map((item) => ({
-			id: crypto.randomUUID(),
-			name: item.name,
-			servingSize: 1,
-			servingUnit: toMealUnit(item.unit),
-			amount: item.quantity,
-			kcalPerServing: item.kcalPerUnit ?? 0,
-			carbPerServing_g: item.carb_g ?? 0,
-			proteinPerServing_g: item.protein_g,
-			fatPerServing_g: item.fat_g,
-			satFatPerServing_g: item.satFat_g ?? 0,
-			fii: item.fii_value ?? item.fii ?? 0,
-			gi: item.gi ?? 0,
-			source: item.fii_source,
-			why: item.why,
-		})),
+		items: backendMeal.items.map((item) => {
+			const canonicalItem: MealItem = {
+				id: crypto.randomUUID(),
+				name: item.name,
+				servingSize: 1,
+				servingUnit: toMealUnit(item.unit),
+				amount: item.quantity,
+				kcalPerServing: item.kcalPerUnit ?? 0,
+				carbPerServing_g: item.carb_g ?? 0,
+				proteinPerServing_g: item.protein_g,
+				fatPerServing_g: item.fat_g,
+				satFatPerServing_g: item.satFat_g ?? 0,
+				gi: item.gi ?? 0,
+				source: item.fii_source,
+				why: item.why,
+			};
+			return updateMealItemFii(canonicalItem, item.fii_value ?? item.fii);
+		}),
 		acute_score: backendMeal.acute_score,
 		insulin_load_total: backendMeal.insulin_load_total,
 		backend_created_at: backendMeal.created_at,
@@ -166,10 +169,14 @@ const PreviewMeal = () => {
 
 	const updateItem = (id: string, field: keyof MealItem, value: string) => {
 		if (!meal) return;
-		const updatedItems = meal.items.map((item) => (item.id === id ? { ...item, [field]: field === "name" || field === "servingUnit" ? value : parseNumericInput(value) } : item));
+		const updateTarget = (item: MealItem): MealItem => {
+			if (field === "fii") return updateMealItemFii(item, value);
+			return { ...item, [field]: field === "name" || field === "servingUnit" ? value : parseNumericInput(value) };
+		};
+		const updatedItems = meal.items.map((item) => (item.id === id ? updateTarget(item) : item));
 		setMeal({ ...meal, items: updatedItems });
 		// Update modalItem if it's open and matches the updated item
-		setModalItem((prev) => (prev && prev.id === id ? { ...prev, [field]: field === "name" || field === "servingUnit" ? value : parseNumericInput(value) } : prev));
+		setModalItem((prev) => (prev && prev.id === id ? updateTarget(prev) : prev));
 	};
 
 	const updateItemAmount = (id: string, amount: number) => {
@@ -392,7 +399,7 @@ const PreviewMeal = () => {
 											<IonInput className='ion-margin-top' labelPlacement='start' style={{ textAlign: "right" }} type='number' fill='outline' label={`kcals per serving`} value={modalItem.kcalPerServing} placeholder='Enter kcal for one serving' onIonInput={(e) => updateItem(modalItem.id, "kcalPerServing", e.detail.value!)} />
 											<IonInput className='ion-margin-vertical' labelPlacement='start' style={{ textAlign: "right" }} type='number' fill='outline' label='Carb per serving (g)' value={modalItem.carbPerServing_g} placeholder={`Enter carbs per serving (g)`} onIonInput={(e) => updateItem(modalItem.id, "carbPerServing_g", e.detail.value!)} />
 											<IonInput className='ion-margin-vertical' labelPlacement='start' style={{ textAlign: "right" }} type='number' fill='outline' label='Saturated Fat per serving (g)' value={modalItem.satFatPerServing_g} placeholder={`Enter saturated fat per serving (g)`} onIonInput={(e) => updateItem(modalItem.id, "satFatPerServing_g", e.detail.value!)} />
-											<IonInput fill='outline' labelPlacement='start' type='number' style={{ textAlign: "right" }} label='FII' value={modalItem.fii} placeholder='Enter FII' onIonInput={(e) => updateItem(modalItem.id, "fii", e.detail.value!)} />
+											<IonInput fill='outline' labelPlacement='start' type='number' style={{ textAlign: "right" }} label='FII' value={modalItem.fii ?? ""} placeholder='Enter FII' onIonInput={(e) => updateItem(modalItem.id, "fii", e.detail.value ?? "")} />
 											<IonInput className='ion-margin-vertical' labelPlacement='start' style={{ textAlign: "right" }} type='number' fill='outline' label='Glycemic Index' value={modalItem.gi} placeholder={`Enter glycemic index`} onIonInput={(e) => updateItem(modalItem.id, "gi", e.detail.value!)} />
 											<div className='' style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "12px" }}>
 												<NutrimentComponent nutrimentName='Total Calories' nutrimentValue={`${calculateTotalItemCalories(modalItem)} kcal`} nutrimentIcon={flame} nutrimentIconColor='#ff5151ff' />

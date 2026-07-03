@@ -74,7 +74,6 @@ export const useCurrentMealStore = create<CurrentMealStore>((set, get) => ({
 			carbPerServing_g: 0,
 			satFatPerServing_g: 0,
 			gi: 0,
-			fii: 0,
 		};
 
 		set((state) => ({

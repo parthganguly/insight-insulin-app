@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class AiMealExtractRequest(BaseModel):
@@ -63,6 +63,21 @@ class MealItemCreate(BaseModel):
     gi: Optional[int] = None
     fii_value: Optional[int] = None
     fii: Optional[int] = None
+
+    @field_validator("fii_value", "fii", mode="before")
+    @classmethod
+    def normalize_non_positive_fii(cls, value: Any) -> Any:
+        if value is None:
+            return None
+        if isinstance(value, str) and not value.strip():
+            return None
+
+        try:
+            numeric_value = float(value)
+        except (TypeError, ValueError):
+            return value
+
+        return None if numeric_value <= 0 else value
 
 
 class MealCreate(BaseModel):

@@ -24,6 +24,6 @@ export type MealItem = {
 	source?: string;
 	why?: string;
 
-	fii: number;
+	fii?: number;
 	gi: number;
 };
