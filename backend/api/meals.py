@@ -21,6 +21,13 @@ router = APIRouter()
 ALLOWED_ESTIMATE_QUALITY = {"high", "medium", "low", "unknown"}
 
 
+def resolve_positive_provided_fii(fii_value: int | None, fii: int | None) -> int | None:
+    for candidate in (fii_value, fii):
+        if candidate is not None and candidate > 0:
+            return candidate
+    return None
+
+
 def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
     drivers_raw = meal_db.main_insulin_drivers or "[]"
     try:
@@ -100,7 +107,7 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
     item_sources: list[str] = []
 
     for item in meal.items:
-        fii_value = item.fii_value if item.fii_value is not None else item.fii
+        fii_value = resolve_positive_provided_fii(item.fii_value, item.fii)
         insulin_load_item, confidence, fii_source = compute_insulin_load_item(
             food_name=item.name,
             quantity=item.quantity,

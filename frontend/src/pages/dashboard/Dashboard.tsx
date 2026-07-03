@@ -11,6 +11,7 @@ import { Meal } from "../../types/Meal";
 import { batteryCharging, chevronForward, flame, pizza } from "ionicons/icons";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
+import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((s) => s.meals);
@@ -151,25 +152,6 @@ export default Dashboard;
 function MealCard({ meal }: { meal: Meal }) {
 	const { getMealById } = usePersistentMealStore();
 	const { setMeal } = useCurrentMealStore();
-
-	const buildDraftFromSavedMeal = (savedMeal: Meal): Meal => ({
-		...savedMeal,
-		id: crypto.randomUUID(),
-		timestamp: Date.now(),
-		backend_created_at: undefined,
-		acute_score: undefined,
-		insulin_load_total: undefined,
-		kcal_total: undefined,
-		carbs_total: undefined,
-		protein_total: undefined,
-		fat_total: undefined,
-		estimate_quality: undefined,
-		main_insulin_drivers: undefined,
-		items: savedMeal.items.map((item) => ({
-			...item,
-			id: crypto.randomUUID(),
-		})),
-	});
 
 	const handleMealClick = (mealId: string) => {
 		// Navigate to existing meal details
