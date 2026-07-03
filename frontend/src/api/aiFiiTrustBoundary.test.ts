@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { mapDraftMealItemToCreatePayload, normalizeAiExtractedItem } from "./api";
+import { mapDraftMealItemToCreatePayload, normalizeAiExtractedItem, postMealToAPI } from "./api";
 import { useCurrentMealStore } from "../stores/currentMealStore";
 import { Meal } from "../types/Meal";
 import { MealItem } from "../types/MealItem";
@@ -84,5 +84,96 @@ describe("AI FII trust boundary", () => {
 		expect(draft.items[0]).not.toHaveProperty("source");
 		expect(draft.items[0]).not.toHaveProperty("why");
 		expect(mapDraftMealItemToCreatePayload(draft.items[0])).not.toHaveProperty("fii");
+	});
+});
+
+describe("backend echo round-trip FII trust boundary", () => {
+	afterEach(() => {
+		vi.unstubAllGlobals();
+	});
+
+	const stubMealsEcho = (echoedItemFields: Record<string, unknown>) => {
+		const responseBody = {
+			id: "meal-echo-1",
+			created_at: "2026-01-01T12:00:00Z",
+			meal_name: "synthetic echo meal",
+			items: [
+				{
+					name: "echo item",
+					quantity: 1,
+					unit: "serving",
+					kcalPerUnit: 220,
+					carb_g: 30,
+					protein_g: 10,
+					fat_g: 5,
+					satFat_g: 1.5,
+					gi: 55,
+					kcal_item: 220,
+					insulin_load: 110,
+					confidence: 1,
+					fii_source: "user_confirmed",
+					...echoedItemFields,
+				},
+			],
+			insulin_load_total: 110,
+			acute_score: 40,
+			kcal_total: 220,
+			carbs_total: 30,
+			protein_total: 10,
+			fat_total: 5,
+			estimate_quality: "high",
+			main_insulin_drivers: ["echo item"],
+		};
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => ({ ok: true, json: async () => responseBody })),
+		);
+	};
+
+	const postEchoedItem = async (echoedItemFields: Record<string, unknown>) => {
+		stubMealsEcho(echoedItemFields);
+		const meal = await postMealToAPI({ meal_name: "synthetic echo meal", items: [] });
+		return meal.items[0];
+	};
+
+	it.each([0, null, "", "junk"])("does not turn echoed fii %j into a provided FII", async (fii) => {
+		const item = await postEchoedItem({ fii });
+
+		expect(item.fii).toBeUndefined();
+		expect(item.fii_value).toBeUndefined();
+		expect(item.fii_value ?? item.fii).toBeUndefined();
+	});
+
+	it.each([0, null, "", "junk"])("does not turn echoed fii_value %j into a provided FII", async (fiiValue) => {
+		const item = await postEchoedItem({ fii_value: fiiValue });
+
+		expect(item.fii).toBeUndefined();
+		expect(item.fii_value).toBeUndefined();
+		expect(item.fii_value ?? item.fii).toBeUndefined();
+	});
+
+	it("keeps an echoed positive fii after normalization", async () => {
+		const item = await postEchoedItem({ fii: 50 });
+
+		expect(item.fii).toBe(50);
+	});
+
+	it("keeps an echoed positive fii_value after normalization", async () => {
+		const item = await postEchoedItem({ fii_value: 50 });
+
+		expect(item.fii_value).toBe(50);
+	});
+
+	it("resolves fii_value before fii, matching backend precedence", async () => {
+		const item = await postEchoedItem({ fii_value: 30, fii: 50 });
+
+		expect(item.fii_value ?? item.fii).toBe(30);
+	});
+
+	it("falls back to positive fii when echoed fii_value is zero, matching backend precedence", async () => {
+		const item = await postEchoedItem({ fii_value: 0, fii: 50 });
+
+		expect(item.fii_value).toBeUndefined();
+		expect(item.fii_value ?? item.fii).toBe(50);
 	});
 });
