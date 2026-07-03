@@ -173,8 +173,12 @@ def build_validation_cases() -> list[ValidationCase]:
         meal_name="driver tie retention meal",
         items=[
             _meal_item(name="tie fruit one", quantity=1.0, kcal_per_unit=100.0, fii=50),
+            # Three equal-load zero items: the top-three cutoff lands inside the
+            # tie group, so only stable input order keeps the first two and
+            # excludes "pebble dew broth".
             _meal_item(name="zero glow tea", quantity=1.0, kcal_per_unit=0.0, fii=40),
             _meal_item(name="mystery moon snack", quantity=1.0, kcal_per_unit=120.0),
+            _meal_item(name="pebble dew broth", quantity=1.0, kcal_per_unit=0.0, fii=30),
         ],
     )
     driver_ranking_isolation = ValidationMeal(

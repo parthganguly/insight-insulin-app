@@ -81,6 +81,7 @@
       "user_confirmed",
       "user_confirmed",
       "user_confirmed",
+      "user_confirmed",
       "macro_fallback"
     ],
     "test_id": "driver_ranking_adversarial_01"
@@ -213,6 +214,17 @@
               "gi": null,
               "kcal_per_unit": 120.0,
               "name": "mystery moon snack",
+              "protein_g": null,
+              "quantity": 1.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": null,
+              "fat_g": null,
+              "fii": 30,
+              "gi": null,
+              "kcal_per_unit": 0.0,
+              "name": "pebble dew broth",
               "protein_g": null,
               "quantity": 1.0,
               "sat_fat_g": null
