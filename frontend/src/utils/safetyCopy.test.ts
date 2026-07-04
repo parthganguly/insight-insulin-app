@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+	AI_EXTRACTION_PRIVACY_DISCLOSURE,
 	APP_DISCLAIMER,
 	CHRONIC_TREND_DISCLAIMER,
 	MEAL_SCORE_DISCLAIMER,
@@ -110,6 +111,7 @@ describe("banned wording guard", () => {
 		ROUGH_ESTIMATE_NOTICE,
 		CHRONIC_TREND_DISCLAIMER,
 		PROVIDED_FII_DISCLAIMER,
+		AI_EXTRACTION_PRIVACY_DISCLOSURE,
 		humanizeFiiSource("user_confirmed"),
 		humanizeFiiSource("exact_fii"),
 		humanizeFiiSource("mapped_fii"),
@@ -132,6 +134,20 @@ describe("banned wording guard", () => {
 		"diagnosis",
 	])("never contains %s", (phrase) => {
 		expect(allCopy).not.toContain(phrase);
+	});
+
+	it("discloses the external AI data flow honestly", () => {
+		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("external AI service");
+		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("does not retain uploaded images on the backend by default");
+		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("may process the data according to its own policies");
+
+		const lowered = AI_EXTRACTION_PRIVACY_DISCLOSURE.toLowerCase();
+		expect(lowered).not.toContain("local");
+		expect(lowered).not.toContain("private");
+		expect(lowered).not.toContain("hipaa");
+		expect(lowered).not.toContain("gdpr");
+		expect(lowered).not.toContain("compliant");
+		expect(lowered).not.toContain("secure");
 	});
 
 	it("only uses medical advice, treatment, and insulin-resistance wording in negative disclaimers", () => {
