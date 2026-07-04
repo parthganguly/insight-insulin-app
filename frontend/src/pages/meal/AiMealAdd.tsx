@@ -7,6 +7,7 @@ import { fetchAiMealFromAPI, normalizeAiExtractedItem } from "../../api/api";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { MealEstimate } from "../../types/Meal";
+import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
 
 const AiMealAdd = () => {
 	const [error, setError] = useState("");
@@ -175,6 +176,10 @@ const AiMealAdd = () => {
 					)}
 
 					<IonTextarea onIonChange={(e) => setTextualData(e.detail.value ?? "")} value={textualData} className='ion-text-left' fill='outline' label='Textual Description (Optional)' labelPlacement='floating' placeholder='Textual Description'></IonTextarea>
+
+					<IonText color='medium'>
+						<p style={{ fontSize: "0.78rem", textAlign: "left", margin: "0.5rem 0 0" }}>{AI_EXTRACTION_PRIVACY_DISCLOSURE}</p>
+					</IonText>
 
 					<IonButton className='ion-margin-top' size='large' onClick={handleStartScan}>
 						<IonIcon size='large' icon={camera} slot='icon-only' />

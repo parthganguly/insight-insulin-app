@@ -17,6 +17,10 @@ Model-alignment prototype:
 - uncertainty/source-quality labels
 - AI-assisted meal extraction and review flow
 
+## Private Beta Privacy Note
+
+Private beta privacy note: meal data is stored for app functionality; AI meal extraction sends submitted meal images/descriptions to an external AI service. Uploaded images are not retained by the INSIGHT backend by default after extraction. This beta is not intended for sensitive medical records or regulated clinical use.
+
 ## Backend Setup
 
 From the repo root:

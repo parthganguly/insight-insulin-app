@@ -19,6 +19,10 @@ export const CHRONIC_TREND_DISCLAIMER =
 export const PROVIDED_FII_DISCLAIMER =
 	"This item uses an insulin-index value you entered. The app has not verified that value.";
 
+// Approved in issue #50.
+export const AI_EXTRACTION_PRIVACY_DISCLOSURE =
+	"AI meal extraction sends your meal image or description to an external AI service to estimate food items and nutrition. INSIGHT does not retain uploaded images on the backend by default, but the external service may process the data according to its own policies. Do not upload anything you are not comfortable sharing for AI processing.";
+
 const SOURCE_LABELS: Record<string, string> = {
 	user_confirmed: "User-entered FII",
 	exact_fii: "Direct FII match",
