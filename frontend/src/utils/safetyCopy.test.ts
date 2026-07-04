@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import {
@@ -136,20 +139,6 @@ describe("banned wording guard", () => {
 		expect(allCopy).not.toContain(phrase);
 	});
 
-	it("discloses the external AI data flow honestly", () => {
-		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("external AI service");
-		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("does not retain uploaded images on the backend by default");
-		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("may process the data according to its own policies");
-
-		const lowered = AI_EXTRACTION_PRIVACY_DISCLOSURE.toLowerCase();
-		expect(lowered).not.toContain("local");
-		expect(lowered).not.toContain("private");
-		expect(lowered).not.toContain("hipaa");
-		expect(lowered).not.toContain("gdpr");
-		expect(lowered).not.toContain("compliant");
-		expect(lowered).not.toContain("secure");
-	});
-
 	it("only uses medical advice, treatment, and insulin-resistance wording in negative disclaimers", () => {
 		expect(APP_DISCLAIMER).toContain("is not medical advice");
 		expect(APP_DISCLAIMER).toContain("Do not use it to make insulin dosing or treatment decisions");
@@ -157,5 +146,87 @@ describe("banned wording guard", () => {
 		expect(allCopy.split("medical advice").length - 1).toBe(1);
 		expect(allCopy.split("treatment").length - 1).toBe(1);
 		expect(allCopy.split("insulin resistance").length - 1).toBe(1);
+	});
+});
+
+describe("privacy overclaim guard", () => {
+	// Guards against unsafe privacy *claims*, not bare words: qualified or
+	// negative wording ("Private beta", "not processed locally", "not HIPAA
+	// compliant") must pass, while positive overclaims must fail.
+	const UNSAFE_PRIVACY_CLAIMS: RegExp[] = [
+		/never leaves your device/i,
+		/(?<!not\s)processed locally/i,
+		/local-only/i,
+		/fully private/i,
+		/private and secure/i,
+		/secure by default/i,
+		/(?<!not\s)hipaa[\s-]compliant/i,
+		/(?<!not\s)gdpr[\s-]compliant/i,
+		/clinical-grade privacy/i,
+		/medical-grade privacy/i,
+		/we never share your data/i,
+		/external service does not store your data/i,
+		/end-to-end encrypted/i,
+		/safe for medical records/i,
+		/(?<!not\s)suitable for sensitive medical records/i,
+	];
+
+	const findUnsafePrivacyClaims = (text: string): string[] => UNSAFE_PRIVACY_CLAIMS.filter((pattern) => pattern.test(text)).map((pattern) => pattern.source);
+
+	const README_BETA_PRIVACY_NOTE =
+		"Private beta privacy note: meal data is stored for app functionality; AI meal extraction sends submitted meal images/descriptions to an external AI service. Uploaded images are not retained by the INSIGHT backend by default after extraction. This beta is not intended for sensitive medical records or regulated clinical use.";
+
+	it("states the external AI data flow in the approved disclosure", () => {
+		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("external AI service");
+		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("does not retain uploaded images on the backend by default");
+		expect(AI_EXTRACTION_PRIVACY_DISCLOSURE).toContain("may process the data according to its own policies");
+	});
+
+	it("passes the approved in-app disclosure copy", () => {
+		expect(findUnsafePrivacyClaims(AI_EXTRACTION_PRIVACY_DISCLOSURE)).toEqual([]);
+	});
+
+	it("passes the approved README beta privacy note", () => {
+		const readme = readFileSync(resolve(process.cwd(), "..", "README.md"), "utf8");
+		expect(readme).toContain(README_BETA_PRIVACY_NOTE);
+		expect(findUnsafePrivacyClaims(README_BETA_PRIVACY_NOTE)).toEqual([]);
+	});
+
+	it("passes every approved safety-copy string", () => {
+		for (const copy of [APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, UNKNOWN_ITEMS_NOTICE, ROUGH_ESTIMATE_NOTICE, CHRONIC_TREND_DISCLAIMER, PROVIDED_FII_DISCLAIMER, AI_EXTRACTION_PRIVACY_DISCLOSURE]) {
+			expect(findUnsafePrivacyClaims(copy)).toEqual([]);
+		}
+	});
+
+	it.each([
+		"Private beta",
+		"This data is not processed locally.",
+		"This beta is not HIPAA compliant.",
+		"This beta is not GDPR compliant.",
+		"This app is not suitable for sensitive medical records.",
+		"INSIGHT does not retain uploaded images on the backend by default.",
+	])("allows qualified or negative wording: %s", (phrase) => {
+		expect(findUnsafePrivacyClaims(phrase)).toEqual([]);
+	});
+
+	it.each([
+		"Your data never leaves your device.",
+		"All images are processed locally.",
+		"This app is local-only.",
+		"Your meals stay fully private.",
+		"Your data is private and secure.",
+		"INSIGHT is secure by default.",
+		"INSIGHT is HIPAA compliant.",
+		"INSIGHT is HIPAA-compliant.",
+		"INSIGHT is GDPR compliant.",
+		"We offer clinical-grade privacy.",
+		"We offer medical-grade privacy.",
+		"We never share your data.",
+		"The external service does not store your data.",
+		"Everything is end-to-end encrypted.",
+		"This app is safe for medical records.",
+		"This app is suitable for sensitive medical records.",
+	])("rejects unsafe privacy overclaims: %s", (phrase) => {
+		expect(findUnsafePrivacyClaims(phrase)).not.toEqual([]);
 	});
 });
