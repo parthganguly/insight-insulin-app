@@ -21,6 +21,12 @@ Model-alignment prototype:
 
 Private beta privacy note: meal data is stored for app functionality; AI meal extraction sends submitted meal images/descriptions to an external AI service. Uploaded images are not retained by the INSIGHT backend by default after extraction. This beta is not intended for sensitive medical records or regulated clinical use.
 
+## Private Beta Topology Note
+
+INSIGHT's current beta is intended for local or tightly controlled single-user testing. The backend does not yet provide production authentication, account isolation, or multi-tenant data separation. Do not expose the beta backend as a public internet service. Backend-saved meal data is stored in the app's local backend database, while some frontend state may be stored in the browser. AI meal extraction sends submitted meal images/descriptions to an external AI service as documented above. This beta is not intended for sensitive medical records, regulated clinical use, or untrusted multi-user deployment.
+
+Full details of the current topology and trust model: [docs/private-beta-topology.md](docs/private-beta-topology.md).
+
 ## Backend Setup
 
 From the repo root:
