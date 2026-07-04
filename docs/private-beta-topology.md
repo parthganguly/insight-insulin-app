@@ -38,17 +38,22 @@ The frontend persists two zustand stores in browser/WebView localStorage:
   photos
 - `app-settings` — gender, age, weight, height, activity level
 
-This data is per-browser/per-device and never syncs with the backend database.
-The backend database and browser localStorage are **two disconnected stores**
-with different lifetimes, devices, and deletion paths — they do not form a
-unified privacy or security model.
+The frontend persists this browser/WebView localStorage state separately from
+the backend database. Some flows copy backend responses into localStorage for
+local UI state — saving a meal posts it to the backend and then stores the
+canonical backend response in `insight-meals` for "Recents" — but this is not
+account-scoped sync and does not make localStorage and the backend database a
+unified privacy/security model. They have different lifetimes, devices, and
+deletion paths.
 
 ### Split dashboard storage paths
 
-The Dashboard's **Chronic Score** is computed by the backend from **all rows in
-the backend database**, regardless of which client created them. The **Recents**
-list comes from the device's localStorage. If more than one client posts to the
-same backend, these views silently diverge — one more reason multi-user
+The Dashboard's **Chronic Score** is computed by the backend from matching rows
+in the shared backend database over the requested metrics window (30 days by
+default). There is no per-user/account filter, so if more than one client posts
+to the same backend, matching meals from all clients in that window can affect
+the aggregate. The **Recents** list comes from the device's localStorage. With
+multiple clients these views silently diverge — one more reason multi-user
 deployment is unsupported.
 
 ### External AI service for meal extraction
