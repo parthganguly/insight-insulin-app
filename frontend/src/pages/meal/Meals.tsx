@@ -1,11 +1,11 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonIcon, IonFab, IonItem, IonLabel, IonThumbnail, IonText, IonImg, useIonRouter } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonIcon, IonFab, IonItem, IonThumbnail, IonImg, useIonRouter } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { useEffect } from "react";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Meal } from "../../types/Meal";
-import { calculateTotalCalories, getMealTimeString } from "../../utils";
+import { calculateTotalCalories, getMealTimeShortString } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 
@@ -40,9 +40,10 @@ const AddMeal: React.FC = () => {
 						<MealCard key={meal.id} meal={meal} />
 					</>
 				)} */}
-				<IonText color='medium'>
-					<h2 style={{ marginBottom: "1rem", fontSize: "1.2rem" }}>Re-add Previous Meals</h2>
-				</IonText>
+				<div className='section-label'>
+					<span>Re-add Previous Meals</span>
+					<span>tap a meal to reuse it</span>
+				</div>
 				{meals.map((meal) => (
 					<MealCard key={meal.id} meal={meal} />
 				))}
@@ -67,21 +68,23 @@ function MealCard({ meal }: { meal: Meal }) {
 	}
 
 	return (
-		<IonItem lines='none' className='ion-margin-vertical' style={{ borderRadius: "8px", boxShadow: "0 2px 8px rgba(0, 0, 0, 0.17)" }} onClick={() => handleClick(meal.id)} routerLink='/meals/new'>
-			<IonThumbnail slot='end' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<AcuteScoreProgressbar meal={meal} style={{ width: "100%", height: "100%", margin: "0 auto" }} />
-			</IonThumbnail>
+		<IonItem lines='none' detail={false} button className='recent-card' onClick={() => handleClick(meal.id)} routerLink='/meals/new'>
 			{meal.image && (
 				<IonThumbnail slot='start' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-					<IonImg src={meal.image ?? ""} alt='Meal Image' style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "8px" }} />
+					<IonImg src={meal.image ?? ""} alt='Meal Image' style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }} />
 				</IonThumbnail>
 			)}
 
-			<IonLabel>
-				<h2>{meal.name}</h2>
-				<p>{getMealTimeString(meal)}</p>
-				<p>{calculateTotalCalories(meal)} kcal </p>
-			</IonLabel>
+			<div style={{ minWidth: 0, flex: 1 }}>
+				<h3 className='recent-card-name'>{meal.name}</h3>
+				<span className='recent-card-time'>{getMealTimeShortString(meal)}</span>
+				<span className='draft-item-hint'>{Math.round(calculateTotalCalories(meal))} kcal</span>
+			</div>
+
+			<div slot='end' className='recent-card-score'>
+				<AcuteScoreProgressbar meal={meal} style={{ width: 46, height: 46 }} />
+				<span className='recent-card-score-label'>score</span>
+			</div>
 		</IonItem>
 	);
 }

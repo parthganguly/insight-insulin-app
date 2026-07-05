@@ -1,10 +1,10 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonLabel, IonItem, IonThumbnail, IonIcon, IonItemDivider } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonTitle, IonCard, IonItem, IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { fetchChronicMetricsFromAPI, ChronicMetricsResponse } from "../../api/api";
-import { calculateTotalCalories, calculateTotalCarbohydrates, calculateTotalSaturatedFat, getMealTimeString } from "../../utils";
+import { calculateTotalCalories, calculateTotalCarbohydrates, calculateTotalSaturatedFat, getMealTimeShortString } from "../../utils";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { Meal } from "../../types/Meal";
@@ -77,73 +77,56 @@ const Dashboard: React.FC = () => {
 
 			<IonContent className='ion-padding'>
 				{meals.length === 0 ? (
-					<IonText color='medium'>
-						<IonCard
-							style={{
-								borderRadius: "16px",
-								boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-								padding: "1.5rem 1rem",
-								textAlign: "center",
-								margin: "2rem auto",
-								maxWidth: 350,
-							}}>
-							<IonCardHeader>
-								<IonCardTitle style={{ fontSize: "1.2rem", fontWeight: 700 }}>No Meals Logged</IonCardTitle>
-							</IonCardHeader>
-							<IonCardContent>
-								<IonText color='medium'>
-									<p style={{ fontSize: "1rem", marginBottom: "1rem" }}>You haven't added any meals yet.</p>
-									<p style={{ fontSize: "0.95rem" }}>
-										Tap the <strong>Add Meal</strong> tab below to scan and log your first meal!
-									</p>
-								</IonText>
-							</IonCardContent>
-						</IonCard>
-					</IonText>
+					<IonCard className='app-card empty-state-card'>
+						<h2>No Meals Logged</h2>
+						<p style={{ marginBottom: "0.75rem" }}>You haven't added any meals yet.</p>
+						<p>
+							Tap the <strong>Add Meal</strong> tab below to scan and log your first meal!
+						</p>
+					</IonCard>
 				) : (
 					<>
-						<IonCard
-							style={{
-								borderRadius: "16px",
-								margin: "0px",
-								boxShadow: "0 4px 12px rgba(0, 0, 0, 0.21)",
-							}}>
-							<IonCardHeader>
-								<IonCardTitle style={{ fontSize: "1.4rem", fontWeight: 700, textAlign: "center" }}>Chronic Score</IonCardTitle>
-							</IonCardHeader>
+						<IonCard className='app-card hero-card'>
+							<p className='hero-eyebrow'>7-day rolling trend</p>
+							<h2 className='hero-title'>Chronic Score</h2>
 
-							<IonCardContent style={{ paddingTop: "0.5rem" }}>
-								<div style={{ width: 140, height: 140, margin: "0 auto" }}>
-									<CircularProgressbar
-										value={chronicScore ?? 0}
-										maxValue={100}
-										text={chronicText}
-										styles={buildStyles({
-											textSize: "2.2rem",
-											pathColor: chronicScore === undefined ? "#95a5a6" : "#3498db",
-											textColor: chronicScore === undefined ? "#95a5a6" : "#3498db",
-											trailColor: "#dfe6f0",
-										})}
-									/>
-								</div>
+							<div className='hero-ring'>
+								<CircularProgressbar
+									value={chronicScore ?? 0}
+									maxValue={100}
+									text={chronicText}
+									strokeWidth={8}
+									styles={buildStyles({
+										textSize: "2.1rem",
+										pathColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
+										textColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
+										trailColor: "#e8edf3",
+										strokeLinecap: "round",
+									})}
+								/>
+							</div>
 
-								<IonText color='medium'>
-									<p style={{ marginTop: "1rem", textAlign: "center" }}>
-										{chronicScore === undefined
-											? chronicError ?? "Long-term backend trend data is unavailable right now."
-											: "7-day rolling insulin-demand trend from meals you logged."}
-									</p>
-									<p style={{ marginTop: "0.5rem", textAlign: "center", fontSize: "0.8rem" }}>{CHRONIC_TREND_DISCLAIMER}</p>
-								</IonText>
-							</IonCardContent>
+							<p className='hero-status'>
+								{chronicScore === undefined
+									? chronicError ?? "Long-term backend trend data is unavailable right now."
+									: "7-day rolling insulin-demand trend from meals you logged."}
+							</p>
+
+							<div className='hero-meta'>
+								<span>Window: last 7 days</span>
+								<span>
+									{meals.length} meal{meals.length === 1 ? "" : "s"} logged
+								</span>
+							</div>
+
+							<div className='disclaimer-note'>{CHRONIC_TREND_DISCLAIMER}</div>
 						</IonCard>
-						<IonItemDivider>
-							<IonText color='medium' style={{ marginTop: "1.5rem", marginBottom: "0.5rem" }}>
-								Recents
-							</IonText>
-						</IonItemDivider>
 
-						{/* Other Meals */}
+						<div className='section-label'>
+							<span>Recents</span>
+							<span>most recent first</span>
+						</div>
+
 						{meals.map((meal) => {
 							return <MealCard key={meal.id} meal={meal} />;
 						})}
@@ -170,24 +153,21 @@ function MealCard({ meal }: { meal: Meal }) {
 	};
 
 	return (
-		<IonItem lines='none' onClick={() => handleMealClick(meal.id)} routerLink='/meals/new' key={meal.id} style={{ borderRadius: "16px", marginTop: "0.5rem", boxShadow: "0 2px 8px rgba(0, 0, 0, 0.17)" }}>
-			<IonThumbnail slot='end' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<AcuteScoreProgressbar meal={meal} style={{ width: "100%", height: "100%", margin: "0 auto" }} />
-			</IonThumbnail>
-			<IonIcon slot='end' icon={chevronForward} size='small' />
-			{/* {meal.image && (
-				<IonThumbnail slot='start' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-					<IonImg src={meal.image ?? ""} alt='Meal Image' style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "8px" }} />
-				</IonThumbnail>
-			)} */}
-
-			<IonLabel>
-				<h3>{meal.name}</h3>
-				<p style={{ fontSize: "12px" }}>{getMealTimeString(meal)}</p>
-				<NutrimentComponent nutrimentIcon={flame} nutrimentIconColor={"#ff5151ff"} nutrimentName={"Calories"} nutrimentValue={meal.kcal_total ?? calculateTotalCalories(meal)} />
-				<NutrimentComponent nutrimentIcon={pizza} nutrimentIconColor={"#ffcc00ff"} nutrimentName={"Carbs"} nutrimentValue={meal.carbs_total ?? calculateTotalCarbohydrates(meal)} />
-				<NutrimentComponent nutrimentIcon={batteryCharging} nutrimentIconColor={"#3880ff"} nutrimentName={"Sat. Fat"} nutrimentValue={calculateTotalSaturatedFat(meal)} />
-			</IonLabel>
+		<IonItem lines='none' detail={false} button onClick={() => handleMealClick(meal.id)} routerLink='/meals/new' key={meal.id} className='recent-card'>
+			<div style={{ minWidth: 0, flex: 1 }}>
+				<h3 className='recent-card-name'>{meal.name}</h3>
+				<span className='recent-card-time'>{getMealTimeShortString(meal)}</span>
+				<div className='recent-card-chips'>
+					<NutrimentComponent nutrimentIcon={flame} nutrimentIconColor={"#d96a52"} nutrimentName={"kcal"} nutrimentValue={Math.round(meal.kcal_total ?? calculateTotalCalories(meal))} />
+					<NutrimentComponent nutrimentIcon={pizza} nutrimentIconColor={"#d9a62e"} nutrimentName={"carbs"} nutrimentValue={`${Math.round(meal.carbs_total ?? calculateTotalCarbohydrates(meal))} g`} />
+					<NutrimentComponent nutrimentIcon={batteryCharging} nutrimentIconColor={"#2f86c0"} nutrimentName={"sat. fat"} nutrimentValue={`${Math.round(calculateTotalSaturatedFat(meal))} g`} />
+				</div>
+			</div>
+			<div slot='end' className='recent-card-score'>
+				<AcuteScoreProgressbar meal={meal} style={{ width: 46, height: 46 }} />
+				<span className='recent-card-score-label'>score</span>
+			</div>
+			<IonIcon slot='end' icon={chevronForward} size='small' style={{ color: "#8a97a5" }} />
 		</IonItem>
 	);
 }

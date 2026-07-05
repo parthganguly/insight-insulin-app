@@ -1,0 +1,241 @@
+/* Private-beta presentation polish (issue #59). Presentation only:
+   no scoring, hydration, storage, or safety-copy behavior lives here. */
+
+:root {
+	--app-ink: #1c2b39;
+	--app-muted: #5c6b7a;
+	--app-faint: #8a97a5;
+	--app-surface: #ffffff;
+	--app-divider: #e6ebf1;
+	--app-card-radius: 18px;
+	--app-card-shadow: 0 2px 10px rgba(19, 42, 66, 0.06);
+}
+
+body {
+	background: #eef1f5;
+}
+
+/* Centered demo frame on desktop; mobile-first full-bleed below 768px. */
+@media (min-width: 768px) {
+	ion-app {
+		max-width: 460px;
+		margin: 0 auto;
+		box-shadow: 0 0 0 1px rgba(19, 42, 66, 0.06), 0 18px 48px rgba(19, 42, 66, 0.16);
+	}
+}
+
+/* App shell: header and tab bar */
+
+ion-toolbar[color="primary"] {
+	--background: linear-gradient(150deg, #00629b, #0084c7);
+	--border-width: 0;
+}
+
+ion-toolbar ion-title {
+	font-weight: 700;
+	letter-spacing: 0.01em;
+}
+
+ion-tab-bar {
+	--background: #ffffff;
+	border-top: 1px solid var(--app-divider);
+	box-shadow: 0 -4px 16px rgba(19, 42, 66, 0.05);
+}
+
+ion-tab-button {
+	--color: var(--app-faint);
+	--color-selected: var(--ion-color-primary);
+}
+
+/* Shared card and section primitives */
+
+.app-card {
+	margin: 0;
+	background: var(--app-surface);
+	border-radius: var(--app-card-radius);
+	border: 1px solid rgba(19, 42, 66, 0.05);
+	box-shadow: var(--app-card-shadow);
+}
+
+.section-label {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin: 22px 4px 10px;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	color: var(--app-faint);
+}
+
+.section-label span:last-child {
+	letter-spacing: 0.02em;
+	font-weight: 500;
+	text-transform: none;
+}
+
+.disclaimer-note {
+	margin: 18px 2px 0;
+	padding: 12px 14px;
+	border-radius: 12px;
+	background: rgba(19, 42, 66, 0.045);
+	color: var(--app-muted);
+	font-size: 0.8rem;
+	line-height: 1.5;
+	text-align: left;
+}
+
+/* Dashboard hero card */
+
+.hero-card {
+	padding: 20px 18px 16px;
+	text-align: center;
+}
+
+.hero-eyebrow {
+	margin: 0 0 2px;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--app-faint);
+}
+
+.hero-title {
+	margin: 0 0 16px;
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: var(--app-ink);
+}
+
+.hero-ring {
+	width: 128px;
+	height: 128px;
+	margin: 0 auto;
+}
+
+.hero-status {
+	margin: 14px auto 0;
+	max-width: 300px;
+	font-size: 0.92rem;
+	line-height: 1.45;
+	color: var(--app-muted);
+}
+
+.hero-meta {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin-top: 14px;
+	padding-top: 12px;
+	border-top: 1px solid var(--app-divider);
+}
+
+.hero-meta span {
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: #f1f4f8;
+	font-size: 0.74rem;
+	font-weight: 600;
+	color: var(--app-muted);
+}
+
+/* Empty state */
+
+.empty-state-card {
+	padding: 28px 20px;
+	text-align: center;
+	margin-top: 8vh;
+}
+
+.empty-state-card h2 {
+	margin: 0 0 8px;
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: var(--app-ink);
+}
+
+.empty-state-card p {
+	margin: 0 auto;
+	max-width: 280px;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: var(--app-muted);
+}
+
+/* Recents cards */
+
+.recent-card {
+	margin-bottom: 10px;
+	--background: var(--app-surface);
+	--border-radius: 16px;
+	--padding-start: 14px;
+	--padding-top: 12px;
+	--padding-bottom: 12px;
+	--inner-padding-end: 12px;
+	border-radius: 16px;
+	border: 1px solid rgba(19, 42, 66, 0.05);
+	box-shadow: var(--app-card-shadow);
+}
+
+.recent-card-name {
+	margin: 0;
+	font-size: 0.98rem;
+	font-weight: 650;
+	color: var(--app-ink);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.recent-card-time {
+	display: block;
+	margin: 2px 0 8px;
+	font-size: 0.76rem;
+	color: var(--app-faint);
+}
+
+.recent-card-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.recent-card-score {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3px;
+	margin-left: 6px;
+}
+
+.recent-card-score-label {
+	font-size: 0.62rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--app-faint);
+}
+
+/* Meal flow draft states */
+
+.draft-empty-note {
+	padding: 22px 18px;
+	text-align: center;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: var(--app-muted);
+}
+
+.draft-item-hint {
+	display: inline-block;
+	margin-top: 2px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: #f1f4f8;
+	font-size: 0.76rem;
+	font-weight: 600;
+	color: var(--app-muted);
+}

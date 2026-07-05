@@ -3,10 +3,11 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { getMealAcuteScore } from "../utils";
 import { Meal } from "../types/Meal";
 
-function AcuteScoreProgressbar({ style, meal }: { style?: React.CSSProperties; meal: Meal }) {
+function AcuteScoreProgressbar({ style, meal, strokeWidth = 8 }: { style?: React.CSSProperties; meal: Meal; strokeWidth?: number }) {
 	const acuteScore = getMealAcuteScore(meal);
 	const isUnknown = acuteScore === undefined;
-	const accentColor = isUnknown ? "#95a5a6" : acuteScore < 35 ? "#2ecc71" : acuteScore < 60 ? "#f1c40f" : "#e74c3c";
+	// Same low/medium/high thresholds as before; only the presentation tones are softened.
+	const accentColor = isUnknown ? "#9aa5ad" : acuteScore < 35 ? "#34a06f" : acuteScore < 60 ? "#d9a62e" : "#d96a52";
 
 	return (
 		<div style={{ ...style, display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -14,11 +15,13 @@ function AcuteScoreProgressbar({ style, meal }: { style?: React.CSSProperties; m
 				value={isUnknown ? 0 : acuteScore}
 				maxValue={100}
 				text={isUnknown ? "--" : `${acuteScore}`}
+				strokeWidth={strokeWidth}
 				styles={buildStyles({
-					textSize: "2.2rem",
+					textSize: "2.1rem",
 					pathColor: accentColor,
 					textColor: accentColor,
-					trailColor: "#dfe6f0",
+					trailColor: "#e8edf3",
+					strokeLinecap: "round",
 				})}
 			/>
 		</div>
