@@ -525,9 +525,12 @@ const PreviewMeal = () => {
 					</IonItemDivider>
 
 						{meal.items.length === 0 ? (
-							<IonItem lines='none' className='ion-text-center ion-padding'>
-								<IonText color='medium'>Start by adding a meal item by clicking the "+" button</IonText>
-							</IonItem>
+							<div className='draft-empty-note'>
+								<p style={{ margin: "0 0 4px", fontWeight: 600, color: "#1c2b39" }}>This meal is an editable draft</p>
+								<p style={{ margin: 0 }}>
+									Tap the <strong>+</strong> button to add your first item — enter nutrition manually or let AI suggest it. Estimates appear after you save.
+								</p>
+							</div>
 						) : isAiDraftFlow ? (
 							<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
 								{meal.items.map((item) => (
@@ -605,11 +608,15 @@ const PreviewMeal = () => {
 										) : null}
 										<IonLabel>
 											<h2 style={{ marginBottom: "0.5rem" }}>{item.name}</h2>
-											<IonNote color='medium' className='ion-text-wrap'>
-												<NutrimentComponent nutrimentName='Calories' nutrimentValue={calculateTotalItemCalories(item)} nutrimentIcon={flame} nutrimentIconColor='#ff5151ff' />
-												<NutrimentComponent nutrimentName='Carbohydrates' nutrimentValue={calculateTotalItemCarbohydrates(item)} nutrimentIcon={pizza} nutrimentIconColor='#ffcc00ff' />
-												<NutrimentComponent nutrimentName='Saturated Fats' nutrimentValue={calculateTotalItemSaturatedFat(item)} nutrimentIcon={batteryCharging} nutrimentIconColor='#0091ffff' />
-											</IonNote>
+											{calculateTotalItemCalories(item) === 0 && calculateTotalItemCarbohydrates(item) === 0 && calculateTotalItemSaturatedFat(item) === 0 ? (
+												<span className='draft-item-hint'>Draft item — tap to add portion and nutrition</span>
+											) : (
+												<IonNote color='medium' className='ion-text-wrap'>
+													<NutrimentComponent nutrimentName='Calories' nutrimentValue={calculateTotalItemCalories(item)} nutrimentIcon={flame} nutrimentIconColor='#d96a52' />
+													<NutrimentComponent nutrimentName='Carbohydrates' nutrimentValue={calculateTotalItemCarbohydrates(item)} nutrimentIcon={pizza} nutrimentIconColor='#d9a62e' />
+													<NutrimentComponent nutrimentName='Saturated Fats' nutrimentValue={calculateTotalItemSaturatedFat(item)} nutrimentIcon={batteryCharging} nutrimentIconColor='#2f86c0' />
+												</IonNote>
+											)}
 											{item.why ? (
 												<IonText color='medium' style={{ fontSize: "0.85rem" }}>
 													<p style={{ marginTop: "8px", marginBottom: 0 }}>{item.why}</p>
@@ -628,9 +635,9 @@ const PreviewMeal = () => {
 							</IonButton>
 						</div>
 
-						<IonText color='medium'>
-							<p style={{ fontSize: "0.75rem", margin: "1rem 0 5rem", textAlign: "center" }}>{APP_DISCLAIMER}</p>
-						</IonText>
+						<div className='disclaimer-note' style={{ marginBottom: "5.5rem" }}>
+							{APP_DISCLAIMER}
+						</div>
 
 						<IonActionSheet
 							trigger='open-meal-item-action-sheet'

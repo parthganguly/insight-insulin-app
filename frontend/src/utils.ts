@@ -74,3 +74,10 @@ export const calculateTotalItemSaturatedFat = (mealItem: MealItem): number => {
 export const getMealTimeString = (meal: Meal): string => {
 	return new Date(meal.timestamp).toLocaleString();
 };
+
+export const getMealTimeShortString = (meal: Meal): string => {
+	const date = new Date(meal.timestamp);
+	const day = date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+	const time = date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+	return `${day} · ${time}`;
+};

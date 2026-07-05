@@ -31,6 +31,7 @@ import "@ionic/react/css/display.css";
 /* import '@ionic/react/css/palettes/dark.class.css'; */
 /* Theme variables */
 import "./theme/variables.css";
+import "./theme/app.css";
 import Settings from "./pages/settings/Settings";
 import AddMeal from "./pages/meal/Meals";
 import AiMealAdd from "./pages/meal/AiMealAdd";
