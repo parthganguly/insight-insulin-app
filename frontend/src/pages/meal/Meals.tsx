@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonIcon, IonFab, IonItem, IonLabel, IonThumbnail, IonText, IonImg, useIonRouter } from "@ionic/react";
 import { add } from "ionicons/icons";
-import { usePersistentMealStore } from "../../stores/persistentMealStore";
+import { useEffect } from "react";
+import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Meal } from "../../types/Meal";
@@ -11,6 +12,11 @@ import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 const AddMeal: React.FC = () => {
 	const { meals } = usePersistentMealStore();
 	const { resetMeal, meal } = useCurrentMealStore();
+
+	useEffect(() => {
+		// Private-beta hydration: show backend-seeded/saved meals on a fresh load. Fails soft offline.
+		void syncMealsFromBackend();
+	}, []);
 
 	return (
 		<IonPage>

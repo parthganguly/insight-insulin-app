@@ -6,7 +6,7 @@ import { usePersistentMealStore } from "../../stores/persistentMealStore"; // ad
 import { add, arrowBack, batteryCharging, camera, chevronForward, chevronUp, close, create, desktop, flame, information, pencil, pizza, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import { MealModelingResponse, buildCreateMealPayload, postMealToAPI } from "../../api/api";
+import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } from "../../api/api";
 import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealDisplayCalories, getMealTimeString } from "../../utils";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
@@ -56,50 +56,6 @@ const PreviewMeal = () => {
 	};
 
 	const dishInfo = isAiDraftFlow ? detectDishBase(meal.name) : null;
-
-	const toMealUnit = (unit: string): Unit => (Object.values(Unit).includes(unit as Unit) ? (unit as Unit) : Unit.Servings);
-
-	const toTimestamp = (createdAt: string, fallback: number): number => {
-		const parsed = Date.parse(createdAt);
-		return Number.isFinite(parsed) ? parsed : fallback;
-	};
-
-	const buildCanonicalMealFromBackend = (backendMeal: MealModelingResponse): Meal => ({
-		id: backendMeal.id,
-		image: meal.image,
-		name: backendMeal.meal_name,
-		timestamp: toTimestamp(backendMeal.created_at, Date.now()),
-		isAiDraft: false,
-		items: backendMeal.items.map((item) => {
-			const canonicalItem: MealItem = {
-				id: crypto.randomUUID(),
-				name: item.name,
-				servingSize: 1,
-				servingUnit: toMealUnit(item.unit),
-				amount: item.quantity,
-				kcalPerServing: item.kcalPerUnit ?? 0,
-				carbPerServing_g: item.carb_g ?? 0,
-				proteinPerServing_g: item.protein_g,
-				fatPerServing_g: item.fat_g,
-				satFatPerServing_g: item.satFat_g ?? 0,
-				gi: item.gi ?? 0,
-				source: item.fii_source,
-				why: item.why,
-			};
-			return updateMealItemFii(canonicalItem, item.fii_value ?? item.fii);
-		}),
-		acute_score: backendMeal.acute_score,
-		insulin_load_total: backendMeal.insulin_load_total,
-		backend_created_at: backendMeal.created_at,
-		kcal_total: backendMeal.kcal_total,
-		carbs_total: backendMeal.carbs_total,
-		protein_total: backendMeal.protein_total,
-		fat_total: backendMeal.fat_total,
-		estimate_quality: backendMeal.estimate_quality,
-		main_insulin_drivers: backendMeal.main_insulin_drivers,
-		estimate: undefined,
-		calorie_source: "item_sum",
-	});
 
 	const getImpactPresentation = (savedMeal: Meal): ImpactPresentation => {
 		const quality = savedMeal.estimate_quality?.toLowerCase();
@@ -212,7 +168,7 @@ const PreviewMeal = () => {
 		try {
 			const response = await postMealToAPI(payload);
 			console.log("POST /meals response:", response);
-			const canonicalMeal = buildCanonicalMealFromBackend(response);
+			const canonicalMeal = mapMealModelingResponseToMeal(response, meal.image);
 			setMeal(canonicalMeal);
 			addMeal(canonicalMeal);
 			setToastColor("success");

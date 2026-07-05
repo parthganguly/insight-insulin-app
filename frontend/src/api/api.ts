@@ -1,7 +1,7 @@
 import config from "../../config.json"; // adjust path as needed
 import { Meal } from "../types/Meal";
 import { MealItem, Unit } from "../types/MealItem";
-import { normalizeExplicitFii } from "../utils/fiiTrustBoundary";
+import { normalizeExplicitFii, updateMealItemFii } from "../utils/fiiTrustBoundary";
 
 type NumberLike = number | string | null | undefined;
 
@@ -239,6 +239,48 @@ const normalizeChronicMetricsResponse = (raw: unknown): ChronicMetricsResponse =
 	};
 };
 
+const toTimestamp = (createdAt: string, fallback: number): number => {
+	const parsed = Date.parse(createdAt);
+	return Number.isFinite(parsed) ? parsed : fallback;
+};
+
+export const mapMealModelingResponseToMeal = (backendMeal: MealModelingResponse, image: string | null = null): Meal => ({
+	id: backendMeal.id,
+	image,
+	name: backendMeal.meal_name,
+	timestamp: toTimestamp(backendMeal.created_at, Date.now()),
+	isAiDraft: false,
+	items: backendMeal.items.map((item) => {
+		const canonicalItem: MealItem = {
+			id: crypto.randomUUID(),
+			name: item.name,
+			servingSize: 1,
+			servingUnit: toMealUnit(item.unit),
+			amount: item.quantity,
+			kcalPerServing: item.kcalPerUnit ?? 0,
+			carbPerServing_g: item.carb_g ?? 0,
+			proteinPerServing_g: item.protein_g,
+			fatPerServing_g: item.fat_g,
+			satFatPerServing_g: item.satFat_g ?? 0,
+			gi: item.gi ?? 0,
+			source: item.fii_source,
+			why: item.why,
+		};
+		return updateMealItemFii(canonicalItem, item.fii_value ?? item.fii);
+	}),
+	acute_score: backendMeal.acute_score,
+	insulin_load_total: backendMeal.insulin_load_total,
+	backend_created_at: backendMeal.created_at,
+	kcal_total: backendMeal.kcal_total,
+	carbs_total: backendMeal.carbs_total,
+	protein_total: backendMeal.protein_total,
+	fat_total: backendMeal.fat_total,
+	estimate_quality: backendMeal.estimate_quality,
+	main_insulin_drivers: backendMeal.main_insulin_drivers,
+	estimate: undefined,
+	calorie_source: "item_sum",
+});
+
 export const buildCreateMealPayload = (meal: Meal): CreateMealPayload => ({
 	meal_name: toNonEmptyString(meal.name) ?? "Untitled meal",
 	items: meal.items.map(mapDraftMealItemToCreatePayload),
@@ -306,6 +348,27 @@ export const postMealToAPI = async (payload: CreateMealPayload): Promise<MealMod
 
 	const responseBody = await res.json();
 	return normalizeMealModelingResponse(responseBody);
+};
+
+export const fetchMealsFromAPI = async (): Promise<MealModelingResponse[]> => {
+	const res = await fetch(`${backendApiUrl}/meals`);
+
+	if (!res.ok) {
+		let errorMessage = "Failed to load meals";
+		try {
+			const errorBody = (await res.json()) as { detail?: string };
+			if (errorBody?.detail) {
+				errorMessage = errorBody.detail;
+			}
+		} catch {
+			// Keep fallback message when error body is not JSON.
+		}
+		throw new Error(errorMessage);
+	}
+
+	const responseBody = (await res.json()) as unknown;
+	const rawMeals = Array.isArray(responseBody) ? responseBody : Array.isArray((responseBody as { data?: unknown })?.data) ? ((responseBody as { data: unknown[] }).data) : [];
+	return rawMeals.map(normalizeMealModelingResponse);
 };
 
 export const fetchChronicMetricsFromAPI = async (days = 30): Promise<ChronicMetricsResponse> => {
