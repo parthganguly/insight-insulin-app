@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonLabel, IonItem, IonThumbnail, IonIcon, IonItemDivider } from "@ionic/react";
 import React, { useEffect, useState } from "react";
-import { usePersistentMealStore } from "../../stores/persistentMealStore";
+import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { fetchChronicMetricsFromAPI, ChronicMetricsResponse } from "../../api/api";
@@ -19,6 +19,11 @@ const Dashboard: React.FC = () => {
 	const [chronicMetrics, setChronicMetrics] = useState<ChronicMetricsResponse | null>(null);
 	const [isChronicLoading, setIsChronicLoading] = useState(false);
 	const [chronicError, setChronicError] = useState<string | null>(null);
+
+	useEffect(() => {
+		// Private-beta hydration: show backend-seeded/saved meals on a fresh load. Fails soft offline.
+		void syncMealsFromBackend();
+	}, []);
 
 	useEffect(() => {
 		let isActive = true;
