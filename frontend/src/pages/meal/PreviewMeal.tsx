@@ -2,7 +2,7 @@ import { IonPage, IonContent, IonHeader, IonTitle, IonImg, IonCard, IonCardHeade
 import { useState } from "react";
 
 import { MealItem, Unit } from "../../types/MealItem";
-import { usePersistentMealStore } from "../../stores/persistentMealStore"; // adjust path as needed
+import { isPersistableImage, usePersistentMealStore } from "../../stores/persistentMealStore"; // adjust path as needed
 import { add, arrowBack, batteryCharging, camera, chevronForward, chevronUp, close, create, desktop, flame, information, pencil, pizza, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
@@ -172,7 +172,9 @@ const PreviewMeal = () => {
 			setMeal(canonicalMeal);
 			addMeal(canonicalMeal);
 			setToastColor("success");
-			setToastMessage("Meal saved successfully");
+			// Full-size photos stay in memory for this session but are not written
+			// to localStorage (photo-quota safety, #65) — say so without alarm.
+			setToastMessage(isPersistableImage(canonicalMeal.image) ? "Meal saved successfully" : "Meal saved, but the photo was not kept on this device to save storage.");
 			setShowToast(true);
 		} catch (err) {
 			console.error("POST /meals failed:", err);
