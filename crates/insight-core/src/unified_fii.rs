@@ -575,6 +575,58 @@ mod tests {
     }
 
     #[test]
+    fn likely_mixed_decomposition_wins_before_direct_lookup() {
+        // "sandwich bread" is an exact CSV alias of white bread, so a direct
+        // lookup would resolve it as exact_fii / 0.7. But the "sandwich"
+        // marker makes it likely-mixed, and the backend runs decomposition
+        // first: generic tokens map to a single white-bread component, so the
+        // item scores as mapped_fii with the decomposition confidence 0.90.
+        let lookup = crate::fii_lookup::lookup_exact_fii("sandwich bread")
+            .unwrap()
+            .expect("sandwich bread should be an exact CSV alias");
+        assert_eq!(lookup.source(), EstimateSource::ExactFii);
+
+        let item =
+            UnifiedFiiItem::new("sandwich bread", Kcal::new(200.0).unwrap(), 1.0, None).unwrap();
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::MappedFii);
+        assert_ne!(estimate.source(), EstimateSource::ExactFii);
+        assert!(estimate.decomposition().is_some());
+        assert!(estimate.resolved_fii().is_none());
+        assert_approx_eq(estimate.item_insulin_load().value(), 200.0);
+        assert_approx_eq(estimate.confidence(), 0.90);
+    }
+
+    #[test]
+    fn post_lookup_decomposition_retry_wins_before_macro_fallback() {
+        // "greek yoghurt" is not likely-mixed and misses both lookups, so it
+        // reaches the post-lookup decomposition retry. With macro nutrients
+        // present, the backend still scores the retry (mapped_fii, 108.0 at
+        // 180 kcal) instead of falling through to macro fallback.
+        let item = UnifiedFiiItem::new("greek yoghurt", Kcal::new(180.0).unwrap(), 1.0, None)
+            .unwrap()
+            .with_macro_nutrients(
+                MacroFallbackNutrients::new(
+                    Some(35.0),
+                    Some(Grams::new(16.0).unwrap()),
+                    Some(Grams::new(8.0).unwrap()),
+                    Some(Grams::new(4.0).unwrap()),
+                    Some(Grams::new(2.0).unwrap()),
+                )
+                .unwrap(),
+            );
+
+        let estimate = calculate_unified_fii_item_load(&item).unwrap().unwrap();
+
+        assert_eq!(estimate.source(), EstimateSource::MappedFii);
+        assert_eq!(estimate.macro_fallback_kind(), None);
+        assert!(estimate.decomposition().is_some());
+        assert_approx_eq(estimate.item_insulin_load().value(), 108.0);
+        assert_approx_eq(estimate.confidence(), 0.90);
+    }
+
+    #[test]
     fn exact_lookup_wins_before_post_lookup_decomposition_retry() {
         let item =
             UnifiedFiiItem::new("plain yogurt", Kcal::new(180.0).unwrap(), 1.0, None).unwrap();

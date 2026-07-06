@@ -687,6 +687,33 @@ mod tests {
     }
 
     #[test]
+    fn keyword_rules_first_match_wins_in_backend_order() {
+        // "dal chicken rice" satisfies both the ["dal", "rice"] rule and the
+        // later ["rice", "chicken"] rule; the backend returns the first match.
+        let plan =
+            decompose_food_name_weighted("dal chicken rice").expect("keyword rule should match");
+
+        assert_eq!(plan.rule_kind(), DecompositionRuleKind::Keyword);
+        assert_eq!(plan.rule_match(), "dal + rice");
+        assert_eq!(plan.components().len(), 2);
+        assert_eq!(plan.components()[0].food_name(), "lentils");
+        assert_approx_eq(plan.components()[0].weight(), 0.45);
+        assert_eq!(plan.components()[1].food_name(), "rice");
+        assert_approx_eq(plan.components()[1].weight(), 0.55);
+
+        // Backend truth for 200 kcal: lentils 0.58*90 + rice 0.79*110 = 139.1,
+        // confidence 0.2 + 0.6*1.0 + 0.2*0.6775 clamped to 0.90.
+        let estimate =
+            calculate_decomposed_fii_item_load("dal chicken rice", Kcal::new(200.0).unwrap(), 1.0)
+                .unwrap()
+                .unwrap();
+        assert_approx_eq(estimate.item_insulin_load().value(), 139.1);
+        assert_eq!(estimate.source(), EstimateSource::MappedFii);
+        assert_approx_eq(estimate.confidence(), 0.90);
+        assert_approx_eq(estimate.provenance().matched_share(), 1.0);
+    }
+
+    #[test]
     fn generic_tokens_are_deduplicated_and_equally_weighted() {
         let plan = decompose_food_name_weighted("banana bread burger")
             .expect("generic token mapping should match");

@@ -1,4 +1,4 @@
-Last updated: 2026-03-21
+Last updated: 2026-07-06
 # Scoring Model Spec
 
 ## Purpose
@@ -128,6 +128,46 @@ Backend computes:
 - source quality labels
 - explanation fields
 
+### Provided-FII request boundary (POST /meals)
+
+Scoring is split into two layers (decision: issue #44):
+
+1. **Raw scoring core** — the deterministic scoring functions. They trust
+   their inputs: any provided FII value, including `0`, is scored as
+   `fii_source = "user_confirmed"` with confidence 1.0. The Rust crate's
+   raw core deliberately preserves this behaviour as a parity layer
+   against the backend raw scoring functions.
+2. **Request boundary** — the layer that normalizes untrusted client
+   input *before* it reaches the raw core. In the Python backend this is
+   the `POST /meals` boundary (`normalize_non_positive_fii` in
+   `backend/models.py` plus `resolve_positive_provided_fii` in
+   `backend/api/meals.py`): non-positive and blank provided FII values
+   (`0`, `"0"`, `""`, whitespace-only, negative, `null`) are neutralized
+   to "not provided", and the item falls through to the deterministic
+   lookup chain (`exact_fii` → `mapped_fii` → `macro_fallback` →
+   `unknown`). Only a positive provided FII becomes
+   `fii_source = "user_confirmed"` with confidence 1.0.
+
+Request field contract:
+
+- **`fii` is the canonical request field.** The frontend and all future
+  clients must send `fii`, not `fii_value`.
+- **`fii_value` is deprecated in place** as a legacy compatibility
+  alias. The backend continues to accept it (and currently resolves it
+  ahead of `fii`), and it remains covered by the trust-boundary tests
+  (`backend/tests/test_ai_fii_trust_boundary.py`), but no client should
+  send it. Deprecation here changes documentation and intent only — not
+  behaviour.
+- **Removing `fii_value` from the request contract is a breaking change**
+  and requires its own separately approved issue/PR. It is not
+  authorized by this deprecation.
+
+For clients that bypass HTTP (future UniFFI/Kotlin/Swift callers of the
+Rust core), the equivalent normalization must come from the shared Rust
+request-boundary wrapper, not from per-client reimplementations. See
+"Raw scoring core versus request boundary" in
+`docs/target-architecture.md`.
+
 ### GET /meals
 Returns raw + derived fields.
 
@@ -147,7 +187,8 @@ Per item:
 - fat_g
 - sat_fat_g (if known)
 - gi (optional)
-- fii_value (if known)
+- fii_value (if known; this is the *stored* per-item field, distinct
+  from the deprecated `fii_value` request alias described above)
 - fii_source
 - why
 - insulin_load_item
