@@ -90,20 +90,22 @@ const Dashboard: React.FC = () => {
 							<p className='hero-eyebrow'>7-day rolling trend</p>
 							<h2 className='hero-title'>Chronic Score</h2>
 
-							<div className='hero-ring'>
-								<CircularProgressbar
-									value={chronicScore ?? 0}
-									maxValue={100}
-									text={chronicText}
-									strokeWidth={8}
-									styles={buildStyles({
-										textSize: "2.1rem",
-										pathColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
-										textColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
-										trailColor: "#e8edf3",
-										strokeLinecap: "round",
-									})}
-								/>
+							<div className='hero-bezel'>
+								<div className='hero-ring'>
+									<CircularProgressbar
+										value={chronicScore ?? 0}
+										maxValue={100}
+										text={chronicText}
+										strokeWidth={8}
+										styles={buildStyles({
+											textSize: "2.1rem",
+											pathColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
+											textColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
+											trailColor: "#e8edf3",
+											strokeLinecap: "round",
+										})}
+									/>
+								</div>
 							</div>
 
 							<p className='hero-status'>
@@ -126,6 +128,7 @@ const Dashboard: React.FC = () => {
 							<span>Recents</span>
 							<span>most recent first</span>
 						</div>
+						<p className='journey-cue'>Each logged meal feeds the 7-day pattern above — log meals daily to see your trend take shape.</p>
 
 						{meals.map((meal) => {
 							return <MealCard key={meal.id} meal={meal} />;

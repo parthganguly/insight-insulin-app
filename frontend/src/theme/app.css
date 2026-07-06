@@ -43,8 +43,37 @@ ion-tab-bar {
 }
 
 ion-tab-button {
+	position: relative;
 	--color: var(--app-faint);
 	--color-selected: var(--ion-color-primary);
+}
+
+/* Calm active-tab treatment: soft pill behind the selected tab. Purely
+   visual; routing and tab behavior are untouched. */
+ion-tab-button::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 56px;
+	height: 34px;
+	transform: translate(-50%, -50%) scale(0.85);
+	border-radius: 999px;
+	background: rgba(0, 119, 179, 0.1);
+	opacity: 0;
+	transition: opacity 160ms ease-out, transform 160ms ease-out;
+	pointer-events: none;
+}
+
+ion-tab-button.tab-selected::before {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	ion-tab-button::before {
+		transition: none;
+	}
 }
 
 /* Shared card and section primitives */
@@ -109,10 +138,32 @@ ion-tab-button {
 	color: var(--app-ink);
 }
 
-.hero-ring {
-	width: 128px;
-	height: 128px;
+/* Machined-metal bezel: the app's single premium material moment.
+   Static layered gradients only — no WebGL, no animation. The inner plate
+   stays plain white so score text contrast and readability are unchanged. */
+.hero-bezel {
+	width: 156px;
+	height: 156px;
 	margin: 0 auto;
+	padding: 13px;
+	border-radius: 50%;
+	background: conic-gradient(from 210deg, #f7f9fb, #c7d0da 12%, #eef2f6 26%, #adb8c5 44%, #f2f5f8 58%, #bec8d3 74%, #e8edf2 88%, #f7f9fb);
+	box-shadow:
+		inset 0 1px 1px rgba(255, 255, 255, 0.9),
+		inset 0 -1px 1px rgba(19, 42, 66, 0.14),
+		0 0 0 1px rgba(19, 42, 66, 0.06),
+		0 8px 20px rgba(19, 42, 66, 0.12);
+}
+
+.hero-ring {
+	width: 100%;
+	height: 100%;
+	padding: 9px;
+	border-radius: 50%;
+	background: var(--app-surface);
+	box-shadow:
+		inset 0 2px 5px rgba(19, 42, 66, 0.1),
+		inset 0 0 0 1px rgba(19, 42, 66, 0.05);
 }
 
 .hero-status {
@@ -217,6 +268,29 @@ ion-tab-button {
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	color: var(--app-faint);
+}
+
+/* Journey cue: one compact line tying Recents to the trend above. */
+.journey-cue {
+	margin: -2px 4px 12px;
+	font-size: 0.78rem;
+	line-height: 1.4;
+	color: var(--app-faint);
+}
+
+/* Sheet-like item-edit modal surface. Visual only: dismissal, editing,
+   saving, deleting, and validation behavior are unchanged. */
+ion-modal.sheet-modal {
+	--border-radius: 22px;
+	--box-shadow: 0 18px 48px rgba(19, 42, 66, 0.28);
+}
+
+.sheet-handle {
+	width: 36px;
+	height: 4px;
+	margin: 10px auto 6px;
+	border-radius: 999px;
+	background: rgba(19, 42, 66, 0.18);
 }
 
 /* Meal flow draft states */

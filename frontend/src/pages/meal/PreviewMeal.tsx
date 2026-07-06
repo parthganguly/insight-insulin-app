@@ -200,7 +200,7 @@ const PreviewMeal = () => {
 
 				// router.push(`/camera/review?image=${encodeURIComponent(base64Image)}`, "forward");
 			}
-		} catch (err) {
+		} catch {
 			console.log("Camera access was cancelled or failed.");
 		}
 	};
@@ -315,7 +315,8 @@ const PreviewMeal = () => {
 							</IonCardHeader>
 						</IonCard>
 
-						<IonModal isOpen={!!modalItem} onDidDismiss={() => setModalItem(null)} className=''>
+						<IonModal isOpen={!!modalItem} onDidDismiss={() => setModalItem(null)} className='sheet-modal'>
+							<div className='sheet-handle' aria-hidden='true' />
 							<IonHeader>
 								<IonToolbarWrapper className='ion-text-left'>
 									<IonTitle>Edit: {modalItem?.name}</IonTitle>
