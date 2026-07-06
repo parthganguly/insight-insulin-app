@@ -7,6 +7,7 @@ pub mod fii_lookup;
 pub mod macro_fallback;
 pub mod mapped_fii;
 pub mod metadata;
+pub mod request_boundary;
 pub mod scoring;
 pub mod unified_fii;
 
@@ -42,6 +43,10 @@ pub use mapped_fii::{
     ExactOrMappedFiiMealItem, MappedFiiItemEstimate, MappedFiiItemLoadError,
 };
 pub use metadata::{core_metadata, CoreMetadata};
+pub use request_boundary::{
+    calculate_boundary_fii_item_load, calculate_boundary_fii_meal_totals, normalize_provided_fii,
+    score_boundary_meal, RequestBoundaryFiiItem,
+};
 pub use scoring::{score_meal, ScoredMeal};
 pub use unified_fii::{
     calculate_unified_fii_item_load, calculate_unified_fii_meal_totals, resolve_estimate_quality,
