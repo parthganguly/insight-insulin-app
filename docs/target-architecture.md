@@ -166,6 +166,38 @@ Candidate initial operations:
 - calculate rolling trends
 - return provenance and estimate-quality information
 
+### Raw scoring core versus request boundary
+
+The scientific core is layered (decision: issue #44):
+
+- **Raw scoring core (compatibility/migration component).** The raw
+  Rust scoring functions are a parity layer against the backend's raw
+  scoring functions and must stay byte-for-byte comparable to them.
+  Like the backend functions they mirror, they trust their inputs: any
+  provided FII value, including zero, scores as `user_confirmed` with
+  confidence 1.0. This is deliberate parity behaviour, not the client
+  contract.
+- **Request-boundary wrapper (target component, in progress).** A
+  shared Rust request-boundary layer above the raw core normalizes raw
+  client input — neutralizing non-positive or absent provided FII —
+  before any raw core type is constructed, mirroring the Python
+  backend's `POST /meals` boundary. The first slice is drafted in
+  PR #68. This wrapper, not the raw core, is the intended entry point
+  for UniFFI, mobile, and all other future clients.
+
+UniFFI bindings must expose the request-boundary wrapper and must not
+expose the raw core constructors to clients. Normalization must not be
+reimplemented per platform (Kotlin, Swift, tests, tools); the shared
+wrapper is the single implementation, exactly as the Python backend
+keeps request normalization in one place above its raw scoring
+functions.
+
+Request field contract for HTTP clients: `fii` is the canonical
+provided-FII request field; `fii_value` is a deprecated legacy alias
+that remains accepted and neutralized for compatibility. Removing it
+requires a separately approved breaking-change issue/PR. See
+"Provided-FII request boundary" in `docs/engineering-model.md`.
+
 ---
 
 ## Local persistence
