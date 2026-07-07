@@ -125,6 +125,11 @@ without an explicitly approved scientific-change issue.
 
 ## 5. Open work queue
 
+> **Superseded for current status:** PRs #68/#70/#71 below have since
+> merged, and the #76 audit produced a newer execution queue. See
+> `docs/fable-sunset-baton.md` (issue #82) for the authoritative
+> post-Fable queue and per-issue guardrails.
+
 1. Review and merge draft PR #68 (Rust request-boundary wrapper).
 2. Review and merge draft PR #70 (boundary docs / `fii_value`
    deprecation).
