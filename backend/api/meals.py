@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timezone
 import uuid
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from db import get_db
@@ -213,3 +213,15 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
 async def list_meals(db: Session = Depends(get_db)):
     meals = db.query(MealDB).order_by(MealDB.created_at.desc()).all()
     return [map_meal_db_to_schema(meal_db) for meal_db in meals]
+
+
+@router.delete("/meals/{meal_id}", status_code=204)
+async def delete_meal(meal_id: str, db: Session = Depends(get_db)):
+    meal_db = db.get(MealDB, meal_id)
+    if meal_db is None:
+        raise HTTPException(status_code=404, detail="Meal not found")
+    # MealDB.items carries cascade="all, delete-orphan", so the ORM delete
+    # removes the meal's item rows in the same transaction.
+    db.delete(meal_db)
+    db.commit()
+    return None

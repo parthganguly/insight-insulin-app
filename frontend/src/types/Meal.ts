@@ -21,6 +21,9 @@ export type Meal = {
 	acute_score?: number;
 	insulin_load_total?: number;
 	backend_created_at?: string;
+	// Saved meal this draft was opened from (issue #78): lets the delete action
+	// remove the persisted original instead of only discarding the local copy.
+	source_meal_id?: string;
 	kcal_total?: number;
 	carbs_total?: number;
 	protein_total?: number;

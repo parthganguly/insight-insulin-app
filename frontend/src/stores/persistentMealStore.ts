@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist, StateStorage } from "zustand/middleware";
 import { Meal } from "../types/Meal";
-import { fetchMealsFromAPI, mapMealModelingResponseToMeal } from "../api/api";
+import { deleteMealFromAPI, fetchMealsFromAPI, mapMealModelingResponseToMeal } from "../api/api";
 
 type MealState = {
 	meals: Meal[];
@@ -106,6 +106,38 @@ export const usePersistentMealStore = create<MealState>()(
 		}
 	)
 );
+
+export type MealDeletionResult = { deleted: true } | { deleted: false; reason: string };
+
+// The meal a delete action must actually remove (issue #78): drafts opened
+// from a saved meal carry source_meal_id, so deleting them targets the
+// persisted original; every other meal targets itself. If the original is no
+// longer in the store, the draft itself is the (safe, local-only) target.
+export const resolveMealDeletionTarget = (meal: Meal): Meal => {
+	if (!meal.source_meal_id) return meal;
+	return usePersistentMealStore.getState().getMealById(meal.source_meal_id) ?? meal;
+};
+
+// Delete a meal honestly (issue #78): a meal that exists on the backend
+// (marked by backend_created_at) must be deleted there FIRST, because
+// hydration treats the backend as canonical and would resurrect any meal
+// that was only removed from the local cache. The local copy is dropped only
+// after the backend deletion succeeded (404 counts as already deleted).
+// Local-only meals and unsaved drafts skip the backend call entirely.
+// On backend failure nothing is removed, so the UI never pretends success.
+export const deleteMealEverywhere = async (meal: Meal): Promise<MealDeletionResult> => {
+	const target = resolveMealDeletionTarget(meal);
+	if (target.backend_created_at) {
+		try {
+			await deleteMealFromAPI(target.id);
+		} catch (error) {
+			console.error("DELETE /meals failed:", error);
+			return { deleted: false, reason: error instanceof Error ? error.message : "Failed to delete meal" };
+		}
+	}
+	usePersistentMealStore.getState().deleteMeal(target.id);
+	return { deleted: true };
+};
 
 // Pull backend meals into the local persistent cache so a fresh browser shows
 // backend-seeded and backend-saved history. Draft state lives in the current-meal
