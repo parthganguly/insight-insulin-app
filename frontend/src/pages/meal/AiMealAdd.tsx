@@ -1,13 +1,14 @@
-import { IonPage, IonContent, IonToast, IonHeader, IonToolbar, IonTitle, IonButton, IonImg, IonText, IonIcon, IonTextarea, IonBackButton, IonButtons, IonFab, IonFabButton, IonLoading, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonTitle, IonButton, IonImg, IonText, IonIcon, IonTextarea, IonBackButton, IonButtons, IonFab, IonFabButton, IonLoading, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { useState } from "react";
 import { useIonRouter } from "@ionic/react";
-import { arrowForward, camera, trash } from "ionicons/icons";
+import { arrowForward, camera, image, pencil, trash } from "ionicons/icons";
 import { fetchAiMealFromAPI, normalizeAiExtractedItem } from "../../api/api";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { MealEstimate } from "../../types/Meal";
 import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
+import { describeAiExtractionFailure, describeCameraFailure } from "../../utils/aiFailureCopy";
 
 const AiMealAdd = () => {
 	const [error, setError] = useState("");
@@ -21,7 +22,7 @@ const AiMealAdd = () => {
 	};
 	const [textualData, setTextualData] = useState("");
 	// const { View: ScanFoodAnimation } = useLottie({ animationData: scanFood, loop: true, autoplay: true });
-	const { meal, setMeal } = useCurrentMealStore();
+	const { meal, setMeal, addEmptyMealItem } = useCurrentMealStore();
 	const [isLoading, setLoading] = useState(false);
 
 	const toNumber = (value: unknown, fallback = 0): number => {
@@ -82,14 +83,25 @@ const AiMealAdd = () => {
 			resetExtractionState();
 			router.goBack();
 		} catch (err: unknown) {
-			const errorMessage = err instanceof Error && err.message ? err.message : "Failed to extract meal data.";
-			setError(errorMessage);
+			// Never surface raw backend/provider error text (issue #74); log it
+			// for diagnostics and show curated copy with a manual fallback.
+			console.error("AI meal extraction failed:", err);
+			setError(describeAiExtractionFailure(err));
 		} finally {
 			setLoading(false);
 		}
 	};
 
-	const handleStartScan = async () => {
+	const handleAddManually = () => {
+		// Land the user back on the meal draft with an editable item row —
+		// the same thing the "Manual" action on the draft screen does.
+		if (meal.items.length === 0) {
+			addEmptyMealItem();
+		}
+		router.push("/meals/new", "back");
+	};
+
+	const handleAddPhoto = async (source: CameraSource) => {
 		if (images.length === 0) {
 			setTextualData("");
 			setError("");
@@ -98,7 +110,7 @@ const AiMealAdd = () => {
 		try {
 			const photo = await Camera.getPhoto({
 				resultType: CameraResultType.Base64,
-				source: CameraSource.Camera,
+				source,
 				quality: 90,
 				saveToGallery: false,
 			});
@@ -115,7 +127,7 @@ const AiMealAdd = () => {
 				// router.push(`/camera/review?image=${encodeURIComponent(base64Image)}`, "forward");
 			}
 		} catch (err) {
-			setError("Camera access was cancelled or failed.");
+			setError(describeCameraFailure(err));
 		}
 	};
 
@@ -181,18 +193,50 @@ const AiMealAdd = () => {
 						<p style={{ fontSize: "0.78rem", textAlign: "left", margin: "0.5rem 0 0" }}>{AI_EXTRACTION_PRIVACY_DISCLOSURE}</p>
 					</IonText>
 
-					<IonButton className='ion-margin-top' size='large' onClick={handleStartScan}>
-						<IonIcon size='large' icon={camera} slot='icon-only' />
-					</IonButton>
+					{error && (
+						<div
+							role='alert'
+							style={{
+								width: "100%",
+								textAlign: "left",
+								background: "#f4f6f8",
+								borderLeft: "4px solid #d9a62e",
+								borderRadius: "10px",
+								padding: "12px",
+								marginTop: "0.75rem",
+								display: "flex",
+								flexDirection: "column",
+								gap: "8px",
+							}}>
+							<IonText>
+								<p style={{ margin: 0, fontSize: "0.92rem" }}>{error}</p>
+							</IonText>
+							<div>
+								<IonButton size='small' fill='outline' onClick={handleAddManually}>
+									<IonIcon slot='start' icon={pencil} />
+									Add meal manually
+								</IonButton>
+							</div>
+						</div>
+					)}
+
+					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }} className='ion-margin-top'>
+						<IonButton size='large' aria-label='Take photo' onClick={() => handleAddPhoto(CameraSource.Camera)}>
+							<IonIcon size='large' icon={camera} slot='icon-only' />
+						</IonButton>
+						<IonButton fill='outline' size='small' onClick={() => handleAddPhoto(CameraSource.Photos)}>
+							<IonIcon slot='start' icon={image} />
+							Upload a photo instead
+						</IonButton>
+					</div>
 				</div>
 
 				<IonFab slot='fixed' vertical='bottom' horizontal='end'>
-					<IonFabButton onClick={handleOnSubmit} disabled={isLoading || images.length === 0}>
+					<IonFabButton aria-label='Analyze photos' onClick={handleOnSubmit} disabled={isLoading || images.length === 0}>
 						<IonIcon icon={arrowForward}></IonIcon>
 					</IonFabButton>
 				</IonFab>
 				<IonLoading message='Loading' isOpen={isLoading} />
-				<IonToast isOpen={!!error} message={error} duration={3000} color='danger' onDidDismiss={() => setError("")} />
 			</IonContent>
 		</IonPage>
 	);
