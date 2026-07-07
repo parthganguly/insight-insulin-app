@@ -286,6 +286,19 @@ export const buildCreateMealPayload = (meal: Meal): CreateMealPayload => ({
 	items: meal.items.map(mapDraftMealItemToCreatePayload),
 });
 
+// Typed error for /ai-meal-extract HTTP failures so the UI can map them to
+// curated copy (issue #74). The backend detail is kept on `message` for
+// console diagnostics only and must never be rendered to the user.
+export class AiExtractionHttpError extends Error {
+	readonly status: number;
+
+	constructor(status: number, detail: string) {
+		super(detail);
+		this.name = "AiExtractionHttpError";
+		this.status = status;
+	}
+}
+
 export const fetchAiMealFromAPI = async (base64Images: string[], textualData: string): Promise<Meal> => {
 	const res = await fetch(`${backendApiUrl}/ai-meal-extract`, {
 		method: "POST",
@@ -302,7 +315,7 @@ export const fetchAiMealFromAPI = async (base64Images: string[], textualData: st
 		} catch {
 			// Keep fallback message when error body is not JSON.
 		}
-		throw new Error(errorMessage);
+		throw new AiExtractionHttpError(res.status, errorMessage);
 	}
 	const response = await res.json();
 	return response.data.meal;

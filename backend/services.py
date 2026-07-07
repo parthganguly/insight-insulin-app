@@ -81,7 +81,9 @@ AI_MEAL_EXTRACTION_PROMPT = """
 def get_openai_client() -> OpenAI:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        raise ValueError("OPENAI_API_KEY environment variable is not set")
+        # User-safe wording: this detail reaches the client as the HTTP error
+        # body, so it must not name internal configuration (issue #74).
+        raise ValueError("AI meal extraction is not configured on this server")
     return OpenAI(api_key=api_key)
 
 
