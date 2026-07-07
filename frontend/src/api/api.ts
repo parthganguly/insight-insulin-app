@@ -1,6 +1,7 @@
 import config from "../../config.json"; // adjust path as needed
 import { Meal } from "../types/Meal";
 import { MealItem, Unit } from "../types/MealItem";
+import { parseBackendTimestampMs } from "../utils/backendTimestamp";
 import { normalizeExplicitFii, updateMealItemFii } from "../utils/fiiTrustBoundary";
 
 type NumberLike = number | string | null | undefined;
@@ -239,16 +240,11 @@ const normalizeChronicMetricsResponse = (raw: unknown): ChronicMetricsResponse =
 	};
 };
 
-const toTimestamp = (createdAt: string, fallback: number): number => {
-	const parsed = Date.parse(createdAt);
-	return Number.isFinite(parsed) ? parsed : fallback;
-};
-
 export const mapMealModelingResponseToMeal = (backendMeal: MealModelingResponse, image: string | null = null): Meal => ({
 	id: backendMeal.id,
 	image,
 	name: backendMeal.meal_name,
-	timestamp: toTimestamp(backendMeal.created_at, Date.now()),
+	timestamp: parseBackendTimestampMs(backendMeal.created_at, Date.now()),
 	isAiDraft: false,
 	items: backendMeal.items.map((item) => {
 		const canonicalItem: MealItem = {

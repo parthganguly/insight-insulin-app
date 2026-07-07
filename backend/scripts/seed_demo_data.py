@@ -71,6 +71,10 @@ DAY_ARCHETYPES = [
     (MEDIUM_MEALS[1], HIGH_MEALS[0], MEDIUM_MEALS[0]),
     (LOW_MEALS[1], MEDIUM_MEALS[1], HIGH_MEALS[1]),
 ]
+# Local wall-clock meal times (issue #77): the app displays stored UTC
+# timestamps in the viewer's local timezone, so seeded meals must be created
+# at local breakfast/lunch/dinner times (converted to UTC by create_meal) to
+# read plausibly in the demo.
 MEAL_TIMES = (dtime(8, 30), dtime(13, 0), dtime(19, 30))
 
 
@@ -88,7 +92,7 @@ def seed_demo_meals(session, days: int = 12, now: datetime | None = None) -> dic
     if existing:
         return {"inserted": 0, "existing": existing, "days": 0, "per_day": []}
 
-    now = now or datetime.utcnow()
+    now = now or datetime.now()
     per_day = []
     inserted = 0
     for offset in range(days - 1, -1, -1):
@@ -96,9 +100,10 @@ def seed_demo_meals(session, days: int = 12, now: datetime | None = None) -> dic
         archetype = DAY_ARCHETYPES[(days - 1 - offset) % len(DAY_ARCHETYPES)]
         day_names = []
         for (title, items), meal_time in zip(archetype, MEAL_TIMES):
+            # Naive local wall-clock -> aware local; create_meal stores UTC.
             meal = MealCreate(
                 meal_name=f"{DEMO_PREFIX}{title}",
-                created_at=datetime.combine(day, meal_time),
+                created_at=datetime.combine(day, meal_time).astimezone(),
                 items=items,
             )
             response = asyncio.run(create_meal(meal, session))

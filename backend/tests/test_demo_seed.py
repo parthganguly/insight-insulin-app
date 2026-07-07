@@ -4,7 +4,7 @@ import os
 import sys
 import tempfile
 import unittest
-from datetime import datetime, timedelta
+from datetime import timedelta, timezone
 from pathlib import Path
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
@@ -56,8 +56,10 @@ class DemoSeedTests(unittest.TestCase):
 
         meals = session.query(MealDB).all()
         self.assertEqual(len(meals), 36)
-        dates = {meal.created_at.date() for meal in meals}
-        self.assertEqual(len(dates), 12)
+        # Stored values are naive UTC (issue #77); seeding targets local
+        # wall-clock days, so count distinct days in local time.
+        local_dates = {meal.created_at.replace(tzinfo=timezone.utc).astimezone().date() for meal in meals}
+        self.assertEqual(len(local_dates), 12)
         for meal in meals:
             self.assertTrue(meal.meal_name.startswith(self.seeder.DEMO_PREFIX))
             self.assertIsNotNone(meal.acute_score)
@@ -86,19 +88,23 @@ class DemoSeedTests(unittest.TestCase):
         self.assertEqual(again["existing"], 36)
         self.assertEqual(session.query(MealDB).count(), 36)
 
-        # 4. Chronic metrics can read the seeded rows.
-        today = datetime.utcnow().date()
-        start = today - timedelta(days=29)
-        daily_totals = {(start + timedelta(days=i)).isoformat(): 0.0 for i in range(30)}
+        # 4. Chronic metrics can read the seeded rows. Chronic bucketing uses
+        # UTC dates (unchanged by #77); 12 seeded local days cover 12 or 13
+        # UTC dates depending on the machine timezone, so derive the window
+        # from the seeded rows instead of hardcoding 30 days back from now.
+        utc_dates = sorted({meal.created_at.date() for meal in meals})
+        start = utc_dates[0]
+        span = (utc_dates[-1] - start).days + 1
+        daily_totals = {(start + timedelta(days=i)).isoformat(): 0.0 for i in range(span)}
         daily_energy = dict(daily_totals)
         for meal in meals:
             key = meal.created_at.date().isoformat()
-            if key in daily_totals:
-                daily_totals[key] += meal.insulin_load_total or 0.0
-                daily_energy[key] += meal.total_kcal or 0.0
+            daily_totals[key] += meal.insulin_load_total or 0.0
+            daily_energy[key] += meal.total_kcal or 0.0
         series = self.chronic.build_chronic_series_from_daily_maps(daily_totals=daily_totals, daily_energy=daily_energy)
         seeded_days = [point for point in series if point["daily_dil"] > 0.0]
-        self.assertEqual(len(seeded_days), 12)
+        self.assertEqual(len(seeded_days), len(utc_dates))
+        self.assertGreaterEqual(len(utc_dates), 12)
         self.assertGreater(series[-1]["rolling_7d_dii"], 0.0)
         # Day archetypes cycle, so the trend is not flat.
         self.assertGreater(len({round(point["daily_dil"], 3) for point in seeded_days}), 1)

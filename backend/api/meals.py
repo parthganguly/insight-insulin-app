@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 import uuid
 
 from fastapi import APIRouter, Depends
@@ -19,6 +19,31 @@ from scoring_service import (
 router = APIRouter()
 
 ALLOWED_ESTIMATE_QUALITY = {"high", "medium", "low", "unknown"}
+
+
+# Timestamp contract (issue #77): meal times are UTC end to end. The SQLite
+# column is a naive DateTime, and all existing rows hold naive UTC values, so
+# the database keeps storing naive UTC (no migration, chronic day bucketing in
+# /metrics/chronic reads the same values as before). Timezone awareness is
+# attached only at the API boundary, so every serialized created_at carries an
+# explicit UTC offset instead of an ambiguous naive string.
+
+
+def coerce_created_at_to_naive_utc(value: datetime | None) -> datetime:
+    """Normalize an incoming created_at to the naive-UTC storage form."""
+    if value is None:
+        return datetime.now(timezone.utc).replace(tzinfo=None)
+    if value.tzinfo is None:
+        # Legacy naive inputs have always meant UTC; keep that meaning.
+        return value
+    return value.astimezone(timezone.utc).replace(tzinfo=None)
+
+
+def as_utc(value: datetime) -> datetime:
+    """Attach UTC to a stored naive-UTC datetime for serialization."""
+    if value.tzinfo is None:
+        return value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
 
 
 def resolve_positive_provided_fii(fii_value: int | None, fii: int | None) -> int | None:
@@ -67,7 +92,7 @@ def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
 
     return MealResponse(
         id=meal_db.id,
-        created_at=meal_db.created_at,
+        created_at=as_utc(meal_db.created_at),
         meal_name=meal_db.meal_name,
         acute_score=meal_db.acute_score,
         insulin_load_total=insulin_load_total,
@@ -96,7 +121,7 @@ def resolve_main_insulin_drivers(item_rows: list[MealItemDB]) -> list[str]:
 @router.post("/meals", response_model=MealResponse)
 async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
     meal_id = str(uuid.uuid4())
-    created_at = meal.created_at or datetime.utcnow()
+    created_at = coerce_created_at_to_naive_utc(meal.created_at)
     total_kcal = 0.0
     total_carb = 0.0
     total_protein = 0.0
