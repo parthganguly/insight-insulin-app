@@ -359,6 +359,26 @@ export const postMealToAPI = async (payload: CreateMealPayload): Promise<MealMod
 	return normalizeMealModelingResponse(responseBody);
 };
 
+// Deletes a backend-persisted meal (issue #78). A 404 is treated as success:
+// the meal is already absent from the backend, which is the state deletion is
+// trying to reach, so the caller may safely drop its local copy.
+export const deleteMealFromAPI = async (mealId: string): Promise<void> => {
+	const res = await fetch(`${backendApiUrl}/meals/${encodeURIComponent(mealId)}`, { method: "DELETE" });
+
+	if (res.ok || res.status === 404) return;
+
+	let errorMessage = "Failed to delete meal";
+	try {
+		const errorBody = (await res.json()) as { detail?: string };
+		if (errorBody?.detail) {
+			errorMessage = errorBody.detail;
+		}
+	} catch {
+		// Keep fallback message when error body is not JSON.
+	}
+	throw new Error(errorMessage);
+};
+
 export const fetchMealsFromAPI = async (): Promise<MealModelingResponse[]> => {
 	const res = await fetch(`${backendApiUrl}/meals`);
 

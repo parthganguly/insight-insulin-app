@@ -26,6 +26,7 @@ export const buildDraftFromSavedMeal = (savedMeal: Meal): Meal => ({
 	timestamp: Date.now(),
 	isAiDraft: false,
 	backend_created_at: undefined,
+	source_meal_id: savedMeal.id,
 	acute_score: undefined,
 	insulin_load_total: undefined,
 	kcal_total: undefined,

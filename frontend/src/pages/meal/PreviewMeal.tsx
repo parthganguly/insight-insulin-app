@@ -1,8 +1,8 @@
-import { IonPage, IonContent, IonHeader, IonTitle, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonInput, IonButtons, IonBackButton, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonFab, IonFabButton, IonActionSheet, IonThumbnail, IonModal, IonItem, IonLabel, IonItemDivider, IonList, IonNote, IonFabList, IonLoading } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonTitle, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonInput, IonButtons, IonBackButton, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonFab, IonFabButton, IonActionSheet, IonThumbnail, IonModal, IonItem, IonLabel, IonItemDivider, IonList, IonNote, IonFabList, IonLoading, useIonAlert } from "@ionic/react";
 import { useState } from "react";
 
 import { MealItem, Unit } from "../../types/MealItem";
-import { isPersistableImage, usePersistentMealStore } from "../../stores/persistentMealStore"; // adjust path as needed
+import { deleteMealEverywhere, isPersistableImage, resolveMealDeletionTarget, usePersistentMealStore } from "../../stores/persistentMealStore"; // adjust path as needed
 import { add, arrowBack, batteryCharging, camera, chevronForward, chevronUp, close, create, desktop, flame, information, pencil, pizza, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
@@ -27,9 +27,11 @@ const PreviewMeal = () => {
 	const [toastMessage, setToastMessage] = useState("");
 	const [toastColor, setToastColor] = useState<"success" | "danger">("success");
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isDeleting, setIsDeleting] = useState(false);
 
-	const { addMeal, deleteMeal } = usePersistentMealStore();
+	const { addMeal } = usePersistentMealStore();
 	const router = useIonRouter();
+	const [presentAlert] = useIonAlert();
 
 	const [modalItem, setModalItem] = useState<MealItem | null>(null);
 	const isAiDraftFlow = Boolean(meal.isAiDraft);
@@ -185,6 +187,46 @@ const PreviewMeal = () => {
 		} finally {
 			setIsSubmitting(false);
 		}
+	};
+
+	const performMealDeletion = async () => {
+		// Backend-persisted meals are deleted on the backend first; only a
+		// successful (or already-gone) backend delete removes the local copy,
+		// so the trash action never claims a deletion that a refresh would undo.
+		setIsDeleting(true);
+		const result = await deleteMealEverywhere(meal);
+		setIsDeleting(false);
+
+		if (!result.deleted) {
+			setToastColor("danger");
+			setToastMessage("Couldn't delete this meal, so it is still saved. Check that the app can reach the server and try again.");
+			setShowToast(true);
+			return;
+		}
+
+		resetMeal(); // Reset the current meal state
+		setTimeout(() => {
+			router.goBack();
+		}, 100);
+	};
+
+	const handleDeleteMeal = () => {
+		// Deleting an unsaved draft only discards local state; deleting a saved
+		// meal is destructive and permanent, so it gets an explicit confirm.
+		const target = resolveMealDeletionTarget(meal);
+		if (!target.backend_created_at) {
+			void performMealDeletion();
+			return;
+		}
+
+		void presentAlert({
+			header: "Delete saved meal?",
+			message: "This permanently removes the saved meal from your history.",
+			buttons: [
+				{ text: "Cancel", role: "cancel" },
+				{ text: "Delete", role: "destructive", handler: () => void performMealDeletion() },
+			],
+		});
 	};
 
 	const handleTakePicture = async () => {
@@ -684,15 +726,7 @@ const PreviewMeal = () => {
 								<IonIcon size='small' icon={chevronUp}></IonIcon>
 							</IonFabButton>
 							<IonFabList side='top'>
-								<IonFabButton
-									color='danger'
-									onClick={() => {
-										deleteMeal(meal.id);
-										resetMeal(); // Reset the current meal state
-										setTimeout(() => {
-											router.goBack();
-										}, 100);
-									}}>
+								<IonFabButton color='danger' onClick={handleDeleteMeal}>
 									<IonIcon icon={trash}></IonIcon>
 								</IonFabButton>
 								<IonFabButton color='success' onClick={handleLogMeal}>
@@ -702,6 +736,7 @@ const PreviewMeal = () => {
 						</IonFab>
 
 						<IonLoading isOpen={isSubmitting} message='Estimating insulin demand…' />
+						<IonLoading isOpen={isDeleting} message='Deleting meal…' />
 						<IonToast isOpen={showToast} message={toastMessage} duration={2200} color={toastColor} onDidDismiss={() => setShowToast(false)} />
 				</>
 			</IonContent>
