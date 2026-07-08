@@ -313,3 +313,82 @@ ion-modal.sheet-modal {
 	font-weight: 600;
 	color: var(--app-muted);
 }
+
+/* Manual draft/save clarity (issue #75). Presentation only: none of these
+   classes change save, edit, delete, or validation behavior. */
+
+.meal-status-pill {
+	display: inline-block;
+	margin-top: 6px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.meal-status-draft {
+	background: #fdf3e0;
+	color: #8a5a12;
+	border: 1px dashed #e0b866;
+}
+
+.meal-status-saved {
+	background: #e8f6ec;
+	color: #1e6f3d;
+	border: 1px solid #bfe3cb;
+}
+
+.item-list-helper {
+	margin: 2px 20px 8px;
+	font-size: 0.8rem;
+	color: var(--app-muted);
+}
+
+/* Untouched draft rows read as intentional drafts, not broken data. */
+ion-item.draft-item-row {
+	--background: #fbf7ef;
+	border-left: 3px dashed #e0b866;
+}
+
+.item-edit-affordance {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	border: 1px solid var(--app-divider);
+	background: #f4f6f8;
+	font-size: 0.76rem;
+	font-weight: 600;
+	color: var(--app-muted);
+}
+
+.save-feedback-banner {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 0 16px 12px;
+	padding: 12px 14px;
+	border-radius: 14px;
+	font-size: 0.88rem;
+	line-height: 1.45;
+}
+
+.save-feedback-banner ion-icon {
+	flex-shrink: 0;
+	font-size: 1.15rem;
+	margin-top: 1px;
+}
+
+.save-feedback-error {
+	background: #fdeceb;
+	color: #a13a30;
+	border: 1px solid #f2c3be;
+}
+
+.save-feedback-success {
+	background: #e8f6ec;
+	color: #1e6f3d;
+	border: 1px solid #bfe3cb;
+}

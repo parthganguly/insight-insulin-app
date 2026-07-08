@@ -1,9 +1,9 @@
 import { IonPage, IonContent, IonHeader, IonTitle, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonInput, IonButtons, IonBackButton, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonFab, IonFabButton, IonActionSheet, IonThumbnail, IonModal, IonItem, IonLabel, IonItemDivider, IonList, IonNote, IonFabList, IonLoading, useIonAlert } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { MealItem, Unit } from "../../types/MealItem";
 import { deleteMealEverywhere, isPersistableImage, resolveMealDeletionTarget, usePersistentMealStore } from "../../stores/persistentMealStore"; // adjust path as needed
-import { add, arrowBack, batteryCharging, camera, chevronForward, chevronUp, close, create, desktop, flame, information, pencil, pizza, save, trash } from "ionicons/icons";
+import { add, alertCircle, arrowBack, batteryCharging, camera, checkmarkCircle, chevronUp, close, create, desktop, flame, information, pencil, pizza, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } from "../../api/api";
@@ -12,12 +12,18 @@ import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { Meal } from "../../types/Meal";
 import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
+import { DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
 
 type ImpactPresentation = {
 	title: string;
 	description: string;
 	color: string;
+};
+
+type SaveFeedback = {
+	kind: "error" | "success";
+	message: string;
 };
 
 const PreviewMeal = () => {
@@ -28,6 +34,16 @@ const PreviewMeal = () => {
 	const [toastColor, setToastColor] = useState<"success" | "danger">("success");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
+	// Inline save/validation feedback (issue #75). The toast is supplementary:
+	// it disappears on its own, so it must never be the only place a rejection
+	// or confirmation is shown.
+	const [saveFeedback, setSaveFeedback] = useState<SaveFeedback | null>(null);
+
+	useEffect(() => {
+		// Once the user fixes what the inline error pointed at, retire the error
+		// instead of leaving a stale complaint next to a now-valid meal.
+		setSaveFeedback((prev) => (prev?.kind === "error" && validateMealBeforeSave(meal) === null ? null : prev));
+	}, [meal]);
 
 	const { addMeal } = usePersistentMealStore();
 	const router = useIonRouter();
@@ -108,26 +124,6 @@ const PreviewMeal = () => {
 		return Number.isFinite(parsed) ? parsed : fallback;
 	};
 
-	const validateMealBeforeSave = (draftMeal: Meal): string | null => {
-		if (draftMeal.items.length === 0) {
-			return "Add at least one meal item before saving.";
-		}
-
-		for (let i = 0; i < draftMeal.items.length; i += 1) {
-			const item = draftMeal.items[i];
-			if (!item.name?.trim()) {
-				return `Item ${i + 1} must have a name.`;
-			}
-
-			const quantity = Number(item.amount);
-			if (!Number.isFinite(quantity) || quantity <= 0) {
-				return `Item ${i + 1} quantity must be greater than 0.`;
-			}
-		}
-
-		return null;
-	};
-
 	const updateItem = (id: string, field: keyof MealItem, value: string) => {
 		if (!meal) return;
 		const updateTarget = (item: MealItem): MealItem => {
@@ -158,6 +154,7 @@ const PreviewMeal = () => {
 		if (!meal) return;
 		const validationError = validateMealBeforeSave(meal);
 		if (validationError) {
+			setSaveFeedback({ kind: "error", message: validationError });
 			setToastColor("danger");
 			setToastMessage(validationError);
 			setShowToast(true);
@@ -173,15 +170,18 @@ const PreviewMeal = () => {
 			const canonicalMeal = mapMealModelingResponseToMeal(response, meal.image);
 			setMeal(canonicalMeal);
 			addMeal(canonicalMeal);
-			setToastColor("success");
 			// Full-size photos stay in memory for this session but are not written
 			// to localStorage (photo-quota safety, #65) — say so without alarm.
-			setToastMessage(isPersistableImage(canonicalMeal.image) ? "Meal saved successfully" : "Meal saved, but the photo was not kept on this device to save storage.");
+			const successMessage = getSaveSuccessMessage(isPersistableImage(canonicalMeal.image));
+			setSaveFeedback({ kind: "success", message: successMessage });
+			setToastColor("success");
+			setToastMessage(successMessage);
 			setShowToast(true);
 		} catch (err) {
 			console.error("POST /meals failed:", err);
-			setToastColor("danger");
 			const errorMessage = err instanceof Error ? err.message : "Failed to save meal";
+			setSaveFeedback({ kind: "error", message: errorMessage });
+			setToastColor("danger");
 			setToastMessage(errorMessage);
 			setShowToast(true);
 		} finally {
@@ -324,6 +324,11 @@ const PreviewMeal = () => {
 									</div>
 								</div>
 							)}
+							{/* Saved-vs-draft state (issue #75): a fresh manual meal or a copy
+							    opened from Recents is an editable draft until it is saved, and
+							    must not read like a broken saved meal. backend_created_at is the
+							    existing persistence marker (#78); nothing new is stored. */}
+							<span className={`meal-status-pill ${meal.backend_created_at ? "meal-status-saved" : "meal-status-draft"}`}>{meal.backend_created_at ? SAVED_MEAL_STATUS : DRAFT_MEAL_STATUS}</span>
 							<IonText color='medium'>
 								<p style={{ marginTop: "4px" }}>
 									Total Items: {meal.items.length} <br />
@@ -569,6 +574,12 @@ const PreviewMeal = () => {
 						<IonLabel>{isAiDraftFlow ? "AI Draft Items" : "Meal Items"}</IonLabel>
 					</IonItemDivider>
 
+						{!isAiDraftFlow && meal.items.length > 0 && (
+							<IonText color='medium'>
+								<p className='item-list-helper'>{ITEM_LIST_EDIT_HELPER}</p>
+							</IonText>
+						)}
+
 						{meal.items.length === 0 ? (
 							<div className='draft-empty-note'>
 								<p style={{ margin: "0 0 4px", fontWeight: 600, color: "#1c2b39" }}>This meal is an editable draft</p>
@@ -645,7 +656,7 @@ const PreviewMeal = () => {
 						) : (
 							<IonList inset={true} style={{ borderRadius: "16px", boxShadow: "0 2px 10px rgba(0, 0, 0, 0.24)" }}>
 								{meal.items.map((item) => (
-									<IonItem button key={item.id} onClick={() => setModalItem(item)}>
+									<IonItem button detail={false} key={item.id} className={isDraftMealItem(item) ? "draft-item-row" : undefined} onClick={() => setModalItem(item)}>
 										{item.image ? (
 											<IonThumbnail slot='end'>
 												<IonImg alt='Silhouette of mountains' src={item.image} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "8px" }} />
@@ -653,8 +664,8 @@ const PreviewMeal = () => {
 										) : null}
 										<IonLabel>
 											<h2 style={{ marginBottom: "0.5rem" }}>{item.name}</h2>
-											{calculateTotalItemCalories(item) === 0 && calculateTotalItemCarbohydrates(item) === 0 && calculateTotalItemSaturatedFat(item) === 0 ? (
-												<span className='draft-item-hint'>Draft item — tap to add portion and nutrition</span>
+											{isDraftMealItem(item) ? (
+												<span className='draft-item-hint'>{DRAFT_ITEM_ROW_HINT}</span>
 											) : (
 												<IonNote color='medium' className='ion-text-wrap'>
 													<NutrimentComponent nutrimentName='Calories' nutrimentValue={calculateTotalItemCalories(item)} nutrimentIcon={flame} nutrimentIconColor='#d96a52' />
@@ -668,17 +679,30 @@ const PreviewMeal = () => {
 												</IonText>
 											) : null}
 										</IonLabel>
-										<IonIcon slot='end' icon={chevronForward} />
+										<span slot='end' className='item-edit-affordance' aria-hidden='true'>
+											<IonIcon icon={create} />
+											Edit
+										</span>
 									</IonItem>
 								))}
 							</IonList>
 						)}
 
 						<div className='ion-text-center ion-margin-vertical'>
-							<IonButton id='open-meal-item-action-sheet' size='large' shape='round' color='primary'>
+							<IonButton id='open-meal-item-action-sheet' size='large' shape='round' color='primary' aria-label='Add meal item'>
 								<IonIcon slot='icon-only' icon={add} size='small' />
 							</IonButton>
 						</div>
+
+						{/* Inline save feedback (issue #75): stays on screen until acted on,
+						    unlike the auto-dismissing toast, so a rejected or successful save
+						    is impossible to miss. */}
+						{saveFeedback && (
+							<div className={`save-feedback-banner ${saveFeedback.kind === "error" ? "save-feedback-error" : "save-feedback-success"}`} role='status' aria-live='polite'>
+								<IonIcon icon={saveFeedback.kind === "error" ? alertCircle : checkmarkCircle} aria-hidden='true' />
+								<span>{saveFeedback.message}</span>
+							</div>
+						)}
 
 						<div className='disclaimer-note' style={{ marginBottom: "5.5rem" }}>
 							{APP_DISCLAIMER}
@@ -722,14 +746,14 @@ const PreviewMeal = () => {
 						/>
 
 						<IonFab slot='fixed' vertical='bottom' horizontal='end'>
-							<IonFabButton>
+							<IonFabButton aria-label='Meal actions'>
 								<IonIcon size='small' icon={chevronUp}></IonIcon>
 							</IonFabButton>
 							<IonFabList side='top'>
-								<IonFabButton color='danger' onClick={handleDeleteMeal}>
+								<IonFabButton color='danger' aria-label='Delete meal' onClick={handleDeleteMeal}>
 									<IonIcon icon={trash}></IonIcon>
 								</IonFabButton>
-								<IonFabButton color='success' onClick={handleLogMeal}>
+								<IonFabButton color='success' aria-label='Save meal' onClick={handleLogMeal}>
 									<IonIcon icon={save}></IonIcon>
 								</IonFabButton>
 							</IonFabList>
