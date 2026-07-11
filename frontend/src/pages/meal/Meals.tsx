@@ -5,9 +5,10 @@ import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persi
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Meal } from "../../types/Meal";
-import { calculateTotalCalories, getMealTimeShortString } from "../../utils";
+import { calculateTotalCalories, getMealAcuteScore, getMealTimeShortString } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
+import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
 
 const AddMeal: React.FC = () => {
 	const { meals } = usePersistentMealStore();
@@ -83,7 +84,7 @@ function MealCard({ meal }: { meal: Meal }) {
 
 			<div slot='end' className='recent-card-score'>
 				<AcuteScoreProgressbar meal={meal} style={{ width: 46, height: 46 }} />
-				<span className='recent-card-score-label'>score</span>
+				<span className='recent-card-score-label'>{getAcuteScoreCaption(getMealAcuteScore(meal))}</span>
 			</div>
 		</IonItem>
 	);
