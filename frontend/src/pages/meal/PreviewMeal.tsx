@@ -7,13 +7,14 @@ import { add, alertCircle, arrowBack, batteryCharging, camera, checkmarkCircle, 
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } from "../../api/api";
-import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealDisplayCalories, getMealTimeString } from "../../utils";
+import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealAcuteScore, getMealDisplayCalories, getMealTimeString } from "../../utils";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { Meal } from "../../types/Meal";
 import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
 import { DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
+import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../utils/acuteScoreDisplay";
 
 type ImpactPresentation = {
 	title: string;
@@ -109,6 +110,8 @@ const PreviewMeal = () => {
 	};
 
 	const impactPresentation = !isAiDraftFlow ? getImpactPresentation(meal) : null;
+	const displayScore = getMealAcuteScore(meal);
+	const showAcuteScoreDetails = impactPresentation?.color !== "#95a5a6" && displayScore !== undefined;
 	const estimateQualityCopy = !isAiDraftFlow && meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality) : null;
 	const hasUnknownItems = !isAiDraftFlow && meal.items.some((item) => isUnknownSource(item.source));
 	const visibleImpactDrivers = !isAiDraftFlow ? (meal.main_insulin_drivers ?? []).filter((driver) => driver.trim().length > 0).slice(0, 3) : [];
@@ -530,6 +533,16 @@ const PreviewMeal = () => {
 								<IonText>
 									<h3 style={{ marginTop: 0, marginBottom: "8px" }}>{impactPresentation.title}</h3>
 								</IonText>
+								{showAcuteScoreDetails && (
+									<>
+										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
+											<p style={{ margin: "0 0 4px" }}>{getAcuteScoreDetailLine(displayScore)}</p>
+										</IonText>
+										<IonText color='medium' style={{ fontSize: "0.78rem" }}>
+											<p style={{ margin: "0 0 8px" }}>{ACUTE_SCORE_SCALE_EXPLAINER}</p>
+										</IonText>
+									</>
+								)}
 								<IonText color='medium'>
 									<p style={{ marginTop: 0 }}>{impactPresentation.description}</p>
 								</IonText>

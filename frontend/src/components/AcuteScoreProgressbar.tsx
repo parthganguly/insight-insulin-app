@@ -2,6 +2,7 @@ import React from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { getMealAcuteScore } from "../utils";
 import { Meal } from "../types/Meal";
+import { getAcuteRingValue, getAcuteScoreAriaLabel, getAcuteScoreText } from "../utils/acuteScoreDisplay";
 
 function AcuteScoreProgressbar({ style, meal, strokeWidth = 8 }: { style?: React.CSSProperties; meal: Meal; strokeWidth?: number }) {
 	const acuteScore = getMealAcuteScore(meal);
@@ -10,11 +11,11 @@ function AcuteScoreProgressbar({ style, meal, strokeWidth = 8 }: { style?: React
 	const accentColor = isUnknown ? "#9aa5ad" : acuteScore < 35 ? "#34a06f" : acuteScore < 60 ? "#d9a62e" : "#d96a52";
 
 	return (
-		<div style={{ ...style, display: "flex", justifyContent: "center", alignItems: "center" }}>
+		<div role='img' aria-label={getAcuteScoreAriaLabel(acuteScore)} style={{ ...style, display: "flex", justifyContent: "center", alignItems: "center" }}>
 			<CircularProgressbar
-				value={isUnknown ? 0 : acuteScore}
+				value={getAcuteRingValue(acuteScore)}
 				maxValue={100}
-				text={isUnknown ? "--" : `${acuteScore}`}
+				text={getAcuteScoreText(acuteScore)}
 				strokeWidth={strokeWidth}
 				styles={buildStyles({
 					textSize: "2.1rem",

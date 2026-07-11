@@ -4,7 +4,7 @@ import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persi
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { fetchChronicMetricsFromAPI, ChronicMetricsResponse } from "../../api/api";
-import { calculateTotalCalories, calculateTotalCarbohydrates, calculateTotalSaturatedFat, getMealTimeShortString } from "../../utils";
+import { calculateTotalCalories, calculateTotalCarbohydrates, calculateTotalSaturatedFat, getMealAcuteScore, getMealTimeShortString } from "../../utils";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { Meal } from "../../types/Meal";
@@ -13,6 +13,7 @@ import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
+import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((s) => s.meals);
@@ -168,7 +169,7 @@ function MealCard({ meal }: { meal: Meal }) {
 			</div>
 			<div slot='end' className='recent-card-score'>
 				<AcuteScoreProgressbar meal={meal} style={{ width: 46, height: 46 }} />
-				<span className='recent-card-score-label'>score</span>
+				<span className='recent-card-score-label'>{getAcuteScoreCaption(getMealAcuteScore(meal))}</span>
 			</div>
 			<IonIcon slot='end' icon={chevronForward} size='small' style={{ color: "#8a97a5" }} />
 		</IonItem>
