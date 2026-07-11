@@ -5,13 +5,11 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { fetchChronicMetricsFromAPI, ChronicMetricsResponse } from "../../api/api";
 import { calculateTotalCalories, calculateTotalCarbohydrates, calculateTotalSaturatedFat, getMealAcuteScore, getMealTimeShortString } from "../../utils";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { Meal } from "../../types/Meal";
 import { batteryCharging, chevronForward, flame, pizza } from "ionicons/icons";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
 import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
 
@@ -144,20 +142,12 @@ const Dashboard: React.FC = () => {
 export default Dashboard;
 
 function MealCard({ meal }: { meal: Meal }) {
-	const { getMealById } = usePersistentMealStore();
-	const { setMeal } = useCurrentMealStore();
-
-	const handleMealClick = (mealId: string) => {
-		// Navigate to existing meal details
-		const meal = getMealById(mealId);
-		if (!meal) {
-			return;
-		}
-		setMeal(buildDraftFromSavedMeal(meal));
-	};
-
+	// Recents is a history/review affordance (issue #89): open the saved meal's
+	// read-only detail view with its canonical score intact. Reuse-as-a-new-draft
+	// (buildDraftFromSavedMeal) belongs only to the Meals tab's explicit
+	// "tap a meal to reuse it" flow.
 	return (
-		<IonItem lines='none' detail={false} button onClick={() => handleMealClick(meal.id)} routerLink='/meals/new' key={meal.id} className='recent-card'>
+		<IonItem lines='none' detail={false} button routerLink={`/meals/saved/${encodeURIComponent(meal.id)}`} key={meal.id} className='recent-card'>
 			<div style={{ minWidth: 0, flex: 1 }}>
 				<h3 className='recent-card-name'>{meal.name}</h3>
 				<span className='recent-card-time'>{getMealTimeShortString(meal)}</span>

@@ -36,6 +36,7 @@ import Settings from "./pages/settings/Settings";
 import AddMeal from "./pages/meal/Meals";
 import AiMealAdd from "./pages/meal/AiMealAdd";
 import PreviewMeal from "./pages/meal/PreviewMeal";
+import SavedMealDetail from "./pages/meal/SavedMealDetail";
 import { useEffect, useState } from "react";
 import { SafeArea } from "capacitor-plugin-safe-area";
 
@@ -66,6 +67,9 @@ const App: React.FC = () => {
 						</Route>
 						<Route exact path='/meals/new/ai'>
 							<AiMealAdd />
+						</Route>
+						<Route exact path='/meals/saved/:mealId'>
+							<SavedMealDetail />
 						</Route>
 
 						<Route exact path='/settings'>
