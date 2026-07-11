@@ -8,12 +8,15 @@ export const getMealAcuteScore = (meal: Meal): number | undefined => {
 	}
 	return Math.round(meal.acute_score);
 };
+// Mifflin-St Jeor equation (Mifflin et al., 1990):
+// Male:   BMR = 10 * weight_kg + 6.25 * height_cm - 5 * age + 5
+// Female: BMR = 10 * weight_kg + 6.25 * height_cm - 5 * age - 161
 export const calculateBmr = (weight: number, height: number, age: number, gender: Gender): number => {
 	let bmr: number;
 	if (gender === "female") {
-		bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-	} else {
 		bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+	} else {
+		bmr = 10 * weight + 6.25 * height - 5 * age + 5;
 	}
 	return bmr;
 };
