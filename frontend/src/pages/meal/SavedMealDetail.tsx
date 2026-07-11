@@ -47,9 +47,11 @@ import {
 	APP_DISCLAIMER,
 	MEAL_SCORE_DISCLAIMER,
 	PROVIDED_FII_DISCLAIMER,
+	ROUGH_ESTIMATE_NOTICE,
 	UNKNOWN_ITEMS_NOTICE,
 	getEstimateQualityCopy,
 	humanizeFiiSource,
+	isRoughEstimateSource,
 	isUnknownSource,
 	shouldShowProvidedFiiDisclaimer,
 } from "../../utils/safetyCopy";
@@ -65,8 +67,15 @@ import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../util
 const SavedMealDetail: React.FC = () => {
 	const { mealId } = useParams<{ mealId: string }>();
 	// react-router v5 does not decode URL params; Dashboard encodes the id.
-	const decodedMealId = decodeURIComponent(mealId);
-	const meal = usePersistentMealStore((s) => s.meals.find((m) => m.id === decodedMealId));
+	// A malformed hand-typed link (e.g. a stray "%") must fall through to the
+	// not-found state instead of throwing during render.
+	let decodedMealId: string | null = null;
+	try {
+		decodedMealId = decodeURIComponent(mealId);
+	} catch {
+		decodedMealId = null;
+	}
+	const meal = usePersistentMealStore((s) => (decodedMealId === null ? undefined : s.meals.find((m) => m.id === decodedMealId)));
 
 	const router = useIonRouter();
 	const [presentAlert] = useIonAlert();
@@ -278,6 +287,11 @@ const SavedMealDetail: React.FC = () => {
 									{shouldShowProvidedFiiDisclaimer(item.source, item.fii) ? (
 										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
 											<p style={{ marginTop: "8px", marginBottom: 0 }}>{PROVIDED_FII_DISCLAIMER}</p>
+										</IonText>
+									) : null}
+									{isRoughEstimateSource(item.source) ? (
+										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
+											<p style={{ marginTop: "8px", marginBottom: 0 }}>{ROUGH_ESTIMATE_NOTICE}</p>
 										</IonText>
 									) : null}
 									{item.why ? (

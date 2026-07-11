@@ -23,7 +23,7 @@ import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
 import { DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
 import { ACUTE_SCORE_SCALE_EXPLAINER } from "../../utils/acuteScoreDisplay";
-import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER } from "../../utils/safetyCopy";
+import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, ROUGH_ESTIMATE_NOTICE } from "../../utils/safetyCopy";
 
 // Read-only saved-meal detail view (issue #89): opening a saved meal from
 // Dashboard Recents must show the canonical saved record — real acute_score,
@@ -199,5 +199,17 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(await screen.findByText("Meal Not Found")).toBeTruthy();
 		expect(screen.queryByText(SAVED_MEAL_STATUS)).toBeNull();
 		expect(screen.queryByText("Delete Saved Meal")).toBeNull();
+	});
+
+	it("surfaces the rough-estimate notice on items with fallback FII sources", async () => {
+		stubBackend();
+		const roughMeal = savedMeal();
+		roughMeal.items[0] = { ...roughMeal.items[0], source: "macro_fallback", fii: undefined };
+		usePersistentMealStore.setState({ meals: [roughMeal] });
+		renderSavedMealDetail();
+
+		expect(await screen.findByText(SAVED_MEAL_STATUS)).toBeTruthy();
+		expect(screen.getByText(ROUGH_ESTIMATE_NOTICE)).toBeTruthy();
+		expect(screen.getByText("Source: Macro-based rough estimate")).toBeTruthy();
 	});
 });
