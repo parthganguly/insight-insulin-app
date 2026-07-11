@@ -10,17 +10,11 @@ import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } 
 import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealAcuteScore, getMealDisplayCalories, getMealTimeString } from "../../utils";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { Meal } from "../../types/Meal";
 import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
+import { getImpactPresentation } from "../../utils/insulinImpactPresentation";
 import { DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
 import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../utils/acuteScoreDisplay";
-
-type ImpactPresentation = {
-	title: string;
-	description: string;
-	color: string;
-};
 
 type SaveFeedback = {
 	kind: "error" | "success";
@@ -75,39 +69,6 @@ const PreviewMeal = () => {
 	};
 
 	const dishInfo = isAiDraftFlow ? detectDishBase(meal.name) : null;
-
-	const getImpactPresentation = (savedMeal: Meal): ImpactPresentation => {
-		const quality = savedMeal.estimate_quality?.toLowerCase();
-		if (quality === "low" || quality === "unknown" || typeof savedMeal.acute_score !== "number" || !Number.isFinite(savedMeal.acute_score)) {
-			return {
-				title: "Hard to estimate from this meal",
-				description: "This saved meal has limited data quality, so the insulin-demand estimate could be off.",
-				color: "#95a5a6",
-			};
-		}
-
-		if (savedMeal.acute_score < 35) {
-			return {
-				title: "Lower relative insulin demand",
-				description: "Meals like this tend to create a smaller estimated insulin demand. This is a general tendency, not a personal prediction.",
-				color: "#2ecc71",
-			};
-		}
-
-		if (savedMeal.acute_score < 60) {
-			return {
-				title: "Moderate relative insulin demand",
-				description: "Meals like this tend to create a moderate estimated insulin demand. This is a general tendency, not a personal prediction.",
-				color: "#f1c40f",
-			};
-		}
-
-		return {
-			title: "Higher relative insulin demand",
-			description: "Meals like this tend to create a larger estimated insulin demand. This is a general tendency, not a personal prediction.",
-			color: "#e74c3c",
-		};
-	};
 
 	const impactPresentation = !isAiDraftFlow ? getImpactPresentation(meal) : null;
 	const displayScore = getMealAcuteScore(meal);
