@@ -12,6 +12,16 @@ import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
 import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
+import {
+	TREND_LOADING_LINE,
+	TREND_NO_DATA_LINE,
+	TREND_STATUS_LINE,
+	TREND_UNAVAILABLE_LINE,
+	getTrendAriaLabel,
+	getTrendCoverageText,
+	getTrendRingValue,
+	getTrendText,
+} from "../../utils/trendDisplay";
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((s) => s.meals);
@@ -64,21 +74,21 @@ const Dashboard: React.FC = () => {
 
 	// Logged-days-only trend (issue #93): the rolling value is null when no
 	// day in the window has logs, and coverage says how many days contributed.
+	// The displayed number is an energy-normalized index (kcal-weighted mean
+	// FII) — not total or average daily insulin demand — and it can exceed
+	// 100, so only the ring geometry caps. See utils/trendDisplay.ts.
 	const rolling7dDii = chronicMetrics?.current_rolling_7d_dii;
 	const trendValue = typeof rolling7dDii === "number" && Number.isFinite(rolling7dDii) ? Math.round(rolling7dDii * 100) : undefined;
-	const trendText = isChronicLoading ? "..." : trendValue === undefined ? "--" : `${trendValue}`;
+	const trendText = getTrendText(trendValue, isChronicLoading);
 	const windowDays = chronicMetrics?.window_days ?? 7;
 	const loggedDays = chronicMetrics?.logged_days_last_7 ?? 0;
-	const coverageText = chronicMetrics ? `${loggedDays} of ${windowDays} days logged` : null;
+	const coverageText = chronicMetrics ? getTrendCoverageText(loggedDays, windowDays) : null;
 	const trendStatusText = isChronicLoading
-		? "Loading trend from your logged meals…"
+		? TREND_LOADING_LINE
 		: trendValue === undefined
-			? chronicError ?? (chronicMetrics && !chronicMetrics.has_data ? "No meals logged in the last 7 days, so there is no trend to show yet." : "Long-term backend trend data is unavailable right now.")
-			: "Average estimated insulin demand per logged day, over the days you logged in the last 7.";
-	const trendAriaLabel =
-		trendValue === undefined
-			? "7-day logged meal trend not available."
-			: `7-day logged meal trend ${trendValue}, averaged over ${loggedDays} of the last ${windowDays} days that have logged meals. Days without logs are not counted. This is not a measure of insulin resistance or metabolic health.`;
+			? chronicError ?? (chronicMetrics && !chronicMetrics.has_data ? TREND_NO_DATA_LINE : TREND_UNAVAILABLE_LINE)
+			: TREND_STATUS_LINE;
+	const trendAriaLabel = getTrendAriaLabel(trendValue, loggedDays, windowDays);
 
 	return (
 		<IonPage>
@@ -106,7 +116,7 @@ const Dashboard: React.FC = () => {
 							<div className='hero-bezel'>
 								<div role='img' aria-label={trendAriaLabel} className='hero-ring'>
 									<CircularProgressbar
-										value={trendValue ?? 0}
+										value={getTrendRingValue(trendValue)}
 										maxValue={100}
 										text={trendText}
 										strokeWidth={8}

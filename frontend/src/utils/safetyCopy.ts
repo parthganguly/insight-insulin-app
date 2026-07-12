@@ -2,14 +2,18 @@
 // approved in issue #93. These strings are user-facing safety wording; do not
 // edit without a new approval on one of those issues.
 
-// Issue #93: "published population-level food data" oversold the current
-// small starter dataset, so the word "published" was removed. Every negative
-// disclaimer is unchanged.
+// Issue #93 dataset-truth correction. The live dataset is ten hand-entered
+// `starter_placeholder` rows: no value traces to a cited primary study, and
+// the confidences are not measurement-derived. Copy claiming "published",
+// "population-level", "population-average", "validated", or "measured" data
+// therefore overstates the evidence and is forbidden here (guarded by tests
+// in safetyCopy.test.ts). Items with no suitable dataset value fall through
+// to heuristic estimates, which the copy must also admit.
 export const APP_DISCLAIMER =
-	"INSIGHT estimates the relative insulin demand of meals using population-level food data. It does not measure or predict your personal insulin or glucose response, does not diagnose any condition, and is not medical advice. Do not use it to make insulin dosing or treatment decisions.";
+	"INSIGHT estimates relative meal insulin demand using a limited starter set of food insulin-index values, and heuristic estimates when a suitable food value is unavailable. The dataset and model are not yet scientifically validated. It does not measure or predict your personal insulin or glucose response, diagnose any condition, or provide medical advice. Do not use it for insulin dosing or treatment decisions.";
 
 export const MEAL_SCORE_DISCLAIMER =
-	"Estimated from population-average food insulin index data and your entered portions. This is a relative comparison tool, not a prediction of your body’s response.";
+	"Estimated from the app’s limited food insulin-index dataset, heuristic fallbacks, and your entered portions. The dataset and model are not yet validated. This is a relative comparison tool, not a prediction of your body’s response.";
 
 export const UNKNOWN_ITEMS_NOTICE =
 	"We couldn’t estimate some items, so they add 0 to this score. The real insulin demand may be higher than shown.";
@@ -17,11 +21,12 @@ export const UNKNOWN_ITEMS_NOTICE =
 export const ROUGH_ESTIMATE_NOTICE =
 	"No direct insulin-index data was available for this item, so this is a rough estimate from nutrition data or typical dish components. Treat it as approximate.";
 
-// Issue #93: logged-days-only semantics. Days without logs are excluded from
-// the trend (they no longer drag it toward zero), so the disclaimer now
-// explains coverage and the remaining partial-logging limitation instead.
+// Issue #93: logged-days-only semantics, plus the dataset-truth correction.
+// The displayed trend is an energy-normalized index (kcal-weighted mean FII),
+// not total or average daily insulin demand — see utils/trendDisplay.ts. It is
+// not a percentage and can exceed 100 (a potato-only day displays 121).
 export const CHRONIC_TREND_DISCLAIMER =
-	"This trend averages only the days you logged meals on; days without logs are left out, not counted as zero. Meals you ate but didn't log still aren't reflected. It is not a measure of insulin resistance or metabolic health.";
+	"This is an energy-normalized insulin-demand index, not a total or a percentage, and it can exceed 100 — the ring caps at 100 as a visual guide only. It averages only the days you logged meals on; days without logs are left out, not counted as zero, and meals you ate but didn’t log on a logged day still aren’t reflected. It is not a measure of insulin resistance or metabolic health.";
 
 export const PROVIDED_FII_DISCLAIMER =
 	"This item uses an insulin-index value you entered. The app has not verified that value.";

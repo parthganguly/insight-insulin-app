@@ -36,7 +36,7 @@ describe("7-Day Logged Meal Trend", () => {
 
 		cy.contains("0 of 7 days logged").should("be.visible");
 		cy.contains("No meals logged in the last 7 days, so there is no trend to show yet.").should("be.visible");
-		cy.get("[aria-label='7-day logged meal trend not available.']")
+		cy.get("[aria-label*='7-day logged meal trend not available']")
 			.should("exist")
 			.invoke("text")
 			.should("contain", "--")
@@ -47,8 +47,38 @@ describe("7-Day Logged Meal Trend", () => {
 		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 4, rollingDii: 0.15 } });
 		visitFresh("/dashboard");
 
-		cy.get(
-			"[aria-label='7-day logged meal trend 15, averaged over 4 of the last 7 days that have logged meals. Days without logs are not counted. This is not a measure of insulin resistance or metabolic health.']",
-		).should("exist");
+		cy.get("[aria-label*='7-day logged meal trend 15']")
+			.should("have.attr", "aria-label")
+			.and("contain", "energy-normalized insulin-demand index")
+			.and("contain", "4 of the last 7 days")
+			.and("contain", "Days without logged meals are excluded")
+			.and("contain", "ring caps at 100 and is a visual guide only")
+			.and("contain", "not a measure of insulin resistance or metabolic health");
+	});
+
+	it("keeps an above-100 index as a raw uncapped number (the ring alone caps)", () => {
+		// A potato-only day (FII 121, a real row in the live dataset) yields an
+		// index of 121 — the number must not be capped or called a percentage.
+		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 7, rollingDii: 1.21 } });
+		visitFresh("/dashboard");
+
+		cy.get("[aria-label*='7-day logged meal trend 121']")
+			.should("contain.text", "121")
+			.and("have.attr", "aria-label")
+			.and("contain", "not a percentage and can exceed 100");
+	});
+
+	it("never describes the index as total or average daily insulin demand", () => {
+		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 7, rollingDii: 0.15 } });
+		visitFresh("/dashboard");
+
+		cy.get("ion-app")
+			.invoke("text")
+			.then((text) => {
+				const lowered = text.toLowerCase();
+				for (const forbidden of ["estimated insulin demand per logged day", "total daily insulin demand", "average insulin demand per day", "chronic score", "metabolic score"]) {
+					expect(lowered, `trend copy must not claim "${forbidden}"`).to.not.contain(forbidden);
+				}
+			});
 	});
 });
