@@ -21,6 +21,7 @@ import {
 	getTrendCoverageText,
 	getTrendRingValue,
 	getTrendText,
+	resolveTrendState,
 } from "../../utils/trendDisplay";
 
 const Dashboard: React.FC = () => {
@@ -83,12 +84,25 @@ const Dashboard: React.FC = () => {
 	const windowDays = chronicMetrics?.window_days ?? 7;
 	const loggedDays = chronicMetrics?.logged_days_last_7 ?? 0;
 	const coverageText = chronicMetrics ? getTrendCoverageText(loggedDays, windowDays) : null;
-	const trendStatusText = isChronicLoading
-		? TREND_LOADING_LINE
-		: trendValue === undefined
-			? chronicError ?? (chronicMetrics && !chronicMetrics.has_data ? TREND_NO_DATA_LINE : TREND_UNAVAILABLE_LINE)
-			: TREND_STATUS_LINE;
-	const trendAriaLabel = getTrendAriaLabel(trendValue, loggedDays, windowDays);
+	// The accessible label must distinguish loading / failed / genuinely-no-data
+	// (issue #93): a pending or failed request must never tell a screen reader
+	// that no meals were logged, because it does not know that.
+	const trendState = resolveTrendState({
+		isLoading: isChronicLoading,
+		errorMessage: chronicError,
+		hasResponse: chronicMetrics !== null,
+		hasData: chronicMetrics?.has_data ?? false,
+		trend: trendValue,
+	});
+	const trendStatusText =
+		trendState === "loading"
+			? TREND_LOADING_LINE
+			: trendState === "unavailable"
+				? chronicError ?? TREND_UNAVAILABLE_LINE
+				: trendState === "no-data"
+					? TREND_NO_DATA_LINE
+					: TREND_STATUS_LINE;
+	const trendAriaLabel = getTrendAriaLabel(trendState, trendValue, loggedDays, windowDays);
 
 	return (
 		<IonPage>

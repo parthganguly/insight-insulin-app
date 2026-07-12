@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
 import {
+	TREND_ARIA_LOADING,
+	TREND_ARIA_NO_DATA,
+	TREND_ARIA_UNAVAILABLE,
 	TREND_NO_DATA_LINE,
 	TREND_RING_MAX,
 	TREND_STATUS_LINE,
@@ -9,6 +12,7 @@ import {
 	getTrendRingValue,
 	getTrendText,
 	isAboveTrendRingMax,
+	resolveTrendState,
 } from "./trendDisplay";
 
 // The displayed trend is rolling_7d_dii × 100. Since
@@ -102,15 +106,79 @@ describe("getTrendCoverageText", () => {
 	});
 });
 
+describe("resolveTrendState (never infers no-data from a missing number)", () => {
+	const base = { isLoading: false, errorMessage: null, hasResponse: true, hasData: true, trend: 15 };
+
+	it("is loading whenever the request is in flight, whatever else is set", () => {
+		expect(resolveTrendState({ ...base, isLoading: true })).toBe("loading");
+		expect(resolveTrendState({ ...base, isLoading: true, trend: undefined, hasResponse: false, hasData: false })).toBe("loading");
+		expect(resolveTrendState({ ...base, isLoading: true, errorMessage: "boom" })).toBe("loading");
+	});
+
+	it("is unavailable on a failed fetch — never no-data", () => {
+		const failed = resolveTrendState({ ...base, errorMessage: "Internal server error", trend: undefined, hasResponse: false, hasData: false });
+		expect(failed).toBe("unavailable");
+		expect(failed).not.toBe("no-data");
+	});
+
+	it("is unavailable when no response has arrived, even without an error", () => {
+		expect(resolveTrendState({ ...base, hasResponse: false, hasData: false, trend: undefined })).toBe("unavailable");
+	});
+
+	it("is no-data only for a SUCCESSFUL response reporting zero logged days", () => {
+		expect(resolveTrendState({ isLoading: false, errorMessage: null, hasResponse: true, hasData: false, trend: undefined })).toBe("no-data");
+	});
+
+	it("treats a successful response that claims data but carries no number as unavailable, not no-data", () => {
+		expect(resolveTrendState({ isLoading: false, errorMessage: null, hasResponse: true, hasData: true, trend: undefined })).toBe("unavailable");
+	});
+
+	it.each([0, 15, 100, 121, 300])("is a value state for the finite index %s", (trend) => {
+		expect(resolveTrendState({ ...base, trend })).toBe("value");
+	});
+});
+
+describe("getTrendAriaLabel absent-value states are distinct", () => {
+	it("uses the exact loading label and never claims meals were not logged", () => {
+		const label = getTrendAriaLabel("loading", undefined, 0, 7);
+		expect(label).toBe(TREND_ARIA_LOADING);
+		expect(label).toBe("7-day logged meal trend loading.");
+		expect(label.toLowerCase()).not.toContain("no meals");
+	});
+
+	it("uses the exact unavailable label and never claims meals were not logged", () => {
+		const label = getTrendAriaLabel("unavailable", undefined, 0, 7);
+		expect(label).toBe(TREND_ARIA_UNAVAILABLE);
+		expect(label).toBe("7-day logged meal trend unavailable because the data could not be loaded.");
+		expect(label.toLowerCase()).not.toContain("no meals");
+	});
+
+	it("uses the exact no-data label, which is the ONLY one that may say no meals were logged", () => {
+		const label = getTrendAriaLabel("no-data", undefined, 0, 7);
+		expect(label).toBe(TREND_ARIA_NO_DATA);
+		expect(label).toBe("7-day logged meal trend not available because no meals were logged in the last 7 days.");
+		expect(label.toLowerCase()).toContain("no meals were logged");
+	});
+
+	it("keeps the three absent-value labels mutually distinct", () => {
+		const labels = [TREND_ARIA_LOADING, TREND_ARIA_UNAVAILABLE, TREND_ARIA_NO_DATA];
+		expect(new Set(labels).size).toBe(3);
+	});
+
+	it("falls back to unavailable if a value state somehow carries no number", () => {
+		expect(getTrendAriaLabel("value", undefined, 4, 7)).toBe(TREND_ARIA_UNAVAILABLE);
+		expect(getTrendAriaLabel("value", Number.NaN, 4, 7)).toBe(TREND_ARIA_UNAVAILABLE);
+	});
+});
+
 describe("getTrendAriaLabel (accessible meaning)", () => {
 	it.each(TREND_VALUES)("describes the displayed quantity accurately for %s", (trend) => {
-		const label = getTrendAriaLabel(trend, 4, 7);
-
 		if (trend === null) {
-			expect(label).toContain("not available");
+			expect(getTrendAriaLabel("no-data", trend, 4, 7)).toBe(TREND_ARIA_NO_DATA);
 			return;
 		}
 
+		const label = getTrendAriaLabel("value", trend, 4, 7);
 		expect(label).toContain("energy-normalized insulin-demand index");
 		expect(label).toContain("4 of the last 7 days");
 		expect(label).toContain("Days without logged meals are excluded");
@@ -121,13 +189,13 @@ describe("getTrendAriaLabel (accessible meaning)", () => {
 
 	it("discloses that the index exceeds 100 and is not a percentage, only when it does", () => {
 		for (const above of [121, 300]) {
-			const label = getTrendAriaLabel(above, 7, 7);
+			const label = getTrendAriaLabel("value", above, 7, 7);
 			expect(label).toContain(`trend ${above}`);
 			expect(label).toContain("above 100");
 			expect(label).toContain("not a percentage and can exceed 100");
 		}
 		for (const notAbove of [0, 15, 100]) {
-			expect(getTrendAriaLabel(notAbove, 7, 7)).not.toContain("above 100");
+			expect(getTrendAriaLabel("value", notAbove, 7, 7)).not.toContain("above 100");
 		}
 	});
 });
@@ -139,7 +207,7 @@ describe("trend copy truth guard (issue #93)", () => {
 	const ALL_TREND_COPY = [
 		TREND_STATUS_LINE,
 		TREND_NO_DATA_LINE,
-		...TREND_VALUES.map((value) => getTrendAriaLabel(value, 4, 7)),
+		...TREND_VALUES.map((value) => getTrendAriaLabel(value === null ? "no-data" : "value", value, 4, 7)),
 	]
 		.join(" ")
 		.toLowerCase()

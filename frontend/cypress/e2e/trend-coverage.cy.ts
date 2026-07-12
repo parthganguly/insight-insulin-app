@@ -5,7 +5,7 @@
 // "Chronic Score" name never appears, and identical logged eating shows the
 // same per-logged-day value at 1/7 and 7/7 coverage.
 
-import { stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
+import { BACKEND_ORIGIN, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
 const seededMeal = syntheticBackendMeal("syn-1", "Synthetic Rice Bowl", 189);
 
@@ -66,6 +66,35 @@ describe("7-Day Logged Meal Trend", () => {
 			.should("contain.text", "121")
 			.and("have.attr", "aria-label")
 			.and("contain", "not a percentage and can exceed 100");
+	});
+
+	// The three absent-value states must stay distinct to a screen reader: a
+	// pending or failed request knows nothing about whether meals were logged.
+	it("announces loading and failure without falsely claiming no meals were logged", () => {
+		// Failure: uses the existing chronicFail interception.
+		stubBackend({ meals: [seededMeal], chronicFail: true });
+		visitFresh("/dashboard");
+		cy.get("[aria-label*='7-day logged meal trend unavailable']")
+			.should("have.attr", "aria-label", "7-day logged meal trend unavailable because the data could not be loaded.")
+			.and("not.contain", "no meals");
+
+		// Loading: hold the response open so the in-flight state is observable.
+		cy.intercept("GET", `${BACKEND_ORIGIN}/metrics/chronic*`, (req) => {
+			req.on("response", (res) => res.setDelay(4000));
+		}).as("slowChronic");
+		visitFresh("/dashboard");
+		cy.get("[aria-label='7-day logged meal trend loading.']").should("exist").and("not.contain", "no meals");
+	});
+
+	it("announces no-data only for a successful response with zero logged days", () => {
+		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 0, rollingDii: null } });
+		visitFresh("/dashboard");
+
+		cy.get("[aria-label*='7-day logged meal trend not available']").should(
+			"have.attr",
+			"aria-label",
+			"7-day logged meal trend not available because no meals were logged in the last 7 days.",
+		);
 	});
 
 	it("never describes the index as total or average daily insulin demand", () => {

@@ -5,7 +5,7 @@ import App from "../../App";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
-import { getTrendAriaLabel } from "../../utils/trendDisplay";
+import { TREND_ARIA_LOADING, TREND_ARIA_NO_DATA, TREND_ARIA_UNAVAILABLE, getTrendAriaLabel } from "../../utils/trendDisplay";
 
 // 7-Day Logged Meal Trend rendering (issue #93): the Dashboard must show the
 // logged-days-only trend with explicit coverage ("N of 7 days logged"), show
@@ -105,7 +105,7 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		expect(await screen.findByText("0 of 7 days logged")).toBeTruthy();
 		expect(await screen.findByText("No meals logged in the last 7 days, so there is no trend to show yet.")).toBeTruthy();
 		// The trend ring must not present missing data as a numeric 0.
-		const ring = screen.getByRole("img", { name: getTrendAriaLabel(null, 0, 7) });
+		const ring = screen.getByRole("img", { name: getTrendAriaLabel("no-data", null, 0, 7) });
 		expect(ring.textContent).toContain("--");
 		expect(ring.textContent).not.toMatch(/\b0\b/);
 	});
@@ -128,6 +128,42 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		expect(screen.getByText("...")).toBeTruthy();
 	});
 
+	// The three absent-value states must stay distinct to a screen reader. A
+	// pending or failed request knows nothing about whether meals were logged,
+	// so neither may ever announce "no meals were logged".
+	it("announces LOADING without claiming that no meals were logged", async () => {
+		stubBackend({ kind: "pending" });
+		renderDashboard();
+
+		expect(await screen.findByText("Loading trend from your logged meals…")).toBeTruthy();
+		const ring = screen.getByRole("img", { name: TREND_ARIA_LOADING });
+		const label = ring.getAttribute("aria-label") ?? "";
+		expect(label).toBe("7-day logged meal trend loading.");
+		expect(label.toLowerCase()).not.toContain("no meals");
+	});
+
+	it("announces UNAVAILABLE after a failed fetch, without claiming that no meals were logged", async () => {
+		stubBackend({ kind: "http-error" });
+		renderDashboard();
+
+		expect(await screen.findByText("Internal server error")).toBeTruthy();
+		const ring = screen.getByRole("img", { name: TREND_ARIA_UNAVAILABLE });
+		const label = ring.getAttribute("aria-label") ?? "";
+		expect(label).toBe("7-day logged meal trend unavailable because the data could not be loaded.");
+		expect(label.toLowerCase()).not.toContain("no meals");
+	});
+
+	it("announces NO-DATA only for a successful response with zero logged days", async () => {
+		stubBackend({ kind: "ok", loggedDays: 0, rollingDii: null });
+		renderDashboard();
+
+		expect(await screen.findByText("0 of 7 days logged")).toBeTruthy();
+		const ring = screen.getByRole("img", { name: TREND_ARIA_NO_DATA });
+		const label = ring.getAttribute("aria-label") ?? "";
+		expect(label).toBe("7-day logged meal trend not available because no meals were logged in the last 7 days.");
+		expect(label.toLowerCase()).toContain("no meals were logged");
+	});
+
 	// The trend is an energy-normalized index (kcal-weighted mean FII) and can
 	// exceed 100 using only live dataset values — a potato-only day (FII 121)
 	// displays 121. The raw number must stay visible; only the ring caps.
@@ -142,7 +178,7 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		renderDashboard();
 
 		expect(await screen.findByText(expectedText)).toBeTruthy();
-		const ring = screen.getByRole("img", { name: getTrendAriaLabel(dii100, 7, 7) });
+		const ring = screen.getByRole("img", { name: getTrendAriaLabel("value", dii100, 7, 7) });
 		// The ring geometry caps at 100 while the text keeps the raw value.
 		expect(ring.textContent).toContain(expectedText);
 		if (dii100 > 100) {
@@ -154,7 +190,7 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		stubBackend({ kind: "ok", loggedDays: 4, rollingDii: 0.15 });
 		renderDashboard();
 
-		const ring = await screen.findByRole("img", { name: getTrendAriaLabel(15, 4, 7) });
+		const ring = await screen.findByRole("img", { name: getTrendAriaLabel("value", 15, 4, 7) });
 		expect(ring).toBeTruthy();
 		// The accessible description must state what the number actually is.
 		const label = ring.getAttribute("aria-label") ?? "";

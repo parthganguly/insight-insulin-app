@@ -43,9 +43,47 @@ export const TREND_LOADING_LINE = "Loading trend from your logged meals…";
 
 export const TREND_UNAVAILABLE_LINE = "Long-term backend trend data is unavailable right now.";
 
-export const getTrendAriaLabel = (trend: number | null | undefined, loggedDays: number, windowDays: number): string => {
+// The trend has three distinct ABSENT-value states plus a value state, and a
+// screen reader must not confuse them. A pending or failed request tells us
+// nothing about whether meals were logged, so neither may ever claim "no meals
+// logged" — that assertion is only true for a SUCCESSFUL response reporting
+// has_data = false. Never infer "no-data" from a missing number alone.
+export type TrendAccessibilityState = "loading" | "unavailable" | "no-data" | "value";
+
+export type TrendStateInput = {
+	isLoading: boolean;
+	/** Non-null when the chronic fetch failed. */
+	errorMessage: string | null;
+	/** True once a chronic response has actually been received. */
+	hasResponse: boolean;
+	/** The response's has_data flag (meaningless unless hasResponse). */
+	hasData: boolean;
+	/** The rounded index, or undefined when the response carried none. */
+	trend: number | undefined;
+};
+
+export const resolveTrendState = ({ isLoading, errorMessage, hasResponse, hasData, trend }: TrendStateInput): TrendAccessibilityState => {
+	if (isLoading) return "loading";
+	if (errorMessage !== null || !hasResponse) return "unavailable";
+	if (typeof trend === "number" && Number.isFinite(trend)) return "value";
+	// A successful response with no logged days is the ONLY case that may say
+	// "no meals were logged". A successful response that claims data but
+	// carries no usable number is a backend inconsistency, not a no-data state.
+	return hasData ? "unavailable" : "no-data";
+};
+
+export const TREND_ARIA_LOADING = "7-day logged meal trend loading.";
+export const TREND_ARIA_UNAVAILABLE = "7-day logged meal trend unavailable because the data could not be loaded.";
+export const TREND_ARIA_NO_DATA = "7-day logged meal trend not available because no meals were logged in the last 7 days.";
+
+export const getTrendAriaLabel = (state: TrendAccessibilityState, trend: number | null | undefined, loggedDays: number, windowDays: number): string => {
+	if (state === "loading") return TREND_ARIA_LOADING;
+	if (state === "unavailable") return TREND_ARIA_UNAVAILABLE;
+	if (state === "no-data") return TREND_ARIA_NO_DATA;
+
 	if (trend === undefined || trend === null || !Number.isFinite(trend)) {
-		return "7-day logged meal trend not available. No meals logged in the last 7 days.";
+		// Defensive: a "value" state must carry a finite number.
+		return TREND_ARIA_UNAVAILABLE;
 	}
 
 	const rounded = Math.round(trend);
