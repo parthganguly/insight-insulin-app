@@ -7,8 +7,14 @@ Before planning, reviewing, or changing code, read:
 1. `docs/target-architecture.md`
 2. `docs/scientific-model.md`
 3. `docs/engineering-model.md`
-4. `docs/code-audit.md`
+4. `reports/project-audit/2026-07-12-insight-comprehensive-audit.md`
 5. `docs/scientific-validation-plan.md`
+6. `docs/decisions/2026-07-13-validation-gate.md`
+
+`docs/code-audit.md` (2026-03-21) is **deprecated and no longer part of this
+set** (issue #93). Its findings were fixed long ago and it cites a deleted
+document; it is retained only as historical evidence and carries a
+deprecation banner. The certified comprehensive audit above replaces it.
 
 When documents conflict:
 

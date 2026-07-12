@@ -58,22 +58,31 @@ export type MealModelingResponse = {
 	main_insulin_drivers: string[];
 };
 
+// Logged-days-only trend semantics (issue #93): unlogged days carry null
+// daily values and are excluded from the rolling means, which are null when
+// the trailing window has no logged days. Coverage metadata says how many of
+// the last 7 days actually had logs — missing data is never rendered as 0.
 export type ChronicMetricPoint = {
 	date: string;
-	daily_dil: number;
-	total_daily_energy: number;
-	daily_dii: number;
-	rolling_7d_dil: number;
-	rolling_7d_dii: number;
+	logged: boolean;
+	daily_dil: number | null;
+	total_daily_energy: number | null;
+	daily_dii: number | null;
+	rolling_7d_dil: number | null;
+	rolling_7d_dii: number | null;
+	logged_days_in_window: number;
 };
 
 export type ChronicMetricsResponse = {
 	days: number;
+	window_days: number;
+	logged_days_last_7: number;
+	has_data: boolean;
 	series: ChronicMetricPoint[];
-	current_daily_dil: number;
-	current_daily_dii: number;
-	current_rolling_7d_dil: number;
-	current_rolling_7d_dii: number;
+	current_daily_dil: number | null;
+	current_daily_dii: number | null;
+	current_rolling_7d_dil: number | null;
+	current_rolling_7d_dii: number | null;
 };
 
 const DEFAULT_BACKEND_API_URL = "http://127.0.0.1:8000";
@@ -216,27 +225,41 @@ const normalizeMealModelingResponse = (raw: unknown): MealModelingResponse => {
 	};
 };
 
+// Missing data must stay missing: null/undefined/non-numeric values become
+// null, never 0, so an unlogged day cannot masquerade as a zero-insulin day.
+const toNullableNumber = (value: NumberLike): number | null => {
+	if (value === null || value === undefined) return null;
+	const parsed = asFiniteNumber(value);
+	return parsed === undefined ? null : parsed;
+};
+
 const normalizeChronicMetricPoint = (point: unknown): ChronicMetricPoint => {
 	const source = point && typeof point === "object" ? (point as Record<string, unknown>) : {};
 	return {
 		date: toNonEmptyString(source.date) ?? new Date().toISOString().slice(0, 10),
-		daily_dil: toNumberWithDefault(source.daily_dil as NumberLike, 0),
-		total_daily_energy: toNumberWithDefault(source.total_daily_energy as NumberLike, 0),
-		daily_dii: toNumberWithDefault(source.daily_dii as NumberLike, 0),
-		rolling_7d_dil: toNumberWithDefault(source.rolling_7d_dil as NumberLike, 0),
-		rolling_7d_dii: toNumberWithDefault(source.rolling_7d_dii as NumberLike, 0),
+		logged: source.logged === true,
+		daily_dil: toNullableNumber(source.daily_dil as NumberLike),
+		total_daily_energy: toNullableNumber(source.total_daily_energy as NumberLike),
+		daily_dii: toNullableNumber(source.daily_dii as NumberLike),
+		rolling_7d_dil: toNullableNumber(source.rolling_7d_dil as NumberLike),
+		rolling_7d_dii: toNullableNumber(source.rolling_7d_dii as NumberLike),
+		logged_days_in_window: toNumberWithDefault(source.logged_days_in_window as NumberLike, 0),
 	};
 };
 
 const normalizeChronicMetricsResponse = (raw: unknown): ChronicMetricsResponse => {
 	const root = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+	const loggedDaysLast7 = toNumberWithDefault(root.logged_days_last_7 as NumberLike, 0);
 	return {
 		days: toNumberWithDefault(root.days as NumberLike, 0),
+		window_days: toNumberWithDefault(root.window_days as NumberLike, 7),
+		logged_days_last_7: loggedDaysLast7,
+		has_data: root.has_data === true || (root.has_data === undefined && loggedDaysLast7 > 0),
 		series: Array.isArray(root.series) ? root.series.map(normalizeChronicMetricPoint) : [],
-		current_daily_dil: toNumberWithDefault(root.current_daily_dil as NumberLike, 0),
-		current_daily_dii: toNumberWithDefault(root.current_daily_dii as NumberLike, 0),
-		current_rolling_7d_dil: toNumberWithDefault(root.current_rolling_7d_dil as NumberLike, 0),
-		current_rolling_7d_dii: toNumberWithDefault(root.current_rolling_7d_dii as NumberLike, 0),
+		current_daily_dil: toNullableNumber(root.current_daily_dil as NumberLike),
+		current_daily_dii: toNullableNumber(root.current_daily_dii as NumberLike),
+		current_rolling_7d_dil: toNullableNumber(root.current_rolling_7d_dil as NumberLike),
+		current_rolling_7d_dii: toNullableNumber(root.current_rolling_7d_dii as NumberLike),
 	};
 };
 

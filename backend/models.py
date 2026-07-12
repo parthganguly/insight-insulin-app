@@ -1,13 +1,44 @@
+import base64
+import re
 from datetime import datetime
 from enum import Enum
 from typing import Any, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+# AI-extraction request bounds (issue #93). The Smart Camera UI already caps
+# uploads at 5 images, so the backend enforces the same count defensively.
+# Per-image size: the frontend sends full-size camera JPEGs as base64 data
+# URLs with no client-side compression; typical phone JPEGs encode to a few
+# MB, so 10 million characters (~7.5 MB decoded) is a generous defensive
+# ceiling rather than a tight product limit. With the count cap this also
+# bounds the combined payload. Only base64 image data URLs are accepted —
+# that is the only shape the frontend produces and the provider expects.
+MAX_AI_IMAGES = 5
+MAX_AI_IMAGE_CHARS = 10_000_000
+IMAGE_DATA_URL_PATTERN = re.compile(r"^data:image/(jpeg|jpg|png|webp|gif);base64,(.+)$", re.DOTALL)
+
 
 class AiMealExtractRequest(BaseModel):
     images: List[str]
     textualData: str  # Optional, can be used for additional context
+
+    @field_validator("images")
+    @classmethod
+    def validate_images(cls, images: List[str]) -> List[str]:
+        if len(images) > MAX_AI_IMAGES:
+            raise ValueError(f"A maximum of {MAX_AI_IMAGES} images is supported per request")
+        for index, image in enumerate(images, start=1):
+            if len(image) > MAX_AI_IMAGE_CHARS:
+                raise ValueError(f"Image {index} exceeds the maximum supported size")
+            match = IMAGE_DATA_URL_PATTERN.match(image)
+            if match is None:
+                raise ValueError(f"Image {index} must be a base64 image data URL")
+            try:
+                base64.b64decode(match.group(2), validate=True)
+            except (ValueError, TypeError):
+                raise ValueError(f"Image {index} is not valid base64 data")
+        return images
 
 
 class ResponseModel(BaseModel):

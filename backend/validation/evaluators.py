@@ -232,7 +232,12 @@ def _evaluate_chronic_trend(case: ValidationCase) -> ValidationResult:
             daily_totals[day_key] = high_outcome.insulin_load_total
             daily_energy[day_key] = high_outcome.total_kcal
 
-    chronic_series = build_chronic_series_from_daily_maps(daily_totals=daily_totals, daily_energy=daily_energy)
+    # Every synthetic day in this scenario has a logged meal, so passing all
+    # days as logged preserves the fixture's expected rolling values exactly
+    # under the logged-days-only trend semantics (issue #93).
+    chronic_series = build_chronic_series_from_daily_maps(
+        daily_totals=daily_totals, daily_energy=daily_energy, logged_days=set(daily_totals.keys())
+    )
     rolling_7d_dil = [float(day["rolling_7d_dil"]) for day in chronic_series]
 
     transition_index = low_days - 1

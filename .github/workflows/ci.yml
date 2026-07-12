@@ -33,6 +33,15 @@ jobs:
         working-directory: backend
         run: python -m compileall -q .
 
+      # Runs every backend regression suite, including the safety/privacy
+      # invariants (AI-FII trust boundary, image non-retention, delete and
+      # timestamp integrity, chronic logging coverage, bounds/sanitization).
+      # -v prints each discovered test so an empty or mis-rooted discovery
+      # is visible in the log instead of silently passing (issue #93).
+      - name: Run backend unit tests
+        working-directory: backend
+        run: python -m unittest discover -s tests -v
+
       - name: Run backend validation
         working-directory: backend
         run: python -m validation.run_validation
@@ -64,6 +73,10 @@ jobs:
         working-directory: frontend
         run: npx tsc --noEmit
 
+      - name: Lint frontend
+        working-directory: frontend
+        run: npm run lint
+
       - name: Test frontend
         working-directory: frontend
         run: npm run test.unit -- --run
@@ -71,6 +84,40 @@ jobs:
       - name: Build frontend
         working-directory: frontend
         run: npm run build
+
+  browser:
+    name: Browser (Cypress)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      # Deterministic browser smoke (issue #93): every backend call is
+      # intercepted with synthetic data, so no backend, API key, or network
+      # dependency exists. Runs against the production build via vite
+      # preview on the suite's configured port.
+      - name: Run Cypress smoke suite
+        working-directory: frontend
+        run: |
+          npx vite preview --host 127.0.0.1 --port 5173 &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:5173 >/dev/null && break; sleep 2; done
+          npx cypress run
 
   rust:
     name: Rust

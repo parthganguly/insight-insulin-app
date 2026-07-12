@@ -60,7 +60,7 @@ meal_insulin_load = Σ(item_insulin_load)
 - **Daily Insulin Load (DIL):** sum of item-level insulin loads across all meals in a day
 - **Dietary Insulin Index (DII):** `daily_dil / total_daily_energy`
 
-Role in system: longitudinal tracking of dietary insulin exposure via rolling 7-day DIL and DII trends.
+Role in system: longitudinal tracking of dietary insulin exposure via rolling 7-day DIL and DII trends, computed over logged days only. Days without logged meals are missing data and are excluded from the rolling means (issue #93) — they are never counted as zero-insulin days, because that made the trend reward under-logging. The trend is a descriptive logged-meal metric with explicit coverage ("N of 7 days logged"), not a validated chronic metabolic measure; partial logging within a logged day remains an acknowledged limitation.
 
 ---
 
@@ -74,9 +74,9 @@ These are decisions made for usability or practical modeling. They are not direc
 acute_score = (meal_insulin_load / reference_meal_insulin_load) × 100
 ```
 
-A score of 100 represents the insulin demand of a typical mixed meal used as a fixed reference baseline.
+A score of 100 corresponds to a fixed internal reference constant.
 
-**Status:** The reference value is a normalization constant chosen for interpretability, not a biological constant. It requires calibration against representative meal data and should be documented when updated.
+**Status:** The reference value is an uncalibrated normalization constant, not a biological constant and not a measured typical meal — realistic mixed meals scored by the current pipeline commonly exceed 100. It requires calibration against representative meal data before any "typical meal ≈ 100" interpretation is defensible, and any update must be documented.
 
 ---
 

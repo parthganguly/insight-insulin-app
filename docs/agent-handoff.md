@@ -64,11 +64,13 @@ without an explicitly approved scientific-change issue.
 - **Meal load:** `insulin_load_meal = Σ insulin_load_item`.
 - **Acute score:**
   `acute_score = (insulin_load_meal / 30.0) × 100`, where `30.0` is the
-  fixed `REFERENCE_MEAL_INSULIN_LOAD` constant (100 ≈ typical meal).
+  fixed `REFERENCE_MEAL_INSULIN_LOAD` constant — an uncalibrated internal
+  reference (100 is not a validated "typical meal"; see issue #93).
 - **Chronic DIL/DII:** `daily_dil = Σ item insulin loads for the day`;
   `daily_dii = daily_dil / total_daily_energy`; rolling 7-day trend
-  exposed by the backend (7/14/28-day definitions in the engineering
-  model).
+  exposed by the backend as a logged-days-only mean with coverage
+  metadata (issue #93 — unlogged days are missing data, never zero;
+  definitions in the engineering model).
 - **FII resolution precedence per item:** provided FII → (if likely
   mixed) weighted decomposition → exact/alias lookup → conservative
   mapped lookup → decomposition retry → macro fallback (`K_EST = 0.6`)
@@ -134,9 +136,12 @@ without an explicitly approved scientific-change issue.
 2. Review and merge draft PR #70 (boundary docs / `fii_value`
    deprecation).
 3. Review and merge draft PR #71 (decomposition precedence tests).
-4. #47 — safety-copy polish (frontend copy only: spell out "Food
-   Insulin Index" once, better label for unscored AI items, qualify
-   "Chronic Score" wording).
+4. #47 — safety-copy polish (frontend copy only). **Partly superseded by
+   issue #93:** the "Chronic Score" qualification is obsolete — the concept
+   was renamed to the "7-Day Logged Meal Trend" and the underlying
+   zero-fill artifact was fixed, not merely re-worded. #47's remaining
+   scope is the unscored-AI-item label and spelling out "Food Insulin
+   Index" in user-facing copy.
 5. Remaining #44 follow-ups after #68/#70 land (e.g., UniFFI exposure
    of the wrapper; the long-term type-level provenance idea recorded as
    Option D in #44 needs its own approval).

@@ -12,6 +12,17 @@ import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
 import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
+import {
+	TREND_LOADING_LINE,
+	TREND_NO_DATA_LINE,
+	TREND_STATUS_LINE,
+	TREND_UNAVAILABLE_LINE,
+	getTrendAriaLabel,
+	getTrendCoverageText,
+	getTrendRingValue,
+	getTrendText,
+	resolveTrendState,
+} from "../../utils/trendDisplay";
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((s) => s.meals);
@@ -62,9 +73,36 @@ const Dashboard: React.FC = () => {
 		};
 	}, [meals.length]);
 
+	// Logged-days-only trend (issue #93): the rolling value is null when no
+	// day in the window has logs, and coverage says how many days contributed.
+	// The displayed number is an energy-normalized index (kcal-weighted mean
+	// FII) — not total or average daily insulin demand — and it can exceed
+	// 100, so only the ring geometry caps. See utils/trendDisplay.ts.
 	const rolling7dDii = chronicMetrics?.current_rolling_7d_dii;
-	const chronicScore = typeof rolling7dDii === "number" && Number.isFinite(rolling7dDii) ? Math.round(rolling7dDii * 100) : undefined;
-	const chronicText = isChronicLoading ? "..." : chronicScore === undefined ? "--" : `${chronicScore}`;
+	const trendValue = typeof rolling7dDii === "number" && Number.isFinite(rolling7dDii) ? Math.round(rolling7dDii * 100) : undefined;
+	const trendText = getTrendText(trendValue, isChronicLoading);
+	const windowDays = chronicMetrics?.window_days ?? 7;
+	const loggedDays = chronicMetrics?.logged_days_last_7 ?? 0;
+	const coverageText = chronicMetrics ? getTrendCoverageText(loggedDays, windowDays) : null;
+	// The accessible label must distinguish loading / failed / genuinely-no-data
+	// (issue #93): a pending or failed request must never tell a screen reader
+	// that no meals were logged, because it does not know that.
+	const trendState = resolveTrendState({
+		isLoading: isChronicLoading,
+		errorMessage: chronicError,
+		hasResponse: chronicMetrics !== null,
+		hasData: chronicMetrics?.has_data ?? false,
+		trend: trendValue,
+	});
+	const trendStatusText =
+		trendState === "loading"
+			? TREND_LOADING_LINE
+			: trendState === "unavailable"
+				? chronicError ?? TREND_UNAVAILABLE_LINE
+				: trendState === "no-data"
+					? TREND_NO_DATA_LINE
+					: TREND_STATUS_LINE;
+	const trendAriaLabel = getTrendAriaLabel(trendState, trendValue, loggedDays, windowDays);
 
 	return (
 		<IonPage>
@@ -86,20 +124,20 @@ const Dashboard: React.FC = () => {
 				) : (
 					<>
 						<IonCard className='app-card hero-card'>
-							<p className='hero-eyebrow'>7-day rolling trend</p>
-							<h2 className='hero-title'>Chronic Score</h2>
+							<p className='hero-eyebrow'>Logged meals, last 7 days</p>
+							<h2 className='hero-title'>7-Day Logged Meal Trend</h2>
 
 							<div className='hero-bezel'>
-								<div className='hero-ring'>
+								<div role='img' aria-label={trendAriaLabel} className='hero-ring'>
 									<CircularProgressbar
-										value={chronicScore ?? 0}
+										value={getTrendRingValue(trendValue)}
 										maxValue={100}
-										text={chronicText}
+										text={trendText}
 										strokeWidth={8}
 										styles={buildStyles({
 											textSize: "2.1rem",
-											pathColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
-											textColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
+											pathColor: trendValue === undefined ? "#9aa5ad" : "#2f86c0",
+											textColor: trendValue === undefined ? "#9aa5ad" : "#2f86c0",
 											trailColor: "#e8edf3",
 											strokeLinecap: "round",
 										})}
@@ -107,14 +145,10 @@ const Dashboard: React.FC = () => {
 								</div>
 							</div>
 
-							<p className='hero-status'>
-								{chronicScore === undefined
-									? chronicError ?? "Long-term backend trend data is unavailable right now."
-									: "7-day rolling insulin-demand trend from meals you logged."}
-							</p>
+							<p className='hero-status'>{trendStatusText}</p>
 
 							<div className='hero-meta'>
-								<span>Window: last 7 days</span>
+								{coverageText && <span>{coverageText}</span>}
 								<span>
 									{meals.length} meal{meals.length === 1 ? "" : "s"} logged
 								</span>
@@ -127,7 +161,7 @@ const Dashboard: React.FC = () => {
 							<span>Recents</span>
 							<span>most recent first</span>
 						</div>
-						<p className='journey-cue'>Each logged meal feeds the 7-day pattern above — log meals daily to see your trend take shape.</p>
+						<p className='journey-cue'>Each logged meal feeds the 7-day trend above — days you don't log are left out of it, so log the days you want reflected.</p>
 
 						{meals.map((meal) => {
 							return <MealCard key={meal.id} meal={meal} />;

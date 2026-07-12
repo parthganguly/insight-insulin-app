@@ -140,12 +140,90 @@ describe("banned wording guard", () => {
 	});
 
 	it("only uses medical advice, treatment, and insulin-resistance wording in negative disclaimers", () => {
-		expect(APP_DISCLAIMER).toContain("is not medical advice");
-		expect(APP_DISCLAIMER).toContain("Do not use it to make insulin dosing or treatment decisions");
+		// The negation distributes across the list: "It does not measure or
+		// predict ... , diagnose any condition, or provide medical advice."
+		expect(APP_DISCLAIMER).toContain("It does not measure or predict your personal insulin or glucose response, diagnose any condition, or provide medical advice.");
+		expect(APP_DISCLAIMER).toContain("Do not use it for insulin dosing or treatment decisions");
 		expect(CHRONIC_TREND_DISCLAIMER).toContain("It is not a measure of insulin resistance");
 		expect(allCopy.split("medical advice").length - 1).toBe(1);
 		expect(allCopy.split("treatment").length - 1).toBe(1);
 		expect(allCopy.split("insulin resistance").length - 1).toBe(1);
+	});
+});
+
+describe("dataset overclaim guard (issue #93)", () => {
+	// The live dataset is ten hand-entered `starter_placeholder` rows: no value
+	// traces to a cited primary study and the confidences are not
+	// measurement-derived. Copy asserting published / population-level /
+	// population-average / validated / measured data therefore claims evidence
+	// the repository does not have. These tests fail if such wording returns.
+	const SCORE_COPY = [APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, CHRONIC_TREND_DISCLAIMER].join(" ");
+
+	// Positive claims are forbidden; the same words are allowed when the
+	// sentence explicitly negates them ("not yet scientifically validated").
+	const UNSUPPORTED_DATASET_CLAIMS: RegExp[] = [
+		/published (population|food|data)/i,
+		/population-level/i,
+		/population-average/i,
+		/population average/i,
+		/(?<!not yet |not )scientifically validated/i,
+		/(?<!not yet |not )clinically validated/i,
+		/measured (insulin|food|data)/i,
+		/validated dataset/i,
+		/peer-reviewed/i,
+	];
+
+	const findUnsupportedClaims = (text: string): string[] => UNSUPPORTED_DATASET_CLAIMS.filter((pattern) => pattern.test(text)).map((pattern) => pattern.source);
+
+	it("makes no unsupported dataset claim in any score-facing copy", () => {
+		expect(findUnsupportedClaims(SCORE_COPY)).toEqual([]);
+	});
+
+	it.each([
+		"INSIGHT estimates the relative insulin demand of meals using population-level food data.",
+		"Estimated from population-average food insulin index data and your entered portions.",
+		"Estimated from published population data.",
+		"Built on a validated dataset.",
+		"Uses measured insulin values.",
+		"Our model is scientifically validated.",
+	])("rejects the unsupported claim: %s", (phrase) => {
+		expect(findUnsupportedClaims(phrase)).not.toEqual([]);
+	});
+
+	it("allows the honest negations the app actually ships", () => {
+		expect(findUnsupportedClaims("The dataset and model are not yet scientifically validated.")).toEqual([]);
+		expect(findUnsupportedClaims("The dataset and model are not yet validated.")).toEqual([]);
+	});
+
+	it("admits the starter dataset and the heuristic fallbacks", () => {
+		expect(APP_DISCLAIMER).toContain("limited starter set of food insulin-index values");
+		expect(APP_DISCLAIMER).toContain("heuristic estimates when a suitable food value is unavailable");
+		expect(APP_DISCLAIMER).toContain("not yet scientifically validated");
+		expect(MEAL_SCORE_DISCLAIMER).toContain("limited food insulin-index dataset");
+		expect(MEAL_SCORE_DISCLAIMER).toContain("heuristic fallbacks");
+		expect(MEAL_SCORE_DISCLAIMER).toContain("not yet validated");
+	});
+
+	it("keeps every non-claim the app must always make", () => {
+		expect(APP_DISCLAIMER).toContain("does not measure or predict your personal insulin or glucose response");
+		expect(APP_DISCLAIMER).toContain("diagnose any condition");
+		expect(APP_DISCLAIMER).toContain("provide medical advice");
+		expect(APP_DISCLAIMER).toContain("Do not use it for insulin dosing or treatment decisions");
+		expect(MEAL_SCORE_DISCLAIMER).toContain("relative comparison tool");
+		expect(MEAL_SCORE_DISCLAIMER).toContain("not a prediction of your body’s response");
+	});
+
+	it("describes the trend as an energy-normalized index that can exceed 100", () => {
+		expect(CHRONIC_TREND_DISCLAIMER).toContain("energy-normalized insulin-demand index");
+		expect(CHRONIC_TREND_DISCLAIMER).toContain("can exceed 100");
+		expect(CHRONIC_TREND_DISCLAIMER).toContain("ring caps at 100");
+		expect(CHRONIC_TREND_DISCLAIMER).toContain("not a measure of insulin resistance or metabolic health");
+		// "percentage" may appear ONLY inside the approved negation ("not a
+		// total or a percentage"); strip it, then no positive use may remain.
+		const withoutApprovedNegation = CHRONIC_TREND_DISCLAIMER.toLowerCase().replace("not a total or a percentage", "");
+		expect(withoutApprovedNegation).not.toContain("percentage");
+		expect(withoutApprovedNegation).not.toContain("total daily insulin demand");
+		expect(withoutApprovedNegation).not.toContain("average insulin demand per day");
 	});
 });
 

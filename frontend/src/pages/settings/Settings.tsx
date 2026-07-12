@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonToggle, IonText, IonSelect, IonSelectOption, IonInput } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonTitle, IonList, IonItem, IonLabel, IonText, IonSelect, IonSelectOption, IonInput } from "@ionic/react";
 import React from "react";
 import { ActivityLevel, Gender, useSettingsStore } from "../../stores/settingsStore";
 import { calculateBmr, calculateTdee } from "../../utils";

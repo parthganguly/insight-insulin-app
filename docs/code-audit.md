@@ -1,5 +1,38 @@
+> # ⚠️ DEPRECATED — DO NOT USE AS GUIDANCE
+>
+> **Status: superseded and stale. Removed from the mandatory read-first set
+> (issue #93).** This file is retained only as historical evidence of the
+> 2026-03-21 pre-migration review. Its findings describe behaviour that no
+> longer exists, and it cites a document (`docs/scoring-model.md`) that has
+> since been deleted.
+>
+> **Read this instead:**
+> - **`reports/project-audit/2026-07-12-insight-comprehensive-audit.md`** —
+>   the certified, current comprehensive audit (with
+>   `reports/project-audit/2026-07-12-insight-fable-verification.md` as its
+>   verification appendix).
+> - `docs/scientific-model.md` / `docs/engineering-model.md` — current
+>   scientific meaning.
+> - `docs/decisions/2026-07-13-validation-gate.md` — the current phase gate.
+>
+> **Why it is stale.** Every "critical issue" below was fixed long ago:
+> chronic scoring now follows the DIL/DII model (and, since #93, excludes
+> unlogged days); item-level `why` and the standardized
+> `exact_fii | mapped_fii | macro_fallback | user_confirmed | unknown` source
+> labels exist; the frontend no longer computes its own scores; meal totals,
+> `estimate_quality`, and `main_insulin_drivers` are returned by the backend;
+> and the preview UI separates nutrition estimate from insulin impact. The
+> acute-score description below (`insulin_load_total / effective_tdee`) is
+> **not** the current formula — the current acute score divides by the fixed
+> `REFERENCE_MEAL_INSULIN_LOAD = 30.0` internal reference.
+>
+> Nothing below should be treated as a current finding, a current file
+> reference, or a current line number.
+
+---
+
 Last updated: 2026-03-21
-# Code Audit Summary
+# Code Audit Summary (HISTORICAL — 2026-03-21)
 
 ## Critical Issues (must fix first)
 

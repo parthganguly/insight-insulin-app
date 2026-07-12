@@ -48,7 +48,7 @@ deletion paths.
 
 ### Split dashboard storage paths
 
-The Dashboard's **Chronic Score** is computed by the backend from matching rows
+The Dashboard's **7-Day Logged Meal Trend** (formerly "Chronic Score") is computed by the backend from matching rows
 in the shared backend database over the requested metrics window (30 days by
 default). There is no per-user/account filter, so if more than one client posts
 to the same backend, matching meals from all clients in that window can affect

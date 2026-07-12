@@ -33,9 +33,15 @@ For a given meal:
 - Meal insulin load is approximated as the **sum of item-level insulin loads**
 - Acute score is a relative index of meal insulin demand, normalized against a fixed reference meal baseline.
 
-A score of 100 represents the insulin demand of a typical mixed meal.
-“Typical meal” refers to an average mixed meal in common dietary patterns, used as a normalization reference rather than a strict physiological constant.
-This normalization is for interpretability and comparison only, not a direct physiological measurement.
+A score of 100 corresponds to the internal reference constant
+(`REFERENCE_MEAL_INSULIN_LOAD = 30.0`). This reference is an uncalibrated
+product convention: it has **not** been calibrated against representative
+meals or meal-history data, and realistic mixed meals scored by the current
+pipeline commonly exceed 100. The score is not a percentage, has no maximum,
+and does not represent a "typical meal" until the reference is calibrated
+against real meal distributions (a documented open task in the scoring code).
+This normalization is for relative comparison only, not a direct physiological
+measurement.
 
 ```text
 meal_insulin_load = Σ(item_insulin_load)

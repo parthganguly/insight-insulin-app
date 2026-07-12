@@ -7,8 +7,10 @@ import { getAcuteRingValue, getAcuteScoreAriaLabel, getAcuteScoreText } from "..
 function AcuteScoreProgressbar({ style, meal, strokeWidth = 8 }: { style?: React.CSSProperties; meal: Meal; strokeWidth?: number }) {
 	const acuteScore = getMealAcuteScore(meal);
 	const isUnknown = acuteScore === undefined;
-	// Same low/medium/high thresholds as before; only the presentation tones are softened.
-	const accentColor = isUnknown ? "#9aa5ad" : acuteScore < 35 ? "#34a06f" : acuteScore < 60 ? "#d9a62e" : "#d96a52";
+	// Issue #93: the former low/medium/high colour tiers (35/60) had no
+	// empirical calibration, so the ring no longer encodes them. One neutral
+	// accent for known scores, grey for unknown.
+	const accentColor = isUnknown ? "#9aa5ad" : "#2f86c0";
 
 	return (
 		<div role='img' aria-label={getAcuteScoreAriaLabel(acuteScore)} style={{ ...style, display: "flex", justifyContent: "center", alignItems: "center" }}>

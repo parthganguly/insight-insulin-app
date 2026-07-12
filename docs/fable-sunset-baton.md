@@ -171,8 +171,8 @@ Common to all six issues — do not restate per card:
   untouched.
 - **Forbidden:** acute-score formula or threshold changes; backend or
   Rust changes; any new interpretation of what the score means beyond
-  `docs/scientific-model.md` ("relative index of meal insulin demand,
-  100 ≈ typical meal").
+  `docs/scientific-model.md` (relative index of meal insulin demand
+  against an uncalibrated internal reference of 100; see issue #93).
 - **Tests:** frontend tests where feasible; typecheck/build.
 - **Live smoke:** visual check with scores below and above 100.
 - **Review:** independent model review, plus human sign-off on any
@@ -207,9 +207,11 @@ Common to all six issues — do not restate per card:
 - **Risk class:** low, but human-gated (safety copy meaning).
 - **Allowed scope:** frontend copy/display only — spell out "Food
   Insulin Index" at least once; better label for unscored AI items
-  (e.g. "Not yet scored" instead of "Unknown / not estimated");
-  qualify "Chronic Score" so it does not read as clinical before the
-  disclaimer.
+  (e.g. "Not yet scored" instead of "Unknown / not estimated").
+  **The "Chronic Score" qualification is superseded by issue #93:** the
+  concept was renamed to the "7-Day Logged Meal Trend" and its
+  zero-filled-missing-day artifact was fixed in the aggregation, not
+  papered over with copy.
 - **Forbidden:** weakening or removing any disclaimer; scoring,
   backend, Rust, fixture, or `estimate_quality` changes.
 - **Tests:** frontend tests where copy is asserted; typecheck/build.
