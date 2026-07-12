@@ -168,7 +168,7 @@ This failed because `sqlalchemy` is not installed in the current shell environme
 - PRESERVE: `docs/scientific-validation-plan.md` defines scientific validation goals.
 - PRESERVE: `docs/target-architecture.md` defines the approved target architecture.
 - PRESERVE: `AGENTS.md` defines repository-specific agent boundaries.
-- RETIRE AFTER PARITY: `docs/code-audit.md` is useful historical context, but some findings are stale because current code already added DIL/DII chronic aggregation, `why`, standardized source labels, meal totals, `estimate_quality`, and `main_insulin_drivers`.
+- DEPRECATED (issue #93): `docs/code-audit.md` is stale historical context only. Its findings were fixed long ago (DIL/DII chronic aggregation, `why`, standardized source labels, meal totals, `estimate_quality`, `main_insulin_drivers`) and it cites a deleted document. It now carries a deprecation banner and has been removed from the AGENTS.md read-first set. The current audit is `reports/project-audit/2026-07-12-insight-comprehensive-audit.md`.
 - PRESERVE: `README.md` describes current setup and validation commands.
 
 ### Backend

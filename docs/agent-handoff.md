@@ -136,9 +136,12 @@ without an explicitly approved scientific-change issue.
 2. Review and merge draft PR #70 (boundary docs / `fii_value`
    deprecation).
 3. Review and merge draft PR #71 (decomposition precedence tests).
-4. #47 — safety-copy polish (frontend copy only: spell out "Food
-   Insulin Index" once, better label for unscored AI items, qualify
-   "Chronic Score" wording).
+4. #47 — safety-copy polish (frontend copy only). **Partly superseded by
+   issue #93:** the "Chronic Score" qualification is obsolete — the concept
+   was renamed to the "7-Day Logged Meal Trend" and the underlying
+   zero-fill artifact was fixed, not merely re-worded. #47's remaining
+   scope is the unscored-AI-item label and spelling out "Food Insulin
+   Index" in user-facing copy.
 5. Remaining #44 follow-ups after #68/#70 land (e.g., UniFFI exposure
    of the wrapper; the long-term type-level provenance idea recorded as
    Option D in #44 needs its own approval).
