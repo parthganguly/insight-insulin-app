@@ -110,9 +110,10 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 
 		// Canonical score with above-reference semantics intact, not the
 		// "Hard to estimate" fallback the draft conversion used to force.
-		expect(screen.getByText("Higher relative insulin demand")).toBeTruthy();
+		// Issue #93: scored meals use the single neutral presentation.
+		expect(screen.getByText("Relative insulin-demand score")).toBeTruthy();
 		expect(screen.queryByText("Hard to estimate from this meal")).toBeNull();
-		expect(screen.getByText("Score: 360 · above reference meal (100)")).toBeTruthy();
+		expect(screen.getByText("Score: 360 · above internal reference (100)")).toBeTruthy();
 		expect(screen.getByText(ACUTE_SCORE_SCALE_EXPLAINER)).toBeTruthy();
 
 		expect(screen.getByText("Data quality: High")).toBeTruthy();

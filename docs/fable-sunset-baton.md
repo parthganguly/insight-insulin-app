@@ -171,8 +171,8 @@ Common to all six issues — do not restate per card:
   untouched.
 - **Forbidden:** acute-score formula or threshold changes; backend or
   Rust changes; any new interpretation of what the score means beyond
-  `docs/scientific-model.md` ("relative index of meal insulin demand,
-  100 ≈ typical meal").
+  `docs/scientific-model.md` (relative index of meal insulin demand
+  against an uncalibrated internal reference of 100; see issue #93).
 - **Tests:** frontend tests where feasible; typecheck/build.
 - **Live smoke:** visual check with scores below and above 100.
 - **Review:** independent model review, plus human sign-off on any

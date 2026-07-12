@@ -1,8 +1,12 @@
-// Safety and UX copy approved in issue #45. These strings are user-facing
-// safety wording; do not edit without a new approval on that issue.
+// Safety and UX copy approved in issue #45; truth-in-presentation revisions
+// approved in issue #93. These strings are user-facing safety wording; do not
+// edit without a new approval on one of those issues.
 
+// Issue #93: "published population-level food data" oversold the current
+// small starter dataset, so the word "published" was removed. Every negative
+// disclaimer is unchanged.
 export const APP_DISCLAIMER =
-	"INSIGHT estimates the relative insulin demand of meals using published population-level food data. It does not measure or predict your personal insulin or glucose response, does not diagnose any condition, and is not medical advice. Do not use it to make insulin dosing or treatment decisions.";
+	"INSIGHT estimates the relative insulin demand of meals using population-level food data. It does not measure or predict your personal insulin or glucose response, does not diagnose any condition, and is not medical advice. Do not use it to make insulin dosing or treatment decisions.";
 
 export const MEAL_SCORE_DISCLAIMER =
 	"Estimated from population-average food insulin index data and your entered portions. This is a relative comparison tool, not a prediction of your body’s response.";

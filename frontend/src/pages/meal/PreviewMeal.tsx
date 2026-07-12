@@ -11,7 +11,7 @@ import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemC
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
-import { getImpactPresentation } from "../../utils/insulinImpactPresentation";
+import { getImpactPresentation, isHardToEstimatePresentation } from "../../utils/insulinImpactPresentation";
 import { DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, getEstimateQualityCopy, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
 import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../utils/acuteScoreDisplay";
@@ -72,7 +72,7 @@ const PreviewMeal = () => {
 
 	const impactPresentation = !isAiDraftFlow ? getImpactPresentation(meal) : null;
 	const displayScore = getMealAcuteScore(meal);
-	const showAcuteScoreDetails = impactPresentation?.color !== "#95a5a6" && displayScore !== undefined;
+	const showAcuteScoreDetails = impactPresentation !== null && !isHardToEstimatePresentation(impactPresentation) && displayScore !== undefined;
 	const estimateQualityCopy = !isAiDraftFlow && meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality) : null;
 	const hasUnknownItems = !isAiDraftFlow && meal.items.some((item) => isUnknownSource(item.source));
 	const visibleImpactDrivers = !isAiDraftFlow ? (meal.main_insulin_drivers ?? []).filter((driver) => driver.trim().length > 0).slice(0, 3) : [];

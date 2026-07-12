@@ -48,12 +48,16 @@ Each item must carry:
 acute_score = (meal_insulin_load / reference_meal_insulin_load) * 100
 
 Where:
-- reference_meal_insulin_load is a fixed constant representing a typical meal
+- reference_meal_insulin_load is a fixed internal constant (30.0). It is an
+  uncalibrated normalization reference, not a measured "typical meal"; the
+  scoring code flags it as requiring calibration against real meal history.
 
 Interpretation:
-- 100 = typical meal
-- <100 = lower insulin demand
-- >100 = higher insulin demand
+- 100 = the internal reference value (uncalibrated; not a percentage, not a
+  maximum, and not a validated typical meal)
+- <100 = lower relative insulin demand than the reference
+- >100 = higher relative insulin demand than the reference (realistic mixed
+  meals commonly exceed 100 with the current dataset)
 
 ### Important hierarchy
 

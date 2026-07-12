@@ -69,7 +69,7 @@ describe("Dashboard Recents opens the saved meal read-only (issue #89)", () => {
 
 		// The canonical saved record is shown, not a stripped draft.
 		expect(await screen.findByText(SAVED_MEAL_STATUS)).toBeTruthy();
-		expect(screen.getByText("Score: 360 · above reference meal (100)")).toBeTruthy();
+		expect(screen.getByText("Score: 360 · above internal reference (100)")).toBeTruthy();
 		expect(screen.queryByText(DRAFT_MEAL_STATUS)).toBeNull();
 		expect(screen.queryByText("Hard to estimate from this meal")).toBeNull();
 

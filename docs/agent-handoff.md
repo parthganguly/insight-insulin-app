@@ -64,7 +64,8 @@ without an explicitly approved scientific-change issue.
 - **Meal load:** `insulin_load_meal = Σ insulin_load_item`.
 - **Acute score:**
   `acute_score = (insulin_load_meal / 30.0) × 100`, where `30.0` is the
-  fixed `REFERENCE_MEAL_INSULIN_LOAD` constant (100 ≈ typical meal).
+  fixed `REFERENCE_MEAL_INSULIN_LOAD` constant — an uncalibrated internal
+  reference (100 is not a validated "typical meal"; see issue #93).
 - **Chronic DIL/DII:** `daily_dil = Σ item insulin loads for the day`;
   `daily_dii = daily_dil / total_daily_energy`; rolling 7-day trend
   exposed by the backend (7/14/28-day definitions in the engineering
