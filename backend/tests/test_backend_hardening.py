@@ -130,6 +130,64 @@ class GenericExceptionSanitizationTests(HardeningTestBase):
         self.assertEqual(raised.exception.status_code, 429)
         self.assertEqual(raised.exception.detail, "Rate limit exceeded")
 
+    def test_unexpected_value_error_is_sanitized_not_surfaced_as_400(self) -> None:
+        # Only the curated AiExtractionUnavailableError may surface its
+        # message (issue #74). A stray ValueError carrying internal text must
+        # not be relayed to the client just because it is a ValueError.
+        request = self.build_request()
+
+        with patch.object(self.main, "ai_meal_extract_gpt", side_effect=ValueError(self.SECRET_MARKER)):
+            with self.assertRaises(HTTPException) as raised:
+                asyncio.run(self.main.extract_meal(request))
+
+        self.assertEqual(raised.exception.status_code, 500)
+        self.assertEqual(raised.exception.detail, "Internal server error")
+        self.assertNotIn("SECRET-MARKER", str(raised.exception.detail))
+
+    def test_curated_unavailable_error_still_surfaces_its_safe_message(self) -> None:
+        from services import AiExtractionUnavailableError
+
+        request = self.build_request()
+
+        with patch.object(
+            self.main,
+            "ai_meal_extract_gpt",
+            side_effect=AiExtractionUnavailableError("AI meal extraction is not configured on this server"),
+        ):
+            with self.assertRaises(HTTPException) as raised:
+                asyncio.run(self.main.extract_meal(request))
+
+        self.assertEqual(raised.exception.status_code, 400)
+        self.assertIn("not configured", str(raised.exception.detail))
+        self.assertNotIn("OPENAI_API_KEY", str(raised.exception.detail))
+
+
+class ProviderAuthErrorSanitizationTests(unittest.TestCase):
+    """The provider's auth-error body can echo key fragments; it must not be relayed."""
+
+    def test_authentication_error_body_is_not_relayed_to_the_client(self) -> None:
+        if str(BACKEND_DIR) not in sys.path:
+            sys.path.insert(0, str(BACKEND_DIR))
+        sys.modules.pop("services", None)
+        with patch("dotenv.load_dotenv"):
+            services = importlib.import_module("services")
+
+        from openai import AuthenticationError
+
+        leaky_body = {"message": "Incorrect API key provided: sk-proj-LEAKED123. You can find your API key at ..."}
+        auth_error = AuthenticationError.__new__(AuthenticationError)
+        auth_error.body = leaky_body
+
+        with patch.object(services, "get_openai_client", side_effect=auth_error):
+            with self.assertRaises(HTTPException) as raised:
+                services.ai_meal_extract_gpt(["data:image/jpeg;base64,c3ludGhldGlj"], "")
+
+        self.assertEqual(raised.exception.status_code, 502)
+        detail = str(raised.exception.detail)
+        self.assertNotIn("sk-proj-LEAKED123", detail)
+        self.assertNotIn("Incorrect API key", detail)
+        self.assertIn("not available right now", detail)
+
 
 class AiImagePayloadBoundTests(HardeningTestBase):
     """Request-model validation of the AI-extraction image payload."""

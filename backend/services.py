@@ -86,12 +86,21 @@ AI_MEAL_EXTRACTION_PROMPT = """
 AI_PROVIDER_TIMEOUT_SECONDS = 120.0
 
 
+class AiExtractionUnavailableError(ValueError):
+    """The one error whose message is curated for the client (issue #74).
+
+    Subclasses ValueError so existing callers that catch ValueError keep
+    working. Only this class's message is surfaced by the API; any other
+    ValueError is an unintended internal fault and is sanitized (issue #93).
+    """
+
+
 def get_openai_client() -> OpenAI:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         # User-safe wording: this detail reaches the client as the HTTP error
         # body, so it must not name internal configuration (issue #74).
-        raise ValueError("AI meal extraction is not configured on this server")
+        raise AiExtractionUnavailableError("AI meal extraction is not configured on this server")
     return OpenAI(api_key=api_key, timeout=AI_PROVIDER_TIMEOUT_SECONDS)
 
 
@@ -146,8 +155,14 @@ def ai_meal_extract_gpt(images: List[str], textual_data: str = "") -> AiExtracte
         raise
     except BadRequestError as e:
         raise HTTPException(status_code=400, detail=_get_openai_error_message(e))
-    except AuthenticationError as e:
-        raise HTTPException(status_code=502, detail=_get_openai_error_message(e))
+    except AuthenticationError:
+        # The provider's auth error body echoes credential fragments (e.g.
+        # "Incorrect API key provided: sk-..."), so it must never be relayed
+        # to the client (issue #93). The status mapping is unchanged.
+        raise HTTPException(
+            status_code=502,
+            detail="AI meal extraction is not available right now. Please try again later.",
+        )
     except RateLimitError as e:
         raise HTTPException(status_code=429, detail=_get_openai_error_message(e))
     except APIConnectionError:

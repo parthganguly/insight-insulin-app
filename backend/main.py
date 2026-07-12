@@ -11,6 +11,7 @@ from models import (
     AiMealExtractRequest,
     ResponseModel,
 )
+from services import AiExtractionUnavailableError
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
@@ -50,7 +51,10 @@ async def extract_meal(data: AiMealExtractRequest):
     try:
         try:
             meal = ai_meal_extract_gpt(data.images, data.textualData)
-        except ValueError as e:
+        except AiExtractionUnavailableError as e:
+            # Only this curated message is client-safe (issue #74). Any other
+            # ValueError is an unintended internal fault and falls through to
+            # the sanitized generic handler below (issue #93).
             raise HTTPException(status_code=400, detail=str(e))
         meal_id = str(uuid.uuid4())
 
