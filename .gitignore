@@ -39,6 +39,10 @@ frontend/backend/*/__pycache__/
 frontend/backend/*.pyc
 frontend/backend/decoded_image.png
 
+# Cypress run artifacts (generated on failure; never committed)
+frontend/cypress/screenshots/
+frontend/cypress/videos/
+
 # Claude Code local preferences
 CLAUDE.local.md
 .claude/settings.local.json
