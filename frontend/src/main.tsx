@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
@@ -11,7 +11,10 @@ const root = createRoot(container!);
 defineCustomElements(window);
 
 (async () => {
-	const { insets } = await SafeArea.getSafeAreaInsets();
+	// Behaviour preserved (issue #93 lint repair): the insets call and the
+	// hardcoded 50px padding are unchanged; only the unused destructuring of
+	// the result was removed. Wiring real insets in is tracked separately.
+	await SafeArea.getSafeAreaInsets();
 	document.body.classList.add("inset-padding-top");
 	document.body.style.setProperty("paddingTop", `${50}px`);
 })();

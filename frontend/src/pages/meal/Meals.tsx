@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFabButton, IonIcon, IonFab, IonItem, IonThumbnail, IonImg, useIonRouter } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonTitle, IonFabButton, IonIcon, IonFab, IonItem, IonThumbnail, IonImg } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { useEffect } from "react";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
@@ -12,7 +12,7 @@ import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
 
 const AddMeal: React.FC = () => {
 	const { meals } = usePersistentMealStore();
-	const { resetMeal, meal } = useCurrentMealStore();
+	const { resetMeal } = useCurrentMealStore();
 
 	useEffect(() => {
 		// Private-beta hydration: show backend-seeded/saved meals on a fresh load. Fails soft offline.

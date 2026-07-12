@@ -16,7 +16,7 @@ type CurrentMealStore = {
 	setTimestamp: (timestamp: number) => void;
 };
 
-export const useCurrentMealStore = create<CurrentMealStore>((set, get) => ({
+export const useCurrentMealStore = create<CurrentMealStore>((set) => ({
 	meal: {
 		id: crypto.randomUUID(),
 		image: null,
