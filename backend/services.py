@@ -78,13 +78,21 @@ AI_MEAL_EXTRACTION_PROMPT = """
         """
 
 
+# Provider timeout (issue #93): multi-image vision extraction normally takes
+# well under a minute; 120 s is a generous ceiling that still guarantees a
+# hung provider call cannot hold the request open for the SDK's much longer
+# default. Timeouts surface as APIConnectionError/APIStatusError and reuse
+# the existing sanitized error mappings below.
+AI_PROVIDER_TIMEOUT_SECONDS = 120.0
+
+
 def get_openai_client() -> OpenAI:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         # User-safe wording: this detail reaches the client as the HTTP error
         # body, so it must not name internal configuration (issue #74).
         raise ValueError("AI meal extraction is not configured on this server")
-    return OpenAI(api_key=api_key)
+    return OpenAI(api_key=api_key, timeout=AI_PROVIDER_TIMEOUT_SECONDS)
 
 
 def _get_openai_error_message(exc: Exception) -> str:

@@ -5,7 +5,7 @@ import math
 import time
 import uuid
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Query
 from services import ai_meal_extract_gpt
 from models import (
     AiMealExtractRequest,
@@ -74,8 +74,11 @@ async def extract_meal(data: AiMealExtractRequest):
     except HTTPException:
         raise
     except Exception as e:
-        print(f"Error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        # Diagnostics stay in the server log only (issue #93): raw exception
+        # text can carry provider responses, file paths, or key fragments and
+        # must never reach the HTTP response body.
+        print(f"Unhandled /ai-meal-extract error: {type(e).__name__}: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 
 def _finite_or_zero(value: float | None) -> float:
@@ -87,11 +90,18 @@ def _finite_or_zero(value: float | None) -> float:
     return numeric if math.isfinite(numeric) else 0.0
 
 
-@app.get("/metrics/chronic")
-async def get_chronic_metrics(days: int = 30, db: Session = Depends(get_db)):
-    if days <= 0:
-        raise HTTPException(status_code=400, detail="days must be greater than 0")
+# Bound on the chronic query window (issue #93): the UI requests 30 days and
+# the rolling trend itself is 7 days, so 365 comfortably covers a full year
+# of local history review while capping the per-request day loop and DB scan
+# an unauthenticated caller can trigger.
+MAX_CHRONIC_QUERY_DAYS = 365
 
+
+@app.get("/metrics/chronic")
+async def get_chronic_metrics(
+    days: int = Query(default=30, ge=1, le=MAX_CHRONIC_QUERY_DAYS),
+    db: Session = Depends(get_db),
+):
     today = datetime.utcnow().date()
     start_date = today - timedelta(days=days - 1)
     meals = (
