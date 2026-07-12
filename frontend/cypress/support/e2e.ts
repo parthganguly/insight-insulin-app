@@ -1,20 +1,19 @@
-// ***********************************************************
-// This example support/e2e.ts is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
+// Global Cypress support for the INSIGHT smoke suite (issue #93).
 
-// Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+// Ionic's toast enter-animation intermittently races overlay teardown in
+// headless Electron and throws "Cannot read properties of null (reading
+// 'style')" from inside @ionic/core's animation code. The toast is a
+// supplementary affordance by design (the inline aria-live banner is the
+// asserted feedback surface), so only this specific framework-internal
+// error is ignored; every other application error still fails the test.
+Cypress.on("uncaught:exception", (err) => {
+	if (err.message.includes("Cannot read properties of null (reading 'style')") && err.stack?.includes("Animation")) {
+		return false;
+	}
+	if (err.message.includes("Cannot read properties of null (reading 'style')") && err.stack?.includes("present")) {
+		return false;
+	}
+	return true;
+});

@@ -334,7 +334,7 @@ const PreviewMeal = () => {
 								<IonToolbarWrapper className='ion-text-left'>
 									<IonTitle>Edit: {modalItem?.name}</IonTitle>
 									<IonButtons slot='start'>
-										<IonButton slot='icon-only' size='large' onClick={() => setModalItem(null)}>
+										<IonButton slot='icon-only' size='large' aria-label='Close item editor' onClick={() => setModalItem(null)}>
 											<IonIcon slot='icon-only' icon={arrowBack} />
 										</IonButton>
 									</IonButtons>
@@ -395,13 +395,14 @@ const PreviewMeal = () => {
 													</IonText>
 												) : null}
 
-												<IonButton onClick={() => setModalItem(null)}>
+												<IonButton aria-label='Done editing item' onClick={() => setModalItem(null)}>
 													<IonIcon slot='icon-only' icon={save} />
 												</IonButton>
 
 												<IonButton
 													slot='icon-only'
 													color='danger'
+													aria-label='Remove item from meal'
 													onClick={() => {
 														deleteMealItem(modalItem.id);
 														setModalItem(null);

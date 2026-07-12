@@ -105,6 +105,17 @@ cd frontend
 npm run build
 ```
 
+## Browser Smoke Tests (Cypress)
+
+Deterministic browser tests using synthetic data; every backend call is
+intercepted, so no backend, API key, or network access is needed. From
+`frontend/`, serve the app on port 5173 and run the suite:
+
+```bash
+npm run dev -- --host 127.0.0.1 --port 5173   # or: npm run build && npx vite preview --host 127.0.0.1 --port 5173
+npm run test.e2e
+```
+
 ## Demo Seed Data (Local Only)
 
 Optional, for local private-beta demos so the Dashboard's 7-Day Logged Meal Trend is not empty. Inserts ~12 days of synthetic meals (names prefixed `Demo: `) into the local `backend/app.db` through the normal scoring path. Operator-invoked only — never runs on app startup or in CI. No real data, photos, external AI calls, or API keys involved.
