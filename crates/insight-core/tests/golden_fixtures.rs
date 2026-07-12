@@ -1073,22 +1073,29 @@ fn chronic_low_then_high_rolling_dil_matches_serialized_golden_output() {
         .and_then(Value::as_array)
         .expect("chronic fixture should include rolling_7d_dil expectations");
 
+    // Every fixture day is fully logged, so the logged-days-only rolling
+    // trend (issue #93) reproduces the serialized zero-era expectations
+    // exactly and every Option accessor is Some.
     assert_eq!(series.len(), expected_rolling_dil.len());
     for (point, expected) in series.iter().zip(expected_rolling_dil) {
+        assert!(point.logged());
         assert_approx_eq(
-            round_to_four_places(point.rolling_7d_dil().value()),
+            round_to_four_places(point.rolling_7d_dil().unwrap().value()),
             expected
                 .as_f64()
                 .expect("rolling_7d_dil expectation should be numeric"),
         );
     }
 
-    assert_approx_eq(series[0].daily_dil().value(), 1.32);
-    assert_approx_eq(series[0].total_daily_energy().value(), 120.0);
-    assert_approx_eq(series[0].daily_dii(), 1.32 / 120.0);
-    assert_approx_eq(series[low_days].daily_dil().value(), 495.0);
-    assert_approx_eq(series[low_days].total_daily_energy().value(), 450.0);
-    assert_approx_eq(series[low_days].daily_dii(), 495.0 / 450.0);
+    assert_approx_eq(series[0].daily_dil().unwrap().value(), 1.32);
+    assert_approx_eq(series[0].total_daily_energy().unwrap().value(), 120.0);
+    assert_approx_eq(series[0].daily_dii().unwrap(), 1.32 / 120.0);
+    assert_approx_eq(series[low_days].daily_dil().unwrap().value(), 495.0);
+    assert_approx_eq(
+        series[low_days].total_daily_energy().unwrap().value(),
+        450.0,
+    );
+    assert_approx_eq(series[low_days].daily_dii().unwrap(), 495.0 / 450.0);
 }
 
 #[test]

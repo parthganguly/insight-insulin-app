@@ -97,12 +97,14 @@ class DemoSeedTests(unittest.TestCase):
         span = (utc_dates[-1] - start).days + 1
         daily_totals = {(start + timedelta(days=i)).isoformat(): 0.0 for i in range(span)}
         daily_energy = dict(daily_totals)
+        logged_days = set()
         for meal in meals:
             key = meal.created_at.date().isoformat()
             daily_totals[key] += meal.insulin_load_total or 0.0
             daily_energy[key] += meal.total_kcal or 0.0
-        series = self.chronic.build_chronic_series_from_daily_maps(daily_totals=daily_totals, daily_energy=daily_energy)
-        seeded_days = [point for point in series if point["daily_dil"] > 0.0]
+            logged_days.add(key)
+        series = self.chronic.build_chronic_series_from_daily_maps(daily_totals=daily_totals, daily_energy=daily_energy, logged_days=logged_days)
+        seeded_days = [point for point in series if point["logged"] and point["daily_dil"] > 0.0]
         self.assertEqual(len(seeded_days), len(utc_dates))
         self.assertGreaterEqual(len(utc_dates), 12)
         self.assertGreater(series[-1]["rolling_7d_dii"], 0.0)

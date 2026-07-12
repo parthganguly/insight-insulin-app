@@ -107,7 +107,7 @@ npm run build
 
 ## Demo Seed Data (Local Only)
 
-Optional, for local private-beta demos so the Dashboard/Chronic Score trend is not empty. Inserts ~12 days of synthetic meals (names prefixed `Demo: `) into the local `backend/app.db` through the normal scoring path. Operator-invoked only — never runs on app startup or in CI. No real data, photos, external AI calls, or API keys involved.
+Optional, for local private-beta demos so the Dashboard's 7-Day Logged Meal Trend is not empty. Inserts ~12 days of synthetic meals (names prefixed `Demo: `) into the local `backend/app.db` through the normal scoring path. Operator-invoked only — never runs on app startup or in CI. No real data, photos, external AI calls, or API keys involved.
 
 From `backend/` with the virtual environment active:
 

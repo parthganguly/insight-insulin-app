@@ -17,8 +17,11 @@ export const UNKNOWN_ITEMS_NOTICE =
 export const ROUGH_ESTIMATE_NOTICE =
 	"No direct insulin-index data was available for this item, so this is a rough estimate from nutrition data or typical dish components. Treat it as approximate.";
 
+// Issue #93: logged-days-only semantics. Days without logs are excluded from
+// the trend (they no longer drag it toward zero), so the disclaimer now
+// explains coverage and the remaining partial-logging limitation instead.
 export const CHRONIC_TREND_DISCLAIMER =
-	"This trend summarizes the estimated insulin load of meals you logged. Days without logged meals may lower the trend. It is not a measure of insulin resistance or metabolic health.";
+	"This trend averages only the days you logged meals on; days without logs are left out, not counted as zero. Meals you ate but didn't log still aren't reflected. It is not a measure of insulin resistance or metabolic health.";
 
 export const PROVIDED_FII_DISCLAIMER =
 	"This item uses an insulin-index value you entered. The app has not verified that value.";

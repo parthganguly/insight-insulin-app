@@ -24,6 +24,9 @@ const seededBackendMeals = [
 
 const chronicMetricsBody = {
 	days: 30,
+	window_days: 7,
+	logged_days_last_7: 7,
+	has_data: true,
 	series: [],
 	current_daily_dil: 0.4,
 	current_daily_dii: 0.4,

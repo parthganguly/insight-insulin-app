@@ -62,9 +62,23 @@ const Dashboard: React.FC = () => {
 		};
 	}, [meals.length]);
 
+	// Logged-days-only trend (issue #93): the rolling value is null when no
+	// day in the window has logs, and coverage says how many days contributed.
 	const rolling7dDii = chronicMetrics?.current_rolling_7d_dii;
-	const chronicScore = typeof rolling7dDii === "number" && Number.isFinite(rolling7dDii) ? Math.round(rolling7dDii * 100) : undefined;
-	const chronicText = isChronicLoading ? "..." : chronicScore === undefined ? "--" : `${chronicScore}`;
+	const trendValue = typeof rolling7dDii === "number" && Number.isFinite(rolling7dDii) ? Math.round(rolling7dDii * 100) : undefined;
+	const trendText = isChronicLoading ? "..." : trendValue === undefined ? "--" : `${trendValue}`;
+	const windowDays = chronicMetrics?.window_days ?? 7;
+	const loggedDays = chronicMetrics?.logged_days_last_7 ?? 0;
+	const coverageText = chronicMetrics ? `${loggedDays} of ${windowDays} days logged` : null;
+	const trendStatusText = isChronicLoading
+		? "Loading trend from your logged meals…"
+		: trendValue === undefined
+			? chronicError ?? (chronicMetrics && !chronicMetrics.has_data ? "No meals logged in the last 7 days, so there is no trend to show yet." : "Long-term backend trend data is unavailable right now.")
+			: "Average estimated insulin demand per logged day, over the days you logged in the last 7.";
+	const trendAriaLabel =
+		trendValue === undefined
+			? "7-day logged meal trend not available."
+			: `7-day logged meal trend ${trendValue}, averaged over ${loggedDays} of the last ${windowDays} days that have logged meals. Days without logs are not counted. This is not a measure of insulin resistance or metabolic health.`;
 
 	return (
 		<IonPage>
@@ -86,20 +100,20 @@ const Dashboard: React.FC = () => {
 				) : (
 					<>
 						<IonCard className='app-card hero-card'>
-							<p className='hero-eyebrow'>7-day rolling trend</p>
-							<h2 className='hero-title'>Chronic Score</h2>
+							<p className='hero-eyebrow'>Logged meals, last 7 days</p>
+							<h2 className='hero-title'>7-Day Logged Meal Trend</h2>
 
 							<div className='hero-bezel'>
-								<div className='hero-ring'>
+								<div role='img' aria-label={trendAriaLabel} className='hero-ring'>
 									<CircularProgressbar
-										value={chronicScore ?? 0}
+										value={trendValue ?? 0}
 										maxValue={100}
-										text={chronicText}
+										text={trendText}
 										strokeWidth={8}
 										styles={buildStyles({
 											textSize: "2.1rem",
-											pathColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
-											textColor: chronicScore === undefined ? "#9aa5ad" : "#2f86c0",
+											pathColor: trendValue === undefined ? "#9aa5ad" : "#2f86c0",
+											textColor: trendValue === undefined ? "#9aa5ad" : "#2f86c0",
 											trailColor: "#e8edf3",
 											strokeLinecap: "round",
 										})}
@@ -107,14 +121,10 @@ const Dashboard: React.FC = () => {
 								</div>
 							</div>
 
-							<p className='hero-status'>
-								{chronicScore === undefined
-									? chronicError ?? "Long-term backend trend data is unavailable right now."
-									: "7-day rolling insulin-demand trend from meals you logged."}
-							</p>
+							<p className='hero-status'>{trendStatusText}</p>
 
 							<div className='hero-meta'>
-								<span>Window: last 7 days</span>
+								{coverageText && <span>{coverageText}</span>}
 								<span>
 									{meals.length} meal{meals.length === 1 ? "" : "s"} logged
 								</span>
@@ -127,7 +137,7 @@ const Dashboard: React.FC = () => {
 							<span>Recents</span>
 							<span>most recent first</span>
 						</div>
-						<p className='journey-cue'>Each logged meal feeds the 7-day pattern above — log meals daily to see your trend take shape.</p>
+						<p className='journey-cue'>Each logged meal feeds the 7-day trend above — days you don't log are left out of it, so log the days you want reflected.</p>
 
 						{meals.map((meal) => {
 							return <MealCard key={meal.id} meal={meal} />;

@@ -60,7 +60,7 @@ meal_insulin_load = Σ(item_insulin_load)
 - **Daily Insulin Load (DIL):** sum of item-level insulin loads across all meals in a day
 - **Dietary Insulin Index (DII):** `daily_dil / total_daily_energy`
 
-Role in system: longitudinal tracking of dietary insulin exposure via rolling 7-day DIL and DII trends.
+Role in system: longitudinal tracking of dietary insulin exposure via rolling 7-day DIL and DII trends, computed over logged days only. Days without logged meals are missing data and are excluded from the rolling means (issue #93) — they are never counted as zero-insulin days, because that made the trend reward under-logging. The trend is a descriptive logged-meal metric with explicit coverage ("N of 7 days logged"), not a validated chronic metabolic measure; partial logging within a logged day remains an acknowledged limitation.
 
 ---
 

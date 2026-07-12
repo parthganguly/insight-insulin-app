@@ -66,13 +66,29 @@ Interpretation:
 - protein and fat are modifiers/context
 - GI/GL are optional context, not the main driver when FII exists
 
-## Chronic scoring
+## Chronic scoring (7-day logged meal trend)
 
-Chronic trend should follow daily aggregation:
+Chronic trend follows daily aggregation over **logged days only**:
 
 - `daily_dil = sum(FII-scaled item insulin loads for the day)`
 - `daily_dii = daily_dil / total_daily_energy`
-- compute rolling trends for 7 / 14 / 28 days
+- rolling trend = mean of the daily values over the logged days inside the
+  trailing 7-day window
+
+Logged-days-only semantics (issue #93): a day without any logged meal is
+missing data, not a zero-insulin day. Unlogged days are excluded from the
+rolling means and carry null daily values; a window with zero logged days has
+no trend value (null, displayed as "no data", never 0). The endpoint returns
+coverage metadata (`window_days`, `logged_days_last_7`, `has_data`, and
+per-point `logged` / `logged_days_in_window`) so clients can show
+"N of 7 days logged".
+
+Known limitation (documented, not solved): meals eaten but not logged on an
+otherwise-logged day still under-represent that day's true intake.
+
+This is a descriptive logged-meal metric, not a validated chronic metabolic
+measure. The user-facing name is "7-Day Logged Meal Trend" (formerly
+"Chronic Score").
 
 The backend should expose at least a 7-day trend endpoint.
 

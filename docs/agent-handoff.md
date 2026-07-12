@@ -68,8 +68,9 @@ without an explicitly approved scientific-change issue.
   reference (100 is not a validated "typical meal"; see issue #93).
 - **Chronic DIL/DII:** `daily_dil = Σ item insulin loads for the day`;
   `daily_dii = daily_dil / total_daily_energy`; rolling 7-day trend
-  exposed by the backend (7/14/28-day definitions in the engineering
-  model).
+  exposed by the backend as a logged-days-only mean with coverage
+  metadata (issue #93 — unlogged days are missing data, never zero;
+  definitions in the engineering model).
 - **FII resolution precedence per item:** provided FII → (if likely
   mixed) weighted decomposition → exact/alias lookup → conservative
   mapped lookup → decomposition retry → macro fallback (`K_EST = 0.6`)
