@@ -4,7 +4,7 @@
 // read-only record with score and evidence, offers no duplicate save
 // control, and deletion stays backend-first and safe.
 
-import { stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
+import { shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
 const seededMeal = syntheticBackendMeal("syn-1", "Synthetic Rice Bowl", 189);
 
@@ -17,14 +17,16 @@ describe("Saved-meal detail", () => {
 	});
 
 	it("shows the canonical score, quality, drivers, and per-item evidence", () => {
-		// Presence checks: the canonical wording is the invariant; Cypress's
-		// visibility algorithm misreads Ionic's fixed-layout scroll container.
-		cy.contains("Saved to history").should("exist");
-		cy.contains("Relative insulin-demand score").should("exist");
-		cy.contains("Score: 189 · above internal reference (100)").should("exist");
-		cy.contains("Data quality: High").should("exist");
-		cy.contains("Source: Direct FII match").should("exist");
-		cy.contains("Used a direct Food Insulin Index match and scaled it by eaten energy.").should("exist");
+		// shouldBeRendered asserts the element is actually laid out and painted
+		// (non-empty text, non-zero box, not hidden) — a real rendering guard
+		// that does not rely on Cypress's `be.visible` heuristic, which reports
+		// false negatives inside Ionic's fixed-layout scroll container.
+		shouldBeRendered("span", "Saved to history");
+		shouldBeRendered("h3", "Relative insulin-demand score");
+		shouldBeRendered("p", "Score: 189 · above internal reference (100)");
+		shouldBeRendered("span", "Data quality: High");
+		shouldBeRendered("p", "Source: Direct FII match");
+		shouldBeRendered("p", "Used a direct Food Insulin Index match and scaled it by eaten energy.");
 	});
 
 	it("offers no save control and no editable inputs", () => {

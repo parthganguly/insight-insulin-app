@@ -135,6 +135,28 @@ export const assertNoForbiddenPhrases = () => {
 		});
 };
 
+// A real rendering guard for content inside Ionic's fixed-layout scroll
+// container. Cypress's `be.visible` heuristic reports false negatives there
+// (it treats the `position: fixed` ancestor + overflow as "covered"), but
+// presence in the DOM alone is too weak — it would pass for text rendered
+// into a hidden or zero-size node. This asserts the element is actually laid
+// out and painted: non-empty text, non-zero box, and not display/visibility
+// hidden. Use it for load-bearing assertions instead of bare `exist`.
+export const shouldBeRendered = (selector: string, text?: string) => {
+	const chain = text === undefined ? cy.get(selector) : cy.contains(selector, text);
+	return chain.should(($el) => {
+		const el = $el[0];
+		const rect = el.getBoundingClientRect();
+		const style = window.getComputedStyle(el);
+		expect(el.textContent?.trim(), "rendered text is non-empty").to.not.equal("");
+		expect(rect.width, "rendered width > 0").to.be.greaterThan(0);
+		expect(rect.height, "rendered height > 0").to.be.greaterThan(0);
+		expect(style.display, "not display:none").to.not.equal("none");
+		expect(style.visibility, "not visibility:hidden").to.not.equal("hidden");
+		expect(Number(style.opacity), "not fully transparent").to.be.greaterThan(0);
+	});
+};
+
 export const assertNoHorizontalOverflow = () => {
 	cy.window().then((win) => {
 		const overflow = win.document.documentElement.scrollWidth - win.innerWidth;

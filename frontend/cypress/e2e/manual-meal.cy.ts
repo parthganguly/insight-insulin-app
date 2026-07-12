@@ -4,7 +4,7 @@
 // saves are rejected with visible feedback, and a valid synthetic save posts
 // to the (intercepted) backend and shows the canonical scored result.
 
-import { BACKEND_ORIGIN, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
+import { BACKEND_ORIGIN, shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
 const savedResponse = syntheticBackendMeal("syn-saved-1", "Synthetic Manual Meal", 42, {
 	items: [
@@ -64,8 +64,10 @@ describe("Manual meal draft", () => {
 	});
 
 	it("opens as an editable draft", () => {
-		cy.contains("Editable draft — not saved yet").should("exist");
-		cy.contains("This meal is an editable draft").should("exist");
+		// Real rendering guards (see shouldBeRendered): the draft status must
+		// actually be painted, not merely present in the DOM.
+		shouldBeRendered("span", "Editable draft — not saved yet");
+		shouldBeRendered("p", "This meal is an editable draft");
 		cy.get("input").should("exist"); // the dish-name input is editable
 	});
 
