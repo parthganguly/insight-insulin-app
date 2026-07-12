@@ -187,9 +187,9 @@ This failed because `sqlalchemy` is not installed in the current shell environme
 - RETIRE AFTER PARITY: `backend/db_models.py` currently defines the SQLite schema and remains the migration source.
 - REPLACE: `backend/db.py` uses SQLAlchemy `create_all` plus ad hoc `ALTER TABLE` migration. Replace with versioned migrations before sensitive local data migration.
 - PRESERVE: `backend/services.py` is the current OpenAI-backed AI extraction gateway; Python remains appropriate here during migration.
-- REPLACE: `backend/utils.py` saves raw submitted images to `images/` with no retention policy. Replace with explicit temporary image handling before native parity.
+- DONE (issue #93): `backend/utils.py` (raw image writer) was confirmed dead and deleted; the product path never persists images (#49) and a regression test guards against reintroduction.
 - PRESERVE: `backend/validation/` contains current scientific validation fixtures and evaluators.
-- RETIRE AFTER PARITY: `backend/test.py` is an ad hoc OpenAI parsing script and should not become target test infrastructure.
+- DONE (issue #93): `backend/test.py` (ad hoc script whose prompt asked the AI for FII) was confirmed dead and deleted; a regression test guards against reintroduction.
 
 ### Frontend
 
@@ -253,13 +253,13 @@ This failed because `sqlalchemy` is not installed in the current shell environme
 
 ## 4. Current Technical Debt That Must Not Be Copied
 
-- REPLACE: Raw base64 meal images are saved by `save_base64_images` to `images/` without user consent, retention policy, or cleanup.
+- DONE (issues #49/#93): the `save_base64_images` raw-image writer was removed from the product path and its dead helper file deleted; backend image non-retention is regression-tested.
 - REPLACE: FastAPI CORS allows all origins.
 - REPLACE: SQLite migrations are ad hoc `ALTER TABLE` checks instead of versioned migration scripts.
 - REPLACE: Local persistence in the current frontend uses browser localStorage for meal and settings data.
 - PRESERVE: `backend/fii_foods.csv` has only 10 starter placeholder rows with `starter_placeholder` source values. Treat this as a coverage limitation and dataset-versioning input, not a reason to discard the current FII/DIL/DII core.
 - REPLACE: The frontend has a client call for `/barcode-meal-item-extract`, but no matching backend route was found in inspected backend files.
-- REPLACE: `backend/test.py` is an ad hoc script that calls OpenAI with a public image URL; do not copy this pattern into automated tests.
+- DONE (issue #93): `backend/test.py` (ad hoc OpenAI script that requested FII directly) was deleted; do not reintroduce that pattern in automated tests.
 - REPLACE: Cypress test expects stale content and does not validate current screens.
 - REPLACE: Capacitor Android app id/name are placeholders: `io.ionic.starter` and `Insulin Spike Tracker`.
 - REPLACE: Current code logs backend responses and errors to console in some UI paths; future telemetry must be purpose-limited and avoid meal data leakage.
