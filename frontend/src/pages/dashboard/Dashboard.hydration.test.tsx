@@ -61,20 +61,21 @@ describe("Dashboard private-beta hydration", () => {
 		vi.unstubAllGlobals();
 	});
 
-	it("replaces 'No Meals Logged' with hydrated backend meals on a fresh load", async () => {
+	it("replaces the empty Home state with hydrated backend meals on a fresh load", async () => {
 		stubBackend({ mealsOk: true });
 
 		render(<App />);
 
 		expect(await screen.findByText("Demo: Overnight oats")).toBeTruthy();
-		expect(screen.queryByText("No Meals Logged")).toBeNull();
+		expect(screen.queryByText("Understand and compare the estimated insulin demand of meals.")).toBeNull();
 	});
 
-	it("still shows 'No Meals Logged' when the backend is unavailable and the local store is empty", async () => {
+	it("still shows the empty Home state when the backend is unavailable and the local store is empty", async () => {
 		stubBackend({ mealsOk: false });
 
 		render(<App />);
 
-		expect(await screen.findByText("No Meals Logged")).toBeTruthy();
+		expect(await screen.findByText("Understand and compare the estimated insulin demand of meals.")).toBeTruthy();
+		expect(screen.getByText("Check a meal")).toBeTruthy();
 	});
 });

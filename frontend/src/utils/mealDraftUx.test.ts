@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { isDraftMealItem, validateMealBeforeSave } from "./mealDraftUx";
+import { ADVANCED_DETAILS_LABEL, SUBTYPE_NAME_ONLY_NOTICE, isDraftMealItem, validateMealBeforeSave } from "./mealDraftUx";
 import { Meal } from "../types/Meal";
 import { MealItem, Unit } from "../types/MealItem";
 
@@ -75,5 +75,16 @@ describe("isDraftMealItem (issue #75 — untouched drafts read as drafts)", () =
 		// amount 0 zeroes every displayed total, which is exactly the state that
 		// used to read as a broken "0 kcal" meal.
 		expect(isDraftMealItem(mealItem({ amount: 0 }))).toBe(true);
+	});
+});
+
+describe("Campaign A disclosure copy", () => {
+	it("uses the explicit advanced-details label", () => {
+		expect(ADVANCED_DETAILS_LABEL).toBe("Advanced details");
+	});
+
+	it("states that subtype chips change the name only using ASCII copy", () => {
+		expect(SUBTYPE_NAME_ONLY_NOTICE).toBe("This changes the name only - check the ingredient list below still matches your meal.");
+		expect([...SUBTYPE_NAME_ONLY_NOTICE].every((character) => character.charCodeAt(0) <= 127)).toBe(true);
 	});
 });

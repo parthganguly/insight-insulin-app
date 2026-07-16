@@ -1,8 +1,8 @@
-import { IonPage, IonContent, IonHeader, IonTitle, IonButton, IonImg, IonText, IonIcon, IonTextarea, IonBackButton, IonButtons, IonFab, IonFabButton, IonLoading, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonTitle, IonButton, IonImg, IonText, IonIcon, IonTextarea, IonBackButton, IonButtons, IonLoading, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useIonRouter } from "@ionic/react";
-import { arrowForward, camera, image, pencil, trash } from "ionicons/icons";
+import { camera, image, pencil, trash } from "ionicons/icons";
 import { fetchAiMealFromAPI, normalizeAiExtractedItem } from "../../api/api";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
@@ -12,8 +12,16 @@ import { describeAiExtractionFailure, describeCameraFailure } from "../../utils/
 
 const AiMealAdd = () => {
 	const [error, setError] = useState("");
+	const [failureKind, setFailureKind] = useState<"analysis" | "camera" | null>(null);
 	const router = useIonRouter();
 	const [images, setImages] = useState<string[]>([]);
+	useEffect(() => {
+		if (images.length > 0 && failureKind === "camera") {
+			setError("");
+			setFailureKind(null);
+		}
+	}, [failureKind, images.length]);
+	const visibleError = failureKind === "camera" && images.length > 0 ? "" : error;
 	const addImage = (image: string) => {
 		setImages((prev) => [...prev, image]);
 	};
@@ -34,6 +42,7 @@ const AiMealAdd = () => {
 		setImages([]);
 		setTextualData("");
 		setError("");
+		setFailureKind(null);
 		setLoading(false);
 	};
 
@@ -67,6 +76,7 @@ const AiMealAdd = () => {
 		}
 		setLoading(true);
 		setError("");
+		setFailureKind(null);
 		try {
 			const extractedMeal = await fetchAiMealFromAPI(images, textualData);
 			const normalizedItems = (Array.isArray(extractedMeal.items) ? extractedMeal.items : []).map(normalizeAiExtractedItem);
@@ -87,6 +97,7 @@ const AiMealAdd = () => {
 			// for diagnostics and show curated copy with a manual fallback.
 			console.error("AI meal extraction failed:", err);
 			setError(describeAiExtractionFailure(err));
+			setFailureKind("analysis");
 		} finally {
 			setLoading(false);
 		}
@@ -105,6 +116,7 @@ const AiMealAdd = () => {
 		if (images.length === 0) {
 			setTextualData("");
 			setError("");
+			setFailureKind(null);
 			setLoading(false);
 		}
 		try {
@@ -123,11 +135,13 @@ const AiMealAdd = () => {
 				const base64Image = `data:image/jpeg;base64,${photo.base64String}`;
 				addImage(base64Image);
 				setError("");
+				setFailureKind(null);
 
 				// router.push(`/camera/review?image=${encodeURIComponent(base64Image)}`, "forward");
 			}
 		} catch (err) {
 			setError(describeCameraFailure(err));
+			setFailureKind("camera");
 		}
 	};
 
@@ -147,13 +161,11 @@ const AiMealAdd = () => {
 					{/* {ScanFoodAnimation} */}
 
 					<IonText color='medium'>
-						<h2 style={{ fontSize: "1.2rem", fontWeight: 600, marginBottom: "2rem" }}>Scan Your Meal</h2>
+						<h1 className='camera-heading'>Photograph your meal</h1>
 						<ul style={{ textAlign: "left", paddingLeft: "1.5rem", margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-							<li style={{ fontSize: "1rem", marginBottom: "0.3rem" }}>Snap pictures of your meal.</li>
-							<li style={{ fontSize: "1rem", marginBottom: "0.3rem" }}>Include as many pictures as you like (up to 5).</li>
-							<li style={{ fontSize: "1rem", marginBottom: "0.3rem" }}>Include images of the nutritional info, serving size, and other data.</li>
-							<li style={{ fontSize: "1rem" }}>Providing more data provides more accurate results.</li>
-							<li style={{ fontSize: "1rem" }}>Optionally provide more textual description to better describe your meal.</li>
+							<li>Keep the whole meal visible.</li>
+							<li>Add another angle or a label when it helps show what's included.</li>
+							<li>You can add up to 5 photos.</li>
 						</ul>
 					</IonText>
 
@@ -176,6 +188,7 @@ const AiMealAdd = () => {
 									<IonButton
 										color='danger'
 										size='small'
+										aria-label={`Remove photo ${index + 1}`}
 										onClick={() => {
 											removeImage(index);
 										}}
@@ -187,13 +200,21 @@ const AiMealAdd = () => {
 						</div>
 					)}
 
-					<IonTextarea onIonChange={(e) => setTextualData(e.detail.value ?? "")} value={textualData} className='ion-text-left' fill='outline' label='Textual Description (Optional)' labelPlacement='floating' placeholder='Textual Description'></IonTextarea>
+					<IonTextarea
+						onIonChange={(e) => setTextualData(e.detail.value ?? "")}
+						value={textualData}
+						className='ion-text-left'
+						fill='outline'
+						label="Anything the photo can't show? (optional)"
+						labelPlacement='floating'
+						placeholder='e.g. cooked in butter, brown rice, half portion'
+					/>
 
 					<IonText color='medium'>
 						<p style={{ fontSize: "0.78rem", textAlign: "left", margin: "0.5rem 0 0" }}>{AI_EXTRACTION_PRIVACY_DISCLOSURE}</p>
 					</IonText>
 
-					{error && (
+					{visibleError && (
 						<div
 							role='alert'
 							style={{
@@ -209,34 +230,39 @@ const AiMealAdd = () => {
 								gap: "8px",
 							}}>
 							<IonText>
-								<p style={{ margin: 0, fontSize: "0.92rem" }}>{error}</p>
+								<p style={{ margin: 0, fontSize: "0.92rem" }}>{visibleError}</p>
 							</IonText>
-							<div>
+							<div className='camera-error-actions'>
+								{failureKind === "analysis" && (
+									<IonButton size='small' fill='outline' onClick={handleOnSubmit} disabled={isLoading}>
+										Try again
+									</IonButton>
+								)}
 								<IonButton size='small' fill='outline' onClick={handleAddManually}>
 									<IonIcon slot='start' icon={pencil} />
-									Add meal manually
+									Enter manually instead
 								</IonButton>
 							</div>
 						</div>
 					)}
 
-					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }} className='ion-margin-top'>
-						<IonButton size='large' aria-label='Take photo' onClick={() => handleAddPhoto(CameraSource.Camera)}>
-							<IonIcon size='large' icon={camera} slot='icon-only' />
+					<div className='camera-capture-actions ion-margin-top'>
+						<IonButton expand='block' fill='outline' onClick={() => handleAddPhoto(CameraSource.Camera)} disabled={images.length >= 5}>
+							<IonIcon icon={camera} slot='start' />
+							{images.length === 0 ? "Take a photo" : "Add another angle"}
 						</IonButton>
-						<IonButton fill='outline' size='small' onClick={() => handleAddPhoto(CameraSource.Photos)}>
+						<IonButton expand='block' fill='clear' onClick={() => handleAddPhoto(CameraSource.Photos)} disabled={images.length >= 5}>
 							<IonIcon slot='start' icon={image} />
-							Upload a photo instead
+							Choose from photos
 						</IonButton>
 					</div>
+
+					<IonButton className='analyze-meal-button' expand='block' onClick={handleOnSubmit} disabled={isLoading || images.length === 0}>
+						Analyze meal
+					</IonButton>
 				</div>
 
-				<IonFab slot='fixed' vertical='bottom' horizontal='end'>
-					<IonFabButton aria-label='Analyze photos' onClick={handleOnSubmit} disabled={isLoading || images.length === 0}>
-						<IonIcon icon={arrowForward}></IonIcon>
-					</IonFabButton>
-				</IonFab>
-				<IonLoading message='Loading' isOpen={isLoading} />
+				<IonLoading message='Reading your meal photo...' isOpen={isLoading} />
 			</IonContent>
 		</IonPage>
 	);

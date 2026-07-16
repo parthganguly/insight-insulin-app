@@ -1,18 +1,14 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonFabButton, IonIcon, IonFab, IonItem, IonThumbnail, IonImg } from "@ionic/react";
-import { add } from "ionicons/icons";
+import { IonContent, IonHeader, IonPage, IonTitle, IonItem, IonThumbnail, IonImg } from "@ionic/react";
 import { useEffect } from "react";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Meal } from "../../types/Meal";
 import { calculateTotalCalories, getMealAcuteScore, getMealTimeShortString } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
 
-const AddMeal: React.FC = () => {
+const History: React.FC = () => {
 	const { meals } = usePersistentMealStore();
-	const { resetMeal } = useCurrentMealStore();
 
 	useEffect(() => {
 		// Private-beta hydration: show backend-seeded/saved meals on a fresh load. Fails soft offline.
@@ -22,57 +18,37 @@ const AddMeal: React.FC = () => {
 	return (
 		<IonPage>
 			<IonHeader>
-				<IonToolbarWrapper className='ion-text-center'>
-					<IonTitle>Meals</IonTitle>
+				<IonToolbarWrapper>
+					<IonTitle>History</IonTitle>
 				</IonToolbarWrapper>
 			</IonHeader>
 
 			<IonContent className='ion-padding'>
-				<IonFab slot='fixed' vertical='bottom' horizontal='end'>
-					<IonFabButton onClick={resetMeal} routerLink='/meals/new'>
-						<IonIcon icon={add}></IonIcon>
-					</IonFabButton>
-				</IonFab>
-				{/* {meal.name !== "New Meal" && (
-					<>
-						<IonText color='medium'>
-							<h2 style={{ marginBottom: "1rem", fontSize: "1.2rem" }}>Current Meal</h2>
-						</IonText>
-						<MealCard key={meal.id} meal={meal} />
-					</>
-				)} */}
 				<div className='section-label'>
-					<span>Re-add Previous Meals</span>
-					<span>tap a meal to reuse it</span>
+					<span>Saved meals</span>
+					<span>most recent first</span>
 				</div>
-				{meals.map((meal) => (
-					<MealCard key={meal.id} meal={meal} />
-				))}
+				{meals.length === 0 ? (
+					<div className='app-card list-empty-state'>
+						<h2>No saved meals yet</h2>
+						<p>Meals you check and save will appear here.</p>
+					</div>
+				) : (
+					meals.map((meal) => <MealCard key={meal.id} meal={meal} />)
+				)}
 			</IonContent>
 		</IonPage>
 	);
 };
 
-export default AddMeal;
+export default History;
 
 function MealCard({ meal }: { meal: Meal }) {
-	const { getMealById } = usePersistentMealStore();
-	const { setMeal } = useCurrentMealStore();
-
-	function handleClick(mealId: string) {
-		// Navigate to existing meal details
-		const meal = getMealById(mealId);
-		if (!meal) {
-			return;
-		}
-		setMeal(buildDraftFromSavedMeal(meal));
-	}
-
 	return (
-		<IonItem lines='none' detail={false} button className='recent-card' onClick={() => handleClick(meal.id)} routerLink='/meals/new'>
+		<IonItem lines='none' detail={false} button className='recent-card' routerLink={`/meals/saved/${encodeURIComponent(meal.id)}`}>
 			{meal.image && (
-				<IonThumbnail slot='start' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-					<IonImg src={meal.image ?? ""} alt='Meal Image' style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px" }} />
+				<IonThumbnail slot='start' className='meal-card-thumbnail'>
+					<IonImg src={meal.image} alt='' className='meal-card-image' />
 				</IonThumbnail>
 			)}
 

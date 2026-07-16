@@ -7,11 +7,15 @@ import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
 
-// Meals-tab reuse guard (issue #89): the "Re-add Previous Meals / tap a meal
-// to reuse it" flow must KEEP converting a saved meal into a fresh editable
-// draft through buildDraftFromSavedMeal — new id, source_meal_id back-link,
-// and every backend-derived scoring field cleared. The issue #89 fix only
-// rerouted Dashboard Recents; this path is intentionally unchanged.
+// Meals tab / History read-only guard (issue #89, updated for Campaign A):
+// this file used to guard the "Re-add Previous Meals / tap a meal to reuse
+// it" draft-conversion flow that lived directly on the Meals tab. Campaign A
+// (docs/product/ux/insight-ux-v1.md §6-7) turned that tab into a purely
+// read-only History list and moved explicit reuse behind the Log Meal
+// chooser's "Log a previous meal again" option — see
+// PreviousMealPicker.test.tsx for the draft-conversion/trust-boundary guard
+// that used to live here. This file now guards that History itself stays
+// read-only and never creates a draft.
 // Synthetic demo-shaped data only. No real user or health data.
 
 const seededSavedMeal: Meal = {
@@ -57,7 +61,7 @@ const stubBackend = () => {
 	);
 };
 
-describe("Meals tab reuse flow stays a draft conversion (issue #89 guard)", () => {
+describe("Meals tab / History stays read-only (issue #89 guard, updated for Campaign A)", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		stubBackend();
@@ -69,41 +73,25 @@ describe("Meals tab reuse flow stays a draft conversion (issue #89 guard)", () =
 		vi.unstubAllGlobals();
 	});
 
-	it("keeps the explicit reuse wording", async () => {
+	it("shows the read-only History heading, not the old reuse wording", async () => {
 		window.history.pushState({}, "", "/meals");
 		render(<App />);
 
-		expect(await screen.findByText("Re-add Previous Meals")).toBeTruthy();
-		expect(screen.getByText("tap a meal to reuse it")).toBeTruthy();
+		expect(await screen.findByText("Synthetic Demo Bowl")).toBeTruthy();
+		expect(screen.queryByText("Re-add Previous Meals")).toBeNull();
+		expect(screen.queryByText("tap a meal to reuse it")).toBeNull();
 	});
 
-	it("tapping a saved meal still creates a fresh editable draft with derived scoring cleared", async () => {
+	it("tapping a saved meal opens the read-only result view and creates no draft", async () => {
 		window.history.pushState({}, "", "/meals");
 		render(<App />);
 
 		fireEvent.click(await screen.findByText("Synthetic Demo Bowl"));
 
-		await waitFor(() => {
-			expect(useCurrentMealStore.getState().meal.source_meal_id).toBe("saved-meal-1");
-		});
-
-		const draft = useCurrentMealStore.getState().meal;
-		// New identity, unsaved, back-link to the original (issue #78 delete path).
-		expect(draft.id).not.toBe("saved-meal-1");
-		expect(draft.backend_created_at).toBeUndefined();
-
-		// The trust boundary still strips every backend-derived scoring field.
-		expect(draft.acute_score).toBeUndefined();
-		expect(draft.insulin_load_total).toBeUndefined();
-		expect(draft.kcal_total).toBeUndefined();
-		expect(draft.carbs_total).toBeUndefined();
-		expect(draft.estimate_quality).toBeUndefined();
-		expect(draft.main_insulin_drivers).toBeUndefined();
-
-		expect(draft.items).toHaveLength(1);
-		expect(draft.items[0].id).not.toBe("item-1");
-		expect(draft.items[0].fii).toBeUndefined();
-		expect(draft.items[0].source).toBeUndefined();
-		expect(draft.items[0].why).toBeUndefined();
+		await waitFor(() => expect(window.location.pathname).toBe("/meals/saved/saved-meal-1"));
+		expect(await screen.findByText("Meal result")).toBeTruthy();
+		expect(useCurrentMealStore.getState().meal.source_meal_id).toBeUndefined();
+		expect(useCurrentMealStore.getState().meal.name).toBe("New Meal");
+		expect(useCurrentMealStore.getState().meal.items).toHaveLength(0);
 	});
 });

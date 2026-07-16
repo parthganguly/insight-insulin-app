@@ -1,9 +1,10 @@
 /// <reference types="cypress" />
 
-// 7-Day Logged Meal Trend coverage states (issue #93): no-data shows no
-// score (never 0), partial and full coverage are labelled, the retired
-// "Chronic Score" name never appears, and identical logged eating shows the
-// same per-logged-day value at 1/7 and 7/7 coverage.
+// 7-Day Logged Meal Trend coverage states (issue #93, Campaign A §5): below
+// 3 logged days Home shows the building-history line instead of a ring (so
+// no zero ever reads as a score), at or above the gate coverage is labelled
+// and identical logged eating shows the same per-logged-day value at 3/7 and
+// 7/7 coverage, and the retired "Chronic Score" name never appears.
 
 import { BACKEND_ORIGIN, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
@@ -20,27 +21,40 @@ describe("7-Day Logged Meal Trend", () => {
 		cy.get("ion-app").invoke("text").should("not.contain", "Chronic Score");
 	});
 
-	it("shows the same trend value at 1-of-7 coverage — only the coverage changes", () => {
-		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 1, rollingDii: 0.15 } });
+	it("shows the same trend value at 3-of-7 coverage — only the coverage changes", () => {
+		// 3 logged days is the Campaign A display gate (UX v1 §5); at and above
+		// it the existing trend card renders unchanged. Identical per-logged-day
+		// value as full coverage; the old zero-fill behaviour would have shown a
+		// diluted number here instead of 15.
+		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 3, rollingDii: 0.15 } });
 		visitFresh("/dashboard");
 
-		cy.contains("1 of 7 days logged").should("be.visible");
-		// Identical per-logged-day value as full coverage; the old zero-fill
-		// behaviour would have shown 2 here instead of 15.
+		cy.contains("3 of 7 days logged").should("be.visible");
 		cy.get("[aria-label*='7-day logged meal trend 15']").should("exist");
 	});
 
-	it("shows a no-data state instead of a zero score when nothing is logged in the window", () => {
+	it("replaces the ring with the building-history line below 3 logged days", () => {
+		// Campaign A (UX v1 §5): below the 3-logged-day threshold Home shows a
+		// compact coverage line instead of a low-coverage ring. Trend maths and
+		// the trendDisplay helper copy are untouched — this is display gating on
+		// the existing logged_days_last_7 coverage field only.
+		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 1, rollingDii: 0.15 } });
+		visitFresh("/dashboard");
+
+		cy.contains("Your 7-day trend appears after you log meals on 3 different days (1 of 3 so far).").should("be.visible");
+		cy.contains("7-Day Logged Meal Trend").should("not.exist");
+		cy.get("[aria-label*='7-day logged meal trend']").should("not.exist");
+	});
+
+	it("shows the building-history line, not a zero score, when nothing is logged in the window", () => {
 		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 0, rollingDii: null } });
 		visitFresh("/dashboard");
 
-		cy.contains("0 of 7 days logged").should("be.visible");
-		cy.contains("No meals logged in the last 7 days, so there is no trend to show yet.").should("be.visible");
-		cy.get("[aria-label*='7-day logged meal trend not available']")
-			.should("exist")
-			.invoke("text")
-			.should("contain", "--")
-			.and("not.match", /\b0\b/);
+		cy.contains("Your 7-day trend appears after you log meals on 3 different days (0 of 3 so far).").should("be.visible");
+		// The building-history line states a logged-day count, never a score —
+		// no trend ring renders below the coverage threshold, so no bare "0"
+		// can read as a score.
+		cy.get("[aria-label*='7-day logged meal trend']").should("not.exist");
 	});
 
 	it("exposes coverage and the non-clinical boundary in the accessible description", () => {
@@ -86,15 +100,18 @@ describe("7-Day Logged Meal Trend", () => {
 		cy.get("[aria-label='7-day logged meal trend loading.']").should("exist").and("not.contain", "no meals");
 	});
 
-	it("announces no-data only for a successful response with zero logged days", () => {
+	it("announces a confirmed zero-logged-days response distinctly from loading and failure", () => {
+		// A confirmed zero-coverage response gets the honest building-history
+		// announcement (role="status"), never the loading or unavailable text —
+		// only a successful response may claim that no days were logged.
 		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 0, rollingDii: null } });
 		visitFresh("/dashboard");
 
-		cy.get("[aria-label*='7-day logged meal trend not available']").should(
-			"have.attr",
-			"aria-label",
-			"7-day logged meal trend not available because no meals were logged in the last 7 days.",
-		);
+		cy.get("[role='status']")
+			.should("contain.text", "Your 7-day trend appears after you log meals on 3 different days (0 of 3 so far).")
+			.invoke("text")
+			.should("not.contain", "unavailable")
+			.and("not.contain", "Loading");
 	});
 
 	it("never describes the index as total or average daily insulin demand", () => {

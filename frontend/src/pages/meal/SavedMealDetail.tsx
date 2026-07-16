@@ -10,12 +10,7 @@ import {
 	IonHeader,
 	IonIcon,
 	IonImg,
-	IonItem,
-	IonItemDivider,
-	IonLabel,
-	IonList,
 	IonLoading,
-	IonNote,
 	IonPage,
 	IonText,
 	IonTitle,
@@ -42,7 +37,7 @@ import {
 	getMealTimeString,
 } from "../../utils";
 import { getImpactPresentation, isHardToEstimatePresentation } from "../../utils/insulinImpactPresentation";
-import { SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
+import { ADVANCED_DETAILS_LABEL, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
 import {
 	APP_DISCLAIMER,
 	MEAL_SCORE_DISCLAIMER,
@@ -147,6 +142,8 @@ const SavedMealDetail: React.FC = () => {
 	const estimateQualityCopy = meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality) : null;
 	const hasUnknownItems = meal.items.some((item) => isUnknownSource(item.source));
 	const visibleImpactDrivers = (meal.main_insulin_drivers ?? []).filter((driver) => driver.trim().length > 0).slice(0, 3);
+	const itemWhyLines = meal.items.filter((item) => item.why?.trim()).map((item) => item.why!.trim());
+	const roughEstimateItems = meal.items.filter((item) => isRoughEstimateSource(item.source));
 
 	return (
 		<IonPage>
@@ -155,170 +152,130 @@ const SavedMealDetail: React.FC = () => {
 					<IonButtons slot='start'>
 						<IonBackButton defaultHref='/dashboard' />
 					</IonButtons>
-					<IonTitle>Saved Meal</IonTitle>
+					<IonTitle>Meal result</IonTitle>
 				</IonToolbarWrapper>
 			</IonHeader>
 
-			<IonContent className='ion-padding'>
-				{meal.image && (
-					<IonImg
-						src={meal.image}
-						alt='Saved meal photo'
-						style={{
-							width: "100%",
-							height: "200px",
-							objectFit: "cover",
-							borderRadius: "16px",
-							marginBottom: "1rem",
-						}}
-					/>
-				)}
-
-				<IonCard style={{ borderRadius: "16px", boxShadow: "0 2px 10px rgba(0, 0, 0, 0.24)" }}>
-					<IonCardHeader>
-						<IonCardTitle style={{ fontSize: "20px" }}>{meal.name}</IonCardTitle>
-						<span className='meal-status-pill meal-status-saved'>{SAVED_MEAL_STATUS}</span>
-						<IonText color='medium'>
-							<p style={{ marginTop: "4px" }}>
-								Total Items: {meal.items.length} <br />
-								Logged at: {getMealTimeString(meal)}
-							</p>
-						</IonText>
-						<div className='recent-card-chips'>
-							<NutrimentComponent nutrimentIcon={flame} nutrimentIconColor={"#d96a52"} nutrimentName={"kcal"} nutrimentValue={Math.round(meal.kcal_total ?? calculateTotalCalories(meal))} />
-							<NutrimentComponent nutrimentIcon={pizza} nutrimentIconColor={"#d9a62e"} nutrimentName={"carbs"} nutrimentValue={`${Math.round(meal.carbs_total ?? calculateTotalCarbohydrates(meal))} g`} />
-							<NutrimentComponent nutrimentIcon={batteryCharging} nutrimentIconColor={"#2f86c0"} nutrimentName={"sat. fat"} nutrimentValue={`${Math.round(calculateTotalSaturatedFat(meal))} g`} />
-						</div>
-					</IonCardHeader>
-				</IonCard>
-
-				<IonCard style={{ borderRadius: "16px", boxShadow: "0 2px 10px rgba(0, 0, 0, 0.18)", borderLeft: `6px solid ${impactPresentation.color}` }}>
-					<IonCardHeader>
-						<IonCardTitle style={{ fontSize: "1rem", color: impactPresentation.color }}>Estimated Insulin Demand</IonCardTitle>
-						<IonText color='medium' style={{ fontSize: "0.82rem", marginTop: "2px", display: "block" }}>
-							{MEAL_SCORE_DISCLAIMER}
-						</IonText>
-						{estimateQualityCopy && (
-							<div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginTop: "8px" }}>
-								<span
-									style={{
-										padding: "4px 10px",
-										borderRadius: "999px",
-										background: "#f4f6f8",
-										fontSize: "0.78rem",
-										fontWeight: 600,
-									}}>
-									Data quality: {estimateQualityCopy.label}
-								</span>
-								<IonText color='medium' style={{ fontSize: "0.78rem" }}>
-									<span>{estimateQualityCopy.description}</span>
-								</IonText>
-							</div>
-						)}
-					</IonCardHeader>
-					<IonCardContent>
-						<IonText>
-							<h3 style={{ marginTop: 0, marginBottom: "8px" }}>{impactPresentation.title}</h3>
-						</IonText>
-						{showAcuteScoreDetails && (
-							<div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "8px" }}>
-								<AcuteScoreProgressbar meal={meal} style={{ width: 72, height: 72, flexShrink: 0 }} />
-								<div>
-									<IonText color='medium' style={{ fontSize: "0.85rem" }}>
-										<p style={{ margin: "0 0 4px" }}>{getAcuteScoreDetailLine(displayScore)}</p>
-									</IonText>
-									<IonText color='medium' style={{ fontSize: "0.78rem" }}>
-										<p style={{ margin: 0 }}>{ACUTE_SCORE_SCALE_EXPLAINER}</p>
-									</IonText>
-								</div>
-							</div>
-						)}
-						<IonText color='medium'>
-							<p style={{ marginTop: 0 }}>{impactPresentation.description}</p>
-						</IonText>
-						{hasUnknownItems && (
-							<IonText color='warning'>
-								<p style={{ marginTop: "8px", marginBottom: 0, fontSize: "0.85rem" }}>{UNKNOWN_ITEMS_NOTICE}</p>
+			<IonContent className='ion-padding result-page'>
+				<section className='result-section result-conclusion' aria-labelledby='result-conclusion-heading'>
+					<IonCard className='app-card'>
+						<IonCardHeader>
+							<IonCardTitle id='result-conclusion-heading'>{impactPresentation.title}</IonCardTitle>
+						</IonCardHeader>
+						<IonCardContent>
+							<IonText color='medium'><p>{impactPresentation.description}</p></IonText>
+							{meal.image && <IonImg src={meal.image} alt='Saved meal photo' className='meal-journey-photo result-meal-photo' />}
+							<h2 className='result-meal-name'>{meal.name}</h2>
+							<span className='meal-status-pill meal-status-saved'>{SAVED_MEAL_STATUS}</span>
+							<IonText color='medium'>
+								<p className='result-meal-meta'>Total Items: {meal.items.length}<br />Logged at: {getMealTimeString(meal)}</p>
 							</IonText>
-						)}
-						{visibleImpactDrivers.length > 0 && (
-							<div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "12px" }}>
-								{visibleImpactDrivers.map((driver) => (
-									<span
-										key={driver}
-										style={{
-											padding: "6px 10px",
-											borderRadius: "999px",
-											background: "#f4f6f8",
-											fontSize: "0.82rem",
-										}}>
-										{driver}
-									</span>
-								))}
+						</IonCardContent>
+					</IonCard>
+				</section>
+
+				<section className='result-section' aria-labelledby='result-estimate-heading'>
+					<IonCard className='app-card'>
+						<IonCardHeader><IonCardTitle id='result-estimate-heading'>The estimate</IonCardTitle></IonCardHeader>
+						<IonCardContent>
+							{showAcuteScoreDetails && (
+								<div className='result-score-row'>
+									<AcuteScoreProgressbar meal={meal} style={{ width: 72, height: 72, flexShrink: 0 }} />
+									<div>
+										<IonText color='medium'><p>{getAcuteScoreDetailLine(displayScore)}</p></IonText>
+										<IonText color='medium'><p className='result-scale-line'>{ACUTE_SCORE_SCALE_EXPLAINER}</p></IonText>
+									</div>
+								</div>
+							)}
+							<div className='recent-card-chips result-nutrition-chips'>
+								<NutrimentComponent nutrimentIcon={flame} nutrimentIconColor={"#d96a52"} nutrimentName={"kcal"} nutrimentValue={Math.round(meal.kcal_total ?? calculateTotalCalories(meal))} />
+								<NutrimentComponent nutrimentIcon={pizza} nutrimentIconColor={"#d9a62e"} nutrimentName={"carbs"} nutrimentValue={`${Math.round(meal.carbs_total ?? calculateTotalCarbohydrates(meal))} g`} />
+								<NutrimentComponent nutrimentIcon={batteryCharging} nutrimentIconColor={"#2f86c0"} nutrimentName={"sat. fat"} nutrimentValue={`${Math.round(calculateTotalSaturatedFat(meal))} g`} />
 							</div>
-						)}
-					</IonCardContent>
-				</IonCard>
+						</IonCardContent>
+					</IonCard>
+				</section>
 
-				<IonItemDivider>
-					<IonLabel>Meal Items</IonLabel>
-				</IonItemDivider>
+				<section className='result-section' aria-labelledby='result-drivers-heading'>
+					<IonCard className='app-card'>
+						<IonCardHeader><IonCardTitle id='result-drivers-heading'>Main drivers</IonCardTitle></IonCardHeader>
+						<IonCardContent>
+							{visibleImpactDrivers.length > 0 && (
+								<div className='result-driver-chips'>
+									{visibleImpactDrivers.map((driver, index) => <span key={`${index}-${driver}`}>{driver}</span>)}
+								</div>
+							)}
+							{itemWhyLines.length > 0 && (
+								<div className='result-why-lines'>
+									{itemWhyLines.map((line, index) => <IonText key={`${index}-${line}`} color='medium'><p>{line}</p></IonText>)}
+								</div>
+							)}
+						</IonCardContent>
+					</IonCard>
+				</section>
 
-				{meal.items.length === 0 ? (
-					<IonText color='medium'>
-						<p className='item-list-helper'>This saved meal has no item breakdown.</p>
-					</IonText>
-				) : (
-					<IonList inset={true} style={{ borderRadius: "16px", boxShadow: "0 2px 10px rgba(0, 0, 0, 0.24)" }}>
-						{meal.items.map((item) => (
-							<IonItem key={item.id} lines='full' detail={false}>
-								<IonLabel>
-									<h2 style={{ marginBottom: "0.5rem" }}>{item.name}</h2>
-									<IonNote color='medium' className='ion-text-wrap'>
-										<NutrimentComponent nutrimentName='Calories' nutrimentValue={calculateTotalItemCalories(item)} nutrimentIcon={flame} nutrimentIconColor='#d96a52' />
-										<NutrimentComponent nutrimentName='Carbohydrates' nutrimentValue={calculateTotalItemCarbohydrates(item)} nutrimentIcon={pizza} nutrimentIconColor='#d9a62e' />
-										<NutrimentComponent nutrimentName='Saturated Fats' nutrimentValue={calculateTotalItemSaturatedFat(item)} nutrimentIcon={batteryCharging} nutrimentIconColor='#2f86c0' />
-									</IonNote>
-									{item.source ? (
-										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
-											<p style={{ marginTop: "8px", marginBottom: 0 }}>Source: {humanizeFiiSource(item.source)}</p>
-										</IonText>
-									) : null}
-									{shouldShowProvidedFiiDisclaimer(item.source, item.fii) ? (
-										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
-											<p style={{ marginTop: "8px", marginBottom: 0 }}>{PROVIDED_FII_DISCLAIMER}</p>
-										</IonText>
-									) : null}
-									{isRoughEstimateSource(item.source) ? (
-										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
-											<p style={{ marginTop: "8px", marginBottom: 0 }}>{ROUGH_ESTIMATE_NOTICE}</p>
-										</IonText>
-									) : null}
-									{item.why ? (
-										<IonText color='medium' style={{ fontSize: "0.85rem" }}>
-											<p style={{ marginTop: "8px", marginBottom: 0 }}>{item.why}</p>
-										</IonText>
-									) : null}
-								</IonLabel>
-							</IonItem>
-						))}
-					</IonList>
-				)}
+				<section className='result-section' aria-labelledby='result-quality-heading'>
+					<IonCard className='app-card'>
+						<IonCardHeader><IonCardTitle id='result-quality-heading'>Estimate quality and limitations</IonCardTitle></IonCardHeader>
+						<IonCardContent>
+							{estimateQualityCopy && (
+								<div className='result-quality'>
+									<span className='result-quality-pill'>Data quality: {estimateQualityCopy.label}.</span>{" "}
+									<IonText color='medium'><span>{estimateQualityCopy.description}</span></IonText>
+								</div>
+							)}
+							{hasUnknownItems && <IonText color='warning'><p>{UNKNOWN_ITEMS_NOTICE}</p></IonText>}
+							{roughEstimateItems.map((item) => <IonText key={item.id} color='medium'><p>{ROUGH_ESTIMATE_NOTICE}</p></IonText>)}
+						</IonCardContent>
+					</IonCard>
+				</section>
 
-				<IonText color='medium'>
-					<p style={{ fontSize: "0.82rem", marginTop: "12px" }}>
-						This is the saved record of this meal. To log it again, open the <strong>Meals</strong> tab and tap it under "Re-add Previous Meals".
-					</p>
-				</IonText>
+				<section className='result-section' aria-labelledby='result-limitations-heading'>
+					<IonCard className='app-card'>
+						<IonCardHeader><IonCardTitle id='result-limitations-heading'>What this does not mean</IonCardTitle></IonCardHeader>
+						<IonCardContent>
+							<div className='disclaimer-note result-disclaimer'>{MEAL_SCORE_DISCLAIMER}</div>
+							<div className='disclaimer-note result-disclaimer'>{APP_DISCLAIMER}</div>
+						</IonCardContent>
+					</IonCard>
+				</section>
 
-				<IonButton expand='block' color='danger' fill='outline' className='ion-margin-vertical' onClick={handleDeleteMeal}>
-					<IonIcon icon={trash} slot='start' />
-					Delete Saved Meal
-				</IonButton>
+				<section className='result-section result-actions' aria-label='Next actions'>
+					<IonButton expand='block' routerLink='/log-meal'>Check another meal</IonButton>
+					<IonButton expand='block' fill='outline' routerLink='/dashboard'>Done</IonButton>
+					<IonButton expand='block' color='danger' fill='outline' onClick={handleDeleteMeal}>
+						<IonIcon icon={trash} slot='start' />
+						Delete Saved Meal
+					</IonButton>
+				</section>
 
-				<div className='disclaimer-note' style={{ marginBottom: "1.5rem" }}>
-					{APP_DISCLAIMER}
-				</div>
+				<section className='result-section result-advanced'>
+					<details className='advanced-details'>
+						<summary>{ADVANCED_DETAILS_LABEL}</summary>
+						<div className='advanced-details-content'>
+							{meal.items.length === 0 ? (
+								<IonText color='medium'><p>This saved meal has no item breakdown.</p></IonText>
+							) : (
+								meal.items.map((item) => (
+									<IonCard key={item.id} className='app-card advanced-item-card'>
+										<IonCardHeader><IonCardTitle>{item.name}</IonCardTitle></IonCardHeader>
+										<IonCardContent>
+											<div className='advanced-nutrient-totals'>
+												<NutrimentComponent nutrimentName='Calories' nutrimentValue={calculateTotalItemCalories(item)} nutrimentIcon={flame} nutrimentIconColor='#d96a52' />
+												<NutrimentComponent nutrimentName='Carbohydrates' nutrimentValue={calculateTotalItemCarbohydrates(item)} nutrimentIcon={pizza} nutrimentIconColor='#d9a62e' />
+												<NutrimentComponent nutrimentName='Saturated Fats' nutrimentValue={calculateTotalItemSaturatedFat(item)} nutrimentIcon={batteryCharging} nutrimentIconColor='#2f86c0' />
+											</div>
+											<p>FII: {item.fii ?? ""}</p>
+											<p>Glycemic Index: {item.gi}</p>
+											{item.source && <p>Source: {humanizeFiiSource(item.source)}</p>}
+											{shouldShowProvidedFiiDisclaimer(item.source, item.fii) && <IonText color='medium'><p>{PROVIDED_FII_DISCLAIMER}</p></IonText>}
+										</IonCardContent>
+									</IonCard>
+								))
+							)}
+						</div>
+					</details>
+				</section>
 
 				<IonLoading isOpen={isDeleting} message='Deleting meal…' />
 				<IonToast isOpen={showToast} message={toastMessage} duration={2200} color='danger' onDidDismiss={() => setShowToast(false)} />

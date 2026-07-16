@@ -1,8 +1,10 @@
 /// <reference types="cypress" />
 
-// Manual meal draft flow (issue #93): the draft opens editable, invalid
-// saves are rejected with visible feedback, and a valid synthetic save posts
-// to the (intercepted) backend and shows the canonical scored result.
+// Manual meal journey (Campaign A, docs/product/ux/insight-ux-v1.md §§7, 9,
+// 11): "Enter manually" opens an editable confirmation draft with one item
+// ready, invalid saves are rejected with visible feedback, and a valid
+// synthetic save posts to the (intercepted) backend and lands on the
+// canonical /meals/saved/:id result screen.
 
 import { BACKEND_ORIGIN, shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
@@ -25,89 +27,88 @@ const savedResponse = syntheticBackendMeal("syn-saved-1", "Synthetic Manual Meal
 	],
 });
 
-// FAB buttons sit in Ionic's fixed overlay layer, which Cypress's
-// actionability check misreads as covered; the follow-up banner/text
-// assertions verify the click actually worked.
-const clickFab = (ariaLabel: string) => cy.get(`[aria-label='${ariaLabel}']`).first().click({ force: true });
-
-const addManualItem = () => {
-	cy.get("#open-meal-item-action-sheet").click();
-	// Wait for the sheet to actually present, then click the button element
-	// itself (its inner span has pointer-events: none by Ionic design).
-	cy.get("ion-action-sheet:not(.overlay-hidden)").should("exist");
-	cy.get("ion-action-sheet:not(.overlay-hidden)").contains("button.action-sheet-button", "Manual").click();
+// The chooser's "Enter manually" option resets the draft and seeds one
+// editable item before opening the confirmation screen.
+const openManualDraft = () => {
+	visitFresh("/log-meal");
+	cy.contains("ion-button.log-meal-option", "Enter manually").click({ force: true });
+	cy.url().should("include", "/meals/new");
 	cy.contains("Draft item — tap to add food details").should("exist");
 };
 
-const setItemPortion = (amount: string, kcal: string) => {
-	cy.contains("Draft item — tap to add food details").click({ force: true });
-	cy.contains("Edit: New Item").should("exist");
-	cy.contains("ion-input", "Amount").find("input").first().clear().type(amount);
-	cy.contains("ion-input", "kcals per serving").find("input").first().clear().type(kcal);
-	// Ionic reflects aria-label onto the shadow button too; click one node.
-	cy.get("[aria-label='Done editing item']").first().click({ force: true });
-	cy.get("ion-modal.show-modal").should("not.exist");
+// Types a portion into the item card's inline quick-adjust amount field.
+const setInlineAmount = (amount: string) => {
+	cy.get(".portion-adjust-row").first().contains("ion-input", "Amount").find("input").first().clear();
+	cy.get(".portion-adjust-row").first().contains("ion-input", "Amount").find("input").first().type(amount);
 };
 
-const saveMeal = () => {
-	clickFab("Meal actions");
-	clickFab("Save meal");
-};
+// The Calculate & save primary action (aria-label "Save meal") sits in
+// Ionic's scroll container, which Cypress's actionability check misreads as
+// covered; follow-up assertions verify the click actually worked.
+const saveMeal = () => cy.get("[aria-label='Save meal']").first().click({ force: true });
 
 describe("Manual meal draft", () => {
 	beforeEach(() => {
 		stubBackend();
-		visitFresh("/meals");
-		// FAB on the Meals tab starts a fresh editable draft.
-		cy.get("ion-fab-button").first().click({ force: true });
-		cy.url().should("include", "/meals/new");
 	});
 
-	it("opens as an editable draft", () => {
+	it("opens as an editable confirmation draft with one item ready", () => {
+		openManualDraft();
+
 		// Real rendering guards (see shouldBeRendered): the draft status must
 		// actually be painted, not merely present in the DOM.
 		shouldBeRendered("span", "Editable draft — not saved yet");
-		shouldBeRendered("p", "This meal is an editable draft");
+		cy.contains("Did we get your meal right?").should("exist");
+		cy.contains("What INSIGHT found").should("exist");
 		cy.get("input").should("exist"); // the dish-name input is editable
 	});
 
 	it("rejects saving an empty draft with visible feedback", () => {
-		saveMeal();
+		openManualDraft();
 
+		// Remove the seeded item so the draft is genuinely empty.
+		cy.contains("ion-button", "Remove").click({ force: true });
+		cy.contains("Add something below before calculating the estimate.").should("exist");
+
+		saveMeal();
 		cy.get(".save-feedback-banner").should("contain.text", "This meal is still empty. Tap + to add at least one item, then save.");
 	});
 
 	it("rejects an item without a positive amount", () => {
-		addManualItem();
+		openManualDraft();
 
-		// Invalid: the fresh item has amount 0.
+		// Invalid: the seeded item still has amount 0.
 		saveMeal();
 		cy.get(".save-feedback-banner").should("contain.text", "needs an amount greater than 0");
 	});
 
-	it("saves a valid synthetic meal and shows the canonical scored result", () => {
+	it("saves a valid synthetic meal and lands on the canonical result screen", () => {
 		cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 200, body: savedResponse }).as("saveMeal");
 
-		addManualItem();
-		setItemPortion("2", "100");
+		openManualDraft();
+		setInlineAmount("2");
 
-		// Valid save posts to the backend and shows the canonical result.
+		// Valid save posts to the backend and navigates to the saved result.
 		saveMeal();
 		cy.wait("@saveMeal");
 
-		cy.get(".save-feedback-banner").should("contain.text", "Meal saved to your history");
-		cy.contains("Saved to history").should("exist");
-		cy.contains("Score: 42 · internal reference: 100").should("exist");
+		cy.url().should("include", "/meals/saved/syn-saved-1");
+		cy.contains("Meal result").should("exist");
+		shouldBeRendered("span", "Saved to history");
+		shouldBeRendered("h2", "Synthetic Manual Meal");
+		shouldBeRendered("p", "Score: 42 · internal reference: 100");
 	});
 
 	it("shows the sanitized backend error without leaking internals when the save fails", () => {
 		cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 500, body: { detail: "Internal server error" } }).as("saveMealFail");
 
-		addManualItem();
-		setItemPortion("1", "100");
+		openManualDraft();
+		setInlineAmount("1");
 		saveMeal();
 		cy.wait("@saveMealFail");
 
+		// The failed save keeps the user on the editable draft.
+		cy.url().should("include", "/meals/new");
 		cy.get(".save-feedback-banner").should("contain.text", "Internal server error");
 		cy.get("ion-app").invoke("text").should("not.contain", "Traceback");
 	});

@@ -116,7 +116,7 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(screen.getByText("Score: 360 · above internal reference (100)")).toBeTruthy();
 		expect(screen.getByText(ACUTE_SCORE_SCALE_EXPLAINER)).toBeTruthy();
 
-		expect(screen.getByText("Data quality: High")).toBeTruthy();
+		expect(screen.getByText("Data quality: High.")).toBeTruthy();
 		expect(screen.getByText("steamed rice")).toBeTruthy();
 		expect(screen.getByText("sweet sauce")).toBeTruthy();
 		expect(screen.getByText("matched FII table entry")).toBeTruthy();
@@ -147,11 +147,28 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 	it("keeps the 'Hard to estimate' presentation and hides score details for low-quality saved meals", async () => {
 		stubBackend();
 		usePersistentMealStore.setState({ meals: [savedMeal({ estimate_quality: "low" })] });
-		renderSavedMealDetail();
+		const { baseElement } = renderSavedMealDetail();
 
 		expect(await screen.findByText("Hard to estimate from this meal")).toBeTruthy();
 		expect(screen.queryByText(/Score: 360/)).toBeNull();
-		expect(screen.getByText("Data quality: Low")).toBeTruthy();
+		expect(screen.getByText("Data quality: Low.")).toBeTruthy();
+		expect(baseElement.querySelector(".result-quality")?.textContent).toContain("Data quality: Low. Uses rough fallback");
+		expect(baseElement.querySelector(".result-quality")?.textContent).not.toContain("LowUses");
+	});
+
+	it("renders repeated result explanations without duplicate React keys", async () => {
+		stubBackend();
+		const repeatedDriver = "Used a direct Food Insulin Index match and scaled it by eaten energy.";
+		const baseMeal = savedMeal();
+		const repeatedItems = ["item-1", "item-2", "item-3"].map((id) => ({ ...baseMeal.items[0], id, why: repeatedDriver }));
+		usePersistentMealStore.setState({ meals: [savedMeal({ items: repeatedItems, main_insulin_drivers: [repeatedDriver, repeatedDriver, repeatedDriver] })] });
+		const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
+
+		renderSavedMealDetail();
+
+		expect(await screen.findAllByText(repeatedDriver)).toHaveLength(6);
+		expect(consoleErrorSpy.mock.calls.some((call) => String(call[0]).includes("same key"))).toBe(false);
+		consoleErrorSpy.mockRestore();
 	});
 
 	it("requires confirmation, then deletes backend-first and removes the meal locally", async () => {
@@ -212,5 +229,54 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(await screen.findByText(SAVED_MEAL_STATUS)).toBeTruthy();
 		expect(screen.getByText(ROUGH_ESTIMATE_NOTICE)).toBeTruthy();
 		expect(screen.getByText("Source: Macro-based rough estimate")).toBeTruthy();
+	});
+
+	it("renders the approved result sections in DOM order", async () => {
+		stubBackend();
+		const { baseElement } = renderSavedMealDetail();
+		await screen.findByText(SAVED_MEAL_STATUS);
+
+		const sections = Array.from(baseElement.querySelectorAll(".result-page > .result-section"));
+		expect(sections).toHaveLength(7);
+		expect(sections.map((section) => section.getAttribute("aria-labelledby") ?? section.getAttribute("aria-label") ?? section.className)).toEqual([
+			"result-conclusion-heading",
+			"result-estimate-heading",
+			"result-drivers-heading",
+			"result-quality-heading",
+			"result-limitations-heading",
+			"Next actions",
+			"result-section result-advanced",
+		]);
+	});
+
+	it("routes Check another meal to the Log Meal chooser", async () => {
+		stubBackend();
+		renderSavedMealDetail();
+
+		fireEvent.click(await screen.findByText("Check another meal"));
+
+		await waitFor(() => expect(window.location.pathname).toBe("/log-meal"));
+		expect(await screen.findByText("How would you like to add it?")).toBeTruthy();
+	});
+
+	it("routes Done Home", async () => {
+		stubBackend();
+		renderSavedMealDetail();
+
+		fireEvent.click(await screen.findByText("Done"));
+
+		await waitFor(() => expect(window.location.pathname).toBe("/dashboard"));
+		expect((await screen.findAllByText("Home")).length).toBeGreaterThan(0);
+	});
+
+	it("keeps advanced evidence closed by default", async () => {
+		stubBackend();
+		const { baseElement } = renderSavedMealDetail();
+		await screen.findByText(SAVED_MEAL_STATUS);
+
+		const disclosure = baseElement.querySelector(".result-advanced details.advanced-details");
+		expect(disclosure).toBeTruthy();
+		expect(disclosure).not.toHaveAttribute("open");
+		expect(disclosure).toContainElement(screen.getByText("Source: Direct FII match"));
 	});
 });

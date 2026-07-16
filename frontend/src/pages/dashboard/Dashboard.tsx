@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonCard, IonItem, IonIcon } from "@ionic/react";
+import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonCard, IonItem, IonIcon } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -7,7 +7,7 @@ import { fetchChronicMetricsFromAPI, ChronicMetricsResponse } from "../../api/ap
 import { calculateTotalCalories, calculateTotalCarbohydrates, calculateTotalSaturatedFat, getMealAcuteScore, getMealTimeShortString } from "../../utils";
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import { Meal } from "../../types/Meal";
-import { batteryCharging, chevronForward, flame, pizza } from "ionicons/icons";
+import { batteryCharging, chevronForward, cog, flame, pizza } from "ionicons/icons";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
@@ -23,6 +23,7 @@ import {
 	getTrendText,
 	resolveTrendState,
 } from "../../utils/trendDisplay";
+import { getHomeTrendCoverageLine, resolveHomeLifecycleState } from "../../utils/homeMealJourney";
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((s) => s.meals);
@@ -103,27 +104,51 @@ const Dashboard: React.FC = () => {
 					? TREND_NO_DATA_LINE
 					: TREND_STATUS_LINE;
 	const trendAriaLabel = getTrendAriaLabel(trendState, trendValue, loggedDays, windowDays);
+	// Coverage is only "known" once a chronic-metrics response has actually
+	// arrived. While loading or after a failed fetch, the lifecycle state must
+	// stay on the full trend card so its own loading/error announcements (and
+	// their distinct ARIA labels) keep rendering, instead of being replaced by
+	// the low-coverage building-history line before we know it applies.
+	const homeState = resolveHomeLifecycleState({
+		mealCount: meals.length,
+		loggedDaysLast7: chronicMetrics?.logged_days_last_7,
+		coverageKnown: chronicMetrics !== null,
+	});
+	const buildingHistoryLine = chronicMetrics ? getHomeTrendCoverageLine(loggedDays, windowDays) : "";
 
 	return (
 		<IonPage>
 			<IonHeader>
 				<IonToolbarWrapper>
-					<IonTitle>Dashboard</IonTitle>
+					<IonTitle>Home</IonTitle>
+					<IonButtons slot='end'>
+						<IonButton routerLink='/settings' aria-label='Settings'>
+							<IonIcon aria-hidden='true' icon={cog} />
+						</IonButton>
+					</IonButtons>
 				</IonToolbarWrapper>
 			</IonHeader>
 
 			<IonContent className='ion-padding'>
-				{meals.length === 0 ? (
+				{homeState === "empty" ? (
 					<IonCard className='app-card empty-state-card'>
-						<h2>No Meals Logged</h2>
-						<p style={{ marginBottom: "0.75rem" }}>You haven't added any meals yet.</p>
-						<p>
-							Tap the <strong>Add Meal</strong> tab below to scan and log your first meal!
-						</p>
+						<h1>Understand and compare the estimated insulin demand of meals.</h1>
+						<IonButton expand='block' routerLink='/log-meal' aria-label='Check a meal'>
+							Check a meal
+						</IonButton>
+						<p>Snap a photo or describe your meal, and INSIGHT will estimate its insulin demand.</p>
 					</IonCard>
 				) : (
 					<>
-						<IonCard className='app-card hero-card'>
+						<div className='home-primary-action'>
+							<IonButton expand='block' routerLink='/log-meal' aria-label='Check a meal'>
+								Check a meal
+							</IonButton>
+							<p>Use a photo, enter the meal yourself, or repeat a saved meal.</p>
+						</div>
+
+						{homeState === "trend-ready" ? (
+							<IonCard className='app-card hero-card'>
 							<p className='hero-eyebrow'>Logged meals, last 7 days</p>
 							<h2 className='hero-title'>7-Day Logged Meal Trend</h2>
 
@@ -155,13 +180,20 @@ const Dashboard: React.FC = () => {
 							</div>
 
 							<div className='disclaimer-note'>{CHRONIC_TREND_DISCLAIMER}</div>
-						</IonCard>
+							</IonCard>
+						) : (
+							<div className='app-card trend-coverage-note' role='status'>
+								{buildingHistoryLine}
+							</div>
+						)}
 
 						<div className='section-label'>
 							<span>Recents</span>
 							<span>most recent first</span>
 						</div>
-						<p className='journey-cue'>Each logged meal feeds the 7-day trend above — days you don't log are left out of it, so log the days you want reflected.</p>
+						{homeState === "trend-ready" && (
+							<p className='journey-cue'>Each logged meal feeds the 7-day trend above — days you don't log are left out of it, so log the days you want reflected.</p>
+						)}
 
 						{meals.map((meal) => {
 							return <MealCard key={meal.id} meal={meal} />;
@@ -178,8 +210,7 @@ export default Dashboard;
 function MealCard({ meal }: { meal: Meal }) {
 	// Recents is a history/review affordance (issue #89): open the saved meal's
 	// read-only detail view with its canonical score intact. Reuse-as-a-new-draft
-	// (buildDraftFromSavedMeal) belongs only to the Meals tab's explicit
-	// "tap a meal to reuse it" flow.
+	// (buildDraftFromSavedMeal) belongs only to the explicit previous-meal picker.
 	return (
 		<IonItem lines='none' detail={false} button routerLink={`/meals/saved/${encodeURIComponent(meal.id)}`} key={meal.id} className='recent-card'>
 			<div style={{ minWidth: 0, flex: 1 }}>

@@ -1,7 +1,7 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useLocation } from "react-router-dom";
 import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { addCircle, cog, home } from "ionicons/icons";
+import { addCircle, home, time } from "ionicons/icons";
 import Dashboard from "./pages/dashboard/Dashboard";
 
 /* Core CSS required for Ionic components to work properly */
@@ -37,22 +37,29 @@ import AddMeal from "./pages/meal/Meals";
 import AiMealAdd from "./pages/meal/AiMealAdd";
 import PreviewMeal from "./pages/meal/PreviewMeal";
 import SavedMealDetail from "./pages/meal/SavedMealDetail";
+import LogMealChooser from "./pages/meal/LogMealChooser";
+import PreviousMealPicker from "./pages/meal/PreviousMealPicker";
 import { useEffect, useState } from "react";
 import { SafeArea } from "capacitor-plugin-safe-area";
 
 setupIonicReact();
 
-const App: React.FC = () => {
-	const [bottom, setBottom] = useState(0);
-	useEffect(() => {
-		SafeArea.getSafeAreaInsets().then(({ insets }) => {
-			setBottom(insets.bottom);
-		});
-	}, []);
+type JourneyTab = "dashboard" | "logMeal" | "history";
+
+const getJourneyTabForPath = (pathname: string): JourneyTab => {
+	if (pathname === "/log-meal" || pathname === "/meals/previous" || pathname === "/meals/new" || pathname.startsWith("/meals/new/")) {
+		return "logMeal";
+	}
+	if (pathname === "/meals" || pathname.startsWith("/meals/saved/")) return "history";
+	return "dashboard";
+};
+
+const AppTabs = ({ bottom }: { bottom: number }) => {
+	const { pathname } = useLocation();
+	const selectedTab = getJourneyTabForPath(pathname);
+
 	return (
-		<IonApp>
-			<IonReactRouter>
-				<IonTabs>
+		<IonTabs>
 					<IonRouterOutlet>
 						<Route exact path='/dashboard'>
 							<Dashboard />
@@ -60,6 +67,12 @@ const App: React.FC = () => {
 
 						<Route exact path='/meals'>
 							<AddMeal />
+						</Route>
+						<Route exact path='/log-meal'>
+							<LogMealChooser />
+						</Route>
+						<Route exact path='/meals/previous'>
+							<PreviousMealPicker />
 						</Route>
 
 						<Route exact path='/meals/new'>
@@ -81,20 +94,34 @@ const App: React.FC = () => {
 						</Route>
 					</IonRouterOutlet>
 					<IonTabBar style={{ paddingBottom: `${bottom}px` }} slot='bottom'>
-						<IonTabButton tab='dashboard' href='/dashboard'>
+						<IonTabButton tab='dashboard' href='/dashboard' aria-label='Home' aria-selected={selectedTab === "dashboard"} selected={selectedTab === "dashboard"} className={selectedTab === "dashboard" ? "journey-tab-selected" : undefined}>
 							<IonIcon size='large' aria-hidden='true' icon={home} />
-							<IonLabel style={{ fontSize: "10px" }}>Dashboard</IonLabel>
+							<IonLabel>Home</IonLabel>
 						</IonTabButton>
-						<IonTabButton tab='addMeal' href='/meals'>
-							<IonIcon style={{ fontSize: "50px" }} aria-hidden='true' icon={addCircle} />
-							{/* <IonLabel style={{ fontSize: "10px" }}>Add Meal</IonLabel> */}
+						<IonTabButton tab='logMeal' href='/log-meal' aria-label='Log Meal' aria-selected={selectedTab === "logMeal"} selected={selectedTab === "logMeal"} className={selectedTab === "logMeal" ? "journey-tab-selected" : undefined}>
+							<IonIcon size='large' aria-hidden='true' icon={addCircle} />
+							<IonLabel>Log Meal</IonLabel>
 						</IonTabButton>
-						<IonTabButton tab='settings' href='/settings'>
-							<IonIcon size='large' aria-hidden='true' icon={cog} />
-							<IonLabel style={{ fontSize: "10px" }}>Settings</IonLabel>
+						<IonTabButton tab='history' href='/meals' aria-label='History' aria-selected={selectedTab === "history"} selected={selectedTab === "history"} className={selectedTab === "history" ? "journey-tab-selected" : undefined}>
+							<IonIcon size='large' aria-hidden='true' icon={time} />
+							<IonLabel>History</IonLabel>
 						</IonTabButton>
 					</IonTabBar>
 				</IonTabs>
+	);
+};
+
+const App: React.FC = () => {
+	const [bottom, setBottom] = useState(0);
+	useEffect(() => {
+		SafeArea.getSafeAreaInsets().then(({ insets }) => {
+			setBottom(insets.bottom);
+		});
+	}, []);
+	return (
+		<IonApp>
+			<IonReactRouter>
+				<AppTabs bottom={bottom} />
 			</IonReactRouter>
 		</IonApp>
 	);

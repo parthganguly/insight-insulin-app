@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 // The ion-toast overlay cannot run its enter animation under jsdom and throws
@@ -89,6 +89,7 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 
 	afterEach(() => {
 		vi.unstubAllGlobals();
+		vi.restoreAllMocks();
 	});
 
 	it("presents an unsaved manual meal as an editable draft, not a broken saved meal", async () => {
@@ -139,11 +140,13 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 		});
 	});
 
-	it("saves a valid manual meal, confirms it inline, and marks the meal as saved", async () => {
-		useCurrentMealStore.setState({ meal: currentMeal([draftItem({ name: "Steamed rice", amount: 1, kcalPerServing: 200, carbPerServing_g: 45, satFatPerServing_g: 0.2 })]) });
+	it("saves a dirty valid manual meal without a leave warning or private response logging", async () => {
 		const fetchMock = vi.fn(async () => ({ ok: true, status: 200, json: async () => savedMealResponseBody }));
 		vi.stubGlobal("fetch", fetchMock);
+		const consoleLogSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
 		const { baseElement } = renderPreviewMeal();
+		await screen.findByText(DRAFT_MEAL_STATUS);
+		act(() => useCurrentMealStore.setState({ meal: currentMeal([draftItem({ name: "Steamed rice", amount: 1, kcalPerServing: 200, carbPerServing_g: 45, satFatPerServing_g: 0.2 })]) }));
 
 		fireEvent.click(await screen.findByLabelText("Save meal"));
 
@@ -158,5 +161,12 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 		expect(savedMeals).toHaveLength(1);
 		expect(savedMeals[0].id).toBe("saved-meal-1");
 		expect(savedMeals[0].backend_created_at).toBe("2026-07-01T12:05:00Z");
+		expect(consoleLogSpy).not.toHaveBeenCalledWith("POST /meals response:", expect.anything());
+		await waitFor(() => {
+			expect(window.location.pathname).toBe("/meals/saved/saved-meal-1");
+		});
+		expect(screen.queryByText("Discard this draft?")).toBeNull();
+		expect(await screen.findByText("Meal result")).toBeTruthy();
+		expect(baseElement.querySelector('[role="img"][aria-label*="score 42"]')).toBeTruthy();
 	});
 });
