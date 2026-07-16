@@ -5,7 +5,7 @@ import App from "../../App";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
-import { TREND_ARIA_LOADING, TREND_ARIA_NO_DATA, TREND_ARIA_UNAVAILABLE, getTrendAriaLabel } from "../../utils/trendDisplay";
+import { TREND_ARIA_LOADING, TREND_ARIA_UNAVAILABLE, TREND_LOADING_LINE, getTrendAriaLabel } from "../../utils/trendDisplay";
 
 // 7-Day Logged Meal Trend rendering (issue #93): the Dashboard must show the
 // logged-days-only trend with explicit coverage ("N of 7 days logged"), show
@@ -87,27 +87,27 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		expect(screen.queryByText("Chronic Score")).toBeNull();
 	});
 
-	it("shows partial coverage without changing how the value is presented", async () => {
+	// Campaign A (docs/product/ux/insight-ux-v1.md §5): below the 3-logged-day
+	// threshold, Home intentionally replaces the trend ring with a compact
+	// building-history line rather than rendering a low-coverage ring value.
+	it("shows the building-history line instead of the ring below the 3-logged-day threshold", async () => {
 		stubBackend({ kind: "ok", loggedDays: 1, rollingDii: 0.15 });
 		renderDashboard();
 
-		expect(await screen.findByText("1 of 7 days logged")).toBeTruthy();
-		// Identical logged eating shows the identical per-logged-day value at
-		// 1/7 coverage — the old zero-fill would have rendered 2 instead.
-		expect(await screen.findByText("15")).toBeTruthy();
-		expect(screen.queryByText("2")).toBeNull();
+		expect(await screen.findByText("Your 7-day trend appears after you log meals on 3 different days (1 of 3 so far).")).toBeTruthy();
+		expect(screen.queryByText("7-Day Logged Meal Trend")).toBeNull();
+		expect(screen.queryByRole("img", { name: /trend/ })).toBeNull();
 	});
 
-	it("shows a no-data state, not a zero score, when no days in the window are logged", async () => {
+	it("shows the building-history line, not a zero score, when no days in the window are logged", async () => {
 		stubBackend({ kind: "ok", loggedDays: 0, rollingDii: null });
 		renderDashboard();
 
-		expect(await screen.findByText("0 of 7 days logged")).toBeTruthy();
-		expect(await screen.findByText("No meals logged in the last 7 days, so there is no trend to show yet.")).toBeTruthy();
-		// The trend ring must not present missing data as a numeric 0.
-		const ring = screen.getByRole("img", { name: getTrendAriaLabel("no-data", null, 0, 7) });
-		expect(ring.textContent).toContain("--");
-		expect(ring.textContent).not.toMatch(/\b0\b/);
+		expect(await screen.findByText("Your 7-day trend appears after you log meals on 3 different days (0 of 3 so far).")).toBeTruthy();
+		// The building-history line states a logged-day count, never a score —
+		// no trend ring (and so no risk of a bare "0" reading as a score) renders
+		// below the coverage threshold.
+		expect(screen.queryByRole("img", { name: /trend/ })).toBeNull();
 	});
 
 	it("shows the failure state when the trend fetch fails, without crashing", async () => {
@@ -153,15 +153,17 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		expect(label.toLowerCase()).not.toContain("no meals");
 	});
 
-	it("announces NO-DATA only for a successful response with zero logged days", async () => {
+	// A confirmed zero-logged-days response gets its own honest building-history
+	// announcement (via role="status") distinct from the loading/unavailable
+	// text above — it must never be presented as if it were a score.
+	it("announces a confirmed zero-logged-days response distinctly from loading/unavailable", async () => {
 		stubBackend({ kind: "ok", loggedDays: 0, rollingDii: null });
 		renderDashboard();
 
-		expect(await screen.findByText("0 of 7 days logged")).toBeTruthy();
-		const ring = screen.getByRole("img", { name: TREND_ARIA_NO_DATA });
-		const label = ring.getAttribute("aria-label") ?? "";
-		expect(label).toBe("7-day logged meal trend not available because no meals were logged in the last 7 days.");
-		expect(label.toLowerCase()).toContain("no meals were logged");
+		const status = await screen.findByRole("status");
+		expect(status.textContent).toBe("Your 7-day trend appears after you log meals on 3 different days (0 of 3 so far).");
+		expect(status.textContent).not.toBe(TREND_LOADING_LINE);
+		expect(status.textContent?.toLowerCase()).not.toContain("unavailable");
 	});
 
 	// The trend is an energy-normalized index (kcal-weighted mean FII) and can

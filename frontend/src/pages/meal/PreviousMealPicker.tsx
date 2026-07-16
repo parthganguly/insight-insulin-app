@@ -1,17 +1,19 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonItem, IonThumbnail, IonImg } from "@ionic/react";
+import { IonContent, IonHeader, IonImg, IonItem, IonPage, IonThumbnail, IonTitle } from "@ionic/react";
 import { useEffect } from "react";
-import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
+
 import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
+import IonToolbarWrapper from "../../components/IonToolbarWrapper";
+import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { calculateTotalCalories, getMealAcuteScore, getMealTimeShortString } from "../../utils";
-import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
+import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 
-const History: React.FC = () => {
-	const { meals } = usePersistentMealStore();
+const PreviousMealPicker: React.FC = () => {
+	const meals = usePersistentMealStore((state) => state.meals);
 
 	useEffect(() => {
-		// Private-beta hydration: show backend-seeded/saved meals on a fresh load. Fails soft offline.
 		void syncMealsFromBackend();
 	}, []);
 
@@ -19,33 +21,39 @@ const History: React.FC = () => {
 		<IonPage>
 			<IonHeader>
 				<IonToolbarWrapper>
-					<IonTitle>History</IonTitle>
+					<IonTitle>Choose a previous meal</IonTitle>
 				</IonToolbarWrapper>
 			</IonHeader>
 
 			<IonContent className='ion-padding'>
 				<div className='section-label'>
 					<span>Saved meals</span>
-					<span>most recent first</span>
+					<span>choose one to edit and log again</span>
 				</div>
 				{meals.length === 0 ? (
 					<div className='app-card list-empty-state'>
-						<h2>No saved meals yet</h2>
-						<p>Meals you check and save will appear here.</p>
+						<h2>No previous meals yet</h2>
+						<p>Meals you save will appear here for quick reuse.</p>
 					</div>
 				) : (
-					meals.map((meal) => <MealCard key={meal.id} meal={meal} />)
+					meals.map((meal) => <PreviousMealCard key={meal.id} meal={meal} />)
 				)}
 			</IonContent>
 		</IonPage>
 	);
 };
 
-export default History;
+const PreviousMealCard = ({ meal }: { meal: Meal }) => {
+	const setMeal = useCurrentMealStore((state) => state.setMeal);
 
-function MealCard({ meal }: { meal: Meal }) {
 	return (
-		<IonItem lines='none' detail={false} button className='recent-card' routerLink={`/meals/saved/${encodeURIComponent(meal.id)}`}>
+		<IonItem
+			lines='none'
+			detail={false}
+			button
+			className='recent-card'
+			onClick={() => setMeal(buildDraftFromSavedMeal(meal))}
+			routerLink='/meals/new'>
 			{meal.image && (
 				<IonThumbnail slot='start' className='meal-card-thumbnail'>
 					<IonImg src={meal.image} alt='' className='meal-card-image' />
@@ -64,4 +72,6 @@ function MealCard({ meal }: { meal: Meal }) {
 			</div>
 		</IonItem>
 	);
-}
+};
+
+export default PreviousMealPicker;

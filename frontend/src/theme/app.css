@@ -48,6 +48,11 @@ ion-tab-button {
 	--color-selected: var(--ion-color-primary);
 }
 
+ion-tab-button ion-label {
+	font-size: 0.7rem;
+	font-weight: 650;
+}
+
 /* Calm active-tab treatment: soft pill behind the selected tab. Purely
    visual; routing and tab behavior are untouched. */
 ion-tab-button::before {
@@ -65,9 +70,24 @@ ion-tab-button::before {
 	pointer-events: none;
 }
 
-ion-tab-button.tab-selected::before {
+ion-tab-button.tab-selected::before,
+ion-tab-button.journey-tab-selected::before {
 	opacity: 1;
 	transform: translate(-50%, -50%) scale(1);
+}
+
+ion-tab-button.journey-tab-selected {
+	--color: var(--ion-color-primary);
+	--color-selected: var(--ion-color-primary);
+}
+
+ion-tab-button.tab-selected:not(.journey-tab-selected) {
+	--color-selected: var(--app-faint);
+}
+
+ion-tab-button.tab-selected:not(.journey-tab-selected)::before {
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0.85);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -201,11 +221,16 @@ ion-tab-button.tab-selected::before {
 	margin-top: 8vh;
 }
 
+.empty-state-card h1,
 .empty-state-card h2 {
 	margin: 0 0 8px;
 	font-size: 1.15rem;
 	font-weight: 700;
 	color: var(--app-ink);
+}
+
+.empty-state-card ion-button {
+	margin: 20px 0 14px;
 }
 
 .empty-state-card p {
@@ -278,9 +303,158 @@ ion-tab-button.tab-selected::before {
 	color: var(--app-faint);
 }
 
+/* Home lifecycle and meal-entry choice surfaces */
+
+.home-primary-action {
+	margin-bottom: 16px;
+}
+
+.home-primary-action p {
+	margin: 8px 4px 0;
+	font-size: 0.82rem;
+	line-height: 1.45;
+	color: var(--app-muted);
+	text-align: center;
+}
+
+.trend-coverage-note {
+	padding: 14px 16px;
+	font-size: 0.86rem;
+	line-height: 1.5;
+	color: var(--app-muted);
+}
+
+.log-meal-intro {
+	margin: 8px 4px 22px;
+}
+
+.log-meal-intro h1 {
+	margin: 0 0 8px;
+	font-size: 1.35rem;
+	color: var(--app-ink);
+}
+
+.log-meal-intro p {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: var(--app-muted);
+}
+
+.log-meal-options {
+	display: grid;
+	gap: 12px;
+}
+
+ion-button.log-meal-option {
+	min-height: 82px;
+	margin: 0;
+	--background: var(--app-surface);
+	--color: var(--app-ink);
+	--border-radius: 16px;
+	--box-shadow: var(--app-card-shadow);
+	text-align: left;
+}
+
+ion-button.log-meal-option::part(native) {
+	justify-content: flex-start;
+	padding: 14px 16px;
+	border: 1px solid rgba(19, 42, 66, 0.06);
+}
+
+.log-meal-option > ion-icon:first-child {
+	flex: 0 0 auto;
+	margin-right: 14px;
+	font-size: 1.5rem;
+	color: var(--ion-color-primary);
+}
+
+.log-meal-option > ion-icon:last-child {
+	flex: 0 0 auto;
+	margin-left: 10px;
+	color: var(--app-faint);
+}
+
+.log-meal-option-copy {
+	display: flex;
+	flex: 1;
+	min-width: 0;
+	flex-direction: column;
+	gap: 4px;
+	text-transform: none;
+}
+
+.log-meal-option-copy strong {
+	font-size: 0.98rem;
+}
+
+.log-meal-option-copy small {
+	font-size: 0.8rem;
+	font-weight: 400;
+	line-height: 1.35;
+	color: var(--app-muted);
+}
+
+.list-empty-state {
+	padding: 24px 18px;
+	text-align: center;
+}
+
+.list-empty-state h2 {
+	margin: 0 0 8px;
+	font-size: 1.05rem;
+	color: var(--app-ink);
+}
+
+.list-empty-state p {
+	margin: 0;
+	font-size: 0.86rem;
+	color: var(--app-muted);
+}
+
+.meal-card-thumbnail {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.meal-card-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 12px;
+}
+
+/* Smart Camera: capture stays secondary; analysis is the single primary action. */
+
+.camera-heading {
+	margin: 4px 0 14px;
+	font-size: 1.25rem;
+	font-weight: 650;
+	color: var(--app-ink);
+}
+
+.camera-capture-actions,
+.analyze-meal-button {
+	width: 100%;
+}
+
+.analyze-meal-button {
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+.camera-error-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
 /* Sheet-like item-edit modal surface. Visual only: dismissal, editing,
    saving, deleting, and validation behavior are unchanged. */
 ion-modal.sheet-modal {
+	--width: min(100%, 520px);
+	--height: min(94%, 780px);
 	--border-radius: 22px;
 	--box-shadow: 0 18px 48px rgba(19, 42, 66, 0.28);
 }
@@ -291,6 +465,91 @@ ion-modal.sheet-modal {
 	margin: 10px auto 6px;
 	border-radius: 999px;
 	background: rgba(19, 42, 66, 0.18);
+}
+
+.item-editor-card {
+	margin: 4px 0 12px;
+}
+
+.item-editor-card ion-card-header,
+.item-editor-card ion-card-content {
+	padding: 14px;
+}
+
+.item-editor-card ion-input,
+.item-editor-card ion-select {
+	min-height: 54px;
+}
+
+.advanced-details {
+	margin-top: 8px;
+}
+
+.advanced-details summary {
+	display: flex;
+	align-items: center;
+	min-height: 44px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 650;
+	color: var(--app-ink);
+}
+
+.advanced-details-content {
+	display: grid;
+	gap: 12px;
+	padding-top: 8px;
+}
+
+.advanced-details-content ion-input,
+.advanced-details-content ion-select {
+	margin: 0;
+}
+
+.advanced-nutrient-totals {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.item-editor-actions {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 8px;
+	margin-top: 14px;
+}
+
+.item-editor-actions ion-button {
+	min-height: 44px;
+	margin: 0;
+}
+
+.result-quality {
+	line-height: 1.5;
+}
+
+.result-quality-pill {
+	font-weight: 700;
+}
+
+@media (max-width: 340px) {
+	ion-modal.sheet-modal {
+		--height: 96%;
+		--border-radius: 18px;
+	}
+
+	.item-editor-card ion-card-header,
+	.item-editor-card ion-card-content {
+		padding: 12px;
+	}
+
+	.advanced-details-content {
+		gap: 10px;
+	}
+
+	.item-editor-actions {
+		grid-template-columns: 1fr;
+	}
 }
 
 /* Meal flow draft states */

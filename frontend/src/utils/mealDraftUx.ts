@@ -11,6 +11,8 @@ export const DRAFT_MEAL_STATUS = "Editable draft — not saved yet";
 export const SAVED_MEAL_STATUS = "Saved to history";
 export const DRAFT_ITEM_ROW_HINT = "Draft item — tap to add food details";
 export const ITEM_LIST_EDIT_HELPER = "Tap any item to edit its name, portion, and nutrition.";
+export const ADVANCED_DETAILS_LABEL = "Advanced details";
+export const SUBTYPE_NAME_ONLY_NOTICE = "This changes the name only - check the ingredient list below still matches your meal.";
 
 export const getSaveSuccessMessage = (photoKept: boolean): string =>
 	photoKept
