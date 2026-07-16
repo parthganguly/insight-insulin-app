@@ -11,16 +11,17 @@ const VIEWPORTS: Array<[number, number, string]> = [
 	[320, 568, "mobile-320"],
 ];
 
-describe("Dashboard first load", () => {
+describe("Home first load", () => {
 	for (const [width, height, label] of VIEWPORTS) {
 		it(`renders without crashing and shows the empty state at ${label}`, () => {
 			cy.viewport(width, height);
 			stubBackend();
 			visitFresh("/dashboard");
 
-			cy.contains("Dashboard").should("be.visible");
-			cy.contains("No Meals Logged").should("be.visible");
-			cy.contains("Add Meal").should("exist");
+			// Campaign A empty Home (docs/product/ux/insight-ux-v1.md §5): the
+			// honest product promise plus one primary "Check a meal" action.
+			cy.contains("Understand and compare the estimated insulin demand of meals.").should("be.visible");
+			cy.contains("Check a meal").should("be.visible");
 			assertNoHorizontalOverflow();
 		});
 	}
@@ -46,8 +47,9 @@ describe("Failure handling", () => {
 		stubBackend({ mealsFail: true });
 		visitFresh("/dashboard");
 
-		cy.contains("Dashboard").should("be.visible");
-		cy.contains("No Meals Logged").should("be.visible");
+		// With nothing hydrated, Home falls back to the empty state.
+		cy.contains("Understand and compare the estimated insulin demand of meals.").should("be.visible");
+		cy.contains("Check a meal").should("be.visible");
 	});
 
 	it("shows the trend failure state, not internal text, when the chronic fetch fails", () => {

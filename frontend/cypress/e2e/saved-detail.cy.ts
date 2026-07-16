@@ -22,11 +22,18 @@ describe("Saved-meal detail", () => {
 		// that does not rely on Cypress's `be.visible` heuristic, which reports
 		// false negatives inside Ionic's fixed-layout scroll container.
 		shouldBeRendered("span", "Saved to history");
-		shouldBeRendered("h3", "Relative insulin-demand score");
+		shouldBeRendered("h2", "Synthetic Rice Bowl");
 		shouldBeRendered("p", "Score: 189 · above internal reference (100)");
 		shouldBeRendered("span", "Data quality: High");
-		shouldBeRendered("p", "Source: Direct FII match");
+		shouldBeRendered(".result-driver-chips span", "steamed rice");
 		shouldBeRendered("p", "Used a direct Food Insulin Index match and scaled it by eaten energy.");
+
+		// Per-item FII/source evidence lives behind the collapsed "Advanced
+		// details" disclosure (UX v1 §10) — closed by default, rendered once
+		// opened, with the same helper-produced source wording as before.
+		cy.contains("p", "Source: Direct FII match").should("not.be.visible");
+		cy.contains("summary", "Advanced details").click();
+		shouldBeRendered("p", "Source: Direct FII match");
 	});
 
 	it("offers no save control and no editable inputs", () => {

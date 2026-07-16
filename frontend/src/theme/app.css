@@ -651,3 +651,62 @@ ion-item.draft-item-row {
 	color: #1e6f3d;
 	border: 1px solid #bfe3cb;
 }
+
+/* Campaign A release polish (PR #95): layout for two classes the confirmation
+   and result screens already reference. Presentation only — quantity
+   behavior, driver text, driver order, and score semantics are unchanged. */
+
+/* Portion quick-adjust: minus, amount, plus, and unit read as one control. */
+.portion-adjust-row {
+	display: grid;
+	grid-template-columns: 44px minmax(0, 1fr) 44px minmax(0, 1fr);
+	gap: 8px;
+	align-items: end;
+}
+
+.portion-adjust-row ion-button {
+	margin: 0;
+	height: 44px;
+	min-width: 44px;
+	font-size: 1.05rem;
+}
+
+.portion-adjust-row ion-input,
+.portion-adjust-row ion-select {
+	min-height: 44px;
+}
+
+/* Narrow phones: the unit picker drops to its own row so the minus, amount,
+   and plus controls stay side by side at a comfortable touch size. */
+@media (max-width: 340px) {
+	.portion-adjust-row {
+		grid-template-columns: 44px minmax(0, 1fr) 44px;
+	}
+
+	.portion-adjust-row ion-select {
+		grid-column: 1 / -1;
+	}
+}
+
+/* Result "Main drivers": the backend driver strings render as wrapping
+   pill chips instead of run-together inline text. */
+.result-driver-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.result-driver-chips span {
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: #f1f4f8;
+	font-size: 0.8rem;
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--app-muted);
+	overflow-wrap: anywhere;
+}
+
+.result-driver-chips + .result-why-lines {
+	margin-top: 10px;
+}
