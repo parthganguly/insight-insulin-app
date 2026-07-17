@@ -1,0 +1,24 @@
+# Filtered logcat excerpts - io.ionic.starter (pid 17098) - 2026-07-17
+
+## Launch
+07-17 14:24:51.223 17098 17098 D Capacitor: Starting BridgeActivity
+07-17 14:24:51.239 17098 17098 D Capacitor: Registering plugin instance: CapacitorCookies
+07-17 14:24:51.247 17098 17098 D Capacitor: Registering plugin instance: WebView
+07-17 14:24:51.250 17098 17098 D Capacitor: Registering plugin instance: CapacitorHttp
+07-17 14:24:51.252 17098 17098 D Capacitor: Registering plugin instance: App
+07-17 14:24:51.254 17098 17098 D Capacitor: Registering plugin instance: Camera
+07-17 14:24:51.256 17098 17098 D Capacitor: Registering plugin instance: Haptics
+07-17 14:24:51.259 17098 17098 D Capacitor: Registering plugin instance: Keyboard
+07-17 14:24:51.261 17098 17098 D Capacitor: Registering plugin instance: StatusBar
+07-17 14:24:51.267 17098 17098 D Capacitor: Registering plugin instance: SafeArea
+
+## Only app-process errors captured during entire session
+07-17 15:05:20.118 17098 17098 E Capacitor: Couldn't save last Camera's Plugin getPhoto call
+07-17 15:28:16.858 17098 17098 E Capacitor: Couldn't save last Camera's Plugin getPhoto call
+07-17 14:24:51.978 17098 17167 D Capacitor: Sending plugin error: {"save":false,"callbackId":"64499289","pluginId":"Keyboard","methodName":"getResizeMode","success":false,"error":{"message":"not implemented","code":"UNIMPLEMENTED"}}
+07-17 14:51:03.720 17098 17098 D Capacitor: Sending plugin error: {"save":false,"callbackId":"64499305","pluginId":"Camera","methodName":"getPhoto","success":false,"error":{"message":"User cancelled photos app"}}
+07-17 14:51:41.816 17098 17098 D Capacitor: Sending plugin error: {"save":false,"callbackId":"64499306","pluginId":"Camera","methodName":"getPhoto","success":false,"error":{"message":"User cancelled photos app"}}
+07-17 14:52:37.793 17098 17098 D Capacitor: Sending plugin error: {"save":false,"callbackId":"64499307","pluginId":"Camera","methodName":"getPhoto","success":false,"error":{"message":"User cancelled photos app"}}
+
+## FATAL EXCEPTION / ANR count:
+0
