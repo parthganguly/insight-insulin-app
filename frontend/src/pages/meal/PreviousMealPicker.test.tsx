@@ -109,5 +109,6 @@ describe("Previous-meal picker reuse flow stays a draft conversion (issue #89 gu
 		expect(draft.items[0].fii).toBeUndefined();
 		expect(draft.items[0].source).toBeUndefined();
 		expect(draft.items[0].why).toBeUndefined();
+		expect(draft.items[0].draftProvenance).toBe("user_entered");
 	});
 });

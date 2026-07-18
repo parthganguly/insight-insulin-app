@@ -598,6 +598,70 @@ ion-modal.sheet-modal {
 	border: 1px solid #bfe3cb;
 }
 
+.meal-name-helper {
+	margin: 6px 0 2px;
+	color: var(--app-muted);
+	font-size: 0.84rem;
+	line-height: 1.45;
+}
+
+.draft-provenance {
+	display: block;
+	margin-top: 4px;
+	color: var(--app-muted);
+	font-size: 0.8rem;
+	line-height: 1.4;
+	overflow-wrap: anywhere;
+}
+
+.needs-review-panel {
+	margin-bottom: 12px;
+	padding: 12px;
+	border: 1px solid #e0b866;
+	border-radius: 12px;
+	background: #fdf3e0;
+	color: #71470c;
+	overflow-wrap: anywhere;
+}
+
+.needs-review-panel:focus-visible {
+	outline: 3px solid rgba(27, 106, 201, 0.35);
+	outline-offset: 2px;
+}
+
+.needs-review-message {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.needs-review-message ion-icon {
+	flex: 0 0 auto;
+	margin-top: 2px;
+	font-size: 1.1rem;
+}
+
+.needs-review-message p,
+.carried-nutrition-summary {
+	margin: 0;
+	line-height: 1.45;
+}
+
+.carried-nutrition-summary {
+	margin-top: 8px;
+	font-size: 0.8rem;
+}
+
+.needs-review-panel ion-button {
+	width: 100%;
+	margin: 10px 0 0;
+	min-height: 44px;
+}
+
+.review-validation-error {
+	overflow-wrap: anywhere;
+}
+
 .item-list-helper {
 	margin: 2px 20px 8px;
 	font-size: 0.8rem;

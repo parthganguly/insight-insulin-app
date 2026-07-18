@@ -8,6 +8,12 @@ export enum Unit {
 	Servings = "serving",
 }
 
+export type DraftProvenance = "ai_proposed" | "user_reviewed" | "user_entered";
+
+export type MealItemNeedsReview = {
+	previousName: string;
+};
+
 export type MealItem = {
 	id: string;
 	name: string;
@@ -26,4 +32,9 @@ export type MealItem = {
 
 	fii?: number;
 	gi: number;
+
+	// Frontend-draft state only. Neither field is canonical scoring evidence,
+	// persisted trust, nor part of the backend create-meal payload.
+	draftProvenance?: DraftProvenance;
+	needsReview?: MealItemNeedsReview;
 };

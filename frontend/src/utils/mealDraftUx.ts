@@ -12,7 +12,17 @@ export const SAVED_MEAL_STATUS = "Saved to history";
 export const DRAFT_ITEM_ROW_HINT = "Draft item — tap to add food details";
 export const ITEM_LIST_EDIT_HELPER = "Tap any item to edit its name, portion, and nutrition.";
 export const ADVANCED_DETAILS_LABEL = "Advanced details";
-export const SUBTYPE_NAME_ONLY_NOTICE = "This changes the name only - check the ingredient list below still matches your meal.";
+export const MEAL_NAME_HELPER = "The name is a label. The items below are what the estimate uses.";
+export const AI_PROVENANCE_COPY = "Suggested from your photo";
+export const REUSE_PROVENANCE_COPY = "Copied from your saved meal — adjust anything that's different today.";
+
+export const getDraftProvenanceCopy = (item: MealItem, isReusedDraft: boolean): string | null => {
+	if (item.draftProvenance === "ai_proposed") return AI_PROVENANCE_COPY;
+	if (isReusedDraft && item.draftProvenance === "user_entered") return REUSE_PROVENANCE_COPY;
+	if (item.draftProvenance === "user_reviewed") return "Reviewed by you";
+	if (item.draftProvenance === "user_entered") return "Entered by you";
+	return null;
+};
 
 export const getSaveSuccessMessage = (photoKept: boolean): string =>
 	photoKept
@@ -29,6 +39,12 @@ const describeItem = (item: MealItem, index: number): string => (item.name?.trim
 export const validateMealBeforeSave = (draftMeal: Meal): string | null => {
 	if (draftMeal.items.length === 0) {
 		return "This meal is still empty. Tap + to add at least one item, then save.";
+	}
+
+	const unresolvedItems = draftMeal.items.filter((item) => item.needsReview);
+	if (unresolvedItems.length > 0) {
+		const affected = unresolvedItems.map((item, index) => describeItem(item, index)).join(unresolvedItems.length === 2 ? " and " : ", ");
+		return `Review the carried nutrition for ${affected} before calculating and saving. Edit a nutrition value or choose “These still fit”.`;
 	}
 
 	for (let i = 0; i < draftMeal.items.length; i += 1) {

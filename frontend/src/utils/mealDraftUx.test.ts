@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { ADVANCED_DETAILS_LABEL, SUBTYPE_NAME_ONLY_NOTICE, isDraftMealItem, validateMealBeforeSave } from "./mealDraftUx";
+import { ADVANCED_DETAILS_LABEL, MEAL_NAME_HELPER, isDraftMealItem, validateMealBeforeSave } from "./mealDraftUx";
 import { Meal } from "../types/Meal";
 import { MealItem, Unit } from "../types/MealItem";
 
@@ -83,8 +83,7 @@ describe("Campaign A disclosure copy", () => {
 		expect(ADVANCED_DETAILS_LABEL).toBe("Advanced details");
 	});
 
-	it("states that subtype chips change the name only using ASCII copy", () => {
-		expect(SUBTYPE_NAME_ONLY_NOTICE).toBe("This changes the name only - check the ingredient list below still matches your meal.");
-		expect([...SUBTYPE_NAME_ONLY_NOTICE].every((character) => character.charCodeAt(0) <= 127)).toBe(true);
+	it("states that the meal name is descriptive while items drive the estimate", () => {
+		expect(MEAL_NAME_HELPER).toBe("The name is a label. The items below are what the estimate uses.");
 	});
 });

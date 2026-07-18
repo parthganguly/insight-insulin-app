@@ -70,14 +70,12 @@ describe("Campaign A confirmation hierarchy", () => {
 		vi.unstubAllGlobals();
 	});
 
-	it("renders subtype choices with the adjacent name-only warning", async () => {
+	it("removes name-only subtype choices and explains that item facts drive the estimate", async () => {
 		renderPreview();
 
-		const warning = await screen.findByText(/changes the name only/i);
-		const subtypeChoice = warning.closest(".subtype-choice");
-		expect(subtypeChoice).toBeTruthy();
-		expect(subtypeChoice).toContainElement(screen.getByText("Keema").closest("ion-button"));
-		expect(subtypeChoice).toContainElement(screen.getByText("Chicken").closest("ion-button"));
+		expect(await screen.findByText("The name is a label. The items below are what the estimate uses.")).toBeVisible();
+		expect(screen.queryByText("Keema")).toBeNull();
+		expect(screen.queryByText("Wrong type? Choose the closest name:")).toBeNull();
 	});
 
 	it("keeps ordinary meal identity, components, and portions visible", async () => {
@@ -99,7 +97,7 @@ describe("Campaign A confirmation hierarchy", () => {
 		expect(details).toBeTruthy();
 		expect(details).not.toHaveAttribute("open");
 
-		const protectedLabels = ["kcals per serving", "Carb per serving (g)", "Saturated Fat per serving (g)", "FII", "Glycemic Index"];
+		const protectedLabels = ["kcals per serving", "Carb per serving (g)", "Protein per serving (g)", "Fat per serving (g)", "Saturated Fat per serving (g)", "FII", "Glycemic Index"];
 		for (const label of protectedLabels) {
 			const field = baseElement.querySelector<HTMLElement>(`ion-input[label="${label}"]`);
 			expect(field).toBeTruthy();
