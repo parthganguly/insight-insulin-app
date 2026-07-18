@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INSIGHT — Final direction: Annotated Journal</title>
+<!--
+  Fable discovery (issue #101) — FINAL DIRECTION prototype.
+  "Annotated Journal": INSIGHT is a meal journal that writes honest margin
+  notes. Chassis from Concept A (photo-hero journal, serif identity voice,
+  bottom-thumb dock), carrying Concept B's comparative tick-scale as the
+  canonical score presentation, Concept C's sentence-first conclusions and
+  review voice, and Concept D's share-of-load evidence rows.
+  Synthetic data only. No APIs, no app code, no real photos.
+  States: #home #home-empty #home-building #chooser #camera #camera-error
+  #confirm #review #estimate #estimate-stale #estimate-low #history
+  #long-text — append "&dark" for dark, "&big" for 133% text scale probe.
+-->
+<style>
+  :root{
+    --paper:#f9f6f0; --raised:#fffefb; --ink:#231d15; --ink-2:#5d5446;
+    --ink-3:#7d7364; --line:#e7dfd2; --tint:#f1ece1;
+    --accent:#7a4f1d; --accent-ink:#fff8ec;
+    --shadow:0 1px 2px rgba(58,46,28,.06),0 6px 22px rgba(58,46,28,.09);
+    --r-lg:20px; --r-md:14px; --r-sm:9px;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  .dark{
+    --paper:#181410; --raised:#211c16; --ink:#f0e8db; --ink-2:#bfb29e;
+    --ink-3:#94897a; --line:#342d24; --tint:#241f18;
+    --accent:#e0ac60; --accent-ink:#241708;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 8px 28px rgba(0,0,0,.5);
+  }
+  .big{font-size:133%}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);
+    font-size:1rem;line-height:1.5;overflow:hidden}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+  input{font:inherit}
+  .num{font-variant-numeric:tabular-nums}
+  .screen{display:none;position:absolute;inset:0;flex-direction:column;overflow:hidden}
+  body[data-route="home"] #s-home,body[data-route="home-empty"] #s-home-empty,
+  body[data-route="home-building"] #s-home-building,
+  body[data-route="chooser"] #s-chooser,
+  body[data-route="camera"] #s-camera,body[data-route="camera-error"] #s-camera,
+  body[data-route="confirm"] #s-confirm,body[data-route="review"] #s-confirm,
+  body[data-route="long-text"] #s-confirm,
+  body[data-route="estimate"] #s-estimate,body[data-route="estimate-stale"] #s-estimate,
+  body[data-route="estimate-low"] #s-estimate-low,
+  body[data-route="history"] #s-history{display:flex}
+  .scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+  .scroll::-webkit-scrollbar{display:none}
+
+  /* ============ chrome ============ */
+  .masthead{padding:1.05rem 1.4rem .35rem;display:flex;align-items:baseline;
+    justify-content:space-between;flex:none}
+  .brand{font-family:var(--serif);font-size:.92rem;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--ink-3)}
+  .masthead button{color:var(--ink-3);font-size:.85rem;min-height:44px;padding:0 .2rem}
+  .folio{padding:.1rem 1.4rem 0}
+  .folio h1{font-family:var(--serif);font-size:1.85rem;line-height:1.15;
+    font-weight:600;font-style:italic}
+  .folio .sub{font-size:.85rem;color:var(--ink-2);margin-top:.3rem;line-height:1.45}
+  .folio .sub small{display:block;font-size:.75rem;color:var(--ink-3);margin-top:.15rem}
+
+  .dock{padding:.6rem 1.15rem calc(.9rem + env(safe-area-inset-bottom));
+    display:grid;gap:.6rem;flex:none;background:linear-gradient(180deg,transparent,var(--paper) 34%)}
+  .primary{min-height:56px;border-radius:999px;background:var(--accent);color:var(--accent-ink);
+    font-size:1.06rem;font-weight:600;display:flex;align-items:center;justify-content:center;
+    gap:.5rem;box-shadow:var(--shadow);transition:transform .18s ease}
+  .primary:active{transform:scale(.985)}
+  .ghostrow{display:flex;gap:.6rem}
+  .ghost{flex:1;min-height:48px;border-radius:999px;border:1.5px solid var(--line);
+    font-size:.95rem;font-weight:600;color:var(--ink);display:flex;align-items:center;
+    justify-content:center;background:var(--raised)}
+  .navrow{display:flex;justify-content:center;gap:1.6rem}
+  .navrow button{min-height:44px;min-width:64px;font-size:.78rem;color:var(--ink-3);
+    display:flex;flex-direction:column;align-items:center;gap:.1rem;font-weight:600}
+  .navrow button[aria-current="true"]{color:var(--ink)}
+  .navrow .glyph{font-size:1.05rem;font-family:var(--serif)}
+  .textbtn{min-height:44px;color:var(--ink-2);font-size:.92rem;font-weight:600;
+    display:flex;align-items:center;justify-content:center}
+
+  /* ============ synthetic plate ============ */
+  .plate{position:relative;overflow:hidden;background:
+    radial-gradient(120% 92% at 30% 8%,#4a4034 0%,#312a21 56%,#231e17 100%)}
+  .plate::before{content:"";position:absolute;inset:11% 7%;border-radius:50%;
+    background:radial-gradient(closest-side,#f7f2e9 80%,#e6ddcb 88%,#cfc4ab 100%);
+    box-shadow:0 16px 38px rgba(0,0,0,.45)}
+  .plate .food{position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;font-size:5rem;filter:drop-shadow(0 .5rem .8rem rgba(0,0,0,.35))}
+  /* typographic plate for photo-less meals: designed, never a broken image */
+  .typlate{position:relative;overflow:hidden;background:var(--tint);display:flex;
+    align-items:center;justify-content:center}
+  .typlate .mono{font-family:var(--serif);font-style:italic;font-size:2.6rem;
+    color:var(--ink-3)}
+  .typlate::after{content:"";position:absolute;inset:14%;
+    border:1.5px dashed var(--line);border-radius:50%}
+
+  /* ============ entries ============ */
+  .pad{padding:0 1.15rem}
+  .entry{background:var(--raised);border-radius:var(--r-lg);box-shadow:var(--shadow);
+    overflow:hidden;margin-bottom:.85rem;width:100%;display:block;
+    border:1px solid var(--line)}
+  .entry .plate,.entry .typlate{height:7rem}
+  .entry .cap{padding:.75rem 1rem .9rem}
+  .entry .cap h3{font-family:var(--serif);font-size:1.18rem;font-weight:600}
+  .entry .cap .meta{font-size:.79rem;color:var(--ink-3);margin-top:.1rem}
+  .entry .cap .note{font-size:.85rem;color:var(--ink-2);margin-top:.35rem;
+    font-style:italic;font-family:var(--serif)}
+  .daybreak{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--ink-3);
+    margin:1.1rem .25rem .6rem;display:flex;align-items:center;gap:.6rem}
+  .daybreak::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* ============ chooser ============ */
+  .choices{display:grid;gap:.75rem;padding:.4rem 1.15rem}
+  .choice{background:var(--raised);border:1px solid var(--line);border-radius:var(--r-lg);
+    box-shadow:var(--shadow);padding:1rem;display:flex;gap:.9rem;align-items:center;min-height:76px}
+  .choice .glyph{font-size:1.5rem;width:2.4rem;text-align:center;flex:none}
+  .choice strong{font-family:var(--serif);font-size:1.1rem;font-weight:600;display:block}
+  .choice small{font-size:.82rem;color:var(--ink-2)}
+
+  /* ============ camera ============ */
+  #s-camera{background:#141109;color:#f5efe4}
+  .vf{flex:1;position:relative;display:flex;align-items:flex-end;justify-content:center}
+  .vf .plate{position:absolute;inset:0}
+  .vf-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,9,5,.55),
+    transparent 30%,transparent 60%,rgba(12,9,5,.78) 88%)}
+  .vf-top{position:absolute;top:0;left:0;right:0;padding:1rem 1.15rem;display:flex;
+    justify-content:space-between;align-items:center}
+  .vf-top .title{font-family:var(--serif);font-style:italic;font-size:1.05rem}
+  .vf-top button{color:#ece4d4;font-size:.9rem;min-height:44px}
+  .vf-controls{position:relative;width:100%;
+    padding:0 1.15rem calc(1rem + env(safe-area-inset-bottom));display:grid;gap:.7rem}
+  .vf-note input{width:100%;min-height:46px;border-radius:999px;
+    border:1px solid rgba(245,239,228,.3);background:rgba(18,14,8,.6);color:#f5efe4;
+    padding:0 1.1rem;font-size:.88rem}
+  .vf-note input::placeholder{color:rgba(245,239,228,.66)}
+  .vf-row{display:flex;align-items:center;justify-content:space-between}
+  .vf-side{width:54px;height:54px;border-radius:16px;border:1px solid rgba(245,239,228,.32);
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#f5efe4}
+  .shutter{width:74px;height:74px;border-radius:50%;border:4px solid #f5efe4;
+    display:flex;align-items:center;justify-content:center}
+  .shutter::after{content:"";width:56px;height:56px;border-radius:50%;background:#f5efe4;
+    transition:transform .12s ease}
+  .shutter:active::after{transform:scale(.9)}
+  .vf-analyze{min-height:52px;border-radius:999px;background:#f5efe4;color:#241708;
+    font-size:1rem;font-weight:650;display:flex;align-items:center;justify-content:center}
+  .vf-analyze[disabled]{opacity:.45}
+  .vf-privacy{font-size:.72rem;line-height:1.45;color:rgba(245,239,228,.78)}
+  .vf-privacy summary{min-height:44px;display:flex;align-items:center;gap:.35rem;
+    font-size:.8rem;cursor:pointer;font-weight:600}
+  .vf-error{background:rgba(24,18,10,.92);border:1px solid rgba(245,239,228,.25);
+    border-radius:var(--r-md);padding:.9rem 1rem}
+  .vf-error h3{font-family:var(--serif);font-size:1.05rem;margin-bottom:.25rem}
+  .vf-error p{font-size:.85rem;color:rgba(245,239,228,.8)}
+  .vf-error .acts{display:flex;gap:.5rem;margin-top:.7rem}
+  .vf-error .acts button{flex:1;min-height:44px;border-radius:999px;
+    border:1px solid rgba(245,239,228,.4);font-size:.88rem;font-weight:600;
+    display:flex;align-items:center;justify-content:center}
+  .vf-error .acts .em{background:#f5efe4;color:#241708;border-color:#f5efe4}
+
+  /* ============ confirm ============ */
+  .hero{position:relative;height:10.5rem;flex:none}
+  .hero .plate,.hero .typlate{position:absolute;inset:0}
+  .hero .back{position:absolute;top:.6rem;left:.6rem;min-width:44px;min-height:44px;
+    border-radius:999px;background:rgba(18,14,8,.55);color:#f5efe4;font-size:1.1rem;
+    display:flex;align-items:center;justify-content:center}
+  .sheet{background:var(--paper);border-radius:1.4rem 1.4rem 0 0;margin-top:-1.4rem;
+    position:relative;padding:1.1rem 1.15rem .4rem}
+  .kicker{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+    margin-bottom:.35rem;font-weight:600}
+  .q{font-family:var(--serif);font-size:1.5rem;line-height:1.2;font-weight:600}
+  .mealname{margin:.8rem 0 .1rem}
+  .mealname input{width:100%;font-family:var(--serif);font-size:1.3rem;font-weight:600;
+    color:var(--ink);background:transparent;border:none;
+    border-bottom:1.5px dashed var(--line);min-height:44px;padding:0 .1rem}
+  .helper{font-size:.78rem;color:var(--ink-3);margin:.25rem 0 .8rem}
+  .comp{background:var(--raised);border:1px solid var(--line);border-radius:var(--r-md);
+    box-shadow:var(--shadow);padding:.8rem .9rem;margin-bottom:.65rem}
+  .comp .r1{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+  .comp .cname{font-family:var(--serif);font-size:1.1rem;font-weight:600;min-height:44px;
+    display:flex;align-items:center}
+  .prov{font-size:.75rem;color:var(--ink-3)}
+  .portion{display:flex;align-items:center;gap:.6rem;margin-top:.25rem}
+  .stepbtn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);
+    background:var(--paper);font-size:1.15rem;color:var(--ink-2);
+    display:flex;align-items:center;justify-content:center}
+  .amount{font-size:1.02rem;min-width:4.6rem;text-align:center}
+  .adv{margin-top:.45rem;font-size:.85rem;color:var(--ink-2)}
+  .adv summary{min-height:44px;display:flex;align-items:center;gap:.35rem;cursor:pointer;
+    font-weight:600}
+  .adv .body{display:grid;gap:.3rem;padding:.2rem 0 .4rem;font-size:.82rem}
+  .addrow{min-height:48px;width:100%;border-radius:var(--r-md);border:1.5px dashed var(--line);
+    color:var(--ink-2);font-size:.9rem;display:flex;align-items:center;justify-content:center;
+    gap:.5rem;margin:.1rem 0 .5rem;background:transparent}
+  .reviewcard{border:1px solid var(--line);border-left:4px solid var(--accent);
+    background:var(--raised);border-radius:var(--r-sm);padding:.8rem .9rem;margin:.5rem 0 .7rem}
+  .reviewcard p{font-size:.88rem;color:var(--ink-2);line-height:1.5}
+  .reviewcard b{color:var(--ink)}
+  .reviewcard .acts{display:flex;gap:.5rem;margin-top:.65rem}
+  .reviewcard .acts button{flex:1;min-height:44px;border-radius:999px;
+    border:1.5px solid var(--line);font-size:.88rem;font-weight:600;
+    display:flex;align-items:center;justify-content:center;background:var(--paper)}
+  .reviewcard .acts .yes{background:var(--accent);border-color:var(--accent);
+    color:var(--accent-ink)}
+  .totals{font-size:.82rem;color:var(--ink-2);display:flex;flex-wrap:wrap;
+    gap:.4rem .9rem;margin:.5rem .1rem 0}
+
+  /* ============ estimate ============ */
+  .esthero{position:relative;height:11.5rem;flex:none}
+  .esthero .plate,.esthero .typlate{position:absolute;inset:0}
+  .est-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,11,7,.42),
+    transparent 46%,rgba(14,11,7,.12) 100%)}
+  .est-top{position:absolute;top:.6rem;left:.6rem;right:.6rem;display:flex;
+    justify-content:space-between}
+  .est-top button{min-width:44px;min-height:44px;border-radius:999px;
+    background:rgba(18,14,8,.55);color:#f5efe4;font-size:.9rem;padding:0 .9rem;
+    display:flex;align-items:center;justify-content:center}
+  .estsheet{background:var(--paper);border-radius:1.4rem 1.4rem 0 0;margin-top:-1.4rem;
+    position:relative;padding:1.2rem 1.25rem .4rem}
+  .pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.74rem;font-weight:650;
+    letter-spacing:.04em;border:1px solid var(--line);border-radius:999px;
+    padding:.3rem .7rem;color:var(--ink-2);background:var(--raised)}
+  .estname{font-family:var(--serif);font-size:1.65rem;font-weight:600;line-height:1.15;
+    margin:.6rem 0 .1rem}
+  .estmeta{font-size:.79rem;color:var(--ink-3)}
+  .verdict{font-family:var(--serif);font-size:1.28rem;line-height:1.35;margin:.95rem 0 .25rem}
+  .verdict em{font-style:italic}
+  .qline{font-size:.86rem;color:var(--ink-2);margin-bottom:.9rem;line-height:1.5}
+  .stale{border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:var(--r-sm);background:var(--raised);padding:.7rem .9rem;
+    font-size:.86rem;color:var(--ink-2);margin:.2rem 0 .9rem}
+  .stale b{color:var(--ink)}
+
+  /* comparative tick-scale (from Concept B, in journal idiom) */
+  .compare .lbl{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-3);display:flex;justify-content:space-between;margin-bottom:.55rem;
+    font-weight:600}
+  .scale{position:relative;height:3.4rem}
+  .scale .rail{position:absolute;left:1px;right:1px;top:2.05rem;height:1.5px;background:var(--line)}
+  .scale .tickmark{position:absolute;top:1.8rem;width:1px;height:.55rem;background:var(--line)}
+  .scale .dot{position:absolute;top:1.86rem;width:.42rem;height:.42rem;border-radius:50%;
+    background:var(--ink-3);opacity:.55;transform:translateX(-50%)}
+  .scale .needle{position:absolute;top:.85rem;width:2.5px;height:1.65rem;background:var(--accent);
+    border-radius:2px;transform:translateX(-50%)}
+  .scale .readout{position:absolute;top:-.2rem;transform:translateX(-50%);
+    font-size:.95rem;font-weight:700;color:var(--accent)}
+  .scale-ends{display:flex;justify-content:space-between;font-size:.72rem;color:var(--ink-3);
+    margin-top:.1rem}
+  .refline{font-size:.82rem;color:var(--ink-2);margin:.7rem 0 1rem;line-height:1.5}
+  .refline b{color:var(--ink)}
+
+  /* evidence rows (from Concept D, in journal idiom) */
+  .evid h4{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+    margin:.4rem 0 .5rem;font-weight:600}
+  .evrow{display:grid;grid-template-columns:1fr auto;gap:.1rem .8rem;padding:.55rem 0;
+    border-bottom:1px solid var(--line);align-items:baseline}
+  .evrow:last-child{border-bottom:none}
+  .evrow .en{font-family:var(--serif);font-size:1rem;font-weight:600}
+  .evrow .ew{font-size:.78rem;color:var(--ink-2);grid-column:1}
+  .evrow .esh{font-size:.82rem;color:var(--ink-2);grid-row:1/3;align-self:center}
+  .evrow .ebar{grid-column:1/-1;height:4px;border-radius:2px;background:var(--tint);
+    position:relative;margin-top:.25rem}
+  .evrow .ebar i{position:absolute;inset:0 auto 0 0;background:var(--accent);opacity:.75;
+    border-radius:2px}
+  .evrow.rough .ebar i{opacity:.35}
+
+  .footnotes{margin:1rem 0 .4rem;border-top:1px solid var(--line);padding-top:.5rem}
+  .footnotes summary{min-height:44px;display:flex;align-items:center;gap:.5rem;cursor:pointer;
+    font-size:.86rem;font-weight:600;color:var(--ink-2)}
+  .footnotes p{font-size:.8rem;color:var(--ink-2);margin:.45rem 0;line-height:1.55}
+  .lowcard{background:var(--raised);border:1px solid var(--line);border-radius:var(--r-md);
+    box-shadow:var(--shadow);padding:1rem;margin:.3rem 0 .8rem}
+  .lowcard h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:.3rem}
+  .lowcard p{font-size:.86rem;color:var(--ink-2);line-height:1.5}
+
+  /* ============ empty & building home ============ */
+  .empty-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;
+    padding:0 1.6rem;text-align:center;gap:.6rem}
+  .empty-wrap .typlate{height:9rem;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+  .empty-wrap h1{font-family:var(--serif);font-size:1.6rem;line-height:1.28;font-weight:600;
+    margin-top:.8rem}
+  .empty-wrap p{font-size:.9rem;color:var(--ink-2)}
+  .empty-wrap .tiny{font-size:.78rem;color:var(--ink-3)}
+
+  @media (max-width:340px){
+    .folio h1{font-size:1.5rem}
+    .q{font-size:1.28rem}
+    .estname{font-size:1.35rem}
+    .verdict{font-size:1.12rem}
+    .entry .plate,.entry .typlate{height:5.6rem}
+    .hero{height:8.5rem}.esthero{height:9rem}
+    .pad,.choices{padding-left:.9rem;padding-right:.9rem}
+    .masthead{padding:.9rem 1rem .3rem}
+    .folio{padding:0 1rem}
+    .sheet,.estsheet{padding-left:.95rem;padding-right:.95rem}
+    .ghostrow{flex-direction:column}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body data-route="home">
+
+<!-- ============ HOME (mature) ============ -->
+<section class="screen" id="s-home" aria-label="Home">
+  <header class="masthead"><span class="brand">Insight</span>
+    <button onclick="alert('Settings (prototype stub)')">Settings</button></header>
+  <div class="folio">
+    <h1>Friday evening</h1>
+    <p class="sub">You’ve logged 5 of the last 7 days · 7-day index <b class="num">62</b>
+      <small>An energy-normalized average over days you logged — not a health measure.</small></p>
+  </div>
+  <div class="scroll" style="margin-top:.8rem">
+    <div class="pad">
+      <div class="daybreak">Today</div>
+      <button class="entry" onclick="go('estimate-low')">
+        <div class="plate"><div class="food">🍛</div></div>
+        <div class="cap"><h3>Keema biryani</h3>
+          <div class="meta num">1:15 pm · estimate 1023 · rough estimate</div>
+          <div class="note">Hidden ghee made this one hard to read.</div></div>
+      </button>
+      <div class="daybreak">Yesterday</div>
+      <button class="entry" onclick="go('estimate')">
+        <div class="plate"><div class="food">🥣</div></div>
+        <div class="cap"><h3>Oats with milk and banana</h3>
+          <div class="meta num">7:15 am · estimate 767 · good data</div></div>
+      </button>
+      <button class="entry" onclick="go('estimate')">
+        <div class="typlate"><span class="mono">Et</span></div>
+        <div class="cap"><h3>Egg and toast breakfast</h3>
+          <div class="meta num">8:15 am · estimate 690 · good data · entered by hand</div></div>
+      </button>
+      <div style="height:.5rem"></div>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <nav class="navrow" aria-label="Journey">
+      <button aria-current="true"><span class="glyph">❧</span>Journal</button>
+      <button onclick="go('chooser')"><span class="glyph">✚</span>Log Meal</button>
+      <button onclick="go('history')"><span class="glyph">◷</span>History</button>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ HOME (empty / first use) ============ -->
+<section class="screen" id="s-home-empty" aria-label="Home, first use">
+  <header class="masthead"><span class="brand">Insight</span><button>Settings</button></header>
+  <div class="empty-wrap">
+    <div class="typlate"><span class="mono">Ins.</span></div>
+    <h1>Understand and compare the estimated insulin demand of meals.</h1>
+    <p>Snap a photo or describe your meal — INSIGHT estimates its insulin demand,
+      shows what drove the number, and tells you honestly how solid the estimate is.</p>
+    <p class="tiny">Relative, population-level estimates. Nothing here measures your
+      body or gives medical advice.</p>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <nav class="navrow" aria-label="Journey">
+      <button aria-current="true"><span class="glyph">❧</span>Journal</button>
+      <button onclick="go('chooser')"><span class="glyph">✚</span>Log Meal</button>
+      <button onclick="go('history')"><span class="glyph">◷</span>History</button>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ HOME (building history: 2 of 3 days) ============ -->
+<section class="screen" id="s-home-building" aria-label="Home, building history">
+  <header class="masthead"><span class="brand">Insight</span><button>Settings</button></header>
+  <div class="folio">
+    <h1>Wednesday noon</h1>
+    <p class="sub">Your 7-day trend appears after you log meals on 3 different days
+      — 2 of 3 so far.</p>
+  </div>
+  <div class="scroll" style="margin-top:.8rem">
+    <div class="pad">
+      <div class="daybreak">Yesterday</div>
+      <button class="entry" onclick="go('estimate')">
+        <div class="plate"><div class="food">🥣</div></div>
+        <div class="cap"><h3>Oats with milk and banana</h3>
+          <div class="meta num">7:15 am · estimate 767 · good data</div></div>
+      </button>
+      <div class="daybreak">Monday</div>
+      <button class="entry" onclick="go('estimate')">
+        <div class="typlate"><span class="mono">Yp</span></div>
+        <div class="cap"><h3>Yogurt with potato salad</h3>
+          <div class="meta num">1:15 pm · estimate 666 · good data</div></div>
+      </button>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <nav class="navrow" aria-label="Journey">
+      <button aria-current="true"><span class="glyph">❧</span>Journal</button>
+      <button onclick="go('chooser')"><span class="glyph">✚</span>Log Meal</button>
+      <button onclick="go('history')"><span class="glyph">◷</span>History</button>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ CHOOSER ============ -->
+<section class="screen" id="s-chooser" aria-label="Log a meal">
+  <header class="masthead"><span class="brand">Insight</span>
+    <button onclick="go('home')">Close</button></header>
+  <div class="folio"><h1>How shall we note this meal?</h1></div>
+  <div class="scroll" style="margin-top:1rem">
+    <div class="choices">
+      <button class="choice" onclick="go('camera')"><span class="glyph">📷</span>
+        <span><strong>Take a photo</strong><small>Point the camera at your meal.</small></span></button>
+      <button class="choice" onclick="go('confirm')"><span class="glyph">✎</span>
+        <span><strong>Enter manually</strong><small>Type the meal and its parts yourself.</small></span></button>
+      <button class="choice" onclick="go('history')"><span class="glyph">↺</span>
+        <span><strong>Log a previous meal again</strong><small>Repeat something you’ve checked before.</small></span></button>
+    </div>
+  </div>
+  <div class="dock">
+    <nav class="navrow" aria-label="Journey">
+      <button onclick="go('home')"><span class="glyph">❧</span>Journal</button>
+      <button aria-current="true"><span class="glyph">✚</span>Log Meal</button>
+      <button onclick="go('history')"><span class="glyph">◷</span>History</button>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ CAMERA (incl. #camera-error) ============ -->
+<section class="screen" id="s-camera" aria-label="Smart camera">
+  <div class="vf">
+    <div class="plate"><div class="food">🍛</div></div>
+    <div class="vf-scrim"></div>
+    <div class="vf-top">
+      <span class="title">Frame the whole meal</span>
+      <button onclick="go('chooser')">Cancel</button>
+    </div>
+    <div class="vf-controls">
+      <div class="vf-error" id="cam-error" hidden>
+        <h3>We couldn’t read that photo</h3>
+        <p>The analysis service didn’t respond. Your photo stays on this device.</p>
+        <div class="acts">
+          <button class="em" onclick="hideCamError()">Try again</button>
+          <button onclick="go('confirm')">Enter manually instead</button>
+        </div>
+      </div>
+      <details class="vf-privacy"><summary>ⓘ How your photo is used</summary>
+        <p>AI meal extraction sends your meal image or description to an external AI
+        service to estimate food items and nutrition. INSIGHT does not retain uploaded
+        images on the backend by default, but the external service may process the data
+        according to its own policies. Do not upload anything you are not comfortable
+        sharing for AI processing.</p>
+      </details>
+      <div class="vf-note"><input type="text"
+        placeholder="Anything the photo can’t show? (optional)"
+        aria-label="Anything the photo can’t show? (optional)"></div>
+      <div class="vf-row">
+        <button class="vf-side" aria-label="Choose from photos">🖼️</button>
+        <button class="shutter" aria-label="Take photo" onclick="camCapture()"></button>
+        <button class="vf-side" aria-label="Add another angle">＋</button>
+      </div>
+      <button class="vf-analyze" id="analyzeBtn" disabled onclick="camAnalyze()">Analyze meal</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIRM (incl. #review, #long-text) ============ -->
+<section class="screen" id="s-confirm" aria-label="Confirm meal">
+  <div class="hero">
+    <div class="plate"><div class="food">🍛</div></div>
+    <button class="back" aria-label="Back" onclick="go('camera')">‹</button>
+  </div>
+  <div class="scroll">
+    <div class="sheet">
+      <div class="kicker">Draft — not saved</div>
+      <h1 class="q" id="confirm-q">Did we get your meal right?</h1>
+      <div class="mealname">
+        <input id="mealname-input" value="Keema biryani" aria-label="Meal name">
+      </div>
+      <p class="helper">The name is a label. The items below are what the estimate uses.</p>
+
+      <div id="review-panel" class="reviewcard" hidden>
+        <p>You renamed “<b>New Item</b>” to <b>keema biryani</b> — its stored values
+          (0 kcal · 0 g carbs · 0 g protein · 0 g fat) were for the old name.
+          Do they still fit?</p>
+        <div class="acts">
+          <button onclick="resolveReview()">Edit values</button>
+          <button class="yes" onclick="resolveReview()">These still fit</button>
+        </div>
+      </div>
+
+      <div class="comp">
+        <div class="r1"><button class="cname" id="c1name">keema biryani</button>
+          <span class="prov" id="c1prov">Suggested from your photo</span></div>
+        <div class="portion">
+          <button class="stepbtn" aria-label="Less" onclick="step(-1)">−</button>
+          <span class="amount num" id="c1amt">350 g</span>
+          <button class="stepbtn" aria-label="More" onclick="step(1)">＋</button>
+        </div>
+        <details class="adv"><summary>Advanced details</summary>
+          <div class="body num">
+            <span>Per 100 g: 185 kcal · 16 g carbs · 9 g protein · 9 g fat</span>
+            <span>GI 55 · FII — · Source: —</span>
+            <span style="font-style:italic">These values feed the estimate. Edit only if you know them.</span>
+          </div>
+        </details>
+      </div>
+      <div class="comp">
+        <div class="r1"><button class="cname" id="c2name">raita</button>
+          <span class="prov">Suggested from your photo</span></div>
+        <div class="portion">
+          <button class="stepbtn" aria-label="Less">−</button>
+          <span class="amount num">80 g</span>
+          <button class="stepbtn" aria-label="More">＋</button>
+        </div>
+      </div>
+      <button class="addrow" id="addrow">✚ Add something we missed — oil, ghee, sides…</button>
+      <div class="totals num"><span>≈ 696 kcal</span><span>59 g carbs</span><span>12 g sat. fat</span></div>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" id="calcBtn" onclick="calc()">Calculate estimate</button>
+    <button class="textbtn" onclick="go('chooser')">Discard draft</button>
+  </div>
+</section>
+
+<!-- ============ ESTIMATE normal + stale (oats) ============ -->
+<section class="screen" id="s-estimate" aria-label="Estimate">
+  <div class="esthero">
+    <div class="plate"><div class="food">🥣</div></div>
+    <div class="est-scrim"></div>
+    <div class="est-top">
+      <button onclick="go('confirm')" aria-label="Adjust meal">‹ Adjust</button>
+      <button onclick="go('home')" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="scroll">
+    <div class="estsheet">
+      <span class="pill">Estimate only — not saved</span>
+      <h1 class="estname">Oats with milk and banana</h1>
+      <div class="estmeta num">3 items · ≈ 476 kcal · 66 g carbs</div>
+
+      <div class="stale" id="stale-banner" hidden>
+        <b>You changed the meal after this estimate.</b> Recalculate to update it —
+        Save stays off until you do.
+      </div>
+
+      <p class="verdict">This meal likely asks <em>about as much</em> of insulin
+        as most meals you log.</p>
+      <p class="qline">Good data behind this one — direct insulin-index values for
+        all three items.</p>
+
+      <div class="compare">
+        <div class="lbl"><span>Among your logged meals</span><span>estimate</span></div>
+        <div class="scale" id="scale-f" role="img"
+          aria-label="Estimate 767, shown among your logged meals, which range from 666 to 1023.">
+          <div class="rail"></div>
+        </div>
+        <div class="scale-ends num"><span>666 · your lowest</span><span>your highest · 1023</span></div>
+      </div>
+      <p class="refline">Reads <b class="num">767</b> against an internal reference of 100.
+        The reference isn’t calibrated yet — compare your meals with each other,
+        not with the number itself.</p>
+
+      <div class="evid">
+        <h4>What drove it</h4>
+        <div class="evrow"><span class="en">oats</span><span class="esh num">64%</span>
+          <span class="ew">direct insulin-index match, scaled by eaten energy</span>
+          <span class="ebar"><i style="width:64%"></i></span></div>
+        <div class="evrow"><span class="en">banana</span><span class="esh num">22%</span>
+          <span class="ew">direct insulin-index match</span>
+          <span class="ebar"><i style="width:22%"></i></span></div>
+        <div class="evrow"><span class="en">milk</span><span class="esh num">14%</span>
+          <span class="ew">direct insulin-index match</span>
+          <span class="ebar"><i style="width:14%"></i></span></div>
+      </div>
+
+      <details class="footnotes"><summary>What this doesn’t mean</summary>
+        <p>Estimated from the app’s limited food insulin-index dataset, heuristic
+        fallbacks, and your entered portions. The dataset and model are not yet
+        validated. This is a relative comparison tool, not a prediction of your
+        body’s response.</p>
+        <p>INSIGHT does not measure or predict your personal insulin or glucose
+        response, diagnose any condition, or provide medical advice. Do not use it
+        for insulin dosing or treatment decisions.</p>
+      </details>
+      <div style="height:.4rem"></div>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" id="saveBtn"
+      onclick="this.textContent='Saved to History ✓';setTimeout(()=>go('home'),650)">Save to History</button>
+    <div class="ghostrow">
+      <button class="ghost" onclick="go('confirm')">Adjust meal</button>
+      <button class="ghost" onclick="go('chooser')">Discard</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESTIMATE low (keema, saved) ============ -->
+<section class="screen" id="s-estimate-low" aria-label="Estimate, limited data">
+  <div class="esthero">
+    <div class="plate"><div class="food">🍛</div></div>
+    <div class="est-scrim"></div>
+    <div class="est-top">
+      <button onclick="go('history')" aria-label="Back">‹ History</button>
+      <button onclick="go('home')" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="scroll">
+    <div class="estsheet">
+      <span class="pill">Saved to history</span>
+      <h1 class="estname">Keema biryani</h1>
+      <div class="estmeta num">2 items · ≈ 696 kcal · 59 g carbs · logged 1:15 pm</div>
+
+      <p class="verdict"><em>Hard to estimate</em> from this meal.</p>
+      <p class="qline">Data quality: Low — rough fallback values stood in for both
+        items, so the estimate could be off. Naming the parts you know
+        (rice, keema, ghee) usually sharpens it.</p>
+
+      <div class="lowcard">
+        <h3>What we could read</h3>
+        <p>Nominal reading <b class="num">1023</b> against the internal reference of
+          100 — shown for comparison only, and rough for this meal. No direct
+          insulin-index data existed for either item, so nutrition-based estimates
+          stood in.</p>
+      </div>
+
+      <div class="evid">
+        <h4>What drove it</h4>
+        <div class="evrow rough"><span class="en">keema biryani</span><span class="esh num">92%</span>
+          <span class="ew">rough estimate from nutrition data — no direct index match</span>
+          <span class="ebar"><i style="width:92%"></i></span></div>
+        <div class="evrow rough"><span class="en">raita</span><span class="esh num">8%</span>
+          <span class="ew">rough estimate from nutrition data</span>
+          <span class="ebar"><i style="width:8%"></i></span></div>
+      </div>
+
+      <details class="footnotes"><summary>What this doesn’t mean</summary>
+        <p>We couldn’t estimate some items well; the real insulin demand may differ
+        from what’s shown. Estimated from the app’s limited food insulin-index
+        dataset, heuristic fallbacks, and your entered portions. The dataset and
+        model are not yet validated. This is a relative comparison tool, not a
+        prediction of your body’s response.</p>
+      </details>
+      <div style="height:.4rem"></div>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check another meal</button>
+    <div class="ghostrow">
+      <button class="ghost" onclick="go('home')">Done</button>
+      <button class="ghost" style="color:#a13a30" onclick="alert('Delete (prototype stub)')">Delete</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section class="screen" id="s-history" aria-label="History">
+  <header class="masthead"><span class="brand">Insight</span>
+    <button onclick="go('home')">Close</button></header>
+  <div class="folio"><h1>Your meal journal</h1>
+    <p class="sub">Saved meals, most recent first. Open one to read it again —
+      repeating a meal starts from Log Meal.</p></div>
+  <div class="scroll" style="margin-top:.7rem">
+    <div class="pad">
+      <div class="daybreak">Friday, July 18</div>
+      <button class="entry" onclick="go('estimate-low')">
+        <div class="plate" style="height:5.2rem"><div class="food" style="font-size:2.6rem">🍛</div></div>
+        <div class="cap"><h3>Keema biryani</h3>
+          <div class="meta num">1:15 pm · estimate 1023 · rough estimate</div></div>
+      </button>
+      <div class="daybreak">Thursday, July 17</div>
+      <button class="entry" onclick="go('estimate')">
+        <div class="plate" style="height:5.2rem"><div class="food" style="font-size:2.6rem">🥘</div></div>
+        <div class="cap"><h3>Masoor dal and rice</h3>
+          <div class="meta num">12:15 pm · estimate 953 · rough estimate</div></div>
+      </button>
+      <div class="daybreak">Wednesday, July 16</div>
+      <button class="entry" onclick="go('estimate')">
+        <div class="plate" style="height:5.2rem"><div class="food" style="font-size:2.6rem">🥣</div></div>
+        <div class="cap"><h3>Oats with milk and banana</h3>
+          <div class="meta num">7:15 am · estimate 767 · good data</div></div>
+      </button>
+      <button class="entry" onclick="go('estimate')">
+        <div class="typlate" style="height:5.2rem"><span class="mono">Et</span></div>
+        <div class="cap"><h3>Egg and toast breakfast</h3>
+          <div class="meta num">8:15 am · estimate 690 · good data</div></div>
+      </button>
+      <div style="height:.5rem"></div>
+    </div>
+  </div>
+  <div class="dock">
+    <nav class="navrow" aria-label="Journey">
+      <button onclick="go('home')"><span class="glyph">❧</span>Journal</button>
+      <button onclick="go('chooser')"><span class="glyph">✚</span>Log Meal</button>
+      <button aria-current="true"><span class="glyph">◷</span>History</button>
+    </nav>
+  </div>
+</section>
+
+<script>
+  const KNOWN=['home','home-empty','home-building','chooser','camera','camera-error',
+    'confirm','review','estimate','estimate-stale','estimate-low','history','long-text'];
+  function apply(){
+    const parts=(location.hash||'#home').slice(1).split('&');
+    const route=KNOWN.includes(parts[0])?parts[0]:'home';
+    document.body.dataset.route=route;
+    document.documentElement.classList.toggle('dark',parts.includes('dark'));
+    document.documentElement.classList.toggle('big',parts.includes('big'));
+    document.getElementById('review-panel').hidden=(route!=='review');
+    document.getElementById('cam-error').hidden=(route!=='camera-error');
+    document.getElementById('stale-banner').hidden=(route!=='estimate-stale');
+    document.getElementById('saveBtn').style.opacity=(route==='estimate-stale')?'.45':'';
+    document.getElementById('saveBtn').disabled=(route==='estimate-stale');
+    // long-translated-text probe on the confirm screen
+    if(route==='long-text'){
+      document.getElementById('confirm-q').textContent=
+        'Haben wir Ihre Mahlzeit richtig verstanden und vollständig erkannt?';
+      document.getElementById('mealname-input').value=
+        'Hausgemachtes Hammel-Keema-Biryani mit Basmatireis';
+      document.getElementById('c1name').textContent=
+        'Hammel-Keema-Biryani mit extra langem Basmatireis';
+      document.getElementById('addrow').textContent=
+        '✚ Etwas hinzufügen, das wir übersehen haben — Öl, Ghee, Beilagen…';
+    }
+    plotScale();
+  }
+  function go(r){
+    const mods=[];
+    if(document.documentElement.classList.contains('dark'))mods.push('dark');
+    if(document.documentElement.classList.contains('big'))mods.push('big');
+    location.hash=[r,...mods].join('&');
+  }
+  let amt=350;
+  function step(d){amt=Math.max(0,amt+d*10);
+    document.getElementById('c1amt').textContent=amt+' g';}
+  function camCapture(){document.getElementById('analyzeBtn').disabled=false;}
+  function camAnalyze(){
+    const b=document.getElementById('analyzeBtn');
+    b.textContent='Reading your meal photo…';b.disabled=true;
+    setTimeout(()=>{b.textContent='Analyze meal';go('confirm');},700);
+  }
+  function hideCamError(){go('camera');}
+  function resolveReview(){document.getElementById('review-panel').hidden=true;go('confirm');}
+  function calc(){
+    const b=document.getElementById('calcBtn');
+    b.textContent='Estimating insulin demand…';
+    setTimeout(()=>{b.textContent='Calculate estimate';go('estimate');},700);
+  }
+  function plotScale(){
+    const el=document.getElementById('scale-f'); if(!el) return;
+    el.querySelectorAll('.dot,.needle,.readout,.tickmark').forEach(n=>n.remove());
+    const scores=[666,690,953,1023],you=767,min=666,max=1023;
+    const pct=v=>4+((v-min)/(max-min))*92;
+    for(let i=0;i<=10;i++){const t=document.createElement('div');t.className='tickmark';
+      t.style.left=(4+i*9.2)+'%';el.appendChild(t);}
+    scores.forEach(s=>{const d=document.createElement('div');d.className='dot';
+      d.style.left=pct(s)+'%';el.appendChild(d);});
+    const n=document.createElement('div');n.className='needle';n.style.left=pct(you)+'%';
+    el.appendChild(n);
+    const r=document.createElement('div');r.className='readout num';
+    r.style.left=pct(you)+'%';r.textContent='767';el.appendChild(r);
+  }
+  window.addEventListener('hashchange',apply);
+  apply();
+</script>
+</body>
+</html>
