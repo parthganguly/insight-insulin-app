@@ -1,10 +1,18 @@
 # Sol Implementation Slices — Annotated Journal
 
 **Mission:** issue #101, Part 5 decomposition. **Author:** Claude Fable 5.
-**Date:** 2026-07-18. **Status:** prepared, NOT started. Implementation begins
-only after (a) this discovery PR is reviewed, and (b) the [NEEDS SIGN-OFF]
-items in `final-direction.md` §6 are decided by the humans who own product and
-scientific semantics.
+**Date:** 2026-07-18 (updated same day for the human disposition on PR #102).
+**Status:** **J1–J6 and J9 are authorized for implementation** under
+design-constitution v1.1. **J7 is deferred** (tick-scale, cold-start rule,
+verdict bands) — no part of it may be implemented implicitly inside another
+slice; constitution §6.7-interim governs result screens meanwhile.
+**Photo persistence is deferred** — existing photo behaviour plus the
+typographic-plate fallback is the boundary. **Seven-day trend semantics are
+preserved** — presentation changes only as J2 allows. **The B1
+placeholder-rename gap stays separate.** **J8 stays blocked** until the
+approved Campaign B2 architecture exists. Implementation work does not
+happen on this discovery branch; each slice runs as its own Sol thread on
+its own branch per repo git law.
 
 Ground rules for every slice (inherit `AGENTS.md`, `CLAUDE.md`, and the
 sealed Campaign A/B contracts in full):
@@ -98,11 +106,17 @@ fields hidden until disclosure; review card placement).
 **Stop if:** any acceptance seems to require changing store invalidation
 semantics — that is sealed law, not styling.
 
-## Slice J5 — Result chassis (saved) 
+## Slice J5 — Result chassis (saved)
 
 **Goal:** constitution §6.8–6.9 applied to `SavedMealDetail.tsx` (the saved
-result), including evidence rows and footnote treatment. **The tick-scale
-and verdict bands are excluded** until sign-off (J7).
+result), including evidence rows and footnote treatment, using the
+**§6.7-interim hierarchy**: the existing `insulinImpactPresentation` title
+is the verdict-weight line ("Hard to estimate from this meal" for
+insufficient-data ships here — it is existing helper output, not a J7
+element). **The tick-scale and verdict bands are deferred (J7) and must not
+appear in any form** — no dots/needle/strip, no "more / about as much /
+less than most meals you log", no percentile/position/ranking language.
+Reference-screenshot comparisons exclude those two modules; all else binds.
 **Allowed files:** `frontend/src/pages/meal/SavedMealDetail.tsx`, `app.css`,
 new `EvidenceRows.tsx`, `ResultHero.tsx`, helper tests.
 **Fixed behaviour:** every displayed number/label/disclaimer from backend +
@@ -129,11 +143,15 @@ display-only over existing timestamps.
 **Tests/screenshots:** history at both viewports + dark; picker unchanged
 semantics.
 
-## Slice J7 — Comparative tick-scale + verdict sentence [GATED]
+## Slice J7 — Comparative tick-scale + verdict sentence [DEFERRED — do not implement]
 
-**Prerequisite:** explicit human product+scientific sign-off on
-`final-direction.md` §6 items 1–3, recorded in an issue. Without it this
-slice does not exist.
+**Deferred by the human disposition of 2026-07-18 (PR #102).** This slice —
+including the comparative tick-scale, the cold-start rule, and the
+"more / about as much / less than most meals" verdict bands — is not
+authorized, and no part of it may be implemented implicitly inside another
+slice. It becomes actionable only through a future explicit human
+product+scientific sign-off on `final-direction.md` §6 items 1–3, recorded
+in an issue. Until then this section is a specification on ice.
 **Goal:** constitution §6.7 scale + verdict on estimate/result screens, with
 the approved cold-start rule.
 **Allowed files:** result/estimate components from J5, new
@@ -161,9 +179,9 @@ if** the humans approve the CI edit (CI files are otherwise out of scope).
 
 ---
 
-### Sequencing
+### Sequencing (authorized)
 
-J1 → J2 → (J3 ∥ J4) → J5 → J6 → J9; J7 gated on sign-off; J8 gated on B2.
+J1 → J2 → (J3 ∥ J4) → J5 → J6 → J9. J7 deferred (see above); J8 blocked on B2.
 Each slice is one Sol thread with the standard completion-report format from
 the Campaign A/B missions (summary, files, acceptance table, check output,
 protected-file verification, screenshots, honest deviations).

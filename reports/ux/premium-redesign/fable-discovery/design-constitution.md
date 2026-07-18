@@ -1,16 +1,27 @@
-# INSIGHT Design Constitution — Annotated Journal v1.0
+# INSIGHT Design Constitution — Annotated Journal v1.1
 
-**Mission:** issue #101, Part 5. **Author/approver:** Claude Fable 5.
-**Date:** 2026-07-18. **Status:** frozen design law for implementation.
+**Mission:** issue #101, Part 5. **Author:** Claude Fable 5.
+**Date:** 2026-07-18 (v1.1 same day). **Status:** **approved as the
+authoritative design direction by human disposition on PR #102
+(2026-07-18)**, with the deferrals recorded below. Frozen design law for
+implementation slices J1–J6 and J9.
 Reference prototype: `prototypes/final-annotated-journal.html` (interactive,
 state-addressable); reference screenshots: `screenshots/final-annotated-journal/`.
 
 Scope note: this constitution governs **presentation and interaction staging
 only**. It changes no scientific formula, no estimate-quality semantics, no
-privacy behaviour, no API, and no sealed Campaign A/B journey law. Where it
-depends on a product-semantics addition (tick-scale, verdict sentence), that
-dependency is flagged **[NEEDS SIGN-OFF]** per `final-direction.md` §6 and must
-not be implemented before approval.
+privacy behaviour, no API, and no sealed Campaign A/B journey law. The
+product-semantics additions it anticipated (tick-scale, verdict-sentence
+bands, cold-start rule) are **[DEFERRED — J7]** by the human disposition:
+they are not approved, not scheduled, and **no part of them may be
+implemented implicitly inside any other slice**. Photo-persistence changes
+are likewise deferred: existing photo behaviour plus the §5 typographic
+plate is the implementation boundary. §6.7-interim below defines the
+authoritative result hierarchy while the deferral stands.
+
+Changes v1.0 → v1.1 (disposition record only; no design change):
+status line; `[NEEDS SIGN-OFF]` markers replaced with `[DEFERRED — J7]`;
+new §6.7-interim; §13 rewritten to reflect the disposition.
 
 ---
 
@@ -158,13 +169,30 @@ ambiguous. All sealed copy meanings render verbatim from existing helpers.
    **Calculate estimate** primary, Discard draft text-button.
 7. **Estimate (unsaved):** photo hero + Adjust/Close → sheet: pill
    "Estimate only — not saved" → serif meal name → meta line → verdict
-   sentence **[NEEDS SIGN-OFF]** → quality sentence → tick-scale
-   **[NEEDS SIGN-OFF]** → reference footline (sealed meaning: internal
+   sentence **[DEFERRED — J7]** → quality sentence → tick-scale
+   **[DEFERRED — J7]** → reference footline (sealed meaning: internal
    reference 100, uncalibrated, compare meals with each other) → "What
    drove it" evidence rows (serif item, share %, provenance why-line,
    hairline bar) → footnotes disclosure "What this doesn't mean" (sealed
    disclaimers verbatim) → dock: **Save to History** / Adjust meal /
    Discard. **Stale:** banner (sealed meaning) + Save disabled.
+
+   **§6.7-interim — result hierarchy while J7 is deferred (normative for
+   J5, and for J8 whenever it unblocks, until J7 is approved):** the
+   verdict-weight slot is filled by the **existing
+   `insulinImpactPresentation` title**, styled as the verdict line
+   ("Relative insulin-demand score" for scored meals; "*Hard to estimate*
+   from this meal." for insufficient-data — the latter is existing sealed
+   helper output and is **not** part of the J7 deferral). Its description
+   text and the quality sentence follow; then the reference footline
+   (existing `acuteScoreDisplay` meanings, score number in mid-size
+   tabular numerals — never hero-size); then evidence rows and footnotes
+   as above. **No tick-scale, no dots/needle, no "more / about as much /
+   less than most meals you log" phrasing, no percentile, position, or
+   ranking language of any kind may appear anywhere in the app until J7
+   is separately approved and implemented.** Reference-screenshot
+   comparisons for J5 exclude the two deferred modules; everything else
+   in the reference states is binding.
 8. **Result (saved):** identical chassis; pill "Saved to history"; logged
    time in meta; dock: **Check another meal** / Done / Delete
    (confirm dialog; backend-first integrity unchanged).
@@ -253,11 +281,23 @@ look/roles; platform-conventional back/edge gestures; ordering of CSS;
 splitting tokens into files.
 
 **Requires Fable approval before deviation:** anything in §11; token values
-beyond ±5 %; typography roles; screen hierarchy order (§6); score/scale
-presentation; any new copy that touches scientific meaning; motion beyond
-§8; adding imagery sources; dark-mode value changes; the cold-start rule
-once signed off.
+beyond ±5 %; typography roles; screen hierarchy order (§6, including
+§6.7-interim); score/scale presentation; any new copy that touches
+scientific meaning; motion beyond §8; adding imagery sources; dark-mode
+value changes.
 
-**Blocked pending human sign-off (do not build):** tick-scale, verdict
-sentence bands, photo persistence change, any trend redefinition
-(`final-direction.md` §6).
+**Human disposition of 2026-07-18 (PR #102) — binding:**
+
+- **Authorized:** slices J1–J6 and J9 under this constitution.
+- **Deferred — J7 (do not build, in whole or in part, inside any slice):**
+  comparative tick-scale, cold-start rule, and verdict bands
+  ("more / about as much / less than most meals you log"). §6.7-interim
+  governs the result screens meanwhile.
+- **Deferred — photo persistence:** existing photo behaviour + the §5
+  typographic-plate fallback is the boundary; no new photo store.
+- **Preserved:** seven-day trend semantics in full; presentation may change
+  only as allowed by slice J2 (sentence rendering of existing values,
+  gating, copy meanings, and ARIA distinctions unchanged).
+- **Separate:** the B1 placeholder-rename gap remains a sealed-law product
+  follow-up outside this redesign.
+- **Blocked:** J8 until the approved Campaign B2 architecture exists.

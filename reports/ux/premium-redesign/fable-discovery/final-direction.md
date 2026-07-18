@@ -89,32 +89,51 @@ glass, no gamification, no mascot, no animation flourishes.
   precise-looking position).
 - **History** = the journal itself: day-broken photo entries, read-only.
 
-## 6. Open product / architecture questions (require sign-off before implementation)
+## 6. Open product / architecture questions — disposition recorded
 
-1. **Relative-position presentation.** The tick-scale performs client-side
+> **Human disposition, 2026-07-18 (PR #102):** Annotated Journal approved as
+> the authoritative direction; constitution approved; slices J1–J6 and J9
+> authorized. Items 1–3 below are **deferred as J7** (no implicit
+> implementation anywhere); item 4 **deferred** (existing photo behaviour +
+> typographic-plate fallback is the boundary); item 5 **preserved** (trend
+> semantics unchanged; presentation only per J2); item 6 **kept separate**;
+> J8 stays blocked until the approved Campaign B2 architecture exists.
+> Per-item outcomes are annotated inline.
+
+1. **Relative-position presentation.** *(Disposition: deferred — J7.)*
+   The tick-scale performs client-side
    arithmetic on canonical scores (min/max/position among the user's saved
    meals). It introduces no thresholds and no new score semantics, but it is
    a *new presentation of score meaning* — under AGENTS.md that needs
    explicit product + scientific sign-off (and a decision on the cold-start
    rule below). **No backend change is required.**
-2. **Cold-start rule for the scale.** With < 3 saved meals the strip is
+2. **Cold-start rule for the scale.** *(Disposition: deferred — J7.)*
+   With < 3 saved meals the strip is
    statistically meaningless. Proposed: show it only from the 3rd saved meal
    (mirroring the trend-gate precedent); before that, the verdict sentence
    carries the screen alone. Needs product approval.
-3. **Verdict sentence bands.** "asks more / about as much / less … than most
+3. **Verdict sentence bands.** *(Disposition: deferred — J7; the
+   constitution's §6.7-interim hierarchy applies meanwhile, using the
+   existing `insulinImpactPresentation` titles as the verdict line.)*
+   "asks more / about as much / less … than most
    meals you log" is a tercile statement over the user's own history —
    again pure client arithmetic, again a semantics addition needing the same
    sign-off. Fallback if refused: verdict states quality + drivers only.
-4. **Photo persistence.** The journal look leans on photos; today images are
+4. **Photo persistence.** *(Disposition: deferred. Existing photo behaviour
+   plus the typographic-plate fallback is the implementation boundary.)*
+   The journal look leans on photos; today images are
    client-only with a localStorage size cap (audit §17). The direction works
    with typographic plates as the fallback, but a deliberate on-device photo
    store (still never uploaded at calculate/save) would strengthen History.
    That is a privacy-adjacent persistence change → separate approved design.
-5. **Trend surface.** This mission inherits the existing 7-day index as a
+5. **Trend surface.** *(Disposition: semantics preserved in full;
+   presentation may change only as allowed by J2.)*
+   This mission inherits the existing 7-day index as a
    one-line sentence. Whether the index itself survives (audit §10 shows it
    rewards sparse logging) is a scientific/product question explicitly out
    of scope here.
-6. **The B1 placeholder-rename gap** (renaming fresh "New Item" fires
+6. **The B1 placeholder-rename gap** *(Disposition: kept separate from this
+   redesign.)* (renaming fresh "New Item" fires
    needs-review about zeros) remains a sealed-law follow-up; the new voice
    softens it but does not fix the rule.
 
@@ -141,6 +160,20 @@ glass, no gamification, no mascot, no animation flourishes.
   and long-German-string states render without loss (screenshots captured);
   confirmed no traffic-light, threshold, or merged-confidence pattern
   appears anywhere in the four concepts or the final.
+- **D7 (2026-07-18, human disposition on PR #102):** Annotated Journal and
+  the constitution approved; J1–J6 and J9 authorized; J7 (tick-scale,
+  cold-start rule, verdict bands) deferred with an explicit ban on implicit
+  implementation inside other slices; photo persistence deferred; trend
+  semantics preserved (J2 presentation-only); B1 rename gap kept separate;
+  J8 blocked until B2. Consequence codified as constitution §6.7-interim:
+  the result screens' verdict-weight line is the existing
+  `insulinImpactPresentation` title until J7 is approved — and the
+  insufficient-data verdict ("Hard to estimate from this meal") is existing
+  sealed helper output, not a J7 element, so it ships with J5. Fable
+  consistency check: the disposition contradicts nothing in this document
+  or the constitution; the only ambiguity it created (what leads the result
+  screen without J7) is resolved by §6.7-interim. Constitution bumped to
+  v1.1 (disposition record only, no design change).
 
 ## 8. Self-critique (what could still be wrong)
 
