@@ -12,8 +12,7 @@ import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } 
 import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealDisplayCalories, getMealTimeString } from "../../utils";
 import { NutrimentComponent } from "../../components/NutrimentComponent";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { updateMealItemFii } from "../../utils/fiiTrustBoundary";
-import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS, SUBTYPE_NAME_ONLY_NOTICE, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
+import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, MEAL_NAME_HELPER, SAVED_MEAL_STATUS, getDraftProvenanceCopy, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
 
 type SaveFeedback = {
@@ -41,7 +40,7 @@ const getDraftFingerprint = (meal: ReturnType<typeof useCurrentMealStore.getStat
 });
 
 const PreviewMeal = () => {
-	const { meal, setMeal, deleteMealItem, addEmptyMealItem, setImage, setName, resetMeal } = useCurrentMealStore();
+	const { meal, setMeal, deleteMealItem, addEmptyMealItem, updateMealItem, confirmMealItemReview, setImage, setName, resetMeal } = useCurrentMealStore();
 
 	const [showToast, setShowToast] = useState(false);
 	const [toastMessage, setToastMessage] = useState("");
@@ -84,32 +83,12 @@ const PreviewMeal = () => {
 		});
 	}, [history, isDirtyDraft]);
 
-	const [modalItem, setModalItem] = useState<MealItem | null>(null);
+	const [modalItemId, setModalItemId] = useState<string | null>(null);
+	const modalItem = modalItemId ? meal.items.find((item) => item.id === modalItemId) ?? null : null;
 	const isAiDraftFlow = Boolean(meal.isAiDraft);
 	const hasEstimate = meal.calorie_source === "meal_estimate" && !!meal.estimate;
-
-	const SUBTYPE_CHIPS: Record<string, string[]> = {
-		biryani: ["Veg", "Chicken", "Mutton", "Keema", "Egg", "Paneer"],
-		pulao: ["Veg", "Chicken", "Mushroom", "Paneer", "Egg"],
-		curry: ["Veg", "Chicken", "Mutton", "Paneer", "Fish", "Egg"],
-		"fried rice": ["Veg", "Chicken", "Egg", "Schezwan", "Prawn"],
-	};
-
-	const detectDishBase = (name: string): { base: string; variants: string[] } | null => {
-		const lower = name.toLowerCase();
-		for (const [base, variants] of Object.entries(SUBTYPE_CHIPS)) {
-			if (lower.includes(base)) return { base, variants };
-		}
-		return null;
-	};
-
-	const applySubtype = (subtype: string, base: string) => {
-		const capitalized = base.split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-		setName(`${subtype} ${capitalized}`);
-	};
-
-	const dishInfo = isAiDraftFlow ? detectDishBase(meal.name) : null;
-
+	const hasUnresolvedReview = meal.items.some((item) => item.needsReview);
+	const reviewValidationError = hasUnresolvedReview ? validateMealBeforeSave(meal) : null;
 
 	const parseNumericInput = (value: string, fallback = 0): number => {
 		const parsed = Number(value);
@@ -117,23 +96,14 @@ const PreviewMeal = () => {
 	};
 
 	const updateItem = (id: string, field: keyof MealItem, value: string) => {
-		if (!meal) return;
-		const updateTarget = (item: MealItem): MealItem => {
-			if (field === "fii") return updateMealItemFii(item, value);
-			return { ...item, [field]: field === "name" || field === "servingUnit" ? value : parseNumericInput(value) };
-		};
-		const updatedItems = meal.items.map((item) => (item.id === id ? updateTarget(item) : item));
-		setMeal({ ...meal, items: updatedItems });
-		// Update modalItem if it's open and matches the updated item
-		setModalItem((prev) => (prev && prev.id === id ? updateTarget(prev) : prev));
+		const nextValue = field === "name" || field === "servingUnit" ? value : field === "fii" ? value : parseNumericInput(value);
+		updateMealItem(id, field, nextValue);
 	};
 
 	const updateItemAmount = (id: string, amount: number) => {
 		if (!meal) return;
 		const normalizedAmount = Number.isFinite(amount) && amount > 0 ? amount : 0;
-		const updatedItems = meal.items.map((item) => (item.id === id ? { ...item, amount: normalizedAmount } : item));
-		setMeal({ ...meal, items: updatedItems });
-		setModalItem((prev) => (prev && prev.id === id ? { ...prev, amount: normalizedAmount } : prev));
+		updateMealItem(id, "amount", normalizedAmount);
 	};
 
 	const adjustItemAmount = (id: string, delta: number) => {
@@ -144,12 +114,12 @@ const PreviewMeal = () => {
 
 	const closeItemEditor = () => {
 		releaseFocusedElement();
-		setModalItem(null);
+		setModalItemId(null);
 	};
 
 	const openItemEditor = (item: MealItem) => {
 		releaseFocusedElement();
-		setModalItem(item);
+		setModalItemId(item.id);
 	};
 
 	const stayOnDraft = () => {
@@ -268,23 +238,11 @@ const PreviewMeal = () => {
 				<IonCard className='app-card confirmation-identity-card'>
 					<IonCardHeader>
 						<IonCardTitle>
-							<IonInput value={meal.name} label='Meal name' labelPlacement='stacked' placeholder='Enter dish name' onIonInput={(event) => setMeal({ ...meal, name: event.detail.value ?? "" })}>
+							<IonInput value={meal.name} label='Meal name' labelPlacement='stacked' placeholder='Enter dish name' onIonInput={(event) => setName(event.detail.value ?? "")}>
 								<IonIcon slot='end' icon={create} aria-hidden='true' />
 							</IonInput>
 						</IonCardTitle>
-						{isAiDraftFlow && dishInfo && (
-							<div className='subtype-choice'>
-								<IonText color='medium'><p>Wrong type? Choose the closest name:</p></IonText>
-								<div className='subtype-chip-row'>
-									{dishInfo.variants.map((variant) => (
-										<IonButton key={variant} size='small' fill={meal.name.toLowerCase().startsWith(variant.toLowerCase()) ? "solid" : "outline"} color='medium' onClick={() => applySubtype(variant, dishInfo.base)}>
-											{variant}
-										</IonButton>
-									))}
-								</div>
-								<p className='subtype-honesty-line'>{SUBTYPE_NAME_ONLY_NOTICE}</p>
-							</div>
-						)}
+						<p className='meal-name-helper'>{MEAL_NAME_HELPER}</p>
 						<span className={`meal-status-pill ${meal.backend_created_at ? "meal-status-saved" : "meal-status-draft"}`}>
 							{meal.backend_created_at ? SAVED_MEAL_STATUS : DRAFT_MEAL_STATUS}
 						</span>
@@ -312,13 +270,25 @@ const PreviewMeal = () => {
 					) : (
 						<div className='confirmation-item-list'>
 							<p className='item-list-helper'>{ITEM_LIST_EDIT_HELPER}</p>
-							{meal.items.map((item) => (
-								<IonCard key={item.id} className='app-card confirmation-item-card'>
+							{meal.items.map((item) => {
+								const provenanceCopy = getDraftProvenanceCopy(item, Boolean(meal.source_meal_id));
+								return <IonCard key={item.id} className='app-card confirmation-item-card'>
 									<IonCardHeader>
 										<IonCardTitle>{item.name}</IonCardTitle>
+										{provenanceCopy && <span className='draft-provenance'>{provenanceCopy}</span>}
 										{isDraftMealItem(item) && <span className='draft-item-hint'>{DRAFT_ITEM_ROW_HINT}</span>}
 									</IonCardHeader>
 									<IonCardContent>
+										{item.needsReview && (
+											<div className='needs-review-panel' role='status' aria-live='polite' tabIndex={0}>
+												<div className='needs-review-message'>
+													<IonIcon icon={alertCircle} aria-hidden='true' />
+													<p>These values were for "{item.needsReview.previousName}". Check they still fit.</p>
+												</div>
+												<p className='carried-nutrition-summary'>Per serving: {item.kcalPerServing} kcal · {item.carbPerServing_g} g carbs · {item.proteinPerServing_g ?? 0} g protein · {item.fatPerServing_g ?? 0} g fat · {item.satFatPerServing_g} g saturated fat · GI {item.gi}</p>
+												<IonButton expand='block' onClick={() => confirmMealItemReview(item.id)}>These still fit</IonButton>
+											</div>
+										)}
 										<div className='portion-adjust-row'>
 											<IonButton aria-label={`Decrease ${item.name} portion`} size='small' fill='outline' onClick={() => adjustItemAmount(item.id, -0.5)}>-</IonButton>
 											<IonInput type='number' inputMode='decimal' fill='outline' label='Amount' labelPlacement='stacked' value={item.amount} min={0} onIonInput={(event) => updateItemAmount(item.id, parseNumericInput(event.detail.value ?? "", item.amount))} />
@@ -332,8 +302,8 @@ const PreviewMeal = () => {
 											<IonButton size='small' fill='clear' color='danger' onClick={() => deleteMealItem(item.id)}>Remove</IonButton>
 										</div>
 									</IonCardContent>
-								</IonCard>
-							))}
+								</IonCard>;
+							})}
 						</div>
 					)}
 					<IonButton expand='block' fill='outline' className='add-missed-item-button' onClick={() => { releaseFocusedElement(); setIsItemActionSheetOpen(true); }}>
@@ -375,13 +345,19 @@ const PreviewMeal = () => {
 						<span>{saveFeedback.message}</span>
 					</div>
 				)}
+				{reviewValidationError && (
+					<div id='review-validation-error' className='save-feedback-banner save-feedback-error review-validation-error' role='status' aria-live='polite'>
+						<IonIcon icon={alertCircle} aria-hidden='true' />
+						<span>{reviewValidationError}</span>
+					</div>
+				)}
 				<div className='confirmation-primary-actions'>
-					<IonButton expand='block' aria-label='Save meal' onClick={handleLogMeal} disabled={isSubmitting}>Calculate &amp; save</IonButton>
+					<IonButton expand='block' aria-label='Save meal' aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>Calculate &amp; save</IonButton>
 					<IonButton expand='block' fill='outline' color='medium' onClick={handleDiscardDraft} disabled={isSubmitting}>Discard</IonButton>
 				</div>
 				<div className='disclaimer-note confirmation-disclaimer'>{APP_DISCLAIMER}</div>
 
-				<IonModal isOpen={!!modalItem} onWillDismiss={releaseFocusedElement} onDidDismiss={() => setModalItem(null)} className='sheet-modal'>
+				<IonModal isOpen={!!modalItem} onWillDismiss={releaseFocusedElement} onDidDismiss={() => setModalItemId(null)} className='sheet-modal'>
 					<div className='sheet-handle' aria-hidden='true' />
 					<IonHeader>
 						<IonToolbarWrapper className='ion-text-left'>
@@ -409,6 +385,8 @@ const PreviewMeal = () => {
 										<div className='advanced-details-content'>
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='kcals per serving' value={modalItem.kcalPerServing} placeholder='Enter kcal for one serving' onIonInput={(event) => updateItem(modalItem.id, "kcalPerServing", event.detail.value ?? "")} />
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='Carb per serving (g)' value={modalItem.carbPerServing_g} placeholder='Enter carbs per serving (g)' onIonInput={(event) => updateItem(modalItem.id, "carbPerServing_g", event.detail.value ?? "")} />
+											<IonInput labelPlacement='stacked' type='number' fill='outline' label='Protein per serving (g)' value={modalItem.proteinPerServing_g ?? ""} placeholder='Enter protein per serving (g)' onIonInput={(event) => updateItem(modalItem.id, "proteinPerServing_g", event.detail.value ?? "")} />
+											<IonInput labelPlacement='stacked' type='number' fill='outline' label='Fat per serving (g)' value={modalItem.fatPerServing_g ?? ""} placeholder='Enter fat per serving (g)' onIonInput={(event) => updateItem(modalItem.id, "fatPerServing_g", event.detail.value ?? "")} />
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='Saturated Fat per serving (g)' value={modalItem.satFatPerServing_g} placeholder='Enter saturated fat per serving (g)' onIonInput={(event) => updateItem(modalItem.id, "satFatPerServing_g", event.detail.value ?? "")} />
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='FII' value={modalItem.fii ?? ""} placeholder='Enter FII' onIonInput={(event) => updateItem(modalItem.id, "fii", event.detail.value ?? "")} />
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='Glycemic Index' value={modalItem.gi} placeholder='Enter glycemic index' onIonInput={(event) => updateItem(modalItem.id, "gi", event.detail.value ?? "")} />

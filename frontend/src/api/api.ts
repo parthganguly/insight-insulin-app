@@ -145,8 +145,8 @@ export const normalizeAiExtractedItem = (item: unknown): MealItem => {
 		proteinPerServing_g: normalizeAiDensityValue(proteinPerUnitRaw, servingUnit, 1),
 		fatPerServing_g: normalizeAiDensityValue(fatPerUnitRaw, servingUnit, 1),
 		satFatPerServing_g: satFatPerUnit,
-		source: "ai",
 		gi: toNumberWithDefault(source.gi as NumberLike, 0),
+		draftProvenance: "ai_proposed",
 	};
 
 	return aiDraftItem;

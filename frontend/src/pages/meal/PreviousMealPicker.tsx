@@ -45,6 +45,13 @@ const PreviousMealPicker: React.FC = () => {
 
 const PreviousMealCard = ({ meal }: { meal: Meal }) => {
 	const setMeal = useCurrentMealStore((state) => state.setMeal);
+	const reuseMeal = () => {
+		const draft = buildDraftFromSavedMeal(meal);
+		setMeal({
+			...draft,
+			items: draft.items.map((item) => ({ ...item, draftProvenance: "user_entered" })),
+		});
+	};
 
 	return (
 		<IonItem
@@ -52,7 +59,7 @@ const PreviousMealCard = ({ meal }: { meal: Meal }) => {
 			detail={false}
 			button
 			className='recent-card'
-			onClick={() => setMeal(buildDraftFromSavedMeal(meal))}
+			onClick={reuseMeal}
 			routerLink='/meals/new'>
 			{meal.image && (
 				<IonThumbnail slot='start' className='meal-card-thumbnail'>
