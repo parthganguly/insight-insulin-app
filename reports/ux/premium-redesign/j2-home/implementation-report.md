@@ -175,3 +175,104 @@ reports/ux/premium-redesign/j2-home/implementation-report.md
 ## 10. Stop boundary
 
 J2 implementation, C1–C4 plus C3-a corrections, and replacement evidence are complete in the uncommitted working tree. Work stops here for final Fable sign-off. Amendment T1 / issue #105, J3, J4, J6, J7, J8, J9, photo-persistence changes, architecture migration work, and all other slices were not started. `safetyCopy.ts` and `trendDisplay.ts` are untouched. No files are staged, and no commit, push, or pull request has been made.
+
+## 11. Physical Android-device QA
+
+Date: 2026-07-19
+Approved branch: `sol/annotated-journal-j2-home`
+Approved commit installed: `209469de233220ccf0a8673eeb33fa5c35bcd1da`
+QA verdict: **FAIL — stopped for Fable/product triage after a reproducible native cold-launch defect.**
+
+### Device and installation evidence
+
+| Item | Observed value |
+| --- | --- |
+| Device | Samsung `SM-M356B` |
+| Android | Android 16, API 36 |
+| ADB device ID | `RZCY22FGP1Z` |
+| Connection gate | Exactly one authorized physical device |
+| Physical screen | 1080×2340 px |
+| Display density | Physical 450 dpi; active override 420 dpi |
+| Text scaling | `font_scale=0.9` (90%) |
+| System navigation | Three-button navigation (`navigation_mode=0`) |
+| Build preparation | `npm run build` passed with 301 modules; `npx cap sync android` passed |
+| Installation/launch | `npx cap run android --target RZCY22FGP1Z` |
+| Variant/package | Debug APK, `io.ionic.starter`, version 1.0 (versionCode 1), targetSdk 35 |
+| APK path | `frontend/android/app/build/outputs/apk/debug/app-debug.apk` |
+| APK SHA-256 | `2569E865DD8C11DE2E9B00AFEC48BE7627082FA2FDA4D174CBD98F41FF7C8ED3` |
+
+Capacitor sync changed only generated Gradle file metadata/line-ending state; normalized content was unchanged. Those two generated files were restored to the approved commit before this report was edited. No production or Android project file remains modified.
+
+### Gate results before mandatory stop
+
+| Physical check | Result | Evidence/finding |
+| --- | --- | --- |
+| Cold launch | **Fail** | Reproducible splash → fully black window → Home painted under the status bar → corrected inset/layout transition. Android reported a cold start, but the WebView content was not visually stable at that point. |
+| Background and resume | Not run | Mandatory stop applied after cold-launch defect confirmation. |
+| Real touch targets | Pass for exercised controls | The native UI hierarchy measured the collapsed summary at 120 px high, approximately 45.7 dp at 420 dpi. Settings exposed an approximately 46.1 dp parent target; dock and tabs were larger. |
+| Natural scroll momentum | Not completed | Stopped before the dedicated momentum pass. |
+| Status-bar safe area | **Fail during cold launch** | Home and Settings initially render underneath Android status icons before shifting to the correct settled inset. |
+| Navigation-bar safe area | Pass when settled | Fixed tab bar remains above the physical three-button navigation area. |
+| Fixed **Check a meal** dock versus journal content | Pass when settled | Dock stays fixed and journal content scrolls behind/above it without horizontal overflow. |
+| Fixed dock versus Android system navigation | Pass when settled | Dock and app tab bar remain separated from the three-button system navigation area. |
+| Home tab-bar positioning | Pass when settled | Home, Log Meal, and History remain visible and correctly positioned. |
+| Collapsed `What this doesn't mean` | Pass | Native tap opens the control; collapsed target is at least 44 dp. |
+| Expanded disclaimer scrolling/readability | Pass | Full sealed copy is readable; fixed dock and tab bar remain visible and unobscured. |
+| Paper appearance | Not run | Current persisted device theme was ink; mandatory stop occurred before theme switching. |
+| Ink appearance | Pass when settled | Typography, plates, borders, dock, and tab bar visually match the approved ink direction. |
+| Settings navigation | Pass | Real tap navigated from Home to Settings and Android back returned safely. |
+| Saved-meal journal-entry navigation | Pass | Real tap opened the read-only saved result for synthetic `Demo: Pasta with Cake Dessert`. |
+| Long meal-name wrapping | Not completed | Observed synthetic names and metadata wrapped without clipping, but the dedicated long-name fixture was not exercised before stop. |
+| Font rendering and line wrapping | Pass for observed content | Serif folio/card names and sans-serif metadata rendered cleanly with no observed ellipsis or horizontal overflow. |
+| System text scaling | Limited | Baseline device setting of 90% was recorded; alternate scale was not attempted before stop. |
+| Landscape rotation and portrait return | Not run | Mandatory stop applied first. |
+| Keyboard/status/navigation overlap | **Fail for status bar; keyboard not exercised** | Cold-launch Home chrome overlaps status icons transiently. Settled navigation areas were correct. |
+| No obvious flicker, jank, or layout shift | **Fail** | The black WebView interval and subsequent top-inset shift are plainly visible in the recording and frame sequence. |
+| Empty Home state | Not run | Existing on-device local data was preserved; no persistence was created or altered to manufacture this state. |
+| Building Home state | Not run | Existing on-device local data was preserved; no persistence was created or altered to manufacture this state. |
+| Mature Home state | Partial | A populated multi-day journal rendered, but the device could not reach the trend API and showed `Failed to fetch`; mature trend value semantics were therefore not device-verified. |
+
+### Blocking native-only defect and reproduction
+
+This defect was not visible in the browser screenshots because they do not exercise the Android splash/WebView/status-bar transition.
+
+Exact reproduction:
+
+1. Install the debug APK produced from commit `209469de233220ccf0a8673eeb33fa5c35bcd1da` with `npx cap run android --target RZCY22FGP1Z`.
+2. Leave the app on Home in portrait with the device using three-button navigation and 90% text scaling.
+3. Run `adb -s RZCY22FGP1Z shell am force-stop io.ionic.starter`.
+4. Start a device screen recording, then run `adb -s RZCY22FGP1Z shell am start -W -n io.ionic.starter/.MainActivity`.
+5. Observe the native splash, a fully black application window, then the first Home paint overlapping the Android status bar. The Home toolbar subsequently shifts down to the correct safe-area position.
+
+The measured reproduction sequence was:
+
+| Actual elapsed capture time | Frame | Observation |
+| --- | --- | --- |
+| 1.678 s | `frame-0500.png` | Native splash icon visible |
+| 2.593 s | `frame-1500.png` | Fully black app window between splash and WebView content |
+| 3.343 s | `frame-2500.png` | Home and Settings painted underneath status icons; trend still loading |
+| 4.594 s | `frame-4000.png` | Top inset corrected; settled Home layout |
+
+### Device evidence paths
+
+All evidence is stored under the existing gitignored Cypress screenshot area and is not intended for commit:
+
+- `frontend/cypress/screenshots/j2-home-device-qa/01-launch-portrait.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/02-disclaimer-expanded.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/03-settings.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/04-saved-meal-detail.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/05-cold-launch.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/06-cold-launch-settled.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/07-cold-launch-repro.mp4`
+- `frontend/cypress/screenshots/j2-home-device-qa/cold-launch-frames/j2-cold-frames/frame-0500.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/cold-launch-frames/j2-cold-frames/frame-1500.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/cold-launch-frames/j2-cold-frames/frame-2500.png`
+- `frontend/cypress/screenshots/j2-home-device-qa/cold-launch-frames/j2-cold-frames/frame-4000.png`
+
+### Browser-versus-device differences, native-only defects, and limitations
+
+- Settled ink Home, dock, tab bar, summary, expanded disclaimer, Settings navigation, and saved-entry navigation matched browser expectations.
+- The physical device exposed the native splash-to-WebView black interval and initial status-bar overlap/layout shift; browser/Cypress evidence cannot reproduce that native transition.
+- The trend request failed on device because the local API was unavailable to the installed app. Persisted synthetic meal data still rendered, but the mature trend value could not be verified.
+- Empty, building, paper theme, alternate text scaling, background/resume, natural momentum, rotation, keyboard interaction, and the dedicated long-name fixture remain unresolved because the contract requires an immediate stop on a product defect.
+- No code fix was attempted. No report commit or push was made. Issue #105, J3/J4, every later slice, `safetyCopy.ts`, and `trendDisplay.ts` remain untouched pending Fable/product triage.
