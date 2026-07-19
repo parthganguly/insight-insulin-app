@@ -10,8 +10,11 @@ function IonToolbarWrapper({ children, ...props }: { children: React.ReactNode }
 			setTop(insets.top);
 		});
 	}, []);
+	const className = ["app-toolbar", props.className].filter(Boolean).join(" ");
+	const style = { ...props.style, paddingTop: top };
+
 	return (
-		<IonToolbar style={{ paddingTop: top, color: "white" }} className='ion-text-center' color='primary' {...props}>
+		<IonToolbar {...props} style={style} className={className}>
 			{children}
 		</IonToolbar>
 	);

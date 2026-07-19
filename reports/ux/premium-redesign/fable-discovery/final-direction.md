@@ -174,6 +174,25 @@ glass, no gamification, no mascot, no animation flourishes.
   or the constitution; the only ambiguity it created (what leads the result
   screen without J7) is resolved by §6.7-interim. Constitution bumped to
   v1.1 (disposition record only, no design change).
+- **D8 (2026-07-19, human ratification after reviewing the implemented J1
+  screenshots):** the warm brown/cream/amber palette is **superseded** by
+  the human-ratified **Porcelain Journal** palette — porcelain paper,
+  warm-black ink, one printer's-blue accent in light; neutral charcoal
+  with a softened blue accent in dark. The owner found the warm identity
+  read as an artisanal food journal / recipe app — exactly the risk this
+  document recorded in §8 — and affirmed white/blue as the trust and
+  health-technology signal, while keeping the serif identity he values.
+  Three treatments (A warm / B cool instrument / C hybrid) were compared
+  on the real J1 screen structures at 390×844 in both appearances;
+  Treatment C won (A rejected as artisanal, B as corporate and
+  blue-cast). **The direction, metaphor, hierarchy, typography roles,
+  interaction model, and every deferral (J7, J8, photo persistence,
+  trend semantics, B1 gap) are unchanged** — this is a palette-layer
+  correction, not a new direction. Constitution bumped to **v2.0**;
+  PR #103 receives a bounded token-only correction before merge.
+  Evidence and full decision record:
+  `../fable-discovery-2-palette/palette-reassessment.md` (18 captures,
+  interactive treatment prototype, AA contrast verification).
 
 ## 8. Self-critique (what could still be wrong)
 

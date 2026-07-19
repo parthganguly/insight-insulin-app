@@ -1,0 +1,67 @@
+/* Annotated Journal design tokens (design constitution v2.0, Slice J1). */
+
+:root,
+.app-appearance-paper {
+	color-scheme: light;
+
+	/* Paper appearance */
+	--paper: #fafaf8;
+	--raised: #ffffff;
+	--tint: #f0f2f2;
+	--ink: #1d1d1a;
+	--ink-2: #54544c;
+	--ink-3: #6b6b62;
+	--line: #e3e4de;
+	--accent: #28577e;
+	--accent-rgb: 40, 87, 126;
+	--accent-ink: #f7fbff;
+	--danger: #a63c31;
+	--danger-rgb: 166, 60, 49;
+
+	/* Type */
+	--font-journal: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+	--font-body: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+	--type-folio: 1.85rem;
+	--type-estimate-name: 1.65rem;
+	--type-verdict: 1.28rem;
+	--type-confirm-question: 1.5rem;
+	--type-component-name: 1.1rem;
+	--type-body: 1rem;
+	--type-secondary: 0.86rem;
+	--type-caption: 0.78rem;
+	--type-caption-small: 0.72rem;
+
+	/* Shape and material */
+	--radius-card: 20px;
+	--radius-panel: 14px;
+	--radius-note: 9px;
+	--radius-pill: 999px;
+	--radius-sheet: 22px;
+	--shadow-raised: 0 1px 2px rgba(28, 30, 34, 0.05), 0 6px 22px rgba(28, 30, 34, 0.08);
+	--shadow-overlay: 0 18px 48px rgba(28, 30, 34, 0.26);
+	--shadow-frame: 0 0 0 1px var(--line), var(--shadow-overlay);
+
+	/* Motion */
+	--motion-micro: 160ms;
+	--motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.app-appearance-ink {
+	color-scheme: dark;
+
+	/* Ink appearance */
+	--paper: #141619;
+	--raised: #1c1f23;
+	--tint: #212429;
+	--ink: #ebeae4;
+	--ink-2: #b4b3a9;
+	--ink-3: #8f9089;
+	--line: #2e3136;
+	--accent: #82b4dd;
+	--accent-rgb: 130, 180, 221;
+	--accent-ink: #0c2438;
+	--danger: #dc8b81;
+	--danger-rgb: 220, 139, 129;
+	--shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 28px rgba(0, 0, 0, 0.5);
+	--shadow-overlay: 0 18px 48px rgba(0, 0, 0, 0.5);
+}
