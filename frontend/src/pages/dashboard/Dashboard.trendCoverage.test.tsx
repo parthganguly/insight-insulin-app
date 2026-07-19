@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "../../App";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
-import { TREND_ARIA_LOADING, TREND_ARIA_UNAVAILABLE, TREND_LOADING_LINE, getTrendAriaLabel } from "../../utils/trendDisplay";
+import { TREND_ARIA_LOADING, TREND_ARIA_UNAVAILABLE, TREND_LOADING_LINE, TREND_STATUS_LINE, getTrendAriaLabel } from "../../utils/trendDisplay";
 
 // 7-Day Logged Meal Trend rendering (issue #93): the Dashboard must show the
 // logged-days-only trend with explicit coverage ("N of 7 days logged"), show
@@ -76,15 +77,37 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		vi.unstubAllGlobals();
 	});
 
-	it("renders the renamed trend with full coverage and the logged-days value", async () => {
+	it("renders the one-line trend with full coverage and the logged-days value", async () => {
 		stubBackend({ kind: "ok", loggedDays: 7, rollingDii: 0.15 });
-		renderDashboard();
+		const { baseElement } = renderDashboard();
 
-		expect(await screen.findByText("7-Day Logged Meal Trend")).toBeTruthy();
 		expect(await screen.findByText("7 of 7 days logged")).toBeTruthy();
 		expect(await screen.findByText("15")).toBeTruthy(); // round(0.15 × 100)
-		expect(screen.getByText(CHRONIC_TREND_DISCLAIMER)).toBeTruthy();
+		expect(baseElement.querySelector(".home-trend-sentence")?.textContent).toBe("7 of 7 days logged · 7-day index 15");
+		expect(baseElement.querySelector(".hero-ring,.hero-bezel,.CircularProgressbar")).toBeNull();
 		expect(screen.queryByText("Chronic Score")).toBeNull();
+	});
+
+	it("keeps the trend sentence label narrow while exposing the gloss and collapsed footnote separately", async () => {
+		const user = userEvent.setup();
+		stubBackend({ kind: "ok", loggedDays: 5, rollingDii: 0.62 });
+		const { baseElement } = renderDashboard();
+
+		const sentence = await screen.findByRole("img", { name: getTrendAriaLabel("value", 62, 5, 7) });
+		expect(sentence).toHaveClass("home-trend-sentence");
+		expect(sentence).toHaveTextContent("5 of 7 days logged · 7-day index 62");
+		expect(baseElement.querySelector(".home-trend-annotation")).not.toHaveAttribute("role");
+		expect(screen.getByText(TREND_STATUS_LINE)).toBeVisible();
+
+		const summary = screen.getByText("What this doesn't mean");
+		const footnote = summary.closest("details");
+		const disclaimer = screen.getByText(CHRONIC_TREND_DISCLAIMER);
+		expect(footnote).not.toHaveAttribute("open");
+		expect(disclaimer).not.toBeVisible();
+
+		await user.click(summary);
+		expect(footnote).toHaveAttribute("open");
+		expect(disclaimer).toBeVisible();
 	});
 
 	// Campaign A (docs/product/ux/insight-ux-v1.md §5): below the 3-logged-day
@@ -114,7 +137,6 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		stubBackend({ kind: "http-error" });
 		renderDashboard();
 
-		expect(await screen.findByText("7-Day Logged Meal Trend")).toBeTruthy();
 		expect(await screen.findByText("Internal server error")).toBeTruthy();
 		expect(screen.getByText("--")).toBeTruthy();
 	});
@@ -123,7 +145,6 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		stubBackend({ kind: "pending" });
 		renderDashboard();
 
-		expect(await screen.findByText("7-Day Logged Meal Trend")).toBeTruthy();
 		expect(await screen.findByText("Loading trend from your logged meals…")).toBeTruthy();
 		expect(screen.getByText("...")).toBeTruthy();
 	});
@@ -136,8 +157,8 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		renderDashboard();
 
 		expect(await screen.findByText("Loading trend from your logged meals…")).toBeTruthy();
-		const ring = screen.getByRole("img", { name: TREND_ARIA_LOADING });
-		const label = ring.getAttribute("aria-label") ?? "";
+		const sentence = screen.getByRole("img", { name: TREND_ARIA_LOADING });
+		const label = sentence.getAttribute("aria-label") ?? "";
 		expect(label).toBe("7-day logged meal trend loading.");
 		expect(label.toLowerCase()).not.toContain("no meals");
 	});
@@ -147,8 +168,8 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		renderDashboard();
 
 		expect(await screen.findByText("Internal server error")).toBeTruthy();
-		const ring = screen.getByRole("img", { name: TREND_ARIA_UNAVAILABLE });
-		const label = ring.getAttribute("aria-label") ?? "";
+		const sentence = screen.getByRole("img", { name: TREND_ARIA_UNAVAILABLE });
+		const label = sentence.getAttribute("aria-label") ?? "";
 		expect(label).toBe("7-day logged meal trend unavailable because the data could not be loaded.");
 		expect(label.toLowerCase()).not.toContain("no meals");
 	});
@@ -180,11 +201,10 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		renderDashboard();
 
 		expect(await screen.findByText(expectedText)).toBeTruthy();
-		const ring = screen.getByRole("img", { name: getTrendAriaLabel("value", dii100, 7, 7) });
-		// The ring geometry caps at 100 while the text keeps the raw value.
-		expect(ring.textContent).toContain(expectedText);
+		const sentence = screen.getByRole("img", { name: getTrendAriaLabel("value", dii100, 7, 7) });
+		expect(sentence.textContent).toContain(expectedText);
 		if (dii100 > 100) {
-			expect(ring.getAttribute("aria-label")).toContain("not a percentage and can exceed 100");
+			expect(sentence.getAttribute("aria-label")).toContain("not a percentage and can exceed 100");
 		}
 	});
 
@@ -192,10 +212,10 @@ describe("Dashboard 7-Day Logged Meal Trend (issue #93)", () => {
 		stubBackend({ kind: "ok", loggedDays: 4, rollingDii: 0.15 });
 		renderDashboard();
 
-		const ring = await screen.findByRole("img", { name: getTrendAriaLabel("value", 15, 4, 7) });
-		expect(ring).toBeTruthy();
+		const sentence = await screen.findByRole("img", { name: getTrendAriaLabel("value", 15, 4, 7) });
+		expect(sentence).toBeTruthy();
 		// The accessible description must state what the number actually is.
-		const label = ring.getAttribute("aria-label") ?? "";
+		const label = sentence.getAttribute("aria-label") ?? "";
 		expect(label).toContain("energy-normalized insulin-demand index");
 		expect(label).toContain("4 of the last 7 days");
 	});

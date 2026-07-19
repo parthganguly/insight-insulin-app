@@ -15,9 +15,10 @@ describe("7-Day Logged Meal Trend", () => {
 		stubBackend({ meals: [seededMeal], chronic: { loggedDays: 7, rollingDii: 0.15 } });
 		visitFresh("/dashboard");
 
-		cy.contains("7-Day Logged Meal Trend").should("be.visible");
 		cy.contains("7 of 7 days logged").should("be.visible");
 		cy.get("[aria-label*='7-day logged meal trend 15']").should("contain.text", "15");
+		cy.get(".home-trend-sentence").should("contain.text", "7-day index 15");
+		cy.get(".hero-ring,.hero-bezel,.CircularProgressbar").should("not.exist");
 		cy.get("ion-app").invoke("text").should("not.contain", "Chronic Score");
 	});
 
@@ -42,7 +43,6 @@ describe("7-Day Logged Meal Trend", () => {
 		visitFresh("/dashboard");
 
 		cy.contains("Your 7-day trend appears after you log meals on 3 different days (1 of 3 so far).").should("be.visible");
-		cy.contains("7-Day Logged Meal Trend").should("not.exist");
 		cy.get("[aria-label*='7-day logged meal trend']").should("not.exist");
 	});
 
