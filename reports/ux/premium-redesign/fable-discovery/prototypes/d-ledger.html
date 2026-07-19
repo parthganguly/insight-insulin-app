@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INSIGHT — Concept D: Ledger</title>
+<!--
+  Fable discovery prototype (issue #101). Concept D — "Ledger".
+  Central idea: every meal is an entry in a beautifully-set evidence ledger —
+  hairline rules, aligned columns, footnoted provenance, a quality seal.
+  Trust through legibility of evidence; the app "shows its work".
+  States: #home #home-empty #chooser #camera #confirm #review #estimate
+  #estimate-low #history — append "&dark". Synthetic data only.
+-->
+<style>
+  :root{
+    --paper:#fcfcfa; --ink:#161615; --ink-2:#4e4e4b; --ink-3:#82827d;
+    --hair:#d9d8d2; --hair-strong:#161615; --tint:#f2f1ec; --link:#1d4ed8;
+    --danger:#a13a30;
+    --grot:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  }
+  .dark{
+    --paper:#151514; --ink:#eaeae6; --ink-2:#b0b0aa; --ink-3:#7c7c76;
+    --hair:#33332f; --hair-strong:#eaeae6; --tint:#1e1e1c; --link:#8ab0ff;
+    --danger:#d98a80;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{font-family:var(--grot);background:var(--paper);color:var(--ink);
+    font-size:15.5px;line-height:1.45;overflow:hidden}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+  .num{font-variant-numeric:tabular-nums lining-nums}
+  .screen{display:none;position:absolute;inset:0;flex-direction:column;overflow:hidden}
+  body[data-route="home"] #s-home,body[data-route="home-empty"] #s-home-empty,
+  body[data-route="chooser"] #s-chooser,body[data-route="camera"] #s-camera,
+  body[data-route="confirm"] #s-confirm,body[data-route="review"] #s-confirm,
+  body[data-route="estimate"] #s-estimate,body[data-route="estimate-low"] #s-estimate-low,
+  body[data-route="history"] #s-history{display:flex}
+  .scroll{flex:1;overflow-y:auto;scrollbar-width:none}
+  .scroll::-webkit-scrollbar{display:none}
+  .page{padding:0 20px}
+
+  /* masthead */
+  .mast{display:flex;justify-content:space-between;align-items:baseline;
+    padding:18px 20px 10px;border-bottom:2px solid var(--hair-strong);flex:none;margin:0 0 0}
+  .mast .t{font-weight:800;letter-spacing:.02em;font-size:16px}
+  .mast .t small{font-weight:400;color:var(--ink-3);letter-spacing:.08em}
+  .mast button{color:var(--ink-3);font-size:13px;min-height:44px}
+
+  .rubric{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--hair);padding:14px 0 6px;margin-top:4px}
+  .rubric h2{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-3)}
+  .rubric span{font-size:11.5px;color:var(--ink-3)}
+
+  /* rows */
+  .lrow{display:grid;grid-template-columns:1fr auto;column-gap:14px;row-gap:1px;
+    padding:12px 0;border-bottom:1px solid var(--hair);width:100%;align-items:baseline}
+  .lrow .n{font-size:16px;font-weight:650}
+  .lrow .s{font-size:12.5px;color:var(--ink-3);grid-column:1}
+  .lrow .v{font-size:17px;grid-row:1/3;align-self:center;text-align:right}
+  .lrow .v small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3)}
+
+  /* dock */
+  .dock{border-top:2px solid var(--hair-strong);padding:12px 20px calc(14px + env(safe-area-inset-bottom));
+    display:grid;gap:10px;flex:none;background:var(--paper)}
+  .primary{min-height:52px;background:var(--ink);color:var(--paper);
+    font-size:15.5px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;
+    justify-content:center}
+  .primary:active{opacity:.85}
+  .ghostrow{display:flex;gap:10px}
+  .ghost{flex:1;min-height:46px;border:1px solid var(--hair-strong);font-size:14px;
+    font-weight:650;display:flex;align-items:center;justify-content:center}
+  .tabs{display:flex;justify-content:space-between;padding-top:2px}
+  .tabs button{min-height:44px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:650;display:flex;align-items:center}
+  .tabs button[aria-current="true"]{color:var(--ink);border-bottom:2px solid var(--ink)}
+
+  /* summary block (home) */
+  .figures{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--hair)}
+  .fig{padding:14px 0 12px}
+  .fig:first-child{border-right:1px solid var(--hair);padding-right:16px}
+  .fig:last-child{padding-left:16px}
+  .fig .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+  .fig .v{font-size:34px;font-weight:750;line-height:1.15;margin-top:2px}
+  .fig .d{font-size:11.5px;color:var(--ink-3);line-height:1.4;margin-top:2px}
+
+  /* chooser */
+  .index{border-bottom:1px solid var(--hair);padding:16px 0;display:grid;
+    grid-template-columns:44px 1fr auto;gap:12px;align-items:center;width:100%}
+  .index .no{font-size:13px;color:var(--ink-3)}
+  .index strong{font-size:17px;display:block}
+  .index small{font-size:12.5px;color:var(--ink-3)}
+  .index .arrow{color:var(--ink-3)}
+
+  /* camera */
+  #s-camera{background:#111110;color:#f0efeb}
+  .vf{flex:1;position:relative}
+  .vf .scene{position:absolute;inset:0;background:
+    radial-gradient(120% 90% at 30% 12%,#31302c 0%,#1c1c19 55%,#121211 100%)}
+  .vf .food{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:96px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.5))}
+  .vf .frame{position:absolute;inset:12% 8% 30%;outline:1px solid rgba(240,239,235,.35);
+    outline-offset:-1px}
+  .vf .head{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;
+    padding:16px 20px;border-bottom:1px solid rgba(240,239,235,.25);
+    background:rgba(17,17,16,.55);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+  .vf .head button{color:#f0efeb;min-height:44px;letter-spacing:normal;text-transform:none;font-size:14px}
+  .vf .foot{position:absolute;left:0;right:0;bottom:0;
+    padding:14px 20px calc(16px + env(safe-area-inset-bottom));display:grid;gap:12px;
+    background:linear-gradient(180deg,transparent,rgba(14,14,13,.92) 40%)}
+  .vf input{min-height:46px;border:1px solid rgba(240,239,235,.3);background:rgba(20,20,18,.7);
+    color:#f0efeb;padding:0 14px;font:inherit;font-size:14px}
+  .vf input::placeholder{color:rgba(240,239,235,.6)}
+  .vf .ctl{display:grid;grid-template-columns:54px 1fr 54px;gap:12px;align-items:center}
+  .vf .sq{width:54px;height:54px;border:1px solid rgba(240,239,235,.35);font-size:18px;
+    color:#f0efeb;display:flex;align-items:center;justify-content:center}
+  .vf .shutter{justify-self:center;width:70px;height:70px;border-radius:50%;
+    border:3px solid #f0efeb;position:relative}
+  .vf .shutter::after{content:"";position:absolute;inset:6px;border-radius:50%;background:#f0efeb}
+  .vf .go{min-height:50px;background:#f0efeb;color:#161615;font-weight:700;font-size:15.5px;
+    display:flex;align-items:center;justify-content:center}
+  .vf .go[disabled]{opacity:.4}
+  .vf .privacy{font-size:11px;color:rgba(240,239,235,.7);line-height:1.45}
+  .vf .privacy summary{min-height:44px;display:flex;align-items:center;font-size:12px;cursor:pointer}
+
+  /* confirm: component table */
+  .titleblock{padding:14px 0 8px;border-bottom:1px solid var(--hair)}
+  .titleblock .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+  .titleblock input{width:100%;border:none;background:transparent;color:var(--ink);
+    font-size:24px;font-weight:750;min-height:46px;letter-spacing:-.01em}
+  .titleblock .helper{font-size:12px;color:var(--ink-3)}
+  .comptable{width:100%}
+  .comptable .trow{display:grid;grid-template-columns:1fr 118px;gap:10px;
+    padding:12px 0;border-bottom:1px solid var(--hair);align-items:center}
+  .comptable .cn{font-size:16px;font-weight:650;min-height:44px;display:flex;
+    align-items:center}
+  .comptable .cn sup{font-size:10px;color:var(--ink-3);margin-left:4px}
+  .comptable .prov{font-size:11.5px;color:var(--ink-3);grid-column:1}
+  .qty{display:flex;align-items:center;justify-content:flex-end;gap:6px;grid-row:1/3}
+  .qty button{width:44px;height:44px;border:1px solid var(--hair);color:var(--ink-2);font-size:16px}
+  .qty .num{min-width:56px;text-align:center;font-size:15px}
+  .addline{width:100%;min-height:48px;border-bottom:1px solid var(--hair);
+    color:var(--ink-3);font-size:14px;display:flex;align-items:center;gap:8px}
+  .sumline{display:flex;justify-content:space-between;padding:10px 0;
+    border-bottom:2px solid var(--hair-strong);font-size:13px;color:var(--ink-2)}
+  .advanced{padding:8px 0}
+  .advanced summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-3)}
+  .advanced .body{font-size:13px;color:var(--ink-2);display:grid;gap:4px;padding:4px 0 8px}
+  .reviewrow{border:1px solid var(--hair-strong);padding:12px 14px;margin:12px 0}
+  .reviewrow p{font-size:13.5px;color:var(--ink-2)} .reviewrow b{color:var(--ink)}
+  .reviewrow .acts{display:flex;gap:8px;margin-top:10px}
+  .reviewrow .acts button{flex:1;min-height:44px;border:1px solid var(--hair-strong);
+    font-size:13.5px;font-weight:650;display:flex;align-items:center;justify-content:center}
+  .reviewrow .acts .yes{background:var(--ink);color:var(--paper)}
+
+  /* estimate document */
+  .doc-title{padding:16px 0 10px;border-bottom:2px solid var(--hair-strong)}
+  .doc-title .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    display:flex;justify-content:space-between}
+  .doc-title h1{font-size:26px;font-weight:800;letter-spacing:-.015em;line-height:1.15;margin-top:4px}
+  .doc-title .m{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+  .conclusion{padding:14px 0 12px;border-bottom:1px solid var(--hair);font-size:18px;
+    line-height:1.4;font-weight:500}
+  .evtable{width:100%;border-collapse:collapse;margin-top:4px}
+  .evtable th{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+    text-align:left;font-weight:700;padding:10px 0 6px;border-bottom:1px solid var(--hair)}
+  .evtable th:last-child,.evtable td:last-child{text-align:right}
+  .evtable td{padding:10px 0;border-bottom:1px solid var(--hair);font-size:14.5px;vertical-align:top}
+  .evtable td .sub{font-size:11.5px;color:var(--ink-3);display:block;margin-top:1px}
+  .evtable .share{width:84px}
+  .sharebar{height:5px;background:var(--tint);position:relative;margin-top:6px}
+  .sharebar i{position:absolute;inset:0 auto 0 0;background:var(--ink);opacity:.8}
+  .totalrow{display:flex;justify-content:space-between;align-items:baseline;
+    padding:12px 0;border-bottom:2px solid var(--hair-strong)}
+  .totalrow .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
+    font-weight:700}
+  .totalrow .v{font-size:26px;font-weight:800}
+  .totalrow .v small{font-size:12px;color:var(--ink-3);font-weight:400;margin-left:6px}
+  .seal{display:inline-block;border:1.5px solid var(--ink);padding:5px 10px;margin-top:12px;
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+  .seal.rough{border-style:dashed;color:var(--ink-2)}
+  .refnote{font-size:12.5px;color:var(--ink-2);padding:10px 0;line-height:1.5}
+  .footnotes{padding:6px 0 4px}
+  .footnotes summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer;
+    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink-3)}
+  .footnotes p{font-size:12.5px;color:var(--ink-2);margin:6px 0;line-height:1.55}
+  .footnotes p sup{color:var(--ink-3)}
+  .statusline{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
+    border:1px solid var(--hair);display:inline-block;padding:5px 10px;margin-top:12px}
+
+  .empty{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:0 24px}
+  .empty h1{font-size:24px;font-weight:800;letter-spacing:-.015em;line-height:1.25}
+  .empty p{font-size:14.5px;color:var(--ink-2)}
+  .empty .rule{height:2px;background:var(--hair-strong);width:56px}
+
+  @media (max-width:340px){
+    .doc-title h1{font-size:22px}
+    .fig .v{font-size:28px}
+    .comptable .trow{grid-template-columns:1fr 106px}
+    .page{padding:0 16px}
+    .mast,.dock{padding-left:16px;padding-right:16px}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body data-route="home">
+
+<!-- HOME -->
+<section class="screen" id="s-home" aria-label="Home">
+  <header class="mast"><span class="t">INSIGHT <small>MEAL LEDGER</small></span>
+    <button onclick="alert('Settings (stub)')">Settings</button></header>
+  <div class="scroll"><div class="page">
+    <div class="figures">
+      <div class="fig">
+        <div class="k">7-day index</div>
+        <div class="v num">62</div>
+        <div class="d">energy-normalized, over the 5 of 7 days you logged. Not a health measure.</div>
+      </div>
+      <div class="fig">
+        <div class="k">Logged</div>
+        <div class="v num">45</div>
+        <div class="d">meals on record. Days without logs are left out of the index.</div>
+      </div>
+    </div>
+    <div class="rubric"><h2>Recent entries</h2><span>most recent first</span></div>
+    <button class="lrow" onclick="go('estimate-low')">
+      <span class="n">Keema biryani</span>
+      <span class="v num">1023<small>rough est.</small></span>
+      <span class="s">No 47 · Fri 1:15 pm · 696 kcal</span>
+    </button>
+    <button class="lrow" onclick="go('estimate')">
+      <span class="n">Oats with milk and banana</span>
+      <span class="v num">767<small>good data</small></span>
+      <span class="s">No 46 · Thu 7:15 am · 476 kcal</span>
+    </button>
+    <button class="lrow" onclick="go('estimate')">
+      <span class="n">Egg and toast breakfast</span>
+      <span class="v num">690<small>good data</small></span>
+      <span class="s">No 45 · Wed 8:15 am · 314 kcal</span>
+    </button>
+    <div style="height:10px"></div>
+  </div></div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">CHECK A MEAL</button>
+    <div class="tabs">
+      <button aria-current="true">Ledger</button>
+      <button onclick="go('chooser')">Log Meal</button>
+      <button onclick="go('history')">History</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOME EMPTY -->
+<section class="screen" id="s-home-empty" aria-label="Home, first use">
+  <header class="mast"><span class="t">INSIGHT <small>MEAL LEDGER</small></span>
+    <button>Settings</button></header>
+  <div class="empty">
+    <div class="rule"></div>
+    <h1>Understand and compare the estimated insulin demand of meals.</h1>
+    <p>Each meal you check becomes an entry: what it was, what drove its estimated
+      insulin demand, and how solid the evidence is — shown plainly.</p>
+    <p style="font-size:12.5px;color:var(--ink-3)">Relative, population-level estimates.
+      Nothing here measures your body or gives medical advice.</p>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">CHECK A MEAL</button>
+    <div class="tabs">
+      <button aria-current="true">Ledger</button>
+      <button onclick="go('chooser')">Log Meal</button>
+      <button onclick="go('history')">History</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSER -->
+<section class="screen" id="s-chooser" aria-label="Log a meal">
+  <header class="mast"><span class="t">NEW ENTRY</span>
+    <button onclick="go('home')">Close</button></header>
+  <div class="scroll"><div class="page">
+    <div class="rubric"><h2>Choose an input</h2></div>
+    <button class="index" onclick="go('camera')">
+      <span class="no num">01</span>
+      <span><strong>Take a photo</strong><small>Point the camera at your meal.</small></span>
+      <span class="arrow">→</span>
+    </button>
+    <button class="index" onclick="go('confirm')">
+      <span class="no num">02</span>
+      <span><strong>Enter manually</strong><small>Type the meal and its parts yourself.</small></span>
+      <span class="arrow">→</span>
+    </button>
+    <button class="index" onclick="go('history')">
+      <span class="no num">03</span>
+      <span><strong>Log a previous meal again</strong><small>Repeat something you’ve checked before.</small></span>
+      <span class="arrow">→</span>
+    </button>
+  </div></div>
+  <div class="dock">
+    <div class="tabs">
+      <button onclick="go('home')">Ledger</button>
+      <button aria-current="true">Log Meal</button>
+      <button onclick="go('history')">History</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAMERA -->
+<section class="screen" id="s-camera" aria-label="Smart camera">
+  <div class="vf">
+    <div class="scene"></div><div class="food">🍛</div><div class="frame"></div>
+    <div class="head"><span>Exhibit — photograph</span>
+      <button onclick="go('chooser')">Cancel</button></div>
+    <div class="foot">
+      <details class="privacy"><summary>ⓘ How your photo is used</summary>
+        <p>AI meal extraction sends your meal image or description to an external AI service
+        to estimate food items and nutrition. INSIGHT does not retain uploaded images on the
+        backend by default, but the external service may process the data according to its own
+        policies. Do not upload anything you are not comfortable sharing for AI processing.</p>
+      </details>
+      <input placeholder="Anything the photo can’t show? (optional)"
+        aria-label="Anything the photo can’t show? (optional)">
+      <div class="ctl">
+        <button class="sq" aria-label="Choose from photos">🖼</button>
+        <button class="shutter" aria-label="Take photo" onclick="camCapture()"></button>
+        <button class="sq" aria-label="Add another angle">＋</button>
+      </div>
+      <button class="go" id="analyzeBtn" disabled onclick="camAnalyze()">ANALYZE MEAL</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRM -->
+<section class="screen" id="s-confirm" aria-label="Confirm meal">
+  <header class="mast"><span class="t">DRAFT ENTRY <small>NOT SAVED</small></span>
+    <button onclick="go('chooser')">Discard</button></header>
+  <div class="scroll"><div class="page">
+    <div class="titleblock">
+      <div class="k">Did we get your meal right?</div>
+      <input value="Keema biryani" aria-label="Meal name">
+      <p class="helper">The name is a label. The items below are what the estimate uses.</p>
+    </div>
+    <div class="comptable">
+      <div class="trow">
+        <button class="cn">keema biryani<sup>a</sup></button>
+        <div class="qty">
+          <button aria-label="Less">−</button><span class="num">350 g</span>
+          <button aria-label="More">＋</button>
+        </div>
+        <span class="prov">a — suggested from your photo</span>
+      </div>
+      <div class="trow">
+        <button class="cn">raita<sup>a</sup></button>
+        <div class="qty">
+          <button aria-label="Less">−</button><span class="num">80 g</span>
+          <button aria-label="More">＋</button>
+        </div>
+        <span class="prov">a — suggested from your photo</span>
+      </div>
+      <button class="addline">＋ Add something we missed — oil, ghee, sides…</button>
+    </div>
+    <div id="review-panel" class="reviewrow" hidden>
+      <p>These values were for “<b>New Item</b>”. Check they still fit:
+        0 kcal · 0 g carbs · 0 g protein · 0 g fat · GI 0.</p>
+      <div class="acts">
+        <button onclick="resolveReview()">Edit values</button>
+        <button class="yes" onclick="resolveReview()">These still fit</button>
+      </div>
+    </div>
+    <div class="sumline num"><span>Whole meal</span>
+      <span>≈696 kcal · 59 g carb · 12 g sat-fat</span></div>
+    <details class="advanced"><summary>Advanced details</summary>
+      <div class="body num">
+        <span>keema biryani — 185 kcal/100 g · carb 16 · protein 9 · fat 9 · GI 55 · FII —</span>
+        <span>raita — 60 kcal/100 g · carb 4 · protein 3 · fat 3 · GI —</span>
+        <span style="font-size:12px;color:var(--ink-3)">These values feed the estimate.
+          Edit only if you know them.</span>
+      </div>
+    </details>
+    <div style="height:10px"></div>
+  </div></div>
+  <div class="dock">
+    <button class="primary" id="calcBtn" onclick="calc()">CALCULATE ESTIMATE</button>
+  </div>
+</section>
+
+<!-- ESTIMATE normal (oats) -->
+<section class="screen" id="s-estimate" aria-label="Estimate">
+  <header class="mast"><span class="t">ENTRY — UNSAVED</span>
+    <button onclick="go('home')">Close</button></header>
+  <div class="scroll"><div class="page">
+    <div class="doc-title">
+      <div class="k"><span>Estimate · not saved</span><span>3 items</span></div>
+      <h1>Oats with milk and banana</h1>
+      <div class="m num">≈476 kcal · 66 g carb · 5 g sat-fat</div>
+    </div>
+    <p class="conclusion">Mid-range among your logged meals — about as demanding
+      as your usual.</p>
+    <div class="totalrow">
+      <span class="k">Estimated insulin demand</span>
+      <span class="v num">767<small>ref 100, uncalibrated¹</small></span>
+    </div>
+    <table class="evtable">
+      <thead><tr><th>Component</th><th class="share">Share of load</th></tr></thead>
+      <tbody>
+        <tr><td>oats<span class="sub">direct insulin-index match²</span></td>
+          <td class="share num">64%<div class="sharebar"><i style="width:64%"></i></div></td></tr>
+        <tr><td>banana<span class="sub">direct insulin-index match</span></td>
+          <td class="share num">22%<div class="sharebar"><i style="width:22%"></i></div></td></tr>
+        <tr><td>milk<span class="sub">direct insulin-index match</span></td>
+          <td class="share num">14%<div class="sharebar"><i style="width:14%"></i></div></td></tr>
+      </tbody>
+    </table>
+    <span class="seal">Data quality · High</span>
+    <p class="refnote">High: based on direct or explicitly provided insulin-index data.</p>
+    <details class="footnotes"><summary>Footnotes &amp; what this doesn’t mean</summary>
+      <p><sup>1</sup> The score compares estimated meal insulin demand with an internal
+      reference set to 100. The reference has not yet been calibrated to typical meals or
+      personal responses. It is not a percentage and can exceed 100 — compare meals with
+      each other, not with the number.</p>
+      <p><sup>2</sup> Estimated from the app’s limited food insulin-index dataset,
+      heuristic fallbacks, and your entered portions. The dataset and model are not yet
+      validated. This is a relative comparison tool, not a prediction of your body’s
+      response.</p>
+      <p>INSIGHT does not measure or predict your personal insulin or glucose response,
+      diagnose any condition, or provide medical advice. Do not use it for insulin dosing
+      or treatment decisions.</p>
+    </details>
+    <div style="height:10px"></div>
+  </div></div>
+  <div class="dock">
+    <button class="primary" onclick="this.textContent='SAVED TO HISTORY ✓';setTimeout(()=>go('home'),650)">SAVE TO HISTORY</button>
+    <div class="ghostrow">
+      <button class="ghost" onclick="go('confirm')">Adjust meal</button>
+      <button class="ghost" onclick="go('chooser')">Discard</button>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATE low (keema) -->
+<section class="screen" id="s-estimate-low" aria-label="Estimate, limited data">
+  <header class="mast"><span class="t">ENTRY No 47</span>
+    <button onclick="go('home')">Close</button></header>
+  <div class="scroll"><div class="page">
+    <div class="doc-title">
+      <div class="k"><span>Saved to history</span><span>Fri 1:15 pm</span></div>
+      <h1>Keema biryani</h1>
+      <div class="m num">2 items · ≈696 kcal · 59 g carb · 12 g sat-fat</div>
+    </div>
+    <p class="conclusion">Hard to estimate from this meal — rough fallback values
+      stood in for both items.</p>
+    <div class="totalrow">
+      <span class="k">Nominal reading</span>
+      <span class="v num" style="color:var(--ink-2)">1023<small>approximate¹</small></span>
+    </div>
+    <table class="evtable">
+      <thead><tr><th>Component</th><th class="share">Share of load</th></tr></thead>
+      <tbody>
+        <tr><td>keema biryani<span class="sub">rough estimate from nutrition data²</span></td>
+          <td class="share num">92%<div class="sharebar"><i style="width:92%;opacity:.45"></i></div></td></tr>
+        <tr><td>raita<span class="sub">rough estimate from nutrition data</span></td>
+          <td class="share num">8%<div class="sharebar"><i style="width:8%;opacity:.45"></i></div></td></tr>
+      </tbody>
+    </table>
+    <span class="seal rough">Data quality · Low</span>
+    <p class="refnote">Low: uses rough fallback, unknown, or mixed-quality estimates.
+      Treat as approximate. Naming the parts you know (rice, keema, ghee) usually
+      sharpens the estimate.</p>
+    <details class="footnotes"><summary>Footnotes &amp; what this doesn’t mean</summary>
+      <p><sup>1</sup> Read against an internal reference of 100 that has not been
+      calibrated; not a percentage; can exceed 100. Compare meals with each other.</p>
+      <p><sup>2</sup> No direct insulin-index data was available for this item, so this
+      is a rough estimate from nutrition data or typical dish components.</p>
+      <p>Estimated from the app’s limited food insulin-index dataset, heuristic fallbacks,
+      and your entered portions. The dataset and model are not yet validated. This is a
+      relative comparison tool, not a prediction of your body’s response.</p>
+    </details>
+    <div style="height:10px"></div>
+  </div></div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">CHECK ANOTHER MEAL</button>
+    <div class="ghostrow">
+      <button class="ghost" onclick="go('home')">Done</button>
+      <button class="ghost" style="color:var(--danger);border-color:var(--danger)">Delete</button>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="screen" id="s-history" aria-label="History">
+  <header class="mast"><span class="t">HISTORY <small>SAVED ENTRIES</small></span>
+    <button onclick="go('home')">Close</button></header>
+  <div class="scroll"><div class="page">
+    <div class="rubric"><h2>July 2026</h2><span>most recent first</span></div>
+    <button class="lrow" onclick="go('estimate-low')">
+      <span class="n">Keema biryani</span>
+      <span class="v num">1023<small>rough est.</small></span>
+      <span class="s">No 47 · Fri 1:15 pm · 696 kcal · 59 g carb</span>
+    </button>
+    <button class="lrow" onclick="go('estimate')">
+      <span class="n">Masoor dal and rice</span>
+      <span class="v num">953<small>rough est.</small></span>
+      <span class="s">No 46 · Thu 12:15 pm · 498 kcal · 66 g carb</span>
+    </button>
+    <button class="lrow" onclick="go('estimate')">
+      <span class="n">Oats with milk and banana</span>
+      <span class="v num">767<small>good data</small></span>
+      <span class="s">No 45 · Wed 7:15 am · 476 kcal · 66 g carb</span>
+    </button>
+    <button class="lrow" onclick="go('estimate')">
+      <span class="n">Egg and toast breakfast</span>
+      <span class="v num">690<small>good data</small></span>
+      <span class="s">No 44 · Wed 8:15 am · 314 kcal · 30 g carb</span>
+    </button>
+    <button class="lrow" onclick="go('estimate')">
+      <span class="n">Yogurt with potato salad</span>
+      <span class="v num">666<small>good data</small></span>
+      <span class="s">No 43 · Mon 1:15 pm · 216 kcal · 32 g carb</span>
+    </button>
+    <div style="height:10px"></div>
+  </div></div>
+  <div class="dock">
+    <div class="tabs">
+      <button onclick="go('home')">Ledger</button>
+      <button onclick="go('chooser')">Log Meal</button>
+      <button aria-current="true">History</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const KNOWN=['home','home-empty','chooser','camera','confirm','review','estimate','estimate-low','history'];
+  function apply(){
+    const parts=(location.hash||'#home').slice(1).split('&');
+    const route=KNOWN.includes(parts[0])?parts[0]:'home';
+    document.body.dataset.route=route;
+    document.documentElement.classList.toggle('dark',parts.includes('dark'));
+    if(route==='review'){document.getElementById('review-panel').hidden=false;}
+  }
+  function go(r){
+    const dark=document.documentElement.classList.contains('dark');
+    location.hash=r+(dark?'&dark':'');
+  }
+  function camCapture(){document.getElementById('analyzeBtn').disabled=false;}
+  function camAnalyze(){
+    const b=document.getElementById('analyzeBtn');
+    b.textContent='READING YOUR MEAL PHOTO…';b.disabled=true;
+    setTimeout(()=>{b.textContent='ANALYZE MEAL';go('confirm');},700);
+  }
+  function resolveReview(){document.getElementById('review-panel').hidden=true;}
+  function calc(){
+    const b=document.getElementById('calcBtn');
+    b.textContent='ESTIMATING INSULIN DEMAND…';
+    setTimeout(()=>{b.textContent='CALCULATE ESTIMATE';go('estimate');},700);
+  }
+  window.addEventListener('hashchange',apply);
+  apply();
+</script>
+</body>
+</html>

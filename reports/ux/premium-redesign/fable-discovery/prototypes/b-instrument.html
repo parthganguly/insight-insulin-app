@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INSIGHT — Concept B: Instrument</title>
+<!--
+  Fable discovery prototype (issue #101). Concept B — "Instrument".
+  Central idea: INSIGHT is a fine measuring instrument — a quiet, dark,
+  engraved gauge panel with tabular numerals and honest scale markings.
+  Dark-first; append "&light" to any hash for the light (brushed-paper) face.
+  States: #home #home-empty #chooser #camera #confirm #review #estimate
+  #estimate-low #history. Synthetic data only; no APIs; no real photos.
+-->
+<style>
+  :root{
+    --bg:#101418; --panel:#161b21; --panel-2:#1c232b; --ink:#e8edf2;
+    --ink-2:#9aa7b4; --ink-3:#66727e; --line:#28313b; --etch:#323d49;
+    --accent:#62d0c3; --accent-ink:#08211d; --danger:#c96a5e;
+    --mono:"Cascadia Code",ui-monospace,"Consolas",monospace;
+    --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+    --r:14px;
+  }
+  .light{
+    --bg:#e9ecef; --panel:#f4f6f8; --panel-2:#ffffff; --ink:#1b2731;
+    --ink-2:#4f5e6b; --ink-3:#7d8a96; --line:#d3dae0; --etch:#c3ccd4;
+    --accent:#0e7c6f; --accent-ink:#ffffff; --danger:#a13a30;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15.5px;
+    line-height:1.45;overflow:hidden}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .screen{display:none;position:absolute;inset:0;flex-direction:column;overflow:hidden}
+  body[data-route="home"] #s-home,body[data-route="home-empty"] #s-home-empty,
+  body[data-route="chooser"] #s-chooser,body[data-route="camera"] #s-camera,
+  body[data-route="confirm"] #s-confirm,body[data-route="review"] #s-confirm,
+  body[data-route="estimate"] #s-estimate,body[data-route="estimate-low"] #s-estimate-low,
+  body[data-route="history"] #s-history{display:flex}
+  .scroll{flex:1;overflow-y:auto;scrollbar-width:none}
+  .scroll::-webkit-scrollbar{display:none}
+
+  /* chrome */
+  .bar{display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px 8px;flex:none}
+  .bar .word{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-2)}
+  .bar button{color:var(--ink-3);font-size:13px;min-height:44px}
+  .caption{padding:0 18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3)}
+
+  .dock{padding:10px 16px calc(14px + env(safe-area-inset-bottom));display:grid;gap:10px;flex:none}
+  .primary{min-height:54px;border-radius:12px;background:var(--accent);color:var(--accent-ink);
+    font-size:16px;font-weight:700;letter-spacing:.02em}
+  .primary:active{transform:translateY(1px)}
+  .ghostrow{display:flex;gap:10px}
+  .ghost{flex:1;min-height:46px;border-radius:12px;border:1px solid var(--line);
+    color:var(--ink-2);font-size:14px;font-weight:600}
+  .tabs{display:flex;border-top:1px solid var(--line);padding-top:8px;justify-content:space-around}
+  .tabs button{min-height:44px;min-width:76px;font-size:11.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-3);display:flex;flex-direction:column;gap:3px;align-items:center}
+  .tabs button[aria-current="true"]{color:var(--accent)}
+  .tabs .tick{width:18px;height:2px;background:currentColor;border-radius:2px}
+
+  /* panels */
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+    padding:16px;margin:0 16px 12px;position:relative}
+  .panel .etch{position:absolute;top:0;left:16px;right:16px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--etch),transparent)}
+  .panel h3{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+    margin-bottom:10px;font-weight:600}
+
+  /* home instrument face */
+  .face{margin:8px 16px 12px;background:var(--panel);border:1px solid var(--line);
+    border-radius:18px;padding:20px 18px 16px;position:relative;overflow:hidden}
+  .face::before{content:"";position:absolute;inset:0;border-radius:18px;
+    background:radial-gradient(140% 100% at 50% 0%,rgba(255,255,255,.045),transparent 55%)}
+  .face .lbl{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+  .bigread{display:flex;align-items:baseline;gap:10px;margin:8px 0 2px}
+  .bigread .num{font-size:52px;font-weight:600;line-height:1}
+  .bigread .unit{font-size:12.5px;color:var(--ink-2);max-width:180px;line-height:1.35}
+  .face .foot{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);
+    border-top:1px solid var(--line);margin-top:14px;padding-top:10px}
+  .lastmeal{display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:12px 0;border-bottom:1px solid var(--line);width:100%;text-align:left}
+  .lastmeal:last-child{border-bottom:none}
+  .lastmeal .m{font-size:15px;font-weight:600}
+  .lastmeal .t{font-size:12px;color:var(--ink-3)}
+  .lastmeal .v{font-size:16px}
+  .lastmeal .q{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+    display:block;text-align:right}
+
+  /* scale strip (shared) */
+  .scale{position:relative;height:56px;margin-top:6px}
+  .scale .rail{position:absolute;left:2px;right:2px;top:34px;height:1.5px;background:var(--etch)}
+  .scale .tickmark{position:absolute;top:30px;width:1px;height:9px;background:var(--etch)}
+  .scale .dot{position:absolute;top:31px;width:7px;height:7px;border-radius:50%;
+    background:var(--ink-3);opacity:.6}
+  .scale .needle{position:absolute;top:14px;width:2px;height:26px;background:var(--accent);
+    box-shadow:0 0 8px rgba(98,208,195,.5)}
+  .scale .readout{position:absolute;top:-6px;transform:translateX(-50%);
+    font-size:15px;font-weight:700;color:var(--accent)}
+  .scale-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);margin-top:2px}
+
+  /* chooser */
+  .modes{display:grid;gap:10px;padding:6px 16px}
+  .mode{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+    min-height:78px;display:flex;align-items:center;gap:14px;padding:0 16px;text-align:left}
+  .mode .key{font-family:var(--mono);font-size:12px;color:var(--accent);
+    border:1px solid var(--line);border-radius:8px;width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;flex:none}
+  .mode strong{display:block;font-size:16px}
+  .mode small{font-size:12.5px;color:var(--ink-2)}
+
+  /* camera */
+  #s-camera{background:#0a0d10}
+  .vf{flex:1;position:relative}
+  .vf .plate{position:absolute;inset:0;background:
+    radial-gradient(120% 90% at 30% 10%,#232a31 0%,#151a1f 60%,#0c1013 100%)}
+  .vf .food{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:96px;filter:saturate(.85) drop-shadow(0 12px 16px rgba(0,0,0,.5))}
+  .reticle{position:absolute;inset:14% 10% 30%;border:1px solid rgba(232,237,242,.25);
+    border-radius:10px}
+  .reticle i{position:absolute;width:16px;height:16px;border:2px solid rgba(98,208,195,.9)}
+  .reticle i:nth-child(1){top:-2px;left:-2px;border-right:none;border-bottom:none}
+  .reticle i:nth-child(2){top:-2px;right:-2px;border-left:none;border-bottom:none}
+  .reticle i:nth-child(3){bottom:-2px;left:-2px;border-right:none;border-top:none}
+  .reticle i:nth-child(4){bottom:-2px;right:-2px;border-left:none;border-top:none}
+  .vf-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px calc(16px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,transparent,rgba(6,8,10,.88) 40%);display:grid;gap:12px}
+  .vf-cap input{min-height:46px;border-radius:10px;border:1px solid var(--line);
+    background:rgba(16,20,24,.8);color:var(--ink);padding:0 14px;font:inherit;font-size:14px}
+  .vf-cap input::placeholder{color:var(--ink-3)}
+  .vf-grid{display:grid;grid-template-columns:56px 1fr 56px;gap:12px;align-items:center}
+  .sq{width:56px;height:56px;border-radius:12px;border:1px solid var(--line);
+    color:var(--ink-2);font-size:19px}
+  .shutter{justify-self:center;width:72px;height:72px;border-radius:50%;
+    border:3px solid var(--ink);position:relative}
+  .shutter::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--ink)}
+  .analyze{min-height:52px;border-radius:12px;background:var(--accent);color:var(--accent-ink);
+    font-weight:700;font-size:16px}
+  .analyze[disabled]{opacity:.4}
+  .privline{font-size:11px;color:var(--ink-3)}
+  .privline summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:12px}
+  .cam-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;
+    padding:14px 16px;color:var(--ink-2);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+  .cam-top button{color:var(--ink);min-height:44px}
+
+  /* confirm */
+  .spec{margin:0 16px 10px;background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--r);overflow:hidden}
+  .spec .head{padding:14px 16px 4px}
+  .spec input.name{width:100%;background:transparent;border:none;color:var(--ink);
+    font-size:20px;font-weight:700;min-height:44px}
+  .spec .helper{padding:0 16px 10px;font-size:12px;color:var(--ink-3)}
+  .item{border-top:1px solid var(--line);padding:12px 16px}
+  .item .r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .item .iname{font-size:16px;font-weight:600;min-height:44px;display:flex;align-items:center;
+    text-align:left}
+  .item .prov{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .qty{display:flex;align-items:center;gap:8px;margin-top:4px}
+  .qty button{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;
+    color:var(--ink-2);font-size:17px}
+  .qty .num{font-size:16px;min-width:72px;text-align:center}
+  .adv{margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+  .adv summary{min-height:44px;display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:600}
+  .adv .grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:6px}
+  .adv .grid span{font-family:var(--mono);font-size:12px}
+  .addbtn{margin:0 16px 10px;min-height:48px;border:1px dashed var(--line);border-radius:var(--r);
+    color:var(--ink-2);font-size:14px;width:calc(100% - 32px)}
+  .review{margin:0 16px 10px;border:1px solid var(--line);border-left:3px solid var(--accent);
+    background:var(--panel);border-radius:10px;padding:12px 14px}
+  .review p{font-size:13px;color:var(--ink-2)} .review b{color:var(--ink)}
+  .review .acts{display:flex;gap:8px;margin-top:10px}
+  .review .acts button{flex:1;min-height:44px;border-radius:10px;border:1px solid var(--line);
+    font-size:13.5px;font-weight:600}
+  .review .acts .yes{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .totline{margin:0 16px;font-size:12.5px;color:var(--ink-3);display:flex;gap:14px}
+
+  /* estimate */
+  .status{margin:10px 16px 0;display:inline-flex;align-self:flex-start;
+    border:1px solid var(--line);border-radius:8px;padding:5px 10px;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+  .est-title{padding:8px 18px 0}
+  .est-title h1{font-size:23px;font-weight:700;line-height:1.2}
+  .est-title .meta{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+  .readpanel{margin:14px 16px 12px;background:var(--panel);border:1px solid var(--line);
+    border-radius:18px;padding:18px 16px 14px;position:relative;overflow:hidden}
+  .readpanel::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(140% 110% at 50% 0%,rgba(255,255,255,.05),transparent 55%)}
+  .readpanel .lbl{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);
+    display:flex;justify-content:space-between}
+  .readpanel .conclusion{font-size:16.5px;line-height:1.4;margin:10px 0 6px}
+  .quality-etch{display:inline-block;border:1px solid var(--etch);border-radius:6px;
+    padding:4px 9px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);
+    margin-top:8px}
+  .refline{font-size:12.5px;color:var(--ink-3);margin-top:10px;line-height:1.5}
+  .refline b{color:var(--ink-2)}
+  .bars{margin:4px 0 2px}
+  .barrow{display:grid;grid-template-columns:96px 1fr 44px;align-items:center;gap:10px;
+    padding:7px 0;border-bottom:1px solid var(--line)}
+  .barrow:last-child{border-bottom:none}
+  .barrow .bn{font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .barrow .track{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+  .barrow .fill{height:100%;background:var(--accent);opacity:.85;border-radius:3px}
+  .barrow .bv{font-size:12px;color:var(--ink-2);text-align:right}
+  .barwhy{font-size:11.5px;color:var(--ink-3);grid-column:1/-1;margin-top:-2px}
+  .fine{margin:0 16px 8px;border-top:1px solid var(--line);padding-top:8px}
+  .fine summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer;
+    font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+  .fine p{font-size:12.5px;color:var(--ink-2);margin:8px 0;line-height:1.5}
+
+  /* history */
+  .ledger{margin:4px 16px}
+  .lday{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+    margin:16px 2px 6px}
+  .lrow{display:grid;grid-template-columns:1fr auto;gap:4px 12px;width:100%;text-align:left;
+    padding:11px 2px;border-bottom:1px solid var(--line);align-items:baseline}
+  .lrow .n{font-size:15px;font-weight:600}
+  .lrow .sub{font-size:12px;color:var(--ink-3);grid-column:1}
+  .lrow .v{font-size:16px;grid-row:1/3;align-self:center}
+  .lrow .v small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);text-align:right}
+
+  /* empty */
+  .empty{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;
+    padding:0 26px;text-align:center}
+  .empty .glyphbox{margin:0 auto;width:88px;height:88px;border:1px solid var(--line);
+    border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:38px;
+    background:var(--panel)}
+  .empty h1{font-size:22px;line-height:1.3;font-weight:700}
+  .empty p{font-size:14px;color:var(--ink-2)}
+
+  @media (max-width:340px){
+    .bigread .num{font-size:42px}
+    .est-title h1{font-size:20px}
+    .barrow{grid-template-columns:80px 1fr 40px}
+    .face,.panel,.readpanel{margin-left:12px;margin-right:12px}
+    .modes,.dock{padding-left:12px;padding-right:12px}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body data-route="home">
+
+<!-- HOME -->
+<section class="screen" id="s-home" aria-label="Home">
+  <div class="bar"><span class="word">Insight</span>
+    <button onclick="alert('Settings (stub)')">Settings</button></div>
+  <div class="scroll">
+    <div class="face">
+      <span class="lbl">7-day logged-meal index</span>
+      <div class="bigread"><span class="num">62</span>
+        <span class="unit">energy-normalized average over the 5 of 7 days you logged.
+          Not a health measure.</span></div>
+      <div class="foot"><span>45 meals logged</span><span>days without logs are left out</span></div>
+    </div>
+    <div class="panel"><span class="etch"></span>
+      <h3>Recent readings</h3>
+      <button class="lastmeal" onclick="go('estimate-low')">
+        <span><span class="m">Keema biryani</span><br><span class="t">Fri 1:15 pm</span></span>
+        <span class="v num">1023<span class="q">rough</span></span>
+      </button>
+      <button class="lastmeal" onclick="go('estimate')">
+        <span><span class="m">Oats with milk and banana</span><br><span class="t">Thu 7:15 am</span></span>
+        <span class="v num">767<span class="q">good data</span></span>
+      </button>
+      <button class="lastmeal" onclick="go('estimate')">
+        <span><span class="m">Egg and toast breakfast</span><br><span class="t">Wed 8:15 am</span></span>
+        <span class="v num">690<span class="q">good data</span></span>
+      </button>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <div class="tabs">
+      <button aria-current="true"><span class="tick"></span>Panel</button>
+      <button onclick="go('chooser')"><span class="tick"></span>Log Meal</button>
+      <button onclick="go('history')"><span class="tick"></span>History</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOME EMPTY -->
+<section class="screen" id="s-home-empty" aria-label="Home, first use">
+  <div class="bar"><span class="word">Insight</span><button>Settings</button></div>
+  <div class="empty">
+    <div class="glyphbox">◔</div>
+    <h1>Understand and compare the estimated insulin demand of meals.</h1>
+    <p>Point the camera at a meal, or describe it — INSIGHT reads it and estimates
+      the demand, with its working shown.</p>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <div class="tabs">
+      <button aria-current="true"><span class="tick"></span>Panel</button>
+      <button onclick="go('chooser')"><span class="tick"></span>Log Meal</button>
+      <button onclick="go('history')"><span class="tick"></span>History</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSER -->
+<section class="screen" id="s-chooser" aria-label="Log a meal">
+  <div class="bar"><span class="word">Log Meal</span>
+    <button onclick="go('home')">Close</button></div>
+  <p class="caption" style="margin:4px 0 14px">Select input</p>
+  <div class="scroll">
+    <div class="modes">
+      <button class="mode" onclick="go('camera')"><span class="key">01</span>
+        <span><strong>Take a photo</strong><small>Point the camera at your meal.</small></span></button>
+      <button class="mode" onclick="go('confirm')"><span class="key">02</span>
+        <span><strong>Enter manually</strong><small>Type the meal and its parts yourself.</small></span></button>
+      <button class="mode" onclick="go('history')"><span class="key">03</span>
+        <span><strong>Log a previous meal again</strong><small>Repeat something you’ve checked before.</small></span></button>
+    </div>
+  </div>
+  <div class="dock">
+    <div class="tabs">
+      <button onclick="go('home')"><span class="tick"></span>Panel</button>
+      <button aria-current="true"><span class="tick"></span>Log Meal</button>
+      <button onclick="go('history')"><span class="tick"></span>History</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAMERA -->
+<section class="screen" id="s-camera" aria-label="Smart camera">
+  <div class="vf">
+    <div class="plate"></div><div class="food">🍛</div>
+    <div class="reticle"><i></i><i></i><i></i><i></i></div>
+    <div class="cam-top"><span>Capture</span><button onclick="go('chooser')">Cancel</button></div>
+    <div class="vf-cap">
+      <details class="privline"><summary>ⓘ How your photo is used</summary>
+        <p>AI meal extraction sends your meal image or description to an external AI service
+        to estimate food items and nutrition. INSIGHT does not retain uploaded images on the
+        backend by default, but the external service may process the data according to its
+        own policies. Do not upload anything you are not comfortable sharing for AI processing.</p>
+      </details>
+      <input placeholder="Anything the photo can’t show? (optional)"
+        aria-label="Anything the photo can’t show? (optional)">
+      <div class="vf-grid">
+        <button class="sq" aria-label="Choose from photos">🖼</button>
+        <button class="shutter" aria-label="Take photo" onclick="camCapture()"></button>
+        <button class="sq" aria-label="Add another angle">＋</button>
+      </div>
+      <button class="analyze" id="analyzeBtn" disabled onclick="camAnalyze()">Analyze meal</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRM -->
+<section class="screen" id="s-confirm" aria-label="Confirm meal">
+  <div class="bar"><span class="word">Verify</span>
+    <button onclick="go('chooser')">Discard draft</button></div>
+  <p class="caption" style="margin:2px 0 12px">Did we get your meal right?</p>
+  <div class="scroll">
+    <div class="spec">
+      <div class="head">
+        <input class="name" value="Keema biryani" aria-label="Meal name">
+      </div>
+      <p class="helper">The name is a label. The items below are what the estimate uses.</p>
+      <div class="item">
+        <div class="r1"><button class="iname">keema biryani</button>
+          <span class="prov">from photo</span></div>
+        <div class="qty">
+          <button aria-label="Less">−</button><span class="num">350 g</span>
+          <button aria-label="More">＋</button>
+        </div>
+        <details class="adv"><summary>Advanced details</summary>
+          <div class="grid">
+            <span>kcal/100g 185</span><span>carb 16 g</span>
+            <span>protein 9 g</span><span>fat 9 g</span>
+            <span>GI 55</span><span>FII —</span>
+          </div>
+        </details>
+      </div>
+      <div class="item">
+        <div class="r1"><button class="iname">raita</button>
+          <span class="prov">from photo</span></div>
+        <div class="qty">
+          <button aria-label="Less">−</button><span class="num">80 g</span>
+          <button aria-label="More">＋</button>
+        </div>
+      </div>
+    </div>
+    <div id="review-panel" class="review" hidden>
+      <p>These values were for “<b>New Item</b>”. Check they still fit:
+        0 kcal · 0 g carbs · 0 g protein · 0 g fat · GI 0</p>
+      <div class="acts">
+        <button onclick="resolveReview()">Edit values</button>
+        <button class="yes" onclick="resolveReview()">These still fit</button>
+      </div>
+    </div>
+    <button class="addbtn">＋ Add something we missed</button>
+    <div class="totline num"><span>≈696 kcal</span><span>59 g carb</span><span>12 g sat-fat</span></div>
+    <div style="height:12px"></div>
+  </div>
+  <div class="dock">
+    <button class="primary" id="calcBtn" onclick="calc()">Calculate estimate</button>
+  </div>
+</section>
+
+<!-- ESTIMATE normal (oats) -->
+<section class="screen" id="s-estimate" aria-label="Estimate">
+  <div class="bar"><span class="word">Reading</span>
+    <button onclick="go('home')">Close</button></div>
+  <span class="status">Estimate only — not saved</span>
+  <div class="scroll">
+    <div class="est-title">
+      <h1>Oats with milk and banana</h1>
+      <div class="meta num">3 items · ≈476 kcal · 66 g carb</div>
+    </div>
+    <div class="readpanel">
+      <div class="lbl"><span>Estimated insulin demand</span><span>relative</span></div>
+      <p class="conclusion">Sits <b>mid-range among your logged meals</b> —
+        about as demanding as your usual.</p>
+      <div class="scale" id="scale-b" role="img"
+        aria-label="Estimate 767 on a strip of your logged meals ranging 666 to 1023.">
+        <div class="rail"></div>
+      </div>
+      <div class="scale-ends num"><span>666 · your lowest</span><span>your highest · 1023</span></div>
+      <span class="quality-etch">Data quality · High — direct index data</span>
+      <p class="refline">Reads <b class="num">767</b> against an internal reference of 100.
+        The reference is not yet calibrated, so compare meals with each other,
+        not against the number.</p>
+    </div>
+    <div class="panel"><span class="etch"></span>
+      <h3>Load by component</h3>
+      <div class="bars">
+        <div class="barrow"><span class="bn">oats</span>
+          <span class="track"><span class="fill" style="width:64%"></span></span>
+          <span class="bv num">64%</span>
+          <span class="barwhy">direct insulin-index match, scaled by eaten energy</span></div>
+        <div class="barrow"><span class="bn">banana</span>
+          <span class="track"><span class="fill" style="width:22%"></span></span>
+          <span class="bv num">22%</span></div>
+        <div class="barrow"><span class="bn">milk</span>
+          <span class="track"><span class="fill" style="width:14%"></span></span>
+          <span class="bv num">14%</span></div>
+      </div>
+    </div>
+    <details class="fine"><summary>What this doesn’t mean</summary>
+      <p>Estimated from the app’s limited food insulin-index dataset, heuristic fallbacks,
+      and your entered portions. The dataset and model are not yet validated. This is a
+      relative comparison tool, not a prediction of your body’s response.</p>
+      <p>INSIGHT does not measure or predict your personal insulin or glucose response,
+      diagnose any condition, or provide medical advice. Do not use it for insulin dosing
+      or treatment decisions.</p>
+    </details>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="this.textContent='Saved to History ✓';setTimeout(()=>go('home'),650)">Save to History</button>
+    <div class="ghostrow">
+      <button class="ghost" onclick="go('confirm')">Adjust meal</button>
+      <button class="ghost" onclick="go('chooser')">Discard</button>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATE low (keema) -->
+<section class="screen" id="s-estimate-low" aria-label="Estimate, limited data">
+  <div class="bar"><span class="word">Reading</span>
+    <button onclick="go('home')">Close</button></div>
+  <span class="status">Saved to history</span>
+  <div class="scroll">
+    <div class="est-title">
+      <h1>Keema biryani</h1>
+      <div class="meta num">2 items · ≈696 kcal · 59 g carb · Fri 1:15 pm</div>
+    </div>
+    <div class="readpanel">
+      <div class="lbl"><span>Estimated insulin demand</span><span>low signal</span></div>
+      <p class="conclusion"><b>Hard to estimate from this meal.</b> Rough fallback
+        values stood in for both items, so the reading could be off.</p>
+      <span class="quality-etch">Data quality · Low — rough fallbacks</span>
+      <p class="refline">Nominal reading <b class="num">1023</b> vs reference 100 —
+        treat as approximate. Naming the parts you know (rice, keema, ghee)
+        usually sharpens the estimate.</p>
+    </div>
+    <div class="panel"><span class="etch"></span>
+      <h3>Load by component</h3>
+      <div class="bars">
+        <div class="barrow"><span class="bn">keema biryani</span>
+          <span class="track"><span class="fill" style="width:92%;opacity:.45"></span></span>
+          <span class="bv num">92%</span>
+          <span class="barwhy">rough estimate from nutrition data — no direct index match</span></div>
+        <div class="barrow"><span class="bn">raita</span>
+          <span class="track"><span class="fill" style="width:8%;opacity:.45"></span></span>
+          <span class="bv num">8%</span>
+          <span class="barwhy">rough estimate from nutrition data</span></div>
+      </div>
+    </div>
+    <details class="fine"><summary>What this doesn’t mean</summary>
+      <p>We couldn’t estimate some items well; the real insulin demand may differ from
+      what’s shown. Estimated from the app’s limited food insulin-index dataset, heuristic
+      fallbacks, and your entered portions. The dataset and model are not yet validated.
+      This is a relative comparison tool, not a prediction of your body’s response.</p>
+    </details>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check another meal</button>
+    <div class="ghostrow">
+      <button class="ghost" onclick="go('home')">Done</button>
+      <button class="ghost" style="color:var(--danger)">Delete</button>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="screen" id="s-history" aria-label="History">
+  <div class="bar"><span class="word">History</span>
+    <button onclick="go('home')">Close</button></div>
+  <p class="caption" style="margin:2px 0 4px">Saved readings · most recent first</p>
+  <div class="scroll">
+    <div class="ledger">
+      <div class="lday">Fri · Jul 18</div>
+      <button class="lrow" onclick="go('estimate-low')">
+        <span class="n">Keema biryani</span>
+        <span class="v num">1023<small>rough</small></span>
+        <span class="sub">1:15 pm · 696 kcal</span>
+      </button>
+      <div class="lday">Thu · Jul 17</div>
+      <button class="lrow" onclick="go('estimate')">
+        <span class="n">Masoor dal and rice</span>
+        <span class="v num">953<small>rough</small></span>
+        <span class="sub">12:15 pm · 498 kcal</span>
+      </button>
+      <div class="lday">Wed · Jul 16</div>
+      <button class="lrow" onclick="go('estimate')">
+        <span class="n">Oats with milk and banana</span>
+        <span class="v num">767<small>good</small></span>
+        <span class="sub">7:15 am · 476 kcal</span>
+      </button>
+      <button class="lrow" onclick="go('estimate')">
+        <span class="n">Egg and toast breakfast</span>
+        <span class="v num">690<small>good</small></span>
+        <span class="sub">8:15 am · 314 kcal</span>
+      </button>
+      <div class="lday">Mon · Jul 14</div>
+      <button class="lrow" onclick="go('estimate')">
+        <span class="n">Yogurt with potato salad</span>
+        <span class="v num">666<small>good</small></span>
+        <span class="sub">1:15 pm · 216 kcal</span>
+      </button>
+    </div>
+    <div style="height:12px"></div>
+  </div>
+  <div class="dock">
+    <div class="tabs">
+      <button onclick="go('home')"><span class="tick"></span>Panel</button>
+      <button onclick="go('chooser')"><span class="tick"></span>Log Meal</button>
+      <button aria-current="true"><span class="tick"></span>History</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const KNOWN=['home','home-empty','chooser','camera','confirm','review','estimate','estimate-low','history'];
+  function apply(){
+    const parts=(location.hash||'#home').slice(1).split('&');
+    const route=KNOWN.includes(parts[0])?parts[0]:'home';
+    document.body.dataset.route=route;
+    document.documentElement.classList.toggle('light',parts.includes('light'));
+    if(route==='review'){document.getElementById('review-panel').hidden=false;}
+    plotScale();
+  }
+  function go(r){
+    const light=document.documentElement.classList.contains('light');
+    location.hash=r+(light?'&light':'');
+  }
+  function camCapture(){document.getElementById('analyzeBtn').disabled=false;}
+  function camAnalyze(){
+    const b=document.getElementById('analyzeBtn');
+    b.textContent='Reading your meal photo…';b.disabled=true;
+    setTimeout(()=>{b.textContent='Analyze meal';go('confirm');},700);
+  }
+  function resolveReview(){document.getElementById('review-panel').hidden=true;}
+  function calc(){
+    const b=document.getElementById('calcBtn');
+    b.textContent='Estimating insulin demand…';
+    setTimeout(()=>{b.textContent='Calculate estimate';go('estimate');},700);
+  }
+  function plotScale(){
+    const el=document.getElementById('scale-b'); if(!el) return;
+    el.querySelectorAll('.dot,.needle,.readout,.tickmark').forEach(n=>n.remove());
+    const scores=[666,690,953,1023],you=767,min=666,max=1023;
+    const pct=v=>4+((v-min)/(max-min))*92;
+    for(let i=0;i<=10;i++){const t=document.createElement('div');t.className='tickmark';
+      t.style.left=(4+i*9.2)+'%';el.appendChild(t);}
+    scores.forEach(s=>{const d=document.createElement('div');d.className='dot';
+      d.style.left=pct(s)+'%';el.appendChild(d);});
+    const n=document.createElement('div');n.className='needle';n.style.left=pct(you)+'%';el.appendChild(n);
+    const r=document.createElement('div');r.className='readout num';r.style.left=pct(you)+'%';
+    r.style.transform='translateX(-50%)';r.style.position='absolute';
+    r.textContent='767';el.appendChild(r);
+  }
+  window.addEventListener('hashchange',apply);
+  apply();
+</script>
+</body>
+</html>

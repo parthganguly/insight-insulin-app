@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INSIGHT — Concept C: Conversation</title>
+<!--
+  Fable discovery prototype (issue #101). Concept C — "Conversation".
+  Central idea: every screen is a short stack of humane sentences; the facts
+  inside sentences are the controls (tap a highlighted fact to correct it).
+  Not a chat UI — no bubbles, no bot persona. Large editorial typography.
+  States: #home #home-empty #chooser #camera #confirm #review #estimate
+  #estimate-low #history — append "&dark". Synthetic data only.
+-->
+<style>
+  :root{
+    --bg:#f7f6f3; --card:#ffffff; --ink:#1d1e22; --ink-2:#585b64; --ink-3:#8b8e98;
+    --line:#e5e4df; --hl:#eceafd; --hl-ink:#4340b8; --accent:#4f4bcb; --accent-ink:#fff;
+    --shadow:0 1px 2px rgba(25,25,35,.05),0 8px 28px rgba(25,25,35,.07);
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  .dark{
+    --bg:#141519; --card:#1d1f25; --ink:#ecedf1; --ink-2:#a3a6b0; --ink-3:#71747f;
+    --line:#2b2d35; --hl:#2c2a4a; --hl-ink:#b3b0ff; --accent:#8683e8; --accent-ink:#15142e;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 32px rgba(0,0,0,.5);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;
+    line-height:1.5;overflow:hidden}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+  .screen{display:none;position:absolute;inset:0;flex-direction:column;overflow:hidden}
+  body[data-route="home"] #s-home,body[data-route="home-empty"] #s-home-empty,
+  body[data-route="chooser"] #s-chooser,body[data-route="camera"] #s-camera,
+  body[data-route="confirm"] #s-confirm,body[data-route="review"] #s-confirm,
+  body[data-route="estimate"] #s-estimate,body[data-route="estimate-low"] #s-estimate-low,
+  body[data-route="history"] #s-history{display:flex}
+  .scroll{flex:1;overflow-y:auto;scrollbar-width:none}
+  .scroll::-webkit-scrollbar{display:none}
+
+  .top{display:flex;justify-content:space-between;align-items:center;padding:16px 22px 4px;flex:none}
+  .top .logo{width:30px;height:30px;border-radius:10px;background:var(--accent);
+    color:var(--accent-ink);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:15px}
+  .top button{color:var(--ink-3);font-size:13.5px;min-height:44px}
+
+  .prose{padding:14px 22px 8px;display:grid;gap:18px}
+  .say{font-size:24px;line-height:1.34;font-weight:600;letter-spacing:-.012em}
+  .say.lead{font-size:29px;letter-spacing:-.02em}
+  .say .soft{color:var(--ink-2);font-weight:500}
+  .aside{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+  .aside.tiny{font-size:13px;color:var(--ink-3)}
+  .fact{background:var(--hl);color:var(--hl-ink);border-radius:8px;padding:1px 7px 2px;
+    font-weight:650;display:inline-block;min-height:0;line-height:1.3}
+  .fact:active{transform:scale(.98)}
+  .numfact{font-variant-numeric:tabular-nums}
+
+  .dock{padding:12px 20px calc(16px + env(safe-area-inset-bottom));display:grid;gap:10px;flex:none}
+  .primary{min-height:56px;border-radius:18px;background:var(--accent);color:var(--accent-ink);
+    font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow)}
+  .primary:active{transform:scale(.985)}
+  .quietrow{display:flex;gap:10px}
+  .quiet{flex:1;min-height:48px;border-radius:16px;border:1.5px solid var(--line);
+    font-size:15px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;justify-content:center}
+  .navline{display:flex;justify-content:center;gap:8px;padding-top:2px}
+  .navline button{min-height:44px;padding:0 14px;border-radius:999px;font-size:13.5px;
+    color:var(--ink-3);font-weight:600;display:flex;align-items:center}
+  .navline button[aria-current="true"]{background:var(--hl);color:var(--hl-ink)}
+
+  .token{display:inline-flex;align-items:center;gap:8px;background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px;
+    box-shadow:var(--shadow);font-size:14.5px;font-weight:600;min-height:44px}
+  .token .dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:16px;background:var(--hl)}
+
+  .recent{display:grid;gap:10px;padding:0 22px}
+  .recent-line{border-top:1px solid var(--line);padding:13px 2px 3px;display:grid;gap:2px;width:100%}
+  .recent-line .r1{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .recent-line .nm{font-size:16.5px;font-weight:650}
+  .recent-line .sc{font-variant-numeric:tabular-nums;font-size:15px;color:var(--ink-2)}
+  .recent-line .r2{font-size:13px;color:var(--ink-3)}
+
+  /* camera */
+  #s-camera{background:#101014;color:#f2f2f6}
+  .vf{flex:1;position:relative}
+  .vf .scene{position:absolute;inset:0;background:
+    radial-gradient(120% 90% at 32% 12%,#3a3a44 0%,#232329 55%,#141418 100%)}
+  .vf .food{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:100px;filter:drop-shadow(0 14px 18px rgba(0,0,0,.5))}
+  .vf .ask{position:absolute;top:0;left:0;right:0;padding:18px 22px;
+    background:linear-gradient(180deg,rgba(12,12,16,.75),transparent);display:flex;
+    justify-content:space-between;align-items:flex-start;gap:12px}
+  .vf .ask .q{font-size:20px;font-weight:650;line-height:1.3;max-width:70%}
+  .vf .ask button{color:#c9c9d4;font-size:14px;min-height:44px}
+  .vf .deck{position:absolute;left:0;right:0;bottom:0;
+    padding:16px 20px calc(18px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,transparent,rgba(10,10,14,.9) 42%);display:grid;gap:12px}
+  .vf input{min-height:48px;border-radius:14px;border:1px solid rgba(242,242,246,.22);
+    background:rgba(18,18,24,.65);color:#f2f2f6;padding:0 16px;font:inherit;font-size:14.5px}
+  .vf input::placeholder{color:rgba(242,242,246,.6)}
+  .vf .ctl{display:grid;grid-template-columns:54px 1fr 54px;gap:14px;align-items:center}
+  .vf .side{width:54px;height:54px;border-radius:16px;border:1px solid rgba(242,242,246,.25);
+    display:flex;align-items:center;justify-content:center;font-size:19px}
+  .vf .shutter{justify-self:center;width:74px;height:74px;border-radius:50%;
+    border:3.5px solid #f2f2f6;position:relative}
+  .vf .shutter::after{content:"";position:absolute;inset:6px;border-radius:50%;background:#f2f2f6}
+  .vf .go{min-height:52px;border-radius:16px;background:#f2f2f6;color:#17171d;
+    font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
+  .vf .go[disabled]{opacity:.4}
+  .vf .privacy{font-size:11.5px;color:rgba(242,242,246,.65);line-height:1.45}
+  .vf .privacy summary{min-height:44px;display:flex;align-items:center;font-size:12.5px;cursor:pointer}
+
+  /* review card */
+  .checkcard{margin:0 22px;background:var(--card);border:1.5px solid var(--line);
+    border-radius:18px;box-shadow:var(--shadow);padding:16px;display:grid;gap:12px}
+  .checkcard[hidden]{display:none}
+  .checkcard .q{font-size:15.5px;line-height:1.45}
+  .checkcard .acts{display:flex;gap:8px}
+  .checkcard .acts button{flex:1;min-height:46px;border-radius:14px;border:1.5px solid var(--line);
+    font-size:14.5px;font-weight:650;display:flex;align-items:center;justify-content:center}
+  .checkcard .acts .yes{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+  .divider{height:1px;background:var(--line);margin:8px 22px}
+
+  /* inline number strip for estimate */
+  .amongst{margin:2px 22px 0;padding:14px 16px;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;box-shadow:var(--shadow)}
+  .amongst .lab{font-size:12.5px;color:var(--ink-3);display:flex;justify-content:space-between;
+    margin-bottom:10px}
+  .strip{position:relative;height:30px}
+  .strip .rail{position:absolute;top:14px;left:0;right:0;height:2px;background:var(--line)}
+  .strip .dot{position:absolute;top:10.5px;width:8px;height:8px;border-radius:50%;
+    background:var(--ink-3);opacity:.5}
+  .strip .you{position:absolute;top:3px;width:3px;height:24px;border-radius:2px;background:var(--accent)}
+  .strip .youn{position:absolute;top:-13px;transform:translateX(-50%);font-size:12px;
+    font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+  .amongst .ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink-3);
+    font-variant-numeric:tabular-nums;margin-top:4px}
+
+  details.more{margin:2px 22px}
+  details.more summary{min-height:44px;display:flex;align-items:center;gap:8px;
+    font-size:14px;font-weight:650;color:var(--ink-2);cursor:pointer}
+  details.more p{font-size:13.5px;color:var(--ink-2);margin:6px 0;line-height:1.55}
+
+  .pillstatus{margin:8px 22px 0;display:inline-flex;align-self:flex-start;
+    border:1.5px solid var(--line);background:var(--card);color:var(--ink-2);
+    border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:650}
+
+  /* history */
+  .month{font-size:13px;color:var(--ink-3);font-weight:650;margin:16px 22px 4px}
+
+  .center{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:0 26px}
+
+  @media (max-width:340px){
+    .say{font-size:20.5px}.say.lead{font-size:24px}
+    .prose{padding:12px 18px 6px}
+    .amongst,.checkcard,details.more{margin-left:18px;margin-right:18px}
+    .recent{padding:0 18px}
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body data-route="home">
+
+<!-- HOME -->
+<section class="screen" id="s-home" aria-label="Home">
+  <div class="top"><span class="logo">i</span>
+    <button onclick="alert('Settings (stub)')">Settings</button></div>
+  <div class="scroll">
+    <div class="prose">
+      <p class="say lead">Good evening.<br>
+        <span class="soft">Checking dinner tonight?</span></p>
+      <p class="aside">You’ve logged <b>5 of the last 7 days</b>. Your 7-day index is
+        <b class="numfact">62</b> — an energy-normalized average over logged days only,
+        not a health measure.</p>
+    </div>
+    <div class="recent">
+      <p class="aside tiny" style="padding-top:6px">Lately</p>
+      <button class="recent-line" onclick="go('estimate-low')">
+        <span class="r1"><span class="nm">Keema biryani</span><span class="sc">1023</span></span>
+        <span class="r2">today 1:15 pm — hard to estimate, rough values</span>
+      </button>
+      <button class="recent-line" onclick="go('estimate')">
+        <span class="r1"><span class="nm">Oats with milk and banana</span><span class="sc">767</span></span>
+        <span class="r2">yesterday 7:15 am — good data</span>
+      </button>
+      <button class="recent-line" onclick="go('estimate')">
+        <span class="r1"><span class="nm">Egg and toast breakfast</span><span class="sc">690</span></span>
+        <span class="r2">Wednesday 8:15 am — good data</span>
+      </button>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <div class="navline">
+      <button aria-current="true">Home</button>
+      <button onclick="go('chooser')">Log Meal</button>
+      <button onclick="go('history')">History</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOME EMPTY -->
+<section class="screen" id="s-home-empty" aria-label="Home, first use">
+  <div class="top"><span class="logo">i</span><button>Settings</button></div>
+  <div class="center">
+    <p class="say lead">Hello.<br><span class="soft">I compare meals by their estimated
+      insulin demand.</span></p>
+    <p class="aside">Show me a meal — a photo or a few words — and I’ll estimate how much
+      it asks of insulin, show what drove the number, and tell you honestly how solid
+      the estimate is.</p>
+    <p class="aside tiny">Estimates are relative and population-level. Nothing here
+      measures your body or gives medical advice.</p>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check a meal</button>
+    <div class="navline">
+      <button aria-current="true">Home</button>
+      <button onclick="go('chooser')">Log Meal</button>
+      <button onclick="go('history')">History</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSER -->
+<section class="screen" id="s-chooser" aria-label="Log a meal">
+  <div class="top"><span class="logo">i</span>
+    <button onclick="go('home')">Close</button></div>
+  <div class="scroll">
+    <div class="prose">
+      <p class="say lead">How shall we look<br>at this meal?</p>
+      <div style="display:grid;gap:12px;margin-top:6px">
+        <button class="token" onclick="go('camera')"><span class="dot">📷</span>
+          Take a photo — point the camera at your meal</button>
+        <button class="token" onclick="go('confirm')"><span class="dot">⌨️</span>
+          Enter manually — type the meal and its parts</button>
+        <button class="token" onclick="go('history')"><span class="dot">↺</span>
+          Log a previous meal again</button>
+      </div>
+    </div>
+  </div>
+  <div class="dock">
+    <div class="navline">
+      <button onclick="go('home')">Home</button>
+      <button aria-current="true">Log Meal</button>
+      <button onclick="go('history')">History</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAMERA -->
+<section class="screen" id="s-camera" aria-label="Smart camera">
+  <div class="vf">
+    <div class="scene"></div><div class="food">🍛</div>
+    <div class="ask">
+      <span class="q">Show me the whole plate.</span>
+      <button onclick="go('chooser')">Cancel</button>
+    </div>
+    <div class="deck">
+      <details class="privacy"><summary>ⓘ How your photo is used</summary>
+        <p>AI meal extraction sends your meal image or description to an external AI service
+        to estimate food items and nutrition. INSIGHT does not retain uploaded images on the
+        backend by default, but the external service may process the data according to its own
+        policies. Do not upload anything you are not comfortable sharing for AI processing.</p>
+      </details>
+      <input placeholder="Anything the photo can’t show? (optional)"
+        aria-label="Anything the photo can’t show? (optional)">
+      <div class="ctl">
+        <button class="side" aria-label="Choose from photos">🖼</button>
+        <button class="shutter" aria-label="Take photo" onclick="camCapture()"></button>
+        <button class="side" aria-label="Add another angle">＋</button>
+      </div>
+      <button class="go" id="analyzeBtn" disabled onclick="camAnalyze()">Analyze meal</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRM -->
+<section class="screen" id="s-confirm" aria-label="Confirm meal">
+  <div class="top"><span class="logo">i</span>
+    <button onclick="go('chooser')">Discard draft</button></div>
+  <div class="scroll">
+    <div class="prose" style="gap:14px">
+      <p class="aside tiny">Draft — not saved · Did we get your meal right?</p>
+      <p class="say">This looks like
+        <button class="fact" onclick="alert('Edit meal name (stub)')">keema biryani</button>
+        <span class="soft">— about</span>
+        <button class="fact numfact" onclick="alert('Adjust portion (stub)')">350 g</button>
+        <span class="soft">of it, with</span>
+        <button class="fact" onclick="alert('Edit component (stub)')">raita</button>
+        <button class="fact numfact" onclick="alert('Adjust portion (stub)')">80 g</button>
+        <span class="soft">on the side.</span></p>
+      <p class="aside">Both parts were suggested from your photo. The meal’s name is just a
+        label — the parts above are what the estimate uses.</p>
+      <p class="say" style="font-size:19px">
+        <span class="soft">Cooked in ghee or oil we can’t see?</span>
+        <button class="fact" onclick="alert('Add component (stub)')">Add what we missed</button></p>
+
+      <div id="review-panel" class="checkcard" hidden>
+        <p class="q">You renamed “New Item” to <b>keema biryani</b> — its stored values
+          (0 kcal · 0 g carbs · 0 g protein · 0 g fat) were for the old name.
+          Do they still fit?</p>
+        <div class="acts">
+          <button onclick="resolveReview()">Edit values</button>
+          <button class="yes" onclick="resolveReview()">These still fit</button>
+        </div>
+      </div>
+
+      <p class="aside tiny">Together: ≈ 696 kcal · 59 g carbs · 12 g saturated fat.
+        <button class="fact" style="font-size:13px" onclick="alert('Advanced details (stub)')">Advanced details</button></p>
+    </div>
+  </div>
+  <div class="dock">
+    <button class="primary" id="calcBtn" onclick="calc()">Calculate estimate</button>
+  </div>
+</section>
+
+<!-- ESTIMATE normal (oats) -->
+<section class="screen" id="s-estimate" aria-label="Estimate">
+  <div class="top"><span class="logo">i</span>
+    <button onclick="go('home')">Close</button></div>
+  <span class="pillstatus">Estimate only — not saved</span>
+  <div class="scroll">
+    <div class="prose" style="gap:14px">
+      <p class="say lead">This meal asks about as much of insulin as most meals
+        you log.</p>
+      <p class="aside"><b>Oats with milk and banana</b> · 3 items · ≈ 476 kcal ·
+        66 g carbs</p>
+      <p class="say" style="font-size:19px"><span class="soft">Mostly because of the</span>
+        <button class="fact" onclick="alert('Driver detail (stub)')">oats</button>
+        <span class="soft">— they carry about two-thirds of the estimated load.</span></p>
+      <p class="aside">Good data behind this one: direct insulin-index values for all
+        three items.</p>
+    </div>
+    <div class="amongst">
+      <div class="lab"><span>Among your logged meals</span><span>estimate 767</span></div>
+      <div class="strip" id="strip-c" role="img"
+        aria-label="Estimate 767 among your logged meals, which range 666 to 1023."><div class="rail"></div></div>
+      <div class="ends"><span>666 · lowest</span><span>highest · 1023</span></div>
+    </div>
+    <div class="prose">
+      <p class="aside tiny">The 767 is read against an internal reference of 100 that
+        isn’t calibrated yet — so compare your meals with each other, not with the
+        number itself.</p>
+    </div>
+    <details class="more"><summary>What this doesn’t mean</summary>
+      <p>Estimated from the app’s limited food insulin-index dataset, heuristic fallbacks,
+      and your entered portions. The dataset and model are not yet validated. This is a
+      relative comparison tool, not a prediction of your body’s response.</p>
+      <p>INSIGHT does not measure or predict your personal insulin or glucose response,
+      diagnose any condition, or provide medical advice. Do not use it for insulin dosing
+      or treatment decisions.</p>
+    </details>
+    <div style="height:8px"></div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="this.textContent='Saved to History ✓';setTimeout(()=>go('home'),650)">Save to History</button>
+    <div class="quietrow">
+      <button class="quiet" onclick="go('confirm')">Adjust meal</button>
+      <button class="quiet" onclick="go('chooser')">Discard</button>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATE low (keema) -->
+<section class="screen" id="s-estimate-low" aria-label="Estimate, limited data">
+  <div class="top"><span class="logo">i</span>
+    <button onclick="go('home')">Close</button></div>
+  <span class="pillstatus">Saved to history</span>
+  <div class="scroll">
+    <div class="prose" style="gap:14px">
+      <p class="say lead">Honestly? This one was hard to estimate.</p>
+      <p class="aside"><b>Keema biryani</b> · 2 items · ≈ 696 kcal · 59 g carbs ·
+        logged today 1:15 pm</p>
+      <p class="say" style="font-size:19px"><span class="soft">I had no direct
+        insulin-index data for</span>
+        <button class="fact">keema biryani</button>
+        <span class="soft">or</span>
+        <button class="fact">raita</button><span class="soft">, so rough estimates from
+        their nutrition stood in.</span></p>
+      <p class="aside">The nominal reading is <b class="numfact">1023</b> against an
+        uncalibrated reference of 100 — treat it as approximate. Naming the parts you
+        know (rice, keema, ghee) usually sharpens the estimate.</p>
+    </div>
+    <details class="more"><summary>What this doesn’t mean</summary>
+      <p>We couldn’t estimate some items well; the real insulin demand may differ from
+      what’s shown. Estimated from the app’s limited food insulin-index dataset,
+      heuristic fallbacks, and your entered portions. The dataset and model are not yet
+      validated. This is a relative comparison tool, not a prediction of your body’s
+      response.</p>
+    </details>
+    <div style="height:8px"></div>
+  </div>
+  <div class="dock">
+    <button class="primary" onclick="go('chooser')">Check another meal</button>
+    <div class="quietrow">
+      <button class="quiet" onclick="go('home')">Done</button>
+      <button class="quiet" style="color:#a13a30">Delete</button>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="screen" id="s-history" aria-label="History">
+  <div class="top"><span class="logo">i</span>
+    <button onclick="go('home')">Close</button></div>
+  <div class="scroll">
+    <div class="prose" style="gap:6px">
+      <p class="say">Your saved meals.</p>
+      <p class="aside tiny">Most recent first. Open one to read it again — repeating a
+        meal starts from Log Meal.</p>
+    </div>
+    <p class="month">July</p>
+    <div class="recent">
+      <button class="recent-line" onclick="go('estimate-low')">
+        <span class="r1"><span class="nm">Keema biryani</span><span class="sc">1023</span></span>
+        <span class="r2">Fri 1:15 pm — rough estimate</span>
+      </button>
+      <button class="recent-line" onclick="go('estimate')">
+        <span class="r1"><span class="nm">Masoor dal and rice</span><span class="sc">953</span></span>
+        <span class="r2">Thu 12:15 pm — rough estimate</span>
+      </button>
+      <button class="recent-line" onclick="go('estimate')">
+        <span class="r1"><span class="nm">Oats with milk and banana</span><span class="sc">767</span></span>
+        <span class="r2">Wed 7:15 am — good data</span>
+      </button>
+      <button class="recent-line" onclick="go('estimate')">
+        <span class="r1"><span class="nm">Egg and toast breakfast</span><span class="sc">690</span></span>
+        <span class="r2">Wed 8:15 am — good data</span>
+      </button>
+      <button class="recent-line" onclick="go('estimate')">
+        <span class="r1"><span class="nm">Yogurt with potato salad</span><span class="sc">666</span></span>
+        <span class="r2">Mon 1:15 pm — good data</span>
+      </button>
+    </div>
+    <div style="height:12px"></div>
+  </div>
+  <div class="dock">
+    <div class="navline">
+      <button onclick="go('home')">Home</button>
+      <button onclick="go('chooser')">Log Meal</button>
+      <button aria-current="true">History</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const KNOWN=['home','home-empty','chooser','camera','confirm','review','estimate','estimate-low','history'];
+  function apply(){
+    const parts=(location.hash||'#home').slice(1).split('&');
+    const route=KNOWN.includes(parts[0])?parts[0]:'home';
+    document.body.dataset.route=route;
+    document.documentElement.classList.toggle('dark',parts.includes('dark'));
+    if(route==='review'){document.getElementById('review-panel').hidden=false;}
+    plot();
+  }
+  function go(r){
+    const dark=document.documentElement.classList.contains('dark');
+    location.hash=r+(dark?'&dark':'');
+  }
+  function camCapture(){document.getElementById('analyzeBtn').disabled=false;}
+  function camAnalyze(){
+    const b=document.getElementById('analyzeBtn');
+    b.textContent='Reading your meal photo…';b.disabled=true;
+    setTimeout(()=>{b.textContent='Analyze meal';go('confirm');},700);
+  }
+  function resolveReview(){document.getElementById('review-panel').hidden=true;}
+  function calc(){
+    const b=document.getElementById('calcBtn');
+    b.textContent='Estimating insulin demand…';
+    setTimeout(()=>{b.textContent='Calculate estimate';go('estimate');},700);
+  }
+  function plot(){
+    const el=document.getElementById('strip-c'); if(!el) return;
+    el.querySelectorAll('.dot,.you,.youn').forEach(n=>n.remove());
+    const scores=[666,690,953,1023],you=767,min=666,max=1023;
+    const pct=v=>4+((v-min)/(max-min))*92;
+    scores.forEach(s=>{const d=document.createElement('div');d.className='dot';
+      d.style.left=pct(s)+'%';el.appendChild(d);});
+    const y=document.createElement('div');y.className='you';y.style.left=pct(you)+'%';el.appendChild(y);
+    const n=document.createElement('div');n.className='youn';n.style.left=pct(you)+'%';
+    n.textContent='767';el.appendChild(n);
+  }
+  window.addEventListener('hashchange',apply);
+  apply();
+</script>
+</body>
+</html>
