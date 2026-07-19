@@ -1,18 +1,51 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+@import "./tokens.css";
 
-:root {
-    --ion-color-primary: #0077b3;
-    --ion-color-primary-rgb: 0, 119, 179;
-    --ion-color-primary-contrast: #ffffff;
-    --ion-color-primary-contrast-rgb: 255, 255, 255;
-    --ion-color-primary-shade: #00699e;
-    --ion-color-primary-tint: #1a85bb;
+/* Ionic maps onto the constitution tokens; appearance values come from the
+   root class applied by App.tsx. */
+:root,
+.app-appearance-paper,
+.app-appearance-ink {
+	--ion-font-family: var(--font-body);
+	--ion-background-color: var(--paper);
+	--ion-background-color-rgb: 249, 246, 240;
+	--ion-text-color: var(--ink);
+	--ion-text-color-rgb: 35, 29, 21;
+	--ion-card-background: var(--raised);
+	--ion-item-background: var(--raised);
+	--ion-toolbar-background: var(--paper);
+	--ion-tab-bar-background: var(--paper);
 
-    --ion-background-color: #f4f6f9;
+	--ion-color-primary: var(--accent);
+	--ion-color-primary-rgb: var(--accent-rgb);
+	--ion-color-primary-contrast: var(--accent-ink);
+	--ion-color-primary-contrast-rgb: 255, 248, 236;
+	--ion-color-primary-shade: var(--accent);
+	--ion-color-primary-tint: var(--accent);
+
+	--ion-color-medium: var(--ink-2);
+	--ion-color-medium-rgb: 93, 84, 70;
+	--ion-color-medium-contrast: var(--paper);
+	--ion-color-medium-contrast-rgb: 249, 246, 240;
+	--ion-color-medium-shade: var(--ink-2);
+	--ion-color-medium-tint: var(--ink-3);
+
+	--ion-color-danger: var(--danger);
+	--ion-color-danger-rgb: var(--danger-rgb);
+	--ion-color-danger-contrast: var(--accent-ink);
+	--ion-color-danger-contrast-rgb: 255, 248, 236;
+	--ion-color-danger-shade: var(--danger);
+	--ion-color-danger-tint: var(--danger);
 }
 
+.app-appearance-ink {
+	--ion-background-color-rgb: 24, 20, 16;
+	--ion-text-color-rgb: 240, 232, 219;
+	--ion-color-primary-contrast-rgb: 36, 23, 8;
+	--ion-color-danger-contrast-rgb: 36, 23, 8;
+	--ion-color-medium-rgb: 191, 178, 158;
+	--ion-color-medium-contrast-rgb: 24, 20, 16;
+}
 
 ion-fab-button {
-    --border-radius: 15px;
+	--border-radius: var(--radius-panel);
 }

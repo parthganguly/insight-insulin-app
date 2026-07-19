@@ -1,7 +1,8 @@
-# INSIGHT Design Constitution — Annotated Journal v1.1
+# INSIGHT Design Constitution — Annotated Journal v1.2
 
 **Mission:** issue #101, Part 5. **Author:** Claude Fable 5.
-**Date:** 2026-07-18 (v1.1 same day). **Status:** **approved as the
+**Date:** 2026-07-18 (v1.1 same day; v1.2 amendment 2026-07-19).
+**Status:** **approved as the
 authoritative design direction by human disposition on PR #102
 (2026-07-18)**, with the deferrals recorded below. Frozen design law for
 implementation slices J1–J6 and J9.
@@ -22,6 +23,21 @@ authoritative result hierarchy while the deferral stands.
 Changes v1.0 → v1.1 (disposition record only; no design change):
 status line; `[NEEDS SIGN-OFF]` markers replaced with `[DEFERRED — J7]`;
 new §6.7-interim; §13 rewritten to reflect the disposition.
+
+Changes v1.1 → v1.2 (J1 visual-review corrections R1–R2 of 2026-07-19;
+accessibility correction, **not** a new visual direction):
+
+- **R1:** light `--ink-3` corrected `#7d7364` → `#756b5c`. The old value
+  measured 4.32:1 on `--paper`, below the AA floor the token row itself
+  declares. Dark `--ink-3` is unchanged. Verified ratios recorded in §2.1.
+  The reference prototype and the 42 reference screenshots predate v1.2 and
+  still carry the old light value; **for this one token the constitution
+  value governs over the prototype** (see §12 note).
+- **R2:** the J1 allowed-file boundary is extended to
+  `frontend/src/stores/settingsStore.ts` for the tri-state appearance
+  contract (§2.2-a below). The scope grant itself is recorded in
+  `sol-implementation-slices.md` (Slice J1 amendment), which owns slice
+  scope. J1 still stops before J2.
 
 ---
 
@@ -47,11 +63,17 @@ text 3:1) — verify at build time with automated contrast checks.
 | `--tint` | `#f1ece1` | subtle fills (bars, typographic plates) |
 | `--ink` | `#231d15` | primary text (12.9:1 on paper) |
 | `--ink-2` | `#5d5446` | secondary text (6.5:1) |
-| `--ink-3` | `#7d7364` | captions/labels — minimum 4.5:1; never below |
+| `--ink-3` | `#756b5c` | captions/labels — minimum 4.5:1; never below (v1.2, R1: verified 4.85:1 on `--paper`, 5.19:1 on `--raised`) |
 | `--line` | `#e7dfd2` | hairlines, borders |
 | `--accent` | `#7a4f1d` | the one interactive accent (buttons, needle, links) |
 | `--accent-ink` | `#fff8ec` | text on accent |
 | `--danger` | `#a13a30` | destructive actions ONLY (delete); never scores |
+
+v1.2 note on `--ink-3` over `--tint`: the corrected value measures 4.44:1 on
+`--tint`, so **caption-size text placed directly on `--tint` fills must use
+`--ink-2`**; large-text uses on tint (≥ the WCAG large-text threshold, e.g.
+the §5 plate monogram) remain compliant at the 3:1 large-text floor. This
+restates the existing AA law for one specific pair; it is not a new rule.
 
 ### 2.2 Colour — dark ("ink")
 
@@ -67,6 +89,20 @@ text 3:1) — verify at build time with automated contrast checks.
 | `--accent` | `#e0ac60` |
 | `--accent-ink` | `#241708` |
 | `--danger` | `#d98a80` |
+
+### 2.2-a Appearance selection contract (v1.2, per J1 review R2)
+
+- The appearance preference is **tri-state**: `darkMode: boolean | null` in
+  the existing settings store, **default `null` = follow the operating-system
+  preference** (`prefers-color-scheme`); `true` = explicit dark override;
+  `false` = explicit light override. The override persists.
+- **Compatibility is mandatory:** previously persisted boolean values must
+  continue to load unchanged and keep their meaning as explicit overrides.
+  No migration may reinterpret or discard them; only a store where the
+  preference was never set reads as `null`.
+- The obsolete `ion-palette-dark` classList side effect in `toggleDarkMode`
+  is removed; the constitution's root-class mechanism is the only appearance
+  switch. No other settings-store behaviour may change.
 
 **Colour law:** exactly one accent. No red/amber/green anywhere near scores,
 quality, trend, or provenance. Quality and provenance are typographic, never
@@ -272,6 +308,11 @@ estimate-low, camera, history) + large-text probes (confirm, estimate).
 The interactive prototype is clickable through the whole journey including
 camera→confirm→estimate→save, needs-review resolution, stale estimate, and
 camera failure.
+
+v1.2 note: the prototype and all 42 captures predate the R1 correction and
+render light `--ink-3` as `#7d7364`. Screenshot comparisons must treat this
+single-token colour delta as expected; the §2.1 value `#756b5c` governs.
+Nothing else in the reference states is affected.
 
 ## 13. Latitude vs Fable approval
 

@@ -16,8 +16,8 @@ enum ActivityLevel {
 }
 
 type SettingsState = {
-	darkMode: boolean;
-	toggleDarkMode: (value: boolean) => void;
+	darkMode: boolean | null;
+	toggleDarkMode: (value: boolean | null) => void;
 	gender: Gender | null;
 	setGender: (gender: Gender) => void;
 	age: number | null;
@@ -33,10 +33,9 @@ type SettingsState = {
 export const useSettingsStore = create<SettingsState>()(
 	persist(
 		(set) => ({
-			darkMode: true,
+			darkMode: null,
 			toggleDarkMode: (value) => {
 				set({ darkMode: value });
-				document.documentElement.classList.toggle("ion-palette-dark", value);
 			},
 			gender: null,
 			setGender: (gender: Gender) => set({ gender }),
