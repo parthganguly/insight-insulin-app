@@ -2,10 +2,16 @@
 
 **Mission:** issue #101, Part 5 decomposition. **Author:** Claude Fable 5.
 **Date:** 2026-07-18 (updated same day for the human disposition on PR #102;
-amended 2026-07-19 for the J1 visual-review corrections R1–R2 — see the
-Slice J1 amendment below).
+amended 2026-07-19 for the J1 visual-review corrections R1–R2 and again
+2026-07-19 for the human-ratified Porcelain Journal palette — see the two
+Slice J1 amendments below).
 **Status:** **J1–J6 and J9 are authorized for implementation** under
-design-constitution v1.2. **J7 is deferred** (tick-scale, cold-start rule,
+design-constitution **v2.0** (Porcelain Journal palette; the warm palette
+of v1.0–v1.2 is superseded — decision record
+`../fable-discovery-2-palette/palette-reassessment.md`). **PR #103 must
+not merge until the bounded J1 palette correction (v2.0 amendment P1
+below) is implemented and independently reviewed.** **J7 is deferred**
+(tick-scale, cold-start rule,
 verdict bands) — no part of it may be implemented implicitly inside another
 slice; constitution §6.7-interim governs result screens meanwhile.
 **Photo persistence is deferred** — existing photo behaviour plus the
@@ -77,6 +83,43 @@ before resuming J1]**
 - **Boundary unchanged:** this grant does not widen J1 otherwise. J1 still
   ends at the J1 boundary and **stops before J2** — no Dashboard or journal
   restructuring may begin under this amendment.
+
+**[v2.0 AMENDMENT P1 — 2026-07-19, Porcelain Journal palette correction —
+binding; blocks PR #103 merge; read before resuming J1]**
+
+- **Constitution v2.0 applies.** The warm palette in the current J1
+  working tree / PR #103 is superseded by human ratification of
+  2026-07-19. This amendment is a **token-value-only correction**; it is
+  not a licence to revisit any other J1 decision.
+- **Permitted change is limited to `frontend/src/theme/tokens.css`:**
+  (a) the §2.1 and §2.2 colour values for both appearances;
+  (b) the derived `--accent-rgb` / `--danger-rgb` triplets to match;
+  (c) the §2.5 light shadow tints (dark shadows are black-based and
+  unchanged). **No token may be added, removed, or renamed.** Type,
+  radius, spacing, and motion tokens are untouched. **No other file may
+  change** — `appearance.ts`, `settingsStore.ts`, `App.tsx`, `app.css`,
+  `variables.css`, and `IonToolbarWrapper.tsx` are palette-agnostic and
+  already correct.
+- **Verification (full J1 suite rerun):** `npm run lint`,
+  `npx tsc --noEmit`, `npm run test.unit -- --run`, `npm run build`, full
+  Cypress; re-capture the 12 exact-viewport screenshots (Home / chooser /
+  History × 390×844 / 320×700 × paper / ink); verify every §2.1/§2.2
+  text-background pair meets AA (method of
+  `../fable-discovery-2-palette/contrast-verification.js` or the
+  project's automated check); paste `git diff --name-only` proving the
+  single-file boundary.
+- **Screenshot comparison rule:** against the warm J1 captures, colour
+  deltas are expected **wholesale**; structure, spacing, and typography
+  must be pixel-stable. Constitution §12 (v2.0 note) governs; the
+  palette-true references for these screens are
+  `../fable-discovery-2-palette/screenshots/` (treatment `c-*`, 390×844).
+- **Stop if:** any warm value survives anywhere in the rendered app after
+  the swap (that would indicate a colour outside `tokens.css` — report
+  it; do not chase it into forbidden files); or any check regresses; or
+  the correction appears to require touching any second file.
+- **After correction:** Fable re-reviews the diff and the 12 captures;
+  only then may PR #103 leave draft, per repo review law. J1 still stops
+  before J2.
 
 ## Slice J2 — Home as journal
 

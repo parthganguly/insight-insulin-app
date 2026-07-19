@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INSIGHT palette reassessment — treatments A / B / C</title>
+<style>
+  /* ============================================================
+     Treatment tokens. Same structural system as J1 tokens.css;
+     only palette + material tint vary between treatments.
+     Typography (serif identity + sans body) held constant.
+     ============================================================ */
+
+  /* A — Annotated Journal warm (constitution v1.2, verbatim) */
+  .t-a.paper {
+    --paper:#f9f6f0; --raised:#fffefb; --tint:#f1ece1;
+    --ink:#231d15; --ink-2:#5d5446; --ink-3:#756b5c;
+    --line:#e7dfd2; --accent:#7a4f1d; --accent-ink:#fff8ec;
+    --quiet:#f1ece1; --danger:#a13a30;
+    --shadow-raised:0 1px 2px rgba(58,46,28,.06),0 6px 22px rgba(58,46,28,.09);
+    color-scheme:light;
+  }
+  .t-a.ink {
+    --paper:#181410; --raised:#211c16; --tint:#241f18;
+    --ink:#f0e8db; --ink-2:#bfb29e; --ink-3:#94897a;
+    --line:#342d24; --accent:#e0ac60; --accent-ink:#241708;
+    --quiet:#241f18; --danger:#d98a80;
+    --shadow-raised:0 1px 2px rgba(0,0,0,.45),0 8px 28px rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+
+  /* B — Cool white-and-blue premium instrument */
+  .t-b.paper {
+    --paper:#f3f6f9; --raised:#ffffff; --tint:#e8eef4;
+    --ink:#10202e; --ink-2:#415565; --ink-3:#5a6e7e;
+    --line:#d9e2ea; --accent:#0f639c; --accent-ink:#ffffff;
+    --quiet:#e8eef4; --danger:#b3382e;
+    --shadow-raised:0 1px 2px rgba(23,42,58,.06),0 6px 22px rgba(23,42,58,.10);
+    color-scheme:light;
+  }
+  .t-b.ink {
+    --paper:#0e1319; --raised:#151c24; --tint:#19222c;
+    --ink:#e9eef3; --ink-2:#a9b9c7; --ink-3:#8095a6;
+    --line:#243140; --accent:#6fb1e0; --accent-ink:#08243c;
+    --quiet:#19222c; --danger:#e08a80;
+    --shadow-raised:0 1px 2px rgba(0,0,0,.45),0 8px 28px rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+
+  /* C — Hybrid: porcelain paper, warm-black ink, one printer's-blue accent */
+  .t-c.paper {
+    --paper:#fafaf8; --raised:#ffffff; --tint:#f0f2f2;
+    --ink:#1d1d1a; --ink-2:#54544c; --ink-3:#6b6b62;
+    --line:#e3e4de; --accent:#28577e; --accent-ink:#f7fbff;
+    --quiet:#e7eef4; --danger:#a63c31;
+    --shadow-raised:0 1px 2px rgba(28,30,34,.05),0 6px 22px rgba(28,30,34,.08);
+    color-scheme:light;
+  }
+  .t-c.ink {
+    --paper:#141619; --raised:#1c1f23; --tint:#212429;
+    --ink:#ebeae4; --ink-2:#b4b3a9; --ink-3:#8f9089;
+    --line:#2e3136; --accent:#82b4dd; --accent-ink:#0c2438;
+    --quiet:#1e2d3a; --danger:#dc8b81;
+    --shadow-raised:0 1px 2px rgba(0,0,0,.45),0 8px 28px rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+
+  /* ====================== shared structure ====================== */
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body { background:#888; font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif; }
+  body.bare { background:transparent; }
+
+  .frame { width:390px; height:844px; overflow:hidden; position:relative;
+           background:var(--paper); color:var(--ink); display:flex; flex-direction:column; }
+  body:not(.bare) .frame { margin:56px auto 24px; box-shadow:0 12px 48px rgba(0,0,0,.4); border-radius:12px; }
+
+  .serif { font-family:"EB Garamond",Garamond,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; }
+  .num { font-variant-numeric:tabular-nums; }
+
+  header.app { display:flex; align-items:center; justify-content:space-between;
+               padding:16px 20px 12px; border-bottom:1px solid var(--line); }
+  header.app h1 { font-size:1.15rem; font-weight:600; letter-spacing:.06em; color:var(--ink-2); }
+  header.app svg { width:22px; height:22px; stroke:var(--ink-2); }
+
+  main { flex:1; overflow:hidden; padding:16px 18px 0; }
+
+  .pill-btn { display:block; width:100%; padding:14px 0; border:0; border-radius:999px;
+              background:var(--accent); color:var(--accent-ink); font-size:1rem; font-weight:600;
+              font-family:inherit; text-align:center; }
+  .pill-caption { margin:10px 8px 16px; text-align:center; font-size:.86rem; color:var(--ink-2); line-height:1.45; }
+
+  .card { background:var(--raised); border:1px solid var(--line); border-radius:20px;
+          box-shadow:var(--shadow-raised); }
+
+  /* Home trend card (transitional J1 structure, ring included) */
+  .trend { padding:20px 18px 0; text-align:center; }
+  .kicker { font-size:.72rem; letter-spacing:.14em; font-weight:600; color:var(--ink-3); text-transform:uppercase; }
+  .trend h2 { font-size:1.35rem; font-weight:700; margin-top:6px; }
+  .ringwrap { position:relative; width:196px; height:196px; margin:22px auto 8px; }
+  .ringwrap svg { width:196px; height:196px; transform:rotate(-90deg); }
+  .ring-track { fill:none; stroke:var(--tint); stroke-width:14; }
+  .ring-arc { fill:none; stroke:var(--accent); stroke-width:14; stroke-linecap:round; }
+  .ring-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+              font-size:2.6rem; font-weight:600; color:var(--ink); }
+  .trend p.desc { font-size:1rem; color:var(--ink-2); line-height:1.5; margin:14px 6px 18px; }
+  .trend hr { border:0; border-top:1px solid var(--line); margin:0 28px 16px; }
+  .chips { display:flex; justify-content:center; gap:10px; margin-bottom:18px; }
+  .chip { background:var(--tint); color:var(--ink-2); font-size:.8rem; padding:6px 12px; border-radius:999px; }
+  .footnote { background:var(--tint); color:var(--ink-2); border-radius:14px 14px 0 0;
+              font-size:.83rem; line-height:1.5; padding:14px 16px; text-align:left; }
+
+  /* Chooser */
+  .chooser-title { font-size:1.7rem; font-weight:700; font-style:italic; line-height:1.2; margin:14px 0 8px; }
+  .chooser-sub { font-size:.86rem; color:var(--ink-2); line-height:1.45; margin-bottom:22px; }
+  .opt { display:flex; align-items:center; gap:14px; padding:18px 16px; margin-bottom:16px; }
+  .opt .icon { width:26px; height:26px; flex:none; }
+  .opt .icon svg { width:26px; height:26px; stroke:var(--accent); }
+  .opt .txt { flex:1; }
+  .opt .txt b { display:block; font-size:1.15rem; font-weight:700; }
+  .opt .txt span { display:block; font-size:.83rem; color:var(--ink-2); margin-top:3px; }
+  .opt .chev { color:var(--ink-3); font-size:1.1rem; }
+
+  /* History */
+  .hist-head { display:flex; justify-content:space-between; align-items:baseline; margin:6px 2px 14px; }
+  .hist-head .right { font-size:.8rem; color:var(--ink-3); }
+  .meal { display:flex; align-items:center; gap:12px; padding:16px; margin-bottom:16px; }
+  .meal .txt { flex:1; min-width:0; }
+  .meal .txt b { display:block; font-size:1.15rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .meal .txt .meta { font-size:.8rem; color:var(--ink-3); margin-top:3px; }
+  .meal .txt .chip { display:inline-block; margin-top:9px; }
+  .meal .score { text-align:center; flex:none; }
+  .meal .score .circle { width:54px; height:54px; border:2.5px solid var(--accent); border-radius:50%;
+                         display:flex; align-items:center; justify-content:center;
+                         font-size:1rem; font-weight:600; color:var(--ink); }
+  .meal .score .ref { font-size:.62rem; letter-spacing:.1em; font-weight:600; color:var(--ink-3); margin-top:5px; }
+
+  /* Tab bar */
+  nav.tabs { flex:none; display:flex; border-top:1px solid var(--line); background:var(--raised); padding:8px 0 14px; }
+  nav.tabs a { flex:1; text-align:center; text-decoration:none; color:var(--ink-3); font-size:.78rem; }
+  nav.tabs a svg { width:22px; height:22px; stroke:currentColor; display:block; margin:0 auto 3px; }
+  nav.tabs a.active { color:var(--accent); font-weight:600; }
+
+  /* switcher (interactive browsing only; hidden for captures) */
+  .switcher { position:fixed; top:0; left:0; right:0; background:#1c1c1c; color:#eee;
+              padding:10px 16px; display:flex; gap:18px; font-size:13px; z-index:9; }
+  .switcher a { color:#8ec3ee; text-decoration:none; margin-right:8px; }
+  .switcher a.on { color:#fff; font-weight:700; text-decoration:underline; }
+  body.bare .switcher { display:none; }
+</style>
+</head>
+<body>
+<div class="switcher" id="switcher"></div>
+<div class="frame" id="frame"><!-- populated by script --></div>
+
+<script>
+const q = new URLSearchParams(location.search);
+const t = q.get('t') || 'a';
+const mode = q.get('mode') || 'paper';
+const screen = q.get('screen') || 'home';
+if (q.get('chrome') === '0') document.body.classList.add('bare');
+
+const frame = document.getElementById('frame');
+frame.classList.add('t-' + t, mode);
+
+const icons = {
+  gear:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="3.2"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2L14.2 3h-4l-.4 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2l.4 2.5h4l.4-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.06-.4.1-.8.1-1.2z"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 5.5C10.5 4 8 3.5 5.5 3.5c-1 0-2 .1-2.5.3v14.7c.5-.2 1.5-.3 2.5-.3 2.5 0 5 .5 6.5 2 1.5-1.5 4-2 6.5-2 1 0 2 .1 2.5.3V3.8c-.5-.2-1.5-.3-2.5-.3-2.5 0-5 .5-6.5 2z"/><path d="M12 5.5v14.7"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 5v14M5 12h14"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7l1.5-2.5h4L15.5 7"/><circle cx="12" cy="13.2" r="3.4"/></svg>',
+  pencil:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 20l.9-3.6L16.4 4.9a2 2 0 0 1 2.8 0l-.1-.1a2 2 0 0 1 0 2.8L7.6 19.1 4 20z"/></svg>',
+  repeat:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M17 2.5l3.5 3.5L17 9.5"/><path d="M3.5 11V9.5a3.5 3.5 0 0 1 3.5-3.5h13"/><path d="M7 21.5L3.5 18 7 14.5"/><path d="M20.5 13v1.5a3.5 3.5 0 0 1-3.5 3.5H4"/></svg>'
+};
+
+function tabs(active){
+  return `<nav class="tabs">
+    <a class="${active==='home'?'active':''}">${icons.book}Home</a>
+    <a class="${active==='log'?'active':''}">${icons.plus}Log Meal</a>
+    <a class="${active==='history'?'active':''}">${icons.clock}History</a>
+  </nav>`;
+}
+function header(title, gear){
+  return `<header class="app"><h1 class="serif">${title}</h1>${gear?icons.gear:''}</header>`;
+}
+
+const r = 84, C = 2*Math.PI*r, pct = .62;
+const screens = {
+  home: header('Home', true) + `
+    <main>
+      <button class="pill-btn">Check a meal</button>
+      <p class="pill-caption">Use a photo, enter the meal yourself, or repeat a saved meal.</p>
+      <section class="card trend">
+        <div class="kicker">Logged meals, last 7 days</div>
+        <h2>7-Day Logged Meal Trend</h2>
+        <div class="ringwrap">
+          <svg viewBox="0 0 196 196">
+            <circle class="ring-track" cx="98" cy="98" r="${r}"/>
+            <circle class="ring-arc" cx="98" cy="98" r="${r}"
+              stroke-dasharray="${(C*pct).toFixed(1)} ${(C*(1-pct)).toFixed(1)}"/>
+          </svg>
+          <div class="ring-num num">62</div>
+        </div>
+        <p class="desc">Average energy-normalized insulin-demand index across the days you logged meals in the last 7.</p>
+        <hr>
+        <div class="chips"><span class="chip num">5 of 7 days logged</span><span class="chip num">3 meals logged</span></div>
+        <div class="footnote">This is an energy-normalized insulin-demand index, not a total or a percentage, and it can exceed 100 — the ring caps at 100 as a visual guide only. It averages only the days you</div>
+      </section>
+    </main>` + tabs('home'),
+
+  chooser: header('Log Meal', false) + `
+    <main>
+      <h2 class="chooser-title serif">How would you like to add it?</h2>
+      <p class="chooser-sub">Choose the option that best matches what you have available.</p>
+      <div class="card opt"><span class="icon">${icons.camera}</span>
+        <span class="txt"><b class="serif">Take a photo</b><span>Point the camera at your meal.</span></span>
+        <span class="chev">&#8250;</span></div>
+      <div class="card opt"><span class="icon">${icons.pencil}</span>
+        <span class="txt"><b class="serif">Enter manually</b><span>Type the meal and its parts yourself.</span></span>
+        <span class="chev">&#8250;</span></div>
+      <div class="card opt"><span class="icon">${icons.repeat}</span>
+        <span class="txt"><b class="serif">Log a previous meal again</b><span>Repeat something you've checked before.</span></span>
+        <span class="chev">&#8250;</span></div>
+    </main>` + tabs('log'),
+
+  history: header('History', false) + `
+    <main>
+      <div class="hist-head"><span class="kicker">Saved meals</span><span class="right">most recent first</span></div>
+      ${[
+        ['Synthetic keema biryani','Jul 18 · 6:45 PM','1023'],
+        ['Synthetic oats with milk and banana','Jul 17 · 12:45 PM','767'],
+        ['Synthetic egg and toast breakfast','Jul 16 · 1:45 PM','690'],
+      ].map(([n,d,s])=>`
+      <div class="card meal">
+        <span class="txt"><b class="serif">${n}</b><span class="meta num">${d}</span><span class="chip num">400 kcal</span></span>
+        <span class="score"><span class="circle num">${s}</span><span class="ref">ABOVE REF</span></span>
+      </div>`).join('')}
+    </main>` + tabs('history'),
+};
+frame.innerHTML = screens[screen] || screens.home;
+
+/* switcher */
+const sw = document.getElementById('switcher');
+function grp(label, key, vals, cur){
+  return `<span>${label}: ` + vals.map(v =>
+    `<a class="${v===cur?'on':''}" href="?${new URLSearchParams({t,mode,screen,[key]:v})}">${v}</a>`).join('') + '</span>';
+}
+sw.innerHTML = grp('treatment','t',['a','b','c'],t) + grp('appearance','mode',['paper','ink'],mode)
+  + grp('screen','screen',['home','chooser','history'],screen);
+</script>
+</body>
+</html>

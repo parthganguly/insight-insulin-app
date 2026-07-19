@@ -1,11 +1,15 @@
-# INSIGHT Design Constitution — Annotated Journal v1.2
+# INSIGHT Design Constitution — Annotated Journal v2.0
 
 **Mission:** issue #101, Part 5. **Author:** Claude Fable 5.
-**Date:** 2026-07-18 (v1.1 same day; v1.2 amendment 2026-07-19).
+**Date:** 2026-07-18 (v1.1 same day; v1.2 amendment 2026-07-19;
+v2.0 palette amendment 2026-07-19).
 **Status:** **approved as the
 authoritative design direction by human disposition on PR #102
-(2026-07-18)**, with the deferrals recorded below. Frozen design law for
-implementation slices J1–J6 and J9.
+(2026-07-18)**, with the deferrals recorded below; **visual palette
+superseded by the human-ratified Porcelain Journal system on 2026-07-19**
+(decision record:
+`../fable-discovery-2-palette/palette-reassessment.md`). Frozen design law
+for implementation slices J1–J6 and J9.
 Reference prototype: `prototypes/final-annotated-journal.html` (interactive,
 state-addressable); reference screenshots: `screenshots/final-annotated-journal/`.
 
@@ -39,13 +43,42 @@ accessibility correction, **not** a new visual direction):
   `sol-implementation-slices.md` (Slice J1 amendment), which owns slice
   scope. J1 still stops before J2.
 
+Changes v1.2 → v2.0 (Porcelain Journal palette; human-ratified
+2026-07-19 after review of the implemented J1 screenshots; **a palette
+correction, not a new direction** — comparison evidence in
+`../fable-discovery-2-palette/`):
+
+- **§1** gains the warmth law: warmth lives in typography, photography,
+  and voice — never in surface hue.
+- **§2.1 / §2.2** colour tables replaced with the Porcelain Journal
+  values (porcelain paper / warm-black ink / printer's-blue accent;
+  neutral-charcoal / softened-blue dark). All pairs AA-verified
+  2026-07-19 (`../fable-discovery-2-palette/contrast-verification.js`).
+- **§2.5** light shadow tints neutralised (warm brown casts retired).
+- The v1.2 caption-on-tint restriction is **retired**: the v2.0
+  `--ink-3` passes 4.5:1 on `--tint` in both appearances.
+- **§12** reference-capture override extended: §2 token values govern
+  over all pre-v2.0 (warm) prototypes and captures until re-rendered.
+- Unchanged: every other section — typography roles and scale, spacing,
+  radii, materials, iconography, photography/plates, screen hierarchy
+  (§6 incl. §6.7-interim), states, motion, accessibility floor, copy
+  hierarchy, prohibited patterns, all J7/J8 deferrals, and the sealed
+  Campaign A/B boundaries.
+
 ---
 
 ## 1. Product metaphor and emotional target
 
 INSIGHT is an **annotated meal journal**: the meal is the page; INSIGHT
-writes calm, honest margin notes. Emotional target, in order: **calm →
+writes calm, honest margin notes — **in blue ink on white paper**, the way
+an annotated document actually looks: porcelain paper (light), charcoal
+ink (dark), one printer's-blue accent. Emotional target, in order: **calm →
 understood → quietly confident**. Never: judged, alarmed, gamified, sold to.
+
+**Warmth law (v2.0):** warmth comes from typography, photography, and
+voice — never from brown or cream surface hue. Surfaces stay porcelain /
+charcoal so that trust reads instantly and food photography supplies its
+own warmth.
 
 ## 2. Design tokens
 
@@ -54,41 +87,46 @@ onto them. Values are normative; ±5 % is implementer latitude except where
 marked exact. All text/background pairs listed meet WCAG AA (4.5:1; large
 text 3:1) — verify at build time with automated contrast checks.
 
-### 2.1 Colour — light ("paper")
+### 2.1 Colour — light ("paper", porcelain — v2.0)
 
 | Token | Value | Role |
 |---|---|---|
-| `--paper` | `#f9f6f0` | app background |
-| `--raised` | `#fffefb` | cards/sheets |
-| `--tint` | `#f1ece1` | subtle fills (bars, typographic plates) |
-| `--ink` | `#231d15` | primary text (12.9:1 on paper) |
-| `--ink-2` | `#5d5446` | secondary text (6.5:1) |
-| `--ink-3` | `#756b5c` | captions/labels — minimum 4.5:1; never below (v1.2, R1: verified 4.85:1 on `--paper`, 5.19:1 on `--raised`) |
-| `--line` | `#e7dfd2` | hairlines, borders |
-| `--accent` | `#7a4f1d` | the one interactive accent (buttons, needle, links) |
-| `--accent-ink` | `#fff8ec` | text on accent |
-| `--danger` | `#a13a30` | destructive actions ONLY (delete); never scores |
+| `--paper` | `#fafaf8` | app background (porcelain near-white) |
+| `--raised` | `#ffffff` | cards/sheets |
+| `--tint` | `#f0f2f2` | subtle fills (bars, typographic plates) |
+| `--ink` | `#1d1d1a` | primary text (16.2:1 on paper) |
+| `--ink-2` | `#54544c` | secondary text (7.3:1) |
+| `--ink-3` | `#6b6b62` | captions/labels — minimum 4.5:1; never below (v2.0 verified: 5.15:1 on `--paper`, 5.38:1 on `--raised`, 4.79:1 on `--tint`) |
+| `--line` | `#e3e4de` | hairlines, borders |
+| `--accent` | `#28577e` | the one interactive accent (buttons, needle, links) — printer's blue (7.29:1 on paper) |
+| `--accent-ink` | `#f7fbff` | text on accent (7.33:1 on accent) |
+| `--danger` | `#a63c31` | destructive actions ONLY (delete); never scores (6.07:1 on paper) |
 
-v1.2 note on `--ink-3` over `--tint`: the corrected value measures 4.44:1 on
-`--tint`, so **caption-size text placed directly on `--tint` fills must use
-`--ink-2`**; large-text uses on tint (≥ the WCAG large-text threshold, e.g.
-the §5 plate monogram) remain compliant at the 3:1 large-text floor. This
-restates the existing AA law for one specific pair; it is not a new rule.
+v2.0 note: the v1.2 caption-on-tint restriction is **retired** — `--ink-3`
+now passes 4.5:1 directly on `--tint` in both appearances, so captions may
+sit on tint fills. The general AA law (all pairs ≥ 4.5:1 text / 3:1 large
+text, verified at build time) stands unchanged.
 
-### 2.2 Colour — dark ("ink")
+### 2.2 Colour — dark ("ink", neutral charcoal — v2.0)
+
+Neither navy nor brown: a neutral charcoal reading surface with a softened
+blue accent. Verified 2026-07-19: `--ink` 15.0:1, `--ink-2` 8.6:1,
+`--ink-3` 5.63:1 on `--paper` (5.13:1 on `--raised`, 4.83:1 on `--tint`);
+`--accent` 8.22:1 on `--paper`; `--accent-ink` 7.19:1 on `--accent`;
+`--danger` 6.95:1 on `--paper`.
 
 | Token | Value |
 |---|---|
-| `--paper` | `#181410` |
-| `--raised` | `#211c16` |
-| `--tint` | `#241f18` |
-| `--ink` | `#f0e8db` |
-| `--ink-2` | `#bfb29e` |
-| `--ink-3` | `#94897a` |
-| `--line` | `#342d24` |
-| `--accent` | `#e0ac60` |
-| `--accent-ink` | `#241708` |
-| `--danger` | `#d98a80` |
+| `--paper` | `#141619` |
+| `--raised` | `#1c1f23` |
+| `--tint` | `#212429` |
+| `--ink` | `#ebeae4` |
+| `--ink-2` | `#b4b3a9` |
+| `--ink-3` | `#8f9089` |
+| `--line` | `#2e3136` |
+| `--accent` | `#82b4dd` |
+| `--accent-ink` | `#0c2438` |
+| `--danger` | `#dc8b81` |
 
 ### 2.2-a Appearance selection contract (v1.2, per J1 review R2)
 
@@ -128,9 +166,11 @@ chromatic. The retired `--app-faint` (#8a97a5) is banned.
 - Three surfaces only: **base** (`--paper`), **raised** (`--raised` + border
   `--line` + shadow), **overlay** (sheet/modal, same as raised + heavier
   shadow + top handle).
-- Shadow scale (exact): raised = `0 1px 2px rgba(58,46,28,.06), 0 6px 22px
-  rgba(58,46,28,.09)`; overlay = `0 18px 48px rgba(58,46,28,.28)`. Dark mode
-  equivalents per prototype.
+- Shadow scale (exact, v2.0 — neutral tint, warm casts retired): raised =
+  `0 1px 2px rgba(28,30,34,.05), 0 6px 22px rgba(28,30,34,.08)`; overlay =
+  `0 18px 48px rgba(28,30,34,.26)`. Dark-mode shadows are black-based and
+  unchanged: raised = `0 1px 2px rgba(0,0,0,.45), 0 8px 28px rgba(0,0,0,.5)`;
+  overlay = `0 18px 48px rgba(0,0,0,.5)`.
 - **No backdrop blur, no glass, no gradients on surfaces** (photo scrims are
   the single exception: linear black scrims over photos for chrome
   legibility, 40–78 % opacity). Reduced-transparency setting ⇒ scrims become
@@ -309,10 +349,16 @@ The interactive prototype is clickable through the whole journey including
 camera→confirm→estimate→save, needs-review resolution, stale estimate, and
 camera failure.
 
-v1.2 note: the prototype and all 42 captures predate the R1 correction and
-render light `--ink-3` as `#7d7364`. Screenshot comparisons must treat this
-single-token colour delta as expected; the §2.1 value `#756b5c` governs.
-Nothing else in the reference states is affected.
+v2.0 note (supersedes the v1.2 single-token note): the reference prototype
+and all 42 captures predate the Porcelain Journal palette and render the
+superseded warm values throughout (including the pre-R1 light `--ink-3`).
+**For every colour token and shadow tint, the §2 values govern over the
+prototypes and captures** until the reference set is re-rendered under
+v2.0 tokens (scheduled before J3 begins). Structure, hierarchy, spacing,
+states, and copy in the reference states remain fully binding. The
+palette-true captures for the J1 screens are
+`../fable-discovery-2-palette/screenshots/` (treatment `c-*`), with the
+comparison method in `../fable-discovery-2-palette/palette-reassessment.md`.
 
 ## 13. Latitude vs Fable approval
 
