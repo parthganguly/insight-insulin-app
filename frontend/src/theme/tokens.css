@@ -1,22 +1,22 @@
-/* Annotated Journal design tokens (design constitution v1.2, Slice J1). */
+/* Annotated Journal design tokens (design constitution v2.0, Slice J1). */
 
 :root,
 .app-appearance-paper {
 	color-scheme: light;
 
 	/* Paper appearance */
-	--paper: #f9f6f0;
-	--raised: #fffefb;
-	--tint: #f1ece1;
-	--ink: #231d15;
-	--ink-2: #5d5446;
-	--ink-3: #756b5c;
-	--line: #e7dfd2;
-	--accent: #7a4f1d;
-	--accent-rgb: 122, 79, 29;
-	--accent-ink: #fff8ec;
-	--danger: #a13a30;
-	--danger-rgb: 161, 58, 48;
+	--paper: #fafaf8;
+	--raised: #ffffff;
+	--tint: #f0f2f2;
+	--ink: #1d1d1a;
+	--ink-2: #54544c;
+	--ink-3: #6b6b62;
+	--line: #e3e4de;
+	--accent: #28577e;
+	--accent-rgb: 40, 87, 126;
+	--accent-ink: #f7fbff;
+	--danger: #a63c31;
+	--danger-rgb: 166, 60, 49;
 
 	/* Type */
 	--font-journal: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -37,8 +37,8 @@
 	--radius-note: 9px;
 	--radius-pill: 999px;
 	--radius-sheet: 22px;
-	--shadow-raised: 0 1px 2px rgba(58, 46, 28, 0.06), 0 6px 22px rgba(58, 46, 28, 0.09);
-	--shadow-overlay: 0 18px 48px rgba(58, 46, 28, 0.28);
+	--shadow-raised: 0 1px 2px rgba(28, 30, 34, 0.05), 0 6px 22px rgba(28, 30, 34, 0.08);
+	--shadow-overlay: 0 18px 48px rgba(28, 30, 34, 0.26);
 	--shadow-frame: 0 0 0 1px var(--line), var(--shadow-overlay);
 
 	/* Motion */
@@ -50,18 +50,18 @@
 	color-scheme: dark;
 
 	/* Ink appearance */
-	--paper: #181410;
-	--raised: #211c16;
-	--tint: #241f18;
-	--ink: #f0e8db;
-	--ink-2: #bfb29e;
-	--ink-3: #94897a;
-	--line: #342d24;
-	--accent: #e0ac60;
-	--accent-rgb: 224, 172, 96;
-	--accent-ink: #241708;
-	--danger: #d98a80;
-	--danger-rgb: 217, 138, 128;
+	--paper: #141619;
+	--raised: #1c1f23;
+	--tint: #212429;
+	--ink: #ebeae4;
+	--ink-2: #b4b3a9;
+	--ink-3: #8f9089;
+	--line: #2e3136;
+	--accent: #82b4dd;
+	--accent-rgb: 130, 180, 221;
+	--accent-ink: #0c2438;
+	--danger: #dc8b81;
+	--danger-rgb: 220, 139, 129;
 	--shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 28px rgba(0, 0, 0, 0.5);
 	--shadow-overlay: 0 18px 48px rgba(0, 0, 0, 0.5);
 }
