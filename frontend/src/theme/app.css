@@ -34,10 +34,13 @@ ion-content.ion-padding {
 	--padding-end: 20px;
 }
 
+/* Porcelain controls read composed, not mechanically spaced: Ionic's MD
+   default 0.06em button tracking is removed app-wide (issue #108). */
 ion-button,
 ion-button::part(native),
 button {
 	text-transform: none;
+	letter-spacing: normal;
 }
 
 ion-button {
@@ -90,12 +93,16 @@ ion-toolbar.app-toolbar {
 	--min-height: 56px;
 }
 
+/* Toolbar titles are navigation chrome, so they use the sans control voice
+   (issue #108): the previous tracked serif rendered as sparse "H o m e" on
+   Android, where the whole journal stack falls back to Noto Serif. Serif
+   stays reserved for editorial hierarchy and meal titles. */
 ion-toolbar.app-toolbar ion-title {
 	padding-inline: 20px;
-	font-family: var(--font-journal);
-	font-size: 0.92rem;
+	font-family: var(--font-body);
+	font-size: 0.95rem;
 	font-weight: 600;
-	letter-spacing: 0.1em;
+	letter-spacing: normal;
 }
 
 ion-toolbar.app-toolbar ion-button {
@@ -127,6 +134,7 @@ ion-tab-button ion-label {
 	margin-top: 2px;
 	font-size: var(--type-caption);
 	font-weight: 600;
+	letter-spacing: normal;
 }
 
 ion-tab-button ion-icon {
@@ -270,13 +278,6 @@ ion-tab-button.tab-selected:not(.journey-tab-selected) {
 	--min-height: 58px;
 }
 
-.home-masthead ion-toolbar.app-toolbar ion-title {
-	font-size: 0.92rem;
-	font-weight: 600;
-	letter-spacing: 0.15em;
-	color: var(--ink-3);
-}
-
 .home-settings-action {
 	--padding-start: 8px;
 	--padding-end: 4px;
@@ -295,15 +296,18 @@ ion-tab-button.tab-selected:not(.journey-tab-selected) {
 }
 
 .home-folio {
-	padding: 2px 4px 0;
+	padding: 12px 4px 0;
 }
 
+/* Classic folio voice: regular italic (issue #108). Android's serif fallback
+   (Noto Serif) rendered the previous 600 as BoldItalic, which reads blunt
+   rather than editorial; NotoSerif-Italic is the intended real face. */
 .home-folio h1 {
 	margin: 0;
 	font-family: var(--font-journal);
 	font-size: var(--type-folio);
 	font-style: italic;
-	font-weight: 600;
+	font-weight: 400;
 	line-height: 1.15;
 	color: var(--ink);
 }
@@ -324,8 +328,9 @@ ion-tab-button.tab-selected:not(.journey-tab-selected) {
 	font-size: 0.86rem;
 }
 
+/* The index number stays on the sentence's own size so the line box does not
+   wobble around the emphasized value (issue #108). */
 .home-trend-sentence strong {
-	font-size: 0.92rem;
 	font-variant-numeric: tabular-nums;
 	color: var(--ink);
 }
@@ -338,7 +343,7 @@ ion-tab-button.tab-selected:not(.journey-tab-selected) {
 }
 
 .home-trend-gloss {
-	margin-top: 2px;
+	margin-top: 4px;
 }
 
 .home-trend-footnote {
@@ -1120,11 +1125,13 @@ ion-progress-bar {
 	font-size: 1.6rem;
 }
 
+/* Same folio correction as Home (issue #108): regular italic, not the blunt
+   Android BoldItalic fallback. */
 .log-meal-intro h1 {
 	font-family: var(--font-journal);
 	font-size: var(--type-folio);
 	font-style: italic;
-	font-weight: 600;
+	font-weight: 400;
 	line-height: 1.15;
 }
 

@@ -20,7 +20,9 @@ describe("abolished startup mechanisms stay removed", () => {
 	it("has no hardcoded 50px body padding and no inset-padding-top class anywhere", () => {
 		for (const source of [mainTsx, appTsx, toolbarTsx, variablesCss, appCss, indexHtml]) {
 			expect(source).not.toMatch(/inset-padding-top/);
-			expect(source).not.toMatch(/50px/);
+			// A standalone 50px value (the abolished body padding), not substrings
+			// of larger lengths like 350px.
+			expect(source).not.toMatch(/(?<!\d)50px/);
 		}
 		expect(mainTsx).not.toMatch(/body\.style/);
 	});
