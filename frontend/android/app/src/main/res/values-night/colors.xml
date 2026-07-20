@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Startup Porcelain surface, system dark (issue #107). Duplicates the
+         tokens.css "paper" token of the ink appearance (#141619); keep in
+         sync with frontend/src/theme/tokens.css. -->
+    <color name="startup_porcelain_surface">#FF141619</color>
+</resources>
