@@ -1,20 +1,18 @@
 import { IonToolbar } from "@ionic/react";
-import { SafeArea } from "capacitor-plugin-safe-area";
+import React from "react";
 
-import React, { useEffect, useState } from "react";
-
+/**
+ * Thin styling wrapper only. Safe-area padding must not be applied here:
+ * Ionic's built-in `ion-header ion-toolbar:first-of-type` rule consumes
+ * --ion-safe-area-top, which maps to the centralized --app-safe-area-* source
+ * resolved before first render (issue #107). No component may initialize an
+ * inset to zero and correct it later.
+ */
 function IonToolbarWrapper({ children, ...props }: { children: React.ReactNode } & React.ComponentProps<typeof IonToolbar>) {
-	const [top, setTop] = useState(0);
-	useEffect(() => {
-		SafeArea.getSafeAreaInsets().then(({ insets }) => {
-			setTop(insets.top);
-		});
-	}, []);
 	const className = ["app-toolbar", props.className].filter(Boolean).join(" ");
-	const style = { ...props.style, paddingTop: top };
 
 	return (
-		<IonToolbar {...props} style={style} className={className}>
+		<IonToolbar {...props} className={className}>
 			{children}
 		</IonToolbar>
 	);

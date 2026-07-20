@@ -1,5 +1,23 @@
 @import "./tokens.css";
 
+/* Application-level safe-area source (issue #107). On native Android the
+   startup bootstrap in main.tsx resolves real insets before React renders and
+   overrides these on the root element; browser/PWA keeps the CSS env()
+   fallback. This block is the only place --ion-safe-area-* may be written:
+   Ionic's own env() defaults on `html` are overridden here once, and every
+   component consumes the Ionic variables declaratively. */
+:root {
+	--app-safe-area-top: env(safe-area-inset-top, 0px);
+	--app-safe-area-right: env(safe-area-inset-right, 0px);
+	--app-safe-area-bottom: env(safe-area-inset-bottom, 0px);
+	--app-safe-area-left: env(safe-area-inset-left, 0px);
+
+	--ion-safe-area-top: var(--app-safe-area-top);
+	--ion-safe-area-right: var(--app-safe-area-right);
+	--ion-safe-area-bottom: var(--app-safe-area-bottom);
+	--ion-safe-area-left: var(--app-safe-area-left);
+}
+
 /* Ionic maps onto the constitution tokens; appearance values come from the
    root class applied by App.tsx. */
 :root,

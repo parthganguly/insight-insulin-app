@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Startup Porcelain surface (issue #107). Duplicates the tokens.css
+         "paper" token of the paper appearance (#fafaf8); keep in sync with
+         frontend/src/theme/tokens.css. The night variant lives in
+         values-night/colors.xml. -->
+    <color name="startup_porcelain_surface">#FFFAFAF8</color>
+</resources>

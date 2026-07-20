@@ -1,0 +1,7 @@
+Starting: Intent { cmp=io.ionic.starter/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: io.ionic.starter/.MainActivity
+TotalTime: 7020
+WaitTime: 7035
+Complete

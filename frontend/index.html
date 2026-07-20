@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="ion-palette-dark">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -20,7 +20,68 @@
   <!-- add to homescreen for ios -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Ionic App" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <style>
+    /* No-JS/pre-script Porcelain baseline. The colors duplicate the
+       tokens.css --paper values (paper #fafaf8, ink #141619); this must never
+       be pure black or pure white. */
+    html {
+      background-color: #fafaf8;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html {
+        background-color: #141619;
+      }
+    }
+  </style>
+  <script>
+    /* Startup appearance bootstrap (issue #107). Runs synchronously before
+       bundled CSS and React so the first document paint already uses the
+       resolved appearance. Reads the persisted zustand payload written by
+       settingsStore.ts (localStorage "app-settings",
+       {"state":{"darkMode":boolean|null,...},"version":n}); it must never
+       write to that storage. */
+    (function () {
+      /* Surface colors duplicate tokens.css --paper: paper appearance
+         #fafaf8, ink appearance #141619. */
+      var PAPER_SURFACE = "#fafaf8";
+      var INK_SURFACE = "#141619";
+
+      window.__APP_STARTUP_READY = false;
+
+      var darkMode = null;
+      try {
+        var raw = window.localStorage.getItem("app-settings");
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          var stored = parsed && parsed.state ? parsed.state.darkMode : null;
+          if (typeof stored === "boolean") {
+            darkMode = stored;
+          }
+        }
+      } catch (error) {
+        darkMode = null;
+      }
+
+      var prefersInk = false;
+      try {
+        prefersInk =
+          typeof window.matchMedia === "function" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+      } catch (error) {
+        prefersInk = false;
+      }
+
+      var ink = darkMode === null ? prefersInk : darkMode;
+      var root = document.documentElement;
+      root.classList.add(ink ? "app-appearance-ink" : "app-appearance-paper");
+      root.style.colorScheme = ink ? "dark" : "light";
+      root.style.backgroundColor = ink ? INK_SURFACE : PAPER_SURFACE;
+      window.__APP_APPEARANCE = ink ? "ink" : "paper";
+    })();
+  </script>
 </head>
 
 <body>

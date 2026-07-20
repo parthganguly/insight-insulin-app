@@ -40,7 +40,8 @@ import SavedMealDetail from "./pages/meal/SavedMealDetail";
 import LogMealChooser from "./pages/meal/LogMealChooser";
 import PreviousMealPicker from "./pages/meal/PreviousMealPicker";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { SafeArea } from "capacitor-plugin-safe-area";
+import { Capacitor } from "@capacitor/core";
+import { StatusBar, Style } from "@capacitor/status-bar";
 import { useSettingsStore } from "./stores/settingsStore";
 import { applyRootAppearance, INK_APPEARANCE_CLASS, INK_MEDIA_QUERY, PAPER_APPEARANCE_CLASS, resolveAppearance } from "./utils/appearance";
 
@@ -56,7 +57,7 @@ const getJourneyTabForPath = (pathname: string): JourneyTab => {
 	return "dashboard";
 };
 
-const AppTabs = ({ bottom }: { bottom: number }) => {
+const AppTabs = () => {
 	const { pathname } = useLocation();
 	const selectedTab = getJourneyTabForPath(pathname);
 
@@ -95,7 +96,7 @@ const AppTabs = ({ bottom }: { bottom: number }) => {
 							<Redirect to='/dashboard' />
 						</Route>
 					</IonRouterOutlet>
-					<IonTabBar style={{ paddingBottom: `max(${bottom}px, env(safe-area-inset-bottom))` }} slot='bottom'>
+					<IonTabBar slot='bottom'>
 						<IonTabButton tab='dashboard' href='/dashboard' aria-label='Home' aria-selected={selectedTab === "dashboard"} selected={selectedTab === "dashboard"} className={selectedTab === "dashboard" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={bookOutline} />
 							<IonLabel>Home</IonLabel>
@@ -113,17 +114,10 @@ const AppTabs = ({ bottom }: { bottom: number }) => {
 	);
 };
 
-const App: React.FC = () => {
-	const [bottom, setBottom] = useState(0);
+const App: React.FC<{ onShellReady?: () => void }> = ({ onShellReady }) => {
 	const darkModeSetting = useSettingsStore((state) => state.darkMode);
 	const [prefersInk, setPrefersInk] = useState(() => (typeof window.matchMedia === "function" ? window.matchMedia(INK_MEDIA_QUERY).matches : false));
 	const appearance = resolveAppearance({ darkMode: darkModeSetting, prefersInk });
-
-	useEffect(() => {
-		SafeArea.getSafeAreaInsets().then(({ insets }) => {
-			setBottom(insets.bottom);
-		});
-	}, []);
 
 	useEffect(() => {
 		if (typeof window.matchMedia !== "function") return;
@@ -142,16 +136,33 @@ const App: React.FC = () => {
 	useLayoutEffect(() => {
 		const root = document.documentElement;
 		applyRootAppearance(root, appearance);
+		window.__APP_APPEARANCE = appearance;
+		// The index.html bootstrap paints an inline Porcelain background before
+		// bundled CSS exists; once the appearance class is authoritative the
+		// stylesheet owns the surface, so later appearance changes apply.
+		root.style.removeProperty("background-color");
 		return () => {
 			root.classList.remove(PAPER_APPEARANCE_CLASS, INK_APPEARANCE_CLASS);
 			root.style.removeProperty("color-scheme");
 		};
 	}, [appearance]);
 
+	useEffect(() => {
+		if (!Capacitor.isNativePlatform()) return;
+		// Ratified law: paper → dark status icons, ink → light status icons.
+		StatusBar.setStyle({ style: appearance === "ink" ? Style.Dark : Style.Light }).catch(() => {
+			// System-bar styling is cosmetic; a plugin failure must not break boot.
+		});
+	}, [appearance]);
+
+	useEffect(() => {
+		onShellReady?.();
+	}, [onShellReady]);
+
 	return (
 		<IonApp className={appearance === "ink" ? INK_APPEARANCE_CLASS : PAPER_APPEARANCE_CLASS} data-appearance={appearance}>
 			<IonReactRouter>
-				<AppTabs bottom={bottom} />
+				<AppTabs />
 			</IonReactRouter>
 		</IonApp>
 	);
