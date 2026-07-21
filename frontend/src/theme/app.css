@@ -491,7 +491,7 @@ ion-item.journal-entry-card::part(native) {
 	padding: 12px 16px 14px;
 }
 
-.journal-entry-caption h2 {
+.journal-entry-caption h3 {
 	margin: 0;
 	font-family: var(--font-journal);
 	font-size: 1.18rem;

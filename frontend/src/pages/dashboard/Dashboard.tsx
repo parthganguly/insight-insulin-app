@@ -100,7 +100,7 @@ const Dashboard: React.FC = () => {
 	const journalGroups = groupJournalMealsByDay(meals);
 
 	return (
-		<IonPage className='home-journal-page'>
+		<IonPage>
 			<IonHeader className='home-masthead'>
 				<IonToolbarWrapper>
 					<IonTitle>Home</IonTitle>

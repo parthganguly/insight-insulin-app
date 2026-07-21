@@ -79,7 +79,7 @@ describe("issue #108 Porcelain typography law", () => {
 		});
 
 		// Meal titles remain serif hierarchy; metadata remains sans.
-		computed(".journal-entry-caption h2", (cs) => {
+		computed(".journal-entry-caption h3", (cs) => {
 			expect(cs.fontFamily).to.contain(SERIF_MARKER);
 		});
 		computed(".journal-entry-caption p", (cs) => {
@@ -119,7 +119,7 @@ describe("issue #108 Porcelain typography law", () => {
 			expect(cs.fontWeight).to.equal("400");
 			expect(cs.fontStyle).to.equal("italic");
 		});
-		cy.contains(".journal-entry-caption h2", matureMeals[0].name).should(($heading) => {
+		cy.contains(".journal-entry-caption h3", matureMeals[0].name).should(($heading) => {
 			const style = getComputedStyle($heading[0]);
 			expect(style.whiteSpace).not.to.equal("nowrap");
 			expect(style.textOverflow).not.to.equal("ellipsis");

@@ -1,9 +1,12 @@
 # Annotated Journal J2 — Home implementation report
 
-Date: 2026-07-19
+Date: 2026-07-19 (sections 1–11; later-dated addenda below)
 Branch: `sol/annotated-journal-j2-home`
 Contract: GitHub issue #104
-Implementation state: corrected and uncommitted, awaiting Fable re-review
+Implementation state: committed on the J2 branch (PR #106, draft). Sections
+1–11 are the Sol-era implementation and QA record preserved as evidence;
+§12 records the Fable typography correction (issue #108) and §13 points to
+the Fable ownership audit (issue #110), which governs where they differ.
 
 ## 1. Summary
 
@@ -183,6 +186,13 @@ Approved branch: `sol/annotated-journal-j2-home`
 Approved commit installed: `209469de233220ccf0a8673eeb33fa5c35bcd1da`
 QA verdict: **FAIL — stopped for Fable/product triage after a reproducible native cold-launch defect.**
 
+> Resolution note (2026-07-20): the cold-launch black-window/status-bar
+> overlap recorded below was triaged as the native startup/safe-area defect,
+> fixed on `main` by issue #107 (PR #109), and this branch was rebased onto
+> that `main`. The failure entries in this section are the pre-#107 evidence
+> trail, retained verbatim; the final physical gate re-runs on the final PR
+> head.
+
 ### Device and installation evidence
 
 | Item | Observed value |
@@ -277,7 +287,7 @@ All evidence is stored under the existing gitignored Cypress screenshot area and
 - Empty, building, paper theme, alternate text scaling, background/resume, natural momentum, rotation, keyboard interaction, and the dedicated long-name fixture remain unresolved because the contract requires an immediate stop on a product defect.
 - No code fix was attempted. No report commit or push was made. Issue #105, J3/J4, every later slice, `safetyCopy.ts`, and `trendDisplay.ts` remain untouched pending Fable/product triage.
 
-## 6. Issue #108 — Porcelain typography correction (2026-07-20)
+## 12. Issue #108 — Porcelain typography correction (2026-07-20)
 
 After issue #107 (native startup/safe-area) merged to `main`, this branch was rebased onto the new `main` and Fable audited and corrected the typography defects the owner reported. Full diagnosis, design ruling, changed files, and automated + physical Android evidence live in `reports/ux/premium-redesign/typography-108/report.md`; summary:
 
@@ -285,3 +295,15 @@ After issue #107 (native startup/safe-area) merged to `main`, this branch was re
 - **Root cause 2:** the folio heading ("Monday morning") and the Log Meal intro heading used `font-weight: 600` with `font-style: italic`. Android's Noto Serif fallback renders that combination as a synthesized-looking bold-italic (`CSS.getPlatformFontsForNode` confirms `NotoSerif-BoldItalic`), reading blunt rather than editorial. Fixed: both headings now use `font-weight: 400`, resolving to the platform's real, unsynthesized italic face (`NotoSerif-Italic`).
 - Secondary correction: Ionic's Material Design default button/tab-label letter-spacing (`~1px`/`0.36px`) is reset to `normal` app-wide, addressing the "mechanically spaced-out" control criterion.
 - No font or dependency added; `tokens.css` untouched; only `frontend/src/theme/app.css` changed. Full lint/tsc/unit(461)/build/Cypress(60, including the new `typography-108.cy.ts`)/`git diff --check` pass. Physical SM-M356B verification (CDP platform-font inspection, not just computed styles) confirms the corrected weight/style/family on-device across all six empty/building/mature × paper/ink combinations, plus Log Meal and Settings chrome.
+
+## 13. Issue #110 — Fable ownership audit (2026-07-21)
+
+Fable re-evaluated the complete branch from first principles and took
+ownership of the final implementation. The commit-by-commit provenance,
+file-by-file preserve/rewrite/remove/defer decisions, exact rewrites,
+scope cleanup (including removal of the accidentally committed
+`reports/beta-readiness/` file), verification evidence, and final PR file
+list live in `fable-ownership-audit.md` in this directory. Where this
+report's Sol-era sections describe superseded details (for example the
+former `h2` meal-title markup or the pre-#110 changed-file list), the
+ownership audit governs.

@@ -110,10 +110,12 @@ describe("J2 Home as journal", () => {
 					}
 
 					assertNoHorizontalOverflow();
-					if (lifecycle === "mature") {
-						resetForViewportCapture();
-						captureHome(`j2-home/${width}x${height}/home-${lifecycle}-${appearance}-corrected`);
-					}
+					// Refresh the full 12-capture lifecycle matrix on every run. The
+					// mature captures keep their historical `-corrected` names so the
+					// evidence paths in the implementation report stay valid.
+					resetForViewportCapture();
+					const captureSuffix = lifecycle === "mature" ? "-corrected" : "";
+					captureHome(`j2-home/${width}x${height}/home-${lifecycle}-${appearance}${captureSuffix}`);
 				});
 			}
 		}
@@ -123,7 +125,7 @@ describe("J2 Home as journal", () => {
 		cy.viewport(320, 700);
 		visitLifecycle("mature", "paper");
 
-		cy.contains(".journal-entry-caption h2", matureMeals[0].name).should(($heading) => {
+		cy.contains(".journal-entry-caption h3", matureMeals[0].name).should(($heading) => {
 			const style = getComputedStyle($heading[0]);
 			expect(style.whiteSpace).not.to.equal("nowrap");
 			expect(style.textOverflow).not.to.equal("ellipsis");

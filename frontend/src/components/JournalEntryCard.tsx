@@ -8,6 +8,9 @@ type JournalEntryCardProps = {
 	meal: Meal;
 };
 
+// A journal entry is a history/review affordance (issue #89): it opens the
+// saved meal's read-only detail with its canonical score intact. Reuse as a
+// new draft belongs only to the explicit previous-meal picker.
 const JournalEntryCard: React.FC<JournalEntryCardProps> = ({ meal }) => {
 	const accessibleId = React.useId();
 	const nameId = `${accessibleId}-name`;
@@ -25,7 +28,7 @@ const JournalEntryCard: React.FC<JournalEntryCardProps> = ({ meal }) => {
 			<article className='journal-entry-card-content'>
 				{meal.image ? <img className='journal-entry-image' src={meal.image} alt='' /> : <TypographicPlate mealName={meal.name} />}
 				<div className='journal-entry-caption'>
-					<h2 id={nameId}>{meal.name}</h2>
+					<h3 id={nameId}>{meal.name}</h3>
 					<p id={metaId}>{getJournalEntryMetaLine(meal)}</p>
 				</div>
 			</article>

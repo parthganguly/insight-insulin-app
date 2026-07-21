@@ -25,3 +25,38 @@ window.requestIdleCallback =
     return 0;
   };
 window.cancelIdleCallback = window.cancelIdleCallback || function () {};
+
+// jsdom has no IntersectionObserver either. Ionic's ion-img then falls back to
+// setTimeout(() => load(), 200); when a test file finishes inside that window
+// the timer fires after vitest tears down jsdom and its dispatchEvent crashes
+// the run as an unhandled error (observed in CI via AiMealAdd.campaignA).
+// Report every observed element as immediately visible, synchronously, so
+// lazy content loads while the test window still exists and no timer is armed.
+// ion-img additionally requires `isIntersecting` on the entry *prototype*, so
+// the stub entry exposes it as a prototype getter.
+class StubIntersectionObserverEntry {
+	get isIntersecting(): boolean {
+		return true;
+	}
+}
+
+class StubIntersectionObserver {
+	constructor(private readonly callback: IntersectionObserverCallback) {}
+
+	observe(target: Element): void {
+		this.callback(
+			[{ isIntersecting: true, target } as IntersectionObserverEntry],
+			this as unknown as IntersectionObserver,
+		);
+	}
+
+	unobserve(): void {}
+	disconnect(): void {}
+	takeRecords(): IntersectionObserverEntry[] {
+		return [];
+	}
+}
+
+window.IntersectionObserver = window.IntersectionObserver || (StubIntersectionObserver as unknown as typeof IntersectionObserver);
+window.IntersectionObserverEntry =
+	window.IntersectionObserverEntry || (StubIntersectionObserverEntry as unknown as typeof IntersectionObserverEntry);
