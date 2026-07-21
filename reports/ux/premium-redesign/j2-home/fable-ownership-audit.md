@@ -97,7 +97,25 @@ Note on the unit suite: while the build and Cypress ran concurrently on this Win
 
 ## 7. Physical-device verification
 
-The issue #110 gate requires the full Samsung SM-M356B pass on the exact final head. Status at the time of this report is recorded in §10; PR #106 remains draft until that gate passes on the final head.
+Full gate run 2026-07-21 on Samsung SM-M356B (RZCY22FGP1Z, Android 16/API 36, 1080×2340, 420 dpi override, three-button navigation, 90 % text scale) against a debug APK built from the final audited code (web assets rebuilt, `cap sync`, `gradlew assembleDebug`). Backend was a local synthetic stub over `adb reverse tcp:8000` (only `/meals` → `[]` and `/metrics/chronic`); lifecycle states and appearances were seeded through the WebView DevTools socket (`localStorage`), never with real data. **All checks passed:**
+
+| Check | Result |
+| --- | --- |
+| Cold launch (`pm clear` → `am start -W`, screen-recorded, frame-analyzed) | PASS — splash cross-fades directly into the correctly inset Home; no black window, no status-bar overlap, no top-inset shift (the pre-#107 defect recorded in the implementation report §11 is gone under J2) |
+| Empty / building / mature × paper / ink | PASS — all six combinations rendered and screenshotted; building shows the sealed 3-day gating line with no trend sentence; mature shows `5 of 7 days logged · 7-day index 62` with `role="img"` and the sealed ARIA label |
+| Typography on final head | PASS — folio `NotoSerif` italic weight 400; meal titles serif 600 on the new `h3`; day breaks `h2` italic; masthead sans; long biryani name wraps in three lines without clipping at 90 % and 130 % scale |
+| Heading outline (R1) | PASS — on-device DOM shows `h2` day breaks, `h3` titles, zero residual `h2` titles |
+| Collapsed/expanded footnote | PASS — native tap opens it; full sealed disclaimer readable; dock and tab bar unobscured |
+| Fixed dock and tab bar vs. system navigation | PASS — dock stays above the tab bar, tab bar above three-button navigation, during scroll and after resume |
+| Scroll | PASS — momentum scroll moves content behind the fixed chrome; no horizontal overflow (`scrollWidth <= innerWidth` verified) |
+| Settings navigation | PASS — real tap → `/settings`, correct safe areas, Android back returns to Home |
+| Saved-meal navigation | PASS — real tap on the low-quality entry → read-only `/meals/saved/mature-long` (`Meal result`, `Saved to history`, sealed insufficient-data framing); back preserves the journal |
+| Landscape / portrait return | PASS — centered column, chrome intact, display-cutout side inset respected; portrait restores 411×891 |
+| Background/resume | PASS — hot resume in 69 ms with route, entries, and trend state intact |
+| Text scaling | PASS at the device's 90 % baseline and at 130 % (root 20.8 px): no overflow, wrapping intact, dock visible; restored to 90 % after |
+| Jank/flicker | PASS — frame analysis of the cold-launch recording shows a monotonic splash→content transition with no black frames and no layout shift |
+
+Evidence (gitignored per repo convention): `frontend/cypress/screenshots/j2-home-device-qa-110/` — six lifecycle×appearance captures, expanded footnote, Settings, saved detail, landscape, post-scroll, post-resume, 130 %-scale capture, cold-launch recording and key frames. Device state was fully restored (font scale 0.9, auto-rotate, stay-awake off, `pm clear`, forwards removed).
 
 ## 8. Exact final PR file list
 
@@ -130,4 +148,4 @@ I re-derived every meaningful choice in this PR from the design constitution, th
 ## 10. Gate status at report time
 
 - Scope cleanup, rewrites, lint, TypeScript, unit suite, build, complete Cypress suite, `git diff --check`, and exact-size lifecycle captures: complete on the final head.
-- Physical SM-M356B gate: pending device availability (no device on `adb` at audit time); PR #106 stays draft until it passes on the exact final head, per the issue #110 stop/merge rule.
+- Physical SM-M356B gate: **passed** on the final audited code (§7). The web assets installed on the device were built from the exact working tree of the final commit; CI on the pushed head is the remaining green-check requirement before the PR may leave draft, per the issue #110 stop/merge rule.
