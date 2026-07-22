@@ -32,42 +32,92 @@ Pi extensions execute with the user's local permissions after project trust is
 granted. Review `.pi/extensions/safety-gate.ts` before trusting the project.
 The gate blocks common accidents; it does not provide OS-level isolation.
 
-## Windows setup
+## Requirements
 
-Requirements:
+- Node.js 22 or newer in the shell that runs Pi;
+- Git;
+- a local checkout or worktree of this repository.
 
-- Node.js 22 or newer;
-- Git for Windows, including Git Bash;
-- a clean local checkout of this repository.
+The setup installs the pinned package:
 
-From the repository root in PowerShell:
+```text
+@earendil-works/pi-coding-agent@0.80.10
+```
+
+No setup path stores provider credentials.
+
+## Preferred Windows setup: MSYS2 UCRT64
+
+Use the **MSYS2 UCRT64** environment on an ordinary x86-64 Windows PC. Do not
+use CLANGARM64 unless the Windows machine itself is ARM64.
+
+MSYS2 supports full-system upgrades only. In the UCRT64 terminal:
+
+```bash
+pacman -Syu
+```
+
+When a core update closes the terminal, reopen **MSYS2 UCRT64** and run the same
+command again:
+
+```bash
+pacman -Syu
+```
+
+Install the UCRT64 Node package:
+
+```bash
+pacman -S --needed mingw-w64-ucrt-x86_64-nodejs
+```
+
+Verify that UCRT64, not an older Windows installation, owns the active command:
+
+```bash
+which node
+node -v
+npm -v
+```
+
+From the repository root:
+
+```bash
+./scripts/setup-pi-msys2.sh
+```
+
+The script:
+
+- requires the `UCRT64` environment;
+- verifies Node 22+;
+- installs the pinned Pi package;
+- records the current MSYS2 Bash executable as Pi's shell while preserving
+  unrelated global Pi settings;
+- resolves the correct Git exclude path for both ordinary clones and linked
+  worktrees;
+- locally excludes `.pi/runs/`;
+- stores no provider credential.
+
+Start Pi from the same UCRT64 repository shell:
+
+```bash
+pi
+```
+
+## Alternative Windows setup: PowerShell
+
+PowerShell requires a Windows Node.js 22+ installation and Git Bash:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\scripts\setup-pi-windows.ps1
 ```
 
-The script installs the pinned package:
+The PowerShell installer also resolves the real worktree Git path rather than
+assuming `.git` is a directory.
 
-```text
-@earendil-works/pi-coding-agent@0.80.10
-```
+## First launch
 
-It also:
-
-- records Git Bash as Pi's shell in the user's global Pi settings;
-- preserves unrelated global Pi settings;
-- adds `.pi/runs/` to local `.git/info/exclude`;
-- stores no provider credential.
-
-Start Pi from the repository root:
-
-```powershell
-pi
-```
-
-On first launch, inspect the project-local files and approve project trust only
-for the correct INSIGHT checkout. Then use:
+Inspect the project-local files and approve project trust only for the correct
+INSIGHT checkout. Then use:
 
 ```text
 /login
@@ -99,15 +149,13 @@ Example:
 
 Read-only review with a fixed verdict and at most five findings.
 
-Example:
-
 ```text
 /review PR #123 against its governing issue. Do not edit.
 ```
 
-For a stronger read-only process boundary, start Pi with only read tools:
+For a stronger read-only process boundary:
 
-```powershell
+```bash
 pi --tools read,grep,find,ls
 ```
 
@@ -119,51 +167,47 @@ editing.
 
 ## Verification scripts
 
-Frontend:
+### MSYS2 UCRT64 / Bash
+
+```bash
+./scripts/ai/check.sh frontend
+./scripts/ai/check.sh frontend --full
+./scripts/ai/check.sh backend
+./scripts/ai/check.sh rust
+./scripts/ai/check.sh all --full
+```
+
+### PowerShell
 
 ```powershell
 .\scripts\ai\check.ps1 -Scope frontend
-```
-
-Frontend including Cypress:
-
-```powershell
 .\scripts\ai\check.ps1 -Scope frontend -Full
-```
-
-Backend or Rust:
-
-```powershell
 .\scripts\ai\check.ps1 -Scope backend
 .\scripts\ai\check.ps1 -Scope rust
-```
-
-All checks:
-
-```powershell
 .\scripts\ai\check.ps1 -Scope all -Full
 ```
 
-The scripts fail immediately on the first failed command and finish with
+The scripts fail on the first failed command and finish with
 `git diff --check`.
 
 ## Evidence snapshot
+
+MSYS2 UCRT64 / Bash:
+
+```bash
+./scripts/ai/snapshot.sh
+```
+
+PowerShell:
 
 ```powershell
 .\scripts\ai\snapshot.ps1
 ```
 
-This writes a timestamped local report below `.pi/runs/` containing:
-
-- repository and remote;
-- branch and HEAD;
-- working-tree status;
-- changed filenames;
-- diff statistics;
-- whitespace-check result.
-
-The setup script excludes `.pi/runs/` locally. Evidence is not committed unless
-a specific issue explicitly authorizes curated evidence.
+This writes a timestamped local report below `.pi/runs/` containing repository,
+remote, branch, HEAD, status, changed filenames, diff statistics and the
+whitespace-check result. Evidence remains local unless a specific issue
+authorizes curated evidence.
 
 ## Initial routing law
 
@@ -181,8 +225,8 @@ against the model's native harness when that comparison matters.
 
 ## When automatic routing may begin
 
-Do not build a router until at least six real tasks have been recorded.
-For every task record:
+Do not build a router until at least six real tasks have been recorded. For
+every task record:
 
 - task class;
 - model and harness;
