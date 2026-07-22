@@ -4,6 +4,13 @@ set -euo pipefail
 PI_VERSION="0.80.10"
 MIN_NODE_MAJOR=22
 
+cat >&2 <<'EOF'
+NOTICE: this installs a separate Pi instance inside MSYS2 UCRT64.
+It is supported as a smoke-test/recovery path, but INSIGHT's preferred long-term
+Windows setup is native Windows Node + native Pi launched from PowerShell, with
+MSYS2 Bash configured through Pi's shellPath setting.
+EOF
+
 if [[ "${MSYSTEM:-}" != "UCRT64" ]]; then
   echo "Run this script from the MSYS2 UCRT64 terminal, not PowerShell, MSYS, MINGW64, CLANG64, or CLANGARM64." >&2
   exit 1
@@ -11,17 +18,9 @@ fi
 
 if ! command -v git >/dev/null 2>&1; then
   cat >&2 <<'EOF'
-Git is not installed in this MSYS2 UCRT64 environment.
-
-Install the native UCRT64 Git package:
+Git is missing in MSYS2 UCRT64. Install it with:
   pacman -S --needed mingw-w64-ucrt-x86_64-git
-
-Verify:
-  which git
-  git --version
-
-Then return to the INSIGHT worktree, pull the latest harness branch, and rerun:
-  bash scripts/setup-pi-msys2.sh
+Then rerun this script.
 EOF
   exit 1
 fi
@@ -62,7 +61,7 @@ EOF
   exit 1
 fi
 
-printf 'Installing @earendil-works/pi-coding-agent@%s...\n' "$PI_VERSION"
+printf 'Installing temporary UCRT64 @earendil-works/pi-coding-agent@%s...\n' "$PI_VERSION"
 npm install -g --ignore-scripts "@earendil-works/pi-coding-agent@$PI_VERSION"
 
 config_dir="$HOME/.pi/agent"
@@ -98,9 +97,9 @@ printf '\nPi installed: '
 pi --version
 printf 'Node: '
 node -v
-printf 'Git: '
-git --version
-printf 'Git Bash: %s\n' "$bash_windows"
+printf 'Bash backend: %s\n' "$bash_windows"
 printf 'Repository: %s\n\n' "$repo_root"
 printf 'Next:\n  pi\n  /login\n\n'
+printf 'After the native Windows Pi installation is verified, remove this UCRT64 instance with:\n'
+printf '  npm uninstall -g @earendil-works/pi-coding-agent\n\n'
 printf 'Approve project trust only for this repository. Never store API keys in the repository.\n'
