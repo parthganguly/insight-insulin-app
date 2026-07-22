@@ -22,22 +22,23 @@ function Stop-ForNodeUpgrade {
     param([string]$DetectedVersion)
 
     Write-Host ""
-    Write-Host "Pi needs Node.js 22 or newer." -ForegroundColor Red
+    Write-Host "Pi needs native Windows Node.js 22 or newer." -ForegroundColor Red
     if ($DetectedVersion) {
-        Write-Host "This shell is using Node.js $DetectedVersion." -ForegroundColor Yellow
+        Write-Host "This PowerShell session is using Node.js $DetectedVersion." -ForegroundColor Yellow
     } else {
-        Write-Host "Node.js was not found in this shell." -ForegroundColor Yellow
+        Write-Host "Node.js was not found in this PowerShell session." -ForegroundColor Yellow
     }
     Write-Host ""
-    Write-Host "Windows installer route:" -ForegroundColor Cyan
-    Write-Host "  Install the current LTS release from https://nodejs.org/en/download"
-    Write-Host "  Close PowerShell, open a new one, verify node -v, then rerun this script."
+    Write-Host "Install the current Windows x64 LTS release from the official Node.js download page:" -ForegroundColor Cyan
+    Write-Host "  https://nodejs.org/en/download"
     Write-Host ""
-    Write-Host "MSYS2 UCRT64 route:" -ForegroundColor Cyan
-    Write-Host "  Open the MSYS2 UCRT64 terminal and run:"
-    Write-Host "    pacman -Syu"
-    Write-Host "    pacman -S --needed mingw-w64-ucrt-x86_64-nodejs"
-    Write-Host "    ./scripts/setup-pi-msys2.sh"
+    Write-Host "Then close PowerShell completely, open a new PowerShell window, and verify:" -ForegroundColor Cyan
+    Write-Host "  node -v"
+    Write-Host "  npm -v"
+    Write-Host "  where.exe node"
+    Write-Host ""
+    Write-Host "The MSYS2 Node installation does not satisfy this native Windows check." -ForegroundColor Yellow
+    Write-Host "MSYS2 is used as Pi's Bash backend; Pi itself should run from PowerShell/Windows Terminal."
     Write-Host ""
     exit 1
 }
@@ -59,10 +60,11 @@ if ($NodeMajor -lt $MinimumNodeMajor) {
 
 $NpmCommand = Get-Command npm -ErrorAction SilentlyContinue
 if (-not $NpmCommand) {
-    throw "npm was not found even though Node.js $NodeVersionText is installed. Repair the Node.js LTS installation, reopen PowerShell, and rerun this script."
+    throw "npm was not found even though Node.js $NodeVersionText is installed. Repair the native Windows Node.js LTS installation, reopen PowerShell, and rerun this script."
 }
 
 $BashCandidates = @(
+    "C:\msys64\usr\bin\bash.exe",
     "C:\Program Files\Git\bin\bash.exe",
     "C:\Program Files\Git\usr\bin\bash.exe"
 )
@@ -74,10 +76,10 @@ if (-not $BashPath) {
     }
 }
 if (-not $BashPath) {
-    throw "Git Bash was not found. Install Git for Windows first."
+    throw "No supported Bash executable was found. Install MSYS2 or Git for Windows, then rerun this script."
 }
 
-Write-Host "Installing @earendil-works/pi-coding-agent@$PiVersion..." -ForegroundColor Cyan
+Write-Host "Installing native Windows @earendil-works/pi-coding-agent@$PiVersion..." -ForegroundColor Cyan
 & npm install -g --ignore-scripts "@earendil-works/pi-coding-agent@$PiVersion"
 if ($LASTEXITCODE -ne 0) {
     throw "Pi installation failed."
@@ -117,11 +119,11 @@ $InstalledVersion = Invoke-Captured "pi" @("--version")
 
 Write-Host ""
 Write-Host "Pi installed: $InstalledVersion" -ForegroundColor Green
-Write-Host "Node.js: $NodeVersionText"
-Write-Host "Git Bash: $BashPath"
+Write-Host "Native Windows Node.js: $NodeVersionText"
+Write-Host "Bash backend: $BashPath"
 Write-Host "Repository: $RepoRoot"
 Write-Host ""
-Write-Host "Next commands:"
+Write-Host "Next commands in this PowerShell window:"
 Write-Host "  cd `"$RepoRoot`""
 Write-Host "  pi"
 Write-Host "  /login"
