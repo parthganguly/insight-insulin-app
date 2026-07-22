@@ -29,17 +29,15 @@ function Stop-ForNodeUpgrade {
         Write-Host "Node.js was not found in this shell." -ForegroundColor Yellow
     }
     Write-Host ""
-    Write-Host "Install the current Node.js LTS release with Windows Package Manager:" -ForegroundColor Cyan
-    Write-Host "  winget install --id OpenJS.NodeJS.LTS -e --source winget"
+    Write-Host "Windows installer route:" -ForegroundColor Cyan
+    Write-Host "  Install the current LTS release from https://nodejs.org/en/download"
+    Write-Host "  Close PowerShell, open a new one, verify node -v, then rerun this script."
     Write-Host ""
-    Write-Host "Or install the Windows LTS installer from:" -ForegroundColor Cyan
-    Write-Host "  https://nodejs.org/en/download"
-    Write-Host ""
-    Write-Host "After installation:" -ForegroundColor Cyan
-    Write-Host "  1. Close this PowerShell window."
-    Write-Host "  2. Open a new PowerShell window."
-    Write-Host "  3. Run: node -v"
-    Write-Host "  4. Return to this worktree and rerun: .\scripts\setup-pi-windows.ps1"
+    Write-Host "MSYS2 UCRT64 route:" -ForegroundColor Cyan
+    Write-Host "  Open the MSYS2 UCRT64 terminal and run:"
+    Write-Host "    pacman -Syu"
+    Write-Host "    pacman -S --needed mingw-w64-ucrt-x86_64-nodejs"
+    Write-Host "    ./scripts/setup-pi-msys2.sh"
     Write-Host ""
     exit 1
 }
@@ -99,14 +97,20 @@ if (Test-Path $GlobalSettingsPath) {
 $Settings["shellPath"] = $BashPath
 $Settings | ConvertTo-Json -Depth 20 | Set-Content -Encoding UTF8 $GlobalSettingsPath
 
-$LocalExclude = Join-Path $RepoRoot ".git\info\exclude"
-$ExcludeLine = ".pi/runs/"
+$LocalExcludeRaw = Invoke-Captured "git" @("-C", $RepoRoot, "rev-parse", "--git-path", "info/exclude")
+if ([System.IO.Path]::IsPathRooted($LocalExcludeRaw)) {
+    $LocalExclude = $LocalExcludeRaw
+} else {
+    $LocalExclude = Join-Path $RepoRoot $LocalExcludeRaw
+}
+$LocalExcludeDir = Split-Path $LocalExclude -Parent
+New-Item -ItemType Directory -Force -Path $LocalExcludeDir | Out-Null
 if (-not (Test-Path $LocalExclude)) {
     New-Item -ItemType File -Force -Path $LocalExclude | Out-Null
 }
 $ExcludeText = Get-Content $LocalExclude -Raw -ErrorAction SilentlyContinue
 if ($ExcludeText -notmatch "(?m)^\.pi/runs/$") {
-    Add-Content -Encoding UTF8 $LocalExclude "`n$ExcludeLine"
+    Add-Content -Encoding UTF8 $LocalExclude "`n.pi/runs/"
 }
 
 $InstalledVersion = Invoke-Captured "pi" @("--version")
