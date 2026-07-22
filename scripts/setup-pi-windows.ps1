@@ -18,14 +18,50 @@ function Invoke-Captured {
     return ($Output | Out-String).Trim()
 }
 
+function Stop-ForNodeUpgrade {
+    param([string]$DetectedVersion)
+
+    Write-Host ""
+    Write-Host "Pi needs Node.js 22 or newer." -ForegroundColor Red
+    if ($DetectedVersion) {
+        Write-Host "This shell is using Node.js $DetectedVersion." -ForegroundColor Yellow
+    } else {
+        Write-Host "Node.js was not found in this shell." -ForegroundColor Yellow
+    }
+    Write-Host ""
+    Write-Host "Install the current Node.js LTS release with Windows Package Manager:" -ForegroundColor Cyan
+    Write-Host "  winget install --id OpenJS.NodeJS.LTS -e --source winget"
+    Write-Host ""
+    Write-Host "Or install the Windows LTS installer from:" -ForegroundColor Cyan
+    Write-Host "  https://nodejs.org/en/download"
+    Write-Host ""
+    Write-Host "After installation:" -ForegroundColor Cyan
+    Write-Host "  1. Close this PowerShell window."
+    Write-Host "  2. Open a new PowerShell window."
+    Write-Host "  3. Run: node -v"
+    Write-Host "  4. Return to this worktree and rerun: .\scripts\setup-pi-windows.ps1"
+    Write-Host ""
+    exit 1
+}
+
 if (-not (Test-Path (Join-Path $RepoRoot ".git"))) {
     throw "Run this script from a Git checkout of INSIGHT. Repository root: $RepoRoot"
+}
+
+$NodeCommand = Get-Command node -ErrorAction SilentlyContinue
+if (-not $NodeCommand) {
+    Stop-ForNodeUpgrade -DetectedVersion ""
 }
 
 $NodeVersionText = Invoke-Captured "node" @("-p", "process.versions.node")
 $NodeMajor = [int]($NodeVersionText.Split(".")[0])
 if ($NodeMajor -lt $MinimumNodeMajor) {
-    throw "Pi requires Node.js 22 or newer. Found $NodeVersionText."
+    Stop-ForNodeUpgrade -DetectedVersion $NodeVersionText
+}
+
+$NpmCommand = Get-Command npm -ErrorAction SilentlyContinue
+if (-not $NpmCommand) {
+    throw "npm was not found even though Node.js $NodeVersionText is installed. Repair the Node.js LTS installation, reopen PowerShell, and rerun this script."
 }
 
 $BashCandidates = @(
@@ -77,6 +113,7 @@ $InstalledVersion = Invoke-Captured "pi" @("--version")
 
 Write-Host ""
 Write-Host "Pi installed: $InstalledVersion" -ForegroundColor Green
+Write-Host "Node.js: $NodeVersionText"
 Write-Host "Git Bash: $BashPath"
 Write-Host "Repository: $RepoRoot"
 Write-Host ""
