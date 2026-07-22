@@ -8,8 +8,7 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 run() {
   local dir="$1"
   shift
-  printf '\n[%s] %q' "$dir" "$1"
-  shift || true
+  printf '\n[%s]' "$dir"
   printf ' %q' "$@"
   printf '\n'
   (cd "$dir" && "$@")
