@@ -9,6 +9,23 @@ if [[ "${MSYSTEM:-}" != "UCRT64" ]]; then
   exit 1
 fi
 
+if ! command -v git >/dev/null 2>&1; then
+  cat >&2 <<'EOF'
+Git is not installed in this MSYS2 UCRT64 environment.
+
+Install the native UCRT64 Git package:
+  pacman -S --needed mingw-w64-ucrt-x86_64-git
+
+Verify:
+  which git
+  git --version
+
+Then return to the INSIGHT worktree, pull the latest harness branch, and rerun:
+  bash scripts/setup-pi-msys2.sh
+EOF
+  exit 1
+fi
+
 repo_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [[ -z "$repo_root" ]]; then
   echo "Run this script from a Git checkout of INSIGHT." >&2
@@ -81,6 +98,8 @@ printf '\nPi installed: '
 pi --version
 printf 'Node: '
 node -v
+printf 'Git: '
+git --version
 printf 'Git Bash: %s\n' "$bash_windows"
 printf 'Repository: %s\n\n' "$repo_root"
 printf 'Next:\n  pi\n  /login\n\n'
