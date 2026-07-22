@@ -97,7 +97,13 @@ if (Test-Path $GlobalSettingsPath) {
     }
 }
 $Settings["shellPath"] = $BashPath
-$Settings | ConvertTo-Json -Depth 20 | Set-Content -Encoding UTF8 $GlobalSettingsPath
+$SettingsJson = $Settings | ConvertTo-Json -Depth 20
+$Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText(
+    $GlobalSettingsPath,
+    $SettingsJson + [Environment]::NewLine,
+    $Utf8NoBom
+)
 
 $LocalExcludeRaw = Invoke-Captured "git" @("-C", $RepoRoot, "rev-parse", "--git-path", "info/exclude")
 if ([System.IO.Path]::IsPathRooted($LocalExcludeRaw)) {
