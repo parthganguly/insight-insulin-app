@@ -32,10 +32,30 @@ Pi extensions execute with the user's local permissions after project trust is
 granted. Review `.pi/extensions/safety-gate.ts` before trusting the project.
 The gate blocks common accidents; it does not provide OS-level isolation.
 
+## Supported Windows architecture
+
+For this repository, the long-term Windows layout is:
+
+```text
+PowerShell / Windows Terminal
+  -> native Windows Node.js 22+
+  -> native Windows Pi CLI
+  -> Pi bash tool uses MSYS2 or Git Bash through shellPath
+```
+
+This matches Pi's documented Windows model: Pi itself is installed with npm,
+while a Bash executable is configured or discovered for shell commands.
+
+Running the entire Pi process inside MSYS2 UCRT64 is a valid smoke-test and
+recovery path, but it is not the preferred long-term host for INSIGHT because it
+creates a second Node/npm/Git/home-directory environment and adds path friction
+for Android, PowerShell, Gradle, ADB and other Windows-native tooling.
+
 ## Requirements
 
-- Node.js 22 or newer in the shell that runs Pi;
-- Git;
+- native Windows Node.js 22 or newer in the PowerShell session that launches Pi;
+- Windows Git available to the repository;
+- MSYS2 Bash or Git Bash;
 - a local checkout or worktree of this repository.
 
 The setup installs the pinned package:
@@ -46,73 +66,69 @@ The setup installs the pinned package:
 
 No setup path stores provider credentials.
 
-## Preferred Windows setup: MSYS2 UCRT64
+## Preferred setup: native Windows Pi with MSYS2 Bash
 
-Use the **MSYS2 UCRT64** environment on an ordinary x86-64 Windows PC. Do not
-use CLANGARM64 unless the Windows machine itself is ARM64.
+Install the current Windows x64 LTS release from the official Node.js download
+page. Close PowerShell completely after installation, open a new PowerShell
+window, and verify:
 
-MSYS2 supports full-system upgrades only. In the UCRT64 terminal:
-
-```bash
-pacman -Syu
-```
-
-When a core update closes the terminal, reopen **MSYS2 UCRT64** and run the same
-command again:
-
-```bash
-pacman -Syu
-```
-
-Install the UCRT64 Node package:
-
-```bash
-pacman -S --needed mingw-w64-ucrt-x86_64-nodejs
-```
-
-Verify that UCRT64, not an older Windows installation, owns the active command:
-
-```bash
-which node
+```powershell
 node -v
 npm -v
+where.exe node
 ```
 
-From the repository root:
+Node must be version 22 or newer. A Node binary under `C:\Program Files\nodejs`
+or another deliberate native Windows installation is expected. The Node binary
+inside `/ucrt64/bin` is not the host used by this path.
 
-```bash
-./scripts/setup-pi-msys2.sh
-```
-
-The script:
-
-- requires the `UCRT64` environment;
-- verifies Node 22+;
-- installs the pinned Pi package;
-- records the current MSYS2 Bash executable as Pi's shell while preserving
-  unrelated global Pi settings;
-- resolves the correct Git exclude path for both ordinary clones and linked
-  worktrees;
-- locally excludes `.pi/runs/`;
-- stores no provider credential.
-
-Start Pi from the same UCRT64 repository shell:
-
-```bash
-pi
-```
-
-## Alternative Windows setup: PowerShell
-
-PowerShell requires a Windows Node.js 22+ installation and Git Bash:
+From the repository root in PowerShell:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\scripts\setup-pi-windows.ps1
 ```
 
-The PowerShell installer also resolves the real worktree Git path rather than
-assuming `.git` is a directory.
+The script:
+
+- verifies native Windows Node 22+;
+- installs the pinned Pi package with native Windows npm;
+- prefers `C:\msys64\usr\bin\bash.exe` when MSYS2 is installed;
+- otherwise accepts Git Bash;
+- records the selected Bash executable in Pi's global `shellPath` setting;
+- preserves unrelated global Pi settings;
+- resolves the correct Git exclude path for clones and linked worktrees;
+- locally excludes `.pi/runs/`;
+- stores no provider credential.
+
+Start Pi from PowerShell or Windows Terminal in the repository worktree:
+
+```powershell
+pi
+```
+
+## Optional MSYS2-hosted smoke path
+
+The existing UCRT64 installer remains available for diagnosis or a temporary
+smoke test:
+
+```bash
+bash scripts/setup-pi-msys2.sh
+```
+
+This installs a separate Pi instance into the UCRT64 npm environment. Do not
+keep both installations as interchangeable daily entrypoints: their global npm
+packages, `HOME`, credentials and session directories can differ.
+
+After the native Windows installation is verified, remove the temporary UCRT64
+Pi from an MSYS2 UCRT64 terminal:
+
+```bash
+npm uninstall -g @earendil-works/pi-coding-agent
+```
+
+The UCRT64 Node and Git packages may remain installed because MSYS2 is still the
+Bash/tooling backend.
 
 ## First launch
 
@@ -139,8 +155,6 @@ Bounded implementation loop:
 - runs focused checks and then the shared check script;
 - creates an untracked evidence snapshot.
 
-Example:
-
 ```text
 /implement Issue #123. Change only the two files authorized by the issue. Do not commit.
 ```
@@ -155,7 +169,7 @@ Read-only review with a fixed verdict and at most five findings.
 
 For a stronger read-only process boundary:
 
-```bash
+```powershell
 pi --tools read,grep,find,ls
 ```
 
@@ -167,16 +181,6 @@ editing.
 
 ## Verification scripts
 
-### MSYS2 UCRT64 / Bash
-
-```bash
-./scripts/ai/check.sh frontend
-./scripts/ai/check.sh frontend --full
-./scripts/ai/check.sh backend
-./scripts/ai/check.sh rust
-./scripts/ai/check.sh all --full
-```
-
 ### PowerShell
 
 ```powershell
@@ -187,21 +191,31 @@ editing.
 .\scripts\ai\check.ps1 -Scope all -Full
 ```
 
+### Bash
+
+```bash
+bash scripts/ai/check.sh frontend
+bash scripts/ai/check.sh frontend --full
+bash scripts/ai/check.sh backend
+bash scripts/ai/check.sh rust
+bash scripts/ai/check.sh all --full
+```
+
 The scripts fail on the first failed command and finish with
 `git diff --check`.
 
 ## Evidence snapshot
 
-MSYS2 UCRT64 / Bash:
-
-```bash
-./scripts/ai/snapshot.sh
-```
-
 PowerShell:
 
 ```powershell
 .\scripts\ai\snapshot.ps1
+```
+
+Bash:
+
+```bash
+bash scripts/ai/snapshot.sh
 ```
 
 This writes a timestamped local report below `.pi/runs/` containing repository,
