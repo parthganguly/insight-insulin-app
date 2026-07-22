@@ -36,8 +36,9 @@ describe("Home first load", () => {
 		// Presence checks (Cypress's visibility algorithm misreads Ionic's
 		// fixed-layout scroll container for list content).
 		cy.contains("Synthetic Rice Bowl").should("exist");
-		// Chronic-trend disclaimer is on the Dashboard hero card.
+		// Chronic-trend disclaimer remains part of the journal annotation.
 		cy.contains("It is not a measure of insulin resistance or metabolic health.").should("exist");
+		cy.get(".hero-ring,.hero-bezel,.CircularProgressbar").should("not.exist");
 		assertNoForbiddenPhrases();
 	});
 });
@@ -59,10 +60,10 @@ describe("Failure handling", () => {
 		});
 		visitFresh("/dashboard");
 
-		cy.contains("7-Day Logged Meal Trend").should("be.visible");
 		// The sanitized backend detail is the most the UI may show; injected
 		// internals (paths, keys, stack traces) must never appear.
 		cy.contains("Internal server error").should("be.visible");
+		cy.get("[aria-label='7-day logged meal trend unavailable because the data could not be loaded.']").should("exist");
 		cy.get("ion-app").invoke("text").should("not.contain", "Traceback");
 		cy.get("ion-app").invoke("text").should("not.contain", "sk-");
 	});

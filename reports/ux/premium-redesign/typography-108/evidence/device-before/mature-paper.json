@@ -1,0 +1,245 @@
+{
+ "masthead-title": {
+  "selector": ".home-masthead ion-title",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "13.248px",
+  "lineHeight": "19.872px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "2.208px",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Home",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-Bold",
+    "isCustomFont": false,
+    "glyphCount": 4
+   }
+  ]
+ },
+ "settings-action": {
+  "selector": ".home-settings-action",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "12.24px",
+  "lineHeight": "18.36px",
+  "fontWeight": "500",
+  "fontStyle": "normal",
+  "letterSpacing": "0.816px",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Settings"
+ },
+ "folio-h1": {
+  "selector": ".home-folio h1",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "26.64px",
+  "lineHeight": "30.636px",
+  "fontWeight": "600",
+  "fontStyle": "italic",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Monday morning",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-BoldItalic",
+    "isCustomFont": false,
+    "glyphCount": 14
+   }
+  ]
+ },
+ "trend-sentence": {
+  "selector": ".home-trend-sentence",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "12.384px",
+  "lineHeight": "17.9568px",
+  "fontWeight": "400",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "7-day index --",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 14
+   }
+  ]
+ },
+ "trend-strong": {
+  "selector": ".home-trend-sentence strong",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "13.248px",
+  "lineHeight": "19.2096px",
+  "fontWeight": "700",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "--",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 2
+   }
+  ]
+ },
+ "trend-gloss": {
+  "selector": ".home-trend-gloss",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "11.232px",
+  "lineHeight": "16.2864px",
+  "fontWeight": "400",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Failed to fetch",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 15
+   }
+  ]
+ },
+ "footnote-summary": {
+  "selector": ".home-trend-footnote summary",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "11.232px",
+  "lineHeight": "16.848px",
+  "fontWeight": "400",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "What this doesn't mean",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 22
+   }
+  ]
+ },
+ "daybreak": {
+  "selector": ".journal-daybreak",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "12.96px",
+  "lineHeight": "16.848px",
+  "fontWeight": "400",
+  "fontStyle": "italic",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Today",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-Italic",
+    "isCustomFont": false,
+    "glyphCount": 5
+   }
+  ]
+ },
+ "card-name": {
+  "selector": ".journal-entry-caption h2",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "16.992px",
+  "lineHeight": "22.0896px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Homemade mutton keema biryani with extra-long basmati rice a",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-Bold",
+    "isCustomFont": false,
+    "glyphCount": 75
+   }
+  ]
+ },
+ "card-meta": {
+  "selector": ".journal-entry-caption p",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "11.376px",
+  "lineHeight": "16.4952px",
+  "fontWeight": "400",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "7:47 AM \u00b7 estimate 1580 \u00b7 Data quality: Low",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 43
+   }
+  ]
+ },
+ "plate-monogram": {
+  "selector": ".typographic-plate-monogram",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "37.44px",
+  "lineHeight": "37.44px",
+  "fontWeight": "400",
+  "fontStyle": "italic",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Se",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-Italic",
+    "isCustomFont": false,
+    "glyphCount": 2
+   }
+  ]
+ },
+ "dock-button": {
+  "selector": ".home-action-dock ion-button",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "15.264px",
+  "lineHeight": "22.896px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "1.0176px",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Check a meal"
+ },
+ "tab-label": {
+  "selector": "ion-tab-button ion-label",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "11.232px",
+  "lineHeight": "16.848px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "0.36px",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Home",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 4
+   }
+  ]
+ },
+ "__env": {
+  "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-M356B Build/BP4A.251205.006; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/150.0.7871.46 Mobile Safari/537.36",
+  "viewport": "411x891",
+  "dpr": 2.625,
+  "iowan": true,
+  "palatinoLinotype": true,
+  "palatino": true,
+  "georgia": true,
+  "segoe": true,
+  "journalStackEqualsGenericSerif": true,
+  "bodyStackEqualsSansSerif": true
+ }
+}

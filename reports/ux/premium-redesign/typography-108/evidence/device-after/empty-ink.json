@@ -1,0 +1,150 @@
+{
+ "masthead-title": {
+  "selector": ".home-masthead ion-title",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "13.68px",
+  "lineHeight": "20.52px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Home",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 4
+   }
+  ]
+ },
+ "settings-action": {
+  "selector": ".home-settings-action",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "12.24px",
+  "lineHeight": "18.36px",
+  "fontWeight": "500",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Settings"
+ },
+ "plate-monogram": {
+  "selector": ".typographic-plate-monogram",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "37.44px",
+  "lineHeight": "37.44px",
+  "fontWeight": "400",
+  "fontStyle": "italic",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Ins.",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-Italic",
+    "isCustomFont": false,
+    "glyphCount": 4
+   }
+  ]
+ },
+ "empty-h1": {
+  "selector": ".home-empty-state h1",
+  "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+  "fontSize": "23.04px",
+  "lineHeight": "29.4912px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Understand and compare the estimated insulin demand of meals",
+  "platformFonts": [
+   {
+    "familyName": "Noto Serif",
+    "postScriptName": "NotoSerif-Bold",
+    "isCustomFont": false,
+    "glyphCount": 59
+   }
+  ]
+ },
+ "empty-p": {
+  "selector": ".home-empty-state p",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "12.96px",
+  "lineHeight": "19.44px",
+  "fontWeight": "400",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Snap a photo or describe your meal \u2014 INSIGHT estimates its i",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 151
+   }
+  ]
+ },
+ "boundary-note": {
+  "selector": ".home-boundary-note",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "11.232px",
+  "lineHeight": "16.848px",
+  "fontWeight": "400",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Relative, population-level estimates. Nothing here measures ",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 93
+   }
+  ]
+ },
+ "dock-button": {
+  "selector": ".home-action-dock ion-button",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "15.264px",
+  "lineHeight": "22.896px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Check a meal"
+ },
+ "tab-label": {
+  "selector": "ion-tab-button ion-label",
+  "fontFamily": "\"Segoe UI\", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif",
+  "fontSize": "11.232px",
+  "lineHeight": "16.848px",
+  "fontWeight": "600",
+  "fontStyle": "normal",
+  "letterSpacing": "normal",
+  "fontSynthesis": "weight style small-caps",
+  "sampleText": "Home",
+  "platformFonts": [
+   {
+    "familyName": "Roboto",
+    "postScriptName": "Roboto-Regular",
+    "isCustomFont": false,
+    "glyphCount": 4
+   }
+  ]
+ },
+ "__env": {
+  "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-M356B Build/BP4A.251205.006; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/150.0.7871.46 Mobile Safari/537.36",
+  "viewport": "411x891",
+  "dpr": 2.625,
+  "iowan": true,
+  "palatinoLinotype": true,
+  "palatino": true,
+  "georgia": true,
+  "segoe": true,
+  "journalStackEqualsGenericSerif": true,
+  "bodyStackEqualsSansSerif": true
+ }
+}
