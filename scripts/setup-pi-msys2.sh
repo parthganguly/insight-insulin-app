@@ -40,7 +40,7 @@ Verify:
   npm -v
 
 Then rerun:
-  ./scripts/setup-pi-msys2.sh
+  bash scripts/setup-pi-msys2.sh
 EOF
   exit 1
 fi
