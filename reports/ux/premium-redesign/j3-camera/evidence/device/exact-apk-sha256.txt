@@ -1,0 +1,3 @@
+Algorithm : SHA256
+Hash      : 7228BD55A97563F737C797CF38514EF34397AC6A7B8E293C6FC75E9FF4583BF2
+Path      : C:\Users\Parth Ganguly\Documents\Codex\2026-06-21\github-plugin-github-openai-curated-remote\work\insight-insulin-app\frontend\android\app\build\outputs\apk\debug\app-debug.apk

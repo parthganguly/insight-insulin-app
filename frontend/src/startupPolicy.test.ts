@@ -15,6 +15,7 @@ const toolbarTsx = read("src/components/IonToolbarWrapper.tsx");
 const variablesCss = read("src/theme/variables.css");
 const appCss = read("src/theme/app.css");
 const indexHtml = read("index.html");
+const mainActivityJava = read("android/app/src/main/java/io/ionic/starter/MainActivity.java");
 
 describe("abolished startup mechanisms stay removed", () => {
 	it("has no hardcoded 50px body padding and no inset-padding-top class anywhere", () => {
@@ -76,5 +77,33 @@ describe("startup document contract", () => {
 
 	it("reads the persisted settings-store payload before the bundle loads", () => {
 		expect(indexHtml).toContain('localStorage.getItem("app-settings")');
+	});
+});
+
+describe("native system-bar contrast contract", () => {
+	it("reasserts the web-selected bar contrast after every splash removal path", () => {
+		expect(mainActivityJava).toMatch(
+			/provider\.remove\(\);\s*syncSystemBarsToWebAppearance\(\);\s*return;/,
+		);
+		expect(mainActivityJava).toMatch(
+			/withEndAction\(\(\) -> \{\s*provider\.remove\(\);[\s\S]*?syncSystemBarsToWebAppearance\(\);/,
+		);
+	});
+});
+
+describe("J3 secondary-photo removal contract", () => {
+	it("keeps a 44px transparent target around a quiet 30px inner scrim", () => {
+		expect(appCss).toMatch(
+			/button\.camera-thumbnail-remove\s*\{[\s\S]*?min-width:\s*44px;[\s\S]*?min-height:\s*44px;/,
+		);
+		expect(appCss).toMatch(
+			/\.camera-thumbnail:not\(\.camera-thumbnail-primary\) button\.camera-thumbnail-remove\s*\{[\s\S]*?background:\s*transparent;/,
+		);
+		expect(appCss).toMatch(
+			/\.camera-thumbnail:not\(\.camera-thumbnail-primary\) button\.camera-thumbnail-remove::before\s*\{[\s\S]*?width:\s*30px;[\s\S]*?height:\s*30px;/,
+		);
+		expect(appCss).toMatch(
+			/button\.camera-thumbnail-remove:focus-visible\s*\{[\s\S]*?outline:\s*3px solid var\(--accent\);/,
+		);
 	});
 });

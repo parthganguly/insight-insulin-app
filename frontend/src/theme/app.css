@@ -612,16 +612,9 @@ ion-item.journal-entry-card::part(native) {
 }
 
 .log-meal-intro h1 {
-	margin: 0 0 8px;
+	margin: 0;
 	font-size: 1.35rem;
 	color: var(--app-ink);
-}
-
-.log-meal-intro p {
-	margin: 0;
-	font-size: 0.9rem;
-	line-height: 1.5;
-	color: var(--app-muted);
 }
 
 .log-meal-options {
@@ -645,16 +638,12 @@ ion-button.log-meal-option::part(native) {
 	border: 1px solid var(--line);
 }
 
+/* Quiet decorative icon: the sole interactive accent stays reserved for
+   buttons/links, not this leading glyph (constitution §2.1 colour law). */
 .log-meal-option > ion-icon:first-child {
 	flex: 0 0 auto;
 	margin-right: 14px;
 	font-size: 1.5rem;
-	color: var(--ion-color-primary);
-}
-
-.log-meal-option > ion-icon:last-child {
-	flex: 0 0 auto;
-	margin-left: 10px;
 	color: var(--app-caption);
 }
 
@@ -708,29 +697,286 @@ ion-button.log-meal-option::part(native) {
 	border-radius: 12px;
 }
 
-/* Smart Camera: capture stays secondary; analysis is the single primary action. */
+/* Smart Camera (Slice J3): a viewfinder-first hierarchy — the capture frame
+   is the visual anchor, framing hint + Cancel live in top chrome, and
+   Analyze meal is the sole primary action, disabled until an image exists.
+   No extraction/provider/request behavior lives in this file. */
 
-.camera-heading {
-	margin: 4px 0 14px;
-	font-size: 1.25rem;
-	font-weight: 650;
-	color: var(--app-ink);
+.camera-toolbar {
+	--padding-start: 18px;
+	--padding-end: 8px;
+	display: flex;
+	align-items: center;
 }
 
-.camera-capture-actions,
-.analyze-meal-button {
+.camera-framing-hint {
+	font-family: var(--font-journal);
+	font-style: italic;
+	font-size: 0.98rem;
+	color: var(--ink-2);
+}
+
+.camera-cancel-action {
+	--color: var(--ink-3);
+	min-width: 44px;
+	min-height: 44px;
+	font-size: 0.9rem;
+}
+
+.camera-content {
+	--padding-start: 0;
+	--padding-end: 0;
+	--padding-top: 0;
+	--padding-bottom: 0;
+}
+
+.camera-frame {
+	display: flex;
+	flex-direction: column;
+	min-height: 9rem;
+	align-items: center;
+	justify-content: center;
+	margin: 0 18px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-card);
+	background: var(--tint);
+	overflow: hidden;
+}
+
+.camera-frame-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding: 2.4rem 0;
+	color: var(--ink-3);
+}
+
+.camera-frame-placeholder ion-icon {
+	font-size: 1.8rem;
+}
+
+.camera-frame-placeholder p {
+	margin: 0;
+	font-size: 0.82rem;
+}
+
+.camera-visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.camera-thumbnails {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
 	width: 100%;
+	margin: 0;
+	padding: 14px;
+	list-style: none;
 }
 
-.analyze-meal-button {
-	margin-top: 12px;
-	margin-bottom: 20px;
+.camera-thumbnail {
+	position: relative;
+	width: 5.4rem;
+	height: 5.4rem;
+	flex: 0 0 auto;
+	border-radius: var(--radius-panel);
+	overflow: hidden;
+	box-shadow: var(--shadow-raised);
 }
 
-.camera-error-actions {
+.camera-thumbnail-primary {
+	width: 100%;
+	height: 9.5rem;
+}
+
+.camera-thumbnail-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+button.camera-thumbnail-remove {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	display: grid;
+	place-items: center;
+	min-width: 44px;
+	min-height: 44px;
+	padding: 8px;
+	margin: 0;
+	border: 0;
+	border-radius: var(--radius-pill);
+	background: rgba(20, 22, 25, 0.55);
+	color: #fff;
+	font: inherit;
+	cursor: pointer;
+}
+
+button.camera-thumbnail-remove:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: -3px;
+}
+
+/* Secondary previews are intentionally small. Keep the native button's
+   full 44px target, but paint only a quiet 30px inner scrim so the action
+   does not visually compete with the meal image. */
+.camera-thumbnail:not(.camera-thumbnail-primary) button.camera-thumbnail-remove {
+	top: 0;
+	right: 0;
+	padding: 7px;
+	background: transparent;
+}
+
+.camera-thumbnail:not(.camera-thumbnail-primary) button.camera-thumbnail-remove::before {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border-radius: var(--radius-pill);
+	background: rgba(20, 22, 25, 0.68);
+	box-shadow: 0 1px 3px rgba(20, 22, 25, 0.24);
+	content: "";
+}
+
+button.camera-thumbnail-remove ion-icon {
+	position: relative;
+	z-index: 1;
+	font-size: 1.25rem;
+}
+
+.camera-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 14px 18px 20px;
+}
+
+.camera-failure-card {
+	padding: 12px 14px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-panel);
+	background: var(--tint);
+	color: var(--ink-2);
+}
+
+.camera-failure-card p {
+	margin: 0;
+	font-size: 0.92rem;
+	line-height: 1.45;
+}
+
+.camera-failure-actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 6px;
+	margin-top: 10px;
+}
+
+.camera-failure-actions ion-button,
+.camera-library-button,
+.camera-shutter-button {
+	min-width: 44px;
+	min-height: 44px;
+}
+
+.camera-privacy {
+	font-size: var(--type-caption);
+	line-height: 1.45;
+	color: var(--ink-3);
+}
+
+.camera-privacy summary {
+	display: flex;
+	align-items: center;
+	min-width: 44px;
+	min-height: 44px;
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: var(--line);
+	text-underline-offset: 3px;
+}
+
+.camera-privacy p {
+	margin: 4px 0 0;
+}
+
+.camera-note {
+	width: 100%;
+	min-height: 56px;
+}
+
+.camera-action-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.camera-library-button {
+	flex: 1;
+	min-width: 0;
+	--color: var(--ink-2);
+}
+
+.camera-shutter-button {
+	flex: 1;
+	min-width: 0;
+	--background: var(--accent);
+	--color: var(--accent-ink);
+}
+
+.camera-shutter-button-secondary {
+	--background: var(--raised);
+	--color: var(--ink);
+	--border-width: 1px;
+	--border-style: solid;
+	--border-color: var(--line);
+}
+
+.camera-analyze-button {
+	width: 100%;
+	margin-top: 4px;
+	min-height: 52px;
+	--background: var(--accent);
+	--color: var(--accent-ink);
+	font-size: 1.02rem;
+	font-weight: 600;
+}
+
+@media (max-width: 340px) {
+	.camera-frame {
+		margin: 0 14px;
+	}
+
+	.camera-controls {
+		padding: 12px 14px 16px;
+	}
+
+	.camera-thumbnail {
+		width: 4.8rem;
+		height: 4.8rem;
+	}
+
+	.camera-thumbnail-primary {
+		height: 8rem;
+	}
+
+	.camera-action-row {
+		flex-wrap: wrap;
+	}
+
+	.camera-library-button,
+	.camera-shutter-button {
+		flex: 1 1 100%;
+	}
 }
 
 /* Sheet-like item-edit modal surface. Visual only: dismissal, editing,

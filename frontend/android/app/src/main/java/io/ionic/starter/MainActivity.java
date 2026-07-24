@@ -46,6 +46,7 @@ public class MainActivity extends BridgeActivity {
         splashScreen.setOnExitAnimationListener(provider -> {
             if (isReducedMotionEnabled()) {
                 provider.remove();
+                syncSystemBarsToWebAppearance();
                 return;
             }
             provider
@@ -54,7 +55,13 @@ public class MainActivity extends BridgeActivity {
                 .alpha(0f)
                 .setDuration(SPLASH_FADE_DURATION_MS)
                 .setInterpolator(new PathInterpolator(0.2f, 0f, 0f, 1f))
-                .withEndAction(provider::remove)
+                .withEndAction(() -> {
+                    provider.remove();
+                    // Splash teardown can replace the decor-view appearance
+                    // applied at readiness. Reassert the web-selected paper
+                    // or ink contrast only after the splash surface is gone.
+                    syncSystemBarsToWebAppearance();
+                })
                 .start();
         });
 

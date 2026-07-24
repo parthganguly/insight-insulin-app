@@ -1,0 +1,1863 @@
+
+WINDOW MANAGER LAST ANR (dumpsys window lastanr)
+  <no ANR has occurred since boot>
+
+WINDOW MANAGER POLICY STATE (dumpsys window policy)
+    mSafeMode=false mSystemReady=true mSystemBooted=true
+    mCameraLensCoverState=CAMERA_LENS_COVER_ABSENT
+    mWakeGestureEnabledSetting=true
+    mUiMode=UI_MODE_TYPE_NORMALmEnableCarDockHomeCapture=false
+    mLidKeyboardAccessibility=0 mLidNavigationAccessibility=0 getLidBehavior=LID_BEHAVIOR_NONE
+    mLongPressOnBackBehavior=LONG_PRESS_BACK_NOTHING
+    mLongPressOnHomeBehavior=LONG_PRESS_HOME_SEARCLE
+    mDoubleTapOnHomeBehavior=DOUBLE_TAP_HOME_NOTHING
+    mShortPressOnPowerBehavior=SHORT_PRESS_POWER_GO_TO_SLEEP
+    mLongPressOnPowerBehavior=103
+    mLongPressOnPowerAssistantTimeoutMs=500
+    mVeryLongPressOnPowerBehavior=VERY_LONG_PRESS_POWER_NOTHING
+    mDoublePressOnPowerBehavior=MULTI_PRESS_POWER_SIDE_KEY_BEHAVIOR
+    mTriplePressOnPowerBehavior=MULTI_PRESS_POWER_PANIC_CALL
+    mSupportShortPressPowerWhenDefaultDisplayOn=false
+        mShortPressOnSleepBehavior=SHORT_PRESS_SLEEP_GO_TO_SLEEP
+    mShortPressOnWindowBehavior=SHORT_PRESS_WINDOW_PICTURE_IN_PICTURE
+    mShortPressOnStemPrimaryBehavior=SHORT_PRESS_PRIMARY_NOTHING
+    mDoublePressOnStemPrimaryBehavior=DOUBLE_PRESS_PRIMARY_NOTHING
+    mTriplePressOnStemPrimaryBehavior=TRIPLE_PRESS_PRIMARY_NOTHING
+    mLongPressOnStemPrimaryBehavior=LONG_PRESS_PRIMARY_NOTHING
+    mAllowStartActivityForLongPressOnPowerDuringSetup=false
+    mHasSoftInput=true
+    mDismissImeOnBackKeyPressed=false mIncallPowerBehavior=sleep
+    mIncallBackBehavior=<nothing> mEndcallBehavior=sleep
+    mDisplayHomeButtonHandlers=
+      mDisplayId = 0, mHomePressed = false
+    mKeyguardOccluded=false mKeyguardOccludedChanged=false mPendingKeyguardOccluded=false
+    mAllowLockscreenWhenOnDisplays=false mLockScreenTimeout=600000 mLockScreenTimerActive=false
+    mKidsModeEnabled=false
+    mKeyMapping.size=0
+    SingleKey rules:
+      KeyCode=KEYCODE_POWER, LongPress=true, VeryLongPress=false, MaxMultiPressCount=3
+      KeyCode=KEYCODE_STYLUS_BUTTON_TAIL, LongPress=false, VeryLongPress=false, MaxMultiPressCount=2
+    Deferred key action executor:
+      empty
+    WakeGestureListener
+      mTriggerRequested=false
+      mSensor=null
+    KeyguardServiceDelegate
+      showing=false
+      inputRestricted=false
+      occluded=false
+      secure=true
+      dreaming=false
+      systemIsReady=true
+      deviceHasKeyguard=true
+      enabled=true
+      offReason=OFF_BECAUSE_OF_TIMEOUT
+      currentUser=0
+      bootCompleted=true
+      screenState=SCREEN_STATE_ON
+      interactiveState=INTERACTIVE_STATE_AWAKE
+      KeyguardStateMonitor
+        mIsShowing=false
+        mSimSecure=false
+        mInputRestricted=false
+        mTrusted=false
+        mCurrentUserId=0
+    Looper state:
+      Looper (android.ui, tid 23) {49fb925}
+        (MessageQueue is using Concurrent implementation)
+        State: android.os.MessageQueue$StateNode@fb9d41d
+        PriorityQueue Messages:
+        AsyncPriorityQueue Messages:
+        (Total messages: 1, polling=true, quitting=false)
+
+    --- PhoneWindowManagerExt ---
+
+    KeyCustomization info state: 5.1
+    All KeyCustomizationInfo
+    KEY_PRESS_LONG ---
+        KEY_CODE(26) :
+          ID_SETTING_UI_SIDE_KEY, keyCode: 26, ACTION_START_SERVICE, dispatching: -1, Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=aiAgentApp/aiAgentApp }
+    KEY_PRESS_DOUBLE ---
+        KEY_CODE(26) :
+          ID_SETTING_UI_SIDE_KEY, keyCode: 26, ACTION_START_ACTIVITY, dispatching: -1, Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.sec.android.app.camera/.Camera }
+
+    Last KeyCustomizationInfo
+    KEY_PRESS_LONG ---
+          ID_SETTING_UI_SIDE_KEY, keyCode: 26, ACTION_START_SERVICE, dispatching: -1, Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=aiAgentApp/aiAgentApp }
+    KEY_PRESS_DOUBLE ---
+          ID_SETTING_UI_SIDE_KEY, keyCode: 26, ACTION_START_ACTIVITY, dispatching: -1, Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.sec.android.app.camera/.Camera }
+    UserId:0
+    XmlFileErrorCode=SUCCESS
+
+    maxMultiPressPowerCount=3
+    mQuadruplePressOnPowerBehavior=MULTI_PRESS_POWER_NOTHING
+    mFocusedWindow=io.ionic.starter/io.ionic.starter.MainActivity
+    SystemKeyInfo=
+    bixbyComponentName=ComponentInfo{com.samsung.android.bixby.agent/com.samsung.android.bixby.WinkService}
+     mNavBarVirtualKeyHapticFeedbackEnabled=true
+    cameraSensorToggleSupported=false    micSensorToggleSupported=true
+    mIsInteractionControlEnabled=false mIsPowerKeyBlocked=true mIsVolumeKeyBlocked=true
+    mIsDoubleTapToWakeUpSupported=true mIsDoubleTapToWakeUp=true
+    mLockTaskModeState=0
+    mDexKeyguardOccluded=false mDexKeyguardOccludedChanged=false mPendingDexKeyguardOccluded=false
+    mWakeAndUnlockTriggered=false mWakeAndUnfoldedTriggered=false
+    mIsPogoKeyboardConnected=false
+    mIsCallOpenDictation=false mIsAvailableDictation=true
+    mWakingUpReason=unknown
+    mIsAiKeyDisabled=false
+    focusedDisplayId=0
+
+
+WINDOW MANAGER ANIMATOR STATE (dumpsys window animator)
+    Display{#0 state=ON size=1080x2340 ROTATION_0}:
+      Window #0: WindowStateAnimator{c2e5692 com.android.systemui.wallpapers.ImageWallpaper}
+      Window #1: WindowStateAnimator{5078863 com.android.systemui.wallpapers.ImageWallpaper}
+      Window #2: WindowStateAnimator{f556c60 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity}
+      Window #3: WindowStateAnimator{9f880cf com.teslacoilsw.launcher/com.teslacoilsw.launcher.NovaLauncher}
+      Window #4: WindowStateAnimator{1d03be2 GoogleDiscoverWindow}
+      Window #5: WindowStateAnimator{ab48b73 io.ionic.starter/io.ionic.starter.MainActivity}
+      Window #6: WindowStateAnimator{4e047bf InputMethod}
+      Window #7: WindowStateAnimator{614ee8c RecentsTransitionOverlay}
+      Window #8: WindowStateAnimator{3e069d5 StatusBar}
+      Window #9: WindowStateAnimator{68a25ea NotificationShade}
+      Window #10: WindowStateAnimator{d5ba0db LockscreenShortcutBlur}
+      Window #11: WindowStateAnimator{f686778 com.sec.android.app.launcher/com.samsung.app.honeyspace.edge.edgepanel.app.CocktailBarService}
+      Window #12: WindowStateAnimator{fed0677 NavigationBar0}
+      Window #13: WindowStateAnimator{ddcb6b6 ShellDropTarget}
+
+
+
+WINDOW MANAGER SESSIONS (dumpsys window sessions)
+  Session Session{3a70251 2307:u0a10247}:
+    numWindow=1 mCanAddInternalSystemWindow=false mAlertWindows={} mClientDead=false    mPackageName=com.google.android.googlequicksearchbox
+    mWinSurfaceVisibleCount=0
+  Session Session{441ff24 3603:u0a10364}:
+    numWindow=1 mCanAddInternalSystemWindow=false mAlertWindows={} mClientDead=false    mPackageName=com.touchtype.swiftkey
+    mWinSurfaceVisibleCount=0
+  Session Session{464f722 2583:u0a10144}:
+    numWindow=3 mCanAddInternalSystemWindow=true mAlertWindows={} mClientDead=false    mPackageName=com.sec.android.app.launcher
+    mWinSurfaceVisibleCount=1
+  Session Session{4ffcfc2 10319:u0a10245}:
+    numWindow=0 mCanAddInternalSystemWindow=false mAlertWindows={} mClientDead=false    mPackageName=com.android.vending
+    mWinSurfaceVisibleCount=0
+  Session Session{586f3a0 3963:u0a10327}:
+    numWindow=1 mCanAddInternalSystemWindow=false mAlertWindows={} mClientDead=false    mPackageName=com.teslacoilsw.launcher
+    mWinSurfaceVisibleCount=0
+  Session Session{908bf52 4272:u0a10496}:
+    numWindow=1 mCanAddInternalSystemWindow=false mAlertWindows={} mClientDead=false    mPackageName=io.ionic.starter
+    mWinSurfaceVisibleCount=1
+  Session Session{bbf2eea 1854:u0a10049}:
+    numWindow=7 mCanAddInternalSystemWindow=true mAlertWindows={} mClientDead=false    mPackageName=com.android.systemui
+    mWinSurfaceVisibleCount=2
+
+WINDOW MANAGER DISPLAY CONTENTS (dumpsys window displays)
+  Display: mDisplayId=0 (organized)
+    init=1080x2340 450dpi mMinSizeOfResizeableTaskDp=220 mMinSizeOfDesktopTaskDp=304 base=1080x2340 420dpi cur=1080x2340 app=1080x2340 rng=1080x1080-2340x2340
+    deferred=false mLayoutNeeded=false
+    initCutout=DisplayCutout{insets=Rect(0, 89 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(507, 23 - 573, 89), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 M 0,8.177777777777778 a 11.73333333333333,11.73333333333333 0 1,0 0,23.46666666666667 a 11.73333333333333,11.73333333333333 0 1,0 0,-23.46666666666667 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}
+    baseCutout=DisplayCutout{insets=Rect(0, 89 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(507, 23 - 573, 89), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 M 0,8.177777777777778 a 11.73333333333333,11.73333333333333 0 1,0 0,23.46666666666667 a 11.73333333333333,11.73333333333333 0 1,0 0,-23.46666666666667 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}
+
+    initRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=101, center=Point(101, 101)}, RoundedCorner{position=TopRight, radius=101, center=Point(979, 101)}, RoundedCorner{position=BottomRight, radius=101, center=Point(979, 2239)}, RoundedCorner{position=BottomLeft, radius=101, center=Point(101, 2239)}]}
+    baseRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=95, center=Point(95, 95)}, RoundedCorner{position=TopRight, radius=95, center=Point(985, 95)}, RoundedCorner{position=BottomRight, radius=95, center=Point(985, 2245)}, RoundedCorner{position=BottomLeft, radius=95, center=Point(95, 2245)}]}
+
+  mLastOrientationSource=WindowedMagnification:0:31@139004008
+  deepestLastOrientationSource=ActivityRecord{39739397 u0 io.ionic.starter/.MainActivity t451}
+  overrideConfig={0.9 404mcc20mnc [en_US] ldltr sw411dp w411dp h891dp 420dpi nrml long compactNeeded port finger -keyb/v/h -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 0 - 1080, 2340) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0 mStageConfig=undefined mPopOver=undefined mOverlappingWithCutout=false} s.7804 fontWeightAdjustment=0 ff=0 bf=-1 bts=0 cst=1.0 nightDim=0 themeSeq=0}
+  mHasSetIgnoreOrientationRequest=false ignoreOrientationRequest=false
+  mLayoutSeq=13682
+  mImeLayeringTarget=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+  mImeInputTarget=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+  mImeControlTarget=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+  mRemoteInsetsControlTarget=RemoteInsetsControlTarget{7cb399a displayId=0 requestedVisibleTypes=503 animatingTypes=0}
+  mCurrentFocus=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+  mFocusedApp=ActivityRecord{39739397 u0 io.ionic.starter/.MainActivity t451}
+  mFixedRotationLaunchingApp=null
+
+  mHoldScreenWindow=null
+  mObscuringWindow=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+  mLastWakeLockHoldingWindow=null
+  mLastWakeLockObscuringWindow=Window{be0d286 u0 io.ionic.starter/io.ionic.starter.MainActivity EXITING}
+
+  displayId=0
+  mWallpaperTarget=null
+  mLastWallpaperZoomOut=0.0
+  mFindResults
+    mTopHideWhenLockedWallpaper=Window{f51a72a u0 com.android.systemui.wallpapers.ImageWallpaper}
+      mTopHideWhenLockedWallpaper.Token=WallpaperWindowToken{14809a4 showWhenLocked=false}_<system>
+    mTopShowWhenLockedWallpaper=Window{8968173 u0 com.android.systemui.wallpapers.ImageWallpaper}
+      mTopShowWhenLockedWallpaper.Token=WallpaperWindowToken{aaf0309 showWhenLocked=true}_<lock>
+  token WallpaperWindowToken{14809a4 showWhenLocked=false}_<system>:
+    isClientVisible=false
+    isVisibleRequested=false
+    mWallpaperX=0.5
+    mWallpaperY=0.5
+    mWallpaperXStep=0.5
+    mWallpaperYStep=1.0
+    mWallpaperDisplayOffsetX=NA
+    mWallpaperDisplayOffsetY=NA
+  token WallpaperWindowToken{aaf0309 showWhenLocked=true}_<lock>:
+    isClientVisible=false
+    isVisibleRequested=false
+    mWallpaperX=0.5
+    mWallpaperY=0.5
+    mWallpaperXStep=NA
+    mWallpaperYStep=NA
+    mWallpaperDisplayOffsetX=NA
+    mWallpaperDisplayOffsetY=NA
+
+  mSystemGestureExclusion=SkRegion((1033,406,1080,750))
+
+  Display areas in top down Z order:
+    * Leaf:36:36
+    * HideDisplayCutout:32:35
+      * OneHanded:34:35
+        * Leaf:34:35
+      * Leaf:33:33
+      * OneHanded:32:32
+        * Leaf:32:32
+    * WindowedMagnification:0:31 (organized)
+      * HideDisplayCutout:26:31
+        * OneHanded:26:31
+          * Leaf:26:31
+      * Leaf:24:25
+      * HideDisplayCutout:18:23
+        * OneHanded:18:23
+          * Leaf:23:23
+          * AppZoomOut:20:22 (organized)
+            * Leaf:20:22
+          * Leaf:18:19
+      * OneHanded:17:17
+        * Leaf:17:17
+      * HideDisplayCutout:16:16
+        * OneHanded:16:16
+          * AppZoomOut:16:16 (organized)
+            * Leaf:16:16
+      * OneHanded:15:15
+        * Leaf:15:15
+      * HideDisplayCutout:0:14
+        * OneHanded:0:14
+          * AppZoomOut:2:14 (organized)
+            * ImePlaceholder:13:14
+              * ImeContainer
+            * Leaf:3:12
+            * DefaultTaskDisplayArea_d0 (organized)
+          * RemoteWallpaperAnim:1:1
+            * Leaf:1:1
+          * AppZoomOut:0:0 (organized)
+            * Leaf:0:0
+
+  Task display areas in top down Z order:
+    TaskDisplayArea DefaultTaskDisplayArea_d0
+      overrideConfig={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?round ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined mStageConfig=undefined mPopOver=undefined mOverlappingWithCutout=false} ?fontWeightAdjustment ff=0 bf=-1 bts=-1 cst=0.0 nightDim=-1 themeSeq=0}
+      mPreferredTopFocusableRootTask=Task{f1df29 #451 type=standard A=10496:io.ionic.starter}
+      mLastFocusedRootTask=Task{f1df29 #451 type=standard A=10496:io.ionic.starter}
+      Application tokens in top down Z order:
+      * Task{f1df29 #451 type=standard A=10496:io.ionic.starter U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}
+        bounds=[0,0][1080,2340]
+        * ActivityRecord{39739397 u0 io.ionic.starter/.MainActivity t451}
+      * Task{8e44de #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=false sz=1}
+        bounds=[0,0][1080,2340]
+        * Task{b73c88f #375 type=home I=com.teslacoilsw.launcher/.NovaLauncher U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+          bounds=[0,0][1080,2340]
+          * ActivityRecord{191040292 u0 com.teslacoilsw.launcher/.NovaLauncher t375}
+      * Task{37bf231 #386 type=recents A=10144:com.sec.android.app.launcher.task.recents U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+        bounds=[0,0][1080,2340]
+        * ActivityRecord{29820490 u0 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity t386}
+      * Task{2bc44f #3 name=SplitRoot type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
+        bounds=[0,0][1080,2340]
+        * Task{fe0fb29 #5 type=undefined U=0 rootTaskId=3 visible=false visibleRequested=false mode=multi-window stage=side/bottom translucent=true sz=0}
+          bounds=[0,1168][1080,2340]
+        * Task{1e520e5 #4 type=undefined U=0 rootTaskId=3 visible=false visibleRequested=false mode=multi-window stage=main/top translucent=true sz=0}
+          bounds=[0,0][1080,1147]
+
+  rootHomeTask=Task=1
+  rootRecentsTask=Task=386
+
+  PinnedTaskController
+    mIsImeShowing=false
+    mImeHeight=0
+    mMinAspectRatio=0.41841003
+    mMaxAspectRatio=2.39
+  rootMainStageTask=Task=4
+  rootSideStageTask=Task=5
+
+  DisplayFrames w=1080 h=2340 r=0
+
+  DisplayPolicy
+    mCarDockEnablesAccelerometer=true mDeskDockEnablesAccelerometer=true
+    mDockMode=EXTRA_DOCK_STATE_UNDOCKED mLidState=LID_ABSENT
+    mAwake=true mScreenOnEarly=true mScreenOnFully=true
+    mKeyguardDrawComplete=true mWindowManagerDrawComplete=true
+    mHdmiPlugged=false
+    mLastAppearance=LIGHT_STATUS_BARS LIGHT_NAVIGATION_BARS
+    mLastBehavior=DEFAULT
+    mShowingDream=false mDreamingLockscreen=false
+    mStatusBar=Window{230ac58 u0 StatusBar}
+    mExpandedPanel=Window{7817540 u0 NotificationShade}
+    isKeyguardShowing=false
+    mNavigationBar=Window{34d6b3d u0 NavigationBar0}
+    mNavBarOpacityMode=0
+    mNavigationBarCanMove=true
+    mHasBottomNavigationBar=true
+    mTopGestureHost=Window{230ac58 u0 StatusBar}
+    mBottomGestureHost=Window{34d6b3d u0 NavigationBar0}
+    mFocusedWindow=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+    mTopFullscreenOpaqueWindowState=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+    mSystemUiControllingWindow=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+    mSystemBarColorApps={ActivityRecord{39739397 u0 io.ionic.starter/.MainActivity t451}}
+    mNavBarColorWindowCandidate=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+    mNavBarBackgroundWindowCandidate=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+    mLastStatusBarAppearanceRegions=
+      AppearanceRegion{LIGHT_STATUS_BARS bounds=[0,0][1080,2340]}
+    mLastLetterboxDetails=
+    mStatusBarBackgroundWindows=
+      Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+    mTopIsFullscreen=false
+    mImeInsetsConsumed=false
+    mForceShowNavigationBarEnabled=false mAllowLockscreenWhenOn=false
+    mRemoteInsetsControllerControlsSystemBars=false
+    mDecorInsetsInfo:
+      ROTATION_0={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,89][0,126], configInsets=[0,0][0,0], overrideConfigInsets=[0,100][0,126], overrideNonDecorFrame=[0,89][1080,2214], overrideConfigFrame=[0,100][1080,2214]}
+      ROTATION_90={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[89,0][126,0], configInsets=[0,0][0,0], overrideConfigInsets=[89,79][126,0], overrideNonDecorFrame=[89,0][2214,1080], overrideConfigFrame=[89,79][2214,1080]}
+      ROTATION_180={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,215], configInsets=[0,0][0,0], overrideConfigInsets=[0,100][0,215], overrideNonDecorFrame=[0,0][1080,2125], overrideConfigFrame=[0,100][1080,2125]}
+      ROTATION_270={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[126,0][89,0], configInsets=[0,0][0,0], overrideConfigInsets=[126,79][89,0], overrideNonDecorFrame=[126,0][2251,1080], overrideConfigFrame=[126,79][2251,1080]}
+    SystemGestures:
+      mDisplayCutoutTouchableRegionSize=32
+      mSwipeStartThreshold=Rect(63, 98 - 63, 63)
+      mSwipeDistanceThreshold=63
+    UiContextResourcesConfig=
+    {0.9 404mcc20mnc [en_US] ldltr sw411dp w411dp h891dp 420dpi nrml long compactNeeded port finger -keyb/v/h -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 0 - 1080, 2340) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0 mStageConfig=undefined mPopOver=undefined mOverlappingWithCutout=false} as.1 s.7652 fontWeightAdjustment=0 ff=0 bf=-1 bts=0 cst=1.0 nightDim=0 themeSeq=0}
+    UiContextResourcesMetrics=
+    DisplayMetrics{density=2.625, width=1080, height=2340, scaledDensity=2.3625, xdpi=386.366, ydpi=388.47}
+
+    DisplayPolicyExt
+      mIsOneHandOpEnabled=false
+      mHasOneHandOpSpec=false
+      mReasonToStart=SYSTEM_BOOTED
+      mOneHandOpController=null
+      mOneHandOpHandler=null
+
+    RefreshRatePolicy
+      mLowRefreshRateMode={id=2, parentModeId=-1, flags=, width=1080, height=2340, fps=60.0, vsync=60.0, alternativeRefreshRates=[120.00001], supportedHdrTypes=[2, 3, 4]}
+      mNonHighRefreshRatePackages:
+      RefreshRatePolicy History
+      << PreferredModeHistory_ModeId >>
+      #2 07-23 21:45:20.457  Requested ( modeId=2 w=Window{5474d82 u0 com.sec.android.app.camera/com.sec.android.app.camera.Camera})
+      #1 07-23 15:41:46.319  Requested ( modeId=2 w=Window{8fd1a34 u0 com.samsung.android.incallui/com.android.incallui.call.InCallActivity})
+      << PreferredModeHistory_Min >>
+      #10 07-23 21:51:30.857  Requested ( refreshRate=60.0 w=Window{2ca8289 u0 InputMethod})
+      #9 07-23 21:45:20.687  Requested ( refreshRate=60.0 w=Window{5474d82 u0 com.sec.android.app.camera/com.sec.android.app.camera.Camera})
+      #8 07-23 17:58:38.039  Requested ( refreshRate=60.0 w=Window{2ca8289 u0 InputMethod})
+      #7 07-23 17:37:38.362  Requested ( refreshRate=60.0 w=Window{10f6d0c u0 com.whatsapp.w4b/com.whatsapp.Conversation})
+      #6 07-23 17:37:34.014  Requested ( refreshRate=60.0 w=Window{537da50 u0 com.whatsapp.w4b/com.whatsapp.camera.ui.CameraActivity})
+      #5 07-23 11:43:32.649  Requested ( refreshRate=60.0 w=Window{2ca8289 u0 InputMethod})
+      #4 07-23 11:40:11.759  Requested ( refreshRate=60.0 w=Window{9513b43 u0 com.whatsapp/com.whatsapp.camera.ui.CameraActivity})
+      #3 07-23 11:32:22.699  Requested ( refreshRate=60.0 w=Window{2ca8289 u0 InputMethod})
+      #2 07-23 11:32:17.348  Requested ( refreshRate=60.0 w=Window{712790f u0 in.amazon.mShop.android.shopping/com.amazon.mShop.navigation.MainActivity})
+      #1 07-23 09:31:33.110  Requested ( refreshRate=60.0 w=Window{2ca8289 u0 InputMethod})
+      << PreferredModeHistory_Max >>
+      #5 07-23 21:45:20.687  Requested ( refreshRate=60.0 w=Window{5474d82 u0 com.sec.android.app.camera/com.sec.android.app.camera.Camera})
+      #4 07-23 17:37:38.362  Requested ( refreshRate=60.0 w=Window{10f6d0c u0 com.whatsapp.w4b/com.whatsapp.Conversation})
+      #3 07-23 17:37:34.014  Requested ( refreshRate=60.0 w=Window{537da50 u0 com.whatsapp.w4b/com.whatsapp.camera.ui.CameraActivity})
+      #2 07-23 11:40:11.759  Requested ( refreshRate=60.0 w=Window{9513b43 u0 com.whatsapp/com.whatsapp.camera.ui.CameraActivity})
+      #1 07-23 11:32:17.348  Requested ( refreshRate=60.0 w=Window{712790f u0 in.amazon.mShop.android.shopping/com.amazon.mShop.navigation.MainActivity})
+
+  DisplayRotation
+    mCurrentAppOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+    mLastOrientation=-1
+    mRotation=0 mDeferredRotationPauseCount=0
+    mLandscapeRotation=ROTATION_90 mSeascapeRotation=ROTATION_270
+    mPortraitRotation=ROTATION_0 mUpsideDownRotation=ROTATION_180
+    mSupportAutoRotation=true
+    WindowOrientationListener
+      mEnabled=true
+      mCurrentRotation=ROTATION_0
+      mSensorType=null
+      mSensor={Sensor name="Device Orientataion", vendor="Samsung Inc.", version=16, type=27, maxRange=3.0, resolution=1.0, power=0.16, minDelay=0}
+      mRate=1
+      OrientationSensorJudge
+        mDesiredRotation=-1
+        mProposedRotation=-1
+        mTouching=false
+        mTouchEndedTimestampNanos=81805511312334
+        mLastRotationResolution=-1
+
+    mCarDockRotation=-1 mDeskDockRotation=-1
+    mUserRotationMode=USER_ROTATION_LOCKED mUserRotation=ROTATION_0 mCameraRotationMode=0 mAllowAllRotations=false
+    mDemoHdmiRotation=ROTATION_90 mDemoHdmiRotationLock=false mUndockedHdmiRotation=-1
+    mLidOpenRotation=-1
+    mFixedToUserRotation=false
+
+    RotationHistory
+      07-23 21:01:05.820 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_90
+      07-23 21:01:07.169 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
+      07-23 21:01:15.170 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_90
+      07-23 21:01:16.556 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
+      07-23 21:01:25.185 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_90
+      07-23 21:01:36.766 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
+      07-23 21:01:42.724 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_90
+      07-23 21:01:44.435 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
+      07-23 21:01:59.564 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_90
+      07-23 21:02:03.047 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{243896913 u0 com.google.android.youtube/.app.honeycomb.Shell$HomeActivity t441} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_0
+      07-23 21:21:39.930 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{189457451 u0 com.openai.chatgpt/.MainActivity t429} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=ROTATION_90
+      07-23 21:21:41.445 ROTATION_90 to ROTATION_0
+        source=Window{7817540 u0 NotificationShade} SCREEN_ORIENTATION_NOSENSOR
+        mode=USER_ROTATION_FREE user=ROTATION_0 sensor=-2
+      07-23 21:56:50.317 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{268110459 u0 io.ionic.starter/.MainActivity t446} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_LOCKED user=ROTATION_90 sensor=-1
+      07-23 21:57:43.975 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{268110459 u0 io.ionic.starter/.MainActivity t446} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_LOCKED user=ROTATION_0 sensor=-1
+      07-23 22:46:00.834 ROTATION_0 to ROTATION_90
+        source=ActivityRecord{208978477 u0 io.ionic.starter/.MainActivity t448} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_LOCKED user=ROTATION_90 sensor=-1
+      07-23 22:46:07.402 ROTATION_90 to ROTATION_0
+        source=ActivityRecord{208978477 u0 io.ionic.starter/.MainActivity t448} SCREEN_ORIENTATION_UNSPECIFIED
+        mode=USER_ROTATION_LOCKED user=ROTATION_0 sensor=-1
+
+        RotationLockHistory
+          07-23 22:02:08.597: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:02:22.964: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=NavigationBar#onViewAttached
+          07-23 22:02:23.016: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=RotationButtonController#onRotationWatcherChanged
+          07-23 22:02:36.386: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:03:00.337: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:03:23.378: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:04:00.149: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:04:26.500: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:04:51.755: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=NavigationBar#onViewAttached
+          07-23 22:04:52.011: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=RotationButtonController#onRotationWatcherChanged
+          07-23 22:43:38.226: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 22:46:07.464: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=RotationButtonController#onRotationWatcherChanged
+          07-23 23:00:25.562: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 23:00:38.982: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 23:03:22.900: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+          07-23 23:03:48.718: mode=USER_ROTATION_LOCKED, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+
+  InputConsumers:
+    name=recents_animation_input_consumer pid=2583 user=UserHandle{0}
+
+  WindowInsetsStateController
+    InsetsState
+      mDisplayFrame=Rect(0, 0 - 1080, 2340)
+      mDisplayCutout=DisplayCutout{insets=Rect(0, 89 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(507, 23 - 573, 89), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 M 0,8.177777777777778 a 11.73333333333333,11.73333333333333 0 1,0 0,23.46666666666667 a 11.73333333333333,11.73333333333333 0 1,0 0,-23.46666666666667 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}
+      mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=95, center=Point(95, 95)}, RoundedCorner{position=TopRight, radius=95, center=Point(985, 95)}, RoundedCorner{position=BottomRight, radius=95, center=Point(985, 2245)}, RoundedCorner{position=BottomLeft, radius=95, center=Point(95, 2245)}]}
+      mRoundedCornerFrame=Rect(0, 0 - 0, 0)
+      mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(964, 0 - 1080, 100) rotation=0}
+      mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}
+        InsetsSource id=f3e90001 type=navigationBars frame=[0,2214][1080,2340] visible=true flags= sideHint=BOTTOM boundingRects=null
+        InsetsSource id=f3e90004 type=systemGestures frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
+        InsetsSource id=f3e90005 type=mandatorySystemGestures frame=[0,2214][1080,2340] visible=true flags= sideHint=BOTTOM boundingRects=null
+        InsetsSource id=f3e90006 type=tappableElement frame=[0,2214][1080,2340] visible=true flags= sideHint=BOTTOM boundingRects=null
+        InsetsSource id=f3e90024 type=systemGestures frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
+        InsetsSource id=fd510000 type=statusBars frame=[0,0][1080,100] visible=true flags= sideHint=TOP boundingRects=null
+        InsetsSource id=fd510005 type=mandatorySystemGestures frame=[0,0][1080,121] visible=true flags= sideHint=TOP boundingRects=null
+        InsetsSource id=fd510006 type=tappableElement frame=[0,0][1080,100] visible=true flags= sideHint=TOP boundingRects=null
+        InsetsSource id=3 type=ime frame=[0,0][0,0] visibleFrame=[89,1661][2214,1080] visible=false flags=INVALID sideHint=NONE boundingRects=null
+        InsetsSource id=27 type=displayCutout frame=[0,0][1080,89] visible=true flags= sideHint=TOP boundingRects=null
+    Control map:
+      Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}:
+        InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(89, 79) mInsetsHint=Insets{left=0, top=0, right=0, bottom=762}}
+        InsetsSourceControl: {f3e90001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 2214) mInsetsHint=Insets{left=0, top=0, right=0, bottom=126}}
+        InsetsSourceControl: {fd510000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=100, right=0, bottom=0}}
+    InsetsSourceProviders:
+      ImeInsetsSourceProvider
+        mSource=InsetsSource id=3 type=ime frame=[0,0][0,0] visibleFrame=[89,1661][2214,1080] visible=false flags=INVALID sideHint=NONE boundingRects=null
+        mSourceFrame=Rect(89, 1661 - 2214, 1080)
+        mControl=InsetsSourceControl mId=3 mType=ime mLeash=Surface(name=Surface(name=2ca8289 InputMethod#98)/@0x8240aaf - animation-leash of insets_animation#8540)/@0x9d5b19b mInitiallyVisible=false mSurfacePosition=Point(89, 79) mInsetsHint=Insets{left=0, top=0, right=0, bottom=762} mSkipAnimationOnce=false mImeStatsToken=null mControlledByPolicy=false
+        mInsetsHint=Insets{left=0, top=0, right=0, bottom=762} stale
+        mIsLeashInitialized=true mHasPendingPosition=false
+        mWin=Window{2ca8289 u0 InputMethod}
+        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=2ca8289 InputMethod#98)/@0x8240aaf - animation-leash of insets_animation#8540)/@0x9d5b19b
+        mControlTarget=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+        mImeShowing=false mLastDrawn=false
+      InsetsSourceProvider
+        mSource=InsetsSource id=fd510006 type=tappableElement frame=[0,0][1080,100] visible=true flags= sideHint=TOP boundingRects=null
+        mSourceFrame=Rect(0, 0 - 1080, 100)
+        mIsLeashInitialized=false mHasPendingPosition=false
+        mWin=Window{230ac58 u0 StatusBar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=fd510005 type=mandatorySystemGestures frame=[0,0][1080,121] visible=true flags= sideHint=TOP boundingRects=null
+        mSourceFrame=Rect(0, 0 - 1080, 121)
+        mIsLeashInitialized=false mHasPendingPosition=false
+        mWin=Window{230ac58 u0 StatusBar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=fd510000 type=statusBars frame=[0,0][1080,100] visible=true flags= sideHint=TOP boundingRects=null
+        mSourceFrame=Rect(0, 0 - 1080, 100)
+        mControl=InsetsSourceControl mId=fd510000 mType=statusBars mLeash=Surface(name=Surface(name=230ac58 StatusBar#80)/@0x16d7f56 - animation-leash of insets_animation#8537)/@0x37a5d68 mInitiallyVisible=true mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=100, right=0, bottom=0} mSkipAnimationOnce=false mImeStatsToken=null mControlledByPolicy=false
+        mInsetsHint=Insets{left=0, top=100, right=0, bottom=0}
+        mIsLeashInitialized=true mHasPendingPosition=false
+        mWin=Window{230ac58 u0 StatusBar}
+        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=230ac58 StatusBar#80)/@0x16d7f56 - animation-leash of insets_animation#8537)/@0x37a5d68
+        mControlTarget=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+      InsetsSourceProvider
+        mSource=InsetsSource id=f3e90024 type=systemGestures frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
+        mSourceFrame=Rect(0, 0 - 0, 0)
+        mIsLeashInitialized=false mHasPendingPosition=false
+        mWin=Window{34d6b3d u0 NavigationBar0}
+      InsetsSourceProvider
+        mSource=InsetsSource id=f3e90006 type=tappableElement frame=[0,2214][1080,2340] visible=true flags= sideHint=BOTTOM boundingRects=null
+        mSourceFrame=Rect(0, 2214 - 1080, 2340)
+        mIsLeashInitialized=false mHasPendingPosition=false
+        mWin=Window{34d6b3d u0 NavigationBar0}
+      InsetsSourceProvider
+        mSource=InsetsSource id=f3e90005 type=mandatorySystemGestures frame=[0,2214][1080,2340] visible=true flags= sideHint=BOTTOM boundingRects=null
+        mSourceFrame=Rect(0, 2214 - 1080, 2340)
+        mIsLeashInitialized=false mHasPendingPosition=false
+        mWin=Window{34d6b3d u0 NavigationBar0}
+      InsetsSourceProvider
+        mSource=InsetsSource id=f3e90004 type=systemGestures frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
+        mSourceFrame=Rect(0, 0 - 0, 0)
+        mIsLeashInitialized=false mHasPendingPosition=false
+        mWin=Window{34d6b3d u0 NavigationBar0}
+      InsetsSourceProvider
+        mSource=InsetsSource id=f3e90001 type=navigationBars frame=[0,2214][1080,2340] visible=true flags= sideHint=BOTTOM boundingRects=null
+        mSourceFrame=Rect(0, 2214 - 1080, 2340)
+        mOverrideFrames={2011=Rect(0, 2214 - 1080, 2340)}
+        mControl=InsetsSourceControl mId=f3e90001 mType=navigationBars mLeash=Surface(name=Surface(name=34d6b3d NavigationBar0#8319)/@0xb54ee06 - animation-leash of insets_animation#8538)/@0x90cf626 mInitiallyVisible=true mSurfacePosition=Point(0, 2214) mInsetsHint=Insets{left=0, top=0, right=0, bottom=126} mSkipAnimationOnce=false mImeStatsToken=null mControlledByPolicy=false
+        mInsetsHint=Insets{left=0, top=0, right=0, bottom=126}
+        mIsLeashInitialized=true mHasPendingPosition=false
+        mWin=Window{34d6b3d u0 NavigationBar0}
+        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=34d6b3d NavigationBar0#8319)/@0xb54ee06 - animation-leash of insets_animation#8538)/@0x90cf626
+        mControlTarget=Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}
+  InsetsPolicy
+    status: WINDOW_STATE_SHOWING
+    nav: WINDOW_STATE_SHOWING
+
+  DisplayWindowSettingsProvider
+    SettingsEntry{mWindowingMode=0, mUserRotationMode=null, mUserRotation=null, mForcedWidth=0, mForcedHeight=0, mForcedDensity=420, mForcedDensityRatio=0.0, mForcedScalingMode=null, mRemoveContentMode=0, mShouldShowWithInsecureKeyguard=null, mShouldShowSystemDecors=null, mIsHomeSupported=null, mShouldShowIme=null, mFixedToUserRotation=null, mIgnoreOrientationRequest=null, mIgnoreDisplayCutout=null, mDontMoveToTop=null, mForceAppsUniversalResizable=null}
+
+
+WINDOW MANAGER TOKENS (dumpsys window tokens)
+  All tokens:
+  Display #0
+    mInTouchMode=true
+  WindowToken{a275bda type=2226 android.os.BinderProxy@7fc56fc}
+  TransientLaunchOverlayToken{fd8075 token=android.os.BinderProxy@f480649}
+  WindowToken{7aaa803 type=2032 android.os.Binder@f31b0b2}
+  ActivityRecord{191040292 u0 com.teslacoilsw.launcher/.NovaLauncher t375}
+  WindowToken{3786d3b type=2000 android.os.BinderProxy@dbd8735}
+  WindowToken{a0f147b type=2032 android.os.Binder@31aa40a}
+  WallpaperWindowToken{aaf0309 showWhenLocked=true}_<lock>
+  WindowToken{afdadbe type=2040 android.os.BinderProxy@92c3c72}
+  ActivityRecord{39739397 u0 io.ionic.starter/.MainActivity t451}
+  WindowToken{1f800e7 type=2019 android.os.BinderProxy@564d001}
+  WindowToken{9e3aea8 type=2016 android.os.BinderProxy@69353ff}
+  WallpaperWindowToken{14809a4 showWhenLocked=false}_<system>
+  WindowToken{9d2cdb9 type=2032 android.os.Binder@82ca380}
+  ActivityRecord{29820490 u0 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity t386}
+  WindowToken{8ebf3d type=2011 android.os.Binder@76b1894}
+
+WINDOW MANAGER WINDOWS (dumpsys window windows)
+  Window #0 Window{1b86d9a u0 ShellDropTarget}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@e4922bc
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillxfill) sim={adjust=pan} layoutInDisplayCutoutMode=always ty=DRAG fmt=TRANSLUCENT
+      fl=1000208
+      pfl=90000050
+      bhv=1
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0 mwfl=10}
+    Requested w=1080 h=2340 mLayoutSeq=8
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{ddcb6b6 ShellDropTarget}:
+      mShownAlpha=0.0 mAlpha=1.0 mLastAlpha=0.0
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #1 Window{34d6b3d u0 NavigationBar0}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@5130ea6
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillx126) gr=BOTTOM CENTER_VERTICAL sim={adjust=pan} layoutInDisplayCutoutMode=always ty=NAVIGATION_BAR fmt=TRANSLUCENT
+      fl=20040028
+      pfl=31001000
+      bhv=1
+      providedInsets:
+        InsetsFrameProvider: {id=#f3e90001, index=0, type=navigationBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=126}, insetsSizeOverrides=[TypedInsetsSize: {windowType=INPUT_METHOD, insetsSize=Insets{left=0, top=0, right=0, bottom=126}}]}
+        InsetsFrameProvider: {id=#f3e90006, index=0, type=tappableElement, source=FRAME, flags=[]}
+        InsetsFrameProvider: {id=#f3e90005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[]}
+        InsetsFrameProvider: {id=#f3e90004, index=0, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+        InsetsFrameProvider: {id=#f3e90024, index=1, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true
+      paramsForRotation:
+        ROTATION_0={(0,0)(fillx126) gr=BOTTOM CENTER_VERTICAL layoutInDisplayCutoutMode=always ty=NAVIGATION_BAR fmt=TRANSLUCENT
+          fl=20040028
+          pfl=31001000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#f3e90001, index=0, type=navigationBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=126}, insetsSizeOverrides=[TypedInsetsSize: {windowType=INPUT_METHOD, insetsSize=Insets{left=0, top=0, right=0, bottom=126}}]}
+            InsetsFrameProvider: {id=#f3e90006, index=0, type=tappableElement, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90004, index=0, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#f3e90024, index=1, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0}
+        ROTATION_90={(0,0)(126xfill) gr=RIGHT CENTER_HORIZONTAL layoutInDisplayCutoutMode=always ty=NAVIGATION_BAR fmt=TRANSLUCENT
+          fl=20040028
+          pfl=31001000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#f3e90001, index=0, type=navigationBars, source=FRAME, flags=[], insetsSizeOverrides=[TypedInsetsSize: {windowType=INPUT_METHOD, insetsSize=null}]}
+            InsetsFrameProvider: {id=#f3e90006, index=0, type=tappableElement, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90004, index=0, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#f3e90024, index=1, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0}
+        ROTATION_180={(0,0)(fillx126) gr=BOTTOM CENTER_VERTICAL layoutInDisplayCutoutMode=always ty=NAVIGATION_BAR fmt=TRANSLUCENT
+          fl=20040028
+          pfl=31001000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#f3e90001, index=0, type=navigationBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=126}, insetsSizeOverrides=[TypedInsetsSize: {windowType=INPUT_METHOD, insetsSize=Insets{left=0, top=0, right=0, bottom=126}}]}
+            InsetsFrameProvider: {id=#f3e90006, index=0, type=tappableElement, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90004, index=0, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#f3e90024, index=1, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0}
+        ROTATION_270={(0,0)(126xfill) gr=LEFT CENTER_HORIZONTAL layoutInDisplayCutoutMode=always ty=NAVIGATION_BAR fmt=TRANSLUCENT
+          fl=20040028
+          pfl=31001000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#f3e90001, index=0, type=navigationBars, source=FRAME, flags=[], insetsSizeOverrides=[TypedInsetsSize: {windowType=INPUT_METHOD, insetsSize=null}]}
+            InsetsFrameProvider: {id=#f3e90006, index=0, type=tappableElement, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[]}
+            InsetsFrameProvider: {id=#f3e90004, index=0, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#f3e90024, index=1, type=systemGestures, source=DISPLAY, flags=[], insetsSize=Insets{left=0, top=0, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=0, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0} naviIconColor=0}
+    Requested w=1080 h=126 mLayoutSeq=13682
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+    ContainerAnimator:
+      mLeash=Surface(name=Surface(name=34d6b3d NavigationBar0#8319)/@0xb54ee06 - animation-leash of insets_animation#8538)/@0x90cf626 mAnimationType=insets_animation
+      Animation: com.android.server.wm.InsetsSourceProvider$ControlAdapter@f4e9a30
+        ControlAdapter mCapturedLeash=Surface(name=Surface(name=34d6b3d NavigationBar0#8319)/@0xb54ee06 - animation-leash of insets_animation#8538)/@0x90cf626
+    WindowStateAnimator{fed0677 NavigationBar0}:
+      Surface: shown=true    isOnScreen=true
+    isVisible=true
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #2 Window{42eff39 u0 com.sec.android.app.launcher/com.samsung.app.honeyspace.edge.edgepanel.app.CocktailBarService}:
+    mDisplayId=0 mSession=Session{464f722 2583:u0a10144} mClient=android.os.BinderProxy@7fc56fc
+    mOwnerUid=10144 showForAllUsers=true package=com.sec.android.app.launcher appop=NONE
+    mAttrs={(0,406)(80x344) gr=TOP RIGHT CENTER sim={adjust=nothing} layoutInDisplayCutoutMode=always ty=2226 fmt=TRANSPARENT
+      fl=81800308
+      pfl=10000070
+      apr=10
+      bhv=1
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true
+ dimAmount=0.0 dimDuration=0 naviIconColor=0
+      sfl=420000}
+    Requested w=80 h=344 mLayoutSeq=13682
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+    WindowStateAnimator{f686778 com.sec.android.app.launcher/com.samsung.app.honeyspace.edge.edgepanel.app.CocktailBarService}:
+      Surface: shown=true    isOnScreen=true
+    isVisible=true
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #3 Window{6c2f01f u0 LockscreenShortcutBlur}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@233d7be
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillxfill) gr=TOP CENTER_VERTICAL sim={adjust=pan} layoutInDisplayCutoutMode=always ty=NOTIFICATION_SHADE_WIDGET fmt=TRANSLUCENT
+      fl=1000538
+      pfl=10000010
+      bhv=2
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0
+      sfl=8}
+    Requested w=1080 h=2340 mLayoutSeq=4758
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{d5ba0db LockscreenShortcutBlur}:
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #4 Window{7817540 u0 NotificationShade}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@46ca8c3
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillxfill) gr=TOP CENTER_VERTICAL sim={adjust=pan} layoutInDisplayCutoutMode=always ty=NOTIFICATION_SHADE fmt=TRANSLUCENT
+      fl=81040048
+      pfl=11000200
+      bhv=2
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0
+      sfl=40000}
+    Requested w=1080 h=2340 mLayoutSeq=13659
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{68a25ea NotificationShade}:
+    mWallpaperX=0.5 mWallpaperY=0.5
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #5 Window{230ac58 u0 StatusBar}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@e2e7ca
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillx100) gr=TOP CENTER_VERTICAL sim={adjust=pan} layoutInDisplayCutoutMode=always ty=STATUS_BAR fmt=TRANSLUCENT
+      fl=81000008
+      pfl=11000000
+      bhv=1
+      providedInsets:
+        InsetsFrameProvider: {id=#fd510000, index=0, type=statusBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}}
+        InsetsFrameProvider: {id=#fd510006, index=0, type=tappableElement, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}}
+        InsetsFrameProvider: {id=#fd510005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[], mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=32, right=0, bottom=0}}
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true
+      paramsForRotation:
+        ROTATION_0={(0,0)(fillx100) gr=TOP CENTER_VERTICAL layoutInDisplayCutoutMode=always ty=STATUS_BAR fmt=TRANSLUCENT
+          fl=80000008
+          pfl=11000000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#fd510000, index=0, type=statusBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510006, index=0, type=tappableElement, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=32, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0}
+        ROTATION_90={(0,0)(fillx79) gr=TOP CENTER_VERTICAL layoutInDisplayCutoutMode=always ty=STATUS_BAR fmt=TRANSLUCENT
+          fl=80000008
+          pfl=11000000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#fd510000, index=0, type=statusBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=79, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510006, index=0, type=tappableElement, source=FRAME, flags=[], insetsSize=Insets{left=0, top=79, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[], insetsSize=Insets{left=0, top=79, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=32, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0}
+        ROTATION_180={(0,0)(fillx100) gr=TOP CENTER_VERTICAL layoutInDisplayCutoutMode=always ty=STATUS_BAR fmt=TRANSLUCENT
+          fl=80000008
+          pfl=11000000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#fd510000, index=0, type=statusBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510006, index=0, type=tappableElement, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[], insetsSize=Insets{left=0, top=100, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=32, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0}
+        ROTATION_270={(0,0)(fillx79) gr=TOP CENTER_VERTICAL layoutInDisplayCutoutMode=always ty=STATUS_BAR fmt=TRANSLUCENT
+          fl=80000008
+          pfl=11000000
+          bhv=1
+          providedInsets:
+            InsetsFrameProvider: {id=#fd510000, index=0, type=statusBars, source=FRAME, flags=[], insetsSize=Insets{left=0, top=79, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510006, index=0, type=tappableElement, source=FRAME, flags=[], insetsSize=Insets{left=0, top=79, right=0, bottom=0}}
+            InsetsFrameProvider: {id=#fd510005, index=0, type=mandatorySystemGestures, source=FRAME, flags=[], insetsSize=Insets{left=0, top=79, right=0, bottom=0}, mMinimalInsetsSizeInDisplayCutoutSafe=Insets{left=0, top=32, right=0, bottom=0}}
+          frameRateBoostOnTouch=true
+          dvrrWindowFrameRateHint=true naviIconColor=0} naviIconColor=0}
+    Requested w=1080 h=100 mLayoutSeq=13682
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+    ContainerAnimator:
+      mLeash=Surface(name=Surface(name=230ac58 StatusBar#80)/@0x16d7f56 - animation-leash of insets_animation#8537)/@0x37a5d68 mAnimationType=insets_animation
+      Animation: com.android.server.wm.InsetsSourceProvider$ControlAdapter@89276a9
+        ControlAdapter mCapturedLeash=Surface(name=Surface(name=230ac58 StatusBar#80)/@0x16d7f56 - animation-leash of insets_animation#8537)/@0x37a5d68
+    WindowStateAnimator{3e069d5 StatusBar}:
+      Surface: shown=true    isOnScreen=true
+    isVisible=true
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #6 Window{db6e698 u0 RecentsTransitionOverlay}:
+    mDisplayId=0 mSession=Session{464f722 2583:u0a10144} mClient=android.os.BinderProxy@ff3bbac
+    mOwnerUid=10144 showForAllUsers=false package=com.sec.android.app.launcher appop=NONE
+    mAttrs={(0,0)(1x1) gr=BOTTOM CENTER_VERTICAL sim={adjust=pan} layoutInDisplayCutoutMode=always ty=TRANSIENT_LAUNCH_OVERLAY fmt=TRANSLUCENT if=INPUT_FEATURE_NO_INPUT_CHANNEL
+      fl=1000118
+      pfl=10000040
+      bhv=1
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0
+      sfl=4020000}
+    Requested w=1 h=1 mLayoutSeq=12838
+    mHasSurface=true isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{614ee8c RecentsTransitionOverlay}:
+      Surface: shown=false    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #7 Window{2ca8289 u0 InputMethod}:
+    mDisplayId=0 mSession=Session{441ff24 3603:u0a10364} mClient=android.os.BinderProxy@f31e990
+    mOwnerUid=10364 showForAllUsers=false package=com.touchtype.swiftkey appop=NONE
+    mAttrs={(0,0)(fillxfill) gr=BOTTOM CENTER_VERTICAL sim={adjust=pan} ty=INPUT_METHOD fmt=TRANSPARENT wanim=0x1030056 preferredMinDisplayRefreshRate=60.0 receive insets ignoring z-order
+      fl=81800108
+      pfl=10000800
+      bhv=1
+      fitTypes=3
+      fitSides=7
+      fitIgnoreVis
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0}
+    Requested w=1080 h=2240 mLayoutSeq=13019
+    mIsImWindow=true mIsWallpaper=false mIsFloatingLayer=true
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    ContainerAnimator:
+      mLeash=Surface(name=Surface(name=2ca8289 InputMethod#98)/@0x8240aaf - animation-leash of insets_animation#8540)/@0x9d5b19b mAnimationType=insets_animation
+      Animation: com.android.server.wm.InsetsSourceProvider$ControlAdapter@63a342e
+        ControlAdapter mCapturedLeash=Surface(name=Surface(name=2ca8289 InputMethod#98)/@0x8240aaf - animation-leash of insets_animation#8540)/@0x9d5b19b
+    WindowStateAnimator{4e047bf InputMethod}:
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #8 Window{3213d7f u0 io.ionic.starter/io.ionic.starter.MainActivity}:
+    mDisplayId=0 taskId=451 mSession=Session{908bf52 4272:u0a10496} mClient=android.os.BinderProxy@ecf7e9e
+    mOwnerUid=10496 showForAllUsers=false package=io.ionic.starter appop=NONE
+    mAttrs={(0,0)(fillxfill) sim={adjust=resize} layoutInDisplayCutoutMode=always ty=BASE_APPLICATION wanim=0x1030318
+      fl=81810100
+      pfl=10008840
+      vsysui=2510
+      apr=18
+      bhv=1
+      fitSides=0
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0}
+    Requested w=1080 h=2340 mLayoutSeq=13682
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+    WindowStateAnimator{ab48b73 io.ionic.starter/io.ionic.starter.MainActivity}:
+      Surface: shown=true    isOnScreen=true
+    isVisible=true
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #9 Window{50dec42 u0 GoogleDiscoverWindow}:
+    mDisplayId=0 taskId=375 mSession=Session{3a70251 2307:u0a10247} mClient=android.os.BinderProxy@a88728d
+    mOwnerUid=10247 showForAllUsers=false package=com.teslacoilsw.launcher appop=NONE
+    mAttrs={(0,0)(fillxfill) gr=LEFT CENTER_HORIZONTAL sim={adjust=resize} layoutInDisplayCutoutMode=always ty=DRAWN_APPLICATION fmt=TRANSPARENT wanim=0x7f150004 alpha=0.0
+      fl=81850118
+      pfl=10008840
+      bhv=1
+      fitSides=0
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true
+ dimAmount=0.0 naviIconColor=0}
+    Requested w=1080 h=2340 mLayoutSeq=13666
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{1d03be2 GoogleDiscoverWindow}:
+      mShownAlpha=0.0 mAlpha=0.0 mLastAlpha=0.0
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #10 Window{42dde12 u0 com.teslacoilsw.launcher/com.teslacoilsw.launcher.NovaLauncher}:
+    mDisplayId=0 taskId=375 mSession=Session{586f3a0 3963:u0a10327} mClient=android.os.BinderProxy@46cc99d
+    mOwnerUid=10327 showForAllUsers=false package=com.teslacoilsw.launcher appop=NONE
+    mAttrs={(0,0)(fillxfill) sim={adjust=nothing} layoutInDisplayCutoutMode=always ty=BASE_APPLICATION fmt=TRANSPARENT wanim=0x7f150004
+      fl=81910100
+      pfl=10008840
+      vsysui=700
+      bhv=1
+      fitSides=0
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0}
+    Requested w=1080 h=2340 mLayoutSeq=13666
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{9f880cf com.teslacoilsw.launcher/com.teslacoilsw.launcher.NovaLauncher}:
+    mWallpaperX=0.5 mWallpaperY=0.5
+    mWallpaperXStep=0.5 mWallpaperYStep=1.0
+    mWallpaperZoomOut=0.0
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #11 Window{2fd265f u0 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity}:
+    mDisplayId=0 taskId=386 mSession=Session{464f722 2583:u0a10144} mClient=android.os.BinderProxy@937fefe
+    mOwnerUid=10144 showForAllUsers=false package=com.sec.android.app.launcher appop=NONE
+    mAttrs={(0,0)(fillxfill) sim={adjust=pan} layoutInDisplayCutoutMode=always ty=BASE_APPLICATION fmt=TRANSPARENT wanim=0x1030307
+      fl=81910100
+      pfl=100088c0
+      bhv=2
+      fitSides=0
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0
+      sfl=4000000}
+    Requested w=1080 h=2340 mLayoutSeq=12840
+    mHasSurface=false isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{f556c60 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity}:
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #12 Window{f51a72a u0 com.android.systemui.wallpapers.ImageWallpaper}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@57c2815
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillxfill) gr=TOP START CENTER layoutInDisplayCutoutMode=always ty=WALLPAPER fmt=RGBX_8888 wanim=0x1030329
+      fl=10318
+      pfl=14
+      bhv=1
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0}
+    Requested w=-1 h=-1 mLayoutSeq=13670
+    mIsImWindow=false mIsWallpaper=true mIsFloatingLayer=true
+    mHasSurface=true isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{5078863 com.android.systemui.wallpapers.ImageWallpaper}:
+      Surface: shown=false    mWallpaperX=0.5 mWallpaperY=0.5
+    mWallpaperXStep=0.5 mWallpaperYStep=1.0
+    mWallpaperZoomOut=0.0
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+  Window #13 Window{8968173 u0 com.android.systemui.wallpapers.ImageWallpaper}:
+    mDisplayId=0 mSession=Session{bbf2eea 1854:u0a10049} mClient=android.os.BinderProxy@ec849e2
+    mOwnerUid=10049 showForAllUsers=true package=com.android.systemui appop=NONE
+    mAttrs={(0,0)(fillxfill) gr=TOP START CENTER layoutInDisplayCutoutMode=always ty=WALLPAPER fmt=RGBX_8888 wanim=0x1030329
+      fl=10318
+      pfl=14
+      bhv=1
+      frameRateBoostOnTouch=true
+      dvrrWindowFrameRateHint=true naviIconColor=0}
+    Requested w=-1 h=-1 mLayoutSeq=13650
+    mIsImWindow=false mIsWallpaper=true mIsFloatingLayer=true
+    mHasSurface=true isReadyForDisplay()=false mWindowRemovalAllowed=false
+    WindowStateAnimator{c2e5692 com.android.systemui.wallpapers.ImageWallpaper}:
+      Surface: shown=false    mWallpaperX=0.5 mWallpaperY=0.5
+    mWallpaperZoomOut=0.0
+    isOnScreen=false
+    isVisible=false
+    keepClearAreas: restricted=[], unrestricted=[]
+    mPrepareSyncSeqId=0
+    mBufferSeqId=0
+    mHiddenWhileProfileLockedState=false
+
+  mGlobalConfiguration={0.9 404mcc20mnc [en_US] ldltr sw411dp w411dp h891dp 420dpi nrml long compactNeeded port finger -keyb/v/h -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 0 - 1080, 2340) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0 mStageConfig=undefined mPopOver=undefined mOverlappingWithCutout=false} s.7804 fontWeightAdjustment=0 ff=0 bf=-1 bts=0 cst=1.0 nightDim=0 themeSeq=0}
+  mHasPermanentDpad=false
+  mTopFocusedDisplayId=0
+  imeSurfaceParent in display# 0 Surface(name=ActivityRecord{39739397 u0 io.ionic.starter/.MainActivity t451}#8521)/@0x129ba8  Minimum task size of display#0 220
+  mBlurEnabled=false
+  mDisableSecureWindows=false
+ mHighResSnapshotScale=1.0
+ mSnapshotEnabled=true
+ SnapshotCache Task
+ MaxSnapshotCache=6
+ mHighResSnapshotScale=0.6
+ mSnapshotEnabled=true
+ SnapshotCache Activity
+ MaxSnapshotCache=6
+   UserSavedFile userId=0
+AccessibilityController:
+  1 windows for accessibility observer(s):
+    WindowsForAccessibilityObserver{mDisplayId=0, mInitialized=true}
+  AccessibilityWindowsPopulator
+    mWindowsNotificationEnabled: true
+    4 visible windows: [34d6b3d NavigationBar0, frame=[Rect(0, 2214 - 1080, 2340)], touchableRegion=SkRegion((0,2214,1080,2340)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -2214.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@5130ea6, displayId=0, isClone=false, contentSize=126x1080, alpha=1.0, canOccludePresentation=false, 42eff39 com.sec.android.app.launcher/com.samsung.app.honeyspace.edge.edgepanel.app.CocktailBarService, frame=[Rect(1000, 406 - 1080, 750)], touchableRegion=SkRegion((1033,406,1082,750)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -1000.0][0.0, 1.0, -406.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@7fc56fc, displayId=0, isClone=false, contentSize=344x80, alpha=1.0, canOccludePresentation=false, 230ac58 StatusBar, frame=[Rect(0, 0 - 1080, 100)], touchableRegion=SkRegion((0,0,1080,100)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -0.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@e2e7ca, displayId=0, isClone=false, contentSize=100x1080, alpha=1.0, canOccludePresentation=false, 3213d7f io.ionic.starter/io.ionic.starter.MainActivity, frame=[Rect(0, 0 - 1080, 2340)], touchableRegion=SkRegion((0,0,1080,2340)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -0.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@ecf7e9e, displayId=0, isClone=false, contentSize=2340x1080, alpha=1.0, canOccludePresentation=true]
+    1 display info(s):
+displayId=0, mLogicalSize=1080x2340, mTransform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -0.0][0.0, 0.0, 1.0]}
+    1 window handles on display(s):
+  Display #0: [34d6b3d NavigationBar0, frame=[Rect(0, 2214 - 1080, 2340)], touchableRegion=SkRegion((0,2214,1080,2340)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -2214.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@5130ea6, displayId=0, isClone=false, contentSize=126x1080, alpha=1.0, canOccludePresentation=false, 42eff39 com.sec.android.app.launcher/com.samsung.app.honeyspace.edge.edgepanel.app.CocktailBarService, frame=[Rect(1000, 406 - 1080, 750)], touchableRegion=SkRegion((1033,406,1082,750)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -1000.0][0.0, 1.0, -406.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@7fc56fc, displayId=0, isClone=false, contentSize=344x80, alpha=1.0, canOccludePresentation=false, 230ac58 StatusBar, frame=[Rect(0, 0 - 1080, 100)], touchableRegion=SkRegion((0,0,1080,100)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -0.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@e2e7ca, displayId=0, isClone=false, contentSize=100x1080, alpha=1.0, canOccludePresentation=false, 3213d7f io.ionic.starter/io.ionic.starter.MainActivity, frame=[Rect(0, 0 - 1080, 2340)], touchableRegion=SkRegion((0,0,1080,2340)), scaleFactor=1.0, transform=Matrix{[1.0, 0.0, -0.0][0.0, 1.0, -0.0][0.0, 0.0, 1.0]}, windowToken=android.os.BinderProxy@ecf7e9e, displayId=0, isClone=false, contentSize=2340x1080, alpha=1.0, canOccludePresentation=true]
+    No magnification spec matrixs
+    No current magnification specs
+    No previous magnification specs
+
+WINDOW MANAGER EXTENSION (dumpsys window extension)
+  mDisplaySizeDensityChangedReason: Pid=24233, ProcessName=null, displayId=0, caller=com.android.server.wm.WindowManagerService.clearForcedDisplaySize:57 com.android.server.wm.WindowManagerShellCommand.runDisplaySize:89 com.android.server.wm.WindowManagerShellCommand.onCommand:729 com.android.modules.utils.BasicShellCommandHandler.exec:97 android.os.ShellCommand.exec:38
+
+  dumpCriticalInfo
+    2025-04-12 19:54:38.489: Pid=2788, ProcessName=com.android.settings, displayId=0, Density=420, saveToSettings=true, caller=com.android.server.wm.MultiResolutionController.setForcedDisplaySizeDensity:178 com.android.server.wm.WindowManagerService.setForcedDisplaySizeDensityWithInfo:10764 com.android.server.wm.WindowManagerService.setForcedDisplaySizeDensity:10758 android.view.IWindowManager$Stub.onTransact:3570 com.android.server.wm.WindowManagerService.onTransact:1540  [M356BXXS4AYB3]
+    2025-04-19 18:36:03.898: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-04-28 19:09:21.207: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-04-30 22:50:51.597: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-07 21:20:53.247: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-07 21:20:53.491: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-07 21:20:53.773: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-12 11:54:22.449: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-12 18:45:43.243: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-14 22:12:15.859: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-19 19:49:53.859: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-05-27 19:03:22.659: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-03 21:29:55.993: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-10 23:16:40.761: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-11 09:40:50.327: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-11 09:40:50.371: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-11 09:40:50.572: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-16 18:40:30.735: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-18 20:05:06.809: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-18 20:05:06.911: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-19 22:24:12.886: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2025-06-20 12:47:58.744: com.android.server.wm.LockTaskController.stopLockTaskMode:516, task:null Uid=10049 isSystemCaller(stopAppPinning)=true LockTaskModeState=0 Callers: com.android.server.wm.LockTaskController.stopLockTaskMode:516 com.android.server.wm.ActivityTaskManagerService.stopLockTaskModeInternal:3561 com.android.server.wm.ActivityTaskManagerService.stopSystemLockTaskMode:3513 android.app.IActivityTaskManager$Stub.onTransact:1932 com.android.server.wm.ActivityTaskManagerService.onTransact:6972
+    2026-04-16 09:44:38.914: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-16 13:04:47.581: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-16 16:35:15.738: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-16 20:46:33.627: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-17 01:25:38.320: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-17 04:41:17.915: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-17 09:20:07.482: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-17 13:18:19.022: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-18 00:54:54.297: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-18 08:48:37.232: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-18 12:11:16.980: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-18 16:03:07.334: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-18 19:56:05.162: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-18 21:06:15.172: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-19 01:35:07.230: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-19 04:35:07.475: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-19 08:17:33.108: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-19 23:39:03.353: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-20 02:52:30.277: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-20 05:52:30.655: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-20 09:57:49.847: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-22 08:03:10.369: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-22 12:40:56.324: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-22 15:42:59.485: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-22 18:43:33.629: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-23 08:12:09.289: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-23 13:55:53.663: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-23 16:58:17.395: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-23 19:58:18.004: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-26 22:59:28.944: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-26 23:36:40.931: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-27 04:51:03.566: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-27 09:18:40.223: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-27 13:16:18.308: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-27 16:25:30.906: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-27 19:27:55.490: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-28 17:04:43.888: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-28 20:24:55.727: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-28 23:25:18.152: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-29 08:45:10.835: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-29 22:55:38.961: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-29 23:48:12.063: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-30 02:48:12.404: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-04-30 05:48:12.622: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-01 08:24:42.400: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-01 12:31:14.079: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-01 15:55:12.967: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-01 19:03:01.414: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-02 06:09:19.560: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-02 10:57:38.876: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-02 14:14:00.089: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-02 17:17:18.679: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-02 18:37:03.346: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-02 21:37:55.717: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-03 00:08:07.655: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-03 03:08:08.016: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-03 06:08:08.114: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-03 10:20:55.966: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-03 21:24:15.298: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-04 00:25:51.102: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-04 03:25:51.182: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-04 06:25:51.545: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-06 21:01:59.466: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-07 00:02:07.344: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-07 08:22:44.546: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-07 13:34:44.170: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-07 21:22:59.636: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-08 00:23:01.095: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-08 03:23:01.312: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-08 06:23:01.650: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-08 19:05:03.339: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-08 22:10:21.544: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-09 01:13:15.692: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-09 04:13:16.070: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-09 18:05:26.547: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-09 21:48:53.101: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-10 07:02:17.045: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-10 10:24:38.311: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-11 07:32:35.158: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-11 10:35:10.418: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-11 13:35:10.532: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-11 16:44:41.192: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-12 15:51:30.982: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-12 18:52:39.648: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-12 22:01:33.249: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-13 06:23:40.350: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-14 00:10:53.178: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-14 07:01:07.330: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-14 11:51:31.397: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-14 14:55:54.138: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-14 18:06:51.331: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-15 15:29:57.004: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-15 18:26:31.836: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-15 21:38:18.919: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-16 00:39:45.097: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-17 09:54:12.190: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-17 13:22:40.046: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-17 16:24:30.791: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-17 19:25:39.075: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-17 22:22:18.575: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-18 03:49:38.848: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-18 13:04:54.435: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-18 16:06:58.299: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-18 23:13:12.747: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-19 08:41:47.084: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-19 11:45:23.971: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-19 14:45:47.546: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-21 12:36:28.455: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-21 15:37:13.999: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-21 18:37:54.512: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-21 21:43:03.797: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-21 22:53:34.154: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-22 01:54:23.793: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-22 04:54:24.099: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-22 10:44:15.899: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-23 21:35:24.944: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-24 01:33:26.001: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-24 10:54:48.446: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-24 14:17:06.372: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-24 17:29:45.495: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-28 09:49:43.723: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-28 12:49:44.061: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-28 15:53:39.090: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-28 19:07:32.330: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-31 06:46:35.430: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-31 09:53:27.368: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-31 13:06:53.855: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-05-31 16:08:11.774: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-02 09:58:01.314: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-02 13:13:12.432: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-02 16:15:04.020: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-02 19:30:10.256: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-02 22:50:28.813: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-06 20:39:38.887: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-06 23:51:26.036: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-07 02:51:26.592: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-07 05:51:26.985: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 06:53:35.174: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 09:57:29.867: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 12:57:30.154: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 14:12:47.030: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 17:33:34.019: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 19:33:05.584: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-08 22:51:11.647: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-09 06:20:04.406: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-09 06:32:20.790: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-09 11:59:55.766: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-09 15:05:56.096: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-10 15:00:30.397: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-10 18:00:51.581: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-10 21:05:16.068: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-11 06:26:37.684: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-11 09:29:29.928: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-11 12:31:15.768: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-11 15:33:27.673: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-11 23:22:45.545: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-12 09:20:51.864: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-12 12:21:57.905: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-12 14:04:05.829: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-14 16:54:36.269: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-14 19:58:27.546: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-14 23:05:57.434: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-15 08:21:13.949: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-15 21:47:06.053: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-16 07:12:15.719: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-16 10:15:46.115: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-16 13:16:12.911: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-16 16:41:33.165: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-17 06:52:14.566: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-17 09:52:14.969: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-17 13:15:39.439: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-17 16:22:31.065: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-17 23:54:31.048: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-18 07:26:51.257: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-18 09:43:44.085: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-18 12:46:10.985: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-18 15:46:11.238: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-18 18:46:51.939: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-19 15:28:03.706: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-19 15:41:36.976: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-19 18:42:14.381: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-19 21:42:41.515: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-22 11:26:50.594: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-22 14:26:50.817: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-22 17:26:51.166: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-22 20:33:17.296: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-25 11:45:26.055: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-25 14:45:26.395: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-25 17:45:26.530: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-25 20:45:29.680: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-27 11:12:15.018: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-27 14:12:15.188: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-27 17:12:15.474: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-27 20:12:15.655: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-30 11:17:43.991: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-30 14:17:44.294: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-30 17:17:44.655: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-06-30 20:17:44.894: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-05 13:57:18.417: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-05 16:57:18.592: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-05 19:57:18.963: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-05 22:57:19.692: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-06 17:43:02.437: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-06 19:39:07.460: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-06 22:39:08.815: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-07 06:36:20.795: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-07 11:05:32.457: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-08 21:25:03.931: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-08 22:13:42.415: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-09 01:22:52.074: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-09 09:33:33.480: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-09 12:51:03.279: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-11 12:29:51.816: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-11 15:57:28.161: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-11 18:57:28.258: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-11 22:11:34.008: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-12 19:26:20.301: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-12 22:28:38.168: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-13 00:07:05.474: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-13 03:07:06.167: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-13 10:07:44.170: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-13 13:13:56.234: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-14 18:30:26.035: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-14 21:30:38.275: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-15 00:30:38.642: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-15 08:01:39.224: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-16 18:06:08.878: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-16 21:06:09.168: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-17 00:08:14.329: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-17 11:52:46.742: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-17 12:20:23.324: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-17 15:21:38.578: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-17 19:38:00.157: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-17 22:50:00.138: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-18 01:50:00.237: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-18 04:50:00.445: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-21 10:43:49.792: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-21 14:13:17.161: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-21 17:13:17.279: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-21 20:13:58.822: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-23 00:23:55.875: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-23 05:22:32.842: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-23 12:52:46.361: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-23 16:27:52.507: PackageFeature_FoldablePackagePolicy_2026032601_false
+      Invalid!
+      line: 504
+    2026-07-23 22:03:50.958: Pid=21167, ProcessName=null, displayId=0, Size=840x1820, caller=com.android.server.wm.WindowManagerService.setForcedDisplaySize:57 com.android.server.wm.WindowManagerShellCommand.runDisplaySize:83 com.android.server.wm.WindowManagerShellCommand.onCommand:729 com.android.modules.utils.BasicShellCommandHandler.exec:97 android.os.ShellCommand.exec:38  [M356BXXU8DZE3]
+    2026-07-23 22:04:28.442: Pid=21403, ProcessName=null, displayId=0, caller=com.android.server.wm.WindowManagerService.clearForcedDisplaySize:57 com.android.server.wm.WindowManagerShellCommand.runDisplaySize:89 com.android.server.wm.WindowManagerShellCommand.onCommand:729 com.android.modules.utils.BasicShellCommandHandler.exec:97 android.os.ShellCommand.exec:38  [M356BXXU8DZE3]
+    2026-07-23 22:11:42.037: Pid=24233, ProcessName=null, displayId=0, caller=com.android.server.wm.WindowManagerService.clearForcedDisplaySize:57 com.android.server.wm.WindowManagerShellCommand.runDisplaySize:89 com.android.server.wm.WindowManagerShellCommand.onCommand:729 com.android.modules.utils.BasicShellCommandHandler.exec:97 android.os.ShellCommand.exec:38  [M356BXXU8DZE3]
+
+  PolicyControl.sImmersiveStatusFilter=null
+  PolicyControl.sImmersiveNavigationFilter=null
+  ExtraDisplayPolicy=com.android.server.wm.WindowManagerServiceExt$1@91b5053
+WINDOW MANAGER TRACE (dumpsys window trace)
+Status: Disabled
+Sessions logging 'on frame': 0
+Sessions logging 'on transaction': 0
+
+Deprecated legacy command. Use Perfetto commands instead.
+WINDOW MANAGER HIGH REFRESH RATE BLACKLIST (dumpsys window refresh)
+High Refresh Rate Denylist
+  Packages:
+INSTALLED PACKAGES HAVING APP-SPECIFIC CONFIGURATIONS
+Current user ID : 0
+
+    PackageName : com.google.android.apps.maps
+        NightMode : null
+        Locales : [en_IN]
+
+    PackageName : ch.protonvpn.android
+        NightMode : 32
+        Locales : null
+
+    PackageName : com.google.android.gm
+        NightMode : null
+        Locales : null
+
+    PackageName : com.application.zomato
+        NightMode : null
+        Locales : [en_US]
+
+    PackageName : com.mcdonalds.mobileapp
+        NightMode : null
+        Locales : [en_GB]
+
+    PackageName : com.google.android.youtube
+        NightMode : 32
+        Locales : null
+
+    PackageName : com.ingka.ikea.app
+        NightMode : null
+        Locales : [en_IN]
+WINDOW MANAGER CONSTANTS (dumpsys window constants):
+  system_gesture_exclusion_log_debounce_millis=1500
+  system_gesture_exclusion_limit_dp=200
+  system_gestures_excluded_by_pre_q_sticky_immersive=false
+  ignore_activity_orientation_request_screens=none
+
+SystemPerformanceHinter:
+  Active sessions (0):
+TrustedPresentationListenerController:
+  Active unique listeners (0):
+SensitiveContentPackages:
+  Packages that should block screen capture (0):
+ScreenRecordingCallbackController:
+  Registered callbacks:
+  Last invoked states:
+BackgroundActivityStartNotifier state:
+=====================================
+  mFullFeatureEnabled: false
+  mScreenOn: true
+  mScreenLocked: false
+Class State:
+  mLastNotifyTime: 0 (never)
+  mLastNotifyPackage: null
+  mIsSdhmsPackageLimitReached: false
+  mPackageMap size: 0
+
+Configuration:
+  SUSPICIOUS_TRIGGER_WINDOW_MINUTES: 5
+  SUSPICIOUS_TIMEOUT_HOURS: 1
+  MAX_DEFAULT_COUNT: 5
+  MAX_JUDGE_COUNT: 3
+
+Allowed Package Lists:
+  ALLOWED_PACKAGE_PREFIXES count: 4
+  ALLOWED_PACKAGE_INFIXES count: 1
+  ALLOWED_PACKAGE_NAMES count: 9
+
+Package Statistics:
+  DEFAULT: 0
+  SUSPICIOUS: 0
+  WAITING_JUDGE: 0
+  TIMEOUT: 0
+  MALICIOUS: 0
+  EXEMPTED: 0
+  Total: 0
+
+No packages in map
+  mScaVersion: 1.1
+  mExemptPackageBySCA size: 9
+  mExemptPackageBySCA packages:
+    com.enpsystem.drv.texi
+    br.com.zetabit.ios_standby
+    com.aintel.driver.bucheon
+    com.inavimobility.taxi.driver
+    com.mmguardian.childapp
+    com.aintel.driver.grgi
+    me.com.easytaxista
+    com.ibragunduz.applockpro
+    com.truecaller
+=====================================

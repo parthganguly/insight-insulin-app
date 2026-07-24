@@ -1,0 +1,16 @@
+Physical device: Samsung SM-M356B (ADB RZCY22FGP1Z)
+Exact APK SHA-256: 7228BD55A97563F737C797CF38514EF34397AC6A7B8E293C6FC75E9FF4583BF2
+
+c2-loading-paper.xml
+- loadingLabel=Reading your meal photo…
+- enabled=false
+- bounds=[49,1504][1039,1645]
+- tryAgainPresent=false
+- spinnerOrProgressBarPresent=false
+
+c2-loading-ink.xml
+- loadingLabel=Reading your meal photo…
+- enabled=false
+- bounds=[49,1504][1039,1645]
+- tryAgainPresent=false
+- spinnerOrProgressBarPresent=false

@@ -1,0 +1,7 @@
+﻿List of devices attached
+RZCY22FGP1Z            device product:m35xins model:SM_M356B device:m35x transport_id:4
+
+SM-M356B
+m35x
+16
+36
