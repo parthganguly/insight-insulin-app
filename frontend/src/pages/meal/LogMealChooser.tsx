@@ -1,5 +1,5 @@
 import { IonButton, IonContent, IonHeader, IonIcon, IonPage, IonTitle, useIonRouter } from "@ionic/react";
-import { camera, chevronForward, create, repeat } from "ionicons/icons";
+import { camera, create, repeat } from "ionicons/icons";
 
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
@@ -55,7 +55,6 @@ const LogMealChooser: React.FC = () => {
 			<IonContent className='ion-padding'>
 				<div className='log-meal-intro'>
 					<h1>How would you like to add it?</h1>
-					<p>Choose the option that best matches what you have available.</p>
 				</div>
 
 				<div className='log-meal-options'>
@@ -66,7 +65,6 @@ const LogMealChooser: React.FC = () => {
 								<strong>{option.title}</strong>
 								<small>{option.description}</small>
 							</span>
-							<IonIcon aria-hidden='true' icon={chevronForward} />
 						</IonButton>
 					))}
 				</div>

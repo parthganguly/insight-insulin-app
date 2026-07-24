@@ -1,4 +1,4 @@
-import { IonPage, IonContent, IonHeader, IonTitle, IonButton, IonImg, IonText, IonIcon, IonTextarea, IonBackButton, IonButtons, IonLoading, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonButton, IonImg, IonIcon, IonTextarea, IonButtons, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { useEffect, useState } from "react";
 import { useIonRouter } from "@ionic/react";
@@ -145,124 +145,101 @@ const AiMealAdd = () => {
 		}
 	};
 
+	const hasImages = images.length > 0;
+	const atQuota = images.length >= 5;
+
 	return (
 		<IonPage>
 			<IonHeader>
-				<IonToolbarWrapper className='ion-text-left'>
-					<IonButtons slot='start'>
-						<IonBackButton />
+				<IonToolbarWrapper className='camera-toolbar'>
+					<span className='camera-framing-hint'>Frame the whole meal</span>
+					<IonButtons slot='end'>
+						<IonButton className='camera-cancel-action' onClick={() => router.push("/log-meal", "back")}>
+							Cancel
+						</IonButton>
 					</IonButtons>
-					<IonTitle>Smart Camera</IonTitle>
 				</IonToolbarWrapper>
 			</IonHeader>
 
-			<IonContent className='ion-padding ion-text-center'>
-				<div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-					{/* {ScanFoodAnimation} */}
-
-					<IonText color='medium'>
-						<h1 className='camera-heading'>Photograph your meal</h1>
-						<ul style={{ textAlign: "left", paddingLeft: "1.5rem", margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-							<li>Keep the whole meal visible.</li>
-							<li>Add another angle or a label when it helps show what's included.</li>
-							<li>You can add up to 5 photos.</li>
-						</ul>
-					</IonText>
-
-					{images && (
-						<div className='ion-margin-vertical' style={{ display: "flex", flexDirection: "row", justifyContent: "center", gap: 18, flexWrap: "wrap" }}>
+			<IonContent className='camera-content'>
+				<section className='camera-frame' aria-labelledby='meal-photo-capture-title'>
+					<h1 id='meal-photo-capture-title' className='camera-visually-hidden'>
+						Meal photo capture
+					</h1>
+					{hasImages ? (
+						<>
+							<p className='camera-visually-hidden' aria-live='polite'>
+								{images.length} captured meal {images.length === 1 ? "photo" : "photos"} ready for analysis.
+							</p>
+							<ul className='camera-thumbnails' aria-label='Captured meal photos'>
 							{images.map((imageDataUri, index) => (
-								<div className='' style={{ position: "relative" }} key={index}>
-									<IonImg
-										key={index}
-										src={imageDataUri}
-										alt={`Captured food ${index + 1}`}
-										style={{
-											width: 120,
-											height: 120,
-											objectFit: "cover",
-											borderRadius: 10,
-											overflow: "hidden",
-										}}
-									/>
-									<IonButton
-										color='danger'
-										size='small'
-										aria-label={`Remove photo ${index + 1}`}
-										onClick={() => {
-											removeImage(index);
-										}}
-										style={{ position: "absolute", top: -10, right: -10 }}>
-										<IonIcon icon={trash} slot='icon-only' />
-									</IonButton>
-								</div>
+								<li className={index === 0 ? "camera-thumbnail camera-thumbnail-primary" : "camera-thumbnail"} key={index}>
+									<IonImg src={imageDataUri} alt={`Captured food ${index + 1}`} className='camera-thumbnail-image' />
+									<button type='button' className='camera-thumbnail-remove' aria-label={`Remove photo ${index + 1}`} onClick={() => removeImage(index)}>
+										<IonIcon icon={trash} aria-hidden='true' />
+										<span className='camera-visually-hidden'>Remove photo {index + 1}</span>
+									</button>
+								</li>
 							))}
+							</ul>
+						</>
+					) : (
+						<div className='camera-frame-placeholder'>
+							<IonIcon icon={camera} aria-hidden='true' />
+							<p>No photo captured yet</p>
 						</div>
 					)}
+				</section>
 
-					<IonTextarea
-						onIonChange={(e) => setTextualData(e.detail.value ?? "")}
-						value={textualData}
-						className='ion-text-left'
-						fill='outline'
-						label="Anything the photo can't show? (optional)"
-						labelPlacement='floating'
-						placeholder='e.g. cooked in butter, brown rice, half portion'
-					/>
-
-					<IonText color='medium'>
-						<p style={{ fontSize: "0.78rem", textAlign: "left", margin: "0.5rem 0 0" }}>{AI_EXTRACTION_PRIVACY_DISCLOSURE}</p>
-					</IonText>
-
+				<div className='camera-controls'>
 					{visibleError && (
-						<div
-							role='alert'
-							style={{
-								width: "100%",
-								textAlign: "left",
-								background: "#f4f6f8",
-								borderLeft: "4px solid #d9a62e",
-								borderRadius: "10px",
-								padding: "12px",
-								marginTop: "0.75rem",
-								display: "flex",
-								flexDirection: "column",
-								gap: "8px",
-							}}>
-							<IonText>
-								<p style={{ margin: 0, fontSize: "0.92rem" }}>{visibleError}</p>
-							</IonText>
-							<div className='camera-error-actions'>
+						<div role='alert' className='camera-failure-card'>
+							<p>{visibleError}</p>
+							<div className='camera-failure-actions'>
 								{failureKind === "analysis" && (
 									<IonButton size='small' fill='outline' onClick={handleOnSubmit} disabled={isLoading}>
 										Try again
 									</IonButton>
 								)}
 								<IonButton size='small' fill='outline' onClick={handleAddManually}>
-									<IonIcon slot='start' icon={pencil} />
+									<IonIcon slot='start' icon={pencil} aria-hidden='true' />
 									Enter manually instead
 								</IonButton>
 							</div>
 						</div>
 					)}
 
-					<div className='camera-capture-actions ion-margin-top'>
-						<IonButton expand='block' fill='outline' onClick={() => handleAddPhoto(CameraSource.Camera)} disabled={images.length >= 5}>
-							<IonIcon icon={camera} slot='start' />
-							{images.length === 0 ? "Take a photo" : "Add another angle"}
-						</IonButton>
-						<IonButton expand='block' fill='clear' onClick={() => handleAddPhoto(CameraSource.Photos)} disabled={images.length >= 5}>
-							<IonIcon slot='start' icon={image} />
+					<details className='camera-privacy'>
+						<summary>How your photo is used</summary>
+						<p>{AI_EXTRACTION_PRIVACY_DISCLOSURE}</p>
+					</details>
+
+					<IonTextarea
+						className='camera-note'
+						onIonChange={(e) => setTextualData(e.detail.value ?? "")}
+						value={textualData}
+						fill='outline'
+						label="Anything the photo can't show? (optional)"
+						labelPlacement='floating'
+						placeholder='e.g. cooked in butter, brown rice, half portion'
+					/>
+
+					<div className='camera-action-row'>
+						<IonButton className='camera-library-button' fill='outline' onClick={() => handleAddPhoto(CameraSource.Photos)} disabled={atQuota}>
+							<IonIcon slot='start' icon={image} aria-hidden='true' />
 							Choose from photos
+						</IonButton>
+
+						<IonButton className={hasImages ? "camera-shutter-button camera-shutter-button-secondary" : "camera-shutter-button"} onClick={() => handleAddPhoto(CameraSource.Camera)} disabled={atQuota}>
+							<IonIcon slot='start' icon={camera} aria-hidden='true' />
+							{hasImages ? "Add another angle" : "Take a photo"}
 						</IonButton>
 					</div>
 
-					<IonButton className='analyze-meal-button' expand='block' onClick={handleOnSubmit} disabled={isLoading || images.length === 0}>
-						Analyze meal
+					<IonButton className='camera-analyze-button' expand='block' onClick={handleOnSubmit} disabled={isLoading || !hasImages}>
+						{isLoading ? "Reading your meal photo…" : "Analyze meal"}
 					</IonButton>
 				</div>
-
-				<IonLoading message='Reading your meal photo...' isOpen={isLoading} />
 			</IonContent>
 		</IonPage>
 	);

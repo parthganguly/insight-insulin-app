@@ -11,7 +11,6 @@ vi.mock("@ionic/react", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("@ionic/react")>();
 	return {
 		...actual,
-		IonLoading: ({ isOpen, message }: { isOpen: boolean; message: string }) => (isOpen ? <div role='status'>{message}</div> : null),
 		useIonViewWillEnter: (callback: () => void) => {
 			lifecycle.willEnter = callback;
 		},
@@ -31,6 +30,7 @@ import App from "../../App";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { AI_EXTRACTION_UNAVAILABLE_MESSAGE, CAMERA_CANCELLED_MESSAGE } from "../../utils/aiFailureCopy";
+import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
 
 const SYNTHETIC_IMAGE = "synthetic-image-payload";
 const RAW_PROVIDER_DETAIL = "synthetic upstream provider stack detail";
@@ -79,6 +79,21 @@ describe("Campaign A Smart Camera", () => {
 		await waitFor(() => expect(analyzeButton.disabled).toBe(false));
 	});
 
+	it("gives the capture frame a named region and represents captured photos as a list", async () => {
+		renderCamera();
+
+		expect(await screen.findByRole("region", { name: "Meal photo capture" })).toBeVisible();
+		expect(screen.queryByRole("list", { name: "Captured meal photos" })).toBeNull();
+		expect(screen.getByText("No photo captured yet")).toBeInTheDocument();
+
+		await capturePhoto();
+
+		const capturedPhotos = screen.getByRole("list", { name: "Captured meal photos" });
+		expect(capturedPhotos).toBeVisible();
+		expect(screen.getAllByRole("listitem")).toHaveLength(1);
+		expect(screen.getByLabelText("Remove photo 1")).toBeVisible();
+	});
+
 	it("clears stale camera failure after gallery recovery and keeps it cleared as images change", async () => {
 		cameraGetPhoto.mockRejectedValueOnce(new Error("User cancelled camera"));
 		renderCamera();
@@ -122,20 +137,24 @@ describe("Campaign A Smart Camera", () => {
 	it("uses the human-language note label and never renders internal jargon", async () => {
 		const { baseElement } = renderCamera();
 
-		expect(await screen.findByText("Photograph your meal")).toBeVisible();
+		expect(await screen.findByText("Frame the whole meal")).toBeVisible();
 		expect(baseElement.querySelector("ion-textarea[label=\"Anything the photo can't show? (optional)\"]")).toBeTruthy();
 		expect(screen.queryByText(/Textual Description/i)).toBeNull();
 		expect(baseElement.textContent).not.toMatch(/Textual Description/i);
 	});
 
-	it("shows the blocking reading state while analysis is pending", async () => {
+	it("shows the blocking reading state as the Analyze meal label itself, not a competing overlay", async () => {
 		vi.stubGlobal("fetch", vi.fn(() => new Promise(() => {})));
 		renderCamera();
 		await capturePhoto();
 
 		fireEvent.click(screen.getByText("Analyze meal"));
 
-		expect(await screen.findByRole("status", { name: "" })).toHaveTextContent("Reading your meal photo...");
+		const loadingLabel = await screen.findByText("Reading your meal photo…");
+		const analyzeButton = loadingLabel.closest("ion-button") as HTMLIonButtonElement;
+		expect(analyzeButton).toHaveClass("camera-analyze-button");
+		expect(analyzeButton.disabled).toBe(true);
+		expect(screen.queryByText("Analyze meal")).toBeNull();
 	});
 
 	it("renders curated failure copy, suppresses raw detail, and retries", async () => {
@@ -189,6 +208,27 @@ describe("Campaign A Smart Camera", () => {
 		await capturePhoto();
 		act(() => lifecycle.willEnter?.());
 		await waitFor(() => expect(screen.queryByAltText("Captured food 1")).toBeNull());
+	});
+
+	it("keeps the privacy disclosure collapsed by default with the sealed wording revealed on demand", async () => {
+		const { baseElement } = renderCamera();
+
+		const details = (await screen.findByText("How your photo is used")).closest("details") as HTMLDetailsElement;
+		expect(details).toBeTruthy();
+		expect(details.open).toBe(false);
+		expect(baseElement.querySelector("details.camera-privacy")?.textContent).toContain(AI_EXTRACTION_PRIVACY_DISCLOSURE);
+
+		fireEvent.click(screen.getByText("How your photo is used"));
+		expect(details.open).toBe(true);
+		expect(screen.getByText(AI_EXTRACTION_PRIVACY_DISCLOSURE)).toBeVisible();
+	});
+
+	it("Cancel in the top chrome returns to the Log Meal chooser", async () => {
+		renderCamera();
+
+		fireEvent.click(await screen.findByText("Cancel"));
+
+		await waitFor(() => expect(window.location.pathname).toBe("/log-meal"));
 	});
 
 	it("keeps the existing five-image quota", async () => {
