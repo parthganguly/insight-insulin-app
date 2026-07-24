@@ -7,6 +7,14 @@ import { describe, expect, it, vi } from "vitest";
 const getSafeAreaInsets = vi.fn(async () => ({ insets: { top: 48, right: 0, bottom: 34, left: 0 } }));
 const safeAreaAddListener = vi.fn(async () => ({ remove: async () => undefined }));
 const appAddListener = vi.fn(async () => ({ remove: async () => undefined }));
+const defineCustomElements = vi.hoisted(() => vi.fn());
+
+// This integration test exercises the native bootstrap boundary, not the
+// application tree or PWA camera elements. Loading those real dependencies
+// adds unrelated cold-transform work, backend hydration, and a queued
+// `appload` event that can fire after jsdom teardown.
+vi.mock("./App", () => ({ default: () => null }));
+vi.mock("@ionic/pwa-elements/loader", () => ({ defineCustomElements }));
 
 vi.mock("@capacitor/core", () => ({
 	Capacitor: { isNativePlatform: () => true },
@@ -43,6 +51,7 @@ describe("native startup bootstrap", () => {
 
 		await bootstrap(container);
 
+		expect(defineCustomElements).toHaveBeenCalledWith(window);
 		expect(getSafeAreaInsets).toHaveBeenCalled();
 		expect(root.style.getPropertyValue("--app-safe-area-top")).toBe("48px");
 		expect(root.style.getPropertyValue("--app-safe-area-bottom")).toBe("34px");
