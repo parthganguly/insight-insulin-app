@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { INITIAL_INSET_TIMEOUT_MS, SETTINGS_STORAGE_KEY, applyAppSafeArea, bootstrapAppearance, createSafeAreaSource, markShellReady, readPersistedDarkMode, resolveInsetsBeforeRender, type SafeAreaInsetValues } from "./main";
+import { INITIAL_INSET_TIMEOUT_MS, INSET_SETTLE_DELAYS_MS, SAFE_AREA_SIDES, SETTINGS_STORAGE_KEY, applyAppSafeArea, bootstrapAppearance, createSafeAreaSource, markShellReady, readPersistedDarkMode, resolveInsetsBeforeRender, startInsetSettleWatch, type SafeAreaInsetValues } from "./main";
 
 const insets = (top: number, right = 0, bottom = 0, left = 0): SafeAreaInsetValues => ({ top, right, bottom, left });
 
@@ -152,6 +154,137 @@ describe("bounded startup waits", () => {
 
 	it("keeps the JS-side inset wait strictly below the native 6 s splash fail-open", () => {
 		expect(INITIAL_INSET_TIMEOUT_MS).toBeLessThan(6000);
+	});
+});
+
+describe("post-relaunch inset settle ladder", () => {
+	const LADDER_SPAN_MS = Math.max(...INSET_SETTLE_DELAYS_MS);
+
+	/**
+	 * Reproduces the observed SM-M356B / API 36 font-scale relaunch: the plugin
+	 * answers bottom 0 for the first reads of the reloaded document and the real
+	 * inset afterwards. No orientationchange, resize, pause/resume, or user
+	 * interaction ever occurs in these tests — the ladder is the only mechanism
+	 * that can recover the value, which is exactly what the device showed.
+	 */
+	const relaunchPlugin = (zeroReads: number) => {
+		let calls = 0;
+		return {
+			calls: () => calls,
+			getInsets: async (): Promise<{ insets: SafeAreaInsetValues }> => {
+				calls += 1;
+				return { insets: calls <= zeroReads ? insets(38, 0, 0, 0) : insets(38, 0, 48, 0) };
+			},
+		};
+	};
+
+	it("adopts a later non-zero plugin result with no orientation, resize, resume, or interaction", async () => {
+		vi.useFakeTimers();
+		try {
+			const root = freshRoot();
+			const plugin = relaunchPlugin(1);
+			const source = createSafeAreaSource(root, plugin.getInsets);
+
+			// The startup read lands before the relaunched window's insets attach.
+			await source.requery();
+			expect(root.style.getPropertyValue("--app-safe-area-bottom")).toBe("0px");
+
+			startInsetSettleWatch(source);
+			await vi.advanceTimersByTimeAsync(LADDER_SPAN_MS);
+
+			expect(root.style.getPropertyValue("--app-safe-area-bottom")).toBe("48px");
+			expect(root.style.getPropertyValue("--app-safe-area-top")).toBe("38px");
+		} finally {
+			vi.useRealTimers();
+		}
+	});
+
+	it("stops writing once the insets stabilize and arms no timer past the ladder", async () => {
+		vi.useFakeTimers();
+		try {
+			const root = freshRoot();
+			const plugin = relaunchPlugin(1);
+			const source = createSafeAreaSource(root, plugin.getInsets);
+			await source.requery();
+
+			const setProperty = vi.spyOn(root.style, "setProperty");
+			startInsetSettleWatch(source);
+			await vi.advanceTimersByTimeAsync(LADDER_SPAN_MS);
+
+			// One four-side write: the step that first saw 48px. Every later step
+			// reads the same value and touches nothing.
+			expect(setProperty).toHaveBeenCalledTimes(SAFE_AREA_SIDES.length);
+			expect(plugin.calls()).toBe(1 + INSET_SETTLE_DELAYS_MS.length);
+			expect(vi.getTimerCount()).toBe(0);
+		} finally {
+			vi.useRealTimers();
+		}
+	});
+
+	it("reads and writes nothing more once the watch is cancelled", async () => {
+		vi.useFakeTimers();
+		try {
+			const root = freshRoot();
+			const plugin = relaunchPlugin(1);
+			const source = createSafeAreaSource(root, plugin.getInsets);
+			await source.requery();
+
+			const cancel = startInsetSettleWatch(source);
+			cancel();
+			await vi.advanceTimersByTimeAsync(LADDER_SPAN_MS);
+
+			expect(plugin.calls()).toBe(1);
+			expect(root.style.getPropertyValue("--app-safe-area-bottom")).toBe("0px");
+			expect(vi.getTimerCount()).toBe(0);
+		} finally {
+			vi.useRealTimers();
+		}
+	});
+
+	it("discards an in-flight response that resolves after disposal", async () => {
+		const root = freshRoot();
+		let release: ((value: { insets: SafeAreaInsetValues }) => void) | undefined;
+		const source = createSafeAreaSource(
+			root,
+			() =>
+				new Promise((resolve) => {
+					release = resolve;
+				})
+		);
+
+		const pending = source.requery();
+		source.dispose();
+		release?.({ insets: insets(38, 0, 48, 0) });
+
+		await expect(pending).resolves.toBe(false);
+		expect(root.style.getPropertyValue("--app-safe-area-bottom")).toBe("");
+	});
+
+	it("ignores a pushed native event after disposal", () => {
+		const root = freshRoot();
+		const source = createSafeAreaSource(root, async () => ({ insets: insets(0) }));
+		source.dispose();
+		source.push(insets(38, 0, 48, 0));
+		expect(root.style.getPropertyValue("--app-safe-area-bottom")).toBe("");
+	});
+
+	it("keeps the ladder finite and spanning the observed readiness window", () => {
+		// The device showed the plugin still wrong at ~322 ms of document time
+		// and correct by ~512 ms, so the ladder must straddle that and end.
+		expect(INSET_SETTLE_DELAYS_MS.length).toBeGreaterThan(1);
+		expect(INSET_SETTLE_DELAYS_MS.some((delay) => delay <= 400)).toBe(true);
+		expect(INSET_SETTLE_DELAYS_MS.some((delay) => delay >= 800)).toBe(true);
+		expect(LADDER_SPAN_MS).toBeLessThanOrEqual(3000);
+	});
+
+	it("leaves the Ionic variables mapped to the app source it just corrected", () => {
+		// jsdom does not resolve var() in custom properties, so the mapping is
+		// asserted structurally: --ion-safe-area-* is declared only as
+		// var(--app-safe-area-*), which the ladder writes.
+		const variablesCss = readFileSync(resolve(process.cwd(), "src/theme/variables.css"), "utf8");
+		for (const side of SAFE_AREA_SIDES) {
+			expect(variablesCss).toContain(`--ion-safe-area-${side}: var(--app-safe-area-${side})`);
+		}
 	});
 });
 

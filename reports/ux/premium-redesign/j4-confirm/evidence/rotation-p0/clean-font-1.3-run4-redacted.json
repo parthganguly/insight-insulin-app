@@ -1,0 +1,377 @@
+{
+  "schemaVersion": "j4-safe-area-postfix-clean-rotation-v1",
+  "runIdentifier": "clean-font-1.3-run4",
+  "fontScale": 1.3,
+  "device": {
+    "model": "SM-M356B",
+    "apiLevel": 36,
+    "serial": "DEVICE_SERIAL_REDACTED"
+  },
+  "apk": {
+    "package": "io.ionic.starter",
+    "versionName": "1.0",
+    "versionCode": 1,
+    "sha256": "5822751155e66de718ada6fd0be1290ef9ab8bce2e50260bca9e4f116f9d7a05"
+  },
+  "protocol": {
+    "accelerometerRotation": "0",
+    "initialUserRotation": "0",
+    "noBackgroundResume": true,
+    "measurementMethod": "CDP plugin and computed CSS variable reads"
+  },
+  "initialPortraitBaseline": {
+    "afterMs": 549.412,
+    "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+    "values": {
+      "plugin": {
+        "top": 38,
+        "left": 0,
+        "right": 0,
+        "bottom": 48
+      },
+      "root": {
+        "top": "38px",
+        "right": "0px",
+        "bottom": "48px",
+        "left": "0px"
+      },
+      "ionic": {
+        "top": "38px",
+        "right": "0px",
+        "bottom": "48px",
+        "left": "0px"
+      },
+      "viewport": {
+        "width": 411,
+        "height": 891,
+        "visualWidth": 411.4285583496094,
+        "visualHeight": 891.4285888671875,
+        "orientation": "portrait-primary",
+        "angle": 0
+      },
+      "browser": {
+        "visibility": "visible",
+        "navigationType": "navigate",
+        "performanceNowMs": 3121.2000000178814
+      }
+    }
+  },
+  "rotations": [
+    {
+      "name": "portrait_to_landscape",
+      "requestedRotation": 1,
+      "samples": [
+        {
+          "afterMs": 627.792,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 30,
+              "left": 34,
+              "right": 48,
+              "bottom": 0
+            },
+            "root": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "ionic": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "viewport": {
+              "width": 891,
+              "height": 411,
+              "visualWidth": 891.4285888671875,
+              "visualHeight": 411.4285583496094,
+              "orientation": "landscape-primary",
+              "angle": 90
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 3753.5
+            }
+          }
+        },
+        {
+          "afterMs": 968.504,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 30,
+              "left": 34,
+              "right": 48,
+              "bottom": 0
+            },
+            "root": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "ionic": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "viewport": {
+              "width": 891,
+              "height": 411,
+              "visualWidth": 891.4285888671875,
+              "visualHeight": 411.4285583496094,
+              "orientation": "landscape-primary",
+              "angle": 90
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 4090.600000023842
+            }
+          }
+        },
+        {
+          "afterMs": 1813.302,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 30,
+              "left": 34,
+              "right": 48,
+              "bottom": 0
+            },
+            "root": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "ionic": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "viewport": {
+              "width": 891,
+              "height": 411,
+              "visualWidth": 891.4285888671875,
+              "visualHeight": 411.4285583496094,
+              "orientation": "landscape-primary",
+              "angle": 90
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 4933.800000011921
+            }
+          }
+        },
+        {
+          "afterMs": 2816.381,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 30,
+              "left": 34,
+              "right": 48,
+              "bottom": 0
+            },
+            "root": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "ionic": {
+              "top": "30px",
+              "right": "48px",
+              "bottom": "0px",
+              "left": "34px"
+            },
+            "viewport": {
+              "width": 891,
+              "height": 411,
+              "visualWidth": 891.4285888671875,
+              "visualHeight": 411.4285583496094,
+              "orientation": "landscape-primary",
+              "angle": 90
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 5940.100000023842
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "landscape_to_portrait",
+      "requestedRotation": 0,
+      "samples": [
+        {
+          "afterMs": 650.506,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 38,
+              "left": 0,
+              "right": 0,
+              "bottom": 48
+            },
+            "root": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "ionic": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "viewport": {
+              "width": 411,
+              "height": 891,
+              "visualWidth": 411.4285583496094,
+              "visualHeight": 891.4285888671875,
+              "orientation": "portrait-primary",
+              "angle": 0
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 6592.600000023842
+            }
+          }
+        },
+        {
+          "afterMs": 1050.281,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 38,
+              "left": 0,
+              "right": 0,
+              "bottom": 48
+            },
+            "root": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "ionic": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "viewport": {
+              "width": 411,
+              "height": 891,
+              "visualWidth": 411.4285583496094,
+              "visualHeight": 891.4285888671875,
+              "orientation": "portrait-primary",
+              "angle": 0
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 6974.300000011921
+            }
+          }
+        },
+        {
+          "afterMs": 1773.955,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 38,
+              "left": 0,
+              "right": 0,
+              "bottom": 48
+            },
+            "root": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "ionic": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "viewport": {
+              "width": 411,
+              "height": 891,
+              "visualWidth": 411.4285583496094,
+              "visualHeight": 891.4285888671875,
+              "orientation": "portrait-primary",
+              "angle": 0
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 7716.200000017881
+            }
+          }
+        },
+        {
+          "afterMs": 2723.495,
+          "webViewTargetId": "56423FF98697AF49D38C571EF588378E",
+          "values": {
+            "plugin": {
+              "top": 38,
+              "left": 0,
+              "right": 0,
+              "bottom": 48
+            },
+            "root": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "ionic": {
+              "top": "38px",
+              "right": "0px",
+              "bottom": "48px",
+              "left": "0px"
+            },
+            "viewport": {
+              "width": 411,
+              "height": 891,
+              "visualWidth": 411.4285583496094,
+              "visualHeight": 891.4285888671875,
+              "orientation": "portrait-primary",
+              "angle": 0
+            },
+            "browser": {
+              "visibility": "visible",
+              "navigationType": "navigate",
+              "performanceNowMs": 8667
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "allPluginRootIonicValuesAgree": true
+  },
+  "privacySanitization": {
+    "publicDerivative": true,
+    "privateRawSha256": "3e84e63bb82e909ac1dc4fe54d7ff20fd2571b3c6e008e67e6e3cfd7d13475f0",
+    "redaction": "Stable ADB hardware serial replaced with DEVICE_SERIAL_REDACTED"
+  }
+}

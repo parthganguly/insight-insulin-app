@@ -1,0 +1,387 @@
+{
+  "schemaVersion": "j4-safe-area-stationary-no-rotation-settle-v1",
+  "runIdentifier": "stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1",
+  "device": {
+    "model": "SM-M356B",
+    "apiLevel": 36
+  },
+  "apk": {
+    "package": "io.ionic.starter",
+    "sha256": "ae6d258ae9108ef7183afeacd3eb1761a346b3a3310816183f95b2da490a6990"
+  },
+  "protocol": {
+    "startingFontScale": 1.0,
+    "changedFontScale": 1.3,
+    "orientation": "portrait",
+    "accelerometerRotation": "0",
+    "userRotation": "0",
+    "noRotation": true,
+    "noBackgroundResume": true,
+    "noManualResize": true,
+    "noApplicationInteraction": true,
+    "measurementMethod": "Chrome DevTools Protocol: SafeArea.getSafeAreaInsets and computed --app-safe-area-* / --ion-safe-area-* CSS properties"
+  },
+  "baselineAtFontScale1_0": {
+    "plugin": {
+      "top": 38,
+      "left": 0,
+      "right": 0,
+      "bottom": 48
+    },
+    "root": {
+      "top": "38px",
+      "right": "0px",
+      "bottom": "48px",
+      "left": "0px"
+    },
+    "ionic": {
+      "top": "38px",
+      "right": "0px",
+      "bottom": "48px",
+      "left": "0px"
+    },
+    "viewport": {
+      "width": 411,
+      "height": 891,
+      "orientation": "portrait-primary",
+      "angle": 0
+    },
+    "browser": {
+      "visibility": "visible",
+      "navigationType": "navigate",
+      "domContentLoadedMs": 291,
+      "loadMs": 292.40000000596046
+    },
+    "performanceNowMs": 1074.199999988079
+  },
+  "timing": {
+    "fontScaleChangeHostMonotonicNs": 185455386568900,
+    "webViewChangeDetectedAfterFontChangeMs": 489.767,
+    "targetBefore": "ADABDC328BAF698A3A8A5816BC4D6BAB",
+    "pidBefore": "21646",
+    "pidAfter": "21646",
+    "actualHostElapsedTiming": true
+  },
+  "samples": [
+    {
+      "nominalAfterFontChangeMs": 0,
+      "actualAfterFontChangeMs": 489.767,
+      "cdpReadStartedAfterFontChangeMs": 197.265,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "root": {
+          "top": "39px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "39px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 0,
+          "loadMs": 0
+        },
+        "performanceNowMs": 123.7000000178814
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 250,
+      "actualAfterFontChangeMs": 687.989,
+      "cdpReadStartedAfterFontChangeMs": 489.789,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 322
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 500,
+      "actualAfterFontChangeMs": 893.579,
+      "cdpReadStartedAfterFontChangeMs": 688.007,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 511.7000000178814
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 1000,
+      "actualAfterFontChangeMs": 1204.402,
+      "cdpReadStartedAfterFontChangeMs": 1001.51,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 837.5
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 2000,
+      "actualAfterFontChangeMs": 2228.314,
+      "cdpReadStartedAfterFontChangeMs": 2001.173,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 1858.5
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 3000,
+      "actualAfterFontChangeMs": 3247.03,
+      "cdpReadStartedAfterFontChangeMs": 3000.587,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 2879
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 5000,
+      "actualAfterFontChangeMs": 5179.197,
+      "cdpReadStartedAfterFontChangeMs": 5001.161,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 4812.200000017881
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 10000,
+      "actualAfterFontChangeMs": 10219.017,
+      "cdpReadStartedAfterFontChangeMs": 10001.098,
+      "webViewTargetId": "F0CE1727284FDACF27A758ECACD99F73",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "domContentLoadedMs": 163.10000002384186,
+          "loadMs": 166.90000000596046
+        },
+        "performanceNowMs": 9852.100000023842
+      }
+    }
+  ],
+  "artifacts": {
+    "lifecycleLogcat": "stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1-lifecycle-logcat.txt",
+    "finalPortraitScreenshot": "stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1-final-portrait.png"
+  },
+  "observedLifecycleBrowserEvents": {
+    "browserEvents": "No event listener was injected; each read-only sample records browser navigation state.",
+    "noBackgroundResume": true
+  }
+}

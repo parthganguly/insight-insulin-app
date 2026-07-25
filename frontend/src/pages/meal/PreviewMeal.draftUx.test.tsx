@@ -14,7 +14,7 @@ import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { MealItem, Unit } from "../../types/MealItem";
-import { DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
+import { DRAFT_ITEM_ROW_HINT, DRAFT_REVIEW_KICKER, ITEM_LIST_EDIT_HELPER, MEAL_SAVE_FAILURE, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
 
 // Manual meal draft/save UX (issue #75): the review screen must present an
 // unsaved manual meal as an editable draft, reject empty/zero saves with
@@ -95,9 +95,10 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 	it("presents an unsaved manual meal as an editable draft, not a broken saved meal", async () => {
 		renderPreviewMeal();
 
-		expect(await screen.findByText(DRAFT_MEAL_STATUS)).toBeTruthy();
+		expect(await screen.findByText(DRAFT_REVIEW_KICKER)).toBeTruthy();
 		expect(screen.getByText(DRAFT_ITEM_ROW_HINT)).toBeTruthy();
-		expect(screen.getByText(ITEM_LIST_EDIT_HELPER)).toBeTruthy();
+		expect(screen.getByRole("region", { name: "Meal components" })).toBeTruthy();
+		expect(screen.queryByText(ITEM_LIST_EDIT_HELPER)).toBeNull();
 		expect(screen.queryByText(SAVED_MEAL_STATUS)).toBeNull();
 	});
 
@@ -140,12 +141,51 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 		});
 	});
 
+	it("makes the review sheet inert and swaps the primary label while submitting", async () => {
+		let resolveSave: ((value: { ok: boolean; status: number; json: () => Promise<typeof savedMealResponseBody> }) => void) | undefined;
+		const fetchMock = vi.fn(() => new Promise<{ ok: boolean; status: number; json: () => Promise<typeof savedMealResponseBody> }>((resolve) => {
+			resolveSave = resolve;
+		}));
+		vi.stubGlobal("fetch", fetchMock);
+		useCurrentMealStore.setState({ meal: currentMeal([draftItem({ name: "Steamed rice", amount: 1, kcalPerServing: 200 })]) });
+		const { baseElement } = renderPreviewMeal();
+
+		fireEvent.click(await screen.findByLabelText("Save meal"));
+
+		expect(await screen.findByText("Estimating insulin demand…")).toBeTruthy();
+		expect(baseElement.querySelector(".confirmation-sheet")).toHaveAttribute("aria-busy", "true");
+		expect(baseElement.querySelector(".confirmation-sheet")).toHaveAttribute("inert");
+		expect(baseElement.querySelector('ion-input[label="Meal name"]')).toHaveAttribute("disabled");
+		expect(screen.getByText("Discard draft").closest("ion-button")).toHaveAttribute("disabled");
+		expect(baseElement.querySelector("ion-loading")).toBeNull();
+
+		resolveSave?.({ ok: true, status: 200, json: async () => savedMealResponseBody });
+		await waitFor(() => expect(window.location.pathname).toBe("/meals/saved/saved-meal-1"));
+	});
+
+	it("shows curated failure copy, preserves the draft, and keeps raw errors in console only", async () => {
+		const rawBackendMessage = "sensitive synthetic backend diagnostic";
+		vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 500, json: async () => ({ detail: rawBackendMessage }) })));
+		const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
+		const validDraft = currentMeal([draftItem({ name: "Steamed rice", amount: 1, kcalPerServing: 200 })]);
+		useCurrentMealStore.setState({ meal: validDraft });
+		const { baseElement } = renderPreviewMeal();
+
+		fireEvent.click(await screen.findByLabelText("Save meal"));
+
+		await waitFor(() => expect(baseElement.querySelector(".save-feedback-error")).toHaveTextContent(MEAL_SAVE_FAILURE));
+		expect(baseElement).not.toHaveTextContent(rawBackendMessage);
+		expect(useCurrentMealStore.getState().meal).toEqual(validDraft);
+		expect(window.location.pathname).toBe("/meals/new");
+		expect(consoleErrorSpy).toHaveBeenCalledWith("POST /meals failed:", expect.anything());
+	});
+
 	it("saves a dirty valid manual meal without a leave warning or private response logging", async () => {
 		const fetchMock = vi.fn(async () => ({ ok: true, status: 200, json: async () => savedMealResponseBody }));
 		vi.stubGlobal("fetch", fetchMock);
 		const consoleLogSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
 		const { baseElement } = renderPreviewMeal();
-		await screen.findByText(DRAFT_MEAL_STATUS);
+		await screen.findByText(DRAFT_REVIEW_KICKER);
 		act(() => useCurrentMealStore.setState({ meal: currentMeal([draftItem({ name: "Steamed rice", amount: 1, kcalPerServing: 200, carbPerServing_g: 45, satFatPerServing_g: 0.2 })]) }));
 
 		fireEvent.click(await screen.findByLabelText("Save meal"));

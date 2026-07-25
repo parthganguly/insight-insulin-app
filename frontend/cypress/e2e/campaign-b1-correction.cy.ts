@@ -56,7 +56,13 @@ const openAdvancedDetails = () =>
 
 const getComponentCard = (name: string) =>
 	getConfirmationContent()
-		.find(".confirmation-item-card")
+		.find("[data-component-card]")
+		.should("have.length", 1)
+		.and("contain.text", name);
+
+const getNeedsReviewCard = (name: string) =>
+	getConfirmationContent()
+		.find(".needs-review-card")
 		.should("have.length", 1)
 		.and("contain.text", name);
 
@@ -99,7 +105,7 @@ const openManualDraftWithReviewedComponent = () => {
 	getConfirmationContent().should("exist");
 
 	setIonInput(getConfirmationContent, "Meal name", "Chicken biryani dinner");
-	clickExactIonButton(() => getComponentCard("New Item"), ".confirmation-item-actions > ion-button", "Edit details");
+	clickExactIonButton(() => getComponentCard("New Item"), ".component-edit-button", "Edit details");
 	setIonInput(getVisibleModal, "Item name", "chicken biryani");
 	openAdvancedDetails();
 	setIonInput(getVisibleModal, "kcals per serving", "420");
@@ -115,11 +121,11 @@ const openManualDraftWithReviewedComponent = () => {
 	clickExactActionableElement(getVisibleModal, "button[aria-label='Close item editor']", "Close item editor button");
 	cy.get("ion-modal:not(.overlay-hidden):visible").should("not.exist");
 	setIonInput(getConfirmationContent, "Amount", "1");
-	getConfirmationContent().find(".needs-review-panel").should("not.exist");
+	getConfirmationContent().find(".needs-review-card").should("not.exist");
 };
 
 const openEditorAndRename = (currentName: string, nextName: string) => {
-	clickExactIonButton(() => getComponentCard(currentName), ".confirmation-item-actions > ion-button", "Edit details");
+	clickExactIonButton(() => getComponentCard(currentName), ".component-edit-button", "Edit details");
 	setIonInput(getVisibleModal, "Item name", nextName);
 	clickExactActionableElement(getVisibleModal, "button[aria-label='Close item editor']", "Close item editor button");
 	cy.get("ion-modal:not(.overlay-hidden):visible").should("not.exist");
@@ -150,28 +156,29 @@ describe("Campaign B B1-1 consequential component correction", () => {
 			assertNoHorizontalOverflow();
 
 			openEditorAndRename("chicken biryani", "vegetable biryani");
-			getComponentCard("vegetable biryani")
-				.find(".needs-review-panel")
+			getNeedsReviewCard("vegetable biryani")
 				.should("contain.text", 'These values were for "chicken biryani". Check they still fit.');
-			getComponentCard("vegetable biryani")
+			getNeedsReviewCard("vegetable biryani")
 				.find(".carried-nutrition-summary")
 				.should("contain.text", "420 kcal · 58 g carbs · 24 g protein · 12 g fat");
 			getConfirmationContent().find("[aria-label='Save meal']").should("have.attr", "disabled");
 			getConfirmationContent().find(".review-validation-error").should("contain.text", "vegetable biryani");
-			getComponentCard("vegetable biryani").find(".needs-review-panel > ion-button").then(($buttons) => {
+			getNeedsReviewCard("vegetable biryani").find(".needs-review-actions > ion-button").then(($buttons) => {
 				const button = resolveExactIonButtonHost($buttons, "These still fit");
 				const buttonRect = button.getBoundingClientRect();
-				const panelRect = button.closest(".needs-review-panel")!.getBoundingClientRect();
-				expect(buttonRect.width, "confirmation action is full width").to.be.at.least(panelRect.width - 26);
+				const cardRect = button.closest(".needs-review-card")!.getBoundingClientRect();
+				expect(buttonRect.height, "confirmation action is touchable").to.be.at.least(43);
+				expect(buttonRect.left, "confirmation action starts inside review card").to.be.at.least(cardRect.left);
+				expect(buttonRect.right, "confirmation action ends inside review card").to.be.at.most(cardRect.right);
 			});
 			assertNoHorizontalOverflow();
-			getComponentCard("vegetable biryani").find(".needs-review-panel").then(($panel) => $panel[0].scrollIntoView({ block: "center" }));
+			getNeedsReviewCard("vegetable biryani").then(($card) => $card[0].scrollIntoView({ block: "center" }));
 			cy.screenshot(`${label}-needs-review`, { capture: "viewport" });
 
-			clickExactIonButton(() => getComponentCard("vegetable biryani"), ".needs-review-panel > ion-button", "These still fit");
-			getConfirmationContent().find(".needs-review-panel").should("not.exist");
+			clickExactIonButton(() => getNeedsReviewCard("vegetable biryani"), ".needs-review-actions > ion-button", "These still fit");
+			getConfirmationContent().find(".needs-review-card").should("not.exist");
 			getConfirmationContent().find("[aria-label='Save meal']").should("not.have.attr", "disabled");
-			clickExactIonButton(() => getComponentCard("vegetable biryani"), ".confirmation-item-actions > ion-button", "Edit details");
+			clickExactIonButton(() => getComponentCard("vegetable biryani"), ".component-edit-button", "Edit details");
 			openAdvancedDetails();
 			getVisibleModal().find('ion-input[label="FII"] input').should("have.value", "");
 			getVisibleModal()
@@ -195,19 +202,18 @@ describe("Campaign B B1-1 consequential component correction", () => {
 			cy.screenshot(`${label}-review-confirmed`, { capture: "viewport" });
 
 			openEditorAndRename("vegetable biryani", "lentil biryani");
-			getComponentCard("lentil biryani")
-				.find(".needs-review-panel")
+			getNeedsReviewCard("lentil biryani")
 				.should("contain.text", 'These values were for "vegetable biryani". Check they still fit.');
-			clickExactIonButton(() => getComponentCard("lentil biryani"), ".confirmation-item-actions > ion-button", "Edit details");
+			clickExactIonButton(() => getComponentCard("lentil biryani"), ".component-edit-button", "Edit details");
 			openAdvancedDetails();
 			setIonInput(getVisibleModal, "Carb per serving (g)", "60");
 			getVisibleModal().should("not.contain.text", "These values were for");
 			clickExactActionableElement(getVisibleModal, "button[aria-label='Close item editor']", "Close item editor button");
 			cy.get("ion-modal:not(.overlay-hidden):visible").should("not.exist");
-			getConfirmationContent().find(".needs-review-panel").should("not.exist");
+			getConfirmationContent().find(".needs-review-card").should("not.exist");
 
 			setIonInput(getConfirmationContent, "Meal name", "Descriptive dinner label only");
-			getConfirmationContent().find(".needs-review-panel").should("not.exist");
+			getConfirmationContent().find(".needs-review-card").should("not.exist");
 			getConfirmationContent().find("[aria-label='Save meal']").should("not.have.attr", "disabled");
 			assertNoHorizontalOverflow();
 			cy.screenshot(`${label}-nutrition-edit-resolved`, { capture: "viewport" });

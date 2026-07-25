@@ -1,0 +1,63 @@
+# SANITIZED PUBLIC DERIVATIVE — app-scoped lifecycle extract
+#
+# Source: dynamic-font-1.0-to-1.3-lifecycle-logcat.txt (private raw)
+# Private raw original SHA-256: 3559ae913eac206e107d53b0687237c914ee75a3bc8f507110af6620e20ae5eb
+# Private raw original: 17788 bytes, 80 lines
+# This extract: 35 retained lines
+#
+# The raw original was an unfiltered whole-device `adb logcat` capture and
+# is NOT published. It is preserved byte-identically outside this
+# repository. See privacy-sanitization-manifest.md.
+#
+# Filtering method (deterministic, order- and timestamp-preserving):
+#   1. Retain only lines matching `io.ionic.starter` or `VRI[MainActivity]`.
+#   2. Drop any retained line naming a package outside the J4 app and the
+#      android/androidx/com.android/com.samsung/com.sec platform namespaces.
+#   3. Drop cross-package visibility tags (AppsFilter, PackageManager,
+#      AppOps, UsageStats) — they concern package visibility, not lifecycle.
+#   4. Drop unrelated device telemetry (WhatsApp, Health Connect, Wi-Fi
+#      counters, modem timings, battery/keyguard/AOD).
+#   5. Redact carrier MCC/MNC and any hardware serial inside retained lines.
+#
+# Original timestamps and line ordering are preserved verbatim. No line was
+# reworded, reordered, merged or synthesized.
+#
+# Scope of proof: this extract establishes the MainActivity configuration
+# relaunch and app window/inset lifecycle only. Safe-area numeric values and
+# visual state remain proven by the run JSON and the PNG screenshots.
+
+07-24 21:56:30.272  1282  1295 D InputDispatcher: Focus left window (0): 75f2e72 io.ionic.starter/io.ionic.starter.MainActivity
+07-24 21:56:30.311  1282  1548 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.319  1282  3899 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.352  1282  1804 D WindowManager: prepareSync <SYNC_STATE_WAITING_FOR_DRAW>, mPrepareSyncSeqId=0, win=Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity}
+07-24 21:56:30.354   923  1175 I SurfaceFlinger: id=14720 createSurf, flag=84004, 4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity#14720
+07-24 21:56:30.356 25540 25540 I InsetsController: onStateChanged: host=io.ionic.starter/io.ionic.starter.MainActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3038, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 89 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(507, 23 - 573, 89), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 M 0,8.177777777777778 a 11.73333333333333,11.73333333333333 0 1,0 0,23.46666666666667 a 11.73333333333333,11.73333333333333 0 1,0 0,-23.46666666666667 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=95, center=Point(95, 95)}, RoundedCorner{position=TopRight, radius=95, center=Point(985, 95)}, RoundedCorner{position=BottomRight, radius=95, center=Point(985, 2245)}, RoundedCorner{position=BottomLeft, radius=95, center=Point(95, 2245)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(964, 0 - 1080, 100) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {fd510000 mType=statusBars mFrame=[0,0][1080,100] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fd510005 mType=mandatorySystemGestures mFrame=[0,0][1080,121] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fd510006 mType=tappableElement mFrame=[0,0][1080,100] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mAttachedInsets=null mVisible=false mFlags=INVALID mSideHint=NONE mBoundingRects=null}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,89] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+07-24 21:56:30.360  1282  1305 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.361   923   923 I SurfaceFlinger: [4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity#14720] attach to parent LayerHierarchy{RequestedLayerState{ActivityRecord{212414074 u0 io.ionic.starter/.MainActivity t513}#14695 parentId=14694} 4 children}
+07-24 21:56:30.382  1282  1562 D CoreBackPreview: Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@bfc7e28, mPriority=0, mIsAnimationCallback=false, mOverrideBehavior=0}
+07-24 21:56:30.382  1282  1297 I WindowManager: Relayout Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity}: viewVisibility=0 req=1080x2340 ty=1 d0
+07-24 21:56:30.382   923   982 I SurfaceFlinger: id=14723 createSurf, flag=44004, io.ionic.starter/io.ionic.starter.MainActivity$_25540#14723
+07-24 21:56:30.384  1282  1297 D WindowManager: makeSurface duration=2 name=io.ionic.starter/io.ionic.starter.MainActivity$_25540
+07-24 21:56:30.385  1282  1297 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.386  1282  1297 D WindowManager: Changing focus from null to Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity} displayId=0 Callers=com.android.server.wm.WindowManagerService.relayoutWindow:1350 com.android.server.wm.Session.relayout:30 android.view.IWindowSession$Stub.onTransact:840 com.android.server.wm.Session.onTransact:1 
+07-24 21:56:30.386  1282  1297 V SystemKeyManager: updateFocusedWindow() is called, io.ionic.starter/io.ionic.starter.MainActivity
+07-24 21:56:30.386   923   923 I SurfaceFlinger: [io.ionic.starter/io.ionic.starter.MainActivity$_25540#14723] attach to parent LayerHierarchy{RequestedLayerState{4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity#14720 parentId=14695} 1 children}
+07-24 21:56:30.388 25540 25540 I InsetsController: onStateChanged: host=io.ionic.starter/io.ionic.starter.MainActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3038, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 89 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(507, 23 - 573, 89), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 M 0,8.177777777777778 a 11.73333333333333,11.73333333333333 0 1,0 0,23.46666666666667 a 11.73333333333333,11.73333333333333 0 1,0 0,-23.46666666666667 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=95, center=Point(95, 95)}, RoundedCorner{position=TopRight, radius=95, center=Point(985, 95)}, RoundedCorner{position=BottomRight, radius=95, center=Point(985, 2245)}, RoundedCorner{position=BottomLeft, radius=95, center=Point(95, 2245)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(964, 0 - 1080, 100) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {ceed0001 mType=navigationBars mFrame=[0,0][0,0] mAttachedInsets=null mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {ceed0004 mType=systemGestures mFrame=[0,0][0,0] mAttachedInsets=null mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {ceed0005 mType=mandatorySystemGestures mFrame=[0,0][0,0] mAttachedInsets=null mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {ceed0006 mType=tappableElement mFrame=[0,0][0,0] mAttachedInsets=null mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {ceed0024 mType=systemGestures mFrame=[0,0][0,0] mAttachedInsets=null mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {fd510000 mType=statusBars mFrame=[0,0][1080,100] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fd510005 mType=mandatorySystemGestures mFrame=[0,0][1080,121] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fd510006 mType=tappableElement mFrame=[0,0][1080,100] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mAttachedInsets=null mVisible=false mFlags=INVALID mSideHint=NONE mBoundingRects=null}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,89] mAttachedInsets=null mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+07-24 21:56:30.391 25540 25540 I VRI[MainActivity]@19c6cfb: performConfigurationChange setNightDimText nightDimLevel=0
+07-24 21:56:30.391  1282  1305 I SurfaceControl: apply, lowDebugName=Focus request: 4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity, caller=android.view.SurfaceControl$Transaction.apply:3569 android.view.SurfaceControl$Transaction.apply:3519 com.android.server.wm.WindowAnimator.animate:468 com.android.server.wm.WindowAnimator$$ExternalSyntheticLambda1.doFrame:14 android.view.Choreographer$CallbackRecord.run:1959 android.view.Choreographer$CallbackRecord.run:1970 
+07-24 21:56:30.396   923  1043 D SurfaceFlinger: [input] setFocusedWindow: 4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity
+07-24 21:56:30.402  1282  1305 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.404  1282  4291 D InputDispatcher: Once focus requested (0): 4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity
+07-24 21:56:30.404  1282  4291 D InputDispatcher: Focus request (0): 4fffbe0 io.ionic.starter/io.ionic.starter.MainActivity but waiting because NOT_VISIBLE
+07-24 21:56:30.518  1282  1804 I WindowManager: Relayout Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity}: viewVisibility=0 req=1080x2340 ty=1 d0
+07-24 21:56:30.518  1282  1804 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.555  1282  3899 I WindowManager: Relayout Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity}: viewVisibility=0 req=1080x2340 ty=1 d0
+07-24 21:56:30.555  1282  3899 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.597  1282  3899 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.686  1282  1295 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.698  1282  3910 D BLASTSyncEngine: SyncGroup 1376:  Unfinished container: Task{fc6fa07 #513 type=standard A=10496:io.ionic.starter} mSyncState=2
+07-24 21:56:30.761   923  1176 I SurfaceFlinger: [io.ionic.starter/io.ionic.starter.MainActivity$_25540#14723] setTransactionState with the first frame. bufferData(ID: 109693464739847, frameNumber: 1)
+07-24 21:56:30.762  1282  3899 D WindowManager: finishDrawingWindow: Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity} mDrawState=DRAW_PENDING seqId=0
+07-24 21:56:30.762  1282  3899 I WindowManager: finishDrawing of relaunch: Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity} 551ms
+07-24 21:56:30.764  1282  1305 V WindowManager: performShowLocked: mDrawState=HAS_DRAWN in Window{4fffbe0 u0 io.ionic.starter/io.ionic.starter.MainActivity}
+07-24 21:56:30.778   923   923 I SurfaceFlinger: RequestedLayer [io.ionic.starter/io.ionic.starter.MainActivity$_25540#14723] hidden!! flag  from(1) --> to(0)

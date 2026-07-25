@@ -114,7 +114,7 @@ describe("Campaign A layout polish", () => {
 			assertNoHorizontalOverflow();
 			// Native scrollIntoView reaches Ionic's shadow-DOM scroll container,
 			// which Cypress's own scrollIntoView does not.
-			cy.contains("h2", "What INSIGHT found").then(($heading) => $heading[0].scrollIntoView({ block: "start" }));
+			cy.get("[aria-label='Meal components']").then(($region) => $region[0].scrollIntoView({ block: "start" }));
 			cy.screenshot(`fable-final/${label}-confirmation-three-components`, { capture: "viewport" });
 		});
 

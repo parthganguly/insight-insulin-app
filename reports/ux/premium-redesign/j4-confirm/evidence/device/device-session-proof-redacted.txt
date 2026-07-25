@@ -1,0 +1,38 @@
+SANITIZED PUBLIC DERIVATIVE — intentionally redacted.
+The private raw original (device-session-proof.txt) is preserved
+byte-identically outside this repository and is not published. Only the
+persistent hardware serial was replaced; every other line is verbatim.
+Private raw original SHA-256:
+da1bbd0945480818b5784d15dd522d9f161d5a7cc16962e1cfab43f346aa4e82
+
+J4 physical session proof — Samsung SM-M356B — 2026-07-24
+
+Identity
+- ADB serial: DEVICE_SERIAL_REDACTED
+- Model: SM-M356B
+- Android 16 / API 36
+
+Font-scale probes
+- Starting device setting: 0.9
+- Capture settings confirmed: 1.0 and 1.3
+- Restored setting: 0.9
+
+Rotation probes
+- Portrait: accelerometer_rotation=0, user_rotation=0
+- Landscape: accelerometer_rotation=0, user_rotation=1
+- Restored: accelerometer_rotation=1, user_rotation=0
+
+Hot resume
+- `adb shell am start -W -n io.ionic.starter/.MainActivity`
+- Retained-capture result: intent delivered to the current top-most
+  io.ionic.starter/.MainActivity instance; LaunchState UNKNOWN (0);
+  TotalTime 0 ms.
+- A later background/bring-to-front probe reported LaunchState HOT and
+  TotalTime 58 ms. Its resumed WebView requery applied top/right/bottom/left
+  safe-area values 38/0/48/0 CSS px before the settled font-1.3 captures.
+
+Final app/device state
+- Stored appearance: Ink
+- Font scale: 0.9
+- Automatic rotation: enabled
+- User rotation: portrait (0)

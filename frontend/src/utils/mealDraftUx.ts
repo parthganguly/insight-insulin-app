@@ -9,12 +9,16 @@ import { calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateT
 
 export const DRAFT_MEAL_STATUS = "Editable draft — not saved yet";
 export const SAVED_MEAL_STATUS = "Saved to history";
+export const DRAFT_REVIEW_KICKER = "Draft — not saved";
 export const DRAFT_ITEM_ROW_HINT = "Draft item — tap to add food details";
 export const ITEM_LIST_EDIT_HELPER = "Tap any item to edit its name, portion, and nutrition.";
 export const ADVANCED_DETAILS_LABEL = "Advanced details";
 export const MEAL_NAME_HELPER = "The name is a label. The items below are what the estimate uses.";
 export const AI_PROVENANCE_COPY = "Suggested from your photo";
 export const REUSE_PROVENANCE_COPY = "Copied from your saved meal — adjust anything that's different today.";
+export const NEEDS_REVIEW_KICKER = "Values carried forward";
+export const NEEDS_REVIEW_ACTION = "Choose how to confirm them before saving.";
+export const MEAL_SAVE_FAILURE = "We couldn't calculate and save this meal. Your draft is still here — please try again.";
 
 export const getDraftProvenanceCopy = (item: MealItem, isReusedDraft: boolean): string | null => {
 	if (item.draftProvenance === "ai_proposed") return AI_PROVENANCE_COPY;
