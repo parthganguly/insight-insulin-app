@@ -1,8 +1,8 @@
 # J4 confirm evidence ledger
 
-**J4 SAFE-AREA FIX, INDEPENDENT DEVICE QA, FABLE VISUAL REVIEW, AND PUBLIC-EVIDENCE CURATION COMPLETE — DRAFT PR #118 UNDER FINAL MERGE REVIEW.**
+**J4 MERGED TO MAIN — PRODUCT, DEVICE QA, FABLE REVIEW, PUBLIC-EVIDENCE CURATION, AND MAIN CI COMPLETE.**
 
-All engineering and review gates completed before packaging. The work was committed as `9d9b5eb250e739e6964155711c35b928538bc13b` on branch `sol/annotated-journal-j4-confirm` and opened as draft pull request #118 against `main`. No merge has occurred and `main` was not directly modified.
+All engineering and review gates completed before packaging. The work was committed as `9d9b5eb250e739e6964155711c35b928538bc13b` on branch `sol/annotated-journal-j4-confirm`, opened as pull request #118 against `main`, and squash merged on 2026-07-25 from reviewed feature head `b2c2c3287f410be013b5fd69f6cc54e2635df9b6`. The resulting main squash commit is `ff1840043b2570c8d048e3182906f1c16ecb0b09`. Issue #117 closed automatically as completed. Post-merge main CI run 158 passed Frontend, Browser/Cypress, Backend and Rust. No direct unrelated commit was added to `main`.
 
 All meal content is synthetic. This ledger separates final self-proving post-fix evidence, historical blocker evidence, and historical diagnostic evidence.
 
@@ -155,4 +155,4 @@ Before QA, SHA-256 values for all 83 pre-existing files under this evidence dire
 
 A separate, later pre-publication privacy step removed nine raw originals from this public tree after archiving them privately, byte-identical and SHA-256-verified. That step did not edit, overwrite, truncate or regenerate any raw original: each was preserved intact outside the repository and replaced here by a derivative under a new, distinct filename. No original public filename was reused. All other evidence — every PNG, XML, and the remaining JSON files — is unchanged. Provenance and hashes are in `privacy-sanitization-manifest.md`.
 
-Terra changed no production code, frontend tests, backend code, Android source, stores, APIs, scientific scoring, persistence, privacy behavior, or existing raw evidence. At the time of that QA no files had been staged, committed, pushed, merged, tagged, or published; packaging happened later, in commit `9d9b5eb` and draft PR #118, and no merge or tag has occurred since.
+Terra changed no production code, frontend tests, backend code, Android source, stores, APIs, scientific scoring, persistence, privacy behavior, or existing raw evidence. At the time of that QA no files had been staged, committed, pushed, merged, tagged, or published; packaging happened later, in commit `9d9b5eb` and PR #118, which was subsequently squash merged to `main` as `ff1840043b2570c8d048e3182906f1c16ecb0b09`. No tag has been created.

@@ -1,8 +1,8 @@
 # Annotated Journal J4 — Confirm as annotated review implementation report
 
-**J4 SAFE-AREA FIX, INDEPENDENT DEVICE QA, FABLE VISUAL REVIEW, AND PUBLIC-EVIDENCE CURATION COMPLETE — DRAFT PR #118 UNDER FINAL MERGE REVIEW.**
+**J4 MERGED TO MAIN — PRODUCT, DEVICE QA, FABLE REVIEW, PUBLIC-EVIDENCE CURATION, AND MAIN CI COMPLETE.**
 
-All engineering and review gates completed before packaging. The work was committed as `9d9b5eb250e739e6964155711c35b928538bc13b` on branch `sol/annotated-journal-j4-confirm` and opened as draft pull request #118 against `main`. No merge has occurred and `main` was not directly modified.
+All engineering and review gates completed before packaging. The work was committed as `9d9b5eb250e739e6964155711c35b928538bc13b` on branch `sol/annotated-journal-j4-confirm`, opened as pull request #118 against `main`, and squash merged on 2026-07-25 from reviewed feature head `b2c2c3287f410be013b5fd69f6cc54e2635df9b6`. The resulting main squash commit is `ff1840043b2570c8d048e3182906f1c16ecb0b09`. Issue #117 closed automatically as completed. Post-merge main CI run 158 passed Frontend, Browser/Cypress, Backend and Rust. No direct unrelated commit was added to `main`.
 
 J4 is a presentation-only change to the **current Ionic React/Capacitor implementation**. It is not a target-native component. This report records the post-fix implementation, independent automated validation, and physical-device evidence. It does not claim scientific validation or change scientific behavior.
 
@@ -157,4 +157,4 @@ Fable's concrete findings were the keyboard-evidence limitation recorded above p
 
 ## Change boundary
 
-All test and device-capture meal content was synthetic. Terra created new QA evidence only and updated this report plus `evidence/README.md`; Terra did not edit production code, frontend tests, Android source, backend code, scoring, persistence, privacy behavior, or existing raw evidence. At the time of that QA no files had been staged, committed, pushed, merged, tagged, or published; packaging happened later, in commit `9d9b5eb` and draft PR #118, and no merge or tag has occurred since.
+All test and device-capture meal content was synthetic. Terra created new QA evidence only and updated this report plus `evidence/README.md`; Terra did not edit production code, frontend tests, Android source, backend code, scoring, persistence, privacy behavior, or existing raw evidence. At the time of that QA no files had been staged, committed, pushed, merged, tagged, or published; packaging happened later, in commit `9d9b5eb` and PR #118, which was subsequently squash merged to `main` as `ff1840043b2570c8d048e3182906f1c16ecb0b09`. No tag has been created.
