@@ -50,7 +50,7 @@ const makeMeaningfulEdit = () => {
 
 const waitForMeaningfulEditToRender = async () => {
 	await waitFor(() => {
-		const oilCard = screen.getByText("olive oil").closest("ion-card");
+		const oilCard = screen.getByText("olive oil").closest("[data-component-card]");
 		const amountField = oilCard?.querySelector<HTMLIonInputElement>('ion-input[label="Amount"]');
 		expect(amountField?.value).toBe(10);
 	});
@@ -138,7 +138,7 @@ describe("dirty confirmation draft navigation", () => {
 		makeMeaningfulEdit();
 		await waitForMeaningfulEditToRender();
 
-		fireEvent.click(screen.getByText("Discard").closest("ion-button")!);
+		fireEvent.click(screen.getByText("Discard draft").closest("ion-button")!);
 
 		await waitFor(() => expect(window.location.pathname).toBe("/log-meal"));
 		expect(screen.queryByRole("alertdialog")).toBeNull();

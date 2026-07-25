@@ -81,7 +81,7 @@ describe("Campaign A confirmation hierarchy", () => {
 	it("keeps ordinary meal identity, components, and portions visible", async () => {
 		const { baseElement } = renderPreview();
 
-		expect(await screen.findByText("What INSIGHT found")).toBeVisible();
+		expect(await screen.findByRole("region", { name: "Meal components" })).toBeVisible();
 		expect(screen.getByText("Basmati rice")).toBeVisible();
 		expect(screen.getByText("+").closest("ion-button")).toBeVisible();
 		expect(baseElement.querySelector('ion-input[label="Meal name"]')).toBeVisible();

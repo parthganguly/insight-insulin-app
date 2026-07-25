@@ -1,0 +1,826 @@
+{
+  "font": 1,
+  "run": 3,
+  "initial": {
+    "plugin": {
+      "top": 38,
+      "left": 0,
+      "right": 0,
+      "bottom": 48
+    },
+    "app": {
+      "top": "38px",
+      "right": "0px",
+      "bottom": "48px",
+      "left": "0px"
+    },
+    "ion": {
+      "top": "38px",
+      "right": "0px",
+      "bottom": "48px",
+      "left": "0px"
+    },
+    "viewport": [
+      411,
+      891,
+      "portrait-primary"
+    ],
+    "events": []
+  },
+  "rotations": [
+    {
+      "name": "portrait_to_landscape",
+      "samples": [
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 651
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 1024
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 1537
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 1941
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 2261
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 2569
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "viewport": [
+            891,
+            411,
+            "landscape-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            }
+          ],
+          "afterMs": 3404
+        }
+      ]
+    },
+    {
+      "name": "landscape_to_portrait",
+      "samples": [
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 541
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 844
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 1136
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 1421
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 1705
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 2317
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "viewport": [
+            411,
+            891,
+            "portrait-primary"
+          ],
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 13915,
+              "w": 411,
+              "h": 891,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13943,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "resize",
+              "t": 13966,
+              "w": 891,
+              "h": 411,
+              "o": "landscape-primary"
+            },
+            {
+              "n": "orientationchange",
+              "t": 17263,
+              "w": 891,
+              "h": 411,
+              "o": "portrait-primary"
+            },
+            {
+              "n": "resize",
+              "t": 17303,
+              "w": 411,
+              "h": 891,
+              "o": "portrait-primary"
+            }
+          ],
+          "afterMs": 3346
+        }
+      ]
+    }
+  ]
+}

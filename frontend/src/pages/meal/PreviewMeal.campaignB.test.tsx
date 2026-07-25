@@ -101,7 +101,10 @@ describe("Campaign B consequential correction UI", () => {
 		const editor = await openEditor();
 		fireIonInput(editor.querySelector('ion-input[label="Item name"]')!, "vegetable biryani");
 
-		expect(await screen.findByText('These values were for "chicken biryani". Check they still fit.')).toBeVisible();
+		const reviewCopy = await screen.findByText('These values were for "chicken biryani". Check they still fit.');
+		expect(reviewCopy).toBeVisible();
+		expect(reviewCopy.closest(".needs-review-card")).toHaveAttribute("role", "status");
+		expect(screen.getByText("Values under review")).toBeVisible();
 		expect(screen.getByText(/420 kcal · 58 g carbs · 24 g protein · 12 g fat/)).toBeVisible();
 		expect(baseElement.querySelector('ion-input[label="FII"]')).toHaveProperty("value", "");
 		expect(screen.queryByText("Source: Direct FII match")).toBeNull();

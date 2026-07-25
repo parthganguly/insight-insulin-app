@@ -1,0 +1,472 @@
+{
+  "schemaVersion": "j4-safe-area-postfix-stationary-font-relaunch-v1",
+  "runIdentifier": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1",
+  "device": {
+    "model": "SM-M356B",
+    "apiLevel": 36,
+    "serial": "DEVICE_SERIAL_REDACTED"
+  },
+  "apk": {
+    "package": "io.ionic.starter",
+    "versionName": "1.0",
+    "versionCode": 1,
+    "sha256": "5822751155e66de718ada6fd0be1290ef9ab8bce2e50260bca9e4f116f9d7a05"
+  },
+  "protocol": {
+    "fontScaleTransition": "1.0 -> 1.3",
+    "portraitLocked": true,
+    "accelerometerRotation": "0",
+    "userRotation": "0",
+    "noRotation": true,
+    "noBackgroundResume": true,
+    "noManualResize": true,
+    "noApplicationInteraction": true,
+    "measurementMethod": "Chrome DevTools Protocol: SafeArea.getSafeAreaInsets plus computed root/Ionic variables; ADB screencap"
+  },
+  "initialBaseline": {
+    "plugin": {
+      "top": 38,
+      "left": 0,
+      "right": 0,
+      "bottom": 48
+    },
+    "root": {
+      "top": "38px",
+      "right": "0px",
+      "bottom": "48px",
+      "left": "0px"
+    },
+    "ionic": {
+      "top": "38px",
+      "right": "0px",
+      "bottom": "48px",
+      "left": "0px"
+    },
+    "viewport": {
+      "width": 411,
+      "height": 891,
+      "visualWidth": 411.4285583496094,
+      "visualHeight": 891.4285888671875,
+      "orientation": "portrait-primary",
+      "angle": 0
+    },
+    "browser": {
+      "visibility": "visible",
+      "navigationType": "navigate",
+      "performanceNowMs": 2572.199999988079
+    }
+  },
+  "fontScaleChangeHostMonotonicNs": 200119257930600,
+  "samples": [
+    {
+      "nominalAfterFontChangeMs": 0,
+      "cdpReadStartedAfterFontChangeMs": 100.627,
+      "actualCompletedAfterFontChangeMs": 462.335,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "39px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "39px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 174.69999998807907
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 250,
+      "cdpReadStartedAfterFontChangeMs": 462.376,
+      "actualCompletedAfterFontChangeMs": 929.032,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 643.5999999940395
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 500,
+      "cdpReadStartedAfterFontChangeMs": 929.065,
+      "actualCompletedAfterFontChangeMs": 1196.693,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 913.7999999821186
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 750,
+      "cdpReadStartedAfterFontChangeMs": 1196.727,
+      "actualCompletedAfterFontChangeMs": 1463.674,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 1184.699999988079
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 1000,
+      "cdpReadStartedAfterFontChangeMs": 1463.699,
+      "actualCompletedAfterFontChangeMs": 1701.106,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 1418.7999999821186
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 1500,
+      "cdpReadStartedAfterFontChangeMs": 3443.265,
+      "actualCompletedAfterFontChangeMs": 3724.502,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 3443.5
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 2500,
+      "cdpReadStartedAfterFontChangeMs": 3724.528,
+      "actualCompletedAfterFontChangeMs": 3979.389,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 3699.9000000059605
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 3000,
+      "cdpReadStartedAfterFontChangeMs": 3979.43,
+      "actualCompletedAfterFontChangeMs": 4254.318,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 3975.199999988079
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 5000,
+      "cdpReadStartedAfterFontChangeMs": 5000.561,
+      "actualCompletedAfterFontChangeMs": 5203.73,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 4924.5
+        }
+      }
+    },
+    {
+      "nominalAfterFontChangeMs": 10000,
+      "cdpReadStartedAfterFontChangeMs": 10000.481,
+      "actualCompletedAfterFontChangeMs": 10263.466,
+      "webViewTargetId": "1A8E13FC2DF745C76914C4BDD873054A",
+      "values": {
+        "plugin": {
+          "top": 38,
+          "left": 0,
+          "right": 0,
+          "bottom": 48
+        },
+        "root": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "ionic": {
+          "top": "38px",
+          "right": "0px",
+          "bottom": "48px",
+          "left": "0px"
+        },
+        "viewport": {
+          "width": 411,
+          "height": 891,
+          "visualWidth": 411.4285583496094,
+          "visualHeight": 891.4285888671875,
+          "orientation": "portrait-primary",
+          "angle": 0
+        },
+        "browser": {
+          "visibility": "visible",
+          "navigationType": "navigate",
+          "performanceNowMs": 9982.699999988079
+        }
+      }
+    }
+  ],
+  "lifecycleEvents": {
+    "observedBrowserNavigationTypes": [
+      "navigate"
+    ],
+    "note": "No event listeners were injected; samples record visibility, navigation type, viewport, and orientation."
+  },
+  "artifacts": {
+    "lifecycleLogcat": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-app-scoped-lifecycle-extract.txt",
+    "oneSecondScreenshot": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-1s.png",
+    "finalPortraitScreenshot": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-final-portrait.png"
+  },
+  "assessment": {
+    "recoveryEventRequired": false,
+    "visibleOverlap": "pending visual inspection"
+  },
+  "privacySanitization": {
+    "publicDerivative": true,
+    "privateRawSha256": "7cabed7d5efc93685e270fc467027a52a3348a932709abdc8f96884b04cd4b0d",
+    "redaction": "Stable ADB hardware serial replaced with DEVICE_SERIAL_REDACTED; artifacts.lifecycleLogcat redirected from the private raw whole-device logcat filename to the published app-scoped lifecycle extract"
+  }
+}

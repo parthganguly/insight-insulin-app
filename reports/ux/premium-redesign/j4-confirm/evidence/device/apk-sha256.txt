@@ -1,0 +1,4 @@
+Artifact: frontend/android/app/build/outputs/apk/debug/app-debug.apk
+Bytes: 8587326
+SHA-256: AE6D258AE9108EF7183AFEACD3EB1761A346B3A3310816183F95B2DA490A6990
+Hashed: 2026-07-24

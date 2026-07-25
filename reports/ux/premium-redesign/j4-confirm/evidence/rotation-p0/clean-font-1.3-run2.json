@@ -1,0 +1,686 @@
+{
+  "rotations": [
+    {
+      "name": "portrait_to_landscape",
+      "a": [
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 485
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 758
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 1015
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 1258
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 1526
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 2241
+        },
+        {
+          "plugin": {
+            "top": 30,
+            "left": 34,
+            "right": 48,
+            "bottom": 0
+          },
+          "app": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "ion": {
+            "top": "30px",
+            "right": "48px",
+            "bottom": "0px",
+            "left": "34px"
+          },
+          "v": {
+            "w": 891,
+            "h": 411,
+            "o": "landscape-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            }
+          ],
+          "ms": 3315
+        }
+      ]
+    },
+    {
+      "name": "landscape_to_portrait",
+      "a": [
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 523
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 818
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 1098
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 1357
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 1591
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 2251
+        },
+        {
+          "plugin": {
+            "top": 38,
+            "left": 0,
+            "right": 0,
+            "bottom": 48
+          },
+          "app": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "ion": {
+            "top": "38px",
+            "right": "0px",
+            "bottom": "48px",
+            "left": "0px"
+          },
+          "v": {
+            "w": 411,
+            "h": 891,
+            "o": "portrait-primary"
+          },
+          "events": [
+            {
+              "n": "orientationchange",
+              "t": 94917,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94937,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 94976,
+              "insets": null
+            },
+            {
+              "n": "orientationchange",
+              "t": 98542,
+              "insets": null
+            },
+            {
+              "n": "resize",
+              "t": 98560,
+              "insets": null
+            }
+          ],
+          "ms": 3369
+        }
+      ]
+    }
+  ]
+}

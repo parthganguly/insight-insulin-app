@@ -29,7 +29,28 @@ export type SafeAreaInsetValues = Record<SafeAreaSide, number>;
 export type SafeAreaSource = {
 	requery: () => Promise<boolean>;
 	push: (insets: SafeAreaInsetValues) => void;
+	/** Neutralizes the source so no in-flight or later response can write. */
+	dispose: () => void;
 };
+
+/**
+ * Bounded re-query ladder run once after native startup.
+ *
+ * An Android font-scale change relaunches MainActivity and reloads the
+ * WebView, so bootstrap runs again while the recreated window's insets are not
+ * yet attached and the plugin still answers bottom = 0. On SM-M356B / API 36
+ * the plugin's own answer became correct between ~322 ms and ~512 ms of
+ * document time, but nothing told the page: the run was stationary, so no
+ * orientationchange, no resize, no resume, and the plugin emitted no
+ * safeAreaChanged. Evidence: reports/ux/premium-redesign/j4-confirm/evidence/
+ * rotation-p0/stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1.json
+ *
+ * These delays re-read across that readiness window and then stop for good.
+ * The ladder is a fixed, finite list — it always ends, and it deliberately
+ * does not stop early on two equal readings, because the first two readings
+ * after a relaunch are equal *and wrong*.
+ */
+export const INSET_SETTLE_DELAYS_MS = [150, 400, 800, 1500, 2500] as const;
 
 /**
  * Reads the persisted darkMode tri-state from the zustand persist payload
@@ -75,11 +96,19 @@ export function bootstrapAppearance(root: HTMLElement = document.documentElement
 	return appearance;
 }
 
-export function applyAppSafeArea(root: HTMLElement, insets: SafeAreaInsetValues): void {
+function normalizeInsets(insets: SafeAreaInsetValues): SafeAreaInsetValues {
+	const normalized = {} as SafeAreaInsetValues;
 	for (const side of SAFE_AREA_SIDES) {
 		const value = insets[side];
-		const safeValue = Number.isFinite(value) && value > 0 ? value : 0;
-		root.style.setProperty(`--app-safe-area-${side}`, `${safeValue}px`);
+		normalized[side] = Number.isFinite(value) && value > 0 ? value : 0;
+	}
+	return normalized;
+}
+
+export function applyAppSafeArea(root: HTMLElement, insets: SafeAreaInsetValues): void {
+	const normalized = normalizeInsets(insets);
+	for (const side of SAFE_AREA_SIDES) {
+		root.style.setProperty(`--app-safe-area-${side}`, `${normalized[side]}px`);
 	}
 }
 
@@ -93,14 +122,27 @@ export function applyAppSafeArea(root: HTMLElement, insets: SafeAreaInsetValues)
 export function createSafeAreaSource(root: HTMLElement, getInsets: () => Promise<{ insets: SafeAreaInsetValues }>): SafeAreaSource {
 	let issued = 0;
 	let applied = 0;
+	let disposed = false;
+	let lastApplied: SafeAreaInsetValues | null = null;
+
+	/** Touches the root only when a side actually differs, so the settle
+	 * ladder's repeat reads cost nothing once the insets have stabilized. */
+	const commit = (insets: SafeAreaInsetValues): void => {
+		const normalized = normalizeInsets(insets);
+		const previous = lastApplied;
+		if (previous && SAFE_AREA_SIDES.every((side) => previous[side] === normalized[side])) return;
+		lastApplied = normalized;
+		applyAppSafeArea(root, normalized);
+	};
 
 	const requery = async (): Promise<boolean> => {
+		if (disposed) return false;
 		const token = ++issued;
 		try {
 			const { insets } = await getInsets();
-			if (token <= applied) return false;
+			if (disposed || token <= applied) return false;
 			applied = token;
-			applyAppSafeArea(root, insets);
+			commit(insets);
 			return true;
 		} catch {
 			return false;
@@ -108,11 +150,33 @@ export function createSafeAreaSource(root: HTMLElement, getInsets: () => Promise
 	};
 
 	const push = (insets: SafeAreaInsetValues): void => {
+		if (disposed) return;
 		applied = ++issued;
-		applyAppSafeArea(root, insets);
+		commit(insets);
 	};
 
-	return { requery, push };
+	const dispose = (): void => {
+		disposed = true;
+	};
+
+	return { requery, push, dispose };
+}
+
+/**
+ * Schedules the bounded settle ladder. Returns a canceller that clears every
+ * outstanding timer; nothing reschedules, so once the last delay elapses no
+ * timer remains armed.
+ */
+export function startInsetSettleWatch(source: SafeAreaSource, delays: readonly number[] = INSET_SETTLE_DELAYS_MS, win: Window = window): () => void {
+	const timers = delays.map((delay) =>
+		win.setTimeout(() => {
+			void source.requery();
+		}, delay)
+	);
+
+	return () => {
+		for (const timer of timers) win.clearTimeout(timer);
+	};
 }
 
 export async function resolveInsetsBeforeRender(source: SafeAreaSource, timeoutMs: number = INITIAL_INSET_TIMEOUT_MS): Promise<boolean> {
@@ -153,9 +217,11 @@ function subscribeToInsetChanges(source: SafeAreaSource): void {
 	});
 }
 
-export async function bootstrap(container: HTMLElement): Promise<void> {
+export async function bootstrap(container: HTMLElement): Promise<() => void> {
 	bootstrapAppearance();
 	defineCustomElements(window);
+
+	const teardowns: Array<() => void> = [];
 
 	if (Capacitor.isNativePlatform()) {
 		// Native insets must be resolved before React renders; browser/PWA
@@ -163,10 +229,18 @@ export async function bootstrap(container: HTMLElement): Promise<void> {
 		const source = createSafeAreaSource(document.documentElement, () => SafeArea.getSafeAreaInsets());
 		await resolveInsetsBeforeRender(source);
 		subscribeToInsetChanges(source);
+		// The first reading after an Android configuration relaunch can precede
+		// the window's insets; nothing else re-reads while the device is still.
+		teardowns.push(startInsetSettleWatch(source));
+		teardowns.push(() => source.dispose());
 	}
 
 	const root = createRoot(container);
 	root.render(<App onShellReady={() => markShellReady()} />);
+
+	return () => {
+		for (const teardown of teardowns) teardown();
+	};
 }
 
 const container = document.getElementById("root");

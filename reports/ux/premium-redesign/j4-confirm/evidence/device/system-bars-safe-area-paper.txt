@@ -1,0 +1,21 @@
+J4 physical safe-area proof — Samsung SM-M356B
+Captured: 2026-07-24
+
+Display and window facts
+- Physical display: 1080x2340
+- Physical density: 450 dpi; active override: 420 dpi
+- Current focus: io.ionic.starter/io.ionic.starter.MainActivity
+- Portrait rotation: ROTATION_0
+- Display cutout: top inset 89 physical px; bounds Rect(507,23 - 573,89)
+- Status bar: frame [0,0][1080,100], visible
+- Navigation bar: frame [0,2214][1080,2340], visible; bottom inset 126 physical px
+
+Settled Capacitor safe-area probe
+- WebView viewport: 411x891 CSS px at DPR 2.625
+- Native SafeArea.getSafeAreaInsets(): top 38, right 0, bottom 48, left 0 CSS px
+- Root --app-safe-area-bottom after hot-resume requery: 48px
+- ion-tab-bar: y 772.67, height 118.76, bottom 891.43 CSS px
+
+The retained paper/ink screenshots show content clear of the centered cutout,
+legible status/navigation icons, and the fixed CTA/tab controls above the
+126-physical-pixel navigation bar.

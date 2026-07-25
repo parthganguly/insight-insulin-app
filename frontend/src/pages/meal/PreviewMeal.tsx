@@ -1,18 +1,20 @@
-import { IonPage, IonContent, IonHeader, IonTitle, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonInput, IonButtons, IonBackButton, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonActionSheet, IonThumbnail, IonModal, IonLoading, IonAlert } from "@ionic/react";
+import { IonPage, IonContent, IonHeader, IonTitle, IonText, IonInput, IonButtons, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonActionSheet, IonThumbnail, IonModal, IonAlert } from "@ionic/react";
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import type { Action, Location } from "history";
 
 import { MealItem, Unit } from "../../types/MealItem";
 import { isPersistableImage, usePersistentMealStore } from "../../stores/persistentMealStore";
-import { add, alertCircle, arrowBack, batteryCharging, camera, checkmarkCircle, close, create, desktop, flame, information, pencil, pizza, save, trash } from "ionicons/icons";
+import { add, alertCircle, arrowBack, checkmarkCircle, close, create, desktop, pencil, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } from "../../api/api";
-import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealDisplayCalories, getMealTimeString } from "../../utils";
-import { NutrimentComponent } from "../../components/NutrimentComponent";
+import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, MEAL_NAME_HELPER, SAVED_MEAL_STATUS, getDraftProvenanceCopy, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
+import ConfirmHero from "../../components/ConfirmHero";
+import ComponentCard from "../../components/ComponentCard";
+import NeedsReviewCard from "../../components/NeedsReviewCard";
+import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_REVIEW_KICKER, MEAL_NAME_HELPER, MEAL_SAVE_FAILURE, SAVED_MEAL_STATUS, getDraftProvenanceCopy, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
 
 type SaveFeedback = {
@@ -177,7 +179,7 @@ const PreviewMeal = () => {
 			router.push(`/meals/saved/${encodeURIComponent(canonicalMeal.id)}`, "forward", "replace");
 		} catch (err) {
 			console.error("POST /meals failed:", err);
-			const errorMessage = err instanceof Error ? err.message : "Failed to save meal";
+			const errorMessage = MEAL_SAVE_FAILURE;
 			setSaveFeedback({ kind: "error", message: errorMessage });
 			setToastColor("danger");
 			setToastMessage(errorMessage);
@@ -214,150 +216,109 @@ const PreviewMeal = () => {
 		}
 	};
 
+	const itemSumCalories = calculateTotalCalories(meal);
+	const itemSumCarbohydrates = Math.round(meal.items.reduce((total, item) => total + calculateTotalItemCarbohydrates(item), 0) * 100) / 100;
+	const itemSumSaturatedFat = Math.round(meal.items.reduce((total, item) => total + calculateTotalItemSaturatedFat(item), 0) * 100) / 100;
+
 	return (
 		<IonPage>
-			<IonHeader>
-				<IonToolbarWrapper className='ion-text-left'>
-					<IonButtons slot='start'>
-						<IonBackButton defaultHref='/log-meal' />
-					</IonButtons>
-					<IonTitle>Did we get your meal right?</IonTitle>
-				</IonToolbarWrapper>
-			</IonHeader>
+			<IonContent className='confirmation-page' fullscreen>
+				<ConfirmHero image={meal.image} mealName={meal.name} disabled={isSubmitting} onAddPhoto={handleTakePicture} />
+				<main className='confirmation-sheet' aria-busy={isSubmitting} inert={isSubmitting ? true : undefined}>
+					<p className='confirmation-kicker'>{meal.backend_created_at ? SAVED_MEAL_STATUS : DRAFT_REVIEW_KICKER}</p>
+					<h1>Did we get your meal right?</h1>
+					<IonInput className='confirmation-meal-name' value={meal.name} label='Meal name' labelPlacement='stacked' placeholder='Enter dish name' onIonInput={(event) => setName(event.detail.value ?? "")} disabled={isSubmitting}>
+						<IonIcon slot='end' icon={create} aria-hidden='true' />
+					</IonInput>
+					<p className='meal-name-helper'>{MEAL_NAME_HELPER}</p>
 
-			<IonContent className='ion-padding confirmation-page'>
-				{meal.image ? (
-					<IonImg src={meal.image} alt='Captured food' className='meal-journey-photo' />
-				) : (
-					<IonButton expand='block' color='medium' fill='outline' onClick={handleTakePicture} className='ion-margin-bottom'>
-						<IonIcon icon={camera} slot='start' />
-						Take picture
-					</IonButton>
-				)}
+					{meal.items.filter((item) => item.needsReview).map((item) => (
+						<NeedsReviewCard key={item.id} item={item} disabled={isSubmitting} onEdit={openItemEditor} onConfirm={confirmMealItemReview} />
+					))}
 
-				<IonCard className='app-card confirmation-identity-card'>
-					<IonCardHeader>
-						<IonCardTitle>
-							<IonInput value={meal.name} label='Meal name' labelPlacement='stacked' placeholder='Enter dish name' onIonInput={(event) => setName(event.detail.value ?? "")}>
-								<IonIcon slot='end' icon={create} aria-hidden='true' />
-							</IonInput>
-						</IonCardTitle>
-						<p className='meal-name-helper'>{MEAL_NAME_HELPER}</p>
-						<span className={`meal-status-pill ${meal.backend_created_at ? "meal-status-saved" : "meal-status-draft"}`}>
-							{meal.backend_created_at ? SAVED_MEAL_STATUS : DRAFT_MEAL_STATUS}
-						</span>
-						<IonText color='medium'>
-							<p className='confirmation-meta'>
-								Total items: {meal.items.length}<br />
-								Total calories: {getMealDisplayCalories(meal)} kcal
-								{hasEstimate && <span className='estimate-source-note'> (AI estimate)</span>}<br />
-								Logged at: {getMealTimeString(meal)}
-							</p>
-						</IonText>
-					</IonCardHeader>
-				</IonCard>
+					<section className='confirmation-component-region' aria-label='Meal components'>
+						{meal.items.length === 0 ? (
+							<div className='draft-empty-note'>
+								<p>This meal is an editable draft</p>
+								<p>Add something below before calculating and saving.</p>
+							</div>
+						) : (
+							<div className='confirmation-item-list'>
+								{meal.items.map((item) => (
+									<ComponentCard
+										key={item.id}
+										item={item}
+										provenanceCopy={getDraftProvenanceCopy(item, Boolean(meal.source_meal_id))}
+										draftHint={isDraftMealItem(item) ? DRAFT_ITEM_ROW_HINT : null}
+										disabled={isSubmitting}
+										onOpenEditor={openItemEditor}
+										onAdjustAmount={adjustItemAmount}
+										onUpdateAmount={updateItemAmount}
+										onUpdateUnit={(id, unit) => updateItem(id, "servingUnit", unit)}
+										parseNumericInput={parseNumericInput}
+									/>
+								))}
+							</div>
+						)}
+						<IonButton expand='block' fill='clear' className='add-missed-item-button' onClick={() => { releaseFocusedElement(); setIsItemActionSheetOpen(true); }} disabled={isSubmitting}>
+							<IonIcon slot='start' icon={add} aria-hidden='true' />
+							Add something we missed — oil, ghee, sides…
+						</IonButton>
+					</section>
 
-				<section className='confirmation-section' aria-labelledby='meal-components-heading'>
-					<div className='meal-journey-section-heading'>
-						<h2 id='meal-components-heading'>What INSIGHT found</h2>
-						<p>Check each component and adjust the portion if needed.</p>
-					</div>
-					{meal.items.length === 0 ? (
-						<div className='draft-empty-note app-card'>
-							<p>This meal is an editable draft</p>
-							<p>Add something below before calculating the estimate.</p>
+					<section className='confirmation-totals' aria-label='Item totals'>
+						<div className='confirmation-totals-line'>
+							<span>Item totals</span>
+							<strong>{itemSumCalories} kcal · {itemSumCarbohydrates} g carbs · {itemSumSaturatedFat} g saturated fat</strong>
 						</div>
-					) : (
-						<div className='confirmation-item-list'>
-							<p className='item-list-helper'>{ITEM_LIST_EDIT_HELPER}</p>
-							{meal.items.map((item) => {
-								const provenanceCopy = getDraftProvenanceCopy(item, Boolean(meal.source_meal_id));
-								return <IonCard key={item.id} className='app-card confirmation-item-card'>
-									<IonCardHeader>
-										<IonCardTitle>{item.name}</IonCardTitle>
-										{provenanceCopy && <span className='draft-provenance'>{provenanceCopy}</span>}
-										{isDraftMealItem(item) && <span className='draft-item-hint'>{DRAFT_ITEM_ROW_HINT}</span>}
-									</IonCardHeader>
-									<IonCardContent>
-										{item.needsReview && (
-											<div className='needs-review-panel' role='status' aria-live='polite' tabIndex={0}>
-												<div className='needs-review-message'>
-													<IonIcon icon={alertCircle} aria-hidden='true' />
-													<p>These values were for "{item.needsReview.previousName}". Check they still fit.</p>
-												</div>
-												<p className='carried-nutrition-summary'>Per serving: {item.kcalPerServing} kcal · {item.carbPerServing_g} g carbs · {item.proteinPerServing_g ?? 0} g protein · {item.fatPerServing_g ?? 0} g fat · {item.satFatPerServing_g} g saturated fat · GI {item.gi}</p>
-												<IonButton expand='block' onClick={() => confirmMealItemReview(item.id)}>These still fit</IonButton>
-											</div>
-										)}
-										<div className='portion-adjust-row'>
-											<IonButton aria-label={`Decrease ${item.name} portion`} size='small' fill='outline' onClick={() => adjustItemAmount(item.id, -0.5)}>-</IonButton>
-											<IonInput type='number' inputMode='decimal' fill='outline' label='Amount' labelPlacement='stacked' value={item.amount} min={0} onIonInput={(event) => updateItemAmount(item.id, parseNumericInput(event.detail.value ?? "", item.amount))} />
-											<IonButton aria-label={`Increase ${item.name} portion`} size='small' fill='outline' onClick={() => adjustItemAmount(item.id, 0.5)}>+</IonButton>
-											<IonSelect label='Unit' labelPlacement='stacked' fill='outline' interface='popover' value={item.servingUnit} onIonChange={(event) => updateItem(item.id, "servingUnit", event.detail.value)}>
-												{Object.values(Unit).map((unit) => <IonSelectOption key={unit} value={unit}>{unit}</IonSelectOption>)}
-											</IonSelect>
+						{hasEstimate && isAiDraftFlow && meal.estimate && (() => {
+							const estimatedCalories = Math.round(meal.estimate.estimated_calories * meal.estimate.serving_count);
+							const difference = itemSumCalories > 0 ? Math.abs(estimatedCalories - itemSumCalories) / itemSumCalories : 0;
+							const showMismatch = itemSumCalories > 0 && difference > 0.25;
+							return (
+								<>
+									<details className='whole-meal-estimate-details'>
+										<summary>Whole-meal estimate</summary>
+										<div className='whole-meal-estimate-content'>
+											<p>AI nutrition estimate for the whole meal, before save.</p>
+											<div className='estimate-value-row'><span>Calories</span><strong>{estimatedCalories} kcal</strong></div>
+											<div className='estimate-value-row'><span>Carbs</span><strong>{Math.round(meal.estimate.estimated_carbs_g * meal.estimate.serving_count)} g</strong></div>
+											<div className='estimate-value-row'><span>Fat</span><strong>{Math.round(meal.estimate.estimated_fat_g * meal.estimate.serving_count)} g</strong></div>
+											<div className='estimate-value-row estimate-serving-row'><span>Serving</span><span>{meal.estimate.serving_count} {"\u00d7"} {meal.estimate.serving_type}</span></div>
+											<p>Review this estimate, then adjust the item details before saving.</p>
 										</div>
-										<div className='confirmation-item-actions'>
-											<IonButton size='small' fill='outline' onClick={() => openItemEditor(item)}>Edit details</IonButton>
-											<IonButton size='small' fill='clear' color='danger' onClick={() => deleteMealItem(item.id)}>Remove</IonButton>
-										</div>
-									</IonCardContent>
-								</IonCard>;
-							})}
+									</details>
+									{showMismatch && (
+										<p className='estimate-mismatch-note'>Item breakdown ({Math.round(itemSumCalories)} kcal) differs from estimate by {Math.round(difference * 100)}%. Consider reviewing items.</p>
+									)}
+								</>
+							);
+						})()}
+					</section>
+
+					<div className='disclaimer-note confirmation-disclaimer'>{APP_DISCLAIMER}</div>
+					{saveFeedback && (
+						<div className={`save-feedback-banner ${saveFeedback.kind === "error" ? "save-feedback-error" : "save-feedback-success"}`} role='status' aria-live='polite'>
+							<IonIcon icon={saveFeedback.kind === "error" ? alertCircle : checkmarkCircle} aria-hidden='true' />
+							<span>{saveFeedback.message}</span>
 						</div>
 					)}
-					<IonButton expand='block' fill='outline' className='add-missed-item-button' onClick={() => { releaseFocusedElement(); setIsItemActionSheetOpen(true); }}>
-						<IonIcon slot='start' icon={add} />
-						Add something we missed
+					{reviewValidationError && (
+						<div id='review-validation-error' className='save-feedback-banner save-feedback-error review-validation-error' role='status' aria-live='polite'>
+							<IonIcon icon={alertCircle} aria-hidden='true' />
+							<span>{reviewValidationError}</span>
+						</div>
+					)}
+				</main>
+				<div slot='fixed' className='confirmation-dock'>
+					<IonButton expand='block' aria-label='Save meal' aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>
+						{isSubmitting ? "Estimating insulin demand…" : "Calculate & save"}
 					</IonButton>
-				</section>
-
-				{hasEstimate && isAiDraftFlow && meal.estimate && (() => {
-					const estimatedCalories = Math.round(meal.estimate.estimated_calories * meal.estimate.serving_count);
-					const itemSumCalories = calculateTotalCalories(meal);
-					const difference = itemSumCalories > 0 ? Math.abs(estimatedCalories - itemSumCalories) / itemSumCalories : 0;
-					const showMismatch = itemSumCalories > 0 && difference > 0.25;
-					return (
-						<IonCard className='app-card whole-meal-estimate-card'>
-							<IonCardHeader>
-								<IonCardTitle><IonIcon icon={flame} aria-hidden='true' /> Estimated meal nutrition</IonCardTitle>
-								<IonText color='medium'>AI nutrition estimate for the whole meal, before save.</IonText>
-							</IonCardHeader>
-							<IonCardContent>
-								<div className='estimate-value-row'><span>Calories</span><strong>{estimatedCalories} kcal</strong></div>
-								<div className='estimate-value-row'><span>Carbs</span><strong>{Math.round(meal.estimate.estimated_carbs_g * meal.estimate.serving_count)} g</strong></div>
-								<div className='estimate-value-row'><span>Fat</span><strong>{Math.round(meal.estimate.estimated_fat_g * meal.estimate.serving_count)} g</strong></div>
-								<div className='estimate-value-row estimate-serving-row'><span>Serving</span><span>{meal.estimate.serving_count} {"\u00d7"} {meal.estimate.serving_type}</span></div>
-								<IonText color='medium'>Review this estimate, then adjust the item details before saving.</IonText>
-								{showMismatch && (
-									<IonText color='warning'>
-										<p><IonIcon icon={information} aria-hidden='true' /> Item breakdown ({Math.round(itemSumCalories)} kcal) differs from estimate by {Math.round(difference * 100)}%. Consider reviewing items.</p>
-									</IonText>
-								)}
-							</IonCardContent>
-						</IonCard>
-					);
-				})()}
-
-				{saveFeedback && (
-					<div className={`save-feedback-banner ${saveFeedback.kind === "error" ? "save-feedback-error" : "save-feedback-success"}`} role='status' aria-live='polite'>
-						<IonIcon icon={saveFeedback.kind === "error" ? alertCircle : checkmarkCircle} aria-hidden='true' />
-						<span>{saveFeedback.message}</span>
-					</div>
-				)}
-				{reviewValidationError && (
-					<div id='review-validation-error' className='save-feedback-banner save-feedback-error review-validation-error' role='status' aria-live='polite'>
-						<IonIcon icon={alertCircle} aria-hidden='true' />
-						<span>{reviewValidationError}</span>
-					</div>
-				)}
-				<div className='confirmation-primary-actions'>
-					<IonButton expand='block' aria-label='Save meal' aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>Calculate &amp; save</IonButton>
-					<IonButton expand='block' fill='outline' color='medium' onClick={handleDiscardDraft} disabled={isSubmitting}>Discard</IonButton>
+					<IonButton expand='block' fill='clear' color='medium' onClick={handleDiscardDraft} disabled={isSubmitting}>Discard draft</IonButton>
 				</div>
-				<div className='disclaimer-note confirmation-disclaimer'>{APP_DISCLAIMER}</div>
+			</IonContent>
 
-				<IonModal isOpen={!!modalItem} onWillDismiss={releaseFocusedElement} onDidDismiss={() => setModalItemId(null)} className='sheet-modal'>
+			<IonModal isOpen={!!modalItem} onWillDismiss={releaseFocusedElement} onDidDismiss={() => setModalItemId(null)} className='sheet-modal'>
 					<div className='sheet-handle' aria-hidden='true' />
 					<IonHeader>
 						<IonToolbarWrapper className='ion-text-left'>
@@ -369,12 +330,12 @@ const PreviewMeal = () => {
 					</IonHeader>
 					<IonContent className='ion-padding'>
 						{modalItem && (
-							<IonCard className='app-card item-editor-card'>
-								<IonCardHeader>
+							<div className='item-editor-sheet-content'>
+								<div className='item-editor-heading'>
 									<IonInput value={modalItem.name} label='Item name' labelPlacement='stacked' placeholder='Enter item name' onIonInput={(event) => updateItem(modalItem.id, "name", event.detail.value ?? "")} />
 									{modalItem.image && <IonThumbnail><img alt='' src={modalItem.image} /></IonThumbnail>}
-								</IonCardHeader>
-								<IonCardContent>
+								</div>
+								<div className='item-editor-fields'>
 									<IonInput className='ion-margin-vertical' labelPlacement='stacked' type='number' fill='outline' label='Serving size' value={modalItem.servingSize} placeholder='Enter serving size' onIonInput={(event) => updateItem(modalItem.id, "servingSize", event.detail.value ?? "")} />
 									<IonSelect className='ion-margin-vertical' label='Serving unit' labelPlacement='stacked' fill='outline' value={modalItem.servingUnit} onIonChange={(event) => updateItem(modalItem.id, "servingUnit", event.detail.value)}>
 										{Object.values(Unit).map((unit) => <IonSelectOption key={unit} value={unit}>{unit}</IonSelectOption>)}
@@ -391,9 +352,9 @@ const PreviewMeal = () => {
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='FII' value={modalItem.fii ?? ""} placeholder='Enter FII' onIonInput={(event) => updateItem(modalItem.id, "fii", event.detail.value ?? "")} />
 											<IonInput labelPlacement='stacked' type='number' fill='outline' label='Glycemic Index' value={modalItem.gi} placeholder='Enter glycemic index' onIonInput={(event) => updateItem(modalItem.id, "gi", event.detail.value ?? "")} />
 											<div className='advanced-nutrient-totals'>
-												<NutrimentComponent nutrimentName='Total Calories' nutrimentValue={`${calculateTotalItemCalories(modalItem)} kcal`} nutrimentIcon={flame} nutrimentIconColor='#ff5151ff' />
-												<NutrimentComponent nutrimentName='Total Carbs' nutrimentValue={`${calculateTotalItemCarbohydrates(modalItem)} g`} nutrimentIcon={pizza} nutrimentIconColor='#ffcc00ff' />
-												<NutrimentComponent nutrimentName='Total Saturated Fat' nutrimentValue={`${calculateTotalItemSaturatedFat(modalItem)} g`} nutrimentIcon={batteryCharging} nutrimentIconColor='#0091ffff' />
+												<div className='editor-total-row'><span>Total Calories</span><strong>{calculateTotalItemCalories(modalItem)} kcal</strong></div>
+												<div className='editor-total-row'><span>Total Carbs</span><strong>{calculateTotalItemCarbohydrates(modalItem)} g</strong></div>
+												<div className='editor-total-row'><span>Total Saturated Fat</span><strong>{calculateTotalItemSaturatedFat(modalItem)} g</strong></div>
 											</div>
 											{modalItem.source && <IonText>Source: {humanizeFiiSource(modalItem.source)}</IonText>}
 											{shouldShowProvidedFiiDisclaimer(modalItem.source, modalItem.fii) && <IonText color='medium'>{PROVIDED_FII_DISCLAIMER}</IonText>}
@@ -405,8 +366,8 @@ const PreviewMeal = () => {
 										<IonButton onClick={closeItemEditor}><IonIcon slot='start' icon={save} />Done</IonButton>
 										<IonButton color='danger' fill='outline' onClick={() => { deleteMealItem(modalItem.id); closeItemEditor(); }}><IonIcon slot='start' icon={trash} />Remove item</IonButton>
 									</div>
-								</IonCardContent>
-							</IonCard>
+								</div>
+							</div>
 						)}
 					</IonContent>
 				</IonModal>
@@ -439,9 +400,7 @@ const PreviewMeal = () => {
 						{ text: "Discard and leave", role: "destructive", handler: discardAndContinueNavigation },
 					]}
 				/>
-				<IonLoading isOpen={isSubmitting} message='Estimating insulin demand…' />
 				<IonToast isOpen={showToast} message={toastMessage} duration={2200} color={toastColor} onDidDismiss={() => setShowToast(false)} />
-			</IonContent>
 		</IonPage>
 	);
 };

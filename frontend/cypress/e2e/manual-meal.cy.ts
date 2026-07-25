@@ -7,6 +7,7 @@
 // canonical /meals/saved/:id result screen.
 
 import { BACKEND_ORIGIN, shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
+import { MEAL_SAVE_FAILURE } from "../../src/utils/mealDraftUx";
 
 const savedResponse = syntheticBackendMeal("syn-saved-1", "Synthetic Manual Meal", 42, {
 	items: [
@@ -57,9 +58,9 @@ describe("Manual meal draft", () => {
 
 		// Real rendering guards (see shouldBeRendered): the draft status must
 		// actually be painted, not merely present in the DOM.
-		shouldBeRendered("span", "Editable draft — not saved yet");
+		shouldBeRendered("p.confirmation-kicker", "Draft — not saved");
 		cy.contains("Did we get your meal right?").should("exist");
-		cy.contains("What INSIGHT found").should("exist");
+		cy.get("[aria-label='Meal components']").should("exist");
 		cy.get("input").should("exist"); // the dish-name input is editable
 	});
 
@@ -67,8 +68,9 @@ describe("Manual meal draft", () => {
 		openManualDraft();
 
 		// Remove the seeded item so the draft is genuinely empty.
-		cy.contains("ion-button", "Remove").click({ force: true });
-		cy.contains("Add something below before calculating the estimate.").should("exist");
+		cy.get(".component-edit-button").first().click({ force: true });
+		cy.get("ion-modal:not(.overlay-hidden):visible").contains("ion-button", "Remove item").click({ force: true });
+		cy.contains("Add something below before calculating and saving.").should("exist");
 
 		saveMeal();
 		cy.get(".save-feedback-banner").should("contain.text", "This meal is still empty. Tap + to add at least one item, then save.");
@@ -109,7 +111,9 @@ describe("Manual meal draft", () => {
 
 		// The failed save keeps the user on the editable draft.
 		cy.url().should("include", "/meals/new");
-		cy.get(".save-feedback-banner").should("contain.text", "Internal server error");
-		cy.get("ion-app").invoke("text").should("not.contain", "Traceback");
+		cy.get(".save-feedback-banner").should("contain.text", MEAL_SAVE_FAILURE);
+		cy.get("ion-app").invoke("text")
+			.should("not.contain", "Internal server error")
+			.and("not.contain", "Traceback");
 	});
 });
