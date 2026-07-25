@@ -1,6 +1,8 @@
 # Annotated Journal J4 — Confirm as annotated review implementation report
 
-**J4 SAFE-AREA FIX, INDEPENDENT DEVICE QA, AND FABLE VISUAL REVIEW COMPLETE — UNCOMMITTED, READY FOR COMMIT, PUSH, AND DRAFT PR.**
+**J4 SAFE-AREA FIX, INDEPENDENT DEVICE QA, FABLE VISUAL REVIEW, AND PUBLIC-EVIDENCE CURATION COMPLETE — DRAFT PR #118 UNDER FINAL MERGE REVIEW.**
+
+All engineering and review gates completed before packaging. The work was committed as `9d9b5eb250e739e6964155711c35b928538bc13b` on branch `sol/annotated-journal-j4-confirm` and opened as draft pull request #118 against `main`. No merge has occurred and `main` was not directly modified.
 
 J4 is a presentation-only change to the **current Ionic React/Capacitor implementation**. It is not a target-native component. This report records the post-fix implementation, independent automated validation, and physical-device evidence. It does not claim scientific validation or change scientific behavior.
 
@@ -34,7 +36,7 @@ Terra independently audited the actual diff and confirmed one source applies eac
 
 ## Independent automated validation
 
-All listed checks were run on the uncommitted worktree after the correction:
+All listed checks were run after the correction on the then-uncommitted worktree, which is the same tree later committed as `9d9b5eb`:
 
 | Check | Result |
 | --- | --- |
@@ -107,6 +109,16 @@ Manual keyboard behavior was reported as passing during physical QA. However, th
 
 Final self-proving evidence is the corrected stationary probe, font-1.3 runs 3/4/5, and the separate post-fix font-1.0 control. The older blocker evidence is historical evidence showing the actual prior failure; its raw original is immutable and privately preserved, and the public tree carries its sanitized derivative. Old clean font-1.3 runs 1/2 and old clean font-1.0 runs 1/2/3 are retained as historical controls or diagnostics, not replacements for the final self-proving post-fix set. The old dynamic font-change evidence is diagnostic only; it must not be represented as proof that the earlier stationary defect never existed.
 
+## Scope exception
+
+Issue #117 allowed a narrower, presentation-only file set. During mandatory Samsung QA a real persistent Android safe-area initialization defect was discovered after a stationary font-scale activity relaunch. Correcting it required expanding scope beyond the original list to:
+
+- `frontend/src/main.tsx`;
+- focused startup safe-area regression tests;
+- existing Cypress specifications whose selectors or regression assertions had to follow the J4 structure.
+
+The expansion was independently audited and device-validated. It changed no scoring, FII resolution, API contracts, stores, payloads, persistence, backend behavior, privacy behavior, or scientific claims. Issue #117 itself was not modified.
+
 ## Evidence privacy sanitization
 
 `parthganguly/insight-insulin-app` is a public repository. Final pre-commit review of the evidence tree found material that must not be published:
@@ -120,10 +132,12 @@ What the public evidence still contains is unchanged in substance. The redacted 
 
 Only stable hardware serials and unrelated device activity were excluded, and no J4 product claim depends on either. This curation changed no implementation file, no test, and no result. The automated validation above, the physical QA outcome, and Fable's APPROVE verdict and merge readiness are unchanged.
 
+Two packaging corrections were applied after the first pushed head and are recorded in the manifest. First, `artifacts.lifecycleLogcat` in the stationary run JSON — and in the historical blocker JSON, which contains no serial and was never redacted — pointed at the removed raw logcat filenames; both pointers were redirected to the published app-scoped extracts, so no public artifact reference names an unpublished file. No timing, inset, protocol, result, APK, device-model, API, viewport or lifecycle value changed in either. Second, terminal whitespace emitted by Android logging was stripped from line endings in the three extracts so the published tree satisfies `git diff --check`; every retained line, its ordering, timestamps, tags, substantive text and redactions are unchanged. The extracts are therefore deliberately not byte-identical to their raw originals at line endings, while the byte-identical originals remain privately preserved. All affected public SHA-256 values were recalculated.
+
 Evidence status after curation:
 
-- **private raw originals** — immutable, preserved outside the repository, identified by SHA-256;
-- **public evidence** — provenance-linked sanitized derivatives, each recording the SHA-256 of the private original it derives from.
+- **private raw originals** — immutable, byte-identical, preserved outside the repository, identified by SHA-256;
+- **public evidence** — provenance-linked sanitized derivatives with normalized line endings, each recording the SHA-256 of the private original it derives from.
 
 ## Fable visual and product review
 
@@ -143,4 +157,4 @@ Fable's concrete findings were the keyboard-evidence limitation recorded above p
 
 ## Change boundary
 
-All test and device-capture meal content was synthetic. Terra created new QA evidence only and updated this report plus `evidence/README.md`; Terra did not edit production code, frontend tests, Android source, backend code, scoring, persistence, privacy behavior, or existing raw evidence. No files were staged, committed, pushed, merged, tagged, or published.
+All test and device-capture meal content was synthetic. Terra created new QA evidence only and updated this report plus `evidence/README.md`; Terra did not edit production code, frontend tests, Android source, backend code, scoring, persistence, privacy behavior, or existing raw evidence. At the time of that QA no files had been staged, committed, pushed, merged, tagged, or published; packaging happened later, in commit `9d9b5eb` and draft PR #118, and no merge or tag has occurred since.

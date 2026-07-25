@@ -36,8 +36,11 @@ review verdict.
   any package outside the J4 app and the Android platform namespaces were
   dropped, as were cross-package visibility tags and unrelated device
   telemetry; carrier MCC/MNC and hardware serials were redacted inside retained
-  lines. Original timestamps and line ordering are preserved verbatim, and no
-  line was reworded, reordered, merged or synthesized.
+  lines. Original timestamps and line ordering are preserved and substantive
+  retained line content is unchanged: no line was reworded, reordered, merged
+  or synthesized. Terminal whitespace was then normalized for public Git
+  hygiene, so the extracts are not byte-identical to their raw originals at
+  line endings; the byte-identical originals remain privately preserved.
 - Device proof text files became `-redacted.txt`: the serial value was replaced
   with `DEVICE_SERIAL_REDACTED` and every other line is verbatim.
 - JSON evidence became `-redacted.json`: the single `device.serial` value was
@@ -58,12 +61,19 @@ review verdict.
 
 | Public derivative (under `evidence/`) | Bytes | Lines | Retained/raw | Public SHA-256 |
 | --- | ---: | ---: | ---: | --- |
-| `rotation-p0/postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-app-scoped-lifecycle-extract.txt` | 77,078 | 253 | 225/4,893 | `0f0869dc0f91835ea073b7ba4afc7ea56ab6beb849360de6ab9481da9c4718ec` |
-| `rotation-p0/stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1-app-scoped-lifecycle-extract.txt` | 56,050 | 222 | 194/6,206 | `33d162b9dacf37e6e5016062ad52c97d789e27059d58e1f2064737128f8e727c` |
-| `rotation-p0/dynamic-font-1.0-to-1.3-app-scoped-lifecycle-extract.txt` | 12,594 | 63 | 35/80 | `55fa78db0ce53b6301d4075a118111a15a3d4585706ae68a31bca7855100a43b` |
+| `rotation-p0/postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-app-scoped-lifecycle-extract.txt` | 77,379 | 258 | 225/4,893 | `cf693f01998ede717544ee260cb679862e5d5e9ecc9540a442f7fc637274f86f` |
+| `rotation-p0/stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1-app-scoped-lifecycle-extract.txt` | 56,359 | 227 | 194/6,206 | `8cbfc702d11609230a6bfd8a85f5b32d37b19d7d1677a2297e4347d2bebe1ab4` |
+| `rotation-p0/dynamic-font-1.0-to-1.3-app-scoped-lifecycle-extract.txt` | 12,939 | 68 | 35/80 | `dc4782506d8b8b041355e179fb7d15408454a7c00301247dec38d1ef950f44e1` |
 
 Sanitization method: app-scoped line filtering plus carrier/serial redaction, as
-described above. Retained line counts exclude each extract's provenance header.
+described above, followed by **terminal-whitespace normalization** — trailing
+spaces and tabs emitted by Android logging were stripped from line endings so
+the published files satisfy `git diff --check`. No line was added, removed,
+reordered or reworded; timestamps, tags, substantive text and redactions are
+unchanged, and the byte-identical raw originals remain privately preserved.
+Because of that normalization the extracts are deliberately **not**
+byte-identical to their raw originals at line endings. Retained line counts
+exclude each extract's provenance header.
 
 ### Device proof text
 
@@ -91,15 +101,30 @@ all other content verbatim. Byte/line growth is the added provenance header.
 
 | Public derivative (under `evidence/`) | Bytes | Lines | Public SHA-256 |
 | --- | ---: | ---: | --- |
-| `rotation-p0/postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-redacted.json` | 12,626 | 472 | `3e0c6986dea5311931f352487c9641c0871d47d2540bbd57de734bac99598237` |
+| `rotation-p0/postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-redacted.json` | 12,772 | 472 | `62ee080963e5fc416b9ac2a39783a2ef85bd4cc63e17a44d8aa51fe8bb182130` |
 | `rotation-p0/clean-font-1.0-postfix-run4-redacted.json` | 10,387 | 377 | `120555e14e22966cdde0758ebfe577b341aa2cf67a9a5376b4600cefae7b6167` |
 | `rotation-p0/clean-font-1.3-run4-redacted.json` | 10,376 | 377 | `c38772ed071b85504e6d52ee8ada5033d2c9bae615c7e3f154f8095cdce28d1f` |
 | `rotation-p0/clean-font-1.3-run5-redacted.json` | 10,365 | 377 | `1ca83788aaeea0b245efe2a8235061b5d702878fe1982f4fd587287e0e5fe677` |
 
 Sanitization method: `device.serial` replaced with `DEVICE_SERIAL_REDACTED`; a
 top-level `privacySanitization` object appended carrying the private raw
-SHA-256. Every derivative was parsed and machine-compared against its original;
-the comparison confirmed no other difference and unchanged top-level key order.
+SHA-256. In the stationary run additionally `artifacts.lifecycleLogcat` was
+redirected from the removed private raw whole-device logcat filename to the
+published app-scoped lifecycle extract, so no public artifact pointer names an
+unpublished file. Every derivative was parsed and machine-compared against its
+original; the comparison confirmed the only differences are those permitted —
+the serial redaction, the provenance object, and (stationary run only) the
+artifact redirect — with unchanged top-level key order.
+
+One non-derivative public JSON needed the same reference correction.
+`rotation-p0/stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1.json`
+is the historical blocker record; it contains no serial and was therefore never
+redacted, but its `artifacts.lifecycleLogcat` also named the removed raw
+capture. That single pointer was redirected to
+`stationary-font-1.0-to-1.3-no-rotation-settle-2026-07-25-run1-app-scoped-lifecycle-extract.txt`.
+No measurement, timing, inset, protocol or result value in that file changed;
+its public SHA-256 is now
+`2c368fc2b62b221c5e3e8e4a1a48b15fb2230adc1306d8bf2d2e08bccd6dc43a`.
 
 ## Statements
 

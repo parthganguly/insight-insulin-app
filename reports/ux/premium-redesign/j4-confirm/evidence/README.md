@@ -1,6 +1,8 @@
 # J4 confirm evidence ledger
 
-**J4 SAFE-AREA FIX, INDEPENDENT DEVICE QA, AND FABLE VISUAL REVIEW COMPLETE — UNCOMMITTED, READY FOR COMMIT, PUSH, AND DRAFT PR.**
+**J4 SAFE-AREA FIX, INDEPENDENT DEVICE QA, FABLE VISUAL REVIEW, AND PUBLIC-EVIDENCE CURATION COMPLETE — DRAFT PR #118 UNDER FINAL MERGE REVIEW.**
+
+All engineering and review gates completed before packaging. The work was committed as `9d9b5eb250e739e6964155711c35b928538bc13b` on branch `sol/annotated-journal-j4-confirm` and opened as draft pull request #118 against `main`. No merge has occurred and `main` was not directly modified.
 
 All meal content is synthetic. This ledger separates final self-proving post-fix evidence, historical blocker evidence, and historical diagnostic evidence.
 
@@ -38,7 +40,7 @@ Device and install proof files are published as redacted derivatives, with the s
 - `device/device-session-proof-redacted.txt`
 - `device/apk-install-proof-redacted.txt`
 
-The corrected hash differs from the blocker hash. The APK was built from the current uncommitted worktree after passing TypeScript, focused lint, focused startup tests, full unit tests, relevant Cypress, production build, and `git diff --check`.
+The corrected hash differs from the blocker hash. The APK was built from the then-uncommitted worktree — the same tree later committed as `9d9b5eb` — after passing TypeScript, focused lint, focused startup tests, full unit tests, relevant Cypress, production build, and `git diff --check`.
 
 ## Final self-proving post-fix evidence
 
@@ -139,6 +141,8 @@ All nine raw originals were archived privately outside this repository, verified
 
 Every numeric value, timing, result field, APK identity, device model and API level survives intact. Each redacted JSON was parsed and machine-compared against its original, confirming the only differences are the `device.serial` value and the appended `privacySanitization` object, with top-level key order unchanged. The lifecycle extracts preserve original timestamps and ordering and prove only the app process/activity lifecycle, the `MainActivity` configuration relaunch, and app-scoped window/inset events; the safe-area numeric proof lives in the redacted JSONs and the unmodified PNG screenshots. Only stable hardware serials and unrelated device activity were excluded, and no J4 claim rests on either.
 
+Two packaging corrections followed the first pushed head. The `artifacts.lifecycleLogcat` pointers in the stationary run JSON and in the historical blocker JSON named the removed raw captures; both were redirected to the published app-scoped extracts, changing no measurement, timing, inset, protocol or result value. Terminal whitespace emitted by Android logging was then stripped from line endings in the three extracts so the published tree satisfies `git diff --check`, leaving every retained line, its ordering, timestamps, tags, substantive text and redactions unchanged. The extracts are consequently not byte-identical to their raw originals at line endings; the byte-identical originals remain privately preserved, and all affected public hashes were recalculated.
+
 This curation changed no implementation file, test, or result. Automated validation, physical QA, and Fable's APPROVE verdict and merge readiness are unchanged. Per-file byte counts, line counts and both hashes are in `privacy-sanitization-manifest.md`.
 
 ## Fable visual and product review
@@ -151,4 +155,4 @@ Before QA, SHA-256 values for all 83 pre-existing files under this evidence dire
 
 A separate, later pre-publication privacy step removed nine raw originals from this public tree after archiving them privately, byte-identical and SHA-256-verified. That step did not edit, overwrite, truncate or regenerate any raw original: each was preserved intact outside the repository and replaced here by a derivative under a new, distinct filename. No original public filename was reused. All other evidence — every PNG, XML, and the remaining JSON files — is unchanged. Provenance and hashes are in `privacy-sanitization-manifest.md`.
 
-Terra changed no production code, frontend tests, backend code, Android source, stores, APIs, scientific scoring, persistence, privacy behavior, or existing raw evidence. No files were staged, committed, pushed, merged, tagged, or published.
+Terra changed no production code, frontend tests, backend code, Android source, stores, APIs, scientific scoring, persistence, privacy behavior, or existing raw evidence. At the time of that QA no files had been staged, committed, pushed, merged, tagged, or published; packaging happened later, in commit `9d9b5eb` and draft PR #118, and no merge or tag has occurred since.

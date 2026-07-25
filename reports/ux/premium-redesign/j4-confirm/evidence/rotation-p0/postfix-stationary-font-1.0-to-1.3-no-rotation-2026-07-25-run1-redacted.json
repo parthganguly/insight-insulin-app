@@ -456,7 +456,7 @@
     "note": "No event listeners were injected; samples record visibility, navigation type, viewport, and orientation."
   },
   "artifacts": {
-    "lifecycleLogcat": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-lifecycle-logcat.txt",
+    "lifecycleLogcat": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-app-scoped-lifecycle-extract.txt",
     "oneSecondScreenshot": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-1s.png",
     "finalPortraitScreenshot": "postfix-stationary-font-1.0-to-1.3-no-rotation-2026-07-25-run1-final-portrait.png"
   },
@@ -467,6 +467,6 @@
   "privacySanitization": {
     "publicDerivative": true,
     "privateRawSha256": "7cabed7d5efc93685e270fc467027a52a3348a932709abdc8f96884b04cd4b0d",
-    "redaction": "Stable ADB hardware serial replaced with DEVICE_SERIAL_REDACTED"
+    "redaction": "Stable ADB hardware serial replaced with DEVICE_SERIAL_REDACTED; artifacts.lifecycleLogcat redirected from the private raw whole-device logcat filename to the published app-scoped lifecycle extract"
   }
 }
