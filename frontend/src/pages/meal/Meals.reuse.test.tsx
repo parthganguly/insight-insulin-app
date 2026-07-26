@@ -89,7 +89,9 @@ describe("Meals tab / History stays read-only (issue #89 guard, updated for Camp
 		fireEvent.click(await screen.findByText("Synthetic Demo Bowl"));
 
 		await waitFor(() => expect(window.location.pathname).toBe("/meals/saved/saved-meal-1"));
-		expect(await screen.findByText("Meal result")).toBeTruthy();
+		// J5 replaced the saved-result toolbar title with the journal hero, so
+		// the landing check uses the page's own sealed saved-status pill.
+		expect(await screen.findByText("Saved to history")).toBeTruthy();
 		expect(useCurrentMealStore.getState().meal.source_meal_id).toBeUndefined();
 		expect(useCurrentMealStore.getState().meal.name).toBe("New Meal");
 		expect(useCurrentMealStore.getState().meal.items).toHaveLength(0);

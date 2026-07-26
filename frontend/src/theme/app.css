@@ -1039,14 +1039,6 @@ ion-modal.sheet-modal {
 	margin: 0;
 }
 
-.result-quality {
-	line-height: 1.5;
-}
-
-.result-quality-pill {
-	font-weight: 700;
-}
-
 @media (max-width: 340px) {
 	ion-modal.sheet-modal {
 		--height: 96%;
@@ -1260,29 +1252,6 @@ ion-item.draft-item-row {
 	.portion-adjust-row ion-select {
 		grid-column: 1 / -1;
 	}
-}
-
-/* Result "Main drivers": the backend driver strings render as wrapping
-   pill chips instead of run-together inline text. */
-.result-driver-chips {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 6px;
-}
-
-.result-driver-chips span {
-	padding: 4px 10px;
-	border-radius: var(--radius-pill);
-	background: var(--tint);
-	font-size: 0.8rem;
-	font-weight: 600;
-	line-height: 1.4;
-	color: var(--app-muted);
-	overflow-wrap: anywhere;
-}
-
-.result-driver-chips + .result-why-lines {
-	margin-top: 10px;
 }
 
 /* Annotated Journal J4: confirm/review is an editorial sheet rather than a
@@ -1887,6 +1856,472 @@ ion-progress-bar {
 
 	.log-meal-intro h1 {
 		font-size: 1.5rem;
+	}
+}
+
+/* Annotated Journal J5: the saved result is a journal page read back, not a
+   stack of Ionic cards. Presentation only — every value, label and disclaimer
+   still comes from the backend record and the sealed helpers. Paper and Ink
+   share this structure exactly; only the tokens resolve differently. */
+
+/* No bottom reserve is declared here on purpose. The dock is an ion-footer
+   sibling, so it occupies real layout space above the tab bar and the content
+   never has to guess its height. The previous fixed 140px reserve could not
+   scale with Android font scale, which left the last content unreachable
+   behind a taller dock at font scale 1.3. */
+
+.result-hero {
+	position: relative;
+	height: 11.5rem;
+	overflow: hidden;
+	background: var(--tint);
+}
+
+.result-hero-image,
+.result-typographic-plate {
+	width: 100%;
+	height: 100%;
+}
+
+.result-hero-image {
+	display: block;
+	object-fit: cover;
+	object-position: center;
+}
+
+.result-typographic-plate {
+	min-height: 11.5rem;
+}
+
+.result-hero-scrim {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgb(0 0 0 / 0.42) 0%, transparent 58%);
+	pointer-events: none;
+}
+
+.result-hero-back {
+	position: absolute;
+	z-index: 1;
+	top: calc(8px + var(--ion-safe-area-top));
+	left: max(10px, var(--ion-safe-area-left));
+	min-width: 44px;
+	min-height: 44px;
+	margin: 0;
+	--color: #fff;
+	--background: rgb(24 20 16 / 0.44);
+	--border-radius: var(--radius-pill);
+}
+
+.result-sheet {
+	position: relative;
+	z-index: 2;
+	margin-top: -18px;
+	padding: 22px 20px 34px;
+	border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+	background: var(--paper);
+	color: var(--ink);
+}
+
+/* Meal identity */
+
+.result-sheet .meal-status-pill {
+	margin-top: 0;
+}
+
+.result-meal-name {
+	margin: 10px 0 0;
+	font-family: var(--font-journal);
+	font-size: var(--type-estimate-name);
+	font-weight: 600;
+	line-height: 1.18;
+	color: var(--ink);
+	overflow-wrap: break-word;
+}
+
+.result-meal-meta {
+	margin: 4px 0 0;
+	font-size: var(--type-caption);
+	line-height: 1.45;
+	color: var(--ink-3);
+	font-variant-numeric: tabular-nums;
+}
+
+/* Verdict — the one answer-weight statement on the page */
+
+.result-verdict {
+	margin: 22px 0 0;
+	font-family: var(--font-journal);
+	font-size: var(--type-verdict);
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--ink);
+	overflow-wrap: break-word;
+}
+
+.result-verdict-support {
+	margin: 8px 0 0;
+	font-size: var(--type-secondary);
+	line-height: 1.55;
+	color: var(--ink-2);
+}
+
+/* Quality and notices — typographic, never chromatic */
+
+.result-quality {
+	margin: 16px 0 0;
+	font-size: var(--type-secondary);
+	line-height: 1.55;
+	color: var(--ink-2);
+}
+
+.result-quality-label {
+	font-weight: 700;
+	color: var(--ink);
+}
+
+.result-notice {
+	margin: 8px 0 0;
+	font-size: var(--type-caption);
+	line-height: 1.5;
+	color: var(--ink-3);
+}
+
+/* Score and reference. Mid-size tabular numerals inside a sealed sentence —
+   no ring, no gauge, no bar: a bar against an uncalibrated reference of 100
+   would reinstate exactly the capped-ring falsehood issue #93 retired. */
+
+.result-score {
+	margin-top: 18px;
+	padding-top: 14px;
+	border-top: 1px solid var(--line);
+}
+
+.result-score-line {
+	margin: 0;
+	font-size: 1.15rem;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.result-score-caption {
+	margin: 6px 0 0;
+	font-size: var(--type-caption);
+	line-height: 1.5;
+	color: var(--ink-3);
+}
+
+/* Insufficient data: what could be read, deliberately de-emphasised. */
+
+.result-nominal-note {
+	margin-top: 18px;
+	padding: 12px 14px;
+	border-radius: var(--radius-note);
+	background: var(--tint);
+}
+
+.result-nominal-line {
+	margin: 6px 0 0;
+	font-size: var(--type-secondary);
+	line-height: 1.5;
+	color: var(--ink-2);
+	font-variant-numeric: tabular-nums;
+}
+
+.result-kicker {
+	margin: 0;
+	font-family: var(--font-body);
+	font-size: var(--type-caption-small);
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+/* Evidence rows — hairlines, not boxes */
+
+.result-evidence {
+	margin-top: 24px;
+	padding-top: 16px;
+	border-top: 1px solid var(--line);
+}
+
+.result-drivers {
+	margin: 8px 0 0;
+	font-size: var(--type-caption);
+	line-height: 1.5;
+	color: var(--ink-3);
+}
+
+.result-drivers-label {
+	display: block;
+	font-weight: 700;
+	color: var(--ink-2);
+}
+
+.result-driver {
+	font-family: var(--font-journal);
+	font-size: var(--type-secondary);
+	color: var(--ink-2);
+	overflow-wrap: break-word;
+}
+
+.result-evidence-rows {
+	margin: 14px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.result-evidence-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	column-gap: 12px;
+	padding: 12px 0;
+	border-top: 1px solid var(--line);
+}
+
+.result-evidence-row:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.result-evidence-name {
+	grid-column: 1;
+	font-family: var(--font-journal);
+	font-size: var(--type-component-name);
+	line-height: 1.3;
+	color: var(--ink);
+	overflow-wrap: break-word;
+}
+
+.result-evidence-kcal {
+	grid-column: 2;
+	align-self: start;
+	font-size: var(--type-secondary);
+	line-height: 1.4;
+	color: var(--ink-2);
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.result-evidence-portion {
+	grid-column: 1 / -1;
+	margin-top: 2px;
+	font-size: var(--type-caption-small);
+	line-height: 1.45;
+	color: var(--ink-3);
+	font-variant-numeric: tabular-nums;
+}
+
+.result-evidence-why {
+	grid-column: 1 / -1;
+	margin-top: 4px;
+	font-size: var(--type-caption);
+	line-height: 1.5;
+	color: var(--ink-3);
+	overflow-wrap: break-word;
+}
+
+.result-evidence-bar {
+	grid-column: 1 / -1;
+	display: block;
+	height: 3px;
+	margin-top: 9px;
+	border-radius: var(--radius-pill);
+	background: var(--line);
+	overflow: hidden;
+}
+
+.result-evidence-bar i {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	background: var(--accent);
+}
+
+.result-evidence-muted .result-evidence-bar i {
+	opacity: 0.45;
+}
+
+.result-evidence-bar-note {
+	margin: 12px 0 0;
+	font-size: var(--type-caption-small);
+	line-height: 1.5;
+	color: var(--ink-3);
+}
+
+/* Footnotes — the single place the full sealed disclaimers live */
+
+.result-footnotes {
+	margin-top: 22px;
+	padding-top: 14px;
+	border-top: 1px solid var(--line);
+	font-size: var(--type-caption);
+	color: var(--ink-3);
+}
+
+.result-footnotes summary {
+	display: inline-flex;
+	min-height: 44px;
+	align-items: center;
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: var(--line);
+	text-underline-offset: 3px;
+	transition:
+		color var(--motion-micro) var(--motion-ease),
+		text-decoration-color var(--motion-micro) var(--motion-ease);
+}
+
+.result-footnotes summary:hover {
+	color: var(--ink-2);
+	text-decoration-color: currentColor;
+}
+
+.result-footnotes summary:focus-visible,
+.result-advanced > summary:focus-visible {
+	border-radius: var(--radius-note);
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+.result-footnotes-content p {
+	margin: 0 0 10px;
+	line-height: 1.55;
+}
+
+.result-footnotes-content p:last-child {
+	margin-bottom: 0;
+}
+
+/* Advanced details — hairline-separated articles, never cards inside cards */
+
+.result-advanced {
+	margin-top: 4px;
+}
+
+.result-advanced > summary {
+	font-size: var(--type-secondary);
+	font-weight: 650;
+	color: var(--ink-2);
+}
+
+.result-advanced .advanced-details-content {
+	gap: 0;
+}
+
+.result-advanced-item {
+	padding: 14px 0;
+	border-top: 1px solid var(--line);
+	font-size: var(--type-caption);
+	color: var(--ink-3);
+}
+
+.result-advanced-item p {
+	margin: 2px 0 0;
+	line-height: 1.5;
+	overflow-wrap: break-word;
+}
+
+.result-advanced-name {
+	margin: 0 0 8px;
+	font-family: var(--font-journal);
+	font-size: var(--type-component-name);
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--ink);
+	overflow-wrap: break-word;
+}
+
+.result-advanced-values {
+	display: grid;
+	gap: 2px;
+	margin-bottom: 8px;
+	font-variant-numeric: tabular-nums;
+}
+
+.result-advanced-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	color: var(--ink-2);
+}
+
+.result-advanced-row strong {
+	font-weight: 600;
+	color: var(--ink);
+	white-space: nowrap;
+}
+
+.result-advanced-note,
+.result-advanced-empty {
+	color: var(--ink-3);
+	line-height: 1.5;
+}
+
+.result-advanced-empty {
+	margin: 0;
+	font-size: var(--type-caption);
+}
+
+/* Dock — one primary exit, two quiet ones */
+
+/* Footer sibling of ion-content — never `slot="fixed"`, never absolutely
+   positioned. It is part of the page's flex column, so it stays anchored above
+   the tab bar however tall the result grows. The bottom inset belongs to the
+   tab bar beneath it; adding --ion-safe-area-bottom here would double it. */
+.result-dock {
+	padding: 10px max(20px, var(--ion-safe-area-right)) 10px max(20px, var(--ion-safe-area-left));
+	border-top: 1px solid var(--line);
+	background: var(--paper);
+	box-shadow: 0 -10px 28px rgb(0 0 0 / 0.08);
+}
+
+/* Ionic paints its own Material footer gradient; the hairline above is ours. */
+.result-dock::before {
+	background-image: none;
+}
+
+.result-dock > ion-button {
+	min-height: 56px;
+	margin: 0;
+	--background: var(--accent);
+	--color: var(--accent-ink);
+	font-weight: 700;
+}
+
+.result-dock-secondary {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 8px;
+	margin-top: 4px;
+}
+
+.result-dock-secondary ion-button {
+	min-height: 44px;
+	margin: 0;
+	--color: var(--ink-2);
+}
+
+.result-dock-secondary .result-delete-button {
+	--color: var(--danger);
+}
+
+@media (max-width: 340px) {
+	.result-sheet {
+		padding-inline: 15px;
+	}
+
+	.result-dock {
+		padding-inline: max(15px, var(--ion-safe-area-left)) max(15px, var(--ion-safe-area-right));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.result-footnotes summary {
+		transition-duration: 0.01ms;
 	}
 }
 

@@ -73,32 +73,35 @@ const assertPortionRowIsOneControl = () => {
 	});
 };
 
-const assertDriverChipsWrapCleanly = () => {
-	cy.get(".result-driver-chips").should(($container) => {
+// J5 replaced the driver pill chips with an inline drivers line. The defect
+// this guard was written for — multiple drivers concatenating into
+// run-together text — is still what it checks: every driver renders as its own
+// laid-out element, inside the container, separated from its neighbours.
+const assertDriversReadCleanly = () => {
+	cy.get(".result-drivers-list").should(($container) => {
 		const container = $container[0];
-		const style = getComputedStyle(container);
-		expect(style.display, "driver chips lay out as flex").to.equal("flex");
-		expect(style.flexWrap, "driver chips wrap").to.equal("wrap");
-
-		const chips = Array.from(container.querySelectorAll("span"));
-		expect(chips.length, "all three drivers render").to.equal(3);
+		const drivers = Array.from(container.querySelectorAll(".result-driver"));
+		expect(drivers.length, "all three drivers render").to.equal(3);
 
 		const containerRect = container.getBoundingClientRect();
-		for (const chip of chips) {
-			const rect = chip.getBoundingClientRect();
-			expect(rect.width, "chip is laid out").to.be.greaterThan(0);
-			expect(rect.left, "chip starts inside the card").to.be.at.least(containerRect.left - 1);
-			expect(rect.right, "chip ends inside the card").to.be.at.most(containerRect.right + 1);
+		for (const driver of drivers) {
+			const rect = driver.getBoundingClientRect();
+			expect(rect.width, "driver is laid out").to.be.greaterThan(0);
+			expect(rect.left, "driver starts inside the container").to.be.at.least(containerRect.left - 1);
+			expect(rect.right, "driver ends inside the container").to.be.at.most(containerRect.right + 1);
 		}
 
-		// No two chips collide: any pair is separated horizontally or vertically.
-		for (let a = 0; a < chips.length; a += 1) {
-			for (let b = a + 1; b < chips.length; b += 1) {
-				const first = chips[a].getBoundingClientRect();
-				const second = chips[b].getBoundingClientRect();
-				const separated = first.right <= second.left + 1 || second.right <= first.left + 1 || first.bottom <= second.top + 1 || second.bottom <= first.top + 1;
-				expect(separated, "driver chips do not overlap").to.equal(true);
-			}
+		// Adjacent driver names never run together: a separator sits between
+		// them. This is the direct guard for the original defect. A pairwise
+		// bounding-box comparison is deliberately not used here — these are
+		// inline spans, and a driver that wraps across two lines reports a
+		// union rectangle that legitimately overlaps its neighbour's.
+		const text = container.textContent ?? "";
+		for (let index = 0; index < drivers.length - 1; index += 1) {
+			const first = drivers[index].textContent ?? "";
+			const second = drivers[index + 1].textContent ?? "";
+			expect(text, "driver names are separated, not concatenated").to.not.contain(`${first}${second}`);
+			expect(text, "a visible separator sits between drivers").to.contain(`${first} · ${second}`);
 		}
 	});
 };
@@ -118,7 +121,7 @@ describe("Campaign A layout polish", () => {
 			cy.screenshot(`fable-final/${label}-confirmation-three-components`, { capture: "viewport" });
 		});
 
-		it(`wraps three result driver chips cleanly at ${label}`, () => {
+		it(`renders three result drivers cleanly at ${label}`, () => {
 			cy.viewport(width, height);
 			stubBackend();
 			cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 200, body: threeDriverResponse }).as("saveMeal");
@@ -128,15 +131,15 @@ describe("Campaign A layout polish", () => {
 			cy.wait("@saveMeal");
 			cy.url().should("include", "/meals/saved/syn-drivers-1");
 
-			shouldBeRendered("h2", "Synthetic lentil rice bowl");
+			shouldBeRendered("h1", "Synthetic lentil rice bowl");
 			cy.contains("Main drivers").should("exist");
 			// Let the replace-navigation transition and the transient save toast
 			// settle so the evidence screenshot shows only the result screen.
 			cy.contains("Did we get your meal right?").should("not.exist");
 			cy.get("ion-toast:not(.overlay-hidden)").should("not.exist");
-			assertDriverChipsWrapCleanly();
+			assertDriversReadCleanly();
 			assertNoHorizontalOverflow();
-			cy.get(".result-driver-chips").then(($chips) => $chips[0].scrollIntoView({ block: "center" }));
+			cy.get(".result-drivers-list").then(($drivers) => $drivers[0].scrollIntoView({ block: "center" }));
 			cy.screenshot(`fable-final/${label}-result-three-drivers`, { capture: "viewport" });
 		});
 	}

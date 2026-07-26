@@ -95,9 +95,10 @@ describe("Manual meal draft", () => {
 		cy.wait("@saveMeal");
 
 		cy.url().should("include", "/meals/saved/syn-saved-1");
-		cy.contains("Meal result").should("exist");
+		// J5 replaced the saved-result toolbar title with the journal hero, so
+		// the meal name is the page heading and the status pill marks arrival.
 		shouldBeRendered("span", "Saved to history");
-		shouldBeRendered("h2", "Synthetic Manual Meal");
+		shouldBeRendered("h1", "Synthetic Manual Meal");
 		shouldBeRendered("p", "Score: 42 · internal reference: 100");
 	});
 

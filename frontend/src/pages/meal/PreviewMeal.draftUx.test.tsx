@@ -206,7 +206,10 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 			expect(window.location.pathname).toBe("/meals/saved/saved-meal-1");
 		});
 		expect(screen.queryByText("Discard this draft?")).toBeNull();
-		expect(await screen.findByText("Meal result")).toBeTruthy();
-		expect(baseElement.querySelector('[role="img"][aria-label*="score 42"]')).toBeTruthy();
+		// J5 replaced the saved-result toolbar title and the circular score
+		// meter with the journal hero and the sealed score/reference line, so
+		// the canonical score is checked through that sealed wording instead.
+		expect(await screen.findByText("Score: 42 · internal reference: 100")).toBeTruthy();
+		expect(baseElement.querySelector('[role="img"][aria-label*="score 42"]')).toBeNull();
 	});
 });

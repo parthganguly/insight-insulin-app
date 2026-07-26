@@ -3,16 +3,11 @@ import {
 	IonButton,
 	IonButtons,
 	IonCard,
-	IonCardContent,
-	IonCardHeader,
-	IonCardTitle,
 	IonContent,
+	IonFooter,
 	IonHeader,
-	IonIcon,
-	IonImg,
 	IonLoading,
 	IonPage,
-	IonText,
 	IonTitle,
 	IonToast,
 	useIonAlert,
@@ -20,21 +15,16 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { batteryCharging, flame, pizza, trash } from "ionicons/icons";
 
 import { deleteMealEverywhere, syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
-import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
-import { NutrimentComponent } from "../../components/NutrimentComponent";
+import EvidenceRows from "../../components/EvidenceRows";
+import ResultHero from "../../components/ResultHero";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import {
-	calculateTotalCalories,
-	calculateTotalCarbohydrates,
 	calculateTotalItemCalories,
 	calculateTotalItemCarbohydrates,
 	calculateTotalItemSaturatedFat,
-	calculateTotalSaturatedFat,
 	getMealAcuteScore,
-	getMealTimeString,
 } from "../../utils";
 import { getImpactPresentation, isHardToEstimatePresentation } from "../../utils/insulinImpactPresentation";
 import { ADVANCED_DETAILS_LABEL, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
@@ -51,6 +41,7 @@ import {
 	shouldShowProvidedFiiDisclaimer,
 } from "../../utils/safetyCopy";
 import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../utils/acuteScoreDisplay";
+import { getResultCompositionLine, getResultLoggedLine, getVisibleDrivers } from "../../utils/resultPresentation";
 
 // Read-only saved-meal detail view (issue #89). Dashboard Recents opens saved
 // meals here so their canonical acute_score, estimate_quality,
@@ -59,6 +50,15 @@ import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../util
 // buildDraftFromSavedMeal — that trust boundary belongs exclusively to the
 // Meals-tab "tap a meal to reuse it" flow, which still creates a fresh
 // editable draft. This screen offers no editing and no way to save a copy.
+//
+// Annotated Journal J5 (issue #120) rebuilt the presentation as a Porcelain
+// Journal page under design-constitution §6.7-interim: hero, editorial meal
+// identity, the existing insulinImpactPresentation title at verdict weight,
+// the sealed score/reference lines in mid-size tabular numerals instead of the
+// retired circular meter, hairline evidence rows, and one footnote disclosure.
+// Every displayed number, label, and disclaimer still renders verbatim from the
+// backend record and the sealed helpers; no scoring, persistence, deletion,
+// routing, or provenance behaviour changed.
 const SavedMealDetail: React.FC = () => {
 	const { mealId } = useParams<{ mealId: string }>();
 	// react-router v5 does not decode URL params; Dashboard encodes the id.
@@ -138,148 +138,114 @@ const SavedMealDetail: React.FC = () => {
 
 	const impactPresentation = getImpactPresentation(meal);
 	const displayScore = getMealAcuteScore(meal);
-	const showAcuteScoreDetails = !isHardToEstimatePresentation(impactPresentation) && displayScore !== undefined;
+	const isHardToEstimate = isHardToEstimatePresentation(impactPresentation);
+	const showAcuteScoreDetails = !isHardToEstimate && displayScore !== undefined;
+	// Constitution §6.9: an insufficient-data result still shows what could be
+	// read, de-emphasised — and only when a finite score actually exists.
+	const showNominalReading = isHardToEstimate && displayScore !== undefined;
 	const estimateQualityCopy = meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality) : null;
 	const hasUnknownItems = meal.items.some((item) => isUnknownSource(item.source));
-	const visibleImpactDrivers = (meal.main_insulin_drivers ?? []).filter((driver) => driver.trim().length > 0).slice(0, 3);
-	const itemWhyLines = meal.items.filter((item) => item.why?.trim()).map((item) => item.why!.trim());
-	const roughEstimateItems = meal.items.filter((item) => isRoughEstimateSource(item.source));
+	// One notice for the meal, not one per item: the constitution forbids the
+	// same disclaimer stacking on a single screen. Per-item provenance stays
+	// visible on each evidence row and in Advanced details.
+	const hasRoughEstimateItems = meal.items.some((item) => isRoughEstimateSource(item.source));
+	const visibleImpactDrivers = getVisibleDrivers(meal.main_insulin_drivers);
 
 	return (
 		<IonPage>
-			<IonHeader>
-				<IonToolbarWrapper className='ion-text-left'>
-					<IonButtons slot='start'>
-						<IonBackButton defaultHref='/dashboard' />
-					</IonButtons>
-					<IonTitle>Meal result</IonTitle>
-				</IonToolbarWrapper>
-			</IonHeader>
+			<IonContent className='result-page' fullscreen>
+				<ResultHero image={meal.image} mealName={meal.name} />
 
-			<IonContent className='ion-padding result-page'>
-				<section className='result-section result-conclusion' aria-labelledby='result-conclusion-heading'>
-					<IonCard className='app-card'>
-						<IonCardHeader>
-							<IonCardTitle id='result-conclusion-heading'>{impactPresentation.title}</IonCardTitle>
-						</IonCardHeader>
-						<IonCardContent>
-							<IonText color='medium'><p>{impactPresentation.description}</p></IonText>
-							{meal.image && <IonImg src={meal.image} alt='Saved meal photo' className='meal-journey-photo result-meal-photo' />}
-							<h2 className='result-meal-name'>{meal.name}</h2>
-							<span className='meal-status-pill meal-status-saved'>{SAVED_MEAL_STATUS}</span>
-							<IonText color='medium'>
-								<p className='result-meal-meta'>Total Items: {meal.items.length}<br />Logged at: {getMealTimeString(meal)}</p>
-							</IonText>
-						</IonCardContent>
-					</IonCard>
-				</section>
+				<main className='result-sheet'>
+					<span className='meal-status-pill meal-status-saved'>{SAVED_MEAL_STATUS}</span>
+					<h1 className='result-meal-name'>{meal.name}</h1>
+					<p className='result-meal-meta'>{getResultCompositionLine(meal)}</p>
+					<p className='result-meal-meta'>{getResultLoggedLine(meal)}</p>
 
-				<section className='result-section' aria-labelledby='result-estimate-heading'>
-					<IonCard className='app-card'>
-						<IonCardHeader><IonCardTitle id='result-estimate-heading'>The estimate</IonCardTitle></IonCardHeader>
-						<IonCardContent>
-							{showAcuteScoreDetails && (
-								<div className='result-score-row'>
-									<AcuteScoreProgressbar meal={meal} style={{ width: 72, height: 72, flexShrink: 0 }} />
-									<div>
-										<IonText color='medium'><p>{getAcuteScoreDetailLine(displayScore)}</p></IonText>
-										<IonText color='medium'><p className='result-scale-line'>{ACUTE_SCORE_SCALE_EXPLAINER}</p></IonText>
-									</div>
-								</div>
-							)}
-							<div className='recent-card-chips result-nutrition-chips'>
-								<NutrimentComponent nutrimentIcon={flame} nutrimentIconColor={"#d96a52"} nutrimentName={"kcal"} nutrimentValue={Math.round(meal.kcal_total ?? calculateTotalCalories(meal))} />
-								<NutrimentComponent nutrimentIcon={pizza} nutrimentIconColor={"#d9a62e"} nutrimentName={"carbs"} nutrimentValue={`${Math.round(meal.carbs_total ?? calculateTotalCarbohydrates(meal))} g`} />
-								<NutrimentComponent nutrimentIcon={batteryCharging} nutrimentIconColor={"#2f86c0"} nutrimentName={"sat. fat"} nutrimentValue={`${Math.round(calculateTotalSaturatedFat(meal))} g`} />
-							</div>
-						</IonCardContent>
-					</IonCard>
-				</section>
+					<h2 className='result-verdict'>{impactPresentation.title}</h2>
+					<p className='result-verdict-support'>{impactPresentation.description}</p>
 
-				<section className='result-section' aria-labelledby='result-drivers-heading'>
-					<IonCard className='app-card'>
-						<IonCardHeader><IonCardTitle id='result-drivers-heading'>Main drivers</IonCardTitle></IonCardHeader>
-						<IonCardContent>
-							{visibleImpactDrivers.length > 0 && (
-								<div className='result-driver-chips'>
-									{visibleImpactDrivers.map((driver, index) => <span key={`${index}-${driver}`}>{driver}</span>)}
-								</div>
-							)}
-							{itemWhyLines.length > 0 && (
-								<div className='result-why-lines'>
-									{itemWhyLines.map((line, index) => <IonText key={`${index}-${line}`} color='medium'><p>{line}</p></IonText>)}
-								</div>
-							)}
-						</IonCardContent>
-					</IonCard>
-				</section>
+					{estimateQualityCopy && (
+						<p className='result-quality'>
+							<span className='result-quality-label'>Data quality: {estimateQualityCopy.label}.</span>{" "}
+							<span className='result-quality-description'>{estimateQualityCopy.description}</span>
+						</p>
+					)}
+					{hasUnknownItems && <p className='result-notice'>{UNKNOWN_ITEMS_NOTICE}</p>}
+					{hasRoughEstimateItems && <p className='result-notice'>{ROUGH_ESTIMATE_NOTICE}</p>}
 
-				<section className='result-section' aria-labelledby='result-quality-heading'>
-					<IonCard className='app-card'>
-						<IonCardHeader><IonCardTitle id='result-quality-heading'>Estimate quality and limitations</IonCardTitle></IonCardHeader>
-						<IonCardContent>
-							{estimateQualityCopy && (
-								<div className='result-quality'>
-									<span className='result-quality-pill'>Data quality: {estimateQualityCopy.label}.</span>{" "}
-									<IonText color='medium'><span>{estimateQualityCopy.description}</span></IonText>
-								</div>
-							)}
-							{hasUnknownItems && <IonText color='warning'><p>{UNKNOWN_ITEMS_NOTICE}</p></IonText>}
-							{roughEstimateItems.map((item) => <IonText key={item.id} color='medium'><p>{ROUGH_ESTIMATE_NOTICE}</p></IonText>)}
-						</IonCardContent>
-					</IonCard>
-				</section>
+					{showAcuteScoreDetails && (
+						<div className='result-score'>
+							<p className='result-score-line'>{getAcuteScoreDetailLine(displayScore)}</p>
+							<p className='result-score-caption'>{ACUTE_SCORE_SCALE_EXPLAINER}</p>
+						</div>
+					)}
 
-				<section className='result-section' aria-labelledby='result-limitations-heading'>
-					<IonCard className='app-card'>
-						<IonCardHeader><IonCardTitle id='result-limitations-heading'>What this does not mean</IonCardTitle></IonCardHeader>
-						<IonCardContent>
-							<div className='disclaimer-note result-disclaimer'>{MEAL_SCORE_DISCLAIMER}</div>
-							<div className='disclaimer-note result-disclaimer'>{APP_DISCLAIMER}</div>
-						</IonCardContent>
-					</IonCard>
-				</section>
+					{showNominalReading && (
+						<section className='result-nominal-note' aria-labelledby='result-nominal-heading'>
+							<h3 id='result-nominal-heading' className='result-kicker'>What we could read</h3>
+							<p className='result-nominal-line'>{getAcuteScoreDetailLine(displayScore)}</p>
+							<p className='result-score-caption'>{ACUTE_SCORE_SCALE_EXPLAINER}</p>
+						</section>
+					)}
 
-				<section className='result-section result-actions' aria-label='Next actions'>
-					<IonButton expand='block' routerLink='/log-meal'>Check another meal</IonButton>
-					<IonButton expand='block' fill='outline' routerLink='/dashboard'>Done</IonButton>
-					<IonButton expand='block' color='danger' fill='outline' onClick={handleDeleteMeal}>
-						<IonIcon icon={trash} slot='start' />
-						Delete Saved Meal
-					</IonButton>
-				</section>
+					<EvidenceRows items={meal.items} drivers={visibleImpactDrivers} muted={isHardToEstimate} />
 
-				<section className='result-section result-advanced'>
-					<details className='advanced-details'>
+					<details className='result-footnotes'>
+						<summary>What this doesn't mean</summary>
+						<div className='result-footnotes-content'>
+							<p>{MEAL_SCORE_DISCLAIMER}</p>
+							<p>{APP_DISCLAIMER}</p>
+						</div>
+					</details>
+
+					<details className='result-advanced advanced-details'>
 						<summary>{ADVANCED_DETAILS_LABEL}</summary>
 						<div className='advanced-details-content'>
 							{meal.items.length === 0 ? (
-								<IonText color='medium'><p>This saved meal has no item breakdown.</p></IonText>
+								<p className='result-advanced-empty'>This saved meal has no item breakdown.</p>
 							) : (
 								meal.items.map((item) => (
-									<IonCard key={item.id} className='app-card advanced-item-card'>
-										<IonCardHeader><IonCardTitle>{item.name}</IonCardTitle></IonCardHeader>
-										<IonCardContent>
-											<div className='advanced-nutrient-totals'>
-												<NutrimentComponent nutrimentName='Calories' nutrimentValue={calculateTotalItemCalories(item)} nutrimentIcon={flame} nutrimentIconColor='#d96a52' />
-												<NutrimentComponent nutrimentName='Carbohydrates' nutrimentValue={calculateTotalItemCarbohydrates(item)} nutrimentIcon={pizza} nutrimentIconColor='#d9a62e' />
-												<NutrimentComponent nutrimentName='Saturated Fats' nutrimentValue={calculateTotalItemSaturatedFat(item)} nutrimentIcon={batteryCharging} nutrimentIconColor='#2f86c0' />
-											</div>
-											<p>FII: {item.fii ?? ""}</p>
-											<p>Glycemic Index: {item.gi}</p>
-											{item.source && <p>Source: {humanizeFiiSource(item.source)}</p>}
-											{shouldShowProvidedFiiDisclaimer(item.source, item.fii) && <IonText color='medium'><p>{PROVIDED_FII_DISCLAIMER}</p></IonText>}
-										</IonCardContent>
-									</IonCard>
+									<article className='result-advanced-item' key={item.id}>
+										<h4 className='result-advanced-name'>{item.name}</h4>
+										<div className='result-advanced-values'>
+											<div className='result-advanced-row'><span>Calories</span><strong>{calculateTotalItemCalories(item)} kcal</strong></div>
+											<div className='result-advanced-row'><span>Carbohydrates</span><strong>{calculateTotalItemCarbohydrates(item)} g</strong></div>
+											<div className='result-advanced-row'><span>Saturated Fats</span><strong>{calculateTotalItemSaturatedFat(item)} g</strong></div>
+										</div>
+										<p>FII: {item.fii ?? ""}</p>
+										<p>Glycemic Index: {item.gi}</p>
+										{item.source && <p>Source: {humanizeFiiSource(item.source)}</p>}
+										{shouldShowProvidedFiiDisclaimer(item.source, item.fii) && <p className='result-advanced-note'>{PROVIDED_FII_DISCLAIMER}</p>}
+									</article>
 								))
 							)}
 						</div>
 					</details>
-				</section>
+				</main>
 
 				<IonLoading isOpen={isDeleting} message='Deleting meal…' />
 				<IonToast isOpen={showToast} message={toastMessage} duration={2200} color='danger' onDidDismiss={() => setShowToast(false)} />
 			</IonContent>
+
+			{/*
+				The dock is a footer sibling of IonContent, not `slot="fixed"` content
+				inside it. An Ionic fixed slot is absolutely positioned against the
+				ion-content box and painted from a shadow slot; on the Samsung
+				SM-M356B (Android 16 / API 36) that stopped holding once the result
+				grew tall — font scale 1.3 with both disclosures open — and the scroll
+				content took over the dock's region. A footer is laid out by ion-page's
+				flex column instead, so it reserves real space above the tab bar and
+				cannot be scrolled over or composited under the scrolling content. This
+				is the same pattern the device-validated Home dock uses.
+			*/}
+			<IonFooter className='result-dock'>
+				<IonButton expand='block' routerLink='/log-meal'>Check another meal</IonButton>
+				<div className='result-dock-secondary'>
+					<IonButton expand='block' fill='clear' routerLink='/dashboard'>Done</IonButton>
+					<IonButton expand='block' fill='clear' className='result-delete-button' aria-label='Delete saved meal' onClick={handleDeleteMeal}>Delete</IonButton>
+				</div>
+			</IonFooter>
 		</IonPage>
 	);
 };
