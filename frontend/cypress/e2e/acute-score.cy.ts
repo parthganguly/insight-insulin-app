@@ -18,9 +18,20 @@ describe("Acute-score presentation", () => {
 		openSavedDetail("syn-100", "Synthetic Reference Meal");
 
 		cy.contains("Relative insulin-demand score").should("be.visible");
-		cy.contains("Score: 100 · internal reference: 100").should("be.visible");
 		cy.contains("has not yet been calibrated").should("be.visible");
-		cy.contains("It is not a percentage and can exceed 100.").should("be.visible");
+
+		// The sealed score block sits below the scroll fold at Cypress's desktop
+		// viewport, and Ionic sets `position: fixed` on <body>, so Cypress
+		// applies its "covered by another element" check to every element and
+		// reports whatever paints at the centre point — the tab bar once the
+		// block is off-screen. `be.visible` therefore measures viewport
+		// occlusion in a scrollable mobile shell rather than the product
+		// guarantee. `shouldBeRendered` checks more of what matters: non-empty
+		// text, a real painted box, and no display/visibility/opacity hiding.
+		// This is the same treatment the ring-removal case below already uses
+		// for these two elements.
+		shouldBeRendered(".result-score-line", "Score: 100 · internal reference: 100");
+		shouldBeRendered(".result-score-caption", "It is not a percentage and can exceed 100.");
 		assertNoForbiddenPhrases();
 	});
 
@@ -31,7 +42,10 @@ describe("Acute-score presentation", () => {
 
 			// J5 retired the circular meter on this page: the raw, uncapped score
 			// now reads directly from the sealed score line instead of a ring.
-			cy.contains(`Score: ${score} · above internal reference (100)`).should("be.visible");
+			// Rendered-check for the same below-the-fold reason as above; these
+			// cases only passed by the accident of a shorter meal name leaving
+			// the block a few pixels higher in the layout.
+			shouldBeRendered(".result-score-line", `Score: ${score} · above internal reference (100)`);
 			cy.get(".result-score-line").should("contain.text", String(score));
 			assertNoForbiddenPhrases();
 		});
