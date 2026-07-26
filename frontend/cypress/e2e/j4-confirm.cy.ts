@@ -99,6 +99,8 @@ describe("Annotated Journal J4 confirm", () => {
 		cy.get("[aria-label='Save meal']").first().click({ force: true });
 		cy.wait("@saveMeal");
 		cy.url().should("include", "/meals/saved/j4-saved-meal");
-		cy.contains("Meal result").should("exist");
+		// J5 replaced the saved-result toolbar title with the journal hero; the
+		// sealed saved-status pill is the landing landmark.
+		cy.contains("Saved to history").should("exist");
 	});
 });

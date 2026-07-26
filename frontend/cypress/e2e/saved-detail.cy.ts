@@ -21,12 +21,14 @@ describe("Saved-meal detail", () => {
 		// (non-empty text, non-zero box, not hidden) — a real rendering guard
 		// that does not rely on Cypress's `be.visible` heuristic, which reports
 		// false negatives inside Ionic's fixed-layout scroll container.
+		// J5 made the meal name the page heading and replaced the driver chips
+		// with an inline drivers line; the values themselves are unchanged.
 		shouldBeRendered("span", "Saved to history");
-		shouldBeRendered("h2", "Synthetic Rice Bowl");
+		shouldBeRendered("h1", "Synthetic Rice Bowl");
 		shouldBeRendered("p", "Score: 189 · above internal reference (100)");
 		shouldBeRendered("span", "Data quality: High");
-		shouldBeRendered(".result-driver-chips span", "steamed rice");
-		shouldBeRendered("p", "Used a direct Food Insulin Index match and scaled it by eaten energy.");
+		shouldBeRendered(".result-driver", "steamed rice");
+		shouldBeRendered(".result-evidence-why", "Used a direct Food Insulin Index match and scaled it by eaten energy.");
 
 		// Per-item FII/source evidence lives behind the collapsed "Advanced
 		// details" disclosure (UX v1 §10) — closed by default, rendered once
@@ -45,7 +47,7 @@ describe("Saved-meal detail", () => {
 	it("deletes backend-first after confirmation and removes the meal", () => {
 		cy.intercept("DELETE", "**/meals/syn-1", { statusCode: 204, body: null }).as("deleteMeal");
 
-		cy.contains("Delete Saved Meal").click();
+		cy.get(".result-delete-button").click();
 		cy.get("ion-alert").should("contain.text", "Delete saved meal?");
 		cy.get("ion-alert button").contains("Delete").click();
 		cy.wait("@deleteMeal");
@@ -55,19 +57,19 @@ describe("Saved-meal detail", () => {
 	});
 
 	it("keeps the meal when deletion is cancelled", () => {
-		cy.contains("Delete Saved Meal").click();
+		cy.get(".result-delete-button").click();
 		cy.contains("ion-alert button", "Cancel").click();
 
 		// Still on the detail page with the saved record intact.
 		cy.url().should("include", "/meals/saved/syn-1");
 		cy.contains("Saved to history").should("exist");
-		cy.contains("Delete Saved Meal").should("exist");
+		cy.get(".result-delete-button").should("exist");
 	});
 
 	it("keeps the meal and reports failure when the backend delete fails", () => {
 		cy.intercept("DELETE", "**/meals/syn-1", { statusCode: 500, body: { detail: "Internal server error" } }).as("deleteFail");
 
-		cy.contains("Delete Saved Meal").click();
+		cy.get(".result-delete-button").click();
 		cy.contains("ion-alert button", "Delete").click();
 		cy.wait("@deleteFail");
 
