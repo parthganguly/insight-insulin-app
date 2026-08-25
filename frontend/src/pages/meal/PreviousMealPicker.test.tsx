@@ -70,12 +70,73 @@ describe("Previous-meal picker reuse flow stays a draft conversion (issue #89 gu
 		vi.unstubAllGlobals();
 	});
 
+	// J6 (issue #123) replaced the section label with the folio explainer and the
+	// per-entry action line. The wording moved; the meaning did not — selection
+	// must still read as starting a new editable draft, never as logging the
+	// meal again or reopening the original.
 	it("keeps the explicit reuse wording", async () => {
 		window.history.pushState({}, "", "/meals/previous");
 		render(<App />);
 
 		expect(await screen.findByText("Choose a previous meal")).toBeTruthy();
-		expect(screen.getByText("choose one to edit and log again")).toBeTruthy();
+		expect(screen.getByRole("heading", { level: 1, name: "Log a previous meal again" })).toBeTruthy();
+		expect(screen.getByText("Pick a meal to start a new draft you can review and edit. The original stays unchanged in History.")).toBeTruthy();
+		expect(screen.getByText("Use as new draft")).toBeTruthy();
+	});
+
+	it("offers an explicit way back to the Log Meal chooser", async () => {
+		window.history.pushState({}, "", "/meals/previous");
+		const { container } = render(<App />);
+
+		await screen.findByText("Synthetic Demo Bowl");
+		const backButton = container.querySelector("ion-back-button");
+		expect(backButton).toHaveAttribute("default-href", "/log-meal");
+		// Once Ionic hydrates the control it moves the host's aria-label onto the
+		// inner native button, so the accessible name is read from whichever of
+		// the two currently carries it.
+		const accessibleName = backButton?.shadowRoot?.querySelector("button")?.getAttribute("aria-label") ?? backButton?.getAttribute("aria-label");
+		expect(accessibleName).toBe("Back");
+	});
+
+	it("shows the sealed empty state without the explainer or the action line", async () => {
+		usePersistentMealStore.setState({ meals: [] });
+		window.history.pushState({}, "", "/meals/previous");
+		render(<App />);
+
+		expect(await screen.findByRole("heading", { level: 2, name: "No previous meals yet" })).toBeTruthy();
+		expect(screen.getByText("Meals you save will appear here for quick reuse.")).toBeTruthy();
+		expect(screen.queryByText("Pick a meal to start a new draft you can review and edit. The original stays unchanged in History.")).toBeNull();
+		expect(screen.queryByText("Use as new draft")).toBeNull();
+	});
+
+	it("never re-presents the saved estimate or links back to the saved result", async () => {
+		window.history.pushState({}, "", "/meals/previous");
+		const { baseElement } = render(<App />);
+
+		await screen.findByText("Synthetic Demo Bowl");
+		const pickerPage = baseElement.querySelector(".journal-folio-content");
+		const pickerText = pickerPage?.textContent ?? "";
+
+		expect(pickerText).not.toContain("estimate 360");
+		expect(pickerText).not.toContain("Data quality");
+		expect(pickerText).not.toContain("above ref");
+		expect(pickerPage?.querySelector(".CircularProgressbar")).toBeNull();
+		expect(pickerPage?.querySelector("svg")).toBeNull();
+		expect(pickerPage?.querySelector("[router-link^='/meals/saved/']")).toBeNull();
+	});
+
+	it("makes no backend write when a saved meal is selected", async () => {
+		window.history.pushState({}, "", "/meals/previous");
+		render(<App />);
+
+		fireEvent.click(await screen.findByText("Synthetic Demo Bowl"));
+
+		await waitFor(() => expect(useCurrentMealStore.getState().meal.source_meal_id).toBe("saved-meal-1"));
+		const writeCalls = (globalThis.fetch as unknown as { mock: { calls: unknown[][] } }).mock.calls.filter(([, init]) => {
+			const method = (init as RequestInit | undefined)?.method?.toUpperCase();
+			return method !== undefined && method !== "GET";
+		});
+		expect(writeCalls).toHaveLength(0);
 	});
 
 	it("tapping a saved meal still creates a fresh editable draft with derived scoring cleared", async () => {

@@ -1,0 +1,6 @@
+package/activity: io.ionic.starter/.MainActivity
+Status: ok
+LaunchState: HOT
+TotalTime: 615
+WaitTime: 637
+Lifecycle: existing task brought to foreground; no force-stop, process-clear, reinstall, or cold launch used.

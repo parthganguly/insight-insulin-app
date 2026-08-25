@@ -1,12 +1,15 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonItem, IonThumbnail, IonImg } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonTitle } from "@ionic/react";
 import { useEffect } from "react";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
-import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
-import { Meal } from "../../types/Meal";
-import { calculateTotalCalories, getMealAcuteScore, getMealTimeShortString } from "../../utils";
+import JournalEntryCard from "../../components/JournalEntryCard";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
-import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
+import { groupJournalMealsByDay } from "../../utils/journalPresentation";
 
+// History as the journal folio (Slice J6, issue #123). Presentation only: the
+// page still hydrates and orders meals exactly as before, day grouping is
+// display arithmetic over the timestamps already stored, and every entry still
+// opens the canonical read-only saved result. Reuse remains available only
+// through the explicit Log Meal chooser.
 const History: React.FC = () => {
 	const { meals } = usePersistentMealStore();
 
@@ -14,6 +17,8 @@ const History: React.FC = () => {
 		// Private-beta hydration: show backend-seeded/saved meals on a fresh load. Fails soft offline.
 		void syncMealsFromBackend();
 	}, []);
+
+	const journalGroups = groupJournalMealsByDay(meals);
 
 	return (
 		<IonPage>
@@ -23,18 +28,30 @@ const History: React.FC = () => {
 				</IonToolbarWrapper>
 			</IonHeader>
 
-			<IonContent className='ion-padding'>
-				<div className='section-label'>
-					<span>Saved meals</span>
-					<span>most recent first</span>
-				</div>
+			<IonContent className='journal-folio-content'>
+				<section className='journal-folio' aria-labelledby='history-folio-title'>
+					<h1 id='history-folio-title'>Meal journal</h1>
+					{meals.length > 0 && <p className='journal-folio-explainer'>Tap an entry to revisit its saved result. To log one again, use Log Meal.</p>}
+				</section>
+
 				{meals.length === 0 ? (
-					<div className='app-card list-empty-state'>
-						<h2>No saved meals yet</h2>
+					<section className='journal-empty-state' aria-labelledby='history-empty-title'>
+						<h2 id='history-empty-title'>No saved meals yet</h2>
 						<p>Meals you check and save will appear here.</p>
-					</div>
+					</section>
 				) : (
-					meals.map((meal) => <MealCard key={meal.id} meal={meal} />)
+					<div className='journal-folio-entries'>
+						{journalGroups.map((group, groupIndex) => (
+							<section key={`${group.label}-${groupIndex}`} aria-labelledby={`history-day-${groupIndex}`}>
+								<h2 className='journal-daybreak' id={`history-day-${groupIndex}`}>
+									{group.label}
+								</h2>
+								{group.meals.map((meal) => (
+									<JournalEntryCard key={meal.id} meal={meal} />
+								))}
+							</section>
+						))}
+					</div>
 				)}
 			</IonContent>
 		</IonPage>
@@ -42,26 +59,3 @@ const History: React.FC = () => {
 };
 
 export default History;
-
-function MealCard({ meal }: { meal: Meal }) {
-	return (
-		<IonItem lines='none' detail={false} button className='recent-card' routerLink={`/meals/saved/${encodeURIComponent(meal.id)}`}>
-			{meal.image && (
-				<IonThumbnail slot='start' className='meal-card-thumbnail'>
-					<IonImg src={meal.image} alt='' className='meal-card-image' />
-				</IonThumbnail>
-			)}
-
-			<div style={{ minWidth: 0, flex: 1 }}>
-				<h3 className='recent-card-name'>{meal.name}</h3>
-				<span className='recent-card-time'>{getMealTimeShortString(meal)}</span>
-				<span className='draft-item-hint'>{Math.round(calculateTotalCalories(meal))} kcal</span>
-			</div>
-
-			<div slot='end' className='recent-card-score'>
-				<AcuteScoreProgressbar meal={meal} style={{ width: 46, height: 46 }} />
-				<span className='recent-card-score-label'>{getAcuteScoreCaption(getMealAcuteScore(meal))}</span>
-			</div>
-		</IonItem>
-	);
-}
