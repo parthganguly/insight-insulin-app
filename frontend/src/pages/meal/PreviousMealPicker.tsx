@@ -1,51 +1,28 @@
-import { IonContent, IonHeader, IonImg, IonItem, IonPage, IonThumbnail, IonTitle } from "@ionic/react";
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle } from "@ionic/react";
 import { useEffect } from "react";
 
-import AcuteScoreProgressbar from "../../components/AcuteScoreProgressbar";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
+import PreviousMealEntryCard from "../../components/PreviousMealEntryCard";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
-import { calculateTotalCalories, getMealAcuteScore, getMealTimeShortString } from "../../utils";
-import { getAcuteScoreCaption } from "../../utils/acuteScoreDisplay";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
+import { groupJournalMealsByDay } from "../../utils/journalPresentation";
 
+// The previous-meal picker as a journal folio (Slice J6, issue #123). It shares
+// the History entry presentation deliberately, but never its meaning: this page
+// is a selection step inside the Log Meal journey, and the reuse law below is
+// unchanged — a saved meal becomes a fresh editable draft that the user still
+// has to review, and the saved source record is never touched.
 const PreviousMealPicker: React.FC = () => {
 	const meals = usePersistentMealStore((state) => state.meals);
+	const setMeal = useCurrentMealStore((state) => state.setMeal);
 
 	useEffect(() => {
 		void syncMealsFromBackend();
 	}, []);
 
-	return (
-		<IonPage>
-			<IonHeader>
-				<IonToolbarWrapper>
-					<IonTitle>Choose a previous meal</IonTitle>
-				</IonToolbarWrapper>
-			</IonHeader>
-
-			<IonContent className='ion-padding'>
-				<div className='section-label'>
-					<span>Saved meals</span>
-					<span>choose one to edit and log again</span>
-				</div>
-				{meals.length === 0 ? (
-					<div className='app-card list-empty-state'>
-						<h2>No previous meals yet</h2>
-						<p>Meals you save will appear here for quick reuse.</p>
-					</div>
-				) : (
-					meals.map((meal) => <PreviousMealCard key={meal.id} meal={meal} />)
-				)}
-			</IonContent>
-		</IonPage>
-	);
-};
-
-const PreviousMealCard = ({ meal }: { meal: Meal }) => {
-	const setMeal = useCurrentMealStore((state) => state.setMeal);
-	const reuseMeal = () => {
+	const reuseMeal = (meal: Meal) => {
 		const draft = buildDraftFromSavedMeal(meal);
 		setMeal({
 			...draft,
@@ -53,31 +30,48 @@ const PreviousMealCard = ({ meal }: { meal: Meal }) => {
 		});
 	};
 
+	const journalGroups = groupJournalMealsByDay(meals);
+
 	return (
-		<IonItem
-			lines='none'
-			detail={false}
-			button
-			className='recent-card'
-			onClick={reuseMeal}
-			routerLink='/meals/new'>
-			{meal.image && (
-				<IonThumbnail slot='start' className='meal-card-thumbnail'>
-					<IonImg src={meal.image} alt='' className='meal-card-image' />
-				</IonThumbnail>
-			)}
+		<IonPage>
+			<IonHeader>
+				<IonToolbarWrapper className='journal-folio-toolbar'>
+					<IonButtons slot='start'>
+						<IonBackButton defaultHref='/log-meal' text='' aria-label='Back' />
+					</IonButtons>
+					<IonTitle>Choose a previous meal</IonTitle>
+				</IonToolbarWrapper>
+			</IonHeader>
 
-			<div style={{ minWidth: 0, flex: 1 }}>
-				<h3 className='recent-card-name'>{meal.name}</h3>
-				<span className='recent-card-time'>{getMealTimeShortString(meal)}</span>
-				<span className='draft-item-hint'>{Math.round(calculateTotalCalories(meal))} kcal</span>
-			</div>
+			<IonContent className='journal-folio-content'>
+				<section className='journal-folio' aria-labelledby='picker-folio-title'>
+					<h1 id='picker-folio-title'>Log a previous meal again</h1>
+					{meals.length > 0 && (
+						<p className='journal-folio-explainer'>Pick a meal to start a new draft you can review and edit. The original stays unchanged in History.</p>
+					)}
+				</section>
 
-			<div slot='end' className='recent-card-score'>
-				<AcuteScoreProgressbar meal={meal} style={{ width: 46, height: 46 }} />
-				<span className='recent-card-score-label'>{getAcuteScoreCaption(getMealAcuteScore(meal))}</span>
-			</div>
-		</IonItem>
+				{meals.length === 0 ? (
+					<section className='journal-empty-state' aria-labelledby='picker-empty-title'>
+						<h2 id='picker-empty-title'>No previous meals yet</h2>
+						<p>Meals you save will appear here for quick reuse.</p>
+					</section>
+				) : (
+					<div className='journal-folio-entries'>
+						{journalGroups.map((group, groupIndex) => (
+							<section key={`${group.label}-${groupIndex}`} aria-labelledby={`picker-day-${groupIndex}`}>
+								<h2 className='journal-daybreak' id={`picker-day-${groupIndex}`}>
+									{group.label}
+								</h2>
+								{group.meals.map((meal) => (
+									<PreviousMealEntryCard key={meal.id} meal={meal} onSelect={() => reuseMeal(meal)} />
+								))}
+							</section>
+						))}
+					</div>
+				)}
+			</IonContent>
+		</IonPage>
 	);
 };
 

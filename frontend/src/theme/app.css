@@ -66,12 +66,43 @@ button[disabled],
 	opacity: 0.45;
 }
 
-/* Centered demo frame on desktop; mobile-first full-bleed below 768px. */
+/* Constitution §2.3 caps the reading *measure* at 560px on wide screens — not
+   the application canvas. J1 took the shortcut of capping `ion-app` itself,
+   which also boxed the background, header, router outlet and tab dock. A real
+   phone then crossed that desktop breakpoint: a Pixel 8 in landscape reports
+   915 CSS px, so the shell shrank to 560px and two thirds of the display was
+   left unpainted (J6 device QA).
+
+   The shell therefore always fills its window, in every orientation and on
+   every platform, and the 560px measure moves to the scrolling content layer.
+   Every page's content column keeps the width it already had; only the chrome
+   around it now spans the whole canvas. */
 @media (min-width: 768px) {
-	ion-app {
+	ion-content::part(scroll) {
 		max-width: 560px;
-		margin: 0 auto;
-		box-shadow: var(--shadow-frame);
+		margin-inline: auto;
+	}
+
+	/* The folio's horizontal gutter is `max(gutter, inset)`, which is right
+	   when the surface touches the display edge. Once the column is centred it
+	   does not: its margin is already at least (768 - 560) / 2 = 104px a side,
+	   more than any device inset. A rotated phone reports its cutout on the
+	   leading edge only, and that one-sided inset measures several times the
+	   reading gutter, so honouring it inside a centred column pushed the text
+	   off centre by the difference. On a wide viewport the folio therefore
+	   takes its ordinary reading gutter on both sides.
+
+	   Stated as padding, not by redeclaring `--ion-safe-area-*`: issue #107
+	   made variables.css the single source for those, and a second source is
+	   exactly the drift that contract exists to prevent. The surrounding
+	   chrome — toolbar, back control, tab dock — still reads the real insets
+	   and still clears the edges it actually touches.
+
+	   `ion-content.journal-folio-content` rather than the bare class: the J6
+	   folio rule lives later in this file at equal specificity, so element +
+	   class is what makes this win the cascade wherever it sits. */
+	ion-content.journal-folio-content::part(scroll) {
+		padding-inline: 18px;
 	}
 }
 
@@ -215,60 +246,6 @@ ion-tab-button.tab-selected:not(.journey-tab-selected) {
 	font-size: 0.9rem;
 	line-height: 1.5;
 	color: var(--app-muted);
-}
-
-/* Recents cards */
-
-.recent-card {
-	margin-bottom: 10px;
-	--background: var(--app-surface);
-	--border-radius: var(--radius-card);
-	--padding-start: 14px;
-	--padding-top: 12px;
-	--padding-bottom: 12px;
-	--inner-padding-end: 12px;
-	border-radius: var(--radius-card);
-	border: 1px solid var(--line);
-	box-shadow: var(--app-card-shadow);
-}
-
-.recent-card-name {
-	margin: 0;
-	font-size: 0.98rem;
-	font-weight: 650;
-	color: var(--app-ink);
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.recent-card-time {
-	display: block;
-	margin: 2px 0 8px;
-	font-size: 0.76rem;
-	color: var(--app-caption);
-}
-
-.recent-card-chips {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 4px;
-}
-
-.recent-card-score {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 3px;
-	margin-left: 6px;
-}
-
-.recent-card-score-label {
-	font-size: 0.62rem;
-	font-weight: 600;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-	color: var(--app-caption);
 }
 
 /* Home as the Porcelain meal journal (Slice J2). The journal presentation
@@ -684,18 +661,6 @@ ion-button.log-meal-option::part(native) {
 	color: var(--app-muted);
 }
 
-.meal-card-thumbnail {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.meal-card-image {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 12px;
-}
 
 /* Smart Camera (Slice J3): a viewfinder-first hierarchy — the capture frame
    is the visual anchor, framing hint + Cancel live in top chrome, and
@@ -1795,10 +1760,6 @@ ion-progress-bar {
 	font-weight: 600;
 }
 
-.recent-card-score-label {
-	font-size: var(--type-caption-small);
-}
-
 .CircularProgressbar .CircularProgressbar-path {
 	stroke: var(--accent) !important;
 }
@@ -1812,29 +1773,21 @@ ion-progress-bar {
 	font-variant-numeric: tabular-nums;
 }
 
-.recent-card-chips > div,
 .advanced-nutrient-totals > div {
 	background: var(--tint) !important;
 	border-radius: var(--radius-pill) !important;
 }
 
-.recent-card-chips > div ion-icon,
 .advanced-nutrient-totals > div ion-icon {
 	color: var(--accent) !important;
 }
 
-.recent-card-chips > div span,
 .advanced-nutrient-totals > div span {
 	color: var(--ink-2) !important;
 }
 
-.recent-card-chips > div span:last-child,
 .advanced-nutrient-totals > div span:last-child {
 	color: var(--ink) !important;
-}
-
-.recent-card > ion-icon[slot="end"] {
-	color: var(--ink-3) !important;
 }
 
 [role="alert"] {
@@ -2333,5 +2286,133 @@ ion-progress-bar {
 		transition-duration: 0.01ms !important;
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
+	}
+}
+
+/* Annotated Journal J6: History and the previous-meal picker are two folios of
+   one journal. Presentation only — day grouping is display arithmetic over the
+   timestamps already stored, and neither page changes hydration, ordering,
+   reuse, or navigation law. Paper and Ink share this structure exactly; only
+   the tokens resolve differently.
+
+   Both pages are plain tab-root content, so the Ionic tab bar is a real layout
+   sibling below them and no bottom reserve has to be guessed: the last entry
+   needs only the folio's own closing space plus the device inset. The entry
+   card, plate, day-break and 340px media rules are the shared J2 journal
+   primitives above; J6 adds no second entry-card language. */
+
+.journal-folio-content::part(scroll) {
+	padding-block: 0 calc(24px + var(--ion-safe-area-bottom));
+	padding-inline: max(18px, var(--ion-safe-area-left)) max(18px, var(--ion-safe-area-right));
+}
+
+.journal-folio {
+	padding: 12px 4px 0;
+}
+
+/* Same folio voice as Home and the chooser (issue #108): regular italic, not
+   the blunt Android BoldItalic fallback. */
+.journal-folio h1 {
+	margin: 0;
+	font-family: var(--font-journal);
+	font-size: var(--type-folio);
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.15;
+	color: var(--ink);
+	overflow-wrap: anywhere;
+}
+
+.journal-folio-explainer {
+	margin: 8px 0 0;
+	font-size: var(--type-secondary);
+	line-height: 1.5;
+	color: var(--ink-2);
+	overflow-wrap: anywhere;
+}
+
+.journal-folio-entries {
+	padding-top: 4px;
+}
+
+/* The picker's action line is the one place either folio states what a tap
+   does. It is text first: the accent reinforces it but carries no meaning of
+   its own, so nothing here depends on colour.
+
+   Qualified by the caption block rather than left bare: the accepted J2 rule
+   `.journal-entry-caption p` is a 0-2-0 descendant selector, so a bare
+   `.journal-entry-action` (0-1-0) loses `color`, `font-size` and `margin` to
+   it no matter where it sits in the file — the action line then rendered in
+   `--ink-3`, indistinguishable from the metadata above it. Element + class
+   inside the caption wins on specificity, so the metadata keeps its own
+   treatment untouched and only this one line is promoted. No `!important`. */
+.journal-entry-caption p.journal-entry-action {
+	margin: 6px 0 0;
+	font-size: var(--type-caption);
+	font-weight: 600;
+	line-height: 1.45;
+	color: var(--accent);
+	overflow-wrap: anywhere;
+}
+
+/* Entry cards clip their own photo, so an outward focus ring would be cut off
+   by that overflow; the ring is inset instead of offset outward. */
+ion-item.journal-entry-card::part(native):focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: -2px;
+}
+
+/* The empty folio is a composed journal-voice block, not a left-aligned
+   continuation of the folio heading: centred copy on a restrained measure,
+   following the accepted Home empty state. The folio h1 stays left-aligned
+   above it — only the empty block centres — and the extra top padding
+   separates the two so the state reads as its own thing rather than as a
+   subheading. Both folios share this geometry; no card, plate, illustration
+   or action is introduced. */
+.journal-empty-state {
+	padding: 44px 4px 0;
+	text-align: center;
+}
+
+.journal-empty-state h2 {
+	margin: 0 auto;
+	max-width: 300px;
+	font-family: var(--font-journal);
+	font-size: 1.28rem;
+	font-weight: 600;
+	line-height: 1.28;
+	color: var(--ink);
+	overflow-wrap: anywhere;
+}
+
+.journal-empty-state p {
+	margin: 10px auto 0;
+	max-width: 300px;
+	font-size: var(--type-secondary);
+	line-height: 1.5;
+	color: var(--ink-2);
+	overflow-wrap: anywhere;
+}
+
+/* Scoped to the picker's own toolbar so the saved-result chrome (J5) keeps the
+   appearance its evidence was captured against. */
+.journal-folio-toolbar ion-back-button {
+	--color: var(--ink-3);
+	min-width: 44px;
+	min-height: 44px;
+}
+
+.journal-folio-toolbar ion-back-button::part(native):focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+@media (max-width: 340px) {
+	.journal-folio-content::part(scroll) {
+		padding-inline: max(15px, var(--ion-safe-area-left)) max(15px, var(--ion-safe-area-right));
+	}
+
+	.journal-folio h1 {
+		font-size: 1.5rem;
 	}
 }

@@ -1,0 +1,14 @@
+Classification: Physical Samsung SM-M356B acceptance
+Package/activity: io.ionic.starter/.MainActivity
+State before background: editable /meals/new draft
+Background action: Android HOME
+Background interval: 4 seconds
+Status: ok
+LaunchState: HOT
+Activity: io.ionic.starter/.MainActivity
+TotalTime: 69 ms
+WaitTime: 77 ms
+State after resume: same editable /meals/new draft
+Source meal storage unchanged: yes
+Non-GET writes observed: 0
+Privacy: sanitized lifecycle fields only; no device serial or personal data

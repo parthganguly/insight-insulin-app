@@ -1,5 +1,5 @@
 import { Meal } from "../types/Meal";
-import { getMealAcuteScore } from "../utils";
+import { calculateTotalCalories, getMealAcuteScore } from "../utils";
 import { getEstimateQualityCopy } from "./safetyCopy";
 
 const startOfLocalDay = (date: Date): number => new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
@@ -66,11 +66,13 @@ export const getTypographicPlateMonogram = (mealName: string): string => {
 	return initials.map((initial, index) => (index === 0 ? initial.toLocaleUpperCase() : initial.toLocaleLowerCase())).join("");
 };
 
+const getJournalTimeLabel = (timestamp: number): string => {
+	const mealDate = new Date(timestamp);
+	return Number.isFinite(mealDate.getTime()) ? mealDate.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "Time unavailable";
+};
+
 export const getJournalEntryMetaLine = (meal: Meal): string => {
-	const mealDate = new Date(meal.timestamp);
-	const time = Number.isFinite(mealDate.getTime())
-		? mealDate.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
-		: "Time unavailable";
+	const time = getJournalTimeLabel(meal.timestamp);
 	const score = getMealAcuteScore(meal);
 	const quality = meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality).label : null;
 	const parts = [time];
@@ -80,3 +82,12 @@ export const getJournalEntryMetaLine = (meal: Meal): string => {
 
 	return parts.join(" · ");
 };
+
+// The previous-meal picker's caption (issue #123). It deliberately omits the
+// saved meal's score and data quality: reuse produces a draft that has to be
+// reviewed and re-scored, so re-showing the old estimate here would imply the
+// old answer carries over. Time and calories are the two facts that help tell
+// similar saved meals apart, and both are display arithmetic over values the
+// meal already carries.
+export const getPreviousMealMetaLine = (meal: Meal): string =>
+	`${getJournalTimeLabel(meal.timestamp)} · ${Math.round(calculateTotalCalories(meal))} kcal`;

@@ -2,7 +2,7 @@ import { IonItem } from "@ionic/react";
 import React from "react";
 import { Meal } from "../types/Meal";
 import { getJournalEntryMetaLine } from "../utils/journalPresentation";
-import TypographicPlate from "./TypographicPlate";
+import JournalEntryBody from "./JournalEntryBody";
 
 type JournalEntryCardProps = {
 	meal: Meal;
@@ -25,13 +25,7 @@ const JournalEntryCard: React.FC<JournalEntryCardProps> = ({ meal }) => {
 			className='journal-entry-card'
 			aria-labelledby={`${nameId} ${metaId}`}
 		>
-			<article className='journal-entry-card-content'>
-				{meal.image ? <img className='journal-entry-image' src={meal.image} alt='' /> : <TypographicPlate mealName={meal.name} />}
-				<div className='journal-entry-caption'>
-					<h3 id={nameId}>{meal.name}</h3>
-					<p id={metaId}>{getJournalEntryMetaLine(meal)}</p>
-				</div>
-			</article>
+			<JournalEntryBody meal={meal} metaLine={getJournalEntryMetaLine(meal)} nameId={nameId} metaId={metaId} />
 		</IonItem>
 	);
 };
