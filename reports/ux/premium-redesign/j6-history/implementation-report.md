@@ -1,6 +1,8 @@
 # J6 Implementation Report — History and Previous Meal Picker
 
-**CURRENT STATUS — 2026-07-29: READY FOR NARROW OPUS MAX RE-REVIEW after a bounded product/visual correction (§27) of the two sealed-ruling P1 defects found by independent Opus Max review — the picker action line's lost cascade and the uncentred empty states. Current APK is `0B29929A…` (§27.10); `A80D4403…` is superseded. No physical Samsung validation is claimed.**
+**CURRENT STATUS — 2026-08-26: J6 ACCEPTANCE COMPLETE. The accepted J6 implementation is committed at `48b8136`; final product/visual adjudication found no material blocker, and the full bounded device matrix subsequently passed on a real Samsung SM-M356B with accepted APK `0B29929A…`. Physical QA required no product/source change. Package provenance, read-only History behaviour, picker-to-draft isolation, HOT resume, Android Back, layout, privacy, and device restoration were verified (§28). Broader OEM qualification is not claimed.**
+
+**PRIOR STATUS — 2026-07-29, SUPERSEDED: READY FOR NARROW OPUS MAX RE-REVIEW after a bounded product/visual correction (§27). Current APK is `0B29929A…`; no physical Samsung validation had yet been performed.**
 
 **PRIOR STATUS — 2026-07-28, SUPERSEDED: READY FOR FINAL FABLE REVIEW after independent Terra Pixel 8 API 36 emulator acceptance.**
 
@@ -1203,3 +1205,118 @@ unchanged.
 ### 27.14 Next disposition
 
 **READY FOR NARROW OPUS MAX RE-REVIEW** of the two corrected defects.
+
+## 28. Physical Samsung SM-M356B acceptance — 2026-08-26
+
+### 28.1 Device, package, and APK provenance
+
+The final matrix ran on one attached **physical Samsung SM-M356B**, Android 16
+/ API 36, physical display 1080×2340, physical density 450 dpi (device override
+420 dpi). The prior package had been explicitly uninstalled before this run, so
+the accepted installation started with no inherited application data.
+
+| Field | Verified value |
+|---|---|
+| Package | `io.ionic.starter` |
+| Activity | `.MainActivity` |
+| Version | `1.0` (`versionCode` 1) |
+| minSdk / targetSdk | 23 / 35 |
+| Local APK | `frontend/android/app/build/outputs/apk/debug/app-debug.apk` |
+| Local bytes | 8,584,770 |
+| Local SHA-256 | `0B29929AAC558106B5AC28D4FF26693D5A0D6AA1A7BE434B71BB62B3C218034C` |
+| Installed base APK SHA-256 | `0B29929AAC558106B5AC28D4FF26693D5A0D6AA1A7BE434B71BB62B3C218034C` |
+
+The installed APK was pulled from the package path and hashed byte-for-byte;
+it matches the accepted local APK. The device list contained exactly one
+target. No helper application, display-size override, dev server, or unrelated
+package was used.
+
+### 28.2 Synthetic fixture and privacy boundary
+
+The run used five synthetic saved meals across four day groups, including one
+deliberately long synthetic name. Visual media consisted only of a generated
+inline SVG plate and typographic placeholder plates. No real health record,
+meal name, note, photograph, account, contact, notification, device serial, or
+unrelated application data was inspected or retained. Runtime inspection was
+limited to this debuggable package through a package-specific ADB/WebView
+connection. The fixture and navigation instrumentation were runtime-only; no
+source file or scientific behaviour changed.
+
+### 28.3 Required visual matrix
+
+| Route/state | Paper 1.0 portrait | Ink 1.0 portrait | Paper 1.3 portrait | Ink 1.3 portrait | Paper 1.3 landscape | Ink 1.3 landscape | Ink 1.3 true bottom |
+|---|---|---|---|---|---|---|---|
+| History | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
+| Previous-meal picker | PASS | PASS | PASS — long name | PASS | PASS | PASS | PASS |
+
+History retained its read-only journal semantics: `History`, `Meal journal`, the
+explainer and day groups were present; there were zero picker action lines,
+zero kcal picker metadata lines, zero score rings, and no reuse/edit wording.
+The picker showed exactly five `Use as new draft` affordances and five kcal
+metadata lines. Each card remained a single interaction target with zero nested
+interactive descendants. In Paper the action/metadata colours measured
+`rgb(40,87,126)` / `rgb(107,107,98)`; in Ink they measured
+`rgb(130,180,221)` / `rgb(143,144,137)`, with the required 6px separation.
+Long names wrapped without clipping, photo and placeholder treatments remained
+aligned, the Back glyph painted, and no tested state had horizontal overflow.
+
+### 28.4 Samsung layout and true-bottom measurements
+
+At font scale 1.3 in physical-device landscape the CSS viewport was 891×411.
+The Ionic application, header, and tab bar each spanned 891.43px; the reading
+measure was capped at 560px, with 524px cards centred at x=183.71 (centre offset
+about 0.21px). The 48×48 Back control began at x=38 and remained clear of the
+cutout. This directly rejects the half-screen boxed-shell failure mode.
+
+At the real Ionic scroll element's true bottom:
+
+| Route | Bottom residual | Last card → tab clearance | Last action → tab clearance |
+|---|---:|---:|---:|
+| History | -0.095px (rounding) | 85.98px | n/a — no actions |
+| Picker | 0px | 85.19px | 99.95px |
+
+The final picker action was fully visible in the Ink accent. The landscape
+screenshots end inside the first image band because of the 411px viewport;
+therefore the landscape action-line claim comes from exact runtime DOM and
+computed-style measurement, while the retained portrait and true-bottom
+captures provide visible action-line evidence.
+
+### 28.5 Interaction, mutation, and lifecycle
+
+- Opening the first History card navigated to canonical
+  `/meals/saved/j6-long`, visibly marked `Saved to history`. The serialized
+  `insight-meals` value was byte-identical before and after and no non-GET
+  request occurred.
+- Activating the first picker card navigated to editable `/meals/new`, visibly
+  marked `DRAFT — NOT SAVED`, with editable component values. The source meal
+  storage remained byte-identical and no non-GET request occurred.
+- After Android Home, a four-second background interval, and relaunch,
+  `am start -W` reported `Status: ok` and `LaunchState: HOT`. The same editable
+  draft, marker, heading, and component values survived; source storage was
+  unchanged and writes remained zero.
+- One real Android system Back returned from the draft to `/meals/previous`.
+  Picker title and action lines were present, no saved-result state appeared,
+  source storage remained identical, and writes remained zero.
+
+### 28.6 Restoration and retained evidence
+
+The original device settings were restored and re-read: font scale `1.0`,
+`accelerometer_rotation=1`, and `user_rotation=0`. The app was force-stopped,
+the package-specific ADB forward was removed (zero forwards remained), and the
+accepted installed package was left in place. Its installed APK hash still
+matched the accepted value after the matrix.
+
+Eighteen visually inspected PNG captures plus one sanitized HOT-resume text
+record are retained in
+`evidence/physical-samsung-sm-m356b/`; their per-file hashes, dimensions,
+classification, and privacy statements are recorded in `EVIDENCE-LEDGER.md`.
+
+### 28.7 Repository and conclusion
+
+Acceptance ran against branch `opus/annotated-journal-j6-history` at J6 commit
+`48b8136885aff62e465000b37e0020aea5d5d515`, based on
+`e80c00d1c8cf0635f7128731827d26d0493d0032`. No source, test, scientific,
+privacy, security, package, or APK file changed during physical QA. The only
+new repository material is this bounded documentation/evidence closeout.
+
+**PHYSICAL SM-M356B ACCEPTED — J6 DEVICE MATRIX PASSES.**
