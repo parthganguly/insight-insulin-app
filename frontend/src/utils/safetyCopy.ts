@@ -1,6 +1,6 @@
 // Safety and UX copy approved in issue #45; truth-in-presentation revisions
-// approved in issue #93. These strings are user-facing safety wording; do not
-// edit without a new approval on one of those issues.
+// approved in issues #93 and #125. These strings are user-facing safety
+// wording; do not edit without a new approval.
 
 // Issue #93 dataset-truth correction. The live dataset is ten hand-entered
 // `starter_placeholder` rows: no value traces to a cited primary study, and
@@ -16,10 +16,10 @@ export const MEAL_SCORE_DISCLAIMER =
 	"Estimated from the app’s limited food insulin-index dataset, heuristic fallbacks, and your entered portions. The dataset and model are not yet validated. This is a relative comparison tool, not a prediction of your body’s response.";
 
 export const UNKNOWN_ITEMS_NOTICE =
-	"We couldn’t estimate some items, so they add 0 to this score. The real insulin demand may be higher than shown.";
+	"Some items were not estimated by the current model. This is missing model information, not a statement about their biological effect.";
 
 export const ROUGH_ESTIMATE_NOTICE =
-	"No direct insulin-index data was available for this item, so this is a rough estimate from nutrition data or typical dish components. Treat it as approximate.";
+	"Some items were approximated using similar foods or fallback nutrition estimates. Their model handling is listed below.";
 
 // Issue #93: logged-days-only semantics, plus the dataset-truth correction.
 // The displayed trend is an energy-normalized index (kcal-weighted mean FII),
@@ -46,6 +46,28 @@ const SOURCE_LABELS: Record<string, string> = {
 export const humanizeFiiSource = (source: string | undefined): string => {
 	if (!source) return SOURCE_LABELS.unknown;
 	return SOURCE_LABELS[source] ?? SOURCE_LABELS.unknown;
+};
+
+// Issue #125 saved-result provenance uses software-action language instead of
+// implying calibrated confidence or row-level scientific authority. Canonical
+// backend tokens remain unchanged.
+const SAVED_RESULT_SOURCE_COPY: Record<string, string> = {
+	user_confirmed: "Value you entered",
+	exact_fii: "Matched in INSIGHT’s current food table",
+	mapped_fii: "Estimated using a similar food",
+	macro_fallback: "Used a fallback estimate",
+	unknown: "Not estimated in this version",
+};
+
+export const getSavedResultSourceCopy = (source: string | undefined): string => {
+	if (!source) return SAVED_RESULT_SOURCE_COPY.unknown;
+	return SAVED_RESULT_SOURCE_COPY[source] ?? SAVED_RESULT_SOURCE_COPY.unknown;
+};
+
+export const getSavedResultUnknownItemsNotice = (itemNames: string[]): string => {
+	const names = itemNames.map((name) => name.trim()).filter((name) => name.length > 0);
+	if (names.length === 0) return UNKNOWN_ITEMS_NOTICE;
+	return `Not estimated in this version: ${names.join(", ")}. The saved result includes no model estimate for these items.`;
 };
 
 export type EstimateQualityCopy = {

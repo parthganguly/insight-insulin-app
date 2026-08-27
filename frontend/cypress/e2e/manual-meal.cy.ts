@@ -99,7 +99,7 @@ describe("Manual meal draft", () => {
 		// the meal name is the page heading and the status pill marks arrival.
 		shouldBeRendered("span", "Saved to history");
 		shouldBeRendered("h1", "Synthetic Manual Meal");
-		shouldBeRendered("p", "Score: 42 · internal reference: 100");
+		shouldBeRendered("p", "Relative score: 42");
 	});
 
 	it("shows the sanitized backend error without leaking internals when the save fails", () => {

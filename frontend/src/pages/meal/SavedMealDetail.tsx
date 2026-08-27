@@ -33,32 +33,35 @@ import {
 	MEAL_SCORE_DISCLAIMER,
 	PROVIDED_FII_DISCLAIMER,
 	ROUGH_ESTIMATE_NOTICE,
-	UNKNOWN_ITEMS_NOTICE,
-	getEstimateQualityCopy,
-	humanizeFiiSource,
+	getSavedResultSourceCopy,
+	getSavedResultUnknownItemsNotice,
 	isRoughEstimateSource,
 	isUnknownSource,
 	shouldShowProvidedFiiDisclaimer,
 } from "../../utils/safetyCopy";
-import { ACUTE_SCORE_SCALE_EXPLAINER, getAcuteScoreDetailLine } from "../../utils/acuteScoreDisplay";
-import { getResultCompositionLine, getResultLoggedLine, getVisibleDrivers } from "../../utils/resultPresentation";
+import {
+	SAVED_RESULT_SCALE_DISCLOSURE,
+	SAVED_RESULT_SCORE_BOUNDARY,
+	getSavedResultScoreAriaLabel,
+	getSavedResultScoreLine,
+} from "../../utils/acuteScoreDisplay";
+import { getResultCompositionLine, getResultLoggedLine } from "../../utils/resultPresentation";
 
-// Read-only saved-meal detail view (issue #89). Dashboard Recents opens saved
-// meals here so their canonical acute_score, estimate_quality,
-// main_insulin_drivers, and per-item fii/source/why stay visible. The meal is
-// rendered straight from the persistent store and is never passed through
+// Read-only saved-meal detail view (issues #89/#125). Dashboard Recents opens
+// saved meals here so their canonical acute_score and item/source facts can be
+// presented without turning estimate_quality, main_insulin_drivers, or legacy
+// item why text into user-facing scientific authority. The meal is rendered
+// straight from the persistent store and is never passed through
 // buildDraftFromSavedMeal — that trust boundary belongs exclusively to the
 // Meals-tab "tap a meal to reuse it" flow, which still creates a fresh
 // editable draft. This screen offers no editing and no way to save a copy.
 //
 // Annotated Journal J5 (issue #120) rebuilt the presentation as a Porcelain
-// Journal page under design-constitution §6.7-interim: hero, editorial meal
-// identity, the existing insulinImpactPresentation title at verdict weight,
-// the sealed score/reference lines in mid-size tabular numerals instead of the
-// retired circular meter, hairline evidence rows, and one footnote disclosure.
-// Every displayed number, label, and disclaimer still renders verbatim from the
-// backend record and the sealed helpers; no scoring, persistence, deletion,
-// routing, or provenance behaviour changed.
+// Journal page under design-constitution §6.7-interim. J7 retains that hero,
+// editorial identity, hairline evidence, and anchored dock while applying the
+// frozen relative-score, model-coverage, and software-action provenance
+// contract. No scoring, persistence, deletion, routing, or canonical backend
+// token changes are made here.
 const SavedMealDetail: React.FC = () => {
 	const { mealId } = useParams<{ mealId: string }>();
 	// react-router v5 does not decode URL params; Dashboard encodes the id.
@@ -140,16 +143,16 @@ const SavedMealDetail: React.FC = () => {
 	const displayScore = getMealAcuteScore(meal);
 	const isHardToEstimate = isHardToEstimatePresentation(impactPresentation);
 	const showAcuteScoreDetails = !isHardToEstimate && displayScore !== undefined;
-	// Constitution §6.9: an insufficient-data result still shows what could be
-	// read, de-emphasised — and only when a finite score actually exists.
-	const showNominalReading = isHardToEstimate && displayScore !== undefined;
-	const estimateQualityCopy = meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality) : null;
-	const hasUnknownItems = meal.items.some((item) => isUnknownSource(item.source));
+	// Issue #125: a finite value on the canonical hard-to-estimate path is only
+	// a partial model output. It stays available for auditability inside
+	// Advanced details and never receives normal-result prominence.
+	const showPartialModelOutput = isHardToEstimate && displayScore !== undefined;
+	const unknownItemNames = meal.items.filter((item) => isUnknownSource(item.source)).map((item) => item.name);
+	const hasUnknownItems = unknownItemNames.length > 0;
 	// One notice for the meal, not one per item: the constitution forbids the
 	// same disclaimer stacking on a single screen. Per-item provenance stays
 	// visible on each evidence row and in Advanced details.
 	const hasRoughEstimateItems = meal.items.some((item) => isRoughEstimateSource(item.source));
-	const visibleImpactDrivers = getVisibleDrivers(meal.main_insulin_drivers);
 
 	return (
 		<IonPage>
@@ -165,34 +168,27 @@ const SavedMealDetail: React.FC = () => {
 					<h2 className='result-verdict'>{impactPresentation.title}</h2>
 					<p className='result-verdict-support'>{impactPresentation.description}</p>
 
-					{estimateQualityCopy && (
-						<p className='result-quality'>
-							<span className='result-quality-label'>Data quality: {estimateQualityCopy.label}.</span>{" "}
-							<span className='result-quality-description'>{estimateQualityCopy.description}</span>
-						</p>
-					)}
-					{hasUnknownItems && <p className='result-notice'>{UNKNOWN_ITEMS_NOTICE}</p>}
-					{hasRoughEstimateItems && <p className='result-notice'>{ROUGH_ESTIMATE_NOTICE}</p>}
-
 					{showAcuteScoreDetails && (
-						<div className='result-score'>
-							<p className='result-score-line'>{getAcuteScoreDetailLine(displayScore)}</p>
-							<p className='result-score-caption'>{ACUTE_SCORE_SCALE_EXPLAINER}</p>
+						<div className='result-score' role='group' aria-label={getSavedResultScoreAriaLabel(displayScore)}>
+							<p className='result-score-line' aria-hidden='true'>{getSavedResultScoreLine(displayScore)}</p>
+							<p className='result-score-caption' aria-hidden='true'>{SAVED_RESULT_SCORE_BOUNDARY}</p>
 						</div>
 					)}
 
-					{showNominalReading && (
-						<section className='result-nominal-note' aria-labelledby='result-nominal-heading'>
-							<h3 id='result-nominal-heading' className='result-kicker'>What we could read</h3>
-							<p className='result-nominal-line'>{getAcuteScoreDetailLine(displayScore)}</p>
-							<p className='result-score-caption'>{ACUTE_SCORE_SCALE_EXPLAINER}</p>
-						</section>
-					)}
+					{hasUnknownItems && <p className='result-notice'>{getSavedResultUnknownItemsNotice(unknownItemNames)}</p>}
+					{hasRoughEstimateItems && <p className='result-notice'>{ROUGH_ESTIMATE_NOTICE}</p>}
 
-					<EvidenceRows items={meal.items} drivers={visibleImpactDrivers} muted={isHardToEstimate} />
+					<EvidenceRows items={meal.items} muted={isHardToEstimate} />
+
+					<details className='result-footnotes result-score-method'>
+						<summary tabIndex={0}>How this score works</summary>
+						<div className='result-footnotes-content'>
+							<p>{SAVED_RESULT_SCALE_DISCLOSURE}</p>
+						</div>
+					</details>
 
 					<details className='result-footnotes'>
-						<summary>What this doesn't mean</summary>
+						<summary tabIndex={0}>What this doesn't mean</summary>
 						<div className='result-footnotes-content'>
 							<p>{MEAL_SCORE_DISCLAIMER}</p>
 							<p>{APP_DISCLAIMER}</p>
@@ -200,8 +196,15 @@ const SavedMealDetail: React.FC = () => {
 					</details>
 
 					<details className='result-advanced advanced-details'>
-						<summary>{ADVANCED_DETAILS_LABEL}</summary>
+						<summary tabIndex={0}>{ADVANCED_DETAILS_LABEL}</summary>
 						<div className='advanced-details-content'>
+							{showPartialModelOutput && displayScore !== undefined && (
+								<section className='result-partial-output' aria-labelledby='result-partial-output-heading'>
+									<h3 id='result-partial-output-heading' className='result-kicker'>Partial model output</h3>
+									<p className='result-partial-line'>{getSavedResultScoreLine(displayScore)}</p>
+									<p className='result-advanced-note'>Calculated only from items the current model could estimate; this does not represent a complete meal estimate.</p>
+								</section>
+							)}
 							{meal.items.length === 0 ? (
 								<p className='result-advanced-empty'>This saved meal has no item breakdown.</p>
 							) : (
@@ -215,7 +218,7 @@ const SavedMealDetail: React.FC = () => {
 										</div>
 										<p>FII: {item.fii ?? ""}</p>
 										<p>Glycemic Index: {item.gi}</p>
-										{item.source && <p>Source: {humanizeFiiSource(item.source)}</p>}
+										{item.source && <p>Model handling: {getSavedResultSourceCopy(item.source)}</p>}
 										{shouldShowProvidedFiiDisclaimer(item.source, item.fii) && <p className='result-advanced-note'>{PROVIDED_FII_DISCLAIMER}</p>}
 									</article>
 								))

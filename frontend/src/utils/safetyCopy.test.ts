@@ -12,6 +12,8 @@ import {
 	ROUGH_ESTIMATE_NOTICE,
 	UNKNOWN_ITEMS_NOTICE,
 	getEstimateQualityCopy,
+	getSavedResultSourceCopy,
+	getSavedResultUnknownItemsNotice,
 	humanizeFiiSource,
 	isProvidedFiiSource,
 	isRoughEstimateSource,
@@ -35,6 +37,45 @@ describe("safety copy source labels", () => {
 		expect(humanizeFiiSource("")).toBe("Unknown / not estimated");
 		expect(humanizeFiiSource("provided")).toBe("Unknown / not estimated");
 		expect(humanizeFiiSource("some_new_token")).toBe("Unknown / not estimated");
+	});
+});
+
+describe("saved-result provenance copy (issue #125)", () => {
+	it.each([
+		["user_confirmed", "Value you entered"],
+		["exact_fii", "Matched in INSIGHT’s current food table"],
+		["mapped_fii", "Estimated using a similar food"],
+		["macro_fallback", "Used a fallback estimate"],
+		["unknown", "Not estimated in this version"],
+	])("describes %s as software behavior", (source, copy) => {
+		expect(getSavedResultSourceCopy(source)).toBe(copy);
+	});
+
+	it("falls back to not-estimated wording for missing or new tokens", () => {
+		expect(getSavedResultSourceCopy(undefined)).toBe("Not estimated in this version");
+		expect(getSavedResultSourceCopy("future_source")).toBe("Not estimated in this version");
+	});
+
+	it("authors the names of unknown items as missing model information", () => {
+		expect(getSavedResultUnknownItemsNotice([" Raita ", "Mystery garnish"])).toBe(
+			"Not estimated in this version: Raita, Mystery garnish. The saved result includes no model estimate for these items.",
+		);
+		expect(getSavedResultUnknownItemsNotice([])).toBe(UNKNOWN_ITEMS_NOTICE);
+	});
+
+	it("contains no calibrated-authority or biological-zero claim", () => {
+		const copy = [
+			UNKNOWN_ITEMS_NOTICE,
+			ROUGH_ESTIMATE_NOTICE,
+			getSavedResultSourceCopy("exact_fii"),
+			getSavedResultSourceCopy("mapped_fii"),
+			getSavedResultSourceCopy("macro_fallback"),
+			getSavedResultSourceCopy("user_confirmed"),
+			getSavedResultSourceCopy("unknown"),
+			getSavedResultUnknownItemsNotice(["Synthetic unknown"]),
+		].join(" ");
+		expect(copy).not.toMatch(/direct FII|published|measured|validated|high confidence|high quality/i);
+		expect(copy).not.toMatch(/add 0|real insulin demand may be higher/i);
 	});
 });
 

@@ -44,16 +44,25 @@ describe("getImpactPresentation (neutral presentation, issue #93)", () => {
 		for (const presentation of presentations) {
 			expect(presentation).toEqual(presentations[0]);
 			expect(presentation.kind).toBe("score");
-			expect(presentation.title).toBe("Relative insulin-demand score");
+			expect(presentation.title).toBe("Estimated meal insulin demand");
 			expect(isHardToEstimatePresentation(presentation)).toBe(false);
 		}
 	});
 
-	it("keeps the neutral description exact and truthful about calibration", () => {
+	it("keeps the normal description model-derived and reference-neutral", () => {
 		const presentation = getImpactPresentation(meal({ estimate_quality: "high", acute_score: 80 }));
 		expect(presentation.description).toBe(
-			"Higher scores mean a larger estimated insulin demand relative to the app's internal reference of 100. The reference has not yet been calibrated to typical meals or personal responses, so this is a relative comparison, not a health category and not a personal prediction.",
+			"This model-derived estimate uses the foods and amounts saved for this meal. Within the current model, higher scores correspond to a larger modelled meal load.",
 		);
+		expect(presentation.description).not.toContain("reference");
+	});
+
+	it("describes hard-to-estimate results strictly as limited model coverage", () => {
+		const presentation = getImpactPresentation(meal({ estimate_quality: "unknown", acute_score: 80 }));
+		expect(presentation.description).toBe(
+			"Some items were approximated or not estimated by the current model, so this result has limited model coverage.",
+		);
+		expect(presentation.description).not.toMatch(/real insulin|actual response|add 0/i);
 	});
 
 	it("no longer uses the retired traffic-light colours or tier titles", () => {

@@ -2,13 +2,38 @@ import { describe, expect, it } from "vitest";
 
 import {
 	ACUTE_SCORE_SCALE_EXPLAINER,
+	SAVED_RESULT_SCALE_DISCLOSURE,
+	SAVED_RESULT_SCORE_BOUNDARY,
 	getAcuteRingValue,
 	getAcuteScoreAriaLabel,
 	getAcuteScoreCaption,
 	getAcuteScoreDetailLine,
 	getAcuteScoreText,
+	getSavedResultScoreAriaLabel,
+	getSavedResultScoreLine,
 	isAboveAcuteReference,
 } from "./acuteScoreDisplay";
+
+describe("saved-result relative score contract (issue #125)", () => {
+	it.each([50, 100, 137, 767, 1200])("gives score %s the same neutral treatment", (score) => {
+		expect(getSavedResultScoreLine(score)).toBe(`Relative score: ${score}`);
+		expect(getSavedResultScoreAriaLabel(score)).toBe(`Relative model score ${score}. ${SAVED_RESULT_SCORE_BOUNDARY}`);
+	});
+
+	it("keeps the primary boundary reference-neutral and non-clinical", () => {
+		expect(SAVED_RESULT_SCORE_BOUNDARY).toBe(
+			"Not a percentage, target, health category, bodily measurement, or prediction of your body’s response.",
+		);
+		expect(SAVED_RESULT_SCORE_BOUNDARY).not.toMatch(/reference|above|below|typical|recommended range/i);
+	});
+
+	it("discloses the normalization only in the deep explanation", () => {
+		expect(SAVED_RESULT_SCALE_DISCLOSURE).toContain("modelled load of 30 maps to a relative score of 100");
+		expect(SAVED_RESULT_SCALE_DISCLOSURE).toContain("internal normalization convention");
+		expect(SAVED_RESULT_SCALE_DISCLOSURE).toContain("100 is not a healthy, typical, recommended, maximum, or biological value");
+		expect(SAVED_RESULT_SCALE_DISCLOSURE).toContain("scores can exceed 100");
+	});
+});
 
 // Durable truth-in-presentation matrix (issue #93). These scores cover the
 // audit's required boundary set: undefined, non-finite, negative, 0, the old
