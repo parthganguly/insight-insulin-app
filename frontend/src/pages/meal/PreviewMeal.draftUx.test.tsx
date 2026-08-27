@@ -206,10 +206,11 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 			expect(window.location.pathname).toBe("/meals/saved/saved-meal-1");
 		});
 		expect(screen.queryByText("Discard this draft?")).toBeNull();
-		// J5 replaced the saved-result toolbar title and the circular score
-		// meter with the journal hero and the sealed score/reference line, so
-		// the canonical score is checked through that sealed wording instead.
-		expect(await screen.findByText("Score: 42 · internal reference: 100")).toBeTruthy();
+		// J7 keeps the score visually available while hiding the duplicate text
+		// node from assistive technology in favour of the enclosing group label.
+		await waitFor(() => {
+			expect(baseElement.querySelector(".result-score-line")?.textContent).toBe("Relative score: 42");
+		});
 		expect(baseElement.querySelector('[role="img"][aria-label*="score 42"]')).toBeNull();
 	});
 });

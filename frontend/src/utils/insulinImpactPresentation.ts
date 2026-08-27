@@ -32,16 +32,16 @@ export const getImpactPresentation = (savedMeal: Meal): ImpactPresentation => {
 		return {
 			kind: "insufficient-data",
 			title: "Hard to estimate from this meal",
-			description: "This saved meal has limited data quality, so the insulin-demand estimate could be off.",
+			description: "Some items were approximated or not estimated by the current model, so this result has limited model coverage.",
 			color: INSUFFICIENT_DATA_COLOR,
 		};
 	}
 
 	return {
 		kind: "score",
-		title: "Relative insulin-demand score",
+		title: "Estimated meal insulin demand",
 		description:
-			"Higher scores mean a larger estimated insulin demand relative to the app's internal reference of 100. The reference has not yet been calibrated to typical meals or personal responses, so this is a relative comparison, not a health category and not a personal prediction.",
+			"This model-derived estimate uses the foods and amounts saved for this meal. Within the current model, higher scores correspond to a larger modelled meal load.",
 		color: NEUTRAL_SCORE_COLOR,
 	};
 };

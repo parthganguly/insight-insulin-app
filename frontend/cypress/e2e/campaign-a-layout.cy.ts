@@ -1,11 +1,8 @@
 /// <reference types="cypress" />
 
-// Campaign A release polish (PR #95): the portion quick-adjust row and the
-// result "Main drivers" chips previously referenced CSS classes that had no
-// layout rules, so the row rendered as a broken stack and multiple drivers
-// concatenated into run-together text. These tests guard the repaired layout
-// at both target viewports with a real three-component draft and a synthetic
-// three-driver result. Backend values, driver text, and order are unchanged.
+// Campaign A release polish (PR #95), updated for the J7 neutral provenance
+// contract. These tests guard the portion quick-adjust row and a saved result
+// with three separately laid-out evidence rows at both target viewports.
 
 import { BACKEND_ORIGIN, assertNoHorizontalOverflow, shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
@@ -73,37 +70,24 @@ const assertPortionRowIsOneControl = () => {
 	});
 };
 
-// J5 replaced the driver pill chips with an inline drivers line. The defect
-// this guard was written for — multiple drivers concatenating into
-// run-together text — is still what it checks: every driver renders as its own
-// laid-out element, inside the container, separated from its neighbours.
-const assertDriversReadCleanly = () => {
-	cy.get(".result-drivers-list").should(($container) => {
+const assertEvidenceRowsReadCleanly = () => {
+	const expectedNames = ["synthetic red lentils", "steamed basmati rice", "extra-virgin olive oil"];
+	cy.get(".result-evidence-rows").should(($container) => {
 		const container = $container[0];
-		const drivers = Array.from(container.querySelectorAll(".result-driver"));
-		expect(drivers.length, "all three drivers render").to.equal(3);
+		const rows = Array.from(container.querySelectorAll(".result-evidence-row"));
+		expect(rows.length, "all three evidence rows render").to.equal(3);
+		expect(rows.map((row) => row.querySelector(".result-evidence-name")?.textContent), "stored item order is preserved").to.deep.equal(expectedNames);
 
 		const containerRect = container.getBoundingClientRect();
-		for (const driver of drivers) {
-			const rect = driver.getBoundingClientRect();
-			expect(rect.width, "driver is laid out").to.be.greaterThan(0);
-			expect(rect.left, "driver starts inside the container").to.be.at.least(containerRect.left - 1);
-			expect(rect.right, "driver ends inside the container").to.be.at.most(containerRect.right + 1);
-		}
-
-		// Adjacent driver names never run together: a separator sits between
-		// them. This is the direct guard for the original defect. A pairwise
-		// bounding-box comparison is deliberately not used here — these are
-		// inline spans, and a driver that wraps across two lines reports a
-		// union rectangle that legitimately overlaps its neighbour's.
-		const text = container.textContent ?? "";
-		for (let index = 0; index < drivers.length - 1; index += 1) {
-			const first = drivers[index].textContent ?? "";
-			const second = drivers[index + 1].textContent ?? "";
-			expect(text, "driver names are separated, not concatenated").to.not.contain(`${first}${second}`);
-			expect(text, "a visible separator sits between drivers").to.contain(`${first} · ${second}`);
+		for (const row of rows) {
+			const rect = row.getBoundingClientRect();
+			expect(rect.width, "evidence row is laid out").to.be.greaterThan(0);
+			expect(rect.left, "evidence row starts inside the container").to.be.at.least(containerRect.left - 1);
+			expect(rect.right, "evidence row ends inside the container").to.be.at.most(containerRect.right + 1);
 		}
 	});
+	cy.get(".result-evidence-why").should("have.length", 3).each(($copy) => expect($copy.text()).to.equal("Matched in INSIGHT’s current food table"));
+	cy.get(".result-evidence").should("not.contain.text", "Main drivers").and("not.contain.text", driverWhy);
 };
 
 describe("Campaign A layout polish", () => {
@@ -121,7 +105,7 @@ describe("Campaign A layout polish", () => {
 			cy.screenshot(`fable-final/${label}-confirmation-three-components`, { capture: "viewport" });
 		});
 
-		it(`renders three result drivers cleanly at ${label}`, () => {
+		it(`renders three neutral result evidence rows cleanly at ${label}`, () => {
 			cy.viewport(width, height);
 			stubBackend();
 			cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 200, body: threeDriverResponse }).as("saveMeal");
@@ -132,15 +116,15 @@ describe("Campaign A layout polish", () => {
 			cy.url().should("include", "/meals/saved/syn-drivers-1");
 
 			shouldBeRendered("h1", "Synthetic lentil rice bowl");
-			cy.contains("Main drivers").should("exist");
+			cy.contains("How this estimate was built").should("exist");
 			// Let the replace-navigation transition and the transient save toast
 			// settle so the evidence screenshot shows only the result screen.
 			cy.contains("Did we get your meal right?").should("not.exist");
 			cy.get("ion-toast:not(.overlay-hidden)").should("not.exist");
-			assertDriversReadCleanly();
+			assertEvidenceRowsReadCleanly();
 			assertNoHorizontalOverflow();
-			cy.get(".result-drivers-list").then(($drivers) => $drivers[0].scrollIntoView({ block: "center" }));
-			cy.screenshot(`fable-final/${label}-result-three-drivers`, { capture: "viewport" });
+			cy.get(".result-evidence-rows").then(($rows) => $rows[0].scrollIntoView({ block: "center" }));
+			cy.screenshot(`fable-final/${label}-result-three-evidence-rows`, { capture: "viewport" });
 		});
 	}
 });

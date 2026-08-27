@@ -10,8 +10,8 @@
 import { assertNoForbiddenPhrases, assertNoHorizontalOverflow, shouldBeRendered, stubBackend, visitFresh } from "../support/insightStubs";
 // Sealed copy is imported, never retyped: these strings carry typographic
 // apostrophes, and a hand-copied variant would silently stop matching.
-import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE } from "../../src/utils/safetyCopy";
-import { ACUTE_SCORE_SCALE_EXPLAINER } from "../../src/utils/acuteScoreDisplay";
+import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, getSavedResultUnknownItemsNotice } from "../../src/utils/safetyCopy";
+import { SAVED_RESULT_SCALE_DISCLOSURE, SAVED_RESULT_SCORE_BOUNDARY } from "../../src/utils/acuteScoreDisplay";
 import { SAVED_MEAL_STATUS } from "../../src/utils/mealDraftUx";
 import { CALORIE_BAR_NOTE } from "../../src/components/EvidenceRows";
 
@@ -99,10 +99,13 @@ describe("J5 saved result — product contract", () => {
 		shouldBeRendered("span", SAVED_MEAL_STATUS);
 		shouldBeRendered("h1", "Synthetic oats with milk and banana");
 		shouldBeRendered("p", "3 items · ≈ 476 kcal · 66 g carbs");
-		shouldBeRendered("h2", "Relative insulin-demand score");
-		shouldBeRendered("p", "Score: 767 · above internal reference (100)");
-		shouldBeRendered(".result-kicker", "What drove it");
+		shouldBeRendered("h2", "Estimated meal insulin demand");
+		shouldBeRendered("p", "Relative score: 767");
+		shouldBeRendered("p", SAVED_RESULT_SCORE_BOUNDARY);
+		shouldBeRendered(".result-kicker", "How this estimate was built");
 		shouldBeRendered(".result-evidence-name", "Oats");
+		cy.get(".result-sheet").should("not.contain.text", "Data quality:");
+		cy.get(".result-sheet").should("not.contain.text", "Main drivers");
 
 		// One primary exit, two quiet ones.
 		shouldBeRendered(".result-dock ion-button", "Check another meal");
@@ -156,7 +159,10 @@ describe("J5 saved result — product contract", () => {
 		// Scoped to this page: the History list keeps the old score circle, and
 		// its capped-ring aria-label, until J6 retires it.
 		cy.get(".result-page [aria-label*='the ring caps at 100']").should("not.exist");
-		shouldBeRendered(".result-score-caption", ACUTE_SCORE_SCALE_EXPLAINER);
+		cy.get(".result-score").should("not.contain.text", "reference");
+		shouldBeRendered("summary", "How this score works");
+		cy.contains("summary", "How this score works").click();
+		shouldBeRendered(".result-score-method p", SAVED_RESULT_SCALE_DISCLOSURE);
 	});
 
 	it("keeps both sealed disclaimers one tap away, closed by default", () => {
@@ -171,23 +177,26 @@ describe("J5 saved result — product contract", () => {
 	it("keeps per-item provenance behind Advanced details, closed by default", () => {
 		openSavedResult(savedMeal());
 
-		cy.contains("p", "Source: Direct FII match").should("not.be.visible");
+		cy.contains("p", "Model handling: Matched in INSIGHT’s current food table").should("not.be.visible");
 		cy.contains("summary", "Advanced details").click();
-		shouldBeRendered("p", "Source: Direct FII match");
+		shouldBeRendered("p", "Model handling: Matched in INSIGHT’s current food table");
 		cy.get(".result-advanced ion-card").should("not.exist");
 	});
 
-	it("presents an insufficient-data result without hiding what it could read", () => {
+	it("presents an insufficient-data result without promoting the partial output", () => {
 		openSavedResult(insufficientMeal());
 
 		shouldBeRendered("h2", "Hard to estimate from this meal");
-		shouldBeRendered("span", "Data quality: Low.");
-		// The nominal reading is shown, de-emphasised, inside its own note.
-		cy.get(".result-nominal-note").should("contain.text", "What we could read");
-		cy.get(".result-nominal-note").should("contain.text", "Score: 1023 · above internal reference (100)");
+		cy.get(".result-sheet").should("not.contain.text", "Data quality:");
 		cy.get(".result-score").should("not.exist");
+		cy.get(".result-nominal-note").should("not.exist");
+		cy.get(".result-partial-output").should("not.be.visible");
+		cy.contains("summary", "Advanced details").click();
+		cy.get("details.result-advanced").should("have.attr", "open");
+		cy.get("details.result-advanced").should("contain.text", "Partial model output").and("contain.text", "Relative score: 1023");
+		cy.get("details.result-advanced").should("contain.text", "Calculated only from items the current model could estimate");
 		// Unknown and rough notices stay visible, each exactly once.
-		shouldBeRendered(".result-notice", UNKNOWN_ITEMS_NOTICE);
+		shouldBeRendered(".result-notice", getSavedResultUnknownItemsNotice(["Raita"]));
 		shouldBeRendered(".result-notice", ROUGH_ESTIMATE_NOTICE);
 		// Exactly one of each: sealed disclaimers never stack on one screen.
 		cy.get(".result-notice").should("have.length", 2);
@@ -380,7 +389,7 @@ describe("J5 saved result — responsive and appearance evidence", () => {
 				acute_score: 1580,
 			}),
 		);
-		cy.contains("Score: 1580 · above internal reference (100)").should("exist");
+		cy.contains("Relative score: 1580").should("exist");
 		assertNoHorizontalOverflow();
 		capture("j5-result/320x700/result-long-name-paper");
 	});
@@ -391,7 +400,7 @@ describe("J5 saved result — responsive and appearance evidence", () => {
 		cy.document().then((doc) => {
 			doc.documentElement.style.fontSize = "133%";
 		});
-		cy.contains("Score: 767 · above internal reference (100)").should("exist");
+		cy.contains("Relative score: 767").should("exist");
 		assertNoHorizontalOverflow();
 		capture("j5-result/390x844/result-large-text-paper");
 		cy.document().then((doc) => {

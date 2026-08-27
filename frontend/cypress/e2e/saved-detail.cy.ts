@@ -16,26 +16,26 @@ describe("Saved-meal detail", () => {
 		cy.url().should("include", "/meals/saved/syn-1");
 	});
 
-	it("shows the canonical score, quality, drivers, and per-item evidence", () => {
+	it("shows the canonical relative score and software-action provenance", () => {
 		// shouldBeRendered asserts the element is actually laid out and painted
 		// (non-empty text, non-zero box, not hidden) — a real rendering guard
 		// that does not rely on Cypress's `be.visible` heuristic, which reports
 		// false negatives inside Ionic's fixed-layout scroll container.
-		// J5 made the meal name the page heading and replaced the driver chips
-		// with an inline drivers line; the values themselves are unchanged.
+		// J7 keeps the stored value while removing categorical quality and
+		// causal-driver interpretations from the saved result.
 		shouldBeRendered("span", "Saved to history");
 		shouldBeRendered("h1", "Synthetic Rice Bowl");
-		shouldBeRendered("p", "Score: 189 · above internal reference (100)");
-		shouldBeRendered("span", "Data quality: High");
-		shouldBeRendered(".result-driver", "steamed rice");
-		shouldBeRendered(".result-evidence-why", "Used a direct Food Insulin Index match and scaled it by eaten energy.");
+		shouldBeRendered("p", "Relative score: 189");
+		shouldBeRendered(".result-evidence-name", "steamed rice");
+		shouldBeRendered(".result-evidence-why", "Matched in INSIGHT’s current food table");
+		cy.get(".result-sheet").should("not.contain.text", "Data quality:").and("not.contain.text", "Main drivers");
 
 		// Per-item FII/source evidence lives behind the collapsed "Advanced
 		// details" disclosure (UX v1 §10) — closed by default, rendered once
-		// opened, with the same helper-produced source wording as before.
-		cy.contains("p", "Source: Direct FII match").should("not.be.visible");
+		// opened, using the same software-action provenance as the evidence row.
+		cy.contains("p", "Model handling: Matched in INSIGHT’s current food table").should("not.be.visible");
 		cy.contains("summary", "Advanced details").click();
-		shouldBeRendered("p", "Source: Direct FII match");
+		shouldBeRendered("p", "Model handling: Matched in INSIGHT’s current food table");
 	});
 
 	it("offers no save control and no editable inputs", () => {

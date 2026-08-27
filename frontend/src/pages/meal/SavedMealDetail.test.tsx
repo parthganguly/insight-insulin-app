@@ -22,8 +22,8 @@ import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
 import { DRAFT_MEAL_STATUS, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
-import { ACUTE_SCORE_SCALE_EXPLAINER } from "../../utils/acuteScoreDisplay";
-import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE } from "../../utils/safetyCopy";
+import { SAVED_RESULT_SCALE_DISCLOSURE, SAVED_RESULT_SCORE_BOUNDARY, getSavedResultScoreAriaLabel } from "../../utils/acuteScoreDisplay";
+import { APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, getSavedResultUnknownItemsNotice } from "../../utils/safetyCopy";
 import { CALORIE_BAR_NOTE } from "../../components/EvidenceRows";
 
 // Read-only saved-meal detail view (issue #89): opening a saved meal from
@@ -126,26 +126,37 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		vi.unstubAllGlobals();
 	});
 
-	it("shows the canonical saved state: status, real score, quality, drivers, and item explanations", async () => {
+	it("shows the canonical saved state with a neutral relative score and software-action provenance", async () => {
 		stubBackend();
 		renderSavedMealDetail();
 
 		expect(await screen.findByText(SAVED_MEAL_STATUS)).toBeTruthy();
 		expect(screen.queryByText(DRAFT_MEAL_STATUS)).toBeNull();
 
-		// Canonical score with above-reference semantics intact, not the
-		// "Hard to estimate" fallback the draft conversion used to force.
-		// Issue #93: scored meals use the single neutral presentation.
-		expect(screen.getByText("Relative insulin-demand score")).toBeTruthy();
+		expect(screen.getByText("Estimated meal insulin demand")).toBeTruthy();
 		expect(screen.queryByText("Hard to estimate from this meal")).toBeNull();
-		expect(screen.getByText("Score: 360 · above internal reference (100)")).toBeTruthy();
-		expect(screen.getByText(ACUTE_SCORE_SCALE_EXPLAINER)).toBeTruthy();
+		expect(screen.getByText("Relative score: 360")).toBeTruthy();
+		expect(screen.getByText(SAVED_RESULT_SCORE_BOUNDARY)).toBeTruthy();
+		expect(screen.queryByText(/Data quality:/)).toBeNull();
+		expect(screen.queryByText("steamed rice")).toBeNull();
+		expect(screen.queryByText("sweet sauce")).toBeNull();
+		expect(screen.queryByText("matched FII table entry")).toBeNull();
+		expect(screen.getByText("Matched in INSIGHT’s current food table")).toBeTruthy();
+		expect(screen.getByText("Model handling: Matched in INSIGHT’s current food table")).toBeTruthy();
+	});
 
-		expect(screen.getByText("Data quality: High.")).toBeTruthy();
-		expect(screen.getByText("steamed rice")).toBeTruthy();
-		expect(screen.getByText("sweet sauce")).toBeTruthy();
-		expect(screen.getByText("matched FII table entry")).toBeTruthy();
-		expect(screen.getByText("Source: Direct FII match")).toBeTruthy();
+	it.each([50, 100, 137, 767, 1200])("renders normal score %s with identical neutral semantics", async (score) => {
+		stubBackend();
+		usePersistentMealStore.setState({ meals: [savedMeal({ acute_score: score })] });
+		const { baseElement } = renderSavedMealDetail();
+		await screen.findByText(SAVED_MEAL_STATUS);
+
+		const scoreGroup = baseElement.querySelector(".result-score");
+		expect(scoreGroup).toBeTruthy();
+		expect(scoreGroup?.textContent).toBe(`Relative score: ${score}${SAVED_RESULT_SCORE_BOUNDARY}`);
+		expect(scoreGroup?.getAttribute("role")).toBe("group");
+		expect(scoreGroup?.getAttribute("aria-label")).toBe(getSavedResultScoreAriaLabel(score));
+		expect(scoreGroup?.textContent).not.toMatch(/above|below|reference/i);
 	});
 
 	it("keeps both sealed disclaimers verbatim in the closed footnote disclosure", async () => {
@@ -153,7 +164,7 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		const { baseElement } = renderSavedMealDetail();
 		await screen.findByText(SAVED_MEAL_STATUS);
 
-		const footnotes = baseElement.querySelector("details.result-footnotes");
+		const footnotes = baseElement.querySelector("details.result-footnotes:not(.result-score-method)");
 		expect(footnotes).toBeTruthy();
 		expect(footnotes).not.toHaveAttribute("open");
 		expect(footnotes?.querySelector("summary")?.textContent).toBe("What this doesn't mean");
@@ -176,9 +187,9 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 			"p.result-meal-meta",
 			"h2.result-verdict",
 			"p.result-verdict-support",
-			"p.result-quality",
 			"div.result-score",
 			"section.result-evidence",
+			"details.result-footnotes",
 			"details.result-footnotes",
 			"details.result-advanced",
 		]);
@@ -221,8 +232,8 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		await screen.findByText(SAVED_MEAL_STATUS);
 
 		expect(baseElement.querySelector("h1.result-meal-name")?.textContent).toBe("Synthetic Demo Bowl");
-		expect(baseElement.querySelector("h2.result-verdict")?.textContent).toBe("Relative insulin-demand score");
-		expect(baseElement.querySelector(".result-evidence h3")?.textContent).toBe("What drove it");
+		expect(baseElement.querySelector("h2.result-verdict")?.textContent).toBe("Estimated meal insulin demand");
+		expect(baseElement.querySelector(".result-evidence h3")?.textContent).toBe("How this estimate was built");
 	});
 
 	it("shows the meal composition and the logged moment as demoted metadata", async () => {
@@ -287,23 +298,20 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(currentMeal.items).toHaveLength(0);
 	});
 
-	it("keeps the 'Hard to estimate' presentation and de-emphasises the nominal reading for low-quality saved meals", async () => {
+	it("keeps Hard to estimate primary and moves the partial model output into Advanced details", async () => {
 		stubBackend();
 		usePersistentMealStore.setState({ meals: [savedMeal({ estimate_quality: "low" })] });
 		const { baseElement } = renderSavedMealDetail();
 
 		expect(await screen.findByText("Hard to estimate from this meal")).toBeTruthy();
-		expect(screen.getByText("Data quality: Low.")).toBeTruthy();
-		expect(baseElement.querySelector(".result-quality")?.textContent).toContain("Data quality: Low. Uses rough fallback");
-		expect(baseElement.querySelector(".result-quality")?.textContent).not.toContain("LowUses");
-
-		// Declared J5 change: the reading is shown, but inside the quieter
-		// "What we could read" note and never as the page's primary score block.
-		const note = baseElement.querySelector(".result-nominal-note");
-		expect(note).toBeTruthy();
-		expect(note?.querySelector("h3")?.textContent).toBe("What we could read");
-		expect(note).toContainElement(screen.getByText("Score: 360 · above internal reference (100)"));
+		expect(screen.queryByText(/Data quality:/)).toBeNull();
 		expect(baseElement.querySelector(".result-score")).toBeNull();
+		expect(baseElement.querySelector(".result-nominal-note")).toBeNull();
+		const partial = baseElement.querySelector(".result-advanced .result-partial-output");
+		expect(partial).toBeTruthy();
+		expect(partial?.textContent).toContain("Partial model output");
+		expect(partial?.textContent).toContain("Relative score: 360");
+		expect(partial?.textContent).toContain("Calculated only from items the current model could estimate");
 	});
 
 	it("suppresses the reading entirely when an insufficient-data meal has no finite score", async () => {
@@ -312,10 +320,9 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		const { baseElement } = renderSavedMealDetail();
 
 		expect(await screen.findByText("Hard to estimate from this meal")).toBeTruthy();
-		expect(baseElement.querySelector(".result-nominal-note")).toBeNull();
+		expect(baseElement.querySelector(".result-partial-output")).toBeNull();
 		expect(baseElement.querySelector(".result-score")).toBeNull();
-		expect(screen.queryByText(/^Score: /)).toBeNull();
-		expect(screen.queryByText(ACUTE_SCORE_SCALE_EXPLAINER)).toBeNull();
+		expect(screen.queryByText(/^Relative score: /)).toBeNull();
 		// Evidence stays visible; it is quietened, not hidden.
 		expect(baseElement.querySelector(".result-evidence-muted")).toBeTruthy();
 		expect(baseElement.querySelector(".result-evidence-name")?.textContent).toBe("Steamed rice");
@@ -337,7 +344,7 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		evidence.querySelectorAll(".result-evidence-bar").forEach((bar) => expect(bar.getAttribute("aria-hidden")).toBe("true"));
 	});
 
-	it("reads driver-matched items first and keeps drivers that match no item", async () => {
+	it("keeps stored item order and removes causal driver copy", async () => {
 		stubBackend();
 		const twoItemMeal = savedMeal({
 			items: [
@@ -351,9 +358,9 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		await screen.findByText(SAVED_MEAL_STATUS);
 
 		const names = Array.from(baseElement.querySelectorAll(".result-evidence-name")).map((node) => node.textContent);
-		expect(names).toEqual(["Steamed rice", "Side salad"]);
-		// "sweet sauce" names no stored item but the backend still reported it.
-		expect(screen.getByText("sweet sauce")).toBeTruthy();
+		expect(names).toEqual(["Side salad", "Steamed rice"]);
+		expect(screen.queryByText("sweet sauce")).toBeNull();
+		expect(screen.queryByText("Main drivers")).toBeNull();
 	});
 
 	it("omits bars for a saved meal whose items carry no calories", async () => {
@@ -370,20 +377,17 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(baseElement.querySelector(".result-evidence-kcal")?.textContent).toBe("≈ 0 kcal");
 	});
 
-	it("renders repeated result explanations without duplicate React keys", async () => {
+	it("does not expose repeated legacy why strings as provenance", async () => {
 		stubBackend();
 		const repeatedDriver = "Used a direct Food Insulin Index match and scaled it by eaten energy.";
 		const baseMeal = savedMeal();
 		const repeatedItems = ["item-1", "item-2", "item-3"].map((id) => ({ ...baseMeal.items[0], id, why: repeatedDriver }));
 		usePersistentMealStore.setState({ meals: [savedMeal({ items: repeatedItems, main_insulin_drivers: [repeatedDriver, repeatedDriver, repeatedDriver] })] });
-		const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
-
 		renderSavedMealDetail();
 
-		// Three driver entries plus one why-line per item.
-		expect(await screen.findAllByText(repeatedDriver)).toHaveLength(6);
-		expect(consoleErrorSpy.mock.calls.some((call) => String(call[0]).includes("same key"))).toBe(false);
-		consoleErrorSpy.mockRestore();
+		expect(await screen.findByText(SAVED_MEAL_STATUS)).toBeTruthy();
+		expect(screen.queryByText(repeatedDriver)).toBeNull();
+		expect(screen.getAllByText("Matched in INSIGHT’s current food table")).toHaveLength(3);
 	});
 
 	it("requires confirmation, then deletes backend-first and removes the meal locally", async () => {
@@ -459,18 +463,32 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(await screen.findByText(SAVED_MEAL_STATUS)).toBeTruthy();
 		// getByText throws when the sealed notice is stacked more than once.
 		expect(screen.getByText(ROUGH_ESTIMATE_NOTICE)).toBeTruthy();
-		expect(screen.getAllByText("Source: Macro-based rough estimate")).toHaveLength(2);
+		expect(screen.getAllByText("Model handling: Used a fallback estimate")).toHaveLength(2);
 	});
 
-	it("keeps the unknown-items notice visible outside any disclosure", async () => {
+	it("authors unknown item names outside disclosure and treats them as missing model information", async () => {
 		stubBackend();
 		const unknownMeal = savedMeal({ items: [{ ...savedMeal().items[0], source: "unknown", fii: undefined }] });
 		usePersistentMealStore.setState({ meals: [unknownMeal] });
 		const { baseElement } = renderSavedMealDetail();
 
-		const notice = await screen.findByText(UNKNOWN_ITEMS_NOTICE);
+		const notice = await screen.findByText(getSavedResultUnknownItemsNotice(["Steamed rice"]));
 		expect(notice).toBeTruthy();
 		expect(baseElement.querySelector("details")?.contains(notice)).toBe(false);
+		expect(screen.getByText("Not estimated in this version")).toBeTruthy();
+		expect(baseElement.textContent).not.toMatch(/add 0|real insulin demand may be higher/i);
+	});
+
+	it("keeps the truthful normalization in a closed, keyboard-native disclosure", async () => {
+		stubBackend();
+		const { baseElement } = renderSavedMealDetail();
+		await screen.findByText(SAVED_MEAL_STATUS);
+
+		const disclosure = baseElement.querySelector("details.result-score-method");
+		expect(disclosure).toBeTruthy();
+		expect(disclosure).not.toHaveAttribute("open");
+		expect(disclosure?.querySelector("summary")?.textContent).toBe("How this score works");
+		expect(disclosure).toContainElement(screen.getByText(SAVED_RESULT_SCALE_DISCLOSURE));
 	});
 
 	it("routes Check another meal to the Log Meal chooser", async () => {
@@ -501,7 +519,7 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		const disclosure = baseElement.querySelector(".result-advanced");
 		expect(disclosure).toBeTruthy();
 		expect(disclosure).not.toHaveAttribute("open");
-		expect(disclosure).toContainElement(screen.getByText("Source: Direct FII match"));
+		expect(disclosure).toContainElement(screen.getByText("Model handling: Matched in INSIGHT’s current food table"));
 		expect(disclosure?.querySelector("ion-card")).toBeNull();
 		expect(baseElement.querySelector(".result-sheet ion-card")).toBeNull();
 	});

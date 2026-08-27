@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-// Acute-score truth in presentation (issue #93): 100 is an uncalibrated
-// internal reference, scores above 100 keep their raw number, and no active
-// UI text implies a typical meal, a percentage, or a health risk.
+// Saved-result acute-score truth in presentation (issues #93/#125): the raw
+// value remains visible, reference 100 is confined to deep disclosure, and no
+// active UI interprets magnitude as a category, target, or biological result.
 
 import { assertNoForbiddenPhrases, assertNoHorizontalOverflow, shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
 
@@ -13,12 +13,11 @@ const openSavedDetail = (mealId: string, mealName: string) => {
 };
 
 describe("Acute-score presentation", () => {
-	it("uses internal-reference wording at exactly 100", () => {
+	it("does not make exactly 100 special on the primary result", () => {
 		stubBackend({ meals: [syntheticBackendMeal("syn-100", "Synthetic Reference Meal", 100)], chronic: { loggedDays: 7, rollingDii: 0.15 } });
 		openSavedDetail("syn-100", "Synthetic Reference Meal");
 
-		cy.contains("Relative insulin-demand score").should("be.visible");
-		cy.contains("has not yet been calibrated").should("be.visible");
+		cy.contains("Estimated meal insulin demand").should("be.visible");
 
 		// The sealed score block sits below the scroll fold at Cypress's desktop
 		// viewport, and Ionic sets `position: fixed` on <body>, so Cypress
@@ -30,23 +29,25 @@ describe("Acute-score presentation", () => {
 		// text, a real painted box, and no display/visibility/opacity hiding.
 		// This is the same treatment the ring-removal case below already uses
 		// for these two elements.
-		shouldBeRendered(".result-score-line", "Score: 100 · internal reference: 100");
-		shouldBeRendered(".result-score-caption", "It is not a percentage and can exceed 100.");
+		shouldBeRendered(".result-score-line", "Relative score: 100");
+		shouldBeRendered(".result-score-caption", "Not a percentage, target, health category, bodily measurement, or prediction of your body’s response.");
+		cy.get(".result-score").should("not.contain.text", "reference");
+		cy.get("details.result-score-method").should("not.have.attr", "open");
 		assertNoForbiddenPhrases();
 	});
 
 	for (const score of [101, 189, 500, 1580]) {
-		it(`keeps the raw number and above-reference wording at ${score}`, () => {
+		it(`keeps the raw number with neutral semantics at ${score}`, () => {
 			stubBackend({ meals: [syntheticBackendMeal(`syn-${score}`, `Synthetic Meal ${score}`, score)], chronic: { loggedDays: 7, rollingDii: 0.15 } });
 			openSavedDetail(`syn-${score}`, `Synthetic Meal ${score}`);
 
-			// J5 retired the circular meter on this page: the raw, uncapped score
-			// now reads directly from the sealed score line instead of a ring.
+			// The raw, uncapped score reads directly from the neutral score line.
 			// Rendered-check for the same below-the-fold reason as above; these
 			// cases only passed by the accident of a shorter meal name leaving
 			// the block a few pixels higher in the layout.
-			shouldBeRendered(".result-score-line", `Score: ${score} · above internal reference (100)`);
+			shouldBeRendered(".result-score-line", `Relative score: ${score}`);
 			cy.get(".result-score-line").should("contain.text", String(score));
+			cy.get(".result-score").should("not.contain.text", "reference").and("not.contain.text", "above");
 			assertNoForbiddenPhrases();
 		});
 	}
@@ -55,12 +56,11 @@ describe("Acute-score presentation", () => {
 		stubBackend({ meals: [syntheticBackendMeal("syn-189", "Synthetic Meal 189", 189)], chronic: { loggedDays: 7, rollingDii: 0.15 } });
 		openSavedDetail("syn-189", "Synthetic Meal 189");
 
-		// The sealed detail line and scale explainer are the accessible meaning;
-		// they are ordinary text, so screen readers and sighted users get the
-		// same wording rather than a separate ring-only aria-label.
-		shouldBeRendered(".result-score-line", "Score: 189 · above internal reference (100)");
-		shouldBeRendered(".result-score-caption", "This score compares estimated meal insulin demand with an internal reference set to 100.");
-		shouldBeRendered(".result-score-caption", "It is not a percentage and can exceed 100.");
+		shouldBeRendered(".result-score-line", "Relative score: 189");
+		shouldBeRendered(".result-score-caption", "Not a percentage, target, health category, bodily measurement, or prediction of your body’s response.");
+		cy.get(".result-score")
+			.should("have.attr", "role", "group")
+			.and("have.attr", "aria-label", "Relative model score 189. Not a percentage, target, health category, bodily measurement, or prediction of your body’s response.");
 
 		// No ring, gauge or capped visual survives on the saved result. The
 		// assertion is scoped to this page: the History list still renders the
@@ -75,7 +75,7 @@ describe("Acute-score presentation", () => {
 		[390, 844, "mobile-390"],
 		[320, 568, "mobile-320"],
 	] as Array<[number, number, string]>) {
-		it(`keeps the above-reference presentation readable at ${label}`, () => {
+		it(`keeps the neutral relative-score presentation readable at ${label}`, () => {
 			cy.viewport(width, height);
 			stubBackend({ meals: [syntheticBackendMeal("syn-1580", "Synthetic Meal 1580", 1580)], chronic: { loggedDays: 7, rollingDii: 0.15 } });
 			openSavedDetail("syn-1580", "Synthetic Meal 1580");
@@ -83,7 +83,8 @@ describe("Acute-score presentation", () => {
 			// Presence check: Cypress's visibility algorithm misreads Ionic's
 			// fixed-layout scroll container at this width, but the wording and
 			// the no-overflow invariant are what this test guards.
-			cy.contains("Score: 1580 · above internal reference (100)").should("exist");
+			cy.contains("Relative score: 1580").should("exist");
+			cy.get(".result-score").should("not.contain.text", "reference");
 			assertNoHorizontalOverflow();
 		});
 	}

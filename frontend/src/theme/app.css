@@ -1919,19 +1919,7 @@ ion-progress-bar {
 	color: var(--ink-2);
 }
 
-/* Quality and notices — typographic, never chromatic */
-
-.result-quality {
-	margin: 16px 0 0;
-	font-size: var(--type-secondary);
-	line-height: 1.55;
-	color: var(--ink-2);
-}
-
-.result-quality-label {
-	font-weight: 700;
-	color: var(--ink);
-}
+/* Model-coverage notices — typographic, never chromatic */
 
 .result-notice {
 	margin: 8px 0 0;
@@ -1940,9 +1928,8 @@ ion-progress-bar {
 	color: var(--ink-3);
 }
 
-/* Score and reference. Mid-size tabular numerals inside a sealed sentence —
-   no ring, no gauge, no bar: a bar against an uncalibrated reference of 100
-   would reinstate exactly the capped-ring falsehood issue #93 retired. */
+/* Relative model score. Mid-size tabular numerals inside a neutral sentence —
+   no ring, gauge, bar, category, or primary-surface reference comparison. */
 
 .result-score {
 	margin-top: 18px;
@@ -1966,23 +1953,6 @@ ion-progress-bar {
 	color: var(--ink-3);
 }
 
-/* Insufficient data: what could be read, deliberately de-emphasised. */
-
-.result-nominal-note {
-	margin-top: 18px;
-	padding: 12px 14px;
-	border-radius: var(--radius-note);
-	background: var(--tint);
-}
-
-.result-nominal-line {
-	margin: 6px 0 0;
-	font-size: var(--type-secondary);
-	line-height: 1.5;
-	color: var(--ink-2);
-	font-variant-numeric: tabular-nums;
-}
-
 .result-kicker {
 	margin: 0;
 	font-family: var(--font-body);
@@ -1999,26 +1969,6 @@ ion-progress-bar {
 	margin-top: 24px;
 	padding-top: 16px;
 	border-top: 1px solid var(--line);
-}
-
-.result-drivers {
-	margin: 8px 0 0;
-	font-size: var(--type-caption);
-	line-height: 1.5;
-	color: var(--ink-3);
-}
-
-.result-drivers-label {
-	display: block;
-	font-weight: 700;
-	color: var(--ink-2);
-}
-
-.result-driver {
-	font-family: var(--font-journal);
-	font-size: var(--type-secondary);
-	color: var(--ink-2);
-	overflow-wrap: break-word;
 }
 
 .result-evidence-rows {
@@ -2163,6 +2113,19 @@ ion-progress-bar {
 
 .result-advanced .advanced-details-content {
 	gap: 0;
+}
+
+.result-partial-output {
+	padding: 14px 0;
+	border-top: 1px solid var(--line);
+}
+
+.result-partial-line {
+	margin: 6px 0 0;
+	font-size: var(--type-secondary);
+	line-height: 1.5;
+	color: var(--ink-2);
+	font-variant-numeric: tabular-nums;
 }
 
 .result-advanced-item {
