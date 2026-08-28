@@ -26,8 +26,11 @@ def _migrate_sqlite_columns() -> None:
             "total_fat": "ALTER TABLE meals ADD COLUMN total_fat FLOAT",
             "estimate_quality": "ALTER TABLE meals ADD COLUMN estimate_quality VARCHAR(32)",
             "main_insulin_drivers": "ALTER TABLE meals ADD COLUMN main_insulin_drivers TEXT",
+            "client_request_id": "ALTER TABLE meals ADD COLUMN client_request_id VARCHAR(36)",
+            "client_request_fingerprint": "ALTER TABLE meals ADD COLUMN client_request_fingerprint VARCHAR(64)",
         },
         "meal_items": {
+            "item_position": "ALTER TABLE meal_items ADD COLUMN item_position INTEGER",
             "protein_g": "ALTER TABLE meal_items ADD COLUMN protein_g FLOAT",
             "fat_g": "ALTER TABLE meal_items ADD COLUMN fat_g FLOAT",
             "kcal_item": "ALTER TABLE meal_items ADD COLUMN kcal_item FLOAT",
@@ -45,6 +48,15 @@ def _migrate_sqlite_columns() -> None:
             for column_name, alter_sql in pending_columns.items():
                 if column_name not in existing:
                     conn.execute(text(alter_sql))
+
+        meal_indexes = {index["name"] for index in inspect(conn).get_indexes("meals")}
+        if "ux_meals_client_request_id" not in meal_indexes:
+            conn.execute(
+                text(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS ux_meals_client_request_id "
+                    "ON meals(client_request_id)"
+                )
+            )
 
 
 def get_db():

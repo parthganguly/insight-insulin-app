@@ -1,14 +1,24 @@
+import hashlib
 import json
+from dataclasses import dataclass
 from datetime import datetime, timezone
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from db import get_db
 from db_models import MealDB, MealItemDB
 from estimate_quality import resolve_estimate_quality
-from models import MealCreate, MealItemResponse, MealResponse
+from models import (
+    MealCreate,
+    MealItemCreate,
+    MealItemResponse,
+    MealPreviewRequest,
+    MealPreviewResponse,
+    MealResponse,
+)
 from scoring_service import (
     build_source_explanation,
     compute_acute_score,
@@ -19,6 +29,40 @@ from scoring_service import (
 router = APIRouter()
 
 ALLOWED_ESTIMATE_QUALITY = {"high", "medium", "low", "unknown"}
+
+
+@dataclass(frozen=True)
+class ModeledMealItem:
+    name: str
+    quantity: float
+    unit: str
+    kcal_per_unit: float
+    carb_g: float
+    protein_g: float | None
+    fat_g: float | None
+    sat_fat_g: float
+    gi: int
+    fii: int
+    kcal_item: float
+    insulin_load: float
+    confidence: float
+    fii_source: str
+    why: str
+
+
+@dataclass(frozen=True)
+class ModeledMeal:
+    meal_name: str
+    items: list[ModeledMealItem]
+    total_kcal: float
+    total_carb: float
+    total_protein: float
+    total_fat: float
+    total_sat_fat: float
+    insulin_load_total: float
+    acute_score: float
+    estimate_quality: str
+    main_insulin_drivers: list[str]
 
 
 # Timestamp contract (issue #77): meal times are UTC end to end. The SQLite
@@ -53,6 +97,34 @@ def resolve_positive_provided_fii(fii_value: int | None, fii: int | None) -> int
     return None
 
 
+def canonical_material_items(items: list[MealItemCreate]) -> list[dict]:
+    return [
+        {
+            "name": item.name,
+            "quantity": item.quantity,
+            "unit": item.unit.value,
+            "kcalPerUnit": item.kcalPerUnit,
+            "carb_g": item.carb_g,
+            "protein_g": item.protein_g,
+            "fat_g": item.fat_g,
+            "satFat_g": item.satFat_g,
+            "gi": item.gi,
+            "fii": resolve_positive_provided_fii(item.fii_value, item.fii),
+        }
+        for item in items
+    ]
+
+
+def compute_client_request_fingerprint(items: list[MealItemCreate]) -> str:
+    canonical_json = json.dumps(
+        canonical_material_items(items),
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(canonical_json.encode("utf-8")).hexdigest()
+
+
 def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
     drivers_raw = meal_db.main_insulin_drivers or "[]"
     try:
@@ -63,6 +135,10 @@ def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
     estimate_quality = meal_db.estimate_quality or "unknown"
     if estimate_quality not in ALLOWED_ESTIMATE_QUALITY:
         estimate_quality = "unknown"
+
+    loaded_items = list(meal_db.items)
+    if all(item.item_position is not None for item in loaded_items):
+        loaded_items.sort(key=lambda item: item.item_position)
 
     items = [
         MealItemResponse(
@@ -83,7 +159,7 @@ def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
             fii_source=standardize_fii_source(item.fii_source),
             why=item.why or build_source_explanation(standardize_fii_source(item.fii_source)),
         )
-        for item in meal_db.items
+        for item in loaded_items
     ]
 
     insulin_load_total = meal_db.insulin_load_total
@@ -106,7 +182,28 @@ def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
     )
 
 
-def resolve_main_insulin_drivers(item_rows: list[MealItemDB]) -> list[str]:
+def map_modeled_item_to_schema(item: ModeledMealItem) -> MealItemResponse:
+    return MealItemResponse(
+        name=item.name,
+        quantity=item.quantity,
+        unit=item.unit,
+        kcalPerUnit=item.kcal_per_unit,
+        carb_g=item.carb_g,
+        protein_g=item.protein_g,
+        fat_g=item.fat_g,
+        satFat_g=item.sat_fat_g,
+        gi=item.gi,
+        fii_value=item.fii if item.fii > 0 else None,
+        fii=item.fii if item.fii > 0 else None,
+        kcal_item=item.kcal_item,
+        insulin_load=item.insulin_load,
+        confidence=item.confidence,
+        fii_source=standardize_fii_source(item.fii_source),
+        why=item.why or build_source_explanation(standardize_fii_source(item.fii_source)),
+    )
+
+
+def resolve_main_insulin_drivers(item_rows: list[ModeledMealItem]) -> list[str]:
     ranked_names: list[str] = []
     for item in sorted(item_rows, key=lambda row: row.insulin_load or 0.0, reverse=True):
         normalized_name = item.name.strip()
@@ -118,17 +215,14 @@ def resolve_main_insulin_drivers(item_rows: list[MealItemDB]) -> list[str]:
     return ranked_names
 
 
-@router.post("/meals", response_model=MealResponse)
-async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
-    meal_id = str(uuid.uuid4())
-    created_at = coerce_created_at_to_naive_utc(meal.created_at)
+def model_meal(meal: MealCreate | MealPreviewRequest) -> ModeledMeal:
     total_kcal = 0.0
     total_carb = 0.0
     total_protein = 0.0
     total_fat = 0.0
     total_sat_fat = 0.0
     insulin_load_total = 0.0
-    item_rows: list[MealItemDB] = []
+    item_rows: list[ModeledMealItem] = []
     item_sources: list[str] = []
 
     for item in meal.items:
@@ -160,9 +254,7 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
         item_sources.append(fii_source)
 
         item_rows.append(
-            MealItemDB(
-                id=str(uuid.uuid4()),
-                meal_id=meal_id,
+            ModeledMealItem(
                 name=item.name,
                 quantity=item.quantity,
                 unit=item.unit.value,
@@ -184,10 +276,9 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
     acute_score, _acute_confidence = compute_acute_score(insulin_load_total, tdee=None)
     main_insulin_drivers = resolve_main_insulin_drivers(item_rows)
 
-    meal_db = MealDB(
-        id=meal_id,
-        created_at=created_at,
+    return ModeledMeal(
         meal_name=meal.meal_name,
+        items=item_rows,
         total_kcal=total_kcal,
         total_carb=total_carb,
         total_protein=total_protein,
@@ -195,15 +286,135 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
         total_sat_fat=total_sat_fat,
         insulin_load_total=insulin_load_total,
         acute_score=acute_score,
-        chronic_score=None,
         estimate_quality=resolve_estimate_quality(item_sources),
-        main_insulin_drivers=json.dumps(main_insulin_drivers),
+        main_insulin_drivers=main_insulin_drivers,
+    )
+
+
+def build_meal_db(
+    modeled: ModeledMeal,
+    meal_id: str,
+    created_at: datetime,
+    *,
+    client_request_id: str | None = None,
+    client_request_fingerprint: str | None = None,
+) -> MealDB:
+    item_rows = [
+        MealItemDB(
+            id=str(uuid.uuid4()),
+            meal_id=meal_id,
+            item_position=item_position,
+            name=item.name,
+            quantity=item.quantity,
+            unit=item.unit,
+            kcal_per_unit=item.kcal_per_unit,
+            carb_g=item.carb_g,
+            protein_g=item.protein_g,
+            fat_g=item.fat_g,
+            gi=item.gi,
+            sat_fat_g=item.sat_fat_g,
+            fii=item.fii,
+            kcal_item=item.kcal_item,
+            insulin_load=item.insulin_load,
+            confidence=item.confidence,
+            fii_source=item.fii_source,
+            why=item.why,
+        )
+        for item_position, item in enumerate(modeled.items)
+    ]
+
+    meal_db = MealDB(
+        id=meal_id,
+        created_at=created_at,
+        meal_name=modeled.meal_name,
+        total_kcal=modeled.total_kcal,
+        total_carb=modeled.total_carb,
+        total_protein=modeled.total_protein,
+        total_fat=modeled.total_fat,
+        total_sat_fat=modeled.total_sat_fat,
+        insulin_load_total=modeled.insulin_load_total,
+        acute_score=modeled.acute_score,
+        chronic_score=None,
+        estimate_quality=modeled.estimate_quality,
+        main_insulin_drivers=json.dumps(modeled.main_insulin_drivers),
+        client_request_id=client_request_id,
+        client_request_fingerprint=client_request_fingerprint,
     )
 
     meal_db.items = item_rows
+    return meal_db
+
+
+@router.post("/meals/preview", response_model=MealPreviewResponse)
+async def preview_meal(meal: MealPreviewRequest):
+    modeled = model_meal(meal)
+    return MealPreviewResponse(
+        meal_name=modeled.meal_name,
+        items=[map_modeled_item_to_schema(item) for item in modeled.items],
+        insulin_load_total=modeled.insulin_load_total,
+        acute_score=modeled.acute_score,
+        kcal_total=modeled.total_kcal,
+        carbs_total=modeled.total_carb,
+        protein_total=modeled.total_protein,
+        fat_total=modeled.total_fat,
+        estimate_quality=modeled.estimate_quality,
+        main_insulin_drivers=modeled.main_insulin_drivers,
+        persisted=False,
+    )
+
+
+@router.post("/meals", response_model=MealResponse)
+async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
+    client_request_id = (
+        str(meal.client_request_id) if meal.client_request_id is not None else None
+    )
+    client_request_fingerprint = None
+    if client_request_id is not None:
+        client_request_fingerprint = compute_client_request_fingerprint(meal.items)
+        existing = (
+            db.query(MealDB)
+            .filter(MealDB.client_request_id == client_request_id)
+            .one_or_none()
+        )
+        if existing is not None:
+            if existing.client_request_fingerprint != client_request_fingerprint:
+                raise HTTPException(
+                    status_code=409,
+                    detail="client_request_id was already used for different meal items",
+                )
+            return map_meal_db_to_schema(existing)
+
+    meal_id = str(uuid.uuid4())
+    created_at = coerce_created_at_to_naive_utc(meal.created_at)
+    modeled = model_meal(meal)
+    meal_db = build_meal_db(
+        modeled,
+        meal_id,
+        created_at,
+        client_request_id=client_request_id,
+        client_request_fingerprint=client_request_fingerprint,
+    )
 
     db.add(meal_db)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError:
+        if client_request_id is None:
+            raise
+        db.rollback()
+        existing = (
+            db.query(MealDB)
+            .filter(MealDB.client_request_id == client_request_id)
+            .one_or_none()
+        )
+        if existing is None:
+            raise
+        if existing.client_request_fingerprint != client_request_fingerprint:
+            raise HTTPException(
+                status_code=409,
+                detail="client_request_id was already used for different meal items",
+            )
+        return map_meal_db_to_schema(existing)
     db.refresh(meal_db)
 
     return map_meal_db_to_schema(meal_db)

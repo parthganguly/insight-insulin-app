@@ -2,7 +2,8 @@ import base64
 import re
 from datetime import datetime
 from enum import Enum
-from typing import Any, List, Optional
+from typing import Any, List, Literal, Optional
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -115,6 +116,12 @@ class MealCreate(BaseModel):
     meal_name: str
     created_at: Optional[datetime] = None
     items: List[MealItemCreate]
+    client_request_id: Optional[UUID] = None
+
+
+class MealPreviewRequest(BaseModel):
+    meal_name: str
+    items: List[MealItemCreate]
 
 
 class MealItemResponse(MealItemCreate):
@@ -140,6 +147,20 @@ class MealResponse(BaseModel):
     fat_total: float
     estimate_quality: str
     main_insulin_drivers: list[str]
+
+
+class MealPreviewResponse(BaseModel):
+    meal_name: str
+    items: List[MealItemResponse]
+    insulin_load_total: float
+    acute_score: float
+    kcal_total: float
+    carbs_total: float
+    protein_total: float
+    fat_total: float
+    estimate_quality: str
+    main_insulin_drivers: list[str]
+    persisted: Literal[False] = False
 
 
 class MealEstimate(BaseModel):
