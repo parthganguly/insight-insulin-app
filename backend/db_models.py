@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from sqlalchemy import DateTime, Float, ForeignKey, Integer, String, Text
+from sqlalchemy import DateTime, Float, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -11,6 +11,9 @@ class Base(DeclarativeBase):
 
 class MealDB(Base):
     __tablename__ = "meals"
+    __table_args__ = (
+        Index("ux_meals_client_request_id", "client_request_id", unique=True),
+    )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, index=True)
@@ -25,6 +28,8 @@ class MealDB(Base):
     chronic_score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     estimate_quality: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     main_insulin_drivers: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    client_request_id: Mapped[Optional[str]] = mapped_column(String(36), nullable=True)
+    client_request_fingerprint: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
 
     items: Mapped[List["MealItemDB"]] = relationship(
         back_populates="meal",
@@ -38,6 +43,7 @@ class MealItemDB(Base):
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, index=True)
     meal_id: Mapped[str] = mapped_column(String(36), ForeignKey("meals.id"), nullable=False, index=True)
+    item_position: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     quantity: Mapped[float] = mapped_column(Float, nullable=False)
     unit: Mapped[str] = mapped_column(String(32), nullable=False)
