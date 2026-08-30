@@ -126,6 +126,25 @@ class MealIdempotencyTests(unittest.TestCase):
         self.assertEqual(self.session.query(self.db_models.MealDB).count(), 1)
         self.assertEqual(self.session.query(self.db_models.MealItemDB).count(), 1)
 
+    def test_idempotent_replay_derives_the_same_insufficient_status(self) -> None:
+        request_id = str(uuid.uuid4())
+        zero_kcal_exact_item = BASE_ITEM | {
+            "name": "white bread",
+            "kcalPerUnit": 0.0,
+        }
+
+        first = self.save(
+            client_request_id=request_id,
+            items=[zero_kcal_exact_item],
+        )
+        replay = self.save(
+            client_request_id=request_id,
+            items=[zero_kcal_exact_item],
+        )
+
+        self.assertEqual(first.estimate_status, "insufficient_data")
+        self.assertEqual(replay.estimate_status, first.estimate_status)
+
     def test_meal_name_and_created_at_are_non_material_and_original_stored_values_win(self) -> None:
         request_id = str(uuid.uuid4())
         first = self.save(

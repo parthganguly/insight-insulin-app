@@ -241,6 +241,7 @@ class B2MigrationCompatibilityTests(unittest.TestCase):
         self.assertEqual(hydrated[0].id, LEGACY_MEAL_ID)
         self.assertEqual(hydrated[0].meal_name, "Synthetic pre-B2 meal")
         self.assertEqual(hydrated[0].insulin_load_total, 40.0)
+        self.assertEqual(hydrated[0].estimate_status, "estimated")
         self.assertEqual([item.name for item in hydrated[0].items], loaded_legacy_order)
 
         chronic = asyncio.run(self.main.get_chronic_metrics(days=3, db=self.session))
@@ -296,6 +297,21 @@ class B2MigrationCompatibilityTests(unittest.TestCase):
         self.assertIn("ux_meals_client_request_id", unique_indexes)
         self.assertTrue(item_table.c.item_position.nullable)
         self.assertIsInstance(item_table.c.item_position.type, self.db_models.Integer)
+
+    def test_legacy_null_source_standardizes_to_unknown_without_inference(self) -> None:
+        legacy_row = self.session.get(self.db_models.MealDB, LEGACY_MEAL_ID)
+        legacy_row.estimate_quality = "low"
+        for item in legacy_row.items:
+            item.fii_source = None
+            item.kcal_per_unit = 0.0
+        self.session.commit()
+        self.session.expire_all()
+
+        hydrated = asyncio.run(self.meals_api.list_meals(self.session))[0]
+
+        self.assertEqual(hydrated.estimate_quality, "low")
+        self.assertEqual(hydrated.estimate_status, "estimated")
+        self.assertTrue(all(item.fii_source == "unknown" for item in hydrated.items))
 
 
 if __name__ == "__main__":

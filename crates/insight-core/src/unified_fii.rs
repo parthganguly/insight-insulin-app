@@ -9,7 +9,7 @@ use crate::decomposition::{
 };
 use crate::direct_fii::calculate_direct_fii_item_load;
 use crate::domain::{
-    EstimateQuality, EstimateSource, FiiValue, FormulaVersion, InsulinLoad, Kcal,
+    EstimateQuality, EstimateSource, EstimateStatus, FiiValue, FormulaVersion, InsulinLoad, Kcal,
     ValueValidationError, CURRENT_FORMULA_VERSION,
 };
 use crate::exact_fii::{calculate_exact_fii_item_load, ExactFiiItemLoadError};
@@ -189,6 +189,7 @@ pub struct UnifiedFiiMealEstimate {
     meal_kcal_total: Kcal,
     meal_insulin_load_total: InsulinLoad,
     estimate_quality: EstimateQuality,
+    estimate_status: EstimateStatus,
     formula_version: FormulaVersion,
 }
 
@@ -207,6 +208,10 @@ impl UnifiedFiiMealEstimate {
 
     pub const fn estimate_quality(&self) -> EstimateQuality {
         self.estimate_quality
+    }
+
+    pub const fn estimate_status(&self) -> EstimateStatus {
+        self.estimate_status
     }
 
     pub const fn formula_version(&self) -> FormulaVersion {
@@ -356,6 +361,29 @@ pub fn resolve_estimate_quality(item_sources: &[EstimateSource]) -> EstimateQual
     EstimateQuality::Low
 }
 
+/// Derives completeness from positive portion, resolved source, and per-unit energy only.
+pub fn resolve_estimate_status(
+    items: &[UnifiedFiiItem],
+    item_estimates: &[UnifiedFiiItemEstimate],
+) -> EstimateStatus {
+    debug_assert_eq!(items.len(), item_estimates.len());
+
+    if items.iter().zip(item_estimates).any(|(item, estimate)| {
+        item.quantity() > 0.0
+            && matches!(
+                estimate.source(),
+                EstimateSource::ExactFii
+                    | EstimateSource::MappedFii
+                    | EstimateSource::UserConfirmed
+            )
+            && item.kcal_per_unit().value() <= 0.0
+    }) {
+        return EstimateStatus::InsufficientData;
+    }
+
+    EstimateStatus::Estimated
+}
+
 /// Aggregates a non-empty meal while retaining terminal unknown placeholders.
 pub fn calculate_unified_fii_meal_totals(
     items: &[UnifiedFiiItem],
@@ -386,12 +414,14 @@ pub fn calculate_unified_fii_meal_totals(
         .iter()
         .map(UnifiedFiiItemEstimate::source)
         .collect();
+    let estimate_status = resolve_estimate_status(items, &item_estimates);
 
     Ok(Some(UnifiedFiiMealEstimate {
         item_estimates,
         meal_kcal_total: Kcal::new(meal_kcal_total)?,
         meal_insulin_load_total: InsulinLoad::new(meal_insulin_load_total)?,
         estimate_quality: resolve_estimate_quality(&item_sources),
+        estimate_status,
         formula_version,
     }))
 }
@@ -873,6 +903,62 @@ mod tests {
             let estimate = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
             assert_eq!(estimate.estimate_quality(), expected);
         }
+    }
+
+    #[test]
+    fn energy_scaled_positive_portion_zero_kcal_is_insufficient() {
+        let cases = [
+            UnifiedFiiItem::new("plain yogurt", Kcal::new(0.0).unwrap(), 1.0, None).unwrap(),
+            UnifiedFiiItem::new("fresh white bread", Kcal::new(0.0).unwrap(), 1.0, None).unwrap(),
+            UnifiedFiiItem::new(
+                "synthetic entered food",
+                Kcal::new(0.0).unwrap(),
+                1.0,
+                Some(FiiValue::new(42.0).unwrap()),
+            )
+            .unwrap(),
+        ];
+
+        for item in cases {
+            let estimate = calculate_unified_fii_meal_totals(&[item]).unwrap().unwrap();
+            assert_eq!(estimate.estimate_status(), EstimateStatus::InsufficientData);
+        }
+    }
+
+    #[test]
+    fn any_incomplete_fii_item_makes_the_whole_meal_insufficient() {
+        let items = [
+            UnifiedFiiItem::new("plain yogurt", Kcal::new(180.0).unwrap(), 1.0, None).unwrap(),
+            UnifiedFiiItem::new("white bread", Kcal::new(0.0).unwrap(), 1.0, None).unwrap(),
+        ];
+
+        let estimate = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
+
+        assert_eq!(estimate.estimate_quality(), EstimateQuality::High);
+        assert_eq!(estimate.estimate_status(), EstimateStatus::InsufficientData);
+    }
+
+    #[test]
+    fn fallback_unknown_and_zero_quantity_paths_remain_estimated() {
+        let macro_item =
+            UnifiedFiiItem::new("cultured dairy cup", Kcal::new(0.0).unwrap(), 1.0, None)
+                .unwrap()
+                .with_macro_nutrients(synthetic_macro_fallback_item().macro_nutrients());
+        let unknown_item =
+            UnifiedFiiItem::new("mystery mineral water", Kcal::new(0.0).unwrap(), 1.0, None)
+                .unwrap();
+        let zero_quantity_exact =
+            UnifiedFiiItem::new("plain yogurt", Kcal::new(0.0).unwrap(), 0.0, None).unwrap();
+
+        for item in [macro_item, unknown_item, zero_quantity_exact] {
+            let estimate = calculate_unified_fii_meal_totals(&[item]).unwrap().unwrap();
+            assert_eq!(estimate.estimate_status(), EstimateStatus::Estimated);
+        }
+    }
+
+    #[test]
+    fn empty_completeness_inputs_are_estimated() {
+        assert_eq!(resolve_estimate_status(&[], &[]), EstimateStatus::Estimated);
     }
 
     #[test]

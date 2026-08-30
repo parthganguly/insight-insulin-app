@@ -10,6 +10,7 @@ export type MealEstimate = {
 };
 
 export type CalorieSource = "meal_estimate" | "item_sum";
+export type EstimateStatus = "estimated" | "insufficient_data";
 
 export type Meal = {
 	id: string;
@@ -29,6 +30,7 @@ export type Meal = {
 	protein_total?: number;
 	fat_total?: number;
 	estimate_quality?: string;
+	estimate_status?: EstimateStatus;
 	main_insulin_drivers?: string[];
 	estimate?: MealEstimate;
 	calorie_source?: CalorieSource;

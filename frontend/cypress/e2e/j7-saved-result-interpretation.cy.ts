@@ -39,6 +39,7 @@ const normalMeal = (score = 137) => ({
 	protein_total: 14,
 	fat_total: 8,
 	estimate_quality: "high",
+	estimate_status: "estimated",
 	main_insulin_drivers: ["Synthetic table item"],
 	items: [item("exact", "Synthetic table item", "exact_fii"), item("entered", "Synthetic entered item", "user_confirmed")],
 });
@@ -147,6 +148,23 @@ describe("J7 provenance and hard-to-estimate semantics", () => {
 			cy.get("ion-app").invoke("text").should("not.match", /real insulin demand may be higher|add 0 to this score/i);
 		});
 	}
+
+	it("keeps high-quality zero disclosure-only when completeness status is insufficient", () => {
+		const insufficientMeal = {
+			...normalMeal(0),
+			id: "j7-hard-status",
+			name: "Synthetic incomplete-energy meal",
+			estimate_status: "insufficient_data",
+		};
+		openSavedResult(insufficientMeal);
+
+		shouldBeRendered("h2", "Hard to estimate from this meal");
+		cy.get(".result-score").should("not.exist");
+		cy.contains("summary", "Advanced details").click();
+		cy.get(".result-partial-output")
+			.should("contain.text", "Partial model output")
+			.and("contain.text", "Relative score: 0");
+	});
 });
 
 describe("J7 visual acceptance evidence", () => {

@@ -7,6 +7,8 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from estimate_completeness import EstimateStatus
+
 # AI-extraction request bounds (issue #93). The Smart Camera UI already caps
 # uploads at 5 images, so the backend enforces the same count defensively.
 # Per-image size: the frontend sends full-size camera JPEGs as base64 data
@@ -146,6 +148,7 @@ class MealResponse(BaseModel):
     protein_total: float
     fat_total: float
     estimate_quality: str
+    estimate_status: EstimateStatus
     main_insulin_drivers: list[str]
 
 
@@ -159,6 +162,7 @@ class MealPreviewResponse(BaseModel):
     protein_total: float
     fat_total: float
     estimate_quality: str
+    estimate_status: EstimateStatus
     main_insulin_drivers: list[str]
     persisted: Literal[False] = False
 

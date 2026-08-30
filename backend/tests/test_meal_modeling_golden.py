@@ -105,6 +105,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 0.0,
                 "fat_total": 0.0,
                 "estimate_quality": "high",
+                "estimate_status": "estimated",
                 "main_insulin_drivers": ["white bread"],
             },
         )
@@ -139,6 +140,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 0.0,
                 "fat_total": 0.0,
                 "estimate_quality": "medium",
+                "estimate_status": "estimated",
                 "main_insulin_drivers": ["chicken biryani"],
             },
         )
@@ -173,6 +175,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 0.0,
                 "fat_total": 0.0,
                 "estimate_quality": "high",
+                "estimate_status": "estimated",
                 "main_insulin_drivers": ["synthetic explicit food"],
             },
         )
@@ -215,6 +218,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 20.0,
                 "fat_total": 5.0,
                 "estimate_quality": "low",
+                "estimate_status": "estimated",
                 "main_insulin_drivers": ["synthetic fallback food"],
             },
         )
@@ -249,6 +253,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 0.0,
                 "fat_total": 0.0,
                 "estimate_quality": "unknown",
+                "estimate_status": "estimated",
                 "main_insulin_drivers": ["synthetic unknown food"],
             },
         )
@@ -355,6 +360,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 20.0,
                 "fat_total": 5.0,
                 "estimate_quality": "low",
+                "estimate_status": "estimated",
                 "main_insulin_drivers": [
                     "chicken biryani",
                     "white bread",
@@ -364,12 +370,7 @@ class MealModelingGoldenTests(unittest.TestCase):
         )
 
     def test_post_meals_zero_kcal_issue_97_golden(self) -> None:
-        """Freeze the known-bad #97 semantics for B2-1 parity only.
-
-        A zero-nutrition exact-FII item currently returns a zero score with high
-        estimate quality. This is not endorsed; it remains passing until #97 is
-        intentionally implemented and reviewed in its own change.
-        """
+        """Keep arithmetic and source quality while marking #97 incompleteness."""
         self.assert_single_item_case(
             meal_name="Golden zero kcal issue 97",
             item=BASE_ITEM
@@ -408,6 +409,7 @@ class MealModelingGoldenTests(unittest.TestCase):
                 "protein_total": 0.0,
                 "fat_total": 0.0,
                 "estimate_quality": "high",
+                "estimate_status": "insufficient_data",
                 "main_insulin_drivers": ["rice"],
             },
         )

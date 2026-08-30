@@ -16,6 +16,7 @@ export type SyntheticBackendMeal = {
 	protein_total: number;
 	fat_total: number;
 	estimate_quality: string;
+	estimate_status?: "estimated" | "insufficient_data";
 	main_insulin_drivers: string[];
 };
 
@@ -50,6 +51,7 @@ export const syntheticBackendMeal = (id: string, name: string, acuteScore: numbe
 	protein_total: 8,
 	fat_total: 1,
 	estimate_quality: "high",
+	estimate_status: "estimated",
 	main_insulin_drivers: ["steamed rice"],
 	...overrides,
 });

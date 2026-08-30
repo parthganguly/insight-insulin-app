@@ -49,6 +49,29 @@ describe("getImpactPresentation (neutral presentation, issue #93)", () => {
 		}
 	});
 
+	it("forces approved insufficient status onto the hard-to-estimate path even for high-quality zero", () => {
+		const presentation = getImpactPresentation(
+			meal({ estimate_quality: "high", estimate_status: "insufficient_data", acute_score: 0 }),
+		);
+
+		expect(presentation.kind).toBe("insufficient-data");
+		expect(presentation.title).toBe("Hard to estimate from this meal");
+	});
+
+	it("does not let estimated status promote low or unknown source quality", () => {
+		for (const estimate_quality of ["low", "unknown"]) {
+			expect(
+				getImpactPresentation(meal({ estimate_quality, estimate_status: "estimated", acute_score: 80 })).kind,
+			).toBe("insufficient-data");
+		}
+	});
+
+	it("keeps estimated high-quality meals on the normal path", () => {
+		expect(
+			getImpactPresentation(meal({ estimate_quality: "high", estimate_status: "estimated", acute_score: 80 })).kind,
+		).toBe("score");
+	});
+
 	it("keeps the normal description model-derived and reference-neutral", () => {
 		const presentation = getImpactPresentation(meal({ estimate_quality: "high", acute_score: 80 }));
 		expect(presentation.description).toBe(

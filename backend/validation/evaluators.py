@@ -6,6 +6,7 @@ from datetime import date, timedelta
 from api.meals import resolve_main_insulin_drivers
 from chronic_service import build_chronic_series_from_daily_maps
 from db_models import MealItemDB
+from estimate_completeness import EstimateStatus, resolve_estimate_status
 from estimate_quality import resolve_estimate_quality
 from scoring_service import compute_acute_score, compute_insulin_load_item
 from validation.schemas import ValidationCase, ValidationMeal, ValidationResult
@@ -18,6 +19,7 @@ class MealComputation:
     insulin_load_total: float
     acute_score: float
     estimate_quality: str
+    estimate_status: EstimateStatus
     source_labels: list[str]
     item_confidences: list[float]
     total_kcal: float
@@ -38,6 +40,7 @@ def compute_meal(meal: ValidationMeal) -> MealComputation:
     source_labels: list[str] = []
     item_confidences: list[float] = []
     total_kcal = 0.0
+    completeness_inputs: list[tuple[float, str, float | None]] = []
     # In-memory rows only (never persisted): the real backend driver resolver
     # reads item name and insulin_load from saved rows in product item order.
     driver_item_rows: list[MealItemDB] = []
@@ -56,6 +59,9 @@ def compute_meal(meal: ValidationMeal) -> MealComputation:
         )
         insulin_load_total += insulin_load_item
         source_labels.append(source_label)
+        completeness_inputs.append(
+            (item.quantity, source_label, item.kcal_per_unit)
+        )
         item_confidences.append(confidence)
         total_kcal += float(item.kcal_per_unit or 0.0) * float(item.quantity)
         driver_item_rows.append(MealItemDB(name=item.name, insulin_load=insulin_load_item))
@@ -68,6 +74,7 @@ def compute_meal(meal: ValidationMeal) -> MealComputation:
         insulin_load_total=insulin_load_total,
         acute_score=acute_score,
         estimate_quality=estimate_quality,
+        estimate_status=resolve_estimate_status(completeness_inputs),
         source_labels=source_labels,
         item_confidences=item_confidences,
         total_kcal=total_kcal,
@@ -119,6 +126,7 @@ def _evaluate_ranking(case: ValidationCase) -> ValidationResult:
                 "meal_name": row.meal_name,
                 "insulin_load_total": round(row.insulin_load_total, 4),
                 "acute_score": round(row.acute_score, 4),
+                "estimate_status": row.estimate_status,
                 "main_insulin_drivers": list(row.main_insulin_drivers),
             }
             for row in outcomes
@@ -158,6 +166,7 @@ def _evaluate_source_quality(case: ValidationCase) -> ValidationResult:
                 "acute_score": round(row.acute_score, 4),
                 "mean_confidence": round(row.mean_confidence, 4),
                 "estimate_quality": row.estimate_quality,
+                "estimate_status": row.estimate_status,
                 "main_insulin_drivers": list(row.main_insulin_drivers),
             }
             for row in outcomes
@@ -198,6 +207,7 @@ def _evaluate_monotonicity(case: ValidationCase) -> ValidationResult:
             row.meal_id: {
                 "acute_score": round(row.acute_score, 4),
                 "insulin_load_total": round(row.insulin_load_total, 4),
+                "estimate_status": row.estimate_status,
                 "main_insulin_drivers": list(row.main_insulin_drivers),
             }
             for row in outcomes
@@ -265,6 +275,8 @@ def _evaluate_chronic_trend(case: ValidationCase) -> ValidationResult:
         actual_scores={
             "low_day_insulin_load_total": round(low_outcome.insulin_load_total, 4),
             "high_day_insulin_load_total": round(high_outcome.insulin_load_total, 4),
+            "low_day_estimate_status": low_outcome.estimate_status,
+            "high_day_estimate_status": high_outcome.estimate_status,
             "rolling_7d_dil": [round(value, 4) for value in rolling_7d_dil],
         },
         source_labels=[*low_outcome.source_labels, *high_outcome.source_labels],
@@ -314,11 +326,13 @@ def _evaluate_uncertainty(case: ValidationCase) -> ValidationResult:
             "mixed_meal": {
                 "acute_score": round(mixed_outcome.acute_score, 4),
                 "mean_confidence": round(mixed_outcome.mean_confidence, 4),
+                "estimate_status": mixed_outcome.estimate_status,
                 "main_insulin_drivers": list(mixed_outcome.main_insulin_drivers),
             },
             "control_meal": {
                 "acute_score": round(control_outcome.acute_score, 4),
                 "mean_confidence": round(control_outcome.mean_confidence, 4),
+                "estimate_status": control_outcome.estimate_status,
                 "main_insulin_drivers": list(control_outcome.main_insulin_drivers),
             },
         },
@@ -354,6 +368,7 @@ def _evaluate_driver_ranking(case: ValidationCase) -> ValidationResult:
         actual_scores={
             row.meal_id: {
                 "acute_score": round(row.acute_score, 4),
+                "estimate_status": row.estimate_status,
                 "main_insulin_drivers": list(row.main_insulin_drivers),
             }
             for row in outcomes

@@ -6,6 +6,7 @@
       "source_exact_fii": {
         "acute_score": 360.0,
         "estimate_quality": "high",
+        "estimate_status": "estimated",
         "main_insulin_drivers": [
           "plain yogurt"
         ],
@@ -14,6 +15,7 @@
       "source_macro_fallback": {
         "acute_score": 19.2,
         "estimate_quality": "low",
+        "estimate_status": "estimated",
         "main_insulin_drivers": [
           "cultured dairy cup"
         ],
@@ -22,6 +24,7 @@
       "source_mapped_fii": {
         "acute_score": 360.0,
         "estimate_quality": "medium",
+        "estimate_status": "estimated",
         "main_insulin_drivers": [
           "greek yogurt bowl"
         ],
@@ -129,6 +132,6 @@
     }
   },
   "kind": "source_quality",
-  "schema_version": 1,
+  "schema_version": 2,
   "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
 }

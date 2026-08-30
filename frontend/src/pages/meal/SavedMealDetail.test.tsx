@@ -314,6 +314,19 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		expect(partial?.textContent).toContain("Calculated only from items the current model could estimate");
 	});
 
+	it("treats high-quality zero as partial output when status is insufficient", async () => {
+		stubBackend();
+		usePersistentMealStore.setState({
+			meals: [savedMeal({ acute_score: 0, estimate_quality: "high", estimate_status: "insufficient_data" })],
+		});
+		const { baseElement } = renderSavedMealDetail();
+
+		expect(await screen.findByText("Hard to estimate from this meal")).toBeTruthy();
+		expect(baseElement.querySelector(".result-score")).toBeNull();
+		const partial = baseElement.querySelector(".result-advanced .result-partial-output");
+		expect(partial?.textContent).toContain("Relative score: 0");
+	});
+
 	it("suppresses the reading entirely when an insufficient-data meal has no finite score", async () => {
 		stubBackend();
 		usePersistentMealStore.setState({ meals: [savedMeal({ estimate_quality: "low", acute_score: undefined })] });

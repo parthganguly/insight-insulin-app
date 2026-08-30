@@ -5,6 +5,7 @@
     "actual_scores": {
       "driver_dedupe_cutoff": {
         "acute_score": 1300.0,
+        "estimate_status": "estimated",
         "main_insulin_drivers": [
           "glow berry",
           "Glow Berry",
@@ -13,6 +14,7 @@
       },
       "driver_ranking_isolation": {
         "acute_score": 439.3333,
+        "estimate_status": "estimated",
         "main_insulin_drivers": [
           "spark grain",
           "small ember bite",
@@ -21,6 +23,7 @@
       },
       "driver_tie_retention": {
         "acute_score": 166.6667,
+        "estimate_status": "insufficient_data",
         "main_insulin_drivers": [
           "tie fruit one",
           "zero glow tea",
@@ -287,6 +290,6 @@
     }
   },
   "kind": "driver_ranking",
-  "schema_version": 1,
+  "schema_version": 2,
   "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
 }

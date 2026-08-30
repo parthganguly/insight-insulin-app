@@ -82,7 +82,7 @@ mod tests {
         let metadata = core_metadata();
 
         assert_eq!(metadata.core_version(), env!("CARGO_PKG_VERSION"));
-        assert_eq!(metadata.core_version(), "0.1.0");
+        assert_eq!(metadata.core_version(), "0.2.0");
     }
 
     #[test]
@@ -130,7 +130,7 @@ mod tests {
         let json = serde_json::to_value(&metadata).unwrap();
 
         assert_eq!(json["formula_version"], "current_backend_v1");
-        assert_eq!(json["core_version"], "0.1.0");
+        assert_eq!(json["core_version"], "0.2.0");
         assert_eq!(
             json["dataset_version"].as_str().unwrap(),
             metadata.dataset_version()

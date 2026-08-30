@@ -10,7 +10,7 @@ from validation.evaluators import evaluate_case
 from validation.fixtures import build_validation_cases
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 FORMULA_VERSION = "current_backend_v1"
 GENERATED_BY = "python -m validation.export_golden_fixtures"
 WARNING = "Implementation parity fixtures only; passing parity is not scientific validation."

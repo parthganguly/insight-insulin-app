@@ -154,6 +154,7 @@ class MealPreviewTests(unittest.TestCase):
                 "protein_total",
                 "fat_total",
                 "estimate_quality",
+                "estimate_status",
                 "main_insulin_drivers",
                 "persisted",
             },
@@ -218,6 +219,19 @@ class MealPreviewTests(unittest.TestCase):
             [item.model_dump(mode="json") for item in hydrated[0].items],
             [item.model_dump(mode="json") for item in preview.items],
         )
+
+    def test_zero_kcal_status_matches_preview_save_and_fresh_get(self) -> None:
+        items = CHARACTERIZATION_CASES["zero_kcal_issue_97"]
+        preview = self.preview("Issue 97 parity", items)
+        saved = self.save("Issue 97 parity", items)
+
+        self.assertEqual(preview.estimate_status, "insufficient_data")
+        self.assertEqual(saved.estimate_status, "insufficient_data")
+
+        self.session.close()
+        self.session = self.db.SessionLocal()
+        hydrated = asyncio.run(self.meals_api.list_meals(self.session))
+        self.assertEqual(hydrated[0].estimate_status, "insufficient_data")
 
     def test_fresh_orm_hydration_sorts_positions_not_physical_order(self) -> None:
         meal_id = str(uuid.uuid4())

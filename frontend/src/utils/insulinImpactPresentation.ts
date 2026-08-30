@@ -26,9 +26,17 @@ export type ImpactPresentation = {
 const INSUFFICIENT_DATA_COLOR = "#95a5a6";
 const NEUTRAL_SCORE_COLOR = "#2f86c0";
 
+export const hasInsufficientEstimateStatus = (meal: Meal): boolean => meal.estimate_status === "insufficient_data";
+
 export const getImpactPresentation = (savedMeal: Meal): ImpactPresentation => {
 	const quality = savedMeal.estimate_quality?.toLowerCase();
-	if (quality === "low" || quality === "unknown" || typeof savedMeal.acute_score !== "number" || !Number.isFinite(savedMeal.acute_score)) {
+	if (
+		hasInsufficientEstimateStatus(savedMeal) ||
+		quality === "low" ||
+		quality === "unknown" ||
+		typeof savedMeal.acute_score !== "number" ||
+		!Number.isFinite(savedMeal.acute_score)
+	) {
 		return {
 			kind: "insufficient-data",
 			title: "Hard to estimate from this meal",
