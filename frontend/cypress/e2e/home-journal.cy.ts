@@ -73,6 +73,26 @@ const captureHome = (name: string) => {
 };
 
 describe("J2 Home as journal", () => {
+	it("omits the numeric journal estimate for an insufficient-data meal", () => {
+		cy.viewport(390, 844);
+		const insufficientMeal = {
+			...localMeal("insufficient", "Synthetic incomplete-energy meal", 0),
+			acute_score: 0,
+			estimate_quality: "high",
+			estimate_status: "insufficient_data" as const,
+		};
+		stubBackend();
+		visitFresh("/dashboard", {
+			"insight-meals": persistedMeals([insufficientMeal]),
+		});
+		cy.wait("@meals");
+
+		cy.get(".journal-entry-card").should("have.length", 1);
+		cy.get(".journal-entry-card .journal-entry-caption p")
+			.should("not.contain.text", "estimate 0")
+			.and("not.contain.text", "Data quality: High");
+	});
+
 	for (const [width, height] of [
 		[390, 844],
 		[320, 700],

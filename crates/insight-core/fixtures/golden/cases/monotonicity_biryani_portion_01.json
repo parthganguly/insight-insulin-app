@@ -5,6 +5,7 @@
     "actual_scores": {
       "mono_biryani_0_5x": {
         "acute_score": 410.8,
+        "estimate_status": "estimated",
         "insulin_load_total": 123.24,
         "main_insulin_drivers": [
           "chicken biryani"
@@ -12,6 +13,7 @@
       },
       "mono_biryani_1_5x": {
         "acute_score": 1232.4,
+        "estimate_status": "estimated",
         "insulin_load_total": 369.72,
         "main_insulin_drivers": [
           "chicken biryani"
@@ -19,6 +21,7 @@
       },
       "mono_biryani_1x": {
         "acute_score": 821.6,
+        "estimate_status": "estimated",
         "insulin_load_total": 246.48,
         "main_insulin_drivers": [
           "chicken biryani"
@@ -111,6 +114,6 @@
     }
   },
   "kind": "monotonicity",
-  "schema_version": 1,
+  "schema_version": 2,
   "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
 }

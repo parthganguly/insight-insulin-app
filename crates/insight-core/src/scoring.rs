@@ -542,6 +542,10 @@ mod tests {
             json["unified_meal_estimate"]["formula_version"],
             serde_json::json!("current_backend_v1")
         );
+        assert_eq!(
+            json["unified_meal_estimate"]["estimate_status"],
+            serde_json::json!("estimated")
+        );
 
         let round_trip: ScoredMeal = serde_json::from_value(json).unwrap();
         assert_eq!(round_trip, scored);

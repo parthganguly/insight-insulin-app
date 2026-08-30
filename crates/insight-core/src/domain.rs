@@ -151,6 +151,22 @@ pub enum EstimateQuality {
     Unknown,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum EstimateStatus {
+    Estimated,
+    InsufficientData,
+}
+
+impl EstimateStatus {
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Estimated => "estimated",
+            Self::InsufficientData => "insufficient_data",
+        }
+    }
+}
+
 impl EstimateQuality {
     pub const fn as_str(self) -> &'static str {
         match self {
@@ -273,6 +289,23 @@ mod tests {
         }
 
         assert!(serde_json::from_str::<EstimateQuality>("\"composite\"").is_err());
+    }
+
+    #[test]
+    fn estimate_status_uses_backend_product_labels_only() {
+        let cases = [
+            (EstimateStatus::Estimated, "\"estimated\""),
+            (EstimateStatus::InsufficientData, "\"insufficient_data\""),
+        ];
+
+        for (status, expected_json) in cases {
+            assert_eq!(status.as_str(), expected_json.trim_matches('"'));
+            assert_eq!(serde_json::to_string(&status).unwrap(), expected_json);
+            assert_eq!(
+                serde_json::from_str::<EstimateStatus>(expected_json).unwrap(),
+                status
+            );
+        }
     }
 
     #[test]

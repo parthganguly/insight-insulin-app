@@ -1,6 +1,7 @@
 import { Meal } from "../types/Meal";
 import { calculateTotalCalories, getMealAcuteScore } from "../utils";
 import { getEstimateQualityCopy } from "./safetyCopy";
+import { hasInsufficientEstimateStatus } from "./insulinImpactPresentation";
 
 const startOfLocalDay = (date: Date): number => new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
@@ -73,6 +74,8 @@ const getJournalTimeLabel = (timestamp: number): string => {
 
 export const getJournalEntryMetaLine = (meal: Meal): string => {
 	const time = getJournalTimeLabel(meal.timestamp);
+	if (hasInsufficientEstimateStatus(meal)) return time;
+
 	const score = getMealAcuteScore(meal);
 	const quality = meal.estimate_quality ? getEstimateQualityCopy(meal.estimate_quality).label : null;
 	const parts = [time];

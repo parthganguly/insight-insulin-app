@@ -67,6 +67,30 @@ describe("journal presentation helpers", () => {
 		expect(line).toContain("Data quality: High");
 	});
 
+	it("omits score and overall-sounding quality for an insufficient-data meal", () => {
+		const line = getJournalEntryMetaLine(
+			meal("insufficient", new Date(2026, 6, 19, 13, 15).getTime(), {
+				acute_score: 0,
+				estimate_quality: "high",
+				estimate_status: "insufficient_data",
+			}),
+		);
+
+		expect(line.toLocaleLowerCase()).toContain("1:15 pm");
+		expect(line).not.toContain("estimate 0");
+		expect(line).not.toContain("Data quality: High");
+	});
+
+	it("continues to show the estimate for an ordinary estimated meal", () => {
+		const line = getJournalEntryMetaLine(
+			meal("estimated", new Date(2026, 6, 19, 13, 15).getTime(), {
+				estimate_status: "estimated",
+			}),
+		);
+
+		expect(line).toContain("estimate 189");
+	});
+
 	// The previous-meal picker caption (issue #123). It must stay independent of
 	// the saved score and quality: reuse produces a draft that is re-scored only
 	// after review, so the old estimate may not travel into the selection step.

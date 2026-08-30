@@ -3,7 +3,9 @@
   "description": "7 low-load days then 7 high-load days should show gradual rise in rolling chronic metrics",
   "expected": {
     "actual_scores": {
+      "high_day_estimate_status": "estimated",
       "high_day_insulin_load_total": 495.0,
+      "low_day_estimate_status": "estimated",
       "low_day_insulin_load_total": 1.32,
       "rolling_7d_dil": [
         1.32,
@@ -84,6 +86,6 @@
     }
   },
   "kind": "chronic_trend",
-  "schema_version": 1,
+  "schema_version": 2,
   "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
 }

@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 from db import get_db
 from db_models import MealDB, MealItemDB
+from estimate_completeness import EstimateStatus, resolve_estimate_status
 from estimate_quality import resolve_estimate_quality
 from models import (
     MealCreate,
@@ -62,6 +63,7 @@ class ModeledMeal:
     insulin_load_total: float
     acute_score: float
     estimate_quality: str
+    estimate_status: EstimateStatus
     main_insulin_drivers: list[str]
 
 
@@ -125,7 +127,9 @@ def compute_client_request_fingerprint(items: list[MealItemCreate]) -> str:
     return hashlib.sha256(canonical_json.encode("utf-8")).hexdigest()
 
 
-def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
+def map_meal_db_to_schema(
+    meal_db: MealDB, *, estimate_status: EstimateStatus | None = None
+) -> MealResponse:
     drivers_raw = meal_db.main_insulin_drivers or "[]"
     try:
         main_insulin_drivers = json.loads(drivers_raw)
@@ -166,6 +170,11 @@ def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
     if insulin_load_total is None:
         insulin_load_total = sum(item.insulin_load for item in items)
 
+    if estimate_status is None:
+        estimate_status = resolve_estimate_status(
+            (item.quantity, item.fii_source, item.kcalPerUnit) for item in items
+        )
+
     return MealResponse(
         id=meal_db.id,
         created_at=as_utc(meal_db.created_at),
@@ -177,6 +186,7 @@ def map_meal_db_to_schema(meal_db: MealDB) -> MealResponse:
         protein_total=meal_db.total_protein or 0.0,
         fat_total=meal_db.total_fat or 0.0,
         estimate_quality=estimate_quality,
+        estimate_status=estimate_status,
         main_insulin_drivers=main_insulin_drivers if isinstance(main_insulin_drivers, list) else [],
         items=items,
     )
@@ -224,6 +234,7 @@ def model_meal(meal: MealCreate | MealPreviewRequest) -> ModeledMeal:
     insulin_load_total = 0.0
     item_rows: list[ModeledMealItem] = []
     item_sources: list[str] = []
+    completeness_inputs: list[tuple[float, str, float | None]] = []
 
     for item in meal.items:
         fii_value = resolve_positive_provided_fii(item.fii_value, item.fii)
@@ -252,6 +263,7 @@ def model_meal(meal: MealCreate | MealPreviewRequest) -> ModeledMeal:
         total_sat_fat += sat_fat_item
         insulin_load_total += insulin_load_item
         item_sources.append(fii_source)
+        completeness_inputs.append((item.quantity, fii_source, item.kcalPerUnit))
 
         item_rows.append(
             ModeledMealItem(
@@ -287,6 +299,7 @@ def model_meal(meal: MealCreate | MealPreviewRequest) -> ModeledMeal:
         insulin_load_total=insulin_load_total,
         acute_score=acute_score,
         estimate_quality=resolve_estimate_quality(item_sources),
+        estimate_status=resolve_estimate_status(completeness_inputs),
         main_insulin_drivers=main_insulin_drivers,
     )
 
@@ -358,6 +371,7 @@ async def preview_meal(meal: MealPreviewRequest):
         protein_total=modeled.total_protein,
         fat_total=modeled.total_fat,
         estimate_quality=modeled.estimate_quality,
+        estimate_status=modeled.estimate_status,
         main_insulin_drivers=modeled.main_insulin_drivers,
         persisted=False,
     )
@@ -414,10 +428,10 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
                 status_code=409,
                 detail="client_request_id was already used for different meal items",
             )
-        return map_meal_db_to_schema(existing)
+        return map_meal_db_to_schema(existing, estimate_status=modeled.estimate_status)
     db.refresh(meal_db)
 
-    return map_meal_db_to_schema(meal_db)
+    return map_meal_db_to_schema(meal_db, estimate_status=modeled.estimate_status)
 
 
 @router.get("/meals", response_model=list[MealResponse])

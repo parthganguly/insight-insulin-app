@@ -23,8 +23,8 @@ pub use direct_fii::{
     DirectFiiMealEstimate, DirectFiiMealItem, REFERENCE_MEAL_INSULIN_LOAD,
 };
 pub use domain::{
-    AcuteScore, EstimateQuality, EstimateSource, FiiValue, FormulaVersion, Grams, InsulinLoad,
-    Kcal, ValueValidationError,
+    AcuteScore, EstimateQuality, EstimateSource, EstimateStatus, FiiValue, FormulaVersion, Grams,
+    InsulinLoad, Kcal, ValueValidationError,
 };
 pub use exact_fii::{
     calculate_exact_fii_item_load, calculate_exact_fii_meal_totals, ExactFiiItemEstimate,
@@ -50,5 +50,6 @@ pub use request_boundary::{
 pub use scoring::{score_meal, ScoredMeal};
 pub use unified_fii::{
     calculate_unified_fii_item_load, calculate_unified_fii_meal_totals, resolve_estimate_quality,
-    UnifiedFiiItem, UnifiedFiiItemEstimate, UnifiedFiiMealEstimate, UnifiedFiiScoringError,
+    resolve_estimate_status, UnifiedFiiItem, UnifiedFiiItemEstimate, UnifiedFiiMealEstimate,
+    UnifiedFiiScoringError,
 };

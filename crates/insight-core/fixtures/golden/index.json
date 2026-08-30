@@ -39,6 +39,6 @@
   ],
   "formula_version": "current_backend_v1",
   "generated_by": "python -m validation.export_golden_fixtures",
-  "schema_version": 1,
+  "schema_version": 2,
   "warning": "Implementation parity fixtures only; passing parity is not scientific validation."
 }

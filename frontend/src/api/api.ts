@@ -1,5 +1,5 @@
 import config from "../../config.json"; // adjust path as needed
-import { Meal } from "../types/Meal";
+import { EstimateStatus, Meal } from "../types/Meal";
 import { MealItem, Unit } from "../types/MealItem";
 import { parseBackendTimestampMs } from "../utils/backendTimestamp";
 import { normalizeExplicitFii, updateMealItemFii } from "../utils/fiiTrustBoundary";
@@ -55,6 +55,7 @@ export type MealModelingResponse = {
 	protein_total: number;
 	fat_total: number;
 	estimate_quality: string;
+	estimate_status?: EstimateStatus;
 	main_insulin_drivers: string[];
 };
 
@@ -107,6 +108,11 @@ const toNonEmptyString = (value: unknown): string | undefined => {
 	if (typeof value !== "string") return undefined;
 	const trimmed = value.trim();
 	return trimmed.length > 0 ? trimmed : undefined;
+};
+
+const toEstimateStatus = (value: unknown): EstimateStatus | undefined => {
+	if (value === "estimated" || value === "insufficient_data") return value;
+	return undefined;
 };
 
 const toMealUnit = (value: unknown): Unit => {
@@ -219,6 +225,7 @@ const normalizeMealModelingResponse = (raw: unknown): MealModelingResponse => {
 		protein_total: toNumberWithDefault(candidate.protein_total as NumberLike, 0),
 		fat_total: toNumberWithDefault(candidate.fat_total as NumberLike, 0),
 		estimate_quality: toNonEmptyString(candidate.estimate_quality) ?? "unknown",
+		estimate_status: toEstimateStatus(candidate.estimate_status),
 		main_insulin_drivers: Array.isArray(candidate.main_insulin_drivers)
 			? candidate.main_insulin_drivers.map((driver) => toNonEmptyString(driver)).filter((driver): driver is string => Boolean(driver))
 			: [],
@@ -295,6 +302,7 @@ export const mapMealModelingResponseToMeal = (backendMeal: MealModelingResponse,
 	protein_total: backendMeal.protein_total,
 	fat_total: backendMeal.fat_total,
 	estimate_quality: backendMeal.estimate_quality,
+	estimate_status: backendMeal.estimate_status,
 	main_insulin_drivers: backendMeal.main_insulin_drivers,
 	estimate: undefined,
 	calorie_source: "item_sum",

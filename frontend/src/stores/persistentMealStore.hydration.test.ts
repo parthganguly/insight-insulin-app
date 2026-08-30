@@ -33,6 +33,7 @@ const backendMealBody = (overrides: Record<string, unknown> = {}) => ({
 	protein_total: 8,
 	fat_total: 5,
 	estimate_quality: "high",
+	estimate_status: "estimated",
 	main_insulin_drivers: ["rolled oats"],
 	...overrides,
 });
@@ -75,6 +76,21 @@ describe("private-beta meal hydration from backend", () => {
 		expect(meals.map((meal) => meal.id).sort()).toEqual(["demo-meal-1", "demo-meal-2"]);
 		expect(meals.map((meal) => meal.name)).toContain("Demo: Overnight oats");
 		expect(meals.every((meal) => meal.isAiDraft === false)).toBe(true);
+		expect(meals.every((meal) => meal.estimate_status === "estimated")).toBe(true);
+	});
+
+	it("preserves an insufficient-data status from canonical backend hydration", async () => {
+		stubFetchWithMeals([
+			backendMealBody({
+				acute_score: 0,
+				estimate_quality: "high",
+				estimate_status: "insufficient_data",
+			}),
+		]);
+
+		await syncMealsFromBackend();
+
+		expect(usePersistentMealStore.getState().meals[0].estimate_status).toBe("insufficient_data");
 	});
 
 	it("does not duplicate meals when hydrating twice", async () => {

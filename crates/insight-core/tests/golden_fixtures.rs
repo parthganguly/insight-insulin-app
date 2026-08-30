@@ -9,14 +9,14 @@ use insight_core::{
     calculate_exact_or_mapped_fii_meal_totals, calculate_macro_fallback_item_load,
     calculate_mapped_fii_item_load, calculate_unified_fii_item_load,
     calculate_unified_fii_meal_totals, compute_chronic_series, lookup_exact_fii, score_meal,
-    ChronicDayInput, DirectFiiMealItem, EstimateQuality, EstimateSource, ExactFiiMealItem,
-    ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Grams, Kcal, MacroFallbackKind,
-    MacroFallbackNutrients, UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
+    ChronicDayInput, DirectFiiMealItem, EstimateQuality, EstimateSource, EstimateStatus,
+    ExactFiiMealItem, ExactOrMappedFiiMealItem, FiiValue, FormulaVersion, Grams, Kcal,
+    MacroFallbackKind, MacroFallbackNutrients, UnifiedFiiItem, REFERENCE_MEAL_INSULIN_LOAD,
 };
 use serde::Deserialize;
 use serde_json::Value;
 
-const EXPECTED_SCHEMA_VERSION: u64 = 1;
+const EXPECTED_SCHEMA_VERSION: u64 = 2;
 const EXPECTED_FORMULA_VERSION: &str = "current_backend_v1";
 const EXPECTED_GENERATOR: &str = "python -m validation.export_golden_fixtures";
 const EXPECTED_WARNING: &str =
@@ -1403,6 +1403,10 @@ fn score_meal_matches_adversarial_driver_golden_arrays() {
 
         assert_eq!(scored.main_insulin_drivers(), expected_drivers);
         assert_eq!(
+            scored.unified_meal_estimate().estimate_status().as_str(),
+            expected_nested_status(&fixture.expected.actual_scores, meal_id),
+        );
+        assert_eq!(
             expected_nested_drivers(&fixture.expected.actual_scores, meal_id),
             expected_drivers,
         );
@@ -1655,6 +1659,11 @@ fn unified_meal_estimate_quality_matches_serialized_golden_outputs() {
             estimate.estimate_quality().as_str(),
             expected_nested_quality(&source_fixture.expected.actual_scores, meal_id),
         );
+        assert_eq!(estimate.estimate_status(), EstimateStatus::Estimated);
+        assert_eq!(
+            estimate.estimate_status().as_str(),
+            expected_nested_status(&source_fixture.expected.actual_scores, meal_id),
+        );
     }
 
     let uncertainty_fixture = read_golden_fixture("cases/uncertainty_degradation_01.json");
@@ -1681,9 +1690,14 @@ fn unified_meal_estimate_quality_matches_serialized_golden_outputs() {
         .unwrap()
         .expect("uncertainty mixed meal should resolve");
     assert_eq!(mixed_estimate.estimate_quality(), EstimateQuality::Low);
+    assert_eq!(mixed_estimate.estimate_status(), EstimateStatus::Estimated);
     assert_eq!(
         mixed_estimate.estimate_quality().as_str(),
         uncertainty_fixture.expected.estimate_quality,
+    );
+    assert_eq!(
+        mixed_estimate.estimate_status().as_str(),
+        expected_nested_status(&uncertainty_fixture.expected.actual_scores, "mixed_meal"),
     );
 }
 
@@ -2513,6 +2527,14 @@ fn expected_nested_quality<'a>(actual_scores: &'a Value, meal_id: &str) -> &'a s
         .and_then(|meal| meal.get("estimate_quality"))
         .and_then(Value::as_str)
         .expect("expected nested estimate_quality field should be a string")
+}
+
+fn expected_nested_status<'a>(actual_scores: &'a Value, meal_id: &str) -> &'a str {
+    actual_scores
+        .get(meal_id)
+        .and_then(|meal| meal.get("estimate_status"))
+        .and_then(Value::as_str)
+        .expect("expected nested estimate_status field should be a string")
 }
 
 fn assert_approx_eq(actual: f64, expected: f64) {
