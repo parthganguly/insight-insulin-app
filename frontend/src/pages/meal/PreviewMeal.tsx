@@ -1,30 +1,24 @@
-import { IonPage, IonContent, IonHeader, IonTitle, IonText, IonInput, IonButtons, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonActionSheet, IonThumbnail, IonModal, IonAlert } from "@ionic/react";
-import { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
-import type { Action, Location } from "history";
+import { IonPage, IonContent, IonHeader, IonTitle, IonText, IonInput, IonButtons, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonActionSheet, IonThumbnail, IonModal } from "@ionic/react";
+import { useEffect, useState } from "react";
 
 import { MealItem, Unit } from "../../types/MealItem";
-import { isPersistableImage, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { add, alertCircle, arrowBack, checkmarkCircle, close, create, desktop, pencil, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } from "../../api/api";
 import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import ConfirmHero from "../../components/ConfirmHero";
 import ComponentCard from "../../components/ComponentCard";
 import NeedsReviewCard from "../../components/NeedsReviewCard";
-import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_REVIEW_KICKER, MEAL_NAME_HELPER, MEAL_SAVE_FAILURE, SAVED_MEAL_STATUS, getDraftProvenanceCopy, getSaveSuccessMessage, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
+import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_REVIEW_KICKER, MEAL_NAME_HELPER, getDraftProvenanceCopy, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
+import { calculateCurrentMealEstimate } from "../../utils/mealEstimateWorkflow";
+import { armMealFlowBypass } from "../../utils/mealFlowGuard";
 
 type SaveFeedback = {
 	kind: "error" | "success";
 	message: string;
-};
-
-type PendingNavigation = {
-	location: Location;
-	action: Action;
 };
 
 const releaseFocusedElement = () => {
@@ -32,24 +26,13 @@ const releaseFocusedElement = () => {
 	if (focusedElement instanceof HTMLElement) focusedElement.blur();
 };
 
-const getDraftFingerprint = (meal: ReturnType<typeof useCurrentMealStore.getState>["meal"]): string => JSON.stringify({
-	image: meal.image,
-	name: meal.name,
-	items: meal.items,
-	isAiDraft: meal.isAiDraft,
-	estimate: meal.estimate,
-	calorieSource: meal.calorie_source,
-});
-
 const PreviewMeal = () => {
-	const { meal, setMeal, deleteMealItem, addEmptyMealItem, updateMealItem, confirmMealItemReview, setImage, setName, resetMeal } = useCurrentMealStore();
+	const { meal, deleteMealItem, addEmptyMealItem, updateMealItem, confirmMealItemReview, setImage, setName, resetMeal } = useCurrentMealStore();
 
 	const [showToast, setShowToast] = useState(false);
 	const [toastMessage, setToastMessage] = useState("");
 	const [toastColor, setToastColor] = useState<"success" | "danger">("success");
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [pendingNavigation, setPendingNavigation] = useState<PendingNavigation | null>(null);
-	const [showLeaveAlert, setShowLeaveAlert] = useState(false);
 	const [isItemActionSheetOpen, setIsItemActionSheetOpen] = useState(false);
 	// Inline save/validation feedback (issue #75). The toast is supplementary:
 	// it disappears on its own, so it must never be the only place a rejection
@@ -62,28 +45,7 @@ const PreviewMeal = () => {
 		setSaveFeedback((prev) => (prev?.kind === "error" && validateMealBeforeSave(meal) === null ? null : prev));
 	}, [meal]);
 
-	const { addMeal } = usePersistentMealStore();
 	const router = useIonRouter();
-	const history = useHistory();
-	const bypassNavigationBlock = useRef(false);
-	const draftFingerprint = getDraftFingerprint(meal);
-	const draftBaseline = useRef({ mealId: meal.id, fingerprint: draftFingerprint });
-	if (draftBaseline.current.mealId !== meal.id) {
-		draftBaseline.current = { mealId: meal.id, fingerprint: draftFingerprint };
-		bypassNavigationBlock.current = false;
-	}
-	const isDirtyDraft = !meal.backend_created_at && draftFingerprint !== draftBaseline.current.fingerprint;
-
-	useEffect(() => {
-		if (!isDirtyDraft) return;
-		return history.block((location, action) => {
-			if (bypassNavigationBlock.current) return;
-			releaseFocusedElement();
-			setPendingNavigation({ location, action });
-			setShowLeaveAlert(true);
-			return false;
-		});
-	}, [history, isDirtyDraft]);
 
 	const [modalItemId, setModalItemId] = useState<string | null>(null);
 	const modalItem = modalItemId ? meal.items.find((item) => item.id === modalItemId) ?? null : null;
@@ -124,25 +86,6 @@ const PreviewMeal = () => {
 		setModalItemId(item.id);
 	};
 
-	const stayOnDraft = () => {
-		releaseFocusedElement();
-		setShowLeaveAlert(false);
-		setPendingNavigation(null);
-	};
-
-	const discardAndContinueNavigation = () => {
-		if (!pendingNavigation) return;
-		const { location, action } = pendingNavigation;
-		bypassNavigationBlock.current = true;
-		releaseFocusedElement();
-		resetMeal();
-		setShowLeaveAlert(false);
-		setPendingNavigation(null);
-
-		if (action === "PUSH") history.push(location);
-		else history.replace(location);
-	};
-
 	const handleLogMeal = async () => {
 		if (!meal) return;
 		const validationError = validateMealBeforeSave(meal);
@@ -154,44 +97,25 @@ const PreviewMeal = () => {
 			return;
 		}
 
-		const payload = buildCreateMealPayload(meal);
-
 		releaseFocusedElement();
 		setIsSubmitting(true);
-		try {
-			const response = await postMealToAPI(payload);
-			const canonicalMeal = mapMealModelingResponseToMeal(response, meal.image);
-			bypassNavigationBlock.current = true;
-			setMeal(canonicalMeal);
-			addMeal(canonicalMeal);
-			// Full-size photos stay in memory for this session but are not written
-			// to localStorage (photo-quota safety, #65) — say so without alarm.
-			const successMessage = getSaveSuccessMessage(isPersistableImage(canonicalMeal.image));
-			setSaveFeedback({ kind: "success", message: successMessage });
-			setToastColor("success");
-			setToastMessage(successMessage);
-			setShowToast(true);
-			// Replace the draft route while targeting the saved-result route itself.
-			// A cross-tab "root" navigation can update the URL while Ionic keeps the
-			// previous tab root rendered, leaving the address and visible page out of
-			// sync. A forward replace gives the result route ownership of the outlet
-			// without leaving the now-saved draft in browser history.
-			router.push(`/meals/saved/${encodeURIComponent(canonicalMeal.id)}`, "forward", "replace");
-		} catch (err) {
-			console.error("POST /meals failed:", err);
-			const errorMessage = MEAL_SAVE_FAILURE;
+		const result = await calculateCurrentMealEstimate({
+			onReady: () => router.push("/meals/estimate", "forward"),
+		});
+		setIsSubmitting(false);
+		if (result === "failed" || result === "changed") {
+			const errorMessage = useMealEstimateStore.getState().error ?? "We couldn't estimate this meal right now.";
 			setSaveFeedback({ kind: "error", message: errorMessage });
 			setToastColor("danger");
 			setToastMessage(errorMessage);
 			setShowToast(true);
-		} finally {
-			setIsSubmitting(false);
 		}
 	};
 
 	const handleDiscardDraft = () => {
-		bypassNavigationBlock.current = true;
+		armMealFlowBypass("/log-meal");
 		releaseFocusedElement();
+		useMealEstimateStore.getState().clearEstimate();
 		resetMeal();
 		router.push("/log-meal", "root");
 	};
@@ -225,7 +149,7 @@ const PreviewMeal = () => {
 			<IonContent className='confirmation-page' fullscreen>
 				<ConfirmHero image={meal.image} mealName={meal.name} disabled={isSubmitting} onAddPhoto={handleTakePicture} />
 				<main className='confirmation-sheet' aria-busy={isSubmitting} inert={isSubmitting ? true : undefined}>
-					<p className='confirmation-kicker'>{meal.backend_created_at ? SAVED_MEAL_STATUS : DRAFT_REVIEW_KICKER}</p>
+					<p className='confirmation-kicker'>{DRAFT_REVIEW_KICKER}</p>
 					<h1>Did we get your meal right?</h1>
 					<IonInput className='confirmation-meal-name' value={meal.name} label='Meal name' labelPlacement='stacked' placeholder='Enter dish name' onIonInput={(event) => setName(event.detail.value ?? "")} disabled={isSubmitting}>
 						<IonIcon slot='end' icon={create} aria-hidden='true' />
@@ -311,8 +235,8 @@ const PreviewMeal = () => {
 					)}
 				</main>
 				<div slot='fixed' className='confirmation-dock'>
-					<IonButton expand='block' aria-label='Save meal' aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>
-						{isSubmitting ? "Estimating insulin demand…" : "Calculate & save"}
+					<IonButton expand='block' aria-label='Calculate estimate' aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>
+						{isSubmitting ? "Estimating insulin demand…" : "Calculate estimate"}
 					</IonButton>
 					<IonButton expand='block' fill='clear' color='medium' onClick={handleDiscardDraft} disabled={isSubmitting}>Discard draft</IonButton>
 				</div>
@@ -388,17 +312,6 @@ const PreviewMeal = () => {
 						if (detail.data.action === "ai") router.push("/meals/new/ai");
 						if (detail.data.action === "manual") addEmptyMealItem();
 					}}
-				/>
-				<IonAlert
-					isOpen={showLeaveAlert}
-					backdropDismiss={false}
-					onWillDismiss={releaseFocusedElement}
-					header='Discard this draft?'
-					message='You have unsaved changes. Stay to keep editing, or discard the draft and continue.'
-					buttons={[
-						{ text: "Stay and continue", role: "cancel", handler: stayOnDraft },
-						{ text: "Discard and leave", role: "destructive", handler: discardAndContinueNavigation },
-					]}
 				/>
 				<IonToast isOpen={showToast} message={toastMessage} duration={2200} color={toastColor} onDidDismiss={() => setShowToast(false)} />
 		</IonPage>

@@ -21,6 +21,8 @@ vi.mock("@ionic/react", async (importOriginal) => {
 
 import App from "../../App";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useMealEstimateStore } from "../../stores/mealEstimateStore";
+import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
@@ -65,6 +67,8 @@ describe("dirty confirmation draft navigation", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		usePersistentMealStore.setState({ meals: [] });
+		useMealEstimateStore.getState().clearEstimate();
+		usePendingSaveStore.getState().clearAll();
 		act(() => useCurrentMealStore.setState({ meal: syntheticDraft() }));
 		vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => [] })));
 	});

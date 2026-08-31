@@ -39,6 +39,9 @@ import PreviewMeal from "./pages/meal/PreviewMeal";
 import SavedMealDetail from "./pages/meal/SavedMealDetail";
 import LogMealChooser from "./pages/meal/LogMealChooser";
 import PreviousMealPicker from "./pages/meal/PreviousMealPicker";
+import MealEstimate from "./pages/meal/MealEstimate";
+import MealFlowGuard from "./components/MealFlowGuard";
+import PendingSaveBanner from "./components/PendingSaveBanner";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Capacitor } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
@@ -50,7 +53,7 @@ setupIonicReact();
 type JourneyTab = "dashboard" | "logMeal" | "history";
 
 const getJourneyTabForPath = (pathname: string): JourneyTab => {
-	if (pathname === "/log-meal" || pathname === "/meals/previous" || pathname === "/meals/new" || pathname.startsWith("/meals/new/")) {
+	if (pathname === "/log-meal" || pathname === "/meals/previous" || pathname === "/meals/estimate" || pathname === "/meals/new" || pathname.startsWith("/meals/new/")) {
 		return "logMeal";
 	}
 	if (pathname === "/meals" || pathname.startsWith("/meals/saved/")) return "history";
@@ -62,7 +65,9 @@ const AppTabs = () => {
 	const selectedTab = getJourneyTabForPath(pathname);
 
 	return (
-		<IonTabs>
+		<>
+			<MealFlowGuard />
+			<IonTabs>
 					<IonRouterOutlet>
 						<Route exact path='/dashboard'>
 							<Dashboard />
@@ -83,6 +88,9 @@ const AppTabs = () => {
 						</Route>
 						<Route exact path='/meals/new/ai'>
 							<AiMealAdd />
+						</Route>
+						<Route exact path='/meals/estimate'>
+							<MealEstimate />
 						</Route>
 						<Route exact path='/meals/saved/:mealId'>
 							<SavedMealDetail />
@@ -111,6 +119,8 @@ const AppTabs = () => {
 						</IonTabButton>
 					</IonTabBar>
 				</IonTabs>
+			<PendingSaveBanner />
+		</>
 	);
 };
 

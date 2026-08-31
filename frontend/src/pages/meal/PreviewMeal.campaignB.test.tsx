@@ -14,6 +14,8 @@ vi.mock("@ionic/react", async (importOriginal) => {
 
 import App from "../../App";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useMealEstimateStore } from "../../stores/mealEstimateStore";
+import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { MealItem, Unit } from "../../types/MealItem";
@@ -62,12 +64,14 @@ const openEditor = async () => {
 	return screen.findByTestId("item-editor");
 };
 
-const getSaveButton = () => screen.getByText("Calculate & save").closest("ion-button")!;
+const getSaveButton = () => screen.getByText("Calculate estimate").closest("ion-button")!;
 
 describe("Campaign B consequential correction UI", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		usePersistentMealStore.setState({ meals: [] });
+		useMealEstimateStore.getState().clearEstimate();
+		usePendingSaveStore.getState().clearAll();
 		useCurrentMealStore.setState({ meal: draft() });
 		vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => [] })));
 	});

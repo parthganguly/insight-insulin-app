@@ -161,7 +161,7 @@ describe("Campaign B B1-1 consequential component correction", () => {
 			getNeedsReviewCard("vegetable biryani")
 				.find(".carried-nutrition-summary")
 				.should("contain.text", "420 kcal · 58 g carbs · 24 g protein · 12 g fat");
-			getConfirmationContent().find("[aria-label='Save meal']").should("have.attr", "disabled");
+			getConfirmationContent().find("[aria-label='Calculate estimate']").should("have.attr", "disabled");
 			getConfirmationContent().find(".review-validation-error").should("contain.text", "vegetable biryani");
 			getNeedsReviewCard("vegetable biryani").find(".needs-review-actions > ion-button").then(($buttons) => {
 				const button = resolveExactIonButtonHost($buttons, "These still fit");
@@ -177,7 +177,7 @@ describe("Campaign B B1-1 consequential component correction", () => {
 
 			clickExactIonButton(() => getNeedsReviewCard("vegetable biryani"), ".needs-review-actions > ion-button", "These still fit");
 			getConfirmationContent().find(".needs-review-card").should("not.exist");
-			getConfirmationContent().find("[aria-label='Save meal']").should("not.have.attr", "disabled");
+			getConfirmationContent().find("[aria-label='Calculate estimate']").should("not.have.attr", "disabled");
 			clickExactIonButton(() => getComponentCard("vegetable biryani"), ".component-edit-button", "Edit details");
 			openAdvancedDetails();
 			getVisibleModal().find('ion-input[label="FII"] input').should("have.value", "");
@@ -214,7 +214,7 @@ describe("Campaign B B1-1 consequential component correction", () => {
 
 			setIonInput(getConfirmationContent, "Meal name", "Descriptive dinner label only");
 			getConfirmationContent().find(".needs-review-card").should("not.exist");
-			getConfirmationContent().find("[aria-label='Save meal']").should("not.have.attr", "disabled");
+			getConfirmationContent().find("[aria-label='Calculate estimate']").should("not.have.attr", "disabled");
 			assertNoHorizontalOverflow();
 			cy.screenshot(`${label}-nutrition-edit-resolved`, { capture: "viewport" });
 		});

@@ -3,6 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "./App";
 import { useCurrentMealStore } from "./stores/currentMealStore";
+import { useMealEstimateStore } from "./stores/mealEstimateStore";
+import { usePendingSaveStore } from "./stores/pendingSaveStore";
 import { usePersistentMealStore } from "./stores/persistentMealStore";
 
 const stubEmptyBackend = () => {
@@ -28,6 +30,8 @@ describe("Campaign A app navigation", () => {
 		localStorage.clear();
 		stubEmptyBackend();
 		usePersistentMealStore.setState({ meals: [] });
+		useMealEstimateStore.getState().clearEstimate();
+		usePendingSaveStore.getState().clearAll();
 		useCurrentMealStore.getState().resetMeal();
 	});
 
@@ -48,6 +52,7 @@ describe("Campaign A app navigation", () => {
 		["/log-meal", "logMeal"],
 		["/meals/new", "logMeal"],
 		["/meals/new/ai", "logMeal"],
+		["/meals/estimate", "logMeal"],
 		["/meals/previous", "logMeal"],
 		["/meals", "history"],
 		["/meals/saved/synthetic-id", "history"],

@@ -1065,6 +1065,12 @@ ion-modal.sheet-modal {
 	border: 1px solid var(--line);
 }
 
+.meal-status-estimate {
+	background: var(--tint);
+	color: var(--ink-2);
+	border: 1px dashed var(--accent);
+}
+
 .meal-name-helper {
 	margin: 6px 0 2px;
 	color: var(--app-muted);
@@ -2223,6 +2229,74 @@ ion-progress-bar {
 
 .result-dock-secondary .result-delete-button {
 	--color: var(--danger);
+}
+
+.pending-save-banner {
+	position: fixed;
+	z-index: 1000;
+	right: max(12px, var(--ion-safe-area-right));
+	bottom: calc(76px + var(--ion-safe-area-bottom));
+	width: min(390px, calc(100vw - 24px));
+	max-height: min(55vh, 430px);
+	overflow: auto;
+	display: grid;
+	gap: 8px;
+	pointer-events: none;
+}
+
+.pending-save-entry {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 10px;
+	padding: 12px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-card);
+	background: var(--paper);
+	box-shadow: var(--shadow-soft);
+	pointer-events: auto;
+}
+
+.pending-save-entry ion-icon {
+	margin-top: 3px;
+	color: var(--danger);
+}
+
+.pending-save-entry strong,
+.pending-save-entry p {
+	margin: 0;
+}
+
+.pending-save-entry p {
+	margin-top: 3px;
+	font-size: 0.84rem;
+	color: var(--app-muted);
+}
+
+.pending-save-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: 6px;
+}
+
+.pending-save-actions ion-button,
+.pending-save-notice ion-button {
+	margin: 0;
+}
+
+.pending-save-notice ion-icon {
+	color: var(--accent);
+}
+
+.pending-save-overflow {
+	margin: 0;
+	padding: 5px 10px;
+	border-radius: var(--radius-pill);
+	background: var(--paper);
+	color: var(--app-muted);
+	font-size: 0.8rem;
+	justify-self: end;
+	box-shadow: var(--shadow-soft);
 }
 
 @media (max-width: 340px) {

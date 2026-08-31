@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import PreviousMealEntryCard from "../../components/PreviousMealEntryCard";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
@@ -24,6 +25,7 @@ const PreviousMealPicker: React.FC = () => {
 
 	const reuseMeal = (meal: Meal) => {
 		const draft = buildDraftFromSavedMeal(meal);
+		useMealEstimateStore.getState().clearEstimate();
 		setMeal({
 			...draft,
 			items: draft.items.map((item) => ({ ...item, draftProvenance: "user_entered" })),

@@ -132,7 +132,7 @@ describe("backend echo round-trip FII trust boundary", () => {
 
 	const postEchoedItem = async (echoedItemFields: Record<string, unknown>) => {
 		stubMealsEcho(echoedItemFields);
-		const meal = await postMealToAPI({ meal_name: "synthetic echo meal", items: [] });
+		const meal = await postMealToAPI({ meal_name: "synthetic echo meal", items: [], client_request_id: "00000000-0000-4000-8000-000000000001" });
 		return meal.items[0];
 	};
 

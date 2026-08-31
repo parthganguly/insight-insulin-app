@@ -5,6 +5,7 @@ import {
 	assertNoHorizontalOverflow,
 	stubBackend,
 	syntheticBackendMeal,
+	syntheticPreviewFromSaved,
 	visitFresh,
 } from "../support/insightStubs";
 
@@ -72,10 +73,10 @@ describe("Annotated Journal J4 confirm", () => {
 			.should("contain.text", 'These values were for "synthetic rice". Check they still fit.')
 			.and("contain.text", "200 kcal · 45 g carbs");
 		cy.contains("[data-component-card]", "Values under review").should("exist");
-		cy.get("[aria-label='Save meal']").should("have.attr", "disabled");
+		cy.get("[aria-label='Calculate estimate']").should("have.attr", "disabled");
 		cy.get(".needs-review-card").contains("ion-button", "These still fit").click({ force: true });
 		cy.get(".needs-review-card").should("not.exist");
-		cy.get("[aria-label='Save meal']").should("not.have.attr", "disabled");
+		cy.get("[aria-label='Calculate estimate']").should("not.have.attr", "disabled");
 	});
 
 	it("resolves renamed carried values by editing nutrition", () => {
@@ -92,11 +93,14 @@ describe("Annotated Journal J4 confirm", () => {
 	});
 
 	it("saves through the fixed dock and lands on the saved result", () => {
+		cy.intercept("POST", `${BACKEND_ORIGIN}/meals/preview`, { statusCode: 200, body: syntheticPreviewFromSaved(savedMeal) }).as("previewMeal");
 		cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 200, body: savedMeal }).as("saveMeal");
 		openManualDraft();
 		seedReviewedValues();
 		setIonInput(cy.get(".confirmation-sheet"), "Meal name", "Synthetic journal supper");
-		cy.get("[aria-label='Save meal']").first().click({ force: true });
+		cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
+		cy.wait("@previewMeal");
+		cy.get("[aria-label='Save to History']").first().click({ force: true });
 		cy.wait("@saveMeal");
 		cy.url().should("include", "/meals/saved/j4-saved-meal");
 		// J5 replaced the saved-result toolbar title with the journal hero; the
