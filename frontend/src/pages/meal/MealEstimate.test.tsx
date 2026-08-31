@@ -5,7 +5,18 @@ vi.mock("@ionic/react", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("@ionic/react")>();
 	return {
 		...actual,
-		IonAlert: ({ isOpen, header }: { isOpen: boolean; header: string }) => isOpen ? <div role='alertdialog'>{header}</div> : null,
+		IonAlert: ({ isOpen, header, message, buttons = [] }: {
+			isOpen: boolean;
+			header: string;
+			message?: string;
+			buttons?: Array<{ text: string; handler?: () => void }>;
+		}) => isOpen ? (
+			<div role='alertdialog'>
+				<span>{header}</span>
+				<span>{message}</span>
+				{buttons.map((button) => <button key={button.text} onClick={button.handler}>{button.text}</button>)}
+			</div>
+		) : null,
 		IonLoading: () => null,
 		IonToast: () => null,
 	};
@@ -105,7 +116,7 @@ describe("B2-2 unsaved estimate route", () => {
 		useMealEstimateStore.getState().clearEstimate();
 		renderAtEstimate();
 		await waitFor(() => expect(window.location.pathname).toBe("/meals/new"));
-		expect(await screen.findByText("Did we get your meal right?")).toBeVisible();
+		expect((await screen.findAllByText("Did we get your meal right?")).length).toBeGreaterThan(0);
 	});
 
 	it("saves the frozen estimate and replaces it with the canonical saved route", async () => {
@@ -135,5 +146,25 @@ describe("B2-2 unsaved estimate route", () => {
 		});
 		expect(usePersistentMealStore.getState().meals.map((meal) => meal.id)).toEqual(["saved-x"]);
 		expect(useCurrentMealStore.getState().meal.id).not.toBe("draft-x");
+	});
+
+	it.each(["inFlight", "ambiguous"] as const)("warns that discard does not cancel an existing %s save attempt", async (phase) => {
+		prepareEstimate();
+		usePendingSaveStore.getState().insertIntent({
+			draftId: "draft-x",
+			request: {
+				meal_name: "Synthetic oats",
+				items: getMaterialItemsSnapshot(useCurrentMealStore.getState().meal),
+				client_request_id: "00000000-0000-4000-8000-000000000001",
+			},
+			phase,
+			lastError: null,
+		});
+		renderAtEstimate();
+		fireEvent.click((await screen.findByText("Discard")).closest("ion-button")!);
+
+		expect(await screen.findByText(/Discarding this draft and estimate does not cancel it/)).toBeVisible();
+		fireEvent.click(screen.getByRole("button", { name: "Discard" }));
+		expect(usePendingSaveStore.getState().intents["00000000-0000-4000-8000-000000000001"]).toBeDefined();
 	});
 });

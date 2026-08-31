@@ -45,8 +45,10 @@ const PendingSaveBanner = () => {
 							{intent.phase === "conflicted" && (
 								<>
 									<IonButton size='small' onClick={() => router.push("/meals", "root")}>Open History</IonButton>
-									<IonButton size='small' fill='clear' onClick={() => removeIntent(requestId)}>Discard this save attempt</IonButton>
 								</>
+							)}
+							{(intent.phase === "rejected" || intent.phase === "conflicted") && (
+								<IonButton size='small' fill='clear' onClick={() => removeIntent(requestId)}>Discard this save attempt</IonButton>
 							)}
 						</div>
 					</div>

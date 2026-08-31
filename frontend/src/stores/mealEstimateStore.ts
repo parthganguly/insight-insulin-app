@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { buildCreateMealPayload, CreateMealItemPayload, MealPreviewResponse } from "../api/api";
+import { buildCreateMealPayload, CreateMealItemPayload, MealPreviewResponse, MealSaveRequestPayload } from "../api/api";
 import { Meal } from "../types/Meal";
 
 export type MealEstimatePhase = "idle" | "loading" | "ready" | "failed";
@@ -30,6 +30,12 @@ export const materialItemsJson = (items: readonly CreateMealItemPayload[]): stri
 
 export const isMaterialSnapshotFresh = (meal: Meal, frozenItems: readonly CreateMealItemPayload[] | null): boolean =>
 	frozenItems !== null && materialItemsJson(buildCreateMealPayload(meal).items) === materialItemsJson(frozenItems);
+
+export const currentDraftStillMatchesSaveRequest = (meal: Meal, request: Readonly<MealSaveRequestPayload>): boolean => {
+	const currentPayload = buildCreateMealPayload(meal);
+	return currentPayload.meal_name === request.meal_name
+		&& materialItemsJson(currentPayload.items) === materialItemsJson(request.items);
+};
 
 const EMPTY_ESTIMATE = {
 	draftId: null,

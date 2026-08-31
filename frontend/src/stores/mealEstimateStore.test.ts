@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 
+import { buildCreateMealPayload } from "../api/api";
 import { Meal } from "../types/Meal";
 import { Unit } from "../types/MealItem";
-import { getMaterialItemsSnapshot, isMaterialSnapshotFresh } from "./mealEstimateStore";
+import { currentDraftStillMatchesSaveRequest, getMaterialItemsSnapshot, isMaterialSnapshotFresh } from "./mealEstimateStore";
 
 const meal = (): Meal => ({
 	id: "draft-x",
@@ -77,5 +78,13 @@ describe("B2-2 material estimate freshness", () => {
 		const changed = structuredClone(original);
 		changed.items[0].proteinPerServing_g = 0;
 		expect(isMaterialSnapshotFresh(changed, frozen)).toBe(false);
+	});
+
+	it("matches save ownership by normalized name and material items while excluding image", () => {
+		const original = meal();
+		const request = { ...buildCreateMealPayload(original), client_request_id: "request-x" };
+		expect(currentDraftStillMatchesSaveRequest({ ...original, image: "synthetic-image-b" }, request)).toBe(true);
+		expect(currentDraftStillMatchesSaveRequest({ ...original, name: "  Breakfast label  " }, request)).toBe(true);
+		expect(currentDraftStillMatchesSaveRequest({ ...original, name: "Renamed" }, request)).toBe(false);
 	});
 });

@@ -10,6 +10,7 @@ import {
 	armMealFlowBypass,
 	consumeMealFlowBypass,
 	decideMealFlowNavigation,
+	doesPendingSaveCoverCurrentDraft,
 	getDraftFingerprint,
 	isInternalMealFlowPath,
 } from "../utils/mealFlowGuard";
@@ -34,7 +35,7 @@ const MealFlowGuard = () => {
 	const estimateDraftId = useMealEstimateStore((state) => state.draftId);
 	const preview = useMealEstimateStore((state) => state.preview);
 	const saveRequestId = useMealEstimateStore((state) => state.saveRequestId);
-	const hasPendingSaveIntent = usePendingSaveStore((state) => saveRequestId !== null && Boolean(state.intents[saveRequestId]));
+	const pendingIntent = usePendingSaveStore((state) => saveRequestId === null ? undefined : state.intents[saveRequestId]);
 	const [pending, setPending] = useState<PendingNavigation | null>(null);
 
 	const fingerprint = getDraftFingerprint(meal);
@@ -46,12 +47,13 @@ const MealFlowGuard = () => {
 		baseline.current = { mealId: meal.id, fingerprint };
 	}
 
-	const decisionContext = useRef({ pathname, isDirtyDraft: false, hasUnsavedEstimate: false, hasPendingSaveIntent: false });
+	const pendingSaveCoversCurrentDraft = doesPendingSaveCoverCurrentDraft({ meal, estimateDraftId, saveRequestId, intent: pendingIntent });
+	const decisionContext = useRef({ pathname, isDirtyDraft: false, hasUnsavedEstimate: false, pendingSaveCoversCurrentDraft: false });
 	decisionContext.current = {
 		pathname,
 		isDirtyDraft: !meal.backend_created_at && fingerprint !== baseline.current.fingerprint,
 		hasUnsavedEstimate: preview !== null && saveRequestId !== null && estimateDraftId === meal.id,
-		hasPendingSaveIntent,
+		pendingSaveCoversCurrentDraft,
 	};
 
 	useEffect(() => {
@@ -63,7 +65,7 @@ const MealFlowGuard = () => {
 				toPath: location.pathname,
 				isDirtyDraft: context.isDirtyDraft,
 				hasUnsavedEstimate: context.hasUnsavedEstimate,
-				hasPendingSaveIntent: context.hasPendingSaveIntent,
+				pendingSaveCoversCurrentDraft: context.pendingSaveCoversCurrentDraft,
 			});
 			if (decision === "allow") return;
 			releaseFocusedElement();

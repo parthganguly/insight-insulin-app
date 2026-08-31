@@ -166,12 +166,52 @@ describe("B2-2 request-bound save coordination", () => {
 			expect(useMealEstimateStore.getState().saveRequestId).toBe("request-x");
 		});
 		const replaceRoute = vi.fn();
-		await saveCurrentEstimate({ postMeal: vi.fn(async () => response("saved-x", "Breakfast X")), getPath: () => "/meals/estimate", armBypass, replaceRoute });
+		await saveCurrentEstimate({ postMeal: vi.fn(async () => response("saved-x", "Breakfast X")), getPath: () => "/meals/new", armBypass, replaceRoute });
 		expect(armBypass.mock.invocationCallOrder[0]).toBeLessThan(replaceRoute.mock.invocationCallOrder[0]);
 		expect(usePersistentMealStore.getState().meals).toHaveLength(1);
 		expect(usePersistentMealStore.getState().meals[0]).toMatchObject({ id: "saved-x", image: "image-x" });
 		expect(useCurrentMealStore.getState().meal.id).not.toBe("x");
 		expect(useMealEstimateStore.getState().preview).toBeNull();
+	});
+
+	it("treats an old success as Case B when the same draft has material edits after save", async () => {
+		makeReady(draft("x", "Breakfast X"), "request-x");
+		const pending = deferred<MealModelingResponse>();
+		const armBypass = vi.fn();
+		const replaceRoute = vi.fn();
+		const saving = saveCurrentEstimate({ postMeal: () => pending.promise, getPath: () => "/meals/new", armBypass, replaceRoute });
+
+		useCurrentMealStore.getState().updateMealItem("x-item", "amount", 2);
+		const editedDraft = structuredClone(useCurrentMealStore.getState().meal);
+		pending.resolve(response("saved-x", "Breakfast X"));
+		await saving;
+
+		expect(useCurrentMealStore.getState().meal).toEqual(editedDraft);
+		expect(useMealEstimateStore.getState().saveRequestId).toBe("request-x");
+		expect(usePersistentMealStore.getState().meals.map((meal) => meal.id)).toEqual(["saved-x"]);
+		expect(usePendingSaveStore.getState().intents["request-x"]).toBeUndefined();
+		expect(armBypass).not.toHaveBeenCalled();
+		expect(replaceRoute).not.toHaveBeenCalled();
+	});
+
+	it("treats an old success as Case B when the same draft was renamed after save", async () => {
+		makeReady(draft("x", "Breakfast X"), "request-x");
+		const pending = deferred<MealModelingResponse>();
+		const armBypass = vi.fn();
+		const replaceRoute = vi.fn();
+		const saving = saveCurrentEstimate({ postMeal: () => pending.promise, getPath: () => "/meals/new", armBypass, replaceRoute });
+
+		useCurrentMealStore.getState().setName("Breakfast X renamed");
+		const editedDraft = structuredClone(useCurrentMealStore.getState().meal);
+		pending.resolve(response("saved-x", "Breakfast X"));
+		await saving;
+
+		expect(useCurrentMealStore.getState().meal).toEqual(editedDraft);
+		expect(useMealEstimateStore.getState().saveRequestId).toBe("request-x");
+		expect(usePersistentMealStore.getState().meals.map((meal) => meal.id)).toEqual(["saved-x"]);
+		expect(usePendingSaveStore.getState().intents["request-x"]).toBeUndefined();
+		expect(armBypass).not.toHaveBeenCalled();
+		expect(replaceRoute).not.toHaveBeenCalled();
 	});
 
 	it("gives Case B merge authority but never bypass or navigation authority", async () => {

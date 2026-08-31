@@ -42,6 +42,13 @@ import {
 
 export const UNSAVED_ESTIMATE_STATUS = "Estimate only — not saved";
 export const STALE_ESTIMATE_MESSAGE = "You changed the meal after this estimate. Recalculate to update it.";
+const getEstimateDiscardMessage = (phase?: "inFlight" | "ambiguous" | "rejected" | "conflicted"): string => {
+	if (!phase) return "Nothing has been saved. Your meal draft and this estimate will be removed.";
+	if (phase === "rejected") {
+		return "A save attempt was sent and rejected. Discarding this draft and estimate does not remove that save-attempt status; discard it separately from the save status banner.";
+	}
+	return "A save attempt has already been sent. Discarding this draft and estimate does not cancel it. The meal may already be, or may later appear, in History.";
+};
 
 const toUnit = (value: string): Unit => Object.values(Unit).includes(value as Unit) ? value as Unit : Unit.Servings;
 
@@ -227,7 +234,7 @@ const MealEstimate = () => {
 				isOpen={showDiscardAlert}
 				backdropDismiss={false}
 				header='Discard this estimate?'
-				message='Nothing has been saved. Your meal draft and this estimate will be removed.'
+				message={getEstimateDiscardMessage(intent?.phase)}
 				buttons={[
 					{ text: "Keep estimate", role: "cancel", handler: () => setShowDiscardAlert(false) },
 					{ text: "Discard", role: "destructive", handler: discardEstimate },

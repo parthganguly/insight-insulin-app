@@ -6,7 +6,7 @@ import {
 	postMealToAPI,
 } from "../api/api";
 import { useCurrentMealStore } from "../stores/currentMealStore";
-import { isMaterialSnapshotFresh, useMealEstimateStore } from "../stores/mealEstimateStore";
+import { currentDraftStillMatchesSaveRequest, isMaterialSnapshotFresh, useMealEstimateStore } from "../stores/mealEstimateStore";
 import { PendingSaveIntent, usePendingSaveStore } from "../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../stores/persistentMealStore";
 import { armMealFlowBypass, isInternalMealFlowPath } from "./mealFlowGuard";
@@ -54,7 +54,11 @@ export const handleSaveSuccess = (
 	const estimate = useMealEstimateStore.getState();
 	const draftBelongs = currentMeal.id === intent.draftId;
 	const estimateBelongs = estimate.saveRequestId === requestId;
-	const ownsForeground = draftBelongs && estimateBelongs && isInternalMealFlowPath(deps.getPath());
+	const currentDraftStillMatchesIntent = currentDraftStillMatchesSaveRequest(currentMeal, intent.request);
+	const ownsForeground = draftBelongs
+		&& estimateBelongs
+		&& currentDraftStillMatchesIntent
+		&& isInternalMealFlowPath(deps.getPath());
 	const destination = `/meals/saved/${encodeURIComponent(response.id)}`;
 
 	// Case A must be decided and the destination-bound bypass armed before any
