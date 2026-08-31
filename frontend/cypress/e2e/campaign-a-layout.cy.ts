@@ -4,7 +4,7 @@
 // contract. These tests guard the portion quick-adjust row and a saved result
 // with three separately laid-out evidence rows at both target viewports.
 
-import { BACKEND_ORIGIN, assertNoHorizontalOverflow, shouldBeRendered, stubBackend, syntheticBackendMeal, visitFresh } from "../support/insightStubs";
+import { BACKEND_ORIGIN, assertNoHorizontalOverflow, shouldBeRendered, stubBackend, syntheticBackendMeal, syntheticPreviewFromSaved, visitFresh } from "../support/insightStubs";
 
 const driverWhy = "Used a direct Food Insulin Index match and scaled it by eaten energy.";
 
@@ -108,10 +108,13 @@ describe("Campaign A layout polish", () => {
 		it(`renders three neutral result evidence rows cleanly at ${label}`, () => {
 			cy.viewport(width, height);
 			stubBackend();
+			cy.intercept("POST", `${BACKEND_ORIGIN}/meals/preview`, { statusCode: 200, body: syntheticPreviewFromSaved(threeDriverResponse) }).as("previewMeal");
 			cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 200, body: threeDriverResponse }).as("saveMeal");
 			buildThreeComponentDraft();
 
-			cy.get("[aria-label='Save meal']").first().click({ force: true });
+			cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
+			cy.wait("@previewMeal");
+			cy.get("[aria-label='Save to History']").first().click({ force: true });
 			cy.wait("@saveMeal");
 			cy.url().should("include", "/meals/saved/syn-drivers-1");
 
@@ -119,7 +122,10 @@ describe("Campaign A layout polish", () => {
 			cy.contains("How this estimate was built").should("exist");
 			// Let the replace-navigation transition and the transient save toast
 			// settle so the evidence screenshot shows only the result screen.
-			cy.contains("Did we get your meal right?").should("not.exist");
+			// Ionic retains the hidden Confirm page after the new two-step route;
+			// assert that no confirmation page remains active instead of requiring
+			// retained DOM to be destroyed.
+			cy.get("ion-content.confirmation-page:visible").should("not.exist");
 			cy.get("ion-toast:not(.overlay-hidden)").should("not.exist");
 			assertEvidenceRowsReadCleanly();
 			assertNoHorizontalOverflow();

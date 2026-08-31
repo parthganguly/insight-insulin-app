@@ -24,6 +24,17 @@ export type CreateMealPayload = {
 	items: CreateMealItemPayload[];
 };
 
+export type MealPreviewRequestPayload = {
+	readonly meal_name: string;
+	readonly items: readonly CreateMealItemPayload[];
+};
+
+export type MealSaveRequestPayload = {
+	readonly meal_name: string;
+	readonly items: readonly CreateMealItemPayload[];
+	readonly client_request_id: string;
+};
+
 export type MealModelingItemResponse = {
 	name: string;
 	quantity: number;
@@ -57,6 +68,24 @@ export type MealModelingResponse = {
 	estimate_quality: string;
 	estimate_status?: EstimateStatus;
 	main_insulin_drivers: string[];
+};
+
+// Preview results deliberately have no saved identity. Keep this type separate
+// from MealModelingResponse so the saved normalizer cannot fabricate an id or
+// timestamp for a stateless estimate.
+export type MealPreviewResponse = {
+	meal_name: string;
+	items: MealModelingItemResponse[];
+	insulin_load_total?: number;
+	acute_score?: number;
+	kcal_total: number;
+	carbs_total: number;
+	protein_total: number;
+	fat_total: number;
+	estimate_quality: string;
+	estimate_status?: EstimateStatus;
+	main_insulin_drivers: string[];
+	persisted: false;
 };
 
 // Logged-days-only trend semantics (issue #93): unlogged days carry null
@@ -232,6 +261,27 @@ const normalizeMealModelingResponse = (raw: unknown): MealModelingResponse => {
 	};
 };
 
+export const normalizeMealPreviewResponse = (raw: unknown): MealPreviewResponse => {
+	const root = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+	const candidate = root.data && typeof root.data === "object" ? (root.data as Record<string, unknown>) : root;
+	return {
+		meal_name: toNonEmptyString(candidate.meal_name ?? candidate.name) ?? "Untitled meal",
+		items: Array.isArray(candidate.items) ? candidate.items.map(normalizeMealModelingItem) : [],
+		insulin_load_total: toOptionalNumber(candidate.insulin_load_total as NumberLike),
+		acute_score: toOptionalNumber(candidate.acute_score as NumberLike),
+		kcal_total: toNumberWithDefault(candidate.kcal_total as NumberLike, 0),
+		carbs_total: toNumberWithDefault(candidate.carbs_total as NumberLike, 0),
+		protein_total: toNumberWithDefault(candidate.protein_total as NumberLike, 0),
+		fat_total: toNumberWithDefault(candidate.fat_total as NumberLike, 0),
+		estimate_quality: toNonEmptyString(candidate.estimate_quality) ?? "unknown",
+		estimate_status: toEstimateStatus(candidate.estimate_status),
+		main_insulin_drivers: Array.isArray(candidate.main_insulin_drivers)
+			? candidate.main_insulin_drivers.map((driver) => toNonEmptyString(driver)).filter((driver): driver is string => Boolean(driver))
+			: [],
+		persisted: false,
+	};
+};
+
 // Missing data must stay missing: null/undefined/non-numeric values become
 // null, never 0, so an unlogged day cannot masquerade as a zero-insulin day.
 const toNullableNumber = (value: NumberLike): number | null => {
@@ -326,6 +376,16 @@ export class AiExtractionHttpError extends Error {
 	}
 }
 
+export class MealSaveHttpError extends Error {
+	readonly status: number;
+
+	constructor(status: number, detail: string) {
+		super(detail);
+		this.name = "MealSaveHttpError";
+		this.status = status;
+	}
+}
+
 export const fetchAiMealFromAPI = async (base64Images: string[], textualData: string): Promise<Meal> => {
 	const res = await fetch(`${backendApiUrl}/ai-meal-extract`, {
 		method: "POST",
@@ -366,7 +426,20 @@ export const fetchBarcodeMealItemFromAPI = async (base64Image: string): Promise<
 	}
 };
 
-export const postMealToAPI = async (payload: CreateMealPayload): Promise<MealModelingResponse> => {
+export const postMealPreviewToAPI = async (payload: MealPreviewRequestPayload): Promise<MealPreviewResponse> => {
+	const res = await fetch(`${backendApiUrl}/meals/preview`, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		// Construct the narrow wire body here. Even if a wider object reaches this
+		// function at runtime, a save request id can never leak onto preview.
+		body: JSON.stringify({ meal_name: payload.meal_name, items: payload.items }),
+	});
+
+	if (!res.ok) throw new Error("Failed to preview meal");
+	return normalizeMealPreviewResponse(await res.json());
+};
+
+export const postMealToAPI = async (payload: MealSaveRequestPayload): Promise<MealModelingResponse> => {
 	const res = await fetch(`${backendApiUrl}/meals`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -383,7 +456,7 @@ export const postMealToAPI = async (payload: CreateMealPayload): Promise<MealMod
 		} catch {
 			// Keep fallback message when error body is not JSON.
 		}
-		throw new Error(errorMessage);
+		throw new MealSaveHttpError(res.status, errorMessage);
 	}
 
 	const responseBody = await res.json();

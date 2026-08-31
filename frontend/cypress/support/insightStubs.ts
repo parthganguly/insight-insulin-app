@@ -56,6 +56,13 @@ export const syntheticBackendMeal = (id: string, name: string, acuteScore: numbe
 	...overrides,
 });
 
+export const syntheticPreviewFromSaved = (meal: SyntheticBackendMeal) => {
+	const preview: Partial<SyntheticBackendMeal> & { persisted: false } = { ...meal, persisted: false };
+	delete preview.id;
+	delete preview.created_at;
+	return preview;
+};
+
 export type SyntheticChronicOptions = {
 	loggedDays: number;
 	rollingDii: number | null;

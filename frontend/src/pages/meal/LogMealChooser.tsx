@@ -3,6 +3,7 @@ import { camera, create, repeat } from "ionicons/icons";
 
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { LOG_MEAL_OPTIONS, LogMealOptionId } from "../../utils/logMealOptions";
 
 const OPTION_ICONS: Record<LogMealOptionId, string> = {
@@ -27,6 +28,7 @@ const LogMealChooser: React.FC = () => {
 
 	const handleChoice = (choice: LogMealOptionId) => {
 		releaseFocusedElement();
+		useMealEstimateStore.getState().clearEstimate();
 
 		if (choice === "photo") {
 			resetMeal();
