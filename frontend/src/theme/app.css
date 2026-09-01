@@ -1065,12 +1065,6 @@ ion-modal.sheet-modal {
 	border: 1px solid var(--line);
 }
 
-.meal-status-estimate {
-	background: var(--tint);
-	color: var(--ink-2);
-	border: 1px dashed var(--accent);
-}
-
 .meal-name-helper {
 	margin: 6px 0 2px;
 	color: var(--app-muted);
@@ -1906,6 +1900,59 @@ ion-progress-bar {
 	font-variant-numeric: tabular-nums;
 }
 
+/* J8 estimate-only controls belong to the meal identity they change. */
+
+.estimate-identity-actions {
+	display: flex;
+	margin-top: 4px;
+}
+
+.estimate-identity-actions ion-button {
+	min-height: 44px;
+	margin: 0 0 0 -12px;
+	--color: var(--ink-2);
+	font-weight: 650;
+}
+
+/* Staleness and calculation activity stay in the result domain. The prior
+   result remains fully readable; no danger or insufficient-data treatment is
+   applied to it. */
+
+.estimate-model-status {
+	display: grid;
+	gap: 8px;
+	margin-top: 14px;
+	padding: 14px 0;
+	border-block: 1px solid var(--line);
+	color: var(--ink-2);
+}
+
+.estimate-model-status p {
+	margin: 0;
+	font-size: var(--type-secondary);
+	line-height: 1.5;
+}
+
+.estimate-stale-copy {
+	font-weight: 650;
+}
+
+.estimate-model-activity {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+}
+
+.estimate-model-activity ion-spinner {
+	width: 18px;
+	height: 18px;
+	color: var(--accent);
+}
+
+.estimate-model-error {
+	color: var(--ink-3);
+}
+
 /* Verdict — the one answer-weight statement on the page */
 
 .result-verdict {
@@ -2212,6 +2259,49 @@ ion-progress-bar {
 	--background: var(--accent);
 	--color: var(--accent-ink);
 	font-weight: 700;
+}
+
+/* J8 estimate footer: one stable strong slot for persistence or
+   recalculation. Unlike the saved-result exit dock, it has no commerce-style
+   elevation or stacked secondary action row. */
+
+.estimate-dock {
+	box-shadow: none;
+}
+
+.estimate-footer-state {
+	display: grid;
+	gap: 8px;
+}
+
+.estimate-footer-state > ion-button {
+	min-height: 54px;
+	margin: 0;
+	--background: var(--accent);
+	--color: var(--accent-ink);
+	font-weight: 700;
+}
+
+.estimate-footer-state > ion-button[disabled] {
+	opacity: 1;
+	--background: var(--raised);
+	--color: var(--ink-2);
+	--border-color: var(--line);
+	--border-style: solid;
+	--border-width: 1px;
+}
+
+.estimate-footer-state ion-spinner {
+	width: 18px;
+	height: 18px;
+	margin-right: 9px;
+}
+
+.estimate-footer-support {
+	margin: 0;
+	font-size: var(--type-caption);
+	line-height: 1.45;
+	color: var(--ink-3);
 }
 
 .result-dock-secondary {

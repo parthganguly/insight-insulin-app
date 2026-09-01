@@ -22,7 +22,6 @@ import { Meal } from "../../types/Meal";
 import { MealItem, Unit } from "../../types/MealItem";
 import { DRAFT_ITEM_ROW_HINT, DRAFT_REVIEW_KICKER, ITEM_LIST_EDIT_HELPER, SAVED_MEAL_STATUS } from "../../utils/mealDraftUx";
 import { PREVIEW_FAILURE_MESSAGE } from "../../utils/mealEstimateWorkflow";
-import { UNSAVED_ESTIMATE_STATUS } from "./MealEstimate";
 
 // Manual meal draft/save UX (issue #75): the review screen must present an
 // unsaved manual meal as an editable draft, reject empty/zero saves with
@@ -202,7 +201,8 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 
 		await waitFor(() => expect(window.location.pathname).toBe("/meals/estimate"));
 		expect(fetchMock).toHaveBeenCalledWith(expect.stringMatching(/\/meals\/preview$/), expect.objectContaining({ method: "POST" }));
-		expect(await screen.findByText(UNSAVED_ESTIMATE_STATUS)).toBeTruthy();
+		expect(await screen.findByText("Save to History")).toBeTruthy();
+		expect(baseElement.querySelector(".result-sheet")).not.toHaveTextContent(/Estimate only|Not saved|Unsaved/i);
 		expect(usePersistentMealStore.getState().meals).toHaveLength(0);
 		expect(consoleLogSpy).not.toHaveBeenCalledWith("POST /meals response:", expect.anything());
 		expect(screen.queryByText("Discard this draft?")).toBeNull();

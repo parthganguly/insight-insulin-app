@@ -36,12 +36,12 @@ describe("Campaign B B2-2 pending-save navigation", () => {
 		cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
 		cy.wait("@previewMeal");
 		cy.url().should("include", "/meals/estimate");
-		cy.contains("Estimate only — not saved").should("exist");
+		cy.contains("Estimate only — not saved").should("not.exist");
+		cy.contains("ion-footer ion-button", "Save to History").should("have.length", 1);
 
 		cy.get("[aria-label='Save to History']").first().click({ force: true });
-		cy.get("[aria-label='Meal save status']")
-			.should("contain.text", "Synthetic breakfast X")
-			.and("contain.text", "Saving this meal in the background…");
+		cy.contains("ion-footer", "Saving to History…").should("exist");
+		cy.get("[aria-label='Meal save status']").should("not.exist");
 
 		cy.get("ion-tab-button[aria-label='Home']").click({ force: true });
 		cy.url().should("include", "/dashboard");
