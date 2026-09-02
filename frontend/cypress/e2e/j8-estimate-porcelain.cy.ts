@@ -92,7 +92,7 @@ describe("J8 unsaved estimate Porcelain treatment", () => {
 			.blur();
 		cy.go("back");
 		cy.url().should("include", "/meals/estimate");
-		cy.wait(400); // Let the internal-flow back transition settle before capture.
+		cy.wait(1000); // Let the internal-flow back transition settle before capture.
 		cy.contains("This estimate describes the meal before your changes. Recalculate before saving.").should("exist");
 		cy.contains(".result-score", "Relative score: 67").should("exist");
 		cy.contains("ion-footer ion-button", "Recalculate").should("exist");

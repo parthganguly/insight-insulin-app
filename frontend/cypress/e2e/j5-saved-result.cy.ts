@@ -85,7 +85,7 @@ const openSavedResult = (meal: ReturnType<typeof savedMeal>, appearance: Appeara
 };
 
 const capture = (name: string) => {
-	cy.get("ion-app").screenshot(name, { overwrite: true });
+	cy.screenshot(name, { capture: "viewport", overwrite: true });
 };
 
 describe("J5 saved result — product contract", () => {
