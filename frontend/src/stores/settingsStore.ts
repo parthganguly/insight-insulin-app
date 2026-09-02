@@ -18,38 +18,22 @@ enum ActivityLevel {
 type SettingsState = {
 	darkMode: boolean | null;
 	toggleDarkMode: (value: boolean | null) => void;
-	gender: Gender | null;
-	setGender: (gender: Gender) => void;
-	age: number | null;
-	setAge: (age: number) => void;
-	weight: number | null;
-	setWeight: (weight: number) => void;
-	height: number | null;
-	setHeight: (height: number) => void;
-	activityLevel: ActivityLevel | null;
-	setActivityLevel: (level: ActivityLevel) => void;
 };
 
 export const useSettingsStore = create<SettingsState>()(
 	persist(
 		(set) => ({
 			darkMode: null,
-			toggleDarkMode: (value) => {
-				set({ darkMode: value });
-			},
-			gender: null,
-			setGender: (gender: Gender) => set({ gender }),
-			age: null,
-			setAge: (age: number) => set({ age }),
-			weight: null,
-			setWeight: (weight: number) => set({ weight }),
-			height: null,
-			setHeight: (height: number) => set({ height }),
-			activityLevel: null,
-			setActivityLevel: (level: ActivityLevel) => set({ activityLevel: level }),
+			toggleDarkMode: (value) => set({ darkMode: value }),
 		}),
 		{
 			name: "app-settings",
+			version: 1,
+			migrate: (persistedState) => {
+				const darkMode = (persistedState as { darkMode?: unknown } | null)?.darkMode;
+				return { darkMode: typeof darkMode === "boolean" ? darkMode : null };
+			},
+			partialize: (state) => ({ darkMode: state.darkMode }),
 		}
 	)
 );

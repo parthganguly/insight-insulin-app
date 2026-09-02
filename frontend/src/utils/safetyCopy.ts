@@ -35,6 +35,13 @@ export const PROVIDED_FII_DISCLAIMER =
 export const AI_EXTRACTION_PRIVACY_DISCLOSURE =
 	"AI meal extraction sends your meal image or description to an external AI service to estimate food items and nutrition. INSIGHT does not retain uploaded images on the backend by default, but the external service may process the data according to its own policies. Do not upload anything you are not comfortable sharing for AI processing.";
 
+// Approved Settings / identity milestone copy.
+export const SETTINGS_PROTOTYPE_STATUS = "Experimental prototype";
+export const SETTINGS_SAVED_MEALS_DISCLOSURE =
+	"Saved meals are stored on this device and in the configured INSIGHT backend. The current backend has no accounts or per-user isolation, so saved meals are not separated by user.";
+export const SETTINGS_IMAGE_DISCLOSURE = "Small meal images may also remain in this app’s local storage.";
+export const SETTINGS_DELETE_DISCLOSURE = "Saved meals can be deleted one at a time. There is no delete-all action in this prototype.";
+
 const SOURCE_LABELS: Record<string, string> = {
 	user_confirmed: "User-entered FII",
 	exact_fii: "Direct FII match",
