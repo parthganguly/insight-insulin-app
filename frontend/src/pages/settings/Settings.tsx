@@ -1,11 +1,20 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonList, IonItem, IonLabel, IonText, IonSelect, IonSelectOption, IonInput } from "@ionic/react";
+import { IonContent, IonHeader, IonPage, IonRadio, IonRadioGroup, IonTitle } from "@ionic/react";
 import React from "react";
-import { ActivityLevel, Gender, useSettingsStore } from "../../stores/settingsStore";
-import { calculateBmr, calculateTdee } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
+import { useSettingsStore } from "../../stores/settingsStore";
+import {
+	AI_EXTRACTION_PRIVACY_DISCLOSURE,
+	APP_DISCLAIMER,
+	SETTINGS_DELETE_DISCLOSURE,
+	SETTINGS_IMAGE_DISCLOSURE,
+	SETTINGS_PROTOTYPE_STATUS,
+	SETTINGS_SAVED_MEALS_DISCLOSURE,
+} from "../../utils/safetyCopy";
 
 const Settings: React.FC = () => {
-	const { setGender, gender, age, setAge, weight, setWeight, height, setHeight, activityLevel, setActivityLevel } = useSettingsStore();
+	const darkMode = useSettingsStore((state) => state.darkMode);
+	const toggleDarkMode = useSettingsStore((state) => state.toggleDarkMode);
+	const appearance = darkMode === null ? "system" : darkMode ? "ink" : "paper";
 
 	return (
 		<IonPage>
@@ -15,101 +24,43 @@ const Settings: React.FC = () => {
 				</IonToolbarWrapper>
 			</IonHeader>
 
-			<IonContent className='ion-padding'>
-				{/* <IonText color='medium'>
-					<h2 style={{ marginBottom: "1rem", fontSize: "1.2rem" }}>Preferences</h2>
-				</IonText>
-				
-				<IonList>
-					<IonItem style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-						<IonToggle checked={darkMode} onIonChange={(e) => toggleDarkMode(e.detail.checked)}>
-							Dark Mode
-						</IonToggle>
-					</IonItem>
-				</IonList> */}
-				<IonText color='medium'>
-					<h2 style={{ marginBottom: "1rem", fontSize: "1.2rem" }}>Data</h2>
-				</IonText>
-				<IonList>
-					<IonItem>
-						<IonSelect label='Gender' aria-label='Gender' placeholder='Gender' value={gender} onIonChange={(e) => setGender(e.detail.value)}>
-							<IonSelectOption value='male'>Male</IonSelectOption>
-							<IonSelectOption value='female'>Female</IonSelectOption>
-						</IonSelect>
-					</IonItem>
-					<IonItem>
-						<IonInput
-							type='number'
-							label='Age'
-							value={age}
-							style={{ textAlign: "right" }}
-							placeholder='Age'
-							onIonInput={(e) => {
-								const value = e.detail.value;
-								setAge(value !== undefined && value !== null && value !== "" ? Number(value) : 0);
-							}}
-						/>
-					</IonItem>
-					<IonItem>
-						<IonInput
-							type='number'
-							label='Weight (kg)'
-							value={weight}
-							style={{ textAlign: "right" }}
-							placeholder='Weight (kg)'
-							onIonInput={(e) => {
-								const value = e.detail.value;
-								setWeight(value !== undefined && value !== null && value !== "" ? Number(value) : 0);
-							}}
-						/>
-					</IonItem>
-					<IonItem>
-						<IonInput
-							type='number'
-							label='Height (cm)'
-							style={{ textAlign: "right" }}
-							value={height}
-							placeholder='Height (cm)'
-							onIonInput={(e) => {
-								const value = e.detail.value;
-								setHeight(value !== undefined && value !== null && value !== "" ? Number(value) : 0);
-							}}
-						/>
-					</IonItem>
-					<IonItem>
-						<IonSelect label='Activity Level' aria-label='Activity Level' placeholder='Activity Level' value={activityLevel} onIonChange={(e) => setActivityLevel(e.detail.value)}>
-							<IonSelectOption value='sedentary'>Sedentary</IonSelectOption>
-							<IonSelectOption value='light'>Lightly Active</IonSelectOption>
-							<IonSelectOption value='moderate'>Moderately Active</IonSelectOption>
-							<IonSelectOption value='active'>Active</IonSelectOption>
-							<IonSelectOption value='very_active'>Very Active</IonSelectOption>
-						</IonSelect>
-					</IonItem>
-				</IonList>
-				{
-					// Display TDEE calculation if all required fields are filled
-					weight && height && age && activityLevel && gender && (
-						<>
-							<IonText color='medium'>
-								<h2 style={{ marginBottom: "1rem", fontSize: "1.2rem" }}>Calculated Data</h2>
-							</IonText>
-							<IonList>
-								<IonItem>
-									<IonLabel>BMR:&nbsp;</IonLabel>
-									<IonText color='primary' style={{ fontWeight: "bold" }}>
-										{calculateBmr(weight ?? 0, height ?? 0, age ?? 0, gender ?? Gender.Male)} kcal
-									</IonText>
-								</IonItem>
-								<IonItem>
-									<IonLabel>TDEE:&nbsp;</IonLabel>
-									<IonText color='primary' style={{ fontWeight: "bold" }}>
-										{calculateTdee(weight ?? 0, height ?? 0, age ?? 0, activityLevel ?? ActivityLevel.Sedentary, gender ?? Gender.Male)} kcal
-									</IonText>
-								</IonItem>
-							</IonList>
-						</>
-					)
-				}
+			<IonContent className='settings-content'>
+				<div className='settings-page'>
+					<section className='settings-section' aria-labelledby='settings-appearance-heading'>
+						<h2 id='settings-appearance-heading'>Appearance</h2>
+						<IonRadioGroup
+							className='settings-appearance-group'
+							name='appearance'
+							value={appearance}
+							aria-label='Appearance'
+							onIonChange={(event) => toggleDarkMode(event.detail.value === "system" ? null : event.detail.value === "ink")}
+						>
+							<IonRadio className='settings-appearance-row' value='system' labelPlacement='end' alignment='start' justify='start'>
+								<span className='settings-radio-copy'><strong>System</strong><span>Match your device.</span></span>
+							</IonRadio>
+							<IonRadio className='settings-appearance-row' value='paper' labelPlacement='end' alignment='start' justify='start'>
+								<span className='settings-radio-copy'><strong>Paper</strong><span>Light.</span></span>
+							</IonRadio>
+							<IonRadio className='settings-appearance-row' value='ink' labelPlacement='end' alignment='start' justify='start'>
+								<span className='settings-radio-copy'><strong>Ink</strong><span>Dark.</span></span>
+							</IonRadio>
+						</IonRadioGroup>
+					</section>
+
+					<section className='settings-section settings-copy-section' aria-labelledby='settings-about-heading'>
+						<h2 id='settings-about-heading'>About INSIGHT</h2>
+						<p className='settings-status'>{SETTINGS_PROTOTYPE_STATUS}</p>
+						<p>{APP_DISCLAIMER}</p>
+					</section>
+
+					<section className='settings-section settings-copy-section' aria-labelledby='settings-privacy-heading'>
+						<h2 id='settings-privacy-heading'>Data &amp; privacy</h2>
+						<p>{SETTINGS_SAVED_MEALS_DISCLOSURE}</p>
+						<p>{SETTINGS_IMAGE_DISCLOSURE}</p>
+						<p>{AI_EXTRACTION_PRIVACY_DISCLOSURE}</p>
+						<p>{SETTINGS_DELETE_DISCLOSURE}</p>
+					</section>
+				</div>
 			</IonContent>
 		</IonPage>
 	);

@@ -10,6 +10,10 @@ import {
 	MEAL_SCORE_DISCLAIMER,
 	PROVIDED_FII_DISCLAIMER,
 	ROUGH_ESTIMATE_NOTICE,
+	SETTINGS_DELETE_DISCLOSURE,
+	SETTINGS_IMAGE_DISCLOSURE,
+	SETTINGS_PROTOTYPE_STATUS,
+	SETTINGS_SAVED_MEALS_DISCLOSURE,
 	UNKNOWN_ITEMS_NOTICE,
 	getEstimateQualityCopy,
 	getSavedResultSourceCopy,
@@ -20,6 +24,15 @@ import {
 	isUnknownSource,
 	shouldShowProvidedFiiDisclaimer,
 } from "./safetyCopy";
+
+const SETTINGS_COPY = [
+	APP_DISCLAIMER,
+	AI_EXTRACTION_PRIVACY_DISCLOSURE,
+	SETTINGS_PROTOTYPE_STATUS,
+	SETTINGS_SAVED_MEALS_DISCLOSURE,
+	SETTINGS_IMAGE_DISCLOSURE,
+	SETTINGS_DELETE_DISCLOSURE,
+];
 
 describe("safety copy source labels", () => {
 	it.each([
@@ -198,7 +211,7 @@ describe("dataset overclaim guard (issue #93)", () => {
 	// measurement-derived. Copy asserting published / population-level /
 	// population-average / validated / measured data therefore claims evidence
 	// the repository does not have. These tests fail if such wording returns.
-	const SCORE_COPY = [APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, CHRONIC_TREND_DISCLAIMER].join(" ");
+	const SCORE_COPY = [APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, CHRONIC_TREND_DISCLAIMER, ...SETTINGS_COPY].join(" ");
 
 	// Positive claims are forbidden; the same words are allowed when the
 	// sentence explicitly negates them ("not yet scientifically validated").
@@ -312,7 +325,7 @@ describe("privacy overclaim guard", () => {
 	});
 
 	it("passes every approved safety-copy string", () => {
-		for (const copy of [APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, UNKNOWN_ITEMS_NOTICE, ROUGH_ESTIMATE_NOTICE, CHRONIC_TREND_DISCLAIMER, PROVIDED_FII_DISCLAIMER, AI_EXTRACTION_PRIVACY_DISCLOSURE]) {
+		for (const copy of [APP_DISCLAIMER, MEAL_SCORE_DISCLAIMER, UNKNOWN_ITEMS_NOTICE, ROUGH_ESTIMATE_NOTICE, CHRONIC_TREND_DISCLAIMER, PROVIDED_FII_DISCLAIMER, AI_EXTRACTION_PRIVACY_DISCLOSURE, ...SETTINGS_COPY]) {
 			expect(findUnsafePrivacyClaims(copy)).toEqual([]);
 		}
 	});

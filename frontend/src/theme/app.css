@@ -220,6 +220,98 @@ ion-tab-button.tab-selected:not(.journey-tab-selected) {
 	text-align: left;
 }
 
+/* Settings / identity: one restrained reading column, no new design system. */
+.settings-content::part(scroll) {
+	padding: 6px 20px 32px;
+}
+
+.settings-page {
+	max-width: 520px;
+	margin-inline: auto;
+}
+
+.settings-section {
+	padding: 20px 2px 24px;
+}
+
+.settings-section + .settings-section {
+	border-top: 1px solid var(--line);
+}
+
+.settings-section h2 {
+	margin: 0 0 14px;
+	font-family: var(--font-journal);
+	font-size: 1.2rem;
+	font-weight: 600;
+	line-height: 1.25;
+	color: var(--app-ink);
+}
+
+.settings-appearance-group {
+	display: block;
+	overflow: hidden;
+	background: var(--app-surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-card);
+}
+
+.settings-appearance-row {
+	min-height: 64px;
+	padding: 10px 14px;
+	color: var(--app-ink);
+}
+
+.settings-appearance-row + .settings-appearance-row {
+	border-top: 1px solid var(--line);
+}
+
+.settings-appearance-row:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: -2px;
+}
+
+.settings-radio-copy,
+.settings-radio-copy span {
+	display: block;
+}
+
+.settings-radio-copy {
+	line-height: 1.35;
+}
+
+.settings-radio-copy strong {
+	font-size: 0.95rem;
+	font-weight: 650;
+}
+
+.settings-radio-copy span {
+	margin-top: 2px;
+	font-size: 0.82rem;
+	color: var(--app-muted);
+}
+
+.settings-copy-section p {
+	margin: 0 0 12px;
+	color: var(--app-muted);
+	font-size: 0.88rem;
+	line-height: 1.6;
+}
+
+.settings-copy-section p:last-child {
+	margin-bottom: 0;
+}
+
+.settings-copy-section .settings-status {
+	display: inline-block;
+	margin-bottom: 14px;
+	padding: 4px 9px;
+	border-radius: var(--radius-pill);
+	background: var(--tint);
+	color: var(--app-ink);
+	font-size: 0.76rem;
+	font-weight: 700;
+}
+
 /* Empty state */
 
 .empty-state-card {
