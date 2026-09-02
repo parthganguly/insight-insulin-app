@@ -96,7 +96,9 @@ describe("Manual meal draft", () => {
 		calculateEstimate();
 		cy.wait("@previewMeal");
 		cy.url().should("include", "/meals/estimate");
-		shouldBeRendered("span", "Estimate only — not saved");
+		shouldBeRendered(".result-score", "Relative score: 42");
+		cy.contains("Estimate only — not saved").should("not.exist");
+		cy.contains("ion-footer ion-button", "Save to History").should("have.length", 1).and("be.visible");
 		saveEstimate();
 		cy.wait("@saveMeal");
 
@@ -121,7 +123,9 @@ describe("Manual meal draft", () => {
 
 		// A 5xx is ambiguous, so the exact request remains available to retry.
 		cy.url().should("include", "/meals/estimate");
-		cy.get("[aria-label='Meal save status']").should("contain.text", ambiguousSaveMessage);
+		cy.contains("ion-footer", ambiguousSaveMessage).should("exist");
+		cy.contains("ion-footer ion-button", "Retry this save").should("exist");
+		cy.get("[aria-label='Meal save status']").should("not.exist");
 		cy.get("ion-app").invoke("text")
 			.should("not.contain", "Internal server error")
 			.and("not.contain", "Traceback");

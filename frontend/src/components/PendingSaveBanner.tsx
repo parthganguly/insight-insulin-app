@@ -1,9 +1,12 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import { alertCircle, checkmarkCircle } from "ionicons/icons";
 import { useIonRouter } from "@ionic/react";
+import { useLocation } from "react-router-dom";
 
 import { useCurrentMealStore } from "../stores/currentMealStore";
+import { useMealEstimateStore } from "../stores/mealEstimateStore";
 import { usePendingSaveStore } from "../stores/pendingSaveStore";
+import { doesPendingSaveCoverCurrentDraft } from "../utils/mealFlowGuard";
 import { retrySaveIntent } from "../utils/mealSaveCoordinator";
 
 const phaseCopy = {
@@ -18,10 +21,19 @@ const PendingSaveBanner = () => {
 	const notices = usePendingSaveStore((state) => state.notices);
 	const removeIntent = usePendingSaveStore((state) => state.removeIntent);
 	const dismissNotice = usePendingSaveStore((state) => state.dismissNotice);
-	const currentDraftId = useCurrentMealStore((state) => state.meal.id);
+	const currentMeal = useCurrentMealStore((state) => state.meal);
+	const estimateDraftId = useMealEstimateStore((state) => state.draftId);
+	const saveRequestId = useMealEstimateStore((state) => state.saveRequestId);
+	const { pathname } = useLocation();
 	const router = useIonRouter();
-	const entries = Object.entries(intents).slice(0, 3);
-	const overflow = Math.max(0, Object.keys(intents).length - entries.length);
+	const visibleIntents = Object.entries(intents).filter(([, intent]) => {
+		const ownedByEstimateFooter = pathname === "/meals/estimate"
+			&& (intent.phase === "inFlight" || intent.phase === "ambiguous")
+			&& doesPendingSaveCoverCurrentDraft({ meal: currentMeal, estimateDraftId, saveRequestId, intent });
+		return !ownedByEstimateFooter;
+	});
+	const entries = visibleIntents.slice(0, 3);
+	const overflow = Math.max(0, visibleIntents.length - entries.length);
 
 	if (entries.length === 0 && notices.length === 0) return null;
 
@@ -39,7 +51,7 @@ const PendingSaveBanner = () => {
 									replaceRoute: (destination) => router.push(destination, "forward", "replace"),
 								})}>Retry this save</IonButton>
 							)}
-							{intent.phase === "rejected" && intent.draftId === currentDraftId && (
+							{intent.phase === "rejected" && intent.draftId === currentMeal.id && (
 								<IonButton size='small' fill='clear' onClick={() => router.push("/meals/new", "back")}>Edit meal</IonButton>
 							)}
 							{intent.phase === "conflicted" && (

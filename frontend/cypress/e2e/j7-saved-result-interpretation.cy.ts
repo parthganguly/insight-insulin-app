@@ -73,7 +73,7 @@ const openSavedResult = (meal: ReturnType<typeof normalMeal>, appearance: Appear
 	cy.contains(SAVED_MEAL_STATUS).should("exist");
 };
 
-const capture = (name: string) => cy.get("ion-app").screenshot(`j7-result/${name}`, { overwrite: true });
+const capture = (name: string) => cy.screenshot(`j7-result/${name}`, { capture: "viewport", overwrite: true });
 
 describe("J7 normal saved-result semantics", () => {
 	beforeEach(() => cy.viewport(390, 844));

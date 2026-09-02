@@ -1,15 +1,12 @@
 import {
-	IonAlert,
 	IonButton,
 	IonContent,
 	IonFooter,
-	IonIcon,
-	IonLoading,
 	IonPage,
+	IonSpinner,
 	useIonRouter,
 } from "@ionic/react";
-import { alertCircle } from "ionicons/icons";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 import EvidenceRows from "../../components/EvidenceRows";
@@ -23,7 +20,7 @@ import { MealItem, Unit } from "../../types/MealItem";
 import { calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealAcuteScore } from "../../utils";
 import { getSavedResultScoreAriaLabel, getSavedResultScoreLine, SAVED_RESULT_SCALE_DISCLOSURE, SAVED_RESULT_SCORE_BOUNDARY } from "../../utils/acuteScoreDisplay";
 import { calculateCurrentMealEstimate } from "../../utils/mealEstimateWorkflow";
-import { armMealFlowBypass } from "../../utils/mealFlowGuard";
+import { doesPendingSaveCoverCurrentDraft } from "../../utils/mealFlowGuard";
 import { retrySaveIntent, saveCurrentEstimate } from "../../utils/mealSaveCoordinator";
 import { getImpactPresentation, isHardToEstimatePresentation } from "../../utils/insulinImpactPresentation";
 import { ADVANCED_DETAILS_LABEL } from "../../utils/mealDraftUx";
@@ -40,15 +37,9 @@ import {
 	shouldShowProvidedFiiDisclaimer,
 } from "../../utils/safetyCopy";
 
-export const UNSAVED_ESTIMATE_STATUS = "Estimate only — not saved";
-export const STALE_ESTIMATE_MESSAGE = "You changed the meal after this estimate. Recalculate to update it.";
-const getEstimateDiscardMessage = (phase?: "inFlight" | "ambiguous" | "rejected" | "conflicted"): string => {
-	if (!phase) return "Nothing has been saved. Your meal draft and this estimate will be removed.";
-	if (phase === "rejected") {
-		return "A save attempt was sent and rejected. Discarding this draft and estimate does not remove that save-attempt status; discard it separately from the save status banner.";
-	}
-	return "A save attempt has already been sent. Discarding this draft and estimate does not cancel it. The meal may already be, or may later appear, in History.";
-};
+export const STALE_ESTIMATE_MESSAGE = "This estimate describes the meal before your changes. Recalculate before saving.";
+export const RECALCULATING_ESTIMATE_MESSAGE = "Estimating your updated meal…";
+export const RECALCULATION_FAILURE_MESSAGE = "Couldn't update this estimate. Try again.";
 
 const toUnit = (value: string): Unit => Object.values(Unit).includes(value as Unit) ? value as Unit : Unit.Servings;
 
@@ -75,7 +66,6 @@ const MealEstimate = () => {
 	const meal = useCurrentMealStore((state) => state.meal);
 	const estimate = useMealEstimateStore();
 	const intents = usePendingSaveStore((state) => state.intents);
-	const [showDiscardAlert, setShowDiscardAlert] = useState(false);
 	const validEstimate = estimate.preview !== null && estimate.frozenItems !== null && estimate.saveRequestId !== null && estimate.draftId === meal.id;
 	const isFresh = validEstimate && isMaterialSnapshotFresh(meal, estimate.frozenItems);
 	const intent = estimate.saveRequestId ? intents[estimate.saveRequestId] : undefined;
@@ -115,10 +105,40 @@ const MealEstimate = () => {
 	const showPartialModelOutput = hardToEstimate && displayScore !== undefined;
 	const hasUnknownItems = displayMeal.items.some((item) => isUnknownSource(item.source));
 	const hasRoughEstimateItems = displayMeal.items.some((item) => isRoughEstimateSource(item.source));
-	const isSaving = intent?.phase === "inFlight";
+	const ownsTransientIntent = (intent?.phase === "inFlight" || intent?.phase === "ambiguous")
+		&& doesPendingSaveCoverCurrentDraft({
+			meal,
+			estimateDraftId: estimate.draftId,
+			saveRequestId: estimate.saveRequestId,
+			intent,
+		});
+	const hasBackgroundTransientIntent = (intent?.phase === "inFlight" || intent?.phase === "ambiguous") && !ownsTransientIntent;
+	const isSaving = intent?.phase === "inFlight" && ownsTransientIntent;
+	const isAmbiguous = intent?.phase === "ambiguous" && ownsTransientIntent;
+	const isRejected = intent?.phase === "rejected";
+	const isConflicted = intent?.phase === "conflicted";
+	const isRecalculating = estimate.phase === "loading";
+	const recalculationFailed = estimate.phase === "failed";
 	const canSave = isFresh && estimate.phase === "ready" && !intent;
-	const canRetry = isFresh && intent?.phase === "ambiguous";
-	const needsRecalculation = !isFresh || estimate.phase === "failed";
+	const canRetry = isFresh && isAmbiguous;
+	const needsRecalculation = !isFresh || recalculationFailed;
+	const footerLabel = needsRecalculation
+		? "Recalculate"
+		: isSaving
+			? "Saving to History…"
+			: canRetry
+				? "Retry this save"
+				: hasBackgroundTransientIntent
+					? "Save attempt pending"
+				: isRejected
+						? "Save was not completed"
+						: isConflicted
+							? "Save needs review"
+							: "Save to History";
+	const footerDisabled = needsRecalculation
+		? isRecalculating
+		: isSaving || isRejected || isConflicted || (!canSave && !canRetry);
+	const persistenceStatusIsLive = isSaving || isAmbiguous || isRejected || isConflicted;
 
 	const replaceWithSavedRoute = (destination: string) => router.push(destination, "forward", "replace");
 
@@ -134,34 +154,25 @@ const MealEstimate = () => {
 		void calculateCurrentMealEstimate();
 	};
 
-	const discardEstimate = () => {
-		armMealFlowBypass("/log-meal");
-		useMealEstimateStore.getState().clearEstimate();
-		useCurrentMealStore.getState().resetMeal();
-		setShowDiscardAlert(false);
-		router.push("/log-meal", "root", "replace");
-	};
-
 	return (
 		<IonPage>
 			<IonContent className='result-page estimate-page' fullscreen>
 				<ResultHero image={meal.image} mealName={meal.name} defaultHref='/meals/new' imageAlt='Meal estimate photo' />
 				<main className='result-sheet'>
-					<span className='meal-status-pill meal-status-estimate'>{UNSAVED_ESTIMATE_STATUS}</span>
 					<h1 className='result-meal-name'>{meal.name}</h1>
 					<p className='result-meal-meta'>{getResultCompositionLine(displayMeal)}</p>
+					<div className='estimate-identity-actions'>
+						<IonButton fill='clear' size='small' onClick={() => router.push("/meals/new", "back")}>Adjust meal</IonButton>
+					</div>
 
 					{needsRecalculation && (
-						<div className='save-feedback-banner save-feedback-error stale-estimate-banner' role='status' aria-live='polite'>
-							<IonIcon icon={alertCircle} aria-hidden='true' />
-							<span>{estimate.error ?? STALE_ESTIMATE_MESSAGE}</span>
-						</div>
-					)}
-					{intent?.lastError && (
-						<div className='save-feedback-banner save-feedback-error' role='status' aria-live='polite'>
-							<IonIcon icon={alertCircle} aria-hidden='true' />
-							<span>{intent.lastError}</span>
-						</div>
+						<section className='estimate-model-status' role='status' aria-live='polite' aria-atomic='true'>
+							<p className='estimate-stale-copy'>{STALE_ESTIMATE_MESSAGE}</p>
+							{isRecalculating && (
+								<p className='estimate-model-activity'><IonSpinner name='crescent' aria-hidden='true' />{RECALCULATING_ESTIMATE_MESSAGE}</p>
+							)}
+							{recalculationFailed && <p className='estimate-model-error'>{RECALCULATION_FAILURE_MESSAGE}</p>}
+						</section>
 					)}
 
 					<h2 className='result-verdict'>{impactPresentation.title}</h2>
@@ -213,33 +224,27 @@ const MealEstimate = () => {
 						</div>
 					</details>
 				</main>
-				<IonLoading isOpen={estimate.phase === "loading" || isSaving} message={estimate.phase === "loading" ? "Recalculating estimate…" : "Saving to History…"} />
 			</IonContent>
 
 			<IonFooter className='result-dock estimate-dock'>
-				{needsRecalculation ? (
-					<IonButton expand='block' aria-label='Recalculate estimate' disabled={estimate.phase === "loading"} onClick={handleRecalculate}>Recalculate</IonButton>
-				) : (
-					<IonButton expand='block' aria-label={canRetry ? "Retry this save" : "Save to History"} disabled={(!canSave && !canRetry) || isSaving} onClick={handleSave}>
-						{isSaving ? "Saving to History…" : canRetry ? "Retry this save" : "Save to History"}
+				<div
+					className='estimate-footer-state'
+					role={persistenceStatusIsLive ? "status" : undefined}
+					aria-live={persistenceStatusIsLive ? "polite" : undefined}
+					aria-atomic={persistenceStatusIsLive ? "true" : undefined}
+				>
+					{canRetry && <p className='estimate-footer-support'>{intent?.lastError}</p>}
+					<IonButton
+						expand='block'
+						aria-label={needsRecalculation ? "Recalculate estimate" : footerLabel}
+						disabled={footerDisabled}
+						onClick={needsRecalculation ? handleRecalculate : handleSave}
+					>
+						{isSaving && <IonSpinner name='crescent' aria-hidden='true' />}
+						{footerLabel}
 					</IonButton>
-				)}
-				<div className='result-dock-secondary'>
-					<IonButton expand='block' fill='clear' onClick={() => router.push("/meals/new", "back")}>Adjust meal</IonButton>
-					<IonButton expand='block' fill='clear' color='medium' onClick={() => setShowDiscardAlert(true)}>Discard</IonButton>
 				</div>
 			</IonFooter>
-
-			<IonAlert
-				isOpen={showDiscardAlert}
-				backdropDismiss={false}
-				header='Discard this estimate?'
-				message={getEstimateDiscardMessage(intent?.phase)}
-				buttons={[
-					{ text: "Keep estimate", role: "cancel", handler: () => setShowDiscardAlert(false) },
-					{ text: "Discard", role: "destructive", handler: discardEstimate },
-				]}
-			/>
 		</IonPage>
 	);
 };
