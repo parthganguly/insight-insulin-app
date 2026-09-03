@@ -1,21 +1,22 @@
 # Insight Insulin App
 
-Mobile AI meal-tracking app that estimates relative insulin demand using FII-based scoring, chronic DIL/DII trends, and uncertainty labels.
+**Private-beta applied AI application that separates model-assisted meal extraction from deterministic backend scoring, persistence, and validation.**
+
+Insight combines an Ionic/React mobile client with a FastAPI backend. AI converts meal descriptions or images into structured inputs, while the backend owns scoring, source-quality labels, uncertainty handling, persistence, and validation.
+
+## Engineering snapshot
+
+- **Stack:** Python · FastAPI · Ionic React · TypeScript · Capacitor · OpenAI · Cypress.
+- **AI boundary:** model-assisted extraction feeds a deterministic application pipeline rather than becoming application truth directly.
+- **Backend ownership:** scoring logic, persistence, lookup/mapping, uncertainty labels, and validation stay server-side.
+- **Testing:** backend validation plus deterministic Cypress browser tests using synthetic/intercepted data.
+- **Current status:** single-user private beta; authentication and account isolation are intentionally not represented as production-ready.
 
 ## Structure
 
 - `frontend/` — Ionic React + Capacitor mobile app
 - `backend/` — FastAPI scoring, persistence, FII lookup, chronic metrics, validation
 - `docs/` — scientific model, engineering model, audits, validation plans
-
-## Current Status
-
-Model-alignment prototype:
-- backend-owned insulin scoring
-- acute meal insulin demand
-- chronic DIL/DII trend
-- uncertainty/source-quality labels
-- AI-assisted meal extraction and review flow
 
 ## Private Beta Privacy Note
 
