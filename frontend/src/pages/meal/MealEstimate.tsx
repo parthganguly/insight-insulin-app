@@ -162,7 +162,7 @@ const MealEstimate = () => {
 					<h1 className='result-meal-name'>{meal.name}</h1>
 					<p className='result-meal-meta'>{getResultCompositionLine(displayMeal)}</p>
 					<div className='estimate-identity-actions'>
-						<IonButton fill='clear' size='small' onClick={() => router.goBack()}>Adjust meal</IonButton>
+						<IonButton fill='clear' size='small' onClick={() => router.push("/meals/new", "back")}>Adjust meal</IonButton>
 					</div>
 
 					{needsRecalculation && (

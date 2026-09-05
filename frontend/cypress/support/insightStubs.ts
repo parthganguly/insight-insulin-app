@@ -119,6 +119,23 @@ export const visitFresh = (path: string, seedLocalStorage: Record<string, unknow
 	});
 };
 
+// Ionic removes ion-page-invisible and pointer-events:none after entering,
+// then hides the outgoing page. Check this page's outlet, not unrelated pages.
+export const getEnteredPage = (pathname: string, contentSelector: string) => {
+	cy.location("pathname").should("eq", pathname);
+	return cy.get(`.ion-page:not(.ion-page-hidden) ${contentSelector}`).closest(".ion-page")
+		.should("have.length", 1)
+		.should("be.visible")
+		.should(($page) => {
+			const page = $page[0];
+			expect(page.isConnected, "owning page is connected").to.equal(true);
+			expect(page.classList.contains("ion-page-invisible"), "page has finished entering").to.equal(false);
+			expect(page.getAttribute("aria-hidden"), "page is active").not.to.equal("true");
+			expect(page.ownerDocument.defaultView!.getComputedStyle(page).pointerEvents, "transition no longer blocks interaction").not.to.equal("none");
+			expect(page.parentElement!.querySelectorAll(":scope > .ion-page:not(.ion-page-hidden)"), "only the destination remains active in its outlet").to.have.length(1);
+		});
+};
+
 // Wording that must never appear anywhere in active user-facing UI text
 // (issue #93). "typical/average meal" and biological risk framing are
 // unsupported claims; "Chronic Score" is the retired misleading label.

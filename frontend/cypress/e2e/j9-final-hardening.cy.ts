@@ -2,6 +2,8 @@
 
 import {
 	BACKEND_ORIGIN,
+	getEnteredPage,
+	shouldBeRendered,
 	stubBackend,
 	syntheticBackendMeal,
 	syntheticPreviewFromSaved,
@@ -91,7 +93,7 @@ const openEstimate = () => {
 	cy.get(".portion-adjust-row ion-input[label='Amount'] input").first().type("{selectall}1");
 	cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
 	cy.wait("@previewMeal");
-	cy.location("pathname").should("eq", "/meals/estimate");
+	getEnteredPage("/meals/estimate", "ion-content.estimate-page");
 };
 
 describe("J9 Smart Camera navigation", () => {
@@ -178,46 +180,61 @@ describe("J9 Smart Camera navigation", () => {
 	});
 });
 
-describe("J9 history stability", () => {
+describe("J9 estimate navigation and state preservation", () => {
 	beforeEach(() => {
 		stubBackend();
 		visitFresh("/log-meal");
 	});
 
-	it("keeps Estimate/Adjust/Calculate at a stable browser history depth", () => {
+	it("preserves the draft and active result across repeated Adjust/Calculate cycles", () => {
 		openEstimate();
-		cy.window().then((win) => {
-			const stableDepth = win.history.length;
-			const repeatCycle = () => {
-				cy.contains(".result-sheet ion-button", "Adjust meal").click({ force: true });
-				cy.location("pathname").should("eq", "/meals/new");
-				cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
-				cy.wait("@previewMeal");
-				cy.location("pathname").should("eq", "/meals/estimate");
-			};
-			repeatCycle();
-			repeatCycle();
-			cy.window().its("history.length").should("eq", stableDepth);
-		});
+		const historyDepths: number[] = [];
+		cy.window().its("history.length").then((depth) => historyDepths.push(depth));
+		for (let cycle = 0; cycle < 3; cycle++) {
+			getEnteredPage("/meals/estimate", "ion-content.estimate-page")
+				.contains("ion-button", "Adjust meal").click();
+			getEnteredPage("/meals/new", "ion-content.confirmation-page").within(() => {
+				cy.get("ion-input[label='Meal name'] input").should("have.value", "Synthetic review meal");
+				cy.get(".portion-adjust-row ion-input[label='Amount'] input").should("have.value", "1");
+				cy.get("ion-button[aria-label='Calculate estimate']").should("have.length", 1).click();
+			});
+			cy.wait("@previewMeal").its("request.body.items.0.quantity").should("eq", 1);
+			getEnteredPage("/meals/estimate", "ion-content.estimate-page").within(() => {
+				shouldBeRendered(".result-meal-name", "Synthetic review meal");
+				cy.get(".estimate-model-status").should("not.exist");
+				cy.contains("ion-footer ion-button", "Save to History").should("be.visible");
+			});
+			cy.get("ion-alert").should("not.exist");
+			cy.window().its("history.length").then((depth) => historyDepths.push(depth));
+		}
+		// Record observed growth; constant history depth is no longer the contract.
+		cy.then(() => cy.writeFile(`${Cypress.config("screenshotsFolder")}/j9-history-depths.json`, historyDepths));
 	});
 
-	it("recalculates stale output without changing history depth", () => {
+	it("returns Back from an edited review to the entered stale estimate and recalculates", () => {
 		openEstimate();
-		cy.window().then((win) => {
-			const stableDepth = win.history.length;
-			cy.contains(".result-sheet ion-button", "Adjust meal").click({ force: true });
-			cy.get(".ion-page:not(.ion-page-hidden) .portion-adjust-row ion-input[label='Amount'] input")
-				.last()
-				.clear({ force: true })
-				.type("2", { force: true })
-				.should(($input) => expect($input.val()).not.to.equal("1"))
-				.blur();
-			cy.go("forward");
-			cy.location("pathname").should("eq", "/meals/estimate");
-			cy.contains("ion-footer ion-button", "Recalculate").should("be.visible").click({ force: true });
-			cy.wait("@previewMeal");
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page")
+			.contains("ion-button", "Adjust meal").click();
+		getEnteredPage("/meals/new", "ion-content.confirmation-page")
+			.find(".portion-adjust-row ion-input[label='Amount'] input")
+			.then(($input) => $input[0].scrollIntoView({ block: "center" }))
+			.should("be.visible").and("have.value", "1")
+			.type("{selectall}2").should("have.value", "2").blur();
+		cy.go("back");
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page").within(() => {
+			shouldBeRendered(".estimate-stale-copy", "This estimate describes the meal before your changes.");
+			shouldBeRendered(".result-score", "Relative score: 42");
+			cy.contains("ion-footer", "Save to History").should("not.exist");
+			cy.contains("ion-footer ion-button", "Recalculate").should("be.visible");
+		});
+		cy.get("ion-alert").should("not.exist");
+		cy.get("@previewMeal.all").should("have.length", 1);
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page")
+			.contains("ion-footer ion-button", "Recalculate").click();
+		cy.wait("@previewMeal").its("request.body.items.0.quantity").should("eq", 2);
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page").within(() => {
+			cy.get(".estimate-model-status").should("not.exist");
 			cy.contains("ion-footer ion-button", "Save to History").should("be.visible");
-			cy.window().its("history.length").should("eq", stableDepth);
 		});
 	});
 
