@@ -131,7 +131,7 @@ const SavedMealDetail: React.FC = () => {
 				</IonHeader>
 				<IonContent className='ion-padding'>
 					<IonCard className='app-card empty-state-card'>
-						<h2>Meal Not Found</h2>
+						<h1>Meal Not Found</h1>
 						<p>This meal isn't in your saved history on this device. It may have been deleted.</p>
 					</IonCard>
 				</IonContent>

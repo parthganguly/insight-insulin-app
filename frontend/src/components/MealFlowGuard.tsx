@@ -13,6 +13,8 @@ import {
 	doesPendingSaveCoverCurrentDraft,
 	getDraftFingerprint,
 	isInternalMealFlowPath,
+	rememberMealFlowBaseline,
+	takeRecoveredMealFlowBaseline,
 } from "../utils/mealFlowGuard";
 
 type PendingNavigation = {
@@ -39,13 +41,15 @@ const MealFlowGuard = () => {
 	const [pending, setPending] = useState<PendingNavigation | null>(null);
 
 	const fingerprint = getDraftFingerprint(meal);
-	const baseline = useRef({ mealId: meal.id, fingerprint });
+	const [restoredBaseline] = useState(takeRecoveredMealFlowBaseline);
+	const baseline = useRef(restoredBaseline ?? { mealId: meal.id, fingerprint });
 	// Outside the guarded flow the current meal store is preparation state, not
 	// an active draft. Keep following it there so opening a fresh manual draft
 	// does not immediately count the scaffolded blank row as a user edit.
 	if (baseline.current.mealId !== meal.id || !isInternalMealFlowPath(pathname)) {
 		baseline.current = { mealId: meal.id, fingerprint };
 	}
+	rememberMealFlowBaseline(baseline.current);
 
 	const pendingSaveCoversCurrentDraft = doesPendingSaveCoverCurrentDraft({ meal, estimateDraftId, saveRequestId, intent: pendingIntent });
 	const decisionContext = useRef({ pathname, isDirtyDraft: false, hasUnsavedEstimate: false, pendingSaveCoversCurrentDraft: false });

@@ -26,6 +26,8 @@ import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
+import { getMealFlowBaseline } from "../../utils/mealFlowGuard";
+import { restoreCameraState } from "../../utils/cameraRecovery";
 
 const syntheticDraft = (): Meal => ({
 	id: "qa-synthetic-draft",
@@ -147,5 +149,22 @@ describe("dirty confirmation draft navigation", () => {
 		await waitFor(() => expect(window.location.pathname).toBe("/log-meal"));
 		expect(screen.queryByRole("alertdialog")).toBeNull();
 		expect(useCurrentMealStore.getState().meal.items).toHaveLength(0);
+	});
+
+	it("preserves the dirty-draft guard after Camera process recreation", async () => {
+		const view = renderDraft();
+		await screen.findByText("Did we get your meal right?");
+		makeMeaningfulEdit();
+		await waitForMeaningfulEditToRender();
+		const meal = structuredClone(useCurrentMealStore.getState().meal);
+		const baseline = getMealFlowBaseline(meal.id);
+		view.unmount();
+		useCurrentMealStore.getState().resetMeal();
+		restoreCameraState({ version: 1, nonce: "test", createdAt: Date.now(), source: "CAMERA" as never, flow: "preview-photo", caller: "/meals/new", destination: "/meals/new", meal, smart: null, baseline }, { pluginId: "Camera", methodName: "getPhoto", success: false, error: { message: "User cancelled photos app" } });
+		render(<App />);
+		await screen.findByText("Did we get your meal right?");
+		fireEvent.click(screen.getByText("Home").closest("ion-tab-button")!);
+		expect(await screen.findByRole("alertdialog", { name: "Discard this draft?" })).toBeTruthy();
+		expect(useCurrentMealStore.getState().meal).toEqual(meal);
 	});
 });

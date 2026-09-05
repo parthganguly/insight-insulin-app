@@ -2464,6 +2464,7 @@ ion-progress-bar {
 .pending-save-actions ion-button,
 .pending-save-notice ion-button {
 	margin: 0;
+	min-height: 44px;
 }
 
 .pending-save-notice ion-icon {

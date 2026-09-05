@@ -68,6 +68,7 @@ const openSavedResult = (meal: ReturnType<typeof normalMeal>, appearance: Appear
 		"app-settings": persistedAppearance(appearance),
 		"insight-meals": persistedMeals([meal]),
 	});
+	cy.wait("@meals");
 	cy.get("ion-app").should("have.attr", "data-appearance", appearance);
 	if (largeText) cy.document().then((doc) => doc.documentElement.style.setProperty("font-size", "133%"));
 	cy.contains(SAVED_MEAL_STATUS).should("exist");
@@ -102,6 +103,7 @@ describe("J7 normal saved-result semantics", () => {
 
 		cy.get(".result-score").should("not.contain.text", "100");
 		cy.get("details.result-score-method").should("not.have.attr", "open");
+		cy.wait(400); // Let Ionic's deferred route transition finish before asserting local focus.
 		cy.contains("summary", "How this score works").focus().should("be.focused").click();
 		cy.get("details.result-score-method").should("have.attr", "open");
 		shouldBeRendered(".result-score-method p", SAVED_RESULT_SCALE_DISCLOSURE);

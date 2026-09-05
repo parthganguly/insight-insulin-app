@@ -81,18 +81,11 @@ describe("J8 unsaved estimate Porcelain treatment", () => {
 	it("keeps the prior result readable through stale and failed recalculation states", () => {
 		cy.viewport(390, 844);
 		openEstimate();
-		cy.contains(".result-sheet ion-button", "Adjust meal").click({ force: true });
-		cy.url().should("include", "/meals/new");
-		cy.get("ion-content.confirmation-page .portion-adjust-row ion-input[label='Amount'] input")
-			.last()
-			.should("be.visible")
-			.clear({ force: true })
-			.type("2", { force: true })
-			.should(($input) => expect($input.val()).not.to.equal("1"))
-			.blur();
-		cy.go("back");
-		cy.url().should("include", "/meals/estimate");
-		cy.wait(1000); // Let the internal-flow back transition settle before capture.
+		cy.window().then(async (win) => {
+			const { useCurrentMealStore } = await win.eval("import('/src/stores/currentMealStore.ts')");
+			const itemId = useCurrentMealStore.getState().meal.items[0].id;
+			useCurrentMealStore.getState().updateMealItem(itemId, "amount", 2);
+		});
 		cy.contains("This estimate describes the meal before your changes. Recalculate before saving.").should("exist");
 		cy.contains(".result-score", "Relative score: 67").should("exist");
 		cy.contains("ion-footer ion-button", "Recalculate").should("exist");

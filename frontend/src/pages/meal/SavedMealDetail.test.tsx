@@ -460,7 +460,7 @@ describe("SavedMealDetail read-only view (issue #89)", () => {
 		stubBackend();
 		const { baseElement } = renderSavedMealDetail("no-such-meal");
 
-		expect(await screen.findByText("Meal Not Found")).toBeTruthy();
+		expect(await screen.findByRole("heading", { level: 1, name: "Meal Not Found" })).toBeTruthy();
 		expect(screen.queryByText(SAVED_MEAL_STATUS)).toBeNull();
 		expect(findDeleteButton(baseElement)).toBeNull();
 	});
