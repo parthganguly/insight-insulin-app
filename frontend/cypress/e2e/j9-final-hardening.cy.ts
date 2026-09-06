@@ -357,7 +357,7 @@ describe("J9 cancelled tab navigation", () => {
 		adjustToPreservedEditor();
 	});
 
-	it("discards once and reaches the attempted Home destination", () => {
+	it("discards once after Ionic restores the app shell", () => {
 		visitFresh("/");
 		getEnteredPage("/dashboard", "ion-content.home-journal-content");
 		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
@@ -365,8 +365,71 @@ describe("J9 cancelled tab navigation", () => {
 		openManualEstimateFromChooser();
 		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
 		cy.get("ion-alert:not(.overlay-hidden)").contains("button", "Discard and leave").click();
+		getEnteredPage("/dashboard", "ion-content.home-journal-content").then(($home) => {
+			const outlet = $home.closest("ion-router-outlet")[0];
+			const doc = $home[0].ownerDocument;
+			expect({
+				pathname: doc.defaultView?.location.pathname,
+				enteredHomePages: doc.querySelectorAll("ion-router-outlet > .ion-page:not(.ion-page-hidden) ion-content.home-journal-content").length,
+				outletAriaHidden: outlet?.getAttribute("aria-hidden"),
+				bodyBackdropNoScroll: doc.body.classList.contains("backdrop-no-scroll"),
+			}, "post-discard shell cleanup").to.deep.equal({
+				pathname: "/dashboard",
+				enteredHomePages: 1,
+				outletAriaHidden: null,
+				bodyBackdropNoScroll: false,
+			});
+		});
+		cy.get("body").should("not.have.class", "backdrop-no-scroll");
+		cy.get("ion-alert").should("not.exist");
+		cy.get("ion-alert:not(.overlay-hidden), ion-action-sheet:not(.overlay-hidden), ion-loading:not(.overlay-hidden), ion-modal:not(.overlay-hidden), ion-popover:not(.overlay-hidden)")
+			.should("not.exist");
+		cy.get("@previewMeal.all").should("have.length", 1);
+		cy.get("@saveMeal.all").should("have.length", 0);
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		getEnteredPage("/log-meal", ".log-meal-intro");
+		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
 		getEnteredPage("/dashboard", "ion-content.home-journal-content");
-		cy.get("ion-alert").should(($alerts) => expect($alerts.filter(":visible"), "no second guard").to.have.length(0));
+	});
+
+	it("uses only the current History destination after an earlier Home Stay", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='history']").click({ force: true });
+		getEnteredPage("/meals", "ion-content.journal-folio-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		openManualEstimateFromChooser();
+		stayAfterTabAttempt("dashboard");
+		cy.get("ion-tab-button[tab='history']").click({ force: true });
+		cy.get("ion-alert:not(.overlay-hidden)").contains("button", "Discard and leave").click();
+		getEnteredPage("/meals", "ion-content.journal-folio-content").then(($history) => {
+			const outlet = $history.closest("ion-router-outlet")[0];
+			expect(outlet?.getAttribute("aria-hidden"), "owning outlet is accessible").not.to.equal("true");
+		});
+		cy.get("body").should("not.have.class", "backdrop-no-scroll");
+		cy.get("ion-alert").should("not.exist");
+		cy.get("@previewMeal.all").should("have.length", 1);
+		cy.get("@saveMeal.all").should("have.length", 0);
+		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+	});
+
+	it("does not replay a completed discard into a later Stay", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		openManualEstimateFromChooser();
+		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
+		cy.get("ion-alert:not(.overlay-hidden)").contains("button", "Discard and leave").click();
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		getEnteredPage("/log-meal", ".log-meal-intro").contains("ion-button.log-meal-option", "Enter manually").click({ force: true });
+		getEnteredPage("/meals/new", "ion-content.confirmation-page");
+		cy.get("ion-input[label='Meal name'] input").type("{selectall}Fresh draft after discard");
+		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
+		cy.get("ion-alert:not(.overlay-hidden)").contains("button", "Stay and continue").click();
+		getEnteredPage("/meals/new", "ion-content.confirmation-page");
+		cy.get("ion-input[label='Meal name'] input").should("have.value", "Fresh draft after discard");
 		cy.get("@previewMeal.all").should("have.length", 1);
 		cy.get("@saveMeal.all").should("have.length", 0);
 	});

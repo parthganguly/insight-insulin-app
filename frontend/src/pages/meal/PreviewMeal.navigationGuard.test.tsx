@@ -8,10 +8,13 @@ vi.mock("@ionic/react", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("@ionic/react")>();
 	return {
 		...actual,
-		IonAlert: ({ isOpen, header, message, buttons }: { isOpen: boolean; header: string; message: string; buttons: AlertButton[] }) => isOpen ? (
+		IonAlert: ({ isOpen, header, message, buttons, onDidDismiss }: { isOpen: boolean; header: string; message: string; buttons: AlertButton[]; onDidDismiss?: () => void }) => isOpen ? (
 			<div role='alertdialog' aria-label={header}>
 				<p>{message}</p>
-				{buttons.map((button) => <button key={button.text} onClick={() => button.handler?.()}>{button.text}</button>)}
+				{buttons.map((button) => <button key={button.text} onClick={() => {
+					button.handler?.();
+					queueMicrotask(() => onDidDismiss?.());
+				}}>{button.text}</button>)}
 			</div>
 		) : null,
 		IonToast: () => null,
@@ -76,6 +79,7 @@ describe("dirty confirmation draft navigation", () => {
 	});
 
 	afterEach(() => {
+		vi.restoreAllMocks();
 		vi.unstubAllGlobals();
 	});
 
@@ -101,17 +105,23 @@ describe("dirty confirmation draft navigation", () => {
 
 	it("discards the dirty draft only after confirmation and renders the requested route", async () => {
 		const { baseElement } = renderDraft();
+		const clearEstimate = vi.spyOn(useMealEstimateStore.getState(), "clearEstimate");
+		const resetMeal = vi.spyOn(useCurrentMealStore.getState(), "resetMeal");
 		await screen.findByText("Did we get your meal right?");
 		makeMeaningfulEdit();
 		await waitForMeaningfulEditToRender();
 
 		fireEvent.click(screen.getByText("Home").closest("ion-tab-button")!);
 		fireEvent.click(await screen.findByRole("button", { name: "Discard and leave" }));
+		expect(window.location.pathname).toBe("/meals/new");
+		expect(useCurrentMealStore.getState().meal.items).toHaveLength(3);
 
 		await waitFor(() => expect(window.location.pathname).toBe("/dashboard"));
 		await waitFor(() => expect(baseElement.querySelector("ion-router-outlet > .ion-page:not(.ion-page-hidden) ion-title")?.textContent).toBe("Home"));
 		expect(useCurrentMealStore.getState().meal.name).toBe("New Meal");
 		expect(useCurrentMealStore.getState().meal.items).toHaveLength(0);
+		expect(clearEstimate).toHaveBeenCalledTimes(1);
+		expect(resetMeal).toHaveBeenCalledTimes(1);
 	});
 
 	it("keeps browser Back route and rendered view synchronized after stay and discard", async () => {

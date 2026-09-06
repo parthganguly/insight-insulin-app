@@ -39,6 +39,7 @@ const MealFlowGuard = () => {
 	const saveRequestId = useMealEstimateStore((state) => state.saveRequestId);
 	const pendingIntent = usePendingSaveStore((state) => saveRequestId === null ? undefined : state.intents[saveRequestId]);
 	const [pending, setPending] = useState<PendingNavigation | null>(null);
+	const destructiveIntent = useRef<PendingNavigation | null>(null);
 
 	const fingerprint = getDraftFingerprint(meal);
 	const [restoredBaseline] = useState(takeRecoveredMealFlowBaseline);
@@ -76,6 +77,7 @@ const MealFlowGuard = () => {
 			const decision = decide(location.pathname);
 			if (decision === "allow") return;
 			releaseFocusedElement();
+			destructiveIntent.current = null;
 			setPending({ location, action, kind: decision });
 			return false;
 		});
@@ -93,20 +95,27 @@ const MealFlowGuard = () => {
 		document.addEventListener("ionTabButtonClick", interceptGuardedTab, true);
 		return () => {
 			document.removeEventListener("ionTabButtonClick", interceptGuardedTab, true);
+			destructiveIntent.current = null;
 			unblock();
 		};
 	}, [history]);
 
 	const stay = () => {
 		releaseFocusedElement();
+		destructiveIntent.current = null;
 		setPending(null);
 	};
 
 	const discardAndLeave = () => {
-		if (!pending) return;
-		const { location, action } = pending;
+		destructiveIntent.current = pending;
+	};
+
+	const leaveAfterDismiss = () => {
+		const intent = destructiveIntent.current;
+		destructiveIntent.current = null;
+		if (!intent) return;
+		const { location, action } = intent;
 		armMealFlowBypass(location.pathname);
-		releaseFocusedElement();
 		useMealEstimateStore.getState().clearEstimate();
 		useCurrentMealStore.getState().resetMeal();
 		setPending(null);
@@ -120,6 +129,7 @@ const MealFlowGuard = () => {
 			isOpen
 			backdropDismiss={false}
 			onWillDismiss={releaseFocusedElement}
+			onDidDismiss={leaveAfterDismiss}
 			header={isEstimatePrompt ? "This estimate isn't saved" : "Discard this draft?"}
 			message={isEstimatePrompt
 				? "Save it to History before leaving, or discard the unsaved estimate and continue."
