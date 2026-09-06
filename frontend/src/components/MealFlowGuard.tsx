@@ -61,21 +61,40 @@ const MealFlowGuard = () => {
 	};
 
 	useEffect(() => {
-		return history.block((location, action) => {
-			if (consumeMealFlowBypass(location.pathname)) return;
+		const decide = (toPath: string) => {
 			const context = decisionContext.current;
-			const decision = decideMealFlowNavigation({
+			return decideMealFlowNavigation({
 				fromPath: context.pathname,
-				toPath: location.pathname,
+				toPath,
 				isDirtyDraft: context.isDirtyDraft,
 				hasUnsavedEstimate: context.hasUnsavedEstimate,
 				pendingSaveCoversCurrentDraft: context.pendingSaveCoversCurrentDraft,
 			});
+		};
+		const unblock = history.block((location, action) => {
+			if (consumeMealFlowBypass(location.pathname)) return;
+			const decision = decide(location.pathname);
 			if (decision === "allow") return;
 			releaseFocusedElement();
 			setPending({ location, action, kind: decision });
 			return false;
 		});
+		const interceptGuardedTab = (event: Event) => {
+			if (!(event instanceof CustomEvent)) return;
+			const targetHref = event.target instanceof HTMLElement ? event.target.dataset.navigationHref : undefined;
+			const href = targetHref ?? event.detail?.href;
+			if (typeof href !== "string") return;
+			const destination = new URL(href, window.location.href);
+			if (destination.origin !== window.location.origin || decide(destination.pathname) === "allow") return;
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			history.push(`${destination.pathname}${destination.search}${destination.hash}`);
+		};
+		document.addEventListener("ionTabButtonClick", interceptGuardedTab, true);
+		return () => {
+			document.removeEventListener("ionTabButtonClick", interceptGuardedTab, true);
+			unblock();
+		};
 	}, [history]);
 
 	const stay = () => {

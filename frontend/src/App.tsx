@@ -105,15 +105,15 @@ const AppTabs = () => {
 						</Route>
 					</IonRouterOutlet>
 					<IonTabBar slot='bottom'>
-						<IonTabButton tab='dashboard' href='/dashboard' aria-label='Home' aria-selected={selectedTab === "dashboard"} selected={selectedTab === "dashboard"} className={selectedTab === "dashboard" ? "journey-tab-selected" : undefined}>
+						<IonTabButton tab='dashboard' href='/dashboard' data-navigation-href='/dashboard' aria-label='Home' aria-selected={selectedTab === "dashboard"} selected={selectedTab === "dashboard"} className={selectedTab === "dashboard" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={bookOutline} />
 							<IonLabel>Home</IonLabel>
 						</IonTabButton>
-						<IonTabButton tab='logMeal' href='/log-meal' aria-label='Log Meal' aria-selected={selectedTab === "logMeal"} selected={selectedTab === "logMeal"} className={selectedTab === "logMeal" ? "journey-tab-selected" : undefined}>
+						<IonTabButton tab='logMeal' href='/log-meal' data-navigation-href='/log-meal' aria-label='Log Meal' aria-selected={selectedTab === "logMeal"} selected={selectedTab === "logMeal"} className={selectedTab === "logMeal" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={addOutline} />
 							<IonLabel>Log Meal</IonLabel>
 						</IonTabButton>
-						<IonTabButton tab='history' href='/meals' aria-label='History' aria-selected={selectedTab === "history"} selected={selectedTab === "history"} className={selectedTab === "history" ? "journey-tab-selected" : undefined}>
+						<IonTabButton tab='history' href='/meals' data-navigation-href='/meals' aria-label='History' aria-selected={selectedTab === "history"} selected={selectedTab === "history"} className={selectedTab === "history" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={timeOutline} />
 							<IonLabel>History</IonLabel>
 						</IonTabButton>

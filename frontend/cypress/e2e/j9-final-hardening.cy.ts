@@ -96,6 +96,66 @@ const openEstimate = () => {
 	getEnteredPage("/meals/estimate", "ion-content.estimate-page");
 };
 
+const openManualEstimateFromChooser = () => {
+	cy.intercept("POST", `${BACKEND_ORIGIN}/meals/preview`, {
+		statusCode: 200,
+		body: syntheticPreviewFromSaved(previewMeal),
+	}).as("previewMeal");
+	cy.intercept("POST", `${BACKEND_ORIGIN}/meals`, { statusCode: 201, body: previewMeal }).as("saveMeal");
+	enterManualReview();
+	cy.get("ion-input[label='Meal name'] input").type("{selectall}Synthetic cancelled tab meal");
+	cy.get(".portion-adjust-row ion-input[label='Amount'] input").first().type("{selectall}1");
+	cy.get("[data-component-card]").first().invoke("attr", "data-item-id").as("cancelledTabItemId");
+	cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
+	cy.wait("@previewMeal").its("request.body.items.0.quantity").should("eq", 1);
+	getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+};
+
+const stayAfterTabAttempt = (tab: "dashboard" | "history") => {
+	cy.window().its("history.length").as("historyBeforeCancelledTab");
+	cy.get(`ion-tab-button[tab='${tab}']`).click({ force: true });
+	cy.get("ion-alert:not(.overlay-hidden)").should("have.length", 1).and("contain.text", "This estimate isn't saved")
+		.contains("button", "Stay and save").click();
+	cy.get("ion-alert").should(($alerts) => {
+		expect($alerts.filter(":visible"), "no visible leave guard").to.have.length(0);
+	});
+	getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+	cy.get("ion-tab-button[tab='logMeal']").should("have.class", "journey-tab-selected");
+	cy.get<number>("@historyBeforeCancelledTab").then((before) => cy.window().its("history.length").should("eq", before));
+	cy.get("@previewMeal.all").should("have.length", 1);
+	cy.get("@saveMeal.all").should("have.length", 0);
+};
+
+const assertPreservedCancelledTabDraft = () => {
+	cy.get<string>("@cancelledTabItemId").then((itemId) => {
+		cy.get("ion-content.confirmation-page").closest(".ion-page").within(() => {
+			cy.get("ion-input[label='Meal name'] input").should("have.value", "Synthetic cancelled tab meal");
+			cy.get(".portion-adjust-row ion-input[label='Amount'] input").should("have.value", "1");
+			cy.get(`[data-component-card][data-item-id='${itemId}']`).should("have.length", 1);
+		});
+	});
+};
+
+const adjustToPreservedEditor = () => {
+	getEnteredPage("/meals/estimate", "ion-content.estimate-page").contains("ion-button", "Adjust meal").click();
+	cy.location("pathname").should("eq", "/meals/new");
+	cy.get("ion-router-outlet > .ion-page:not(.ion-page-hidden)").should(($activePages) => {
+		const activeEditor = $activePages.find("ion-content.confirmation-page").length === 1;
+		const activeDashboard = $activePages.find("ion-content.home-journal-content").length === 1;
+		const editorHidden = Cypress.$("ion-content.confirmation-page").closest(".ion-page").hasClass("ion-page-hidden");
+		expect({ activeEditor, activeDashboard, editorHidden }, "settled page ownership").to.deep.equal({
+			activeEditor: true,
+			activeDashboard: false,
+			editorHidden: false,
+		});
+	});
+	getEnteredPage("/meals/new", "ion-content.confirmation-page");
+	assertPreservedCancelledTabDraft();
+	cy.get("ion-alert").should(($alerts) => expect($alerts.filter(":visible"), "no unintended alert").to.have.length(0));
+	cy.get("@previewMeal.all").should("have.length", 1);
+	cy.get("@saveMeal.all").should("have.length", 0);
+};
+
 describe("J9 Smart Camera navigation", () => {
 	beforeEach(() => {
 		stubBackend();
@@ -242,6 +302,86 @@ describe("J9 estimate navigation and state preservation", () => {
 		cy.visit("/meals/estimate");
 		cy.location("pathname").should("eq", "/log-meal");
 		cy.contains("h1", "How would you like to add it?").should("be.visible");
+	});
+});
+
+describe("J9 cancelled tab navigation", () => {
+	beforeEach(() => {
+		stubBackend();
+	});
+
+	it("cancels a guarded Home tab departure after a normal dashboard cold start", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		cy.location("pathname").should("eq", "/log-meal");
+		cy.contains(".ion-page:not(.ion-page-hidden) h1", "How would you like to add it?").should("be.visible");
+		openManualEstimateFromChooser();
+		stayAfterTabAttempt("dashboard");
+		assertPreservedCancelledTabDraft();
+		adjustToPreservedEditor();
+		cy.go("back");
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+		cy.get("@previewMeal.all").should("have.length", 1);
+		cy.get("@saveMeal.all").should("have.length", 0);
+	});
+
+	it("keeps the direct Log Meal entry as the route-history control", () => {
+		visitFresh("/log-meal");
+		openManualEstimateFromChooser();
+		stayAfterTabAttempt("dashboard");
+		assertPreservedCancelledTabDraft();
+		adjustToPreservedEditor();
+	});
+
+	it("cancels repeated guarded Home departures without replaying either one", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		cy.contains(".ion-page:not(.ion-page-hidden) h1", "How would you like to add it?").should("be.visible");
+		openManualEstimateFromChooser();
+		stayAfterTabAttempt("dashboard");
+		stayAfterTabAttempt("dashboard");
+		adjustToPreservedEditor();
+	});
+
+	it("cancels a guarded departure to previously visited History", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='history']").click({ force: true });
+		getEnteredPage("/meals", "ion-content.journal-folio-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		cy.contains(".ion-page:not(.ion-page-hidden) h1", "How would you like to add it?").should("be.visible");
+		openManualEstimateFromChooser();
+		stayAfterTabAttempt("history");
+		adjustToPreservedEditor();
+	});
+
+	it("discards once and reaches the attempted Home destination", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		cy.contains(".ion-page:not(.ion-page-hidden) h1", "How would you like to add it?").should("be.visible");
+		openManualEstimateFromChooser();
+		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
+		cy.get("ion-alert:not(.overlay-hidden)").contains("button", "Discard and leave").click();
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-alert").should(($alerts) => expect($alerts.filter(":visible"), "no second guard").to.have.length(0));
+		cy.get("@previewMeal.all").should("have.length", 1);
+		cy.get("@saveMeal.all").should("have.length", 0);
+	});
+
+	it("preserves ordinary Ionic tab navigation without an active draft", () => {
+		visitFresh("/");
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-tab-button[tab='logMeal']").click({ force: true });
+		cy.location("pathname").should("eq", "/log-meal");
+		cy.contains(".ion-page:not(.ion-page-hidden) h1", "How would you like to add it?").should("be.visible");
+		cy.get("ion-tab-button[tab='history']").click({ force: true });
+		getEnteredPage("/meals", "ion-content.journal-folio-content");
+		cy.get("ion-tab-button[tab='dashboard']").click({ force: true });
+		getEnteredPage("/dashboard", "ion-content.home-journal-content");
+		cy.get("ion-alert").should("not.exist");
 	});
 });
 
