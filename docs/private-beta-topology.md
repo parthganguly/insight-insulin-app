@@ -32,11 +32,15 @@ every client that reaches the backend lands in the same tables.
 
 ### Browser localStorage stores (separate from the backend database)
 
-The frontend persists two zustand stores in browser/WebView localStorage:
+The frontend persists two zustand stores in browser/WebView localStorage
+(storage inventory rechecked 2026-09-08 at `1b7f64b`):
 
-- `insight-meals` — saved meals shown in "Recents", including full base64 meal
-  photos
-- `app-settings` — gender, age, weight, height, activity level
+- `insight-meals` — saved meals shown in "Recents"; `persistentMealStore.ts`
+  limits persisted `meal.image` values to 24,000 characters and retries quota
+  failures without those images.
+- `app-settings` — `settingsStore.ts` version 1 persists the `darkMode` preference.
+
+Neither store is the camera recovery store described below.
 
 The frontend persists this browser/WebView localStorage state separately from
 the backend database. Some flows copy backend responses into localStorage for
@@ -45,6 +49,32 @@ canonical backend response in `insight-meals` for "Recents" — but this is not
 account-scoped sync and does not make localStorage and the backend database a
 unified privacy/security model. They have different lifetimes, devices, and
 deletion paths.
+
+### Temporary camera recovery storage
+
+Current Ionic/Capacitor implementation, audited at `1b7f64b` on 2026-09-08:
+before a native camera or photo-picker launch, `cameraRecovery.ts` writes one
+IndexedDB record (`insight-camera-recovery`, version 1, object store `pending`,
+key `active`). It can include the full meal draft, existing full-size images,
+Smart Camera note/error state, routes and discard baseline. The localStorage
+key `insight-camera-pending` contains only a 36-character UUID nonce, not the
+recovery draft or images. This device-local recovery mechanism is not an account
+or cloud backup and does not itself upload anything to an AI provider.
+
+Normal completion/failure, explicit cancellation/discard/flow exit, the live
+expiry timer, and startup consumption attempt cleanup. Startup also attempts
+to remove invalid, stale or orphaned records. `CAMERA_RECOVERY_MAX_AGE_MS`
+is 900,000 ms: startup rejects an envelope whose age is at least 15 minutes
+when parsed. This is recovery eligibility, not a guaranteed storage lifetime.
+Suspension, a stopped app or storage errors can delay application-level cleanup;
+browser/OS reclamation of deleted bytes may happen later. No exact physical or
+forensic erasure time is promised.
+
+The newly returned camera image is applied in memory, not written back to this
+envelope; it can become a prior image in a subsequent camera-launch snapshot.
+The separate estimate store remains foreground-only. See the
+[source audit and claim/evidence matrix](../reports/ux/premium-redesign/j9-camera-process-death-recovery.md#recovery-storage-privacy-alignment-2026-09-08).
+Provider/upload disclosure remains separate below.
 
 ### Split dashboard storage paths
 

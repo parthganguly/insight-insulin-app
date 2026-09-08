@@ -60,9 +60,9 @@ Measured sizes:
 | Existing review photo plus prior Smart Camera photo and draft | 1,674,941 characters |
 | Real WebView IndexedDB probe: five synthetic images | 4,179,562 bytes |
 
-The five-image probe was read back successfully and deleted. No full-size photos, drafts, notes, or fingerprints enter localStorage. No dependency or permanent saved-meal persistence change was introduced.
+The five-image probe was read back successfully and deleted. No full-size photos, drafts, notes, or fingerprints enter the recovery localStorage marker. No dependency or permanent saved-meal persistence change was introduced.
 
-Lifetime: clear nonce and delete the record after normal resolve/reject, restored consumption, or explicit flow exit/discard. Records expire after 15 minutes; active-process expiry clears them, and next bootstrap purges expired/malformed/orphan records. An app that is not running cannot execute physical deletion; deletion occurs on its next launch. Clearing the nonce before cleanup prevents replay if IndexedDB deletion fails.
+Lifetime (clarified 2026-09-08): normal resolve/reject, restored consumption, explicit flow exit/discard, and the live expiry timer attempt to clear the nonce and delete the record. Startup rejects records aged at least 15 minutes when parsed and attempts to purge expired/malformed/orphan records. A stopped or suspended app may not execute cleanup until a later startup; storage errors can also prevent cleanup. Application-level deletion does not guarantee when the browser/OS physically reclaims bytes. Clearing the nonce before cleanup prevents replay if IndexedDB deletion fails.
 
 Stale prevention: schema, timestamp, route/caller, draft and known optional-field validation; nonce match; consume once before applying. Missing/corrupt metadata never fabricates a draft from an orphan photo.
 
@@ -179,3 +179,136 @@ Appended 2026-09-08 after independent Omen review and Opus 5 adjudication. This 
 - Severity: P2 — a bounded product risk. Accepted for now; this behavior is not claimed ideal.
 - A future repair must not simply increase the timeout: no known bound justifies waiting arbitrarily long at startup. Any late-result repair must consume a late result without overwriting work created after startup recovery (apply only the missing photo; never re-run whole-state restoration).
 - Regression test: `frontend/src/utils/cameraRecovery.test.ts`, "ignores a valid restored result arriving after the recovery deadline completes". It models the disputed ordering — listener registered → deadline wins → recovery completes → valid matching result arrives late — and asserts single restore to the correct destination, no new photo, curated failure copy, consumed envelope and marker, no second navigation, and preserved post-recovery user state.
+
+## RECOVERY STORAGE PRIVACY ALIGNMENT (2026-09-08)
+
+Scope: disclosure only for the **current implementation** (Ionic/Capacitor
+migration compatibility client). No target architecture or behavior change.
+Starting branch `codex/j9-hardening-final`, exact HEAD
+`1b7f64b118f793827e0438197d927de75370d3b4`. Tracked and staged state was clean;
+only historical `j9-baseline-1-device-recheck.md` and `j9-post-stay-navigation.md`
+were untracked. Active-task inventory showed no other active task in this
+checkout; repeated Git status checks showed no concurrent edits or index lock.
+Original copy, copy tests, topology and this report were copied to a temporary
+backup before edits. Historical untracked reports remain untouched.
+
+### Source-of-truth persistence inventory
+
+- `frontend/src/utils/cameraRecovery.ts`: IndexedDB database
+  `insight-camera-recovery`, schema version 1, object store `pending`, key
+  `active`. `getRecoverablePhoto` writes the context once before native launch;
+  there is no result-update write. `store.put` replaces this one active record.
+  Non-native calls bypass recovery persistence.
+- Envelope fields: `version`, `nonce`, `createdAt`, `source`, `flow`, `caller`,
+  `destination`, `meal`, `smart`, optional `baseline`. Content-bearing paths:
+  `meal.name`, `meal.image`, `meal.items`, `meal.estimate`, optional totals,
+  provenance/quality fields and `main_insulin_drivers`; `smart.images`,
+  `smart.note`, `smart.error`, `smart.failureKind`; `baseline.fingerprint`.
+  The complete `Meal` is copied, not a redacted subset. Its other metadata is
+  `id`, `timestamp`, `isAiDraft`, `backend_created_at`, `source_meal_id`,
+  `acute_score`, `insulin_load_total`, `kcal_total`, `carbs_total`,
+  `protein_total`, `fat_total`, `estimate_quality`, `estimate_status`,
+  `calorie_source` (see `frontend/src/types/Meal.ts`).
+- `MealItem` content includes `name`, optional `image`, portions (`servingSize`,
+  `servingUnit`, `amount`), nutrition (`kcalPerServing`, `carbPerServing_g`,
+  `proteinPerServing_g`, `fatPerServing_g`, `satFatPerServing_g`), `gi`, `fii`,
+  `source`, `why`, `draftProvenance`, `needsReview.previousName`, and `id`.
+  `MealEstimate` carries `estimated_calories`, `estimated_carbs_g`,
+  `estimated_fat_g`, `confidence`, `serving_type`, `serving_count`.
+- `mealFlowGuard.ts::getDraftFingerprint` serializes image, name, items,
+  AI-draft flag, estimate and calorie source into the baseline string (not a
+  cryptographic hash); `baseline.mealId` associates it with the draft.
+- Full-size prior images can occur in `meal.image`, `smart.images` and the
+  baseline, without the saved-meal image-size filter. Both callers pass their
+  existing state directly (`AiMealAdd.tsx::handleAddPhoto`,
+  `PreviewMeal.tsx::handleTakePicture`). Capture requests base64, quality 90,
+  `saveToGallery: false`; recovery performs no additional downscaling.
+- Handoff correction: the newly captured JPEG result arrives through the live
+  Promise or native restored event. `restoreCameraState` applies it in memory
+  after consuming the envelope; this module does not persist the new result,
+  EXIF or native event. A later camera launch can snapshot that image as prior
+  work. This is not an audit of OS/camera temporary-file retention.
+- Recovery localStorage key `insight-camera-pending` holds only the plain
+  36-character UUID nonce. No meal, image, note, error or baseline payload is
+  written to that key. This claim does not describe all localStorage.
+- Cleanup: `getRecoverablePhoto` finally handles live resolve/reject;
+  `clearCameraRecovery` handles the active nonce on timer/explicit cleanup;
+  Smart Camera cancel/view-leave and Preview discard call it. Native startup
+  (`main.tsx::bootstrap` → `bootstrapCameraRecovery`) validates/consumes the
+  marker and envelope before rendering; invalid, stale and missing/mismatched
+  marker paths attempt removal. Delete failures are tolerated; a consumed
+  marker prevents reuse and later startup attempts orphan removal.
+- `parseCameraRecovery` rejects age `>= 900000` ms and future timestamps.
+  Eligibility is checked when parsed, before the separate 3000 ms result wait;
+  it is not rechecked after that wait. The live cleanup timer can be delayed
+  by suspension. There is no guaranteed maximum on physical retention.
+- Separate storage: `currentMealStore`, `mealEstimateStore`, `pendingSaveStore`
+  and restored Smart Camera state have no persist middleware. The camera
+  snapshot is the draft-persistence exception; it does not persist the
+  separate estimate preview/save workflow. `insight-meals` holds saved history
+  (top-level `meal.image` capped at 24,000 characters; quota retry strips it);
+  `app-settings` version 1 holds `darkMode`. These stores have no recovery
+  15-minute expiry. Backend history and provider uploads are separate flows.
+
+### Existing claims and minimal correction
+
+- Settings → Data & privacy (`SETTINGS_IMAGE_DISCLOSURE`) previously said:
+  "Small meal images may also remain in this app’s local storage." This is
+  true for the saved-meal image policy but incomplete as the local-image
+  disclosure: it omits recovery drafts and full-size prior photos. The same
+  existing paragraph now discloses temporary device recovery, its small marker,
+  cleanup attempts and approximately 15-minute recovery expiry, separately
+  from the unchanged external-provider paragraph.
+- This report previously said "deletion occurs on its next launch." That
+  overstated successful cleanup and physical erasure. The lifetime paragraph
+  above now describes attempts and distinguishes browser/OS reclamation.
+- `docs/private-beta-topology.md` omitted recovery storage; its original
+  "including full base64 meal photos" and "gender, age, weight, height,
+  activity level" inventory also predated the current stores. The inventory
+  now distinguishes actual saved-history/settings payloads from recovery.
+- README and AI extraction disclosure qualify non-retention as **backend**
+  behavior, so no recovery-related contradiction or edit was needed. Campaign
+  B's in-memory draft baseline is explicitly dated to `19a690e`; its durable
+  artifact statement concerns saved scoring evidence, not camera recovery.
+  Historical audits and the approved target architecture were not rewritten.
+- `mealDraftUx.ts::getSaveSuccessMessage` contains "The photo was not kept on
+  this device, to save storage." Repository-wide caller search found only its
+  declaration: it is unused, not an active user-facing disclosure. No unrelated
+  dead-code cleanup was made.
+
+### Final claim/evidence matrix
+
+| Claim | Source evidence |
+| --- | --- |
+| Temporary local draft/full-size image recovery exists | `cameraRecovery.ts::getRecoverablePhoto`, both page callers, `mealFlowGuard.ts::getDraftFingerprint` |
+| Local recovery marker contains only nonce | `cameraRecovery.ts` → `localStorage.setItem(CAMERA_RECOVERY_MARKER, nonce)` |
+| About 15 minutes means recovery eligibility | `CAMERA_RECOVERY_MAX_AGE_MS`, `parseCameraRecovery`; check occurs before native-result wait |
+| Normal and startup cleanup attempts exist | `getRecoverablePhoto` finally, `clearCameraRecovery`, `bootstrapCameraRecovery`, caller cancel/discard/view-leave handlers |
+| Recovery is device storage, not a cloud backup/upload | `recoveryRecord` uses IndexedDB; recovery has no network call; AI submission remains in `AiMealAdd.tsx::handleOnSubmit` |
+| No exact physical-erasure promise | UI says "attempts to clear" and "Recovery expires"; topology and lifetime text explicitly distinguish byte reclamation |
+
+Risk: disclosure overclaim only; storage, privacy behavior, scoring, backend,
+provider, native code and dependencies are unchanged. No new private data was
+collected. The three-second late-result P2 remains deferred, along with the
+normal Android build, wider J9/accessibility device matrix, recognition
+evaluation, scientific validation and native identity work.
+
+### Verification for this disclosure-only change
+
+- Focused Vitest: `src/utils/safetyCopy.test.ts` (74) and
+  `src/pages/settings/Settings.test.tsx` (1), **75/75 PASS**. One narrow
+  recovery-copy semantic assertion added; existing guards unchanged.
+- `npx tsc --noEmit`: **PASS**.
+- `npx eslint src/utils/safetyCopy.ts src/utils/safetyCopy.test.ts`: **PASS**.
+- `npm run build`: **PASS**; existing stale Browserslist data and >500 kB
+  bundle advisories only. No dependencies updated.
+- Working and staged `git diff --check`: **PASS**. Existing formatting kept;
+  no standalone formatter is configured in the frontend package.
+- Host Node 26.5.0: tests used the already documented
+  `NODE_OPTIONS=--no-experimental-webstorage`, `VITEST_MAX_THREADS=2`,
+  `VITEST_MIN_THREADS=1`; no repository configuration workaround added.
+- No Cypress, backend, Rust/science, APK, device or provider checks run for
+  this copy-only change. Their historical results above are not new evidence.
+- Independent read-only agent review of the staged four-file diff: **PASS,
+  no blockers**. Reviewer checked the claims against startup, recovery, both
+  callers, stores and types; checks above were run by the primary agent.

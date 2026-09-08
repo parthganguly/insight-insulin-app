@@ -282,6 +282,15 @@ describe("dataset overclaim guard (issue #93)", () => {
 });
 
 describe("privacy overclaim guard", () => {
+	it("distinguishes temporary device recovery from saved images and cloud backup", () => {
+		expect(SETTINGS_IMAGE_DISCLOSURE).toContain("Small saved-meal images");
+		expect(SETTINGS_IMAGE_DISCLOSURE).toContain("temporarily store your draft and full-size images on this device, with a small recovery marker");
+		expect(SETTINGS_IMAGE_DISCLOSURE).toContain("not a cloud backup");
+		expect(SETTINGS_IMAGE_DISCLOSURE).toContain("attempts to clear recovery data");
+		expect(SETTINGS_IMAGE_DISCLOSURE).toContain("Recovery expires after about 15 minutes");
+		expect(SETTINGS_IMAGE_DISCLOSURE).not.toMatch(/guarantee|permanently deleted|never stored|delet\w* (within|after) .*15 minutes/i);
+	});
+
 	// Guards against unsafe privacy *claims*, not bare words: qualified or
 	// negative wording ("Private beta", "not processed locally", "not HIPAA
 	// compliant") must pass, while positive overclaims must fail.
