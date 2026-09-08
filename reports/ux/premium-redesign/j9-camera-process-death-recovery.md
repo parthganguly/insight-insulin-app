@@ -167,3 +167,15 @@ Files changed by this repair: `frontend/src/utils/cameraRecovery.ts`, its test, 
 ## RECOMMENDATION
 
 Resume the wider J9 physical matrix on this verified installed APK. Use recognizable synthetic/test food images for any real successful-extraction acceptance; desk captures remain lifecycle-only evidence. Before calling production-preview CI green, separately resolve the existing J8 dev-only test dependency. Retain the documented native-result timing and photo-picker limits when assessing broader device coverage.
+
+## LATE RESTORED RESULT CONTRACT (P2, ACCEPTED)
+
+Appended 2026-09-08 after independent Omen review and Opus 5 adjudication. This refines, and does not alter, the bounded missing-result paragraph in RECOVERY DESIGN above. Historical sections are unchanged.
+
+- `CAMERA_RECOVERY_WAIT_MS` (3000 ms) is INSIGHT application policy for how long startup recovery waits for a retained native result. It is NOT a Capacitor timing guarantee.
+- Capacitor App 7.0.1 retention guarantees that an already-emitted restored result is kept until the first listener registers and is then delivered. It does NOT bound when the native side completes or emits the restored Camera result; no documented or source-level maximum delivery time exists.
+- A legitimate `Camera/getPhoto` restored result can therefore arrive after the deadline. The current implementation intentionally ignores it: the listener is disarmed before the deadline fallback restores, so a late result causes no second restore, no second navigation, and no stale-state resurrection.
+- Consequence: the newly captured photo is lost for that session, while all pre-camera work (draft, prior photos, note, caller, discard baseline) is restored exactly once with curated camera-failure copy. There is no dead-end and no overwrite of work created after startup recovery.
+- Severity: P2 — a bounded product risk. Accepted for now; this behavior is not claimed ideal.
+- A future repair must not simply increase the timeout: no known bound justifies waiting arbitrarily long at startup. Any late-result repair must consume a late result without overwriting work created after startup recovery (apply only the missing photo; never re-run whole-state restoration).
+- Regression test: `frontend/src/utils/cameraRecovery.test.ts`, "ignores a valid restored result arriving after the recovery deadline completes". It models the disputed ordering — listener registered → deadline wins → recovery completes → valid matching result arrives late — and asserts single restore to the correct destination, no new photo, curated failure copy, consumed envelope and marker, no second navigation, and preserved post-recovery user state.

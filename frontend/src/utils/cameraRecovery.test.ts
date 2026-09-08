@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CameraSource } from "@capacitor/camera";
 import type { RestoredListenerEvent } from "@capacitor/app";
 import { useCurrentMealStore } from "../stores/currentMealStore";
-import { CAMERA_CANCELLED_MESSAGE } from "./aiFailureCopy";
+import { CAMERA_CANCELLED_MESSAGE, CAMERA_UNAVAILABLE_MESSAGE } from "./aiFailureCopy";
 import { bootstrapCameraRecovery, CAMERA_RECOVERY_MARKER, CAMERA_RECOVERY_MAX_AGE_MS, CAMERA_RECOVERY_WAIT_MS, clearCameraRecovery, getRecoverablePhoto, parseCameraRecovery, restoreCameraState, takeRecoveredSmartCamera, type CameraRecoveryEnvelope } from "./cameraRecovery";
 
 const native = vi.hoisted(() => ({ listener: null as ((event: RestoredListenerEvent) => void) | null, photo: vi.fn() }));
@@ -163,6 +163,34 @@ describe("native boundary durability and lifetime", () => {
 		expect(window.location.pathname).toBe("/meals/new/ai");
 		expect(takeRecoveredSmartCamera()?.images).toHaveLength(1);
 		expect(disk).toBeUndefined();
+	});
+	it("ignores a valid restored result arriving after the recovery deadline completes", async () => {
+		vi.useFakeTimers();
+		const value = envelope();
+		seed(value);
+		const boot = bootstrapCameraRecovery();
+		const listener = native.listener;
+		expect(listener).toBeTruthy();
+		await vi.advanceTimersByTimeAsync(CAMERA_RECOVERY_WAIT_MS + 1000);
+		await boot;
+		expect(window.location.pathname).toBe("/meals/new/ai");
+		expect(useCurrentMealStore.getState().meal).toEqual(value.meal);
+		const smart = takeRecoveredSmartCamera();
+		expect(smart).toEqual({ ...value.smart, caller: value.caller, error: CAMERA_UNAVAILABLE_MESSAGE, failureKind: "camera" });
+		expect(smart?.images).toHaveLength(1);
+		expect(takeRecoveredSmartCamera()).toBeNull();
+		expect(disk).toBeUndefined();
+		expect(localStorage.getItem(CAMERA_RECOVERY_MARKER)).toBeNull();
+		useCurrentMealStore.getState().setMeal({ ...value.meal, name: "Post-recovery user work" });
+		const replaceState = vi.spyOn(window.History.prototype, "replaceState");
+		listener?.(success);
+		expect(replaceState).not.toHaveBeenCalled();
+		replaceState.mockRestore();
+		expect(window.location.pathname).toBe("/meals/new/ai");
+		expect(useCurrentMealStore.getState().meal).toEqual({ ...value.meal, name: "Post-recovery user work" });
+		expect(takeRecoveredSmartCamera()).toBeNull();
+		expect(disk).toBeUndefined();
+		expect(localStorage.getItem(CAMERA_RECOVERY_MARKER)).toBeNull();
 	});
 	it("still applies the consumed photo if disk deletion fails, and cannot replay it", async () => {
 		seed(envelope());
