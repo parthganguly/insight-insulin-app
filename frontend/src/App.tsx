@@ -43,12 +43,16 @@ import MealEstimate from "./pages/meal/MealEstimate";
 import MealFlowGuard from "./components/MealFlowGuard";
 import PendingSaveBanner from "./components/PendingSaveBanner";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Capacitor } from "@capacitor/core";
+import { Capacitor, registerPlugin } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { useSettingsStore } from "./stores/settingsStore";
 import { applyRootAppearance, INK_APPEARANCE_CLASS, INK_MEDIA_QUERY, PAPER_APPEARANCE_CLASS, resolveAppearance } from "./utils/appearance";
 
 setupIonicReact();
+
+const NavigationBar = registerPlugin<{
+	setAppearance(options: { lightNavigationBars: boolean }): Promise<void>;
+}>("NavigationBar");
 
 type JourneyTab = "dashboard" | "logMeal" | "history";
 
@@ -163,6 +167,11 @@ const App: React.FC<{ onShellReady?: () => void }> = ({ onShellReady }) => {
 		StatusBar.setStyle({ style: appearance === "ink" ? Style.Dark : Style.Light }).catch(() => {
 			// System-bar styling is cosmetic; a plugin failure must not break boot.
 		});
+		if (Capacitor.getPlatform() === "android") {
+			NavigationBar.setAppearance({ lightNavigationBars: appearance === "paper" }).catch(() => {
+				// A navigation-bar plugin failure must not break the app.
+			});
+		}
 	}, [appearance]);
 
 	useEffect(() => {

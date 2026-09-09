@@ -65,6 +65,7 @@ public class MainActivity extends BridgeActivity {
                 .start();
         });
 
+        registerPlugin(NavigationBarPlugin.class);
         super.onCreate(savedInstanceState);
 
         applyStartupSurfaces();
