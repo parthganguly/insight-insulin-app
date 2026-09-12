@@ -5,7 +5,8 @@ import { MealItem, Unit } from "../../types/MealItem";
 import { add, alertCircle, arrowBack, checkmarkCircle, close, create, desktop, pencil, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { useMealEstimateStore } from "../../stores/mealEstimateStore";
-import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import { CameraSource } from "@capacitor/camera";
+import { clearCameraRecovery, getRecoverablePhoto } from "../../utils/cameraRecovery";
 import { calculateTotalCalories, calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat } from "../../utils";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import ConfirmHero from "../../components/ConfirmHero";
@@ -113,6 +114,7 @@ const PreviewMeal = () => {
 	};
 
 	const handleDiscardDraft = () => {
+		void clearCameraRecovery().catch(() => undefined);
 		armMealFlowBypass("/log-meal");
 		releaseFocusedElement();
 		useMealEstimateStore.getState().clearEstimate();
@@ -122,11 +124,8 @@ const PreviewMeal = () => {
 
 	const handleTakePicture = async () => {
 		try {
-			const photo = await Camera.getPhoto({
-				resultType: CameraResultType.Base64,
-				source: CameraSource.Camera,
-				quality: 90,
-				saveToGallery: false,
+			const photo = await getRecoverablePhoto(CameraSource.Camera, {
+				flow: "preview-photo", caller: "/meals/new", meal, smart: null,
 			});
 
 			if (photo.base64String) {
@@ -235,7 +234,7 @@ const PreviewMeal = () => {
 					)}
 				</main>
 				<div slot='fixed' className='confirmation-dock'>
-					<IonButton expand='block' aria-label='Calculate estimate' aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>
+					<IonButton expand='block' aria-label={isSubmitting ? "Estimating insulin demand…" : "Calculate estimate"} aria-disabled={isSubmitting || hasUnresolvedReview} aria-describedby={reviewValidationError ? "review-validation-error" : undefined} onClick={handleLogMeal} disabled={isSubmitting || hasUnresolvedReview}>
 						{isSubmitting ? "Estimating insulin demand…" : "Calculate estimate"}
 					</IonButton>
 					<IonButton expand='block' fill='clear' color='medium' onClick={handleDiscardDraft} disabled={isSubmitting}>Discard draft</IonButton>

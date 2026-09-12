@@ -43,12 +43,16 @@ import MealEstimate from "./pages/meal/MealEstimate";
 import MealFlowGuard from "./components/MealFlowGuard";
 import PendingSaveBanner from "./components/PendingSaveBanner";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Capacitor } from "@capacitor/core";
+import { Capacitor, registerPlugin } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { useSettingsStore } from "./stores/settingsStore";
 import { applyRootAppearance, INK_APPEARANCE_CLASS, INK_MEDIA_QUERY, PAPER_APPEARANCE_CLASS, resolveAppearance } from "./utils/appearance";
 
 setupIonicReact();
+
+const NavigationBar = registerPlugin<{
+	setAppearance(options: { lightNavigationBars: boolean }): Promise<void>;
+}>("NavigationBar");
 
 type JourneyTab = "dashboard" | "logMeal" | "history";
 
@@ -105,15 +109,15 @@ const AppTabs = () => {
 						</Route>
 					</IonRouterOutlet>
 					<IonTabBar slot='bottom'>
-						<IonTabButton tab='dashboard' href='/dashboard' aria-label='Home' aria-selected={selectedTab === "dashboard"} selected={selectedTab === "dashboard"} className={selectedTab === "dashboard" ? "journey-tab-selected" : undefined}>
+						<IonTabButton tab='dashboard' href='/dashboard' data-navigation-href='/dashboard' aria-label='Home' aria-selected={selectedTab === "dashboard"} selected={selectedTab === "dashboard"} className={selectedTab === "dashboard" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={bookOutline} />
 							<IonLabel>Home</IonLabel>
 						</IonTabButton>
-						<IonTabButton tab='logMeal' href='/log-meal' aria-label='Log Meal' aria-selected={selectedTab === "logMeal"} selected={selectedTab === "logMeal"} className={selectedTab === "logMeal" ? "journey-tab-selected" : undefined}>
+						<IonTabButton tab='logMeal' href='/log-meal' data-navigation-href='/log-meal' aria-label='Log Meal' aria-selected={selectedTab === "logMeal"} selected={selectedTab === "logMeal"} className={selectedTab === "logMeal" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={addOutline} />
 							<IonLabel>Log Meal</IonLabel>
 						</IonTabButton>
-						<IonTabButton tab='history' href='/meals' aria-label='History' aria-selected={selectedTab === "history"} selected={selectedTab === "history"} className={selectedTab === "history" ? "journey-tab-selected" : undefined}>
+						<IonTabButton tab='history' href='/meals' data-navigation-href='/meals' aria-label='History' aria-selected={selectedTab === "history"} selected={selectedTab === "history"} className={selectedTab === "history" ? "journey-tab-selected" : undefined}>
 							<IonIcon aria-hidden='true' icon={timeOutline} />
 							<IonLabel>History</IonLabel>
 						</IonTabButton>
@@ -163,6 +167,11 @@ const App: React.FC<{ onShellReady?: () => void }> = ({ onShellReady }) => {
 		StatusBar.setStyle({ style: appearance === "ink" ? Style.Dark : Style.Light }).catch(() => {
 			// System-bar styling is cosmetic; a plugin failure must not break boot.
 		});
+		if (Capacitor.getPlatform() === "android") {
+			NavigationBar.setAppearance({ lightNavigationBars: appearance === "paper" }).catch(() => {
+				// A navigation-bar plugin failure must not break the app.
+			});
+		}
 	}, [appearance]);
 
 	useEffect(() => {

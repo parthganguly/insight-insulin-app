@@ -3,6 +3,7 @@
 import {
 	BACKEND_ORIGIN,
 	assertNoHorizontalOverflow,
+	getEnteredPage,
 	shouldBeRendered,
 	stubBackend,
 	syntheticBackendMeal,
@@ -33,9 +34,8 @@ const openEstimate = ({ meal = freshMeal, ink = false }: OpenEstimateOptions = {
 	cy.get(".portion-adjust-row ion-input[label='Amount'] input").first().type("{selectall}1");
 	cy.get("[aria-label='Calculate estimate']").first().click({ force: true });
 	cy.wait("@previewMeal");
-	cy.url().should("include", "/meals/estimate");
-	shouldBeRendered(".result-meal-name", meal.meal_name);
-	cy.wait(400); // Let Ionic's route transition finish before visual assertions/captures.
+	getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+	shouldBeRendered(".ion-page:not(.ion-page-hidden) .result-meal-name", meal.meal_name);
 };
 
 const assertFreshPorcelain = () => {
@@ -78,38 +78,60 @@ describe("J8 unsaved estimate Porcelain treatment", () => {
 		cy.screenshot("j8-02-fresh-ink-390x844", { capture: "viewport" });
 	});
 
-	it("keeps the prior result readable through stale and failed recalculation states", () => {
+	it("keeps the prior result readable through stale, failed recalculation, and successful retry states", () => {
+		const activePage = ".ion-page:not(.ion-page-hidden)";
 		cy.viewport(390, 844);
 		openEstimate();
-		cy.contains(".result-sheet ion-button", "Adjust meal").click({ force: true });
-		cy.url().should("include", "/meals/new");
-		cy.get("ion-content.confirmation-page .portion-adjust-row ion-input[label='Amount'] input")
-			.last()
+		cy.contains(`${activePage} ion-footer ion-button`, "Save to History").should("be.visible");
+		cy.contains(`${activePage} .result-sheet ion-button`, "Adjust meal").click();
+		getEnteredPage("/meals/new", "ion-content.confirmation-page").find("ion-content")
+			.then(($content) => ($content[0] as HTMLIonContentElement).scrollToTop(0));
+		cy.contains(`${activePage} h1`, "Did we get your meal right?").should("be.visible");
+		cy.get(`${activePage} .portion-adjust-row ion-input[label='Amount'] input`)
+			.should("have.length", 1)
+			.then(($input) => $input[0].scrollIntoView({ block: "center" }))
 			.should("be.visible")
-			.clear({ force: true })
-			.type("2", { force: true })
-			.should(($input) => expect($input.val()).not.to.equal("1"))
+			.and("have.value", "1")
+			.type("{selectall}2")
+			.should("have.value", "2")
 			.blur();
 		cy.go("back");
-		cy.url().should("include", "/meals/estimate");
-		cy.wait(1000); // Let the internal-flow back transition settle before capture.
-		cy.contains("This estimate describes the meal before your changes. Recalculate before saving.").should("exist");
-		cy.contains(".result-score", "Relative score: 67").should("exist");
-		cy.contains("ion-footer ion-button", "Recalculate").should("exist");
-		cy.contains("ion-footer", "Save to History").should("not.exist");
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+		cy.get("ion-alert").should("not.exist");
+		shouldBeRendered(`${activePage} .estimate-stale-copy`, "This estimate describes the meal before your changes. Recalculate before saving.");
+		shouldBeRendered(`${activePage} .result-score`, "Relative score: 67");
+		cy.contains(`${activePage} ion-footer ion-button`, "Recalculate").should("be.visible");
+		cy.contains(`${activePage} ion-footer`, "Save to History").should("not.exist");
+		cy.get("@previewMeal.all").should("have.length", 1);
 		cy.screenshot("j8-03-stale-recalculate-paper-390x844", { capture: "viewport" });
 
 		cy.intercept("POST", `${BACKEND_ORIGIN}/meals/preview`, {
 			statusCode: 500,
 			body: { detail: "Synthetic diagnostic that must not render" },
 		}).as("failedRecalculation");
-		cy.contains("ion-footer ion-button", "Recalculate").click({ force: true });
-		cy.wait("@failedRecalculation");
-		cy.contains("Couldn't update this estimate. Try again.").should("exist");
-		cy.contains(".result-score", "Relative score: 67").should("exist");
+		cy.contains(`${activePage} ion-footer ion-button`, "Recalculate").click();
+		cy.wait("@failedRecalculation").its("request.body.items.0.quantity").should("eq", 2);
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+		shouldBeRendered(`${activePage} .estimate-model-error`, "Couldn't update this estimate. Try again.");
+		shouldBeRendered(`${activePage} .result-score`, "Relative score: 67");
 		cy.contains("Synthetic diagnostic that must not render").should("not.exist");
-		cy.contains("ion-footer ion-button", "Recalculate").should("exist");
+		cy.contains(`${activePage} ion-footer ion-button`, "Recalculate").should("be.visible");
+		cy.contains(`${activePage} ion-footer`, "Save to History").should("not.exist");
 		cy.screenshot("j8-04-recalculation-failure-paper-390x844", { capture: "viewport" });
+
+		cy.intercept("POST", `${BACKEND_ORIGIN}/meals/preview`, {
+			statusCode: 200,
+			body: syntheticPreviewFromSaved(syntheticBackendMeal("j8-updated", LONG_MEAL_NAME, 83)),
+		}).as("successfulRecalculation");
+		cy.contains(`${activePage} ion-footer ion-button`, "Recalculate").click();
+		cy.wait("@successfulRecalculation").its("request.body.items.0.quantity").should("eq", 2);
+		getEnteredPage("/meals/estimate", "ion-content.estimate-page");
+		shouldBeRendered(`${activePage} .result-score`, "Relative score: 83");
+		cy.get(`${activePage} .estimate-model-status`).should("not.exist");
+		cy.contains(`${activePage} ion-footer ion-button`, "Recalculate").should("not.exist");
+		cy.contains(`${activePage} ion-footer ion-button`, "Save to History").should("be.visible").and("not.have.attr", "disabled");
+		cy.contains("Synthetic diagnostic that must not render").should("not.exist");
+		cy.get("ion-alert").should("not.exist");
 	});
 
 	it("captures insufficient-data dignity with ordinary Save to History", () => {

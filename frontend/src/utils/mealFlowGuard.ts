@@ -57,6 +57,18 @@ export const getDraftFingerprint = (meal: Meal): string => JSON.stringify({
 	calorieSource: meal.calorie_source,
 });
 
+export type MealFlowBaseline = { mealId: string; fingerprint: string };
+let activeBaseline: MealFlowBaseline | null = null;
+let recoveredBaseline: MealFlowBaseline | null = null;
+export const rememberMealFlowBaseline = (baseline: MealFlowBaseline): void => { activeBaseline = baseline; };
+export const getMealFlowBaseline = (mealId: string): MealFlowBaseline | null => activeBaseline?.mealId === mealId ? activeBaseline : null;
+export const restoreMealFlowBaseline = (baseline: MealFlowBaseline | null): void => { recoveredBaseline = baseline; };
+export const takeRecoveredMealFlowBaseline = (): MealFlowBaseline | null => {
+	const baseline = recoveredBaseline;
+	recoveredBaseline = null;
+	return baseline;
+};
+
 let expectedBypassDestination: string | null = null;
 
 export const armMealFlowBypass = (destination: string): void => {

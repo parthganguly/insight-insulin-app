@@ -31,6 +31,7 @@ import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { AI_EXTRACTION_UNAVAILABLE_MESSAGE, CAMERA_CANCELLED_MESSAGE } from "../../utils/aiFailureCopy";
 import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
+import { restoreCameraState } from "../../utils/cameraRecovery";
 
 const SYNTHETIC_IMAGE = "synthetic-image-payload";
 const RAW_PROVIDER_DETAIL = "synthetic upstream provider stack detail";
@@ -172,6 +173,31 @@ describe("Campaign A Smart Camera", () => {
 		await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
 	});
 
+	it("keeps a successful synthetic extraction populated in the draft store", async () => {
+		vi.stubGlobal("fetch", vi.fn(async () => ({
+			ok: true,
+			json: async () => ({
+				data: {
+					meal: {
+						name: "Synthetic camera meal",
+						items: [{ name: "Synthetic rice", quantity: 1, unit: "serving", kcalPerUnit: 200, carb_g: 45 }],
+					},
+				},
+			}),
+		})));
+		renderCamera();
+		await capturePhoto();
+
+		fireEvent.click(screen.getByText("Analyze meal"));
+
+		await waitFor(() => expect(window.location.pathname).toBe("/meals/new"));
+		const draft = useCurrentMealStore.getState().meal;
+		expect(draft.name).toBe("Synthetic camera meal");
+		expect(draft.items).toHaveLength(1);
+		expect(draft.items[0].name).toBe("Synthetic rice");
+		expect(draft.isAiDraft).toBe(true);
+	});
+
 	it("routes Enter manually instead to one clean editable manual item", async () => {
 		vi.stubGlobal("fetch", vi.fn(async () => failedResponse()));
 		renderCamera();
@@ -229,6 +255,22 @@ describe("Campaign A Smart Camera", () => {
 		fireEvent.click(await screen.findByText("Cancel"));
 
 		await waitFor(() => expect(window.location.pathname).toBe("/log-meal"));
+	});
+
+	it.each(["/log-meal", "/meals/new"] as const)("keeps restored photos and note through first Ionic entry, then cancels to %s", async caller => {
+		const meal = { ...useCurrentMealStore.getState().meal, name: "Synthetic restored draft" };
+		restoreCameraState({
+			version: 1, nonce: "test", createdAt: Date.now(), source: "camera" as never,
+			flow: "smart-camera", caller, destination: "/meals/new/ai", meal,
+			smart: { images: ["data:image/jpeg;base64,prior"], note: "Synthetic preserved note", error: "", failureKind: null },
+		}, { pluginId: "Camera", methodName: "getPhoto", success: true, data: { format: "jpeg", base64String: SYNTHETIC_IMAGE } });
+		render(<App />);
+		act(() => lifecycle.willEnter?.());
+		await waitFor(() => expect(screen.getAllByAltText(/Captured food/)).toHaveLength(2));
+		expect(document.querySelector("ion-textarea")?.value).toBe("Synthetic preserved note");
+		expect(useCurrentMealStore.getState().meal).toEqual(meal);
+		fireEvent.click(screen.getByText("Cancel"));
+		await waitFor(() => expect(window.location.pathname).toBe(caller));
 	});
 
 	it("keeps the existing five-image quota", async () => {

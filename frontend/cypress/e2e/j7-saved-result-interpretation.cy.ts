@@ -3,7 +3,7 @@
 // J7 saved-result interpretation acceptance. Synthetic records only: no real
 // user health data and no real meal photographs.
 
-import { assertNoForbiddenPhrases, assertNoHorizontalOverflow, shouldBeRendered, stubBackend, visitFresh } from "../support/insightStubs";
+import { assertNoForbiddenPhrases, assertNoHorizontalOverflow, getEnteredPage, shouldBeRendered, stubBackend, visitFresh } from "../support/insightStubs";
 import { SAVED_RESULT_SCALE_DISCLOSURE, SAVED_RESULT_SCORE_BOUNDARY, getSavedResultScoreAriaLabel } from "../../src/utils/acuteScoreDisplay";
 import { ROUGH_ESTIMATE_NOTICE, getSavedResultUnknownItemsNotice } from "../../src/utils/safetyCopy";
 import { SAVED_MEAL_STATUS } from "../../src/utils/mealDraftUx";
@@ -68,6 +68,7 @@ const openSavedResult = (meal: ReturnType<typeof normalMeal>, appearance: Appear
 		"app-settings": persistedAppearance(appearance),
 		"insight-meals": persistedMeals([meal]),
 	});
+	cy.wait("@meals");
 	cy.get("ion-app").should("have.attr", "data-appearance", appearance);
 	if (largeText) cy.document().then((doc) => doc.documentElement.style.setProperty("font-size", "133%"));
 	cy.contains(SAVED_MEAL_STATUS).should("exist");
@@ -100,11 +101,13 @@ describe("J7 normal saved-result semantics", () => {
 	it("keeps the normalization transparent only in the deep disclosure", () => {
 		openSavedResult(normalMeal(137));
 
-		cy.get(".result-score").should("not.contain.text", "100");
-		cy.get("details.result-score-method").should("not.have.attr", "open");
-		cy.contains("summary", "How this score works").focus().should("be.focused").click();
-		cy.get("details.result-score-method").should("have.attr", "open");
-		shouldBeRendered(".result-score-method p", SAVED_RESULT_SCALE_DISCLOSURE);
+		getEnteredPage("/meals/saved/j7-normal-137", "ion-content.result-page").within(() => {
+			cy.get(".result-score").should("not.contain.text", "100");
+			cy.get("details.result-score-method").should("not.have.attr", "open");
+			cy.contains("summary", "How this score works").focus().should("be.focused").click();
+			cy.get("details.result-score-method").should("have.attr", "open");
+			shouldBeRendered(".result-score-method p", SAVED_RESULT_SCALE_DISCLOSURE);
+		});
 	});
 });
 

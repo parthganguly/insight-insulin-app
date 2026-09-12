@@ -13,6 +13,8 @@ import {
 	doesPendingSaveCoverCurrentDraft,
 	getDraftFingerprint,
 	isInternalMealFlowPath,
+	rememberMealFlowBaseline,
+	takeRecoveredMealFlowBaseline,
 } from "../utils/mealFlowGuard";
 
 type PendingNavigation = {
@@ -37,15 +39,18 @@ const MealFlowGuard = () => {
 	const saveRequestId = useMealEstimateStore((state) => state.saveRequestId);
 	const pendingIntent = usePendingSaveStore((state) => saveRequestId === null ? undefined : state.intents[saveRequestId]);
 	const [pending, setPending] = useState<PendingNavigation | null>(null);
+	const destructiveIntent = useRef<PendingNavigation | null>(null);
 
 	const fingerprint = getDraftFingerprint(meal);
-	const baseline = useRef({ mealId: meal.id, fingerprint });
+	const [restoredBaseline] = useState(takeRecoveredMealFlowBaseline);
+	const baseline = useRef(restoredBaseline ?? { mealId: meal.id, fingerprint });
 	// Outside the guarded flow the current meal store is preparation state, not
 	// an active draft. Keep following it there so opening a fresh manual draft
 	// does not immediately count the scaffolded blank row as a user edit.
 	if (baseline.current.mealId !== meal.id || !isInternalMealFlowPath(pathname)) {
 		baseline.current = { mealId: meal.id, fingerprint };
 	}
+	rememberMealFlowBaseline(baseline.current);
 
 	const pendingSaveCoversCurrentDraft = doesPendingSaveCoverCurrentDraft({ meal, estimateDraftId, saveRequestId, intent: pendingIntent });
 	const decisionContext = useRef({ pathname, isDirtyDraft: false, hasUnsavedEstimate: false, pendingSaveCoversCurrentDraft: false });
@@ -57,33 +62,60 @@ const MealFlowGuard = () => {
 	};
 
 	useEffect(() => {
-		return history.block((location, action) => {
-			if (consumeMealFlowBypass(location.pathname)) return;
+		const decide = (toPath: string) => {
 			const context = decisionContext.current;
-			const decision = decideMealFlowNavigation({
+			return decideMealFlowNavigation({
 				fromPath: context.pathname,
-				toPath: location.pathname,
+				toPath,
 				isDirtyDraft: context.isDirtyDraft,
 				hasUnsavedEstimate: context.hasUnsavedEstimate,
 				pendingSaveCoversCurrentDraft: context.pendingSaveCoversCurrentDraft,
 			});
+		};
+		const unblock = history.block((location, action) => {
+			if (consumeMealFlowBypass(location.pathname)) return;
+			const decision = decide(location.pathname);
 			if (decision === "allow") return;
 			releaseFocusedElement();
+			destructiveIntent.current = null;
 			setPending({ location, action, kind: decision });
 			return false;
 		});
+		const interceptGuardedTab = (event: Event) => {
+			if (!(event instanceof CustomEvent)) return;
+			const targetHref = event.target instanceof HTMLElement ? event.target.dataset.navigationHref : undefined;
+			const href = targetHref ?? event.detail?.href;
+			if (typeof href !== "string") return;
+			const destination = new URL(href, window.location.href);
+			if (destination.origin !== window.location.origin || decide(destination.pathname) === "allow") return;
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			history.push(`${destination.pathname}${destination.search}${destination.hash}`);
+		};
+		document.addEventListener("ionTabButtonClick", interceptGuardedTab, true);
+		return () => {
+			document.removeEventListener("ionTabButtonClick", interceptGuardedTab, true);
+			destructiveIntent.current = null;
+			unblock();
+		};
 	}, [history]);
 
 	const stay = () => {
 		releaseFocusedElement();
+		destructiveIntent.current = null;
 		setPending(null);
 	};
 
 	const discardAndLeave = () => {
-		if (!pending) return;
-		const { location, action } = pending;
+		destructiveIntent.current = pending;
+	};
+
+	const leaveAfterDismiss = () => {
+		const intent = destructiveIntent.current;
+		destructiveIntent.current = null;
+		if (!intent) return;
+		const { location, action } = intent;
 		armMealFlowBypass(location.pathname);
-		releaseFocusedElement();
 		useMealEstimateStore.getState().clearEstimate();
 		useCurrentMealStore.getState().resetMeal();
 		setPending(null);
@@ -97,6 +129,7 @@ const MealFlowGuard = () => {
 			isOpen
 			backdropDismiss={false}
 			onWillDismiss={releaseFocusedElement}
+			onDidDismiss={leaveAfterDismiss}
 			header={isEstimatePrompt ? "This estimate isn't saved" : "Discard this draft?"}
 			message={isEstimatePrompt
 				? "Save it to History before leaving, or discard the unsaved estimate and continue."

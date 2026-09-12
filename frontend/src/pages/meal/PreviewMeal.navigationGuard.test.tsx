@@ -8,10 +8,13 @@ vi.mock("@ionic/react", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("@ionic/react")>();
 	return {
 		...actual,
-		IonAlert: ({ isOpen, header, message, buttons }: { isOpen: boolean; header: string; message: string; buttons: AlertButton[] }) => isOpen ? (
+		IonAlert: ({ isOpen, header, message, buttons, onDidDismiss }: { isOpen: boolean; header: string; message: string; buttons: AlertButton[]; onDidDismiss?: () => void }) => isOpen ? (
 			<div role='alertdialog' aria-label={header}>
 				<p>{message}</p>
-				{buttons.map((button) => <button key={button.text} onClick={() => button.handler?.()}>{button.text}</button>)}
+				{buttons.map((button) => <button key={button.text} onClick={() => {
+					button.handler?.();
+					queueMicrotask(() => onDidDismiss?.());
+				}}>{button.text}</button>)}
 			</div>
 		) : null,
 		IonToast: () => null,
@@ -26,6 +29,8 @@ import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
+import { getMealFlowBaseline } from "../../utils/mealFlowGuard";
+import { restoreCameraState } from "../../utils/cameraRecovery";
 
 const syntheticDraft = (): Meal => ({
 	id: "qa-synthetic-draft",
@@ -74,6 +79,7 @@ describe("dirty confirmation draft navigation", () => {
 	});
 
 	afterEach(() => {
+		vi.restoreAllMocks();
 		vi.unstubAllGlobals();
 	});
 
@@ -99,17 +105,23 @@ describe("dirty confirmation draft navigation", () => {
 
 	it("discards the dirty draft only after confirmation and renders the requested route", async () => {
 		const { baseElement } = renderDraft();
+		const clearEstimate = vi.spyOn(useMealEstimateStore.getState(), "clearEstimate");
+		const resetMeal = vi.spyOn(useCurrentMealStore.getState(), "resetMeal");
 		await screen.findByText("Did we get your meal right?");
 		makeMeaningfulEdit();
 		await waitForMeaningfulEditToRender();
 
 		fireEvent.click(screen.getByText("Home").closest("ion-tab-button")!);
 		fireEvent.click(await screen.findByRole("button", { name: "Discard and leave" }));
+		expect(window.location.pathname).toBe("/meals/new");
+		expect(useCurrentMealStore.getState().meal.items).toHaveLength(3);
 
 		await waitFor(() => expect(window.location.pathname).toBe("/dashboard"));
 		await waitFor(() => expect(baseElement.querySelector("ion-router-outlet > .ion-page:not(.ion-page-hidden) ion-title")?.textContent).toBe("Home"));
 		expect(useCurrentMealStore.getState().meal.name).toBe("New Meal");
 		expect(useCurrentMealStore.getState().meal.items).toHaveLength(0);
+		expect(clearEstimate).toHaveBeenCalledTimes(1);
+		expect(resetMeal).toHaveBeenCalledTimes(1);
 	});
 
 	it("keeps browser Back route and rendered view synchronized after stay and discard", async () => {
@@ -147,5 +159,22 @@ describe("dirty confirmation draft navigation", () => {
 		await waitFor(() => expect(window.location.pathname).toBe("/log-meal"));
 		expect(screen.queryByRole("alertdialog")).toBeNull();
 		expect(useCurrentMealStore.getState().meal.items).toHaveLength(0);
+	});
+
+	it("preserves the dirty-draft guard after Camera process recreation", async () => {
+		const view = renderDraft();
+		await screen.findByText("Did we get your meal right?");
+		makeMeaningfulEdit();
+		await waitForMeaningfulEditToRender();
+		const meal = structuredClone(useCurrentMealStore.getState().meal);
+		const baseline = getMealFlowBaseline(meal.id);
+		view.unmount();
+		useCurrentMealStore.getState().resetMeal();
+		restoreCameraState({ version: 1, nonce: "test", createdAt: Date.now(), source: "CAMERA" as never, flow: "preview-photo", caller: "/meals/new", destination: "/meals/new", meal, smart: null, baseline }, { pluginId: "Camera", methodName: "getPhoto", success: false, error: { message: "User cancelled photos app" } });
+		render(<App />);
+		await screen.findByText("Did we get your meal right?");
+		fireEvent.click(screen.getByText("Home").closest("ion-tab-button")!);
+		expect(await screen.findByRole("alertdialog", { name: "Discard this draft?" })).toBeTruthy();
+		expect(useCurrentMealStore.getState().meal).toEqual(meal);
 	});
 });

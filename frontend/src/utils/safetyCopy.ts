@@ -39,7 +39,8 @@ export const AI_EXTRACTION_PRIVACY_DISCLOSURE =
 export const SETTINGS_PROTOTYPE_STATUS = "Experimental prototype";
 export const SETTINGS_SAVED_MEALS_DISCLOSURE =
 	"Saved meals are stored on this device and in the configured INSIGHT backend. The current backend has no accounts or per-user isolation, so saved meals are not separated by user.";
-export const SETTINGS_IMAGE_DISCLOSURE = "Small meal images may also remain in this app’s local storage.";
+export const SETTINGS_IMAGE_DISCLOSURE =
+	"Small saved-meal images may remain in this app’s local storage. To recover unfinished work if Android closes INSIGHT while the camera or photo picker is open, the app may temporarily store your draft and full-size images on this device, with a small recovery marker. This is not a cloud backup. The app attempts to clear recovery data after completion, cancellation or recovery, and when it finds invalid or expired recovery data at startup. Recovery expires after about 15 minutes.";
 export const SETTINGS_DELETE_DISCLOSURE = "Saved meals can be deleted one at a time. There is no delete-all action in this prototype.";
 
 const SOURCE_LABELS: Record<string, string> = {

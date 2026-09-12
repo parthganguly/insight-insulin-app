@@ -159,9 +159,12 @@ describe("PreviewMeal manual draft/save UX (issue #75)", () => {
 		useCurrentMealStore.setState({ meal: currentMeal([draftItem({ name: "Steamed rice", amount: 1, kcalPerServing: 200 })]) });
 		const { baseElement } = renderPreviewMeal();
 
-		fireEvent.click(await screen.findByLabelText("Calculate estimate"));
+		const idleButton = await screen.findByLabelText("Calculate estimate");
+		expect(idleButton).toHaveTextContent("Calculate estimate");
+		fireEvent.click(idleButton);
 
-		expect(await screen.findByText("Estimating insulin demand…")).toBeTruthy();
+		const submittingButton = await screen.findByLabelText("Estimating insulin demand…");
+		expect(submittingButton).toHaveTextContent("Estimating insulin demand…");
 		expect(baseElement.querySelector(".confirmation-sheet")).toHaveAttribute("aria-busy", "true");
 		expect(baseElement.querySelector(".confirmation-sheet")).toHaveAttribute("inert");
 		expect((baseElement.querySelector('ion-input[label="Meal name"]') as HTMLIonInputElement).disabled).toBe(true);

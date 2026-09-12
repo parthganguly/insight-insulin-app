@@ -1,6 +1,6 @@
 import { IonPage, IonContent, IonHeader, IonButton, IonImg, IonIcon, IonTextarea, IonButtons, useIonViewDidLeave, useIonViewWillEnter } from "@ionic/react";
-import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import { useEffect, useState } from "react";
+import { CameraSource } from "@capacitor/camera";
+import { useEffect, useRef, useState } from "react";
 import { useIonRouter } from "@ionic/react";
 import { camera, image, pencil, trash } from "ionicons/icons";
 import { fetchAiMealFromAPI, normalizeAiExtractedItem } from "../../api/api";
@@ -9,12 +9,15 @@ import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { MealEstimate } from "../../types/Meal";
 import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
 import { describeAiExtractionFailure, describeCameraFailure } from "../../utils/aiFailureCopy";
+import { clearCameraRecovery, getRecoverablePhoto, takeRecoveredSmartCamera } from "../../utils/cameraRecovery";
 
 const AiMealAdd = () => {
-	const [error, setError] = useState("");
-	const [failureKind, setFailureKind] = useState<"analysis" | "camera" | null>(null);
+	const [restored, setRestored] = useState(takeRecoveredSmartCamera);
+	const skipRestoredEntryReset = useRef(!!restored);
+	const [error, setError] = useState(restored?.error ?? "");
+	const [failureKind, setFailureKind] = useState<"analysis" | "camera" | null>(restored?.failureKind ?? null);
 	const router = useIonRouter();
-	const [images, setImages] = useState<string[]>([]);
+	const [images, setImages] = useState<string[]>(restored?.images ?? []);
 	useEffect(() => {
 		if (images.length > 0 && failureKind === "camera") {
 			setError("");
@@ -28,10 +31,31 @@ const AiMealAdd = () => {
 	const removeImage = (index: number) => {
 		setImages((prev) => prev.filter((_, i) => i !== index));
 	};
-	const [textualData, setTextualData] = useState("");
+	const [textualData, setTextualData] = useState(restored?.note ?? "");
 	// const { View: ScanFoodAnimation } = useLottie({ animationData: scanFood, loop: true, autoplay: true });
 	const { meal, setMeal, addEmptyMealItem } = useCurrentMealStore();
 	const [isLoading, setLoading] = useState(false);
+
+	const returnToMealReview = () => {
+		if (router.routeInfo?.pushedByRoute === "/meals/new") {
+			router.goBack();
+			return;
+		}
+		router.push("/meals/new", "back", "replace");
+	};
+
+	const handleCancel = () => {
+		void clearCameraRecovery().catch(() => undefined);
+		if (restored) {
+			router.push(restored.caller, "back", "replace");
+			return;
+		}
+		if (router.canGoBack()) {
+			router.goBack();
+			return;
+		}
+		router.push("/log-meal", "back", "replace");
+	};
 
 	const toNumber = (value: unknown, fallback = 0): number => {
 		const parsed = typeof value === "number" ? value : Number(value);
@@ -47,10 +71,16 @@ const AiMealAdd = () => {
 	};
 
 	useIonViewWillEnter(() => {
+		if (skipRestoredEntryReset.current) {
+			skipRestoredEntryReset.current = false;
+			return;
+		}
 		resetExtractionState();
 	});
 
 	useIonViewDidLeave(() => {
+		void clearCameraRecovery().catch(() => undefined);
+		setRestored(null);
 		resetExtractionState();
 	});
 
@@ -91,7 +121,7 @@ const AiMealAdd = () => {
 				calorie_source: estimate ? "meal_estimate" : "item_sum",
 			});
 			resetExtractionState();
-			router.goBack();
+			returnToMealReview();
 		} catch (err: unknown) {
 			// Never surface raw backend/provider error text (issue #74); log it
 			// for diagnostics and show curated copy with a manual fallback.
@@ -109,22 +139,21 @@ const AiMealAdd = () => {
 		if (meal.items.length === 0) {
 			addEmptyMealItem();
 		}
-		router.push("/meals/new", "back");
+		returnToMealReview();
 	};
 
 	const handleAddPhoto = async (source: CameraSource) => {
 		if (images.length === 0) {
-			setTextualData("");
 			setError("");
 			setFailureKind(null);
 			setLoading(false);
 		}
 		try {
-			const photo = await Camera.getPhoto({
-				resultType: CameraResultType.Base64,
-				source,
-				quality: 90,
-				saveToGallery: false,
+			const photo = await getRecoverablePhoto(source, {
+				flow: "smart-camera",
+				caller: restored?.caller ?? (router.routeInfo?.pushedByRoute === "/meals/new" ? "/meals/new" : "/log-meal"),
+				meal,
+				smart: { images, note: textualData, error, failureKind },
 			});
 
 			if (photo.base64String) {
@@ -154,7 +183,7 @@ const AiMealAdd = () => {
 				<IonToolbarWrapper className='camera-toolbar'>
 					<span className='camera-framing-hint'>Frame the whole meal</span>
 					<IonButtons slot='end'>
-						<IonButton className='camera-cancel-action' onClick={() => router.push("/log-meal", "back")}>
+						<IonButton className='camera-cancel-action' onClick={handleCancel}>
 							Cancel
 						</IonButton>
 					</IonButtons>

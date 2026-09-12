@@ -5,6 +5,7 @@ import { App as CapacitorApp } from "@capacitor/app";
 import { SafeArea } from "capacitor-plugin-safe-area";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
 import App from "./App";
+import { bootstrapCameraRecovery } from "./utils/cameraRecovery";
 import { INK_MEDIA_QUERY, applyRootAppearance, resolveAppearance, type AppAppearance } from "./utils/appearance";
 
 declare global {
@@ -224,6 +225,7 @@ export async function bootstrap(container: HTMLElement): Promise<() => void> {
 	const teardowns: Array<() => void> = [];
 
 	if (Capacitor.isNativePlatform()) {
+		const cameraRecovery = bootstrapCameraRecovery().catch(() => undefined);
 		// Native insets must be resolved before React renders; browser/PWA
 		// keeps the CSS env(safe-area-inset-*, 0px) fallback in variables.css.
 		const source = createSafeAreaSource(document.documentElement, () => SafeArea.getSafeAreaInsets());
@@ -233,6 +235,7 @@ export async function bootstrap(container: HTMLElement): Promise<() => void> {
 		// the window's insets; nothing else re-reads while the device is still.
 		teardowns.push(startInsetSettleWatch(source));
 		teardowns.push(() => source.dispose());
+		await cameraRecovery;
 	}
 
 	const root = createRoot(container);

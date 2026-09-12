@@ -20,7 +20,7 @@ const Settings: React.FC = () => {
 		<IonPage>
 			<IonHeader>
 				<IonToolbarWrapper className='ion-text-center'>
-					<IonTitle>Settings</IonTitle>
+					<IonTitle role='heading' aria-level={1}>Settings</IonTitle>
 				</IonToolbarWrapper>
 			</IonHeader>
 
