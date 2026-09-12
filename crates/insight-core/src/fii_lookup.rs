@@ -327,7 +327,7 @@ mod tests {
         assert_approx_eq(result.fii().value(), 79.0);
         assert_eq!(result.source(), EstimateSource::ExactFii);
         assert_approx_eq(result.confidence(), 0.7);
-        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -337,7 +337,7 @@ mod tests {
         assert_approx_eq(result.fii().value(), 60.0);
         assert_eq!(result.source(), EstimateSource::ExactFii);
         assert_approx_eq(result.confidence(), 0.7);
-        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -366,7 +366,7 @@ mod tests {
         assert_approx_eq(result.fii().value(), 100.0);
         assert_eq!(result.source(), EstimateSource::MappedFii);
         assert_approx_eq(result.confidence(), 0.7);
-        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]

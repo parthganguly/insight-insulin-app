@@ -105,6 +105,8 @@ def compute_insulin_load_item(
     fat_g: Optional[float],
     sat_fat_g: Optional[float],
 ) -> Tuple[float, float, str]:
+    if quantity < 0:
+        raise ValueError("Quantity must be non-negative")
     kcal_item = compute_kcal_item(quantity, kcal_per_unit)
     fii_source = resolve_fii_source(fii)
 
@@ -148,7 +150,7 @@ def compute_insulin_load_item(
         gl = float(carb_g) * float(gi) / 100.0
         protein_component = float(protein_g) * 0.5 if protein_g is not None else 0.0
         insulin_load_est = (gl * 1.0) + protein_component
-        insulin_load = insulin_load_est * K_EST
+        insulin_load = (insulin_load_est * K_EST) * quantity
         if protein_g is not None:
             return insulin_load, 0.8, "macro_fallback"
         return insulin_load, 0.7, "macro_fallback"
@@ -162,7 +164,7 @@ def compute_insulin_load_item(
     if has_any_macro:
         unsat_fat = max(0.0, fat - sat_fat)
         insulin_load_est = (carb * 1.0) + (protein * 0.5) + (sat_fat * 0.1) + (unsat_fat * 0.05)
-        insulin_load = insulin_load_est * K_EST
+        insulin_load = (insulin_load_est * K_EST) * quantity
         return insulin_load, 0.5, "macro_fallback"
 
     return 0.0, 0.2, "unknown"

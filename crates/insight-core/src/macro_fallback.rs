@@ -177,7 +177,7 @@ fn calculate_macro_fallback_after_validation(
 
         return Ok(Some(MacroFallbackItemEstimate {
             item_kcal,
-            item_insulin_load: InsulinLoad::new((gl + protein_component) * K_EST)?,
+            item_insulin_load: InsulinLoad::new(((gl + protein_component) * K_EST) * quantity)?,
             kind,
             source: EstimateSource::MacroFallback,
             confidence,
@@ -201,7 +201,7 @@ fn calculate_macro_fallback_after_validation(
 
     Ok(Some(MacroFallbackItemEstimate {
         item_kcal,
-        item_insulin_load: InsulinLoad::new(estimate * K_EST)?,
+        item_insulin_load: InsulinLoad::new((estimate * K_EST) * quantity)?,
         kind: MacroFallbackKind::RoughMacro,
         source: EstimateSource::MacroFallback,
         confidence: 0.5,
@@ -256,11 +256,11 @@ mod tests {
         .unwrap();
 
         assert_approx_eq(estimate.item_kcal().value(), 375.0);
-        assert_approx_eq(estimate.item_insulin_load().value(), 16.8);
+        assert_approx_eq(estimate.item_insulin_load().value(), 25.2);
         assert_eq!(estimate.kind(), MacroFallbackKind::GiCarbProtein);
         assert_eq!(estimate.source(), EstimateSource::MacroFallback);
         assert_approx_eq(estimate.confidence(), 0.8);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -377,6 +377,64 @@ mod tests {
             )
             .unwrap()
             .is_none());
+        }
+    }
+
+    #[test]
+    fn equivalent_per_unit_intakes_and_zero_preserve_all_fallback_branches() {
+        use crate::unified_fii::{calculate_unified_fii_meal_totals, UnifiedFiiItem};
+
+        for (gi, protein, kind, confidence, whole_load) in [
+            (None, Some(10.0), MacroFallbackKind::RoughMacro, 0.5, 21.21),
+            (
+                Some(60.0),
+                Some(10.0),
+                MacroFallbackKind::GiCarbProtein,
+                0.8,
+                13.8,
+            ),
+            (Some(60.0), None, MacroFallbackKind::GiCarb, 0.7, 10.8),
+        ] {
+            let item = |quantity, density| {
+                UnifiedFiiItem::new(
+                    "synthetic zqxv134",
+                    Kcal::new(200.0 * density).unwrap(),
+                    quantity,
+                    None,
+                )
+                .unwrap()
+                .with_macro_nutrients(
+                    MacroFallbackNutrients::new(
+                        gi,
+                        grams(30.0 * density),
+                        protein.map(|p| Grams::new(p * density).unwrap()),
+                        grams(5.0 * density),
+                        grams(2.0 * density),
+                    )
+                    .unwrap(),
+                )
+            };
+            let load = |items: Vec<UnifiedFiiItem>| {
+                let meal = calculate_unified_fii_meal_totals(&items).unwrap().unwrap();
+                for estimate in meal.item_estimates() {
+                    assert_eq!(estimate.source(), EstimateSource::MacroFallback);
+                    assert_approx_eq(estimate.confidence(), confidence);
+                    assert_eq!(estimate.macro_fallback_kind(), Some(kind));
+                    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
+                }
+                meal.meal_insulin_load_total().value()
+            };
+            let whole = load(vec![item(1.0, 1.0)]);
+            let two = load(vec![item(2.0, 1.0)]);
+            assert_approx_eq(whole, whole_load);
+            assert_approx_eq(two, 2.0 * whole);
+            assert_approx_eq(two, load(vec![item(1.0, 2.0)]));
+            assert_approx_eq(whole, load(vec![item(0.5, 1.0), item(0.5, 1.0)]));
+            // Per g and per ml both use a density per single unit in the core.
+            for _unit in ["g", "ml"] {
+                assert_approx_eq(two, load(vec![item(200.0, 0.01)]));
+            }
+            assert_eq!(load(vec![item(0.0, 1.0)]), 0.0);
         }
     }
 

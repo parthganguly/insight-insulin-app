@@ -37,7 +37,7 @@
       "path": "cases/driver_ranking_adversarial_01.json"
     }
   ],
-  "formula_version": "current_backend_v1",
+  "formula_version": "current_backend_v2",
   "generated_by": "python -m validation.export_golden_fixtures",
   "schema_version": 2,
   "warning": "Implementation parity fixtures only; passing parity is not scientific validation."

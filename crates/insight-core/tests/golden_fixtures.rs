@@ -17,7 +17,7 @@ use serde::Deserialize;
 use serde_json::Value;
 
 const EXPECTED_SCHEMA_VERSION: u64 = 2;
-const EXPECTED_FORMULA_VERSION: &str = "current_backend_v1";
+const EXPECTED_FORMULA_VERSION: &str = "current_backend_v2";
 const EXPECTED_GENERATOR: &str = "python -m validation.export_golden_fixtures";
 const EXPECTED_WARNING: &str =
     "Implementation parity fixtures only; passing parity is not scientific validation.";
@@ -734,7 +734,7 @@ fn exact_fii_lookup_matches_supported_golden_fixture_item() {
 
     assert_eq!(result.source(), EstimateSource::ExactFii);
     assert_eq!(result.source().as_str(), "exact_fii");
-    assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(result.formula_version(), FormulaVersion::CurrentBackendV2);
     assert_approx_eq(result.fii().value(), 60.0);
     assert_approx_eq(
         result.confidence(),
@@ -792,7 +792,7 @@ fn exact_fii_item_load_matches_supported_golden_fixture_item() {
             "mean_confidence",
         ),
     );
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(
         fixture
             .expected
@@ -874,7 +874,7 @@ fn unified_fii_provided_paths_match_supported_golden_fixtures() {
     assert_approx_eq(item_estimate.confidence(), 1.0);
     assert_eq!(
         item_estimate.formula_version(),
-        FormulaVersion::CurrentBackendV1
+        FormulaVersion::CurrentBackendV2
     );
 
     let ranking_estimate = calculate_unified_fii_meal_totals(&unified_fii_meal_items(ranking_meal))
@@ -1250,7 +1250,7 @@ fn unified_fii_unknown_fallback_matches_isolated_golden_fixture_item() {
     assert_eq!(estimate.resolved_fii(), None);
     assert_eq!(estimate.macro_fallback_kind(), None);
     assert_eq!(estimate.decomposition(), None);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
 }
 
 #[test]
@@ -1353,6 +1353,7 @@ fn score_meal_matches_all_serialized_golden_acute_scores_and_drivers() {
                 "driver_dedupe_cutoff",
                 "driver_tie_retention",
                 "driver_ranking_isolation",
+                "driver_fallback_quantity",
             ],
         ),
     ];
@@ -1380,7 +1381,15 @@ fn score_meal_matches_adversarial_driver_golden_arrays() {
     let fixture = read_golden_fixture("cases/driver_ranking_adversarial_01.json");
     // Pinned oracle arrays: the same values are asserted by the Python
     // validation run against the real backend resolver before export.
-    let expected: [(&str, &[&str]); 3] = [
+    let expected: [(&str, &[&str]); 4] = [
+        (
+            "driver_fallback_quantity",
+            &[
+                "synthetic rough",
+                "synthetic gi protein",
+                "synthetic gi only",
+            ],
+        ),
         (
             "driver_dedupe_cutoff",
             &["glow berry", "Glow Berry", "amber fizz"],
@@ -1411,6 +1420,18 @@ fn score_meal_matches_adversarial_driver_golden_arrays() {
             expected_drivers,
         );
     }
+
+    let quantity_meal = find_array_meal(&fixture.input, "meals", "driver_fallback_quantity");
+    let quantity_scored = score_meal(&unified_fii_meal_items(quantity_meal))
+        .unwrap()
+        .unwrap();
+    assert_approx_eq(
+        quantity_scored
+            .unified_meal_estimate()
+            .meal_insulin_load_total()
+            .value(),
+        91.62,
+    );
 
     // The original input name keeps its U+001C/U+001F padding in the fixture;
     // only the resolver's Python-strip trim produces "spark grain".
@@ -1964,7 +1985,7 @@ fn assert_direct_fii_fixture_item_matches_expected_total(
     .unwrap();
 
     assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(
         fixture
             .expected
@@ -1988,7 +2009,7 @@ fn assert_direct_fii_fixture_meal_matches_expected_total(
     let estimate = calculate_direct_fii_meal_totals(&items).unwrap();
 
     assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(
         fixture
             .expected
@@ -2016,7 +2037,7 @@ fn assert_direct_fii_fixture_meal_matches_expected_acute_score(
 
     assert_approx_eq(REFERENCE_MEAL_INSULIN_LOAD, 30.0);
     assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(
         fixture
             .expected
@@ -2046,10 +2067,10 @@ fn assert_exact_fii_fixture_meal_matches_expected(
 
     assert_eq!(estimate.item_estimates().len(), meal_items(meal).len());
     assert_eq!(estimate.source(), EstimateSource::ExactFii);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(estimate.item_estimates().iter().all(|item| {
         item.source() == EstimateSource::ExactFii
-            && item.formula_version() == FormulaVersion::CurrentBackendV1
+            && item.formula_version() == FormulaVersion::CurrentBackendV2
     }));
     assert_approx_eq(estimate.meal_kcal_total().value(), meal_kcal_total(meal));
 
@@ -2100,9 +2121,9 @@ fn assert_exact_or_mapped_fii_fixture_meal_matches_expected(
         .expect("every fixture item should resolve through exact or mapped FII lookup");
 
     assert_eq!(estimate.item_estimates().len(), meal_items(meal).len());
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(estimate.item_estimates().iter().all(|item| {
-        item.formula_version() == FormulaVersion::CurrentBackendV1
+        item.formula_version() == FormulaVersion::CurrentBackendV2
             && fixture
                 .expected
                 .source_labels
@@ -2145,7 +2166,7 @@ fn assert_macro_fallback_fixture_item_matches_expected(
     assert_eq!(estimate.kind(), MacroFallbackKind::GiCarbProtein);
     assert_eq!(estimate.source(), EstimateSource::MacroFallback);
     assert_approx_eq(estimate.confidence(), expected_confidence);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
 }
 
 fn assert_decomposition_fixture_meal_matches_expected(
@@ -2192,7 +2213,7 @@ fn assert_decomposition_fixture_meal_matches_expected(
     );
     assert_eq!(estimate.source(), EstimateSource::MappedFii);
     assert_ne!(estimate.source(), EstimateSource::ExactFii);
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert_eq!(
         estimate.provenance().original_dish_name(),
         string_field(item, "name")
@@ -2227,9 +2248,9 @@ fn assert_unified_fii_fixture_meal_matches_expected(
         .expect("every fixture item should resolve through an allowed unified FII path");
 
     assert_eq!(estimate.item_estimates().len(), meal_items(meal).len());
-    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+    assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     assert!(estimate.item_estimates().iter().all(|item| {
-        item.formula_version() == FormulaVersion::CurrentBackendV1
+        item.formula_version() == FormulaVersion::CurrentBackendV2
             && fixture
                 .expected
                 .source_labels
