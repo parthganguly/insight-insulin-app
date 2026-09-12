@@ -87,7 +87,7 @@ class Meal(BaseModel):
 
 class MealItemCreate(BaseModel):
     name: str
-    quantity: float
+    quantity: float = Field(ge=0)
     unit: Unit
     kcalPerUnit: Optional[float] = None
     carb_g: Optional[float] = None
@@ -127,6 +127,8 @@ class MealPreviewRequest(BaseModel):
 
 
 class MealItemResponse(MealItemCreate):
+    # Request validation must not prevent reading historical saved quantities.
+    quantity: float
     kcal_item: float
     insulin_load: float
     confidence: float = Field(ge=0.0, le=1.0)

@@ -12,6 +12,15 @@
           "amber fizz"
         ]
       },
+      "driver_fallback_quantity": {
+        "acute_score": 305.4,
+        "estimate_status": "estimated",
+        "main_insulin_drivers": [
+          "synthetic rough",
+          "synthetic gi protein",
+          "synthetic gi only"
+        ]
+      },
       "driver_ranking_isolation": {
         "acute_score": 439.3333,
         "estimate_status": "estimated",
@@ -38,6 +47,11 @@
           "Glow Berry",
           "amber fizz"
         ],
+        "driver_fallback_quantity": [
+          "synthetic rough",
+          "synthetic gi protein",
+          "synthetic gi only"
+        ],
         "driver_ranking_isolation": [
           "spark grain",
           "small ember bite",
@@ -54,6 +68,11 @@
           "glow berry",
           "Glow Berry",
           "amber fizz"
+        ],
+        "driver_fallback_quantity": [
+          "synthetic rough",
+          "synthetic gi protein",
+          "synthetic gi only"
         ],
         "driver_ranking_isolation": [
           "spark grain",
@@ -85,11 +104,15 @@
       "user_confirmed",
       "user_confirmed",
       "user_confirmed",
+      "macro_fallback",
+      "macro_fallback",
+      "macro_fallback",
+      "macro_fallback",
       "macro_fallback"
     ],
     "test_id": "driver_ranking_adversarial_01"
   },
-  "formula_version": "current_backend_v1",
+  "formula_version": "current_backend_v2",
   "generated_by": "python -m validation.export_golden_fixtures",
   "input": {
     "case_id": "driver_ranking_adversarial_01",
@@ -101,6 +124,11 @@
           "glow berry",
           "Glow Berry",
           "amber fizz"
+        ],
+        "driver_fallback_quantity": [
+          "synthetic rough",
+          "synthetic gi protein",
+          "synthetic gi only"
         ],
         "driver_ranking_isolation": [
           "spark grain",
@@ -285,6 +313,56 @@
           ],
           "meal_id": "driver_ranking_isolation",
           "meal_name": "driver ranking isolation meal"
+        },
+        {
+          "items": [
+            {
+              "carb_g": 30.0,
+              "fat_g": 5.0,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 200.0,
+              "name": "synthetic rough",
+              "protein_g": 10.0,
+              "quantity": 2.0,
+              "sat_fat_g": 2.0
+            },
+            {
+              "carb_g": 30.0,
+              "fat_g": null,
+              "fii": null,
+              "gi": 60,
+              "kcal_per_unit": 200.0,
+              "name": "synthetic gi protein",
+              "protein_g": 10.0,
+              "quantity": 2.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": 30.0,
+              "fat_g": null,
+              "fii": null,
+              "gi": 60,
+              "kcal_per_unit": 200.0,
+              "name": "synthetic gi only",
+              "protein_g": null,
+              "quantity": 2.0,
+              "sat_fat_g": null
+            },
+            {
+              "carb_g": 30.0,
+              "fat_g": null,
+              "fii": null,
+              "gi": null,
+              "kcal_per_unit": 200.0,
+              "name": "synthetic zero",
+              "protein_g": 10.0,
+              "quantity": 0.0,
+              "sat_fat_g": null
+            }
+          ],
+          "meal_id": "driver_fallback_quantity",
+          "meal_name": "synthetic fallback quantity"
         }
       ]
     }

@@ -247,7 +247,7 @@ mod tests {
         assert_approx_eq(estimate.item_insulin_load().value(), 237.0);
         assert_eq!(estimate.source(), EstimateSource::ExactFii);
         assert_approx_eq(estimate.confidence(), 0.7);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -262,7 +262,7 @@ mod tests {
         assert_approx_eq(estimate.item_insulin_load().value(), 108.0);
         assert_eq!(estimate.source().as_str(), "exact_fii");
         assert_approx_eq(estimate.confidence(), 0.7);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -304,7 +304,7 @@ mod tests {
         assert_approx_eq(estimate.meal_kcal_total().value(), 430.0);
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 305.5);
         assert_eq!(estimate.source(), EstimateSource::ExactFii);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
         assert_eq!(estimate.item_estimates().len(), 2);
         assert!(estimate
             .item_estimates()

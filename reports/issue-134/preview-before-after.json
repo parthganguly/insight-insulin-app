@@ -1,0 +1,2553 @@
+{
+  "base": "f1db1b7798927bb75a5378f08543e23a4e34385a",
+  "branch": "codex/issue-134-fallback-quantity-scaling",
+  "formula_version": "current_backend_v2",
+  "frozen_evidence_sha256": "49903b648643d4d8d3d1f37fe32f87d2eae6ecd77579569efa1f7288bfc03354",
+  "tested_source_sha256": {
+    "backend/models.py": "1be1219bc467cfc12595c970db51af5d80150903361092383529f05715e0f0d8",
+    "backend/scoring_service.py": "d1e442b00d00ca487dc769b02e27e2d45930c99e0b517af10d25d6d62e161591",
+    "backend/api/meals.py": "11ee8131a68fbe65be63c5cfad0a7d09d6ab351a71dea33d5ce63df626621be5",
+    "backend/fii_lookup.py": "dcca5b825f321b4b9c0dd161ca14360e46cacc576975cb47981ebf470c5d0080",
+    "backend/food_normalizer.py": "070ac2dd263c35fbf7718e8624e21d47e22b539564ff896937f3c770c46901c9",
+    "backend/fii_foods.csv": "98f7e18cd29e2ef3a5e6f2f96c040bf5175fef1683c487c358ca11aa5073908e"
+  },
+  "method": "59 frozen requests replayed via original router and HTTPX ASGITransport in fresh temporary cwd. No main/services imports. Database connections, database/dotenv opens, and outbound connections blocked; zero attempts.",
+  "result": "59/59 passed; only approved load/acute fields changed; other returned fields unchanged",
+  "records": [
+    {
+      "case": "rough/A_two_units",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/B_combined",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 400,
+            "carb_g": 60,
+            "protein_g": 20,
+            "fat_g": 10,
+            "satFat_g": 4
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/split_half",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          },
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "after": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback",
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "case": "rough/q0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 0.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/q0.5",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 10.605,
+        "acute_score": 35.35
+      },
+      "unchanged": {
+        "kcal_total": 100.0,
+        "carbs_total": 15.0,
+        "protein_total": 5.0,
+        "fat_total": 2.5,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/q1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/q3",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 3,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 63.63,
+        "acute_score": 212.1
+      },
+      "unchanged": {
+        "kcal_total": 600.0,
+        "carbs_total": 90.0,
+        "protein_total": 30.0,
+        "fat_total": 15.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/g200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "g",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.21209999999999998,
+        "acute_score": 0.7069999999999999
+      },
+      "after": {
+        "insulin_load_total": 42.419999999999995,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "rough/ml200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "ml",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.21209999999999998,
+        "acute_score": 0.7069999999999999
+      },
+      "after": {
+        "insulin_load_total": 42.419999999999995,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "gi_protein/A_two_units",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "after": {
+        "insulin_load_total": 27.599999999999998,
+        "acute_score": 92.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/B_combined",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 400,
+            "carb_g": 60,
+            "protein_g": 20,
+            "fat_g": 10,
+            "satFat_g": 4,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 27.599999999999998,
+        "acute_score": 92.0
+      },
+      "after": {
+        "insulin_load_total": 27.599999999999998,
+        "acute_score": 92.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/split_half",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          },
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 27.599999999999998,
+        "acute_score": 92.0
+      },
+      "after": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback",
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/q0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 0.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/q0.5",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "after": {
+        "insulin_load_total": 6.8999999999999995,
+        "acute_score": 23.0
+      },
+      "unchanged": {
+        "kcal_total": 100.0,
+        "carbs_total": 15.0,
+        "protein_total": 5.0,
+        "fat_total": 2.5,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/q1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "after": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/q3",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 3,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 13.799999999999999,
+        "acute_score": 46.0
+      },
+      "after": {
+        "insulin_load_total": 41.4,
+        "acute_score": 138.0
+      },
+      "unchanged": {
+        "kcal_total": 600.0,
+        "carbs_total": 90.0,
+        "protein_total": 30.0,
+        "fat_total": 15.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/g200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "g",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.13799999999999998,
+        "acute_score": 0.4599999999999999
+      },
+      "after": {
+        "insulin_load_total": 27.599999999999998,
+        "acute_score": 92.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_protein/ml200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "ml",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.13799999999999998,
+        "acute_score": 0.4599999999999999
+      },
+      "after": {
+        "insulin_load_total": 27.599999999999998,
+        "acute_score": 92.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.8
+      ]
+    },
+    {
+      "case": "gi_no_protein/A_two_units",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "after": {
+        "insulin_load_total": 21.599999999999998,
+        "acute_score": 72.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 0.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/B_combined",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 400,
+            "carb_g": 60,
+            "fat_g": 10,
+            "satFat_g": 4,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.599999999999998,
+        "acute_score": 72.0
+      },
+      "after": {
+        "insulin_load_total": 21.599999999999998,
+        "acute_score": 72.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 0.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/split_half",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          },
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.599999999999998,
+        "acute_score": 72.0
+      },
+      "after": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 0.0,
+        "fat_total": 5.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback",
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/q0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 0.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/q0.5",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "after": {
+        "insulin_load_total": 5.3999999999999995,
+        "acute_score": 18.0
+      },
+      "unchanged": {
+        "kcal_total": 100.0,
+        "carbs_total": 15.0,
+        "protein_total": 0.0,
+        "fat_total": 2.5,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/q1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "after": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 0.0,
+        "fat_total": 5.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/q3",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 3,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 10.799999999999999,
+        "acute_score": 36.0
+      },
+      "after": {
+        "insulin_load_total": 32.4,
+        "acute_score": 107.99999999999999
+      },
+      "unchanged": {
+        "kcal_total": 600.0,
+        "carbs_total": 90.0,
+        "protein_total": 0.0,
+        "fat_total": 15.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/g200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "g",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "fat_g": 0.05,
+            "satFat_g": 0.02,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.108,
+        "acute_score": 0.36
+      },
+      "after": {
+        "insulin_load_total": 21.6,
+        "acute_score": 72.00000000000001
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 0.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "gi_no_protein/ml200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "ml",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "fat_g": 0.05,
+            "satFat_g": 0.02,
+            "gi": 60
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.108,
+        "acute_score": 0.36
+      },
+      "after": {
+        "insulin_load_total": 21.6,
+        "acute_score": 72.00000000000001
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 0.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "provided/A_two_units",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "after": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/B_combined",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 400,
+            "carb_g": 60,
+            "protein_g": 20,
+            "fat_g": 10,
+            "satFat_g": 4,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "after": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/split_half",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          },
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 100.0,
+        "acute_score": 333.33333333333337
+      },
+      "after": {
+        "insulin_load_total": 100.0,
+        "acute_score": 333.33333333333337
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed",
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "case": "provided/q0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 0.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/q0.5",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 50.0,
+        "acute_score": 166.66666666666669
+      },
+      "after": {
+        "insulin_load_total": 50.0,
+        "acute_score": 166.66666666666669
+      },
+      "unchanged": {
+        "kcal_total": 100.0,
+        "carbs_total": 15.0,
+        "protein_total": 5.0,
+        "fat_total": 2.5,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/q1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 100.0,
+        "acute_score": 333.33333333333337
+      },
+      "after": {
+        "insulin_load_total": 100.0,
+        "acute_score": 333.33333333333337
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/q3",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 3,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 300.0,
+        "acute_score": 1000.0
+      },
+      "after": {
+        "insulin_load_total": 300.0,
+        "acute_score": 1000.0
+      },
+      "unchanged": {
+        "kcal_total": 600.0,
+        "carbs_total": 90.0,
+        "protein_total": 30.0,
+        "fat_total": 15.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/g200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "g",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "after": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "provided/ml200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "ml",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02,
+            "fii": 50
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "after": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "user_confirmed"
+      ],
+      "confidences": [
+        1.0
+      ]
+    },
+    {
+      "case": "exact/A_two_units",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "after": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/B_combined",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 400,
+            "carb_g": 60,
+            "protein_g": 20,
+            "fat_g": 10,
+            "satFat_g": 4
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "after": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/split_half",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          },
+          {
+            "name": "white bread",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "after": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii",
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7,
+        0.7
+      ]
+    },
+    {
+      "case": "exact/q0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 0,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 0.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/q0.5",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 100.0,
+        "acute_score": 333.33333333333337
+      },
+      "after": {
+        "insulin_load_total": 100.0,
+        "acute_score": 333.33333333333337
+      },
+      "unchanged": {
+        "kcal_total": 100.0,
+        "carbs_total": 15.0,
+        "protein_total": 5.0,
+        "fat_total": 2.5,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/q1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "after": {
+        "insulin_load_total": 200.0,
+        "acute_score": 666.6666666666667
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 30.0,
+        "protein_total": 10.0,
+        "fat_total": 5.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/q3",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 3,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 600.0,
+        "acute_score": 2000.0
+      },
+      "after": {
+        "insulin_load_total": 600.0,
+        "acute_score": 2000.0
+      },
+      "unchanged": {
+        "kcal_total": 600.0,
+        "carbs_total": 90.0,
+        "protein_total": 30.0,
+        "fat_total": 15.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/g200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 200,
+            "unit": "g",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "after": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "exact/ml200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "white bread",
+            "quantity": 200,
+            "unit": "ml",
+            "kcalPerUnit": 2.0,
+            "carb_g": 0.3,
+            "protein_g": 0.1,
+            "fat_g": 0.05,
+            "satFat_g": 0.02
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "after": {
+        "insulin_load_total": 400.0,
+        "acute_score": 1333.3333333333335
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "exact_fii"
+      ],
+      "confidences": [
+        0.7
+      ]
+    },
+    {
+      "case": "unknown/A_two_units",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/B_combined",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 400
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/split_half",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          },
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown",
+        "unknown"
+      ],
+      "confidences": [
+        0.2,
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/q0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 0.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/q0.5",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 0.5,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 100.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/q1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 1,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 200.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/q3",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 3,
+            "unit": "serving",
+            "kcalPerUnit": 200
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 600.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/g200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "g",
+            "kcalPerUnit": 2.0
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "unknown/ml200",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 200,
+            "unit": "ml",
+            "kcalPerUnit": 2.0
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "after": {
+        "insulin_load_total": 0.0,
+        "acute_score": 0.0
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "unknown",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "unknown"
+      ],
+      "confidences": [
+        0.2
+      ]
+    },
+    {
+      "case": "neutralized_fii/0",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": 0
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "neutralized_fii/-1",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": -1
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "neutralized_fii/''",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": ""
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "neutralized_fii/' '",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": " "
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    },
+    {
+      "case": "neutralized_fii/None",
+      "request": {
+        "meal_name": "Synthetic issue 134",
+        "items": [
+          {
+            "name": "synthetic zqxv134",
+            "quantity": 2,
+            "unit": "serving",
+            "kcalPerUnit": 200,
+            "carb_g": 30,
+            "protein_g": 10,
+            "fat_g": 5,
+            "satFat_g": 2,
+            "fii": null
+          }
+        ]
+      },
+      "http_status": 200,
+      "before": {
+        "insulin_load_total": 21.21,
+        "acute_score": 70.7
+      },
+      "after": {
+        "insulin_load_total": 42.42,
+        "acute_score": 141.4
+      },
+      "unchanged": {
+        "kcal_total": 400.0,
+        "carbs_total": 60.0,
+        "protein_total": 20.0,
+        "fat_total": 10.0,
+        "estimate_quality": "low",
+        "estimate_status": "estimated",
+        "persisted": false
+      },
+      "sources": [
+        "macro_fallback"
+      ],
+      "confidences": [
+        0.5
+      ]
+    }
+  ]
+}

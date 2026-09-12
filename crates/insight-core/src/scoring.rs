@@ -316,7 +316,7 @@ mod tests {
         assert_eq!(scored.unified_meal_estimate(), &unified);
         assert_eq!(
             scored.unified_meal_estimate().formula_version(),
-            FormulaVersion::CurrentBackendV1
+            FormulaVersion::CurrentBackendV2
         );
     }
 
@@ -540,7 +540,7 @@ mod tests {
         );
         assert_eq!(
             json["unified_meal_estimate"]["formula_version"],
-            serde_json::json!("current_backend_v1")
+            serde_json::json!("current_backend_v2")
         );
         assert_eq!(
             json["unified_meal_estimate"]["estimate_status"],

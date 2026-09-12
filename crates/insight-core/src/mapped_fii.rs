@@ -344,7 +344,7 @@ mod tests {
         assert_eq!(estimate.source(), EstimateSource::MappedFii);
         assert_eq!(estimate.source().as_str(), "mapped_fii");
         assert_approx_eq(estimate.confidence(), 0.7);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -400,7 +400,7 @@ mod tests {
 
         assert_approx_eq(estimate.meal_kcal_total().value(), 360.0);
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 288.0);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
         assert_eq!(estimate.item_estimates().len(), 2);
         assert_eq!(
             estimate.item_estimates()[0].source(),

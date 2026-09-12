@@ -73,8 +73,8 @@ mod tests {
     fn reports_existing_backend_formula_version() {
         let metadata = core_metadata();
 
-        assert_eq!(metadata.formula_version(), FormulaVersion::CurrentBackendV1);
-        assert_eq!(metadata.formula_version().as_str(), "current_backend_v1");
+        assert_eq!(metadata.formula_version(), FormulaVersion::CurrentBackendV2);
+        assert_eq!(metadata.formula_version().as_str(), "current_backend_v2");
     }
 
     #[test]
@@ -129,7 +129,7 @@ mod tests {
         let metadata = core_metadata();
         let json = serde_json::to_value(&metadata).unwrap();
 
-        assert_eq!(json["formula_version"], "current_backend_v1");
+        assert_eq!(json["formula_version"], "current_backend_v2");
         assert_eq!(json["core_version"], "0.2.0");
         assert_eq!(
             json["dataset_version"].as_str().unwrap(),

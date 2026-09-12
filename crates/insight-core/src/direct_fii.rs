@@ -229,7 +229,7 @@ mod tests {
 
         assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
         assert_eq!(estimate.source().as_str(), "user_confirmed");
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -272,7 +272,7 @@ mod tests {
         assert_approx_eq(estimate.meal_kcal_total().value(), 425.0);
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 280.0);
         assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]
@@ -291,7 +291,7 @@ mod tests {
         assert_approx_eq(estimate.meal_insulin_load_total().value(), 495.0);
         assert_approx_eq(estimate.acute_score().value(), 1650.0);
         assert_eq!(estimate.source(), EstimateSource::UserConfirmed);
-        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV1);
+        assert_eq!(estimate.formula_version(), FormulaVersion::CurrentBackendV2);
     }
 
     #[test]

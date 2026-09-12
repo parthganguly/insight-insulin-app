@@ -23,6 +23,19 @@ Why:
 
 ### Per-item processing
 
+Under `current_backend_v2` (issue #134), request and raw-scorer nutrition
+fields are per unit. Each macro-fallback branch computes its existing per-unit
+load, then multiplies that result by consumed quantity exactly once. The
+coefficients, branch precedence, and source/confidence/quality semantics are
+unchanged. Energy-scaled FII paths already account for quantity and are unchanged.
+
+Negative quantity is rejected by the shared preview/save request model and
+defensively by the raw Python scorer before branch selection; it is not clamped.
+Zero quantity remains accepted and produces zero fallback load. Rust retains its
+existing negative/non-finite quantity rejection. This correction changes no
+dataset, historical saved rows, or scientific claims; historical responses remain
+readable without rescoring. No migration or backfill is performed.
+
 For each item:
 1. determine eaten energy (`kcal_item`)
 2. resolve FII using this priority:

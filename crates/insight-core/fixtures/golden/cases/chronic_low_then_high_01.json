@@ -40,7 +40,7 @@
     ],
     "test_id": "chronic_low_then_high_01"
   },
-  "formula_version": "current_backend_v1",
+  "formula_version": "current_backend_v2",
   "generated_by": "python -m validation.export_golden_fixtures",
   "input": {
     "case_id": "chronic_low_then_high_01",

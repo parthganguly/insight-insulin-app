@@ -182,17 +182,19 @@ impl EstimateQuality {
 #[serde(rename_all = "snake_case")]
 pub enum FormulaVersion {
     CurrentBackendV1,
+    CurrentBackendV2,
 }
 
 impl FormulaVersion {
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::CurrentBackendV1 => "current_backend_v1",
+            Self::CurrentBackendV2 => "current_backend_v2",
         }
     }
 }
 
-pub const CURRENT_FORMULA_VERSION: FormulaVersion = FormulaVersion::CurrentBackendV1;
+pub const CURRENT_FORMULA_VERSION: FormulaVersion = FormulaVersion::CurrentBackendV2;
 
 #[cfg(test)]
 mod tests {
@@ -310,11 +312,16 @@ mod tests {
 
     #[test]
     fn formula_version_serializes_without_claiming_validation() {
-        assert_eq!(CURRENT_FORMULA_VERSION, FormulaVersion::CurrentBackendV1);
-        assert_eq!(CURRENT_FORMULA_VERSION.as_str(), "current_backend_v1");
+        assert_eq!(
+            serde_json::from_str::<FormulaVersion>("\"current_backend_v1\"").unwrap(),
+            FormulaVersion::CurrentBackendV1
+        );
+
+        assert_eq!(CURRENT_FORMULA_VERSION, FormulaVersion::CurrentBackendV2);
+        assert_eq!(CURRENT_FORMULA_VERSION.as_str(), "current_backend_v2");
         assert_eq!(
             serde_json::to_string(&CURRENT_FORMULA_VERSION).unwrap(),
-            "\"current_backend_v1\""
+            "\"current_backend_v2\""
         );
     }
 }

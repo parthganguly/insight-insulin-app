@@ -201,6 +201,23 @@ def build_validation_cases() -> list[ValidationCase]:
         ],
     )
 
+    # Issue 134: non-unit fallback quantities exercise v2 in cross-language
+    # goldens, including zero and driver ordering; existing cases stay intact.
+    driver_fallback_quantity = ValidationMeal(
+        meal_id="driver_fallback_quantity",
+        meal_name="synthetic fallback quantity",
+        items=[
+            _meal_item(name="synthetic rough", quantity=2.0, kcal_per_unit=200.0,
+                       carb_g=30.0, protein_g=10.0, fat_g=5.0, sat_fat_g=2.0),
+            _meal_item(name="synthetic gi protein", quantity=2.0, kcal_per_unit=200.0,
+                       gi=60, carb_g=30.0, protein_g=10.0),
+            _meal_item(name="synthetic gi only", quantity=2.0, kcal_per_unit=200.0,
+                       gi=60, carb_g=30.0),
+            _meal_item(name="synthetic zero", quantity=0.0, kcal_per_unit=200.0,
+                       carb_g=30.0, protein_g=10.0),
+        ],
+    )
+
     uncertainty_all_exact = ValidationMeal(
         meal_id="uncertainty_all_exact_control",
         meal_name="all exact control meal",
@@ -264,8 +281,10 @@ def build_validation_cases() -> list[ValidationCase]:
                     driver_dedupe_cutoff,
                     driver_tie_retention,
                     driver_ranking_isolation,
+                    driver_fallback_quantity,
                 ],
                 "expected_drivers": {
+                    "driver_fallback_quantity": ["synthetic rough", "synthetic gi protein", "synthetic gi only"],
                     "driver_dedupe_cutoff": ["glow berry", "Glow Berry", "amber fizz"],
                     "driver_tie_retention": ["tie fruit one", "zero glow tea", "mystery moon snack"],
                     "driver_ranking_isolation": ["spark grain", "small ember bite", "vapor husk porridge"],
