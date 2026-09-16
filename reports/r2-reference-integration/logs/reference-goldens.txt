@@ -1,0 +1,5 @@
+COMMAND: python -m validation.reference_result_goldens
+CWD: backend
+PYTHON_DOTENV_DISABLED=1
+EXIT: 0
+PASS: 10 independent Decimal synthetic reference goldens

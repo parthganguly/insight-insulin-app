@@ -1,0 +1,3 @@
+COMMAND: python reports/r2-reference-integration/capture_comparison.py ../insight-r2-reference-integration-review-base
+EXIT: 0
+PASS: three exact legacy preview comparisons, old saved response, real base-code read/create/delete after upgrade; evidence: before-after.json

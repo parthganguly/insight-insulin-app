@@ -1,0 +1,275 @@
+{
+  "base": "cb6083f8386bb0464b1f94ca0a2f7d49c3e55c16",
+  "base_tree": "afb347f07010b7ad20aa5abf3aaffca29d563f56",
+  "head": "cb6083f8386bb0464b1f94ca0a2f7d49c3e55c16",
+  "branch": "codex/r2-reference-meal-integration",
+  "result_tree": "f93e0c51431bb312fc0d1a4b018fcbda055f8681",
+  "file_count": 32,
+  "additions": 29,
+  "modifications": 3,
+  "patch_sha256": "2931389f7a575169b84141224859a34a3197839473d1adb13b66f40da1502d3a",
+  "files": [
+    {
+      "path": "backend/db.py",
+      "status": "M",
+      "mode": "100644",
+      "git_blob": "1aaa5c13d0792d7824f329a236196b5c9eeb9d09",
+      "bytes": 3044,
+      "sha256": "275d47afc2b39e939dc45f63070b38cfae38eb179641ff795302d27ee593b2bb",
+      "base_git_blob": "4d7cb1cccc1ad376f8cd065d36941945b3f65dea",
+      "base_sha256": "c729fb9cc20b9db17cc589394914556668fb3982ca7dd59dcf6db702f18f140f"
+    },
+    {
+      "path": "backend/db_models.py",
+      "status": "M",
+      "mode": "100644",
+      "git_blob": "fe9f66dea2d954c815eaa6b121fee3ad04cbf650",
+      "bytes": 3522,
+      "sha256": "dedcfb8b237352079f9b38e94f767a54e18c4267cebc36f8768028059ad0ccdf",
+      "base_git_blob": "e454a7eaee220598ccee62d663ee134efd241f0d",
+      "base_sha256": "6aa4bd5e577f0426723d2a6a44d85ee6504c4cff86f5d419c550226390529808"
+    },
+    {
+      "path": "backend/experimental_reference/__init__.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "78536f614a1b76292806a89ca19da046fe9807d8",
+      "bytes": 83,
+      "sha256": "436e6fbecfc19d01feb42c6faf47af32fe5379c9829956d3706624235a107720"
+    },
+    {
+      "path": "backend/experimental_reference/contract.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "5a69ea539d0a056d3d41aa71752bf828df604c1b",
+      "bytes": 8313,
+      "sha256": "847cfa4390db8e3a84a32a49308a94c27fa1107150639b479e5f6d24755841d8"
+    },
+    {
+      "path": "backend/experimental_reference/router.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "a7bcd4276719c567fb2a1fff1df0a90abe5fcdc2",
+      "bytes": 1787,
+      "sha256": "9e479f49200cf8bcb465957ae7eccecc39466a37192a7d3cdf33f0d7efcb6db3"
+    },
+    {
+      "path": "backend/experimental_reference/service.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "8b96fb8f81ef332a5570e781ac1a3f8a31460b52",
+      "bytes": 8806,
+      "sha256": "7063b28074bad4745cfe3a58963936e68dce6af6af4a860ec13c9ee37d49ba11"
+    },
+    {
+      "path": "backend/tests/test_reference_catalog.py",
+      "status": "M",
+      "mode": "100644",
+      "git_blob": "36ee1bc42404ad216dc23d2d035eb6476f94337d",
+      "bytes": 14700,
+      "sha256": "3c5dbc564c3c947325ecc00deb7c0ce554f64da9e441d40ef4d429119b4103ae",
+      "base_git_blob": "a71d0f8ed323d6c08a299fc691a2b09d9eb98011",
+      "base_sha256": "776a1e8fbee63248f9557537879198df4499edd175aecf3a1f8a72a228a24e91"
+    },
+    {
+      "path": "backend/tests/test_reference_integration.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "fbd7dc66bd7a573d553398807006ff0a8371d42b",
+      "bytes": 25052,
+      "sha256": "8e528cea1cbb8cd904924a90224165cbcc16ef8011c84ed24df7a063d3750e58"
+    },
+    {
+      "path": "backend/validation/reference_result_goldens.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "0c70f0e1c612ab8e1737624dff8ec24ee90d2b8b",
+      "bytes": 1188,
+      "sha256": "4ee8859b18e3b855dd299b684d8051b64a1ac077f816528e30f1f5a05a1b9ddb"
+    },
+    {
+      "path": "backend/validation/reference_result_v1_goldens.json",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "ab2d47e24fadafd987fe925eabf3d49c2f72f744",
+      "bytes": 2038,
+      "sha256": "4807149d1311206996b4c93093d4d782ace764d60b69c2f478066ee2277842f0"
+    },
+    {
+      "path": "docs/decisions/2026-09-16-reference-result-integration.md",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "d2acf0c261a8fca990b479fba516b314b743f454",
+      "bytes": 2346,
+      "sha256": "4a8b566d213db98b8227e2da50bb88717157e8108956e2509dbf619280565003"
+    },
+    {
+      "path": "docs/r2-reference-integration.md",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "3d7e73de5bd97be8ec2ab4c9f4dd24866fb1bff1",
+      "bytes": 5821,
+      "sha256": "6a07b871d370b83ab4612d34e8a204774c5f7d64a0bc108c8a6a65fed3bc8a2e"
+    },
+    {
+      "path": "reports/r2-reference-integration/IMPLEMENTATION_REPORT.md",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "15956adf937a3e69d12c1579d794090a5473e327",
+      "bytes": 6147,
+      "sha256": "82460c4d7002077b88067c1fd2b74098355902622d88e2a1ba784cfac2daf30b"
+    },
+    {
+      "path": "reports/r2-reference-integration/INDEPENDENT_REVIEW.md",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "e7fefaa30d9fe1d91a58cc721a832d9b47722e04",
+      "bytes": 1602,
+      "sha256": "97adc31faaba892b4b77dcad9971e103ad1ff8a4835ef740a7ce8d693792e1a0"
+    },
+    {
+      "path": "reports/r2-reference-integration/PLAN.md",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "6151075a1e2f0d4e47d64db20a3646c80982f743",
+      "bytes": 2546,
+      "sha256": "1dafcffc73f2438c80abf3bed801ca8eb65410a898f2cc29bb284515b0234f54"
+    },
+    {
+      "path": "reports/r2-reference-integration/before-after.json",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "206d579f863f86913a64c51000575cbe1c67e981",
+      "bytes": 30575,
+      "sha256": "1c43d37d696e17971597cbdc43cb13c522e451f39c849df9435a58cbc5bb780a"
+    },
+    {
+      "path": "reports/r2-reference-integration/capture_comparison.py",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "d13e6412aca5b4b1f86c22ff711e53ceeab87a84",
+      "bytes": 4914,
+      "sha256": "206ec5b6b6d4165b45ca4d74b5fb67f94b5956973908b6e517e32592be976c6c"
+    },
+    {
+      "path": "reports/r2-reference-integration/input-identities.json",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "39ad3b65c655bcc52acef017574adf2ccad32bb5",
+      "bytes": 1938,
+      "sha256": "e4e873a74a237b7760524ca8a42e3d5021a5df5558295403fa7f74fd1167c2b7"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/backend-suite.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "792378073cb2e3708cb05ed5212330230c251989",
+      "bytes": 32850,
+      "sha256": "9bb2fb8db280995953819f4e1bd3b5991094c25ff3a4677312ff7a1381901caf"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/base-comparison.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "bcceea43436ca40c9739cc91a630b5033155709f",
+      "bytes": 270,
+      "sha256": "8f54169ea099d754d4b813f849c2b746f75435f7a64ea489b9bf1c269572feda"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/catalog-check.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "95c7a9360e05e78405ed6e93cfae238e5790c9e4",
+      "bytes": 308,
+      "sha256": "53955bddd73d211abc734ef2e94ba463acf6227d31c6c453b7b29dddd7a60962"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/characterization.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "caf86fd01a9b4d23ecf5651e162a2863644f4b5a",
+      "bytes": 1422,
+      "sha256": "6c25ad63765132077dcdcfde0de691b4a0d51a07e494e549764d65f6f28df074"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/compile.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "8ea5d93d27d75777ddf8ada2525fc439d9a51850",
+      "bytes": 81,
+      "sha256": "3d2c362ca13cc927a740bb6d28443abe8248fef25dd894907585837ea881aa6d"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/golden-export.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "03f40bb97ecf487f35fde1f7ddcefaa35754ca0f",
+      "bytes": 235,
+      "sha256": "7911ac0b051e2170b11e4bf71b480c70a7463dcf9f2b080f35d8529f39b06fb0"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/reference-goldens.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "5b4f7402394816ca2e42897b7302a4db5b211087",
+      "bytes": 158,
+      "sha256": "d864bbe96ad6bcd37723c8410a45da5fff24dd64d09b9edf0a3f3ff8e127a52f"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/runtime-versions.json",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "5833d02d529a2eae209fc5d6f3d4d8730af79e7b",
+      "bytes": 331,
+      "sha256": "0e6c3fb8fe8412f48601c6244e95d8493c3b883cce65b39f2706a0ff4e8388e8"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/rust-clippy.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "ef1eb5f943917083282deedd147fc583f683a94c",
+      "bytes": 640,
+      "sha256": "f8fe293a6d3a63b6f2ab396ebbe8adc1034850f243a1ad7e27c81ad74b19b790"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/rust-fmt.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "bc384ce22c763445a7e6896bcec72a53a9356138",
+      "bytes": 60,
+      "sha256": "be2cc854b9c13b371e2fb8acadabf1c8126c098f75141c50ef97238244374c06"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/rust-tests.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "cde988141ddaea4f03386b91e77173f521aaabd3",
+      "bytes": 17560,
+      "sha256": "99f27b97a3ef0f91167ed1144bf05d78360db66676451845f1f12bc17c5cc36f"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/rust-version.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "08fb23768fabed4b46cf31c27feef764e7026f23",
+      "bytes": 85,
+      "sha256": "c0e9f437f93586d42996b3f0dfaf2686029d4eb5f5f4decd16466d6879804270"
+    },
+    {
+      "path": "reports/r2-reference-integration/logs/validation.txt",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "7772cdafd50c8bd7be3b56902e15751d08a0f1e5",
+      "bytes": 10252,
+      "sha256": "356f38a6ceca45a1cd122f8600cdd7bbe029a901de6f7af86e5cc89d5de9fc8a"
+    },
+    {
+      "path": "reports/r2-reference-integration/preserved-worktrees.json",
+      "status": "A",
+      "mode": "100644",
+      "git_blob": "6d5dc04b6549afbedf794074739d95ae3bddcab5",
+      "bytes": 680,
+      "sha256": "d7c15466b50d3a98f576965e7e89e21fbc4180559d8066a69e7613ddad942daa"
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+COMMAND: python -m unittest discover -s tests -v
+CWD: backend
+PYTHONPATH=backend; PYTHON_DOTENV_DISABLED=1
+EXIT: 0
+Unhandled /ai-meal-extract error: RuntimeError: SECRET-MARKER-sk-XYZ-/internal/path/to/creds
+Unhandled /ai-meal-extract error: ValueError: SECRET-MARKER-sk-XYZ-/internal/path/to/creds
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+<TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+test_missing_key_detail_is_user_safe (test_ai_extract_error_shape.MissingKeyErrorShapeTests.test_missing_key_detail_is_user_safe) ... ok
+test_ai_item_uses_deterministic_lookup_and_quality (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_ai_item_uses_deterministic_lookup_and_quality) ... ok
+test_blank_and_negative_fii_are_neutralized_at_post_boundary (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_blank_and_negative_fii_are_neutralized_at_post_boundary) ... ok
+test_explicit_fii_value_alone_uses_user_confirmed_path (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_explicit_fii_value_alone_uses_user_confirmed_path) ... ok
+test_explicit_user_fii_still_uses_user_confirmed_path (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_explicit_user_fii_still_uses_user_confirmed_path) ... ok
+test_missing_and_null_fii_use_deterministic_lookup (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_missing_and_null_fii_use_deterministic_lookup) ... ok
+test_non_positive_fii_value_is_neutralized_at_post_boundary (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_non_positive_fii_value_is_neutralized_at_post_boundary) ... ok
+test_parsed_ai_item_omits_missing_and_legacy_fii (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_parsed_ai_item_omits_missing_and_legacy_fii) ... ok
+test_positive_fii_value_takes_precedence_over_fii (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_positive_fii_value_takes_precedence_over_fii) ... ok
+test_prompt_and_schema_do_not_request_fii (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_prompt_and_schema_do_not_request_fii) ... ok
+test_stale_client_zero_is_neutralized_at_post_boundary (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_stale_client_zero_is_neutralized_at_post_boundary) ... ok
+test_zero_fii_value_falls_back_to_positive_fii (test_ai_fii_trust_boundary.AiFiiTrustBoundaryTests.test_zero_fii_value_falls_back_to_positive_fii) ... ok
+test_fresh_orm_metadata_declares_bounded_columns_and_unique_index (test_b2_migration_compatibility.B2MigrationCompatibilityTests.test_fresh_orm_metadata_declares_bounded_columns_and_unique_index) ... <TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+ok
+test_legacy_null_source_standardizes_to_unknown_without_inference (test_b2_migration_compatibility.B2MigrationCompatibilityTests.test_legacy_null_source_standardizes_to_unknown_without_inference) ... <TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+ok
+test_pre_b2_database_upgrade_preserves_reads_delete_chronic_and_saves (test_b2_migration_compatibility.B2MigrationCompatibilityTests.test_pre_b2_database_upgrade_preserves_reads_delete_chronic_and_saves) ... <TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+<TASK_WORKTREE>\backend\main.py:109: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  today = datetime.utcnow().date()
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\cache_key.py:221: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3EA273D0>
+  @util.preload_module("sqlalchemy.sql.elements")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\cache_key.py:221: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3EA275B0>
+  @util.preload_module("sqlalchemy.sql.elements")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+<TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+test_image_at_the_size_boundary_is_accepted (test_backend_hardening.AiImagePayloadBoundTests.test_image_at_the_size_boundary_is_accepted) ... ok
+test_malformed_base64_is_rejected (test_backend_hardening.AiImagePayloadBoundTests.test_malformed_base64_is_rejected) ... ok
+test_more_than_five_images_are_rejected (test_backend_hardening.AiImagePayloadBoundTests.test_more_than_five_images_are_rejected) ... ok
+test_non_data_url_payloads_are_rejected (test_backend_hardening.AiImagePayloadBoundTests.test_non_data_url_payloads_are_rejected) ... ok
+test_oversized_image_is_rejected (test_backend_hardening.AiImagePayloadBoundTests.test_oversized_image_is_rejected) ... ok
+test_up_to_five_valid_images_are_accepted (test_backend_hardening.AiImagePayloadBoundTests.test_up_to_five_valid_images_are_accepted) ... ok
+<TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+test_above_maximum_is_rejected (test_backend_hardening.ChronicDaysBoundTests.test_above_maximum_is_rejected) ... ok
+test_below_minimum_is_rejected (test_backend_hardening.ChronicDaysBoundTests.test_below_minimum_is_rejected) ... ok
+test_default_request_still_works (test_backend_hardening.ChronicDaysBoundTests.test_default_request_still_works) ... <TASK_WORKTREE>\backend\main.py:109: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  today = datetime.utcnow().date()
+ok
+test_invalid_type_is_rejected (test_backend_hardening.ChronicDaysBoundTests.test_invalid_type_is_rejected) ... ok
+test_minimum_normal_and_maximum_are_accepted (test_backend_hardening.ChronicDaysBoundTests.test_minimum_normal_and_maximum_are_accepted) ... ok
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\cursor.py:1533: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3EA27790>
+  def __init__(
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\cursor.py:1533: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3EA27970>
+  def __init__(
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+test_curated_unavailable_error_still_surfaces_its_safe_message (test_backend_hardening.GenericExceptionSanitizationTests.test_curated_unavailable_error_still_surfaces_its_safe_message) ... ok
+test_known_http_exceptions_keep_their_safe_mappings (test_backend_hardening.GenericExceptionSanitizationTests.test_known_http_exceptions_keep_their_safe_mappings) ... ok
+test_unexpected_exception_detail_is_stable_and_secret_free (test_backend_hardening.GenericExceptionSanitizationTests.test_unexpected_exception_detail_is_stable_and_secret_free) ... ok
+test_unexpected_value_error_is_sanitized_not_surfaced_as_400 (test_backend_hardening.GenericExceptionSanitizationTests.test_unexpected_value_error_is_sanitized_not_surfaced_as_400) ... ok
+test_authentication_error_body_is_not_relayed_to_the_client (test_backend_hardening.ProviderAuthErrorSanitizationTests.test_authentication_error_body_is_not_relayed_to_the_client) ... ok
+test_openai_client_is_constructed_with_the_documented_timeout (test_backend_hardening.ProviderTimeoutTests.test_openai_client_is_constructed_with_the_documented_timeout) ... ok
+<TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+test_empty_history_reports_no_data_and_no_score (test_chronic_logging_coverage.ChronicEndpointCoverageTests.test_empty_history_reports_no_data_and_no_score) ... <TASK_WORKTREE>\backend\main.py:109: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  today = datetime.utcnow().date()
+ok
+test_identical_meal_daily_vs_once_in_window_yields_same_trend_value (test_chronic_logging_coverage.ChronicEndpointCoverageTests.test_identical_meal_daily_vs_once_in_window_yields_same_trend_value) ... ok
+test_malformed_non_finite_stored_row_does_not_poison_the_trend (test_chronic_logging_coverage.ChronicEndpointCoverageTests.test_malformed_non_finite_stored_row_does_not_poison_the_trend) ... ok
+test_multiple_meals_on_one_day_aggregate_into_that_day (test_chronic_logging_coverage.ChronicEndpointCoverageTests.test_multiple_meals_on_one_day_aggregate_into_that_day) ... ok
+test_series_marks_unlogged_days_as_missing_not_zero (test_chronic_logging_coverage.ChronicEndpointCoverageTests.test_series_marks_unlogged_days_as_missing_not_zero) ... ok
+test_identical_day_logged_1_4_and_7_of_7_keeps_the_same_trend_value (test_chronic_logging_coverage.ChronicServiceLoggedDaysTests.test_identical_day_logged_1_4_and_7_of_7_keeps_the_same_trend_value) ... ok
+test_no_logged_days_yields_no_score_not_zero (test_chronic_logging_coverage.ChronicServiceLoggedDaysTests.test_no_logged_days_yields_no_score_not_zero) ... ok
+test_unlogged_days_do_not_dilute_differing_logged_days (test_chronic_logging_coverage.ChronicServiceLoggedDaysTests.test_unlogged_days_do_not_dilute_differing_logged_days) ... ok
+test_window_slides_after_seven_rows (test_chronic_logging_coverage.ChronicServiceLoggedDaysTests.test_window_slides_after_seven_rows) ... ok
+test_zero_energy_logged_day_counts_as_logged_with_zero_dii (test_chronic_logging_coverage.ChronicServiceLoggedDaysTests.test_zero_energy_logged_day_counts_as_logged_with_zero_dii) ... ok
+test_seed_and_reset_lifecycle (test_demo_seed.DemoSeedTests.test_seed_and_reset_lifecycle) ... ok
+test_all_energy_scaled_fii_sources_are_covered (test_estimate_completeness.EstimateCompletenessPredicateTests.test_all_energy_scaled_fii_sources_are_covered) ... ok
+test_empty_collection_is_estimated (test_estimate_completeness.EstimateCompletenessPredicateTests.test_empty_collection_is_estimated) ... ok
+test_fallback_unknown_and_non_positive_portions_do_not_trigger (test_estimate_completeness.EstimateCompletenessPredicateTests.test_fallback_unknown_and_non_positive_portions_do_not_trigger) ... ok
+test_fii_scaled_positive_portion_requires_finite_positive_kcal (test_estimate_completeness.EstimateCompletenessPredicateTests.test_fii_scaled_positive_portion_requires_finite_positive_kcal) ... ok
+test_any_incomplete_fii_item_makes_whole_meal_insufficient (test_estimate_completeness.MealEstimateStatusTests.test_any_incomplete_fii_item_makes_whole_meal_insufficient) ... ok
+test_complete_exact_fii_item_is_estimated (test_estimate_completeness.MealEstimateStatusTests.test_complete_exact_fii_item_is_estimated) ... ok
+test_exact_mapped_and_user_confirmed_missing_energy_are_insufficient (test_estimate_completeness.MealEstimateStatusTests.test_exact_mapped_and_user_confirmed_missing_energy_are_insufficient) ... ok
+test_exact_mapped_and_user_confirmed_zero_energy_are_insufficient (test_estimate_completeness.MealEstimateStatusTests.test_exact_mapped_and_user_confirmed_zero_energy_are_insufficient) ... ok
+test_macro_fallback_zero_energy_does_not_newly_trigger_status (test_estimate_completeness.MealEstimateStatusTests.test_macro_fallback_zero_energy_does_not_newly_trigger_status) ... ok
+test_unknown_and_empty_paths_keep_existing_quality_control (test_estimate_completeness.MealEstimateStatusTests.test_unknown_and_empty_paths_keep_existing_quality_control) ... ok
+test_zero_quantity_exact_fii_item_does_not_trigger (test_estimate_completeness.MealEstimateStatusTests.test_zero_quantity_exact_fii_item_does_not_trigger) ... ok
+test_delete_is_scoped_to_one_meal (test_meal_delete.MealDeleteTests.test_delete_is_scoped_to_one_meal) ... ok
+test_delete_removes_associated_item_rows (test_meal_delete.MealDeleteTests.test_delete_removes_associated_item_rows) ... ok
+test_delete_removes_meal_from_listing (test_meal_delete.MealDeleteTests.test_delete_removes_meal_from_listing) ... ok
+test_delete_unknown_id_returns_404 (test_meal_delete.MealDeleteTests.test_delete_unknown_id_returns_404) ... ok
+test_canonical_material_structure_and_hash_are_exact (test_meal_idempotency.MealIdempotencyTests.test_canonical_material_structure_and_hash_are_exact) ... ok
+test_different_ids_with_same_payload_create_two_legitimate_meals (test_meal_idempotency.MealIdempotencyTests.test_different_ids_with_same_payload_create_two_legitimate_meals) ... ok
+test_every_material_fingerprint_field_changes_identity (test_meal_idempotency.MealIdempotencyTests.test_every_material_fingerprint_field_changes_identity) ... ok
+test_fii_alias_spelling_collapses_to_same_effective_value (test_meal_idempotency.MealIdempotencyTests.test_fii_alias_spelling_collapses_to_same_effective_value) ... ok
+test_first_idempotent_save_stores_canonical_request_identity (test_meal_idempotency.MealIdempotencyTests.test_first_idempotent_save_stores_canonical_request_identity) ... ok
+test_fresh_schema_versions_are_nullable_without_defaults (test_meal_idempotency.MealIdempotencyTests.test_fresh_schema_versions_are_nullable_without_defaults) ... ok
+test_idempotent_replay_derives_the_same_insufficient_status (test_meal_idempotency.MealIdempotencyTests.test_idempotent_replay_derives_the_same_insufficient_status) ... ok
+test_item_order_is_material (test_meal_idempotency.MealIdempotencyTests.test_item_order_is_material) ... ok
+test_malformed_request_id_fails_validation (test_meal_idempotency.MealIdempotencyTests.test_malformed_request_id_fails_validation) ... ok
+test_meal_name_and_created_at_are_non_material_and_original_stored_values_win (test_meal_idempotency.MealIdempotencyTests.test_meal_name_and_created_at_are_non_material_and_original_stored_values_win) ... ok
+test_no_client_request_id_preserves_legacy_duplicate_save_behavior (test_meal_idempotency.MealIdempotencyTests.test_no_client_request_id_preserves_legacy_duplicate_save_behavior) ... ok
+test_none_and_zero_are_distinct_material_inputs (test_meal_idempotency.MealIdempotencyTests.test_none_and_zero_are_distinct_material_inputs) ... ok
+test_provenance_is_captured_during_modeling_not_when_building_row (test_meal_idempotency.MealIdempotencyTests.test_provenance_is_captured_during_modeling_not_when_building_row) ... ok
+test_race_returns_winner_provenance_even_when_computations_have_different_versions (test_meal_idempotency.MealIdempotencyTests.test_race_returns_winner_provenance_even_when_computations_have_different_versions) ... ok
+test_same_id_and_material_payload_returns_same_canonical_response (test_meal_idempotency.MealIdempotencyTests.test_same_id_and_material_payload_returns_same_canonical_response) ... ok
+test_same_id_with_changed_material_item_returns_409_without_second_row (test_meal_idempotency.MealIdempotencyTests.test_same_id_with_changed_material_item_returns_409_without_second_row) ... ok
+test_server_provenance_survives_save_read_and_runtime_change (test_meal_idempotency.MealIdempotencyTests.test_server_provenance_survives_save_read_and_runtime_change) ... ok
+test_unique_index_race_rolls_back_rereads_and_returns_one_durable_meal (test_meal_idempotency.MealIdempotencyTests.test_unique_index_race_rolls_back_rereads_and_returns_one_durable_meal) ... ok
+test_unique_index_race_with_different_inputs_returns_one_409 (test_meal_idempotency.MealIdempotencyTests.test_unique_index_race_with_different_inputs_returns_one_409) ... ok
+test_unknown_legacy_replay_is_not_relabelled (test_meal_idempotency.MealIdempotencyTests.test_unknown_legacy_replay_is_not_relabelled) ... ok
+test_none_versus_zero_optional_inputs_preserve_distinct_modeling_paths (test_meal_modeling_golden.MealModelingGoldenTests.test_none_versus_zero_optional_inputs_preserve_distinct_modeling_paths) ... ok
+test_post_meals_exact_fii_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_exact_fii_golden) ... ok
+test_post_meals_macro_fallback_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_macro_fallback_golden) ... ok
+test_post_meals_mapped_fii_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_mapped_fii_golden) ... ok
+test_post_meals_mixed_sources_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_mixed_sources_golden) ... ok
+test_post_meals_unknown_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_unknown_golden) ... ok
+test_post_meals_user_confirmed_fii_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_user_confirmed_fii_golden) ... ok
+test_post_meals_zero_kcal_issue_97_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_zero_kcal_issue_97_golden)
+Keep arithmetic and source quality while marking #97 incompleteness. ... ok
+test_fallback_quantity_invariants_and_http_save_parity (test_meal_preview.MealPreviewTests.test_fallback_quantity_invariants_and_http_save_parity) ... ok
+test_fii_controls_and_normalization_remain_unchanged (test_meal_preview.MealPreviewTests.test_fii_controls_and_normalization_remain_unchanged) ... ok
+test_fresh_orm_hydration_sorts_positions_not_physical_order (test_meal_preview.MealPreviewTests.test_fresh_orm_hydration_sorts_positions_not_physical_order) ... ok
+test_historical_negative_quantity_remains_readable_without_rescoring (test_meal_preview.MealPreviewTests.test_historical_negative_quantity_remains_readable_without_rescoring) ... ok
+test_http_save_ignores_spoofed_versions_and_read_preserves_server_identity (test_meal_preview.MealPreviewTests.test_http_save_ignores_spoofed_versions_and_read_preserves_server_identity) ... ok
+test_negative_quantity_rejected_by_http_and_raw_scorer (test_meal_preview.MealPreviewTests.test_negative_quantity_rejected_by_http_and_raw_scorer) ... ok
+test_preview_contract_has_no_persistence_or_image_fields (test_meal_preview.MealPreviewTests.test_preview_contract_has_no_persistence_or_image_fields) ... ok
+test_preview_matches_save_for_all_characterization_payloads (test_meal_preview.MealPreviewTests.test_preview_matches_save_for_all_characterization_payloads) ... ok
+test_preview_preserves_rows_session_state_and_executes_no_dml (test_meal_preview.MealPreviewTests.test_preview_preserves_rows_session_state_and_executes_no_dml) ... ok
+test_save_persists_positions_and_fresh_get_matches_preview_order (test_meal_preview.MealPreviewTests.test_save_persists_positions_and_fresh_get_matches_preview_order) ... ok
+test_zero_kcal_status_matches_preview_save_and_fresh_get (test_meal_preview.MealPreviewTests.test_zero_kcal_status_matches_preview_save_and_fresh_get) ... ok
+test_legacy_naive_row_serializes_as_utc (test_meal_timestamps.MealTimestampTests.test_legacy_naive_row_serializes_as_utc) ... ok
+test_list_meals_stays_most_recent_first (test_meal_timestamps.MealTimestampTests.test_list_meals_stays_most_recent_first) ... ok
+test_new_meal_created_at_is_timezone_aware_utc (test_meal_timestamps.MealTimestampTests.test_new_meal_created_at_is_timezone_aware_utc) ... ok
+test_provided_offset_created_at_is_normalized_to_utc (test_meal_timestamps.MealTimestampTests.test_provided_offset_created_at_is_normalized_to_utc) ... ok
+test_stored_row_stays_naive_utc_no_schema_change (test_meal_timestamps.MealTimestampTests.test_stored_row_stays_naive_utc_no_schema_change) ... ok
+<TASK_WORKTREE>\backend\main.py:39: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  @app.on_event("startup")
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py:4675: DeprecationWarning:
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+
+  return self.router.on_event(event_type)  # ty: ignore[deprecated]
+test_ai_meal_extract_writes_no_files (test_no_image_retention.NoImageRetentionTests.test_ai_meal_extract_writes_no_files) ... ok
+test_main_no_longer_uses_the_image_saving_utility (test_no_image_retention.NoImageRetentionTests.test_main_no_longer_uses_the_image_saving_utility) ... ok
+test_no_backend_module_defines_save_base64_images (test_no_rewiring_hazards.NoRewiringHazardsTests.test_no_backend_module_defines_save_base64_images) ... ok
+test_no_backend_utils_module_is_importable (test_no_rewiring_hazards.NoRewiringHazardsTests.test_no_backend_utils_module_is_importable) ... ok
+test_the_ad_hoc_ai_fii_script_stays_deleted (test_no_rewiring_hazards.NoRewiringHazardsTests.test_the_ad_hoc_ai_fii_script_stays_deleted) ... ok
+test_the_image_saving_module_stays_deleted (test_no_rewiring_hazards.NoRewiringHazardsTests.test_the_image_saving_module_stays_deleted) ... ok
+test_active_runtime_contract_and_no_production_imports (test_reference_catalog.ReferenceCatalogTests.test_active_runtime_contract_and_no_production_imports) ... ok
+test_builder_rejects_modified_source_bytes (test_reference_catalog.ReferenceCatalogTests.test_builder_rejects_modified_source_bytes) ... ok
+test_corrupt_nonfinite_negative_boolean_and_duplicate_rejected (test_reference_catalog.ReferenceCatalogTests.test_corrupt_nonfinite_negative_boolean_and_duplicate_rejected) ... ok
+test_deep_immutable_snapshot_and_selection (test_reference_catalog.ReferenceCatalogTests.test_deep_immutable_snapshot_and_selection) ... ok
+test_deterministic_artifacts_and_all_raw_fields_unchanged (test_reference_catalog.ReferenceCatalogTests.test_deterministic_artifacts_and_all_raw_fields_unchanged) ... ok
+test_dose_and_named_issues_are_use_specific (test_reference_catalog.ReferenceCatalogTests.test_dose_and_named_issues_are_use_specific) ... ok
+test_duplicate_food_names_do_not_create_ambiguous_auto_selection (test_reference_catalog.ReferenceCatalogTests.test_duplicate_food_names_do_not_create_ambiguous_auto_selection) ... ok
+test_exact_mapping_and_unknown_sample_sizes (test_reference_catalog.ReferenceCatalogTests.test_exact_mapping_and_unknown_sample_sizes) ... ok
+test_missing_gi_and_fibre_do_not_block_fii_or_turn_into_zero (test_reference_catalog.ReferenceCatalogTests.test_missing_gi_and_fibre_do_not_block_fii_or_turn_into_zero) ... ok
+test_new_file_and_policy_identity_cannot_relabel_loaded_snapshot (test_reference_catalog.ReferenceCatalogTests.test_new_file_and_policy_identity_cannot_relabel_loaded_snapshot) ... ok
+test_no_override_and_required_version (test_reference_catalog.ReferenceCatalogTests.test_no_override_and_required_version) ... ok
+test_reference_conflict_missing_dose_and_attribution_require_review (test_reference_catalog.ReferenceCatalogTests.test_reference_conflict_missing_dose_and_attribution_require_review) ... ok
+test_serialization_identity_is_semantic_and_sha256 (test_reference_catalog.ReferenceCatalogTests.test_serialization_identity_is_semantic_and_sha256) ... ok
+test_stripped_or_malformed_study_context_is_rejected (test_reference_catalog.ReferenceCatalogTests.test_stripped_or_malformed_study_context_is_rejected) ... ok
+test_unsupported_versions_forged_mapping_and_eligibility_rejected (test_reference_catalog.ReferenceCatalogTests.test_unsupported_versions_forged_mapping_and_eligibility_rejected) ... ok
+test_wrong_version_unknown_ids_and_names_fail_explicitly (test_reference_catalog.ReferenceCatalogTests.test_wrong_version_unknown_ids_and_names_fail_explicitly) ... ok
+test_zero_missing_and_above_100_are_distinct (test_reference_catalog.ReferenceCatalogTests.test_zero_missing_and_above_100_are_distinct) ... ok
+test_blob_stored_evidence_fails_read_list_replay_preserves_neighbors (test_reference_integration.ReferenceIntegrationTests.test_blob_stored_evidence_fails_read_list_replay_preserves_neighbors) ... ok
+test_concurrent_retries_return_complete_winner_and_conflicts (test_reference_integration.ReferenceIntegrationTests.test_concurrent_retries_return_complete_winner_and_conflicts) ... ok
+test_corrupt_unsupported_and_null_stored_evidence_fail_closed (test_reference_integration.ReferenceIntegrationTests.test_corrupt_unsupported_and_null_stored_evidence_fail_closed) ... ok
+test_failed_flush_rolls_back_meal_items_and_assessment (test_reference_integration.ReferenceIntegrationTests.test_failed_flush_rolls_back_meal_items_and_assessment) ... ok
+test_immutable_inputs_results_and_no_late_catalog_io (test_reference_integration.ReferenceIntegrationTests.test_immutable_inputs_results_and_no_late_catalog_io) ... ok
+test_independent_decimal_goldens_through_preview_save_read (test_reference_integration.ReferenceIntegrationTests.test_independent_decimal_goldens_through_preview_save_read) ... <USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\json\decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3F11E7A0>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\json\decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3F11EC50>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\json\decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EB3F27D990>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_material_changes_and_cross_contract_keys_conflict (test_reference_integration.ReferenceIntegrationTests.test_material_changes_and_cross_contract_keys_conflict) ... ok
+test_missing_persisted_identities_fail_read_list_replay (test_reference_integration.ReferenceIntegrationTests.test_missing_persisted_identities_fail_read_list_replay) ... ok
+test_missing_zero_energy_zero_quantity_and_empty_meals (test_reference_integration.ReferenceIntegrationTests.test_missing_zero_energy_zero_quantity_and_empty_meals) ... ok
+test_new_column_migration_coexistence_and_targeted_delete (test_reference_integration.ReferenceIntegrationTests.test_new_column_migration_coexistence_and_targeted_delete) ... ok
+test_overflow_contribution_aggregation_and_compatibility (test_reference_integration.ReferenceIntegrationTests.test_overflow_contribution_aggregation_and_compatibility) ... ok
+test_preview_save_fresh_read_replay_and_legacy_separation (test_reference_integration.ReferenceIntegrationTests.test_preview_save_fresh_read_replay_and_legacy_separation) ... ok
+test_production_route_table_is_dormant_without_startup_or_catalog_read (test_reference_integration.ReferenceIntegrationTests.test_production_route_table_is_dormant_without_startup_or_catalog_read) ... ok
+test_raw_digest_before_normalization_and_valid_v1_roundtrip (test_reference_integration.ReferenceIntegrationTests.test_raw_digest_before_normalization_and_valid_v1_roundtrip) ... ok
+test_selection_unavailability_and_whole_meal_null (test_reference_integration.ReferenceIntegrationTests.test_selection_unavailability_and_whole_meal_null) ... ok
+test_stale_version_and_unreviewed_server_catalog_fail_without_write (test_reference_integration.ReferenceIntegrationTests.test_stale_version_and_unreviewed_server_catalog_fail_without_write) ... ok
+test_strict_request_rejects_overrides_and_invalid_values_without_writes (test_reference_integration.ReferenceIntegrationTests.test_strict_request_rejects_overrides_and_invalid_values_without_writes) ... ok
+test_synthetic_zero_and_above_100_fii (test_reference_integration.ReferenceIntegrationTests.test_synthetic_zero_and_above_100_fii) ... ok
+test_units_split_rows_duplicate_source_title_and_composites (test_reference_integration.ReferenceIntegrationTests.test_units_split_rows_duplicate_source_title_and_composites) ... ok
+test_existing_rust_dataset_and_formula_identity_are_reused (test_scoring_provenance.DatasetProvenanceTests.test_existing_rust_dataset_and_formula_identity_are_reused) ... ok
+test_failed_load_does_not_publish_identity (test_scoring_provenance.DatasetProvenanceTests.test_failed_load_does_not_publish_identity) ... ok
+test_fingerprint_line_endings_and_all_csv_fields (test_scoring_provenance.DatasetProvenanceTests.test_fingerprint_line_endings_and_all_csv_fields) ... ok
+test_same_loaded_bytes_supply_lookup_and_identity_until_restart (test_scoring_provenance.DatasetProvenanceTests.test_same_loaded_bytes_supply_lookup_and_identity_until_restart) ... ok
+
+----------------------------------------------------------------------
+Ran 148 tests in 23.906s
+
+OK

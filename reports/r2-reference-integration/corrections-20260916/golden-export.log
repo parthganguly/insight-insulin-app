@@ -1,0 +1,5 @@
+COMMAND: python -m validation.export_golden_fixtures --check --out ../crates/insight-core/fixtures/golden
+CWD: backend
+PYTHONPATH=backend; PYTHON_DOTENV_DISABLED=1
+EXIT: 0
+Golden fixtures are current in <TASK_WORKTREE>\crates\insight-core\fixtures\golden

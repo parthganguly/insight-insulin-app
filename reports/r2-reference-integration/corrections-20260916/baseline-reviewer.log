@@ -1,0 +1,85 @@
+COMMAND: PYTHONPATH=backend PYTHON_DOTENV_DISABLED=1 python reports/r2-reference-integration/corrections-20260916/test_r2_boundary_review.py --out baseline-reviewer.json
+EXIT: 1
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_all_catalog_sources_match_archived_policy_and_inputs (__main__.IndependentR2Tests.test_all_catalog_sources_match_archived_policy_and_inputs) ... ok
+test_control_invalid_text_unknown_version_and_null_are_handled (__main__.IndependentR2Tests.test_control_invalid_text_unknown_version_and_null_are_handled) ... ok
+test_failure_after_flush_rolls_back_entire_save (__main__.IndependentR2Tests.test_failure_after_flush_rolls_back_entire_save) ... ok
+test_incomplete_energy_or_reference_never_gets_partial_total (__main__.IndependentR2Tests.test_incomplete_energy_or_reference_never_gets_partial_total) ... ok
+test_loaded_file_disappearance_before_item_iteration_and_commit (__main__.IndependentR2Tests.test_loaded_file_disappearance_before_item_iteration_and_commit) ... ok
+test_malformed_requests_and_invalid_zero_quantity_rows_are_rejected (__main__.IndependentR2Tests.test_malformed_requests_and_invalid_zero_quantity_rows_are_rejected) ... ok
+test_material_inputs_and_units_are_all_fingerprinted (__main__.IndependentR2Tests.test_material_inputs_and_units_are_all_fingerprinted) ... ok
+test_migration_preserves_existing_values_and_null_legacy_assessment (__main__.IndependentR2Tests.test_migration_preserves_existing_values_and_null_legacy_assessment) ... ok
+test_regression_blob_assessment_does_not_break_read_list_or_replay (__main__.IndependentR2Tests.test_regression_blob_assessment_does_not_break_read_list_or_replay) ... FAIL
+test_regression_missing_persisted_versions_must_not_be_reconstructed (__main__.IndependentR2Tests.test_regression_missing_persisted_versions_must_not_be_reconstructed) ... FAIL
+test_runtime_versions_or_catalog_failure_cannot_change_saved_replay (__main__.IndependentR2Tests.test_runtime_versions_or_catalog_failure_cannot_change_saved_replay) ... ok
+test_snapshot_deep_immutability (__main__.IndependentR2Tests.test_snapshot_deep_immutability) ... ok
+test_unreviewed_catalog_is_not_authorized_by_matching_client_expectation (__main__.IndependentR2Tests.test_unreviewed_catalog_is_not_authorized_by_matching_client_expectation) ... ok
+
+======================================================================
+FAIL: test_regression_blob_assessment_does_not_break_read_list_or_replay (__main__.IndependentR2Tests.test_regression_blob_assessment_does_not_break_read_list_or_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<TASK_WORKTREE>\reports\r2-reference-integration\corrections-20260916\test_r2_boundary_review.py", line 295, in test_regression_blob_assessment_does_not_break_read_list_or_replay
+    self.assertEqual(actual,[(200,'evidence_error')]*len(actual),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'A non-TEXT value escaped the evidence_error boundary and broke the request.')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(500, None), (500, None), (500, None), (50[30 chars]one)] != [(200, 'evidence_error'), (200, 'evidence_e[102 chars]or')]
+
+First differing element 0:
+(500, None)
+(200, 'evidence_error')
+
+- [(500, None), (500, None), (500, None), (500, None), (500, None), (500, None)]
++ [(200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error')] : A non-TEXT value escaped the evidence_error boundary and broke the request.
+
+======================================================================
+FAIL: test_regression_missing_persisted_versions_must_not_be_reconstructed (__main__.IndependentR2Tests.test_regression_missing_persisted_versions_must_not_be_reconstructed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<TASK_WORKTREE>\reports\r2-reference-integration\corrections-20260916\test_r2_boundary_review.py", line 278, in test_regression_missing_persisted_versions_must_not_be_reconstructed
+    self.assertEqual(actual,[(200,'evidence_error')]*len(actual),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'Missing persisted identities were restored by defaults before the hash was checked.')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [(200, 'evaluated'), (200, 'evaluated'), (200, 'eva[184 chars]ed')] != [(200, 'evidence_error'), (200, 'evidence_error'), [244 chars]or')]
+
+First differing element 0:
+(200, 'evaluated')
+(200, 'evidence_error')
+
+- [(200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated'),
+-  (200, 'evaluated')]
++ [(200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error'),
++  (200, 'evidence_error')] : Missing persisted identities were restored by defaults before the hash was checked.
+
+----------------------------------------------------------------------
+Ran 13 tests in 4.053s
+
+FAILED (failures=2)

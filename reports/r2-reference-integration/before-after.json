@@ -1,0 +1,940 @@
+{
+  "base": "cb6083f8386bb0464b1f94ca0a2f7d49c3e55c16",
+  "synthetic_only": true,
+  "legacy_preview_and_saved_response_match": true,
+  "before": {
+    "legacy_previews": [
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 158.0,
+              "confidence": 0.7,
+              "fii_source": "exact_fii",
+              "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+            }
+          ],
+          "insulin_load_total": 158.0,
+          "acute_score": 526.6666666666666,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "high",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "rice"
+          ],
+          "persisted": false
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "synthetic reviewed food",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "synthetic reviewed food",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 0.0,
+              "confidence": 0.2,
+              "fii_source": "unknown",
+              "why": "Used an unknown-source estimate because direct Food Insulin Index data was unavailable."
+            }
+          ],
+          "insulin_load_total": 0.0,
+          "acute_score": 0.0,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "unknown",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "synthetic reviewed food"
+          ],
+          "persisted": false
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice and dal",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice and dal",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 139.10000000000002,
+              "confidence": 0.9,
+              "fii_source": "mapped_fii",
+              "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+            }
+          ],
+          "insulin_load_total": 139.10000000000002,
+          "acute_score": 463.66666666666674,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "medium",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "rice and dal"
+          ],
+          "persisted": false
+        }
+      }
+    ],
+    "old_saved": {
+      "formula_version": "current_backend_v2",
+      "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+      "id": "6f5190fa-899a-41e6-8c09-5a7591134393",
+      "created_at": "2026-09-16T13:26:09.600355Z",
+      "meal_name": "Synthetic comparison",
+      "items": [
+        {
+          "name": "rice and dal",
+          "quantity": 1.0,
+          "unit": "serving",
+          "kcalPerUnit": 200.0,
+          "carb_g": 0.0,
+          "protein_g": null,
+          "fat_g": null,
+          "satFat_g": 0.0,
+          "gi": 0,
+          "fii_value": null,
+          "fii": null,
+          "kcal_item": 200.0,
+          "insulin_load": 139.10000000000002,
+          "confidence": 0.9,
+          "fii_source": "mapped_fii",
+          "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+        }
+      ],
+      "insulin_load_total": 139.10000000000002,
+      "acute_score": 463.66666666666674,
+      "kcal_total": 200.0,
+      "carbs_total": 0.0,
+      "protein_total": 0.0,
+      "fat_total": 0.0,
+      "estimate_quality": "medium",
+      "estimate_status": "estimated",
+      "main_insulin_drivers": [
+        "rice and dal"
+      ]
+    }
+  },
+  "after": {
+    "legacy_previews": [
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 158.0,
+              "confidence": 0.7,
+              "fii_source": "exact_fii",
+              "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+            }
+          ],
+          "insulin_load_total": 158.0,
+          "acute_score": 526.6666666666666,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "high",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "rice"
+          ],
+          "persisted": false
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "synthetic reviewed food",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "synthetic reviewed food",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 0.0,
+              "confidence": 0.2,
+              "fii_source": "unknown",
+              "why": "Used an unknown-source estimate because direct Food Insulin Index data was unavailable."
+            }
+          ],
+          "insulin_load_total": 0.0,
+          "acute_score": 0.0,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "unknown",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "synthetic reviewed food"
+          ],
+          "persisted": false
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice and dal",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice and dal",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 139.10000000000002,
+              "confidence": 0.9,
+              "fii_source": "mapped_fii",
+              "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+            }
+          ],
+          "insulin_load_total": 139.10000000000002,
+          "acute_score": 463.66666666666674,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "medium",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "rice and dal"
+          ],
+          "persisted": false
+        }
+      }
+    ],
+    "old_saved_after_upgrade": {
+      "formula_version": "current_backend_v2",
+      "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+      "id": "6f5190fa-899a-41e6-8c09-5a7591134393",
+      "created_at": "2026-09-16T13:26:09.600355Z",
+      "meal_name": "Synthetic comparison",
+      "items": [
+        {
+          "name": "rice and dal",
+          "quantity": 1.0,
+          "unit": "serving",
+          "kcalPerUnit": 200.0,
+          "carb_g": 0.0,
+          "protein_g": null,
+          "fat_g": null,
+          "satFat_g": 0.0,
+          "gi": 0,
+          "fii_value": null,
+          "fii": null,
+          "kcal_item": 200.0,
+          "insulin_load": 139.10000000000002,
+          "confidence": 0.9,
+          "fii_source": "mapped_fii",
+          "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+        }
+      ],
+      "insulin_load_total": 139.10000000000002,
+      "acute_score": 463.66666666666674,
+      "kcal_total": 200.0,
+      "carbs_total": 0.0,
+      "protein_total": 0.0,
+      "fat_total": 0.0,
+      "estimate_quality": "medium",
+      "estimate_status": "estimated",
+      "main_insulin_drivers": [
+        "rice and dal"
+      ]
+    },
+    "old_assessment": {
+      "legacy_compatibility": {
+        "formula_version": "current_backend_v2",
+        "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+        "id": "6f5190fa-899a-41e6-8c09-5a7591134393",
+        "created_at": "2026-09-16T13:26:09.600355Z",
+        "meal_name": "Synthetic comparison",
+        "items": [
+          {
+            "name": "rice and dal",
+            "quantity": 1.0,
+            "unit": "serving",
+            "kcalPerUnit": 200.0,
+            "carb_g": 0.0,
+            "protein_g": null,
+            "fat_g": null,
+            "satFat_g": 0.0,
+            "gi": 0,
+            "fii_value": null,
+            "fii": null,
+            "kcal_item": 200.0,
+            "insulin_load": 139.10000000000002,
+            "confidence": 0.9,
+            "fii_source": "mapped_fii",
+            "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+          }
+        ],
+        "insulin_load_total": 139.10000000000002,
+        "acute_score": 463.66666666666674,
+        "kcal_total": 200.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "medium",
+        "estimate_status": "estimated",
+        "main_insulin_drivers": [
+          "rice and dal"
+        ]
+      },
+      "assessment_state": "not_evaluated",
+      "assessment": null,
+      "reasons": []
+    },
+    "new_results": [
+      {
+        "input": {
+          "meal_name": "Synthetic reference comparison",
+          "expected_catalog_version": "r2_sha256_6db5357ae368981b1e2781a2a2402d60d63850e7b59c63e757b654a39bdc51d9",
+          "client_request_id": "2555df9c-d9c5-4035-8ba2-48572f8a6839",
+          "created_at": "2026-09-16T12:00:00Z",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1,
+              "unit": "serving",
+              "kcal_per_unit": 200,
+              "kcal_per_unit_unit": "serving",
+              "source_record_id": "BAO2011-002"
+            }
+          ]
+        },
+        "output": {
+          "legacy_compatibility": {
+            "formula_version": "current_backend_v2",
+            "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+            "id": "b9f660ad-9ac6-40fd-926e-613a844f2829",
+            "created_at": "2026-09-16T12:00:00Z",
+            "meal_name": "Synthetic reference comparison",
+            "items": [
+              {
+                "name": "rice",
+                "quantity": 1.0,
+                "unit": "serving",
+                "kcalPerUnit": 200.0,
+                "carb_g": 0.0,
+                "protein_g": null,
+                "fat_g": null,
+                "satFat_g": 0.0,
+                "gi": 0,
+                "fii_value": null,
+                "fii": null,
+                "kcal_item": 200.0,
+                "insulin_load": 158.0,
+                "confidence": 0.7,
+                "fii_source": "exact_fii",
+                "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+              }
+            ],
+            "insulin_load_total": 158.0,
+            "acute_score": 526.6666666666666,
+            "kcal_total": 200.0,
+            "carbs_total": 0.0,
+            "protein_total": 0.0,
+            "fat_total": 0.0,
+            "estimate_quality": "high",
+            "estimate_status": "estimated",
+            "main_insulin_drivers": [
+              "rice"
+            ]
+          },
+          "assessment_state": "evaluated",
+          "assessment": {
+            "result_schema_version": "reference_meal_result_v1",
+            "formula_version": "experimental_reference_load_v1",
+            "catalog_version": "r2_sha256_6db5357ae368981b1e2781a2a2402d60d63850e7b59c63e757b654a39bdc51d9",
+            "catalog_schema_version": "insight_reference_catalog_v1",
+            "eligibility_policy_version": "experimental_fii_input_v1",
+            "selection_policy_version": "explicit_source_id_v1",
+            "status": "experimental",
+            "reference_load_total": 138.0,
+            "items": [
+              {
+                "position": 0,
+                "inputs": {
+                  "name": "rice",
+                  "quantity": 1.0,
+                  "unit": "serving",
+                  "kcal_per_unit": 200.0,
+                  "kcal_per_unit_unit": "serving",
+                  "nutrition_origin": "manual",
+                  "carb_g": null,
+                  "protein_g": null,
+                  "fat_g": null,
+                  "sat_fat_g": null,
+                  "gi": null,
+                  "source_record_id": "BAO2011-002"
+                },
+                "selection_label": "explicit_source_reference_not_verified_food_equivalence",
+                "status": "calculated",
+                "eaten_kcal": 200.0,
+                "reference_load": 138.0,
+                "source": {
+                  "source_record_id": "BAO2011-002",
+                  "source_food_wording": "Low-fat vanilla ice cream (Coles Farmland; Coles Supermarkets, Sydney, Australia)",
+                  "fii_mean": 69.0,
+                  "uncertainty_type": "SEM",
+                  "uncertainty_value": 6.0,
+                  "uncertainty_meaning": "published_food_mean_not_personal_interval",
+                  "reference_scale": "glucose=100",
+                  "actual_test_energy_kJ": 1000.0,
+                  "composition_basis_kJ": 1000.0,
+                  "source_study": "Bao et al. 2011 AJCN 93:984–996",
+                  "source_doi": "10.3945/ajcn.110.005033",
+                  "source_table": "Table 1",
+                  "source_printed_page": 986,
+                  "source_row": 2,
+                  "source_footnote": "",
+                  "test_year": 2004.0,
+                  "population": "Healthy University of Sydney GI-testing volunteers; nonsmoking, age 18-40, BMI 19-25, normal glucose tolerance (Methods p.985).",
+                  "record_sample_size": null,
+                  "record_sample_size_status": "not_reported_per_row; see linked study methods",
+                  "issue_ids": [],
+                  "eligibility": [
+                    {
+                      "use": "composition_energy",
+                      "status": "candidate",
+                      "reasons": [
+                        "source_field_present"
+                      ]
+                    },
+                    {
+                      "use": "experimental_fii_input",
+                      "status": "candidate",
+                      "reasons": [
+                        "attributed_glucose_reference_1000_kj"
+                      ]
+                    },
+                    {
+                      "use": "fibre_context",
+                      "status": "candidate",
+                      "reasons": [
+                        "source_field_present"
+                      ]
+                    },
+                    {
+                      "use": "gi_gl_calculation",
+                      "status": "candidate",
+                      "reasons": [
+                        "source_field_present"
+                      ]
+                    }
+                  ]
+                },
+                "reasons": []
+              }
+            ],
+            "reasons": []
+          },
+          "reasons": []
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic reference comparison",
+          "expected_catalog_version": "r2_sha256_6db5357ae368981b1e2781a2a2402d60d63850e7b59c63e757b654a39bdc51d9",
+          "client_request_id": "5538c13f-ab8c-4ec9-beac-654550d6d46c",
+          "created_at": "2026-09-16T12:00:00Z",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1,
+              "unit": "serving",
+              "kcal_per_unit": 200,
+              "kcal_per_unit_unit": "serving",
+              "source_record_id": null
+            }
+          ]
+        },
+        "output": {
+          "legacy_compatibility": {
+            "formula_version": "current_backend_v2",
+            "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+            "id": "255c37c6-b552-4cf5-b21d-3878438786ae",
+            "created_at": "2026-09-16T12:00:00Z",
+            "meal_name": "Synthetic reference comparison",
+            "items": [
+              {
+                "name": "rice",
+                "quantity": 1.0,
+                "unit": "serving",
+                "kcalPerUnit": 200.0,
+                "carb_g": 0.0,
+                "protein_g": null,
+                "fat_g": null,
+                "satFat_g": 0.0,
+                "gi": 0,
+                "fii_value": null,
+                "fii": null,
+                "kcal_item": 200.0,
+                "insulin_load": 158.0,
+                "confidence": 0.7,
+                "fii_source": "exact_fii",
+                "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+              }
+            ],
+            "insulin_load_total": 158.0,
+            "acute_score": 526.6666666666666,
+            "kcal_total": 200.0,
+            "carbs_total": 0.0,
+            "protein_total": 0.0,
+            "fat_total": 0.0,
+            "estimate_quality": "high",
+            "estimate_status": "estimated",
+            "main_insulin_drivers": [
+              "rice"
+            ]
+          },
+          "assessment_state": "evaluated",
+          "assessment": {
+            "result_schema_version": "reference_meal_result_v1",
+            "formula_version": "experimental_reference_load_v1",
+            "catalog_version": "r2_sha256_6db5357ae368981b1e2781a2a2402d60d63850e7b59c63e757b654a39bdc51d9",
+            "catalog_schema_version": "insight_reference_catalog_v1",
+            "eligibility_policy_version": "experimental_fii_input_v1",
+            "selection_policy_version": "explicit_source_id_v1",
+            "status": "unavailable",
+            "reference_load_total": null,
+            "items": [
+              {
+                "position": 0,
+                "inputs": {
+                  "name": "rice",
+                  "quantity": 1.0,
+                  "unit": "serving",
+                  "kcal_per_unit": 200.0,
+                  "kcal_per_unit_unit": "serving",
+                  "nutrition_origin": "manual",
+                  "carb_g": null,
+                  "protein_g": null,
+                  "fat_g": null,
+                  "sat_fat_g": null,
+                  "gi": null,
+                  "source_record_id": null
+                },
+                "selection_label": "explicit_source_reference_not_verified_food_equivalence",
+                "status": "unavailable",
+                "eaten_kcal": 200.0,
+                "reference_load": null,
+                "source": null,
+                "reasons": [
+                  {
+                    "code": "no_reference_selected",
+                    "detail": "No explicit source record selected"
+                  }
+                ]
+              }
+            ],
+            "reasons": [
+              {
+                "code": "incomplete_consumed_items",
+                "detail": "See ordered item reasons"
+              }
+            ]
+          },
+          "reasons": []
+        }
+      }
+    ]
+  },
+  "actual_base_code_coexistence": {
+    "legacy_previews": [
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 158.0,
+              "confidence": 0.7,
+              "fii_source": "exact_fii",
+              "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+            }
+          ],
+          "insulin_load_total": 158.0,
+          "acute_score": 526.6666666666666,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "high",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "rice"
+          ],
+          "persisted": false
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "synthetic reviewed food",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "synthetic reviewed food",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 0.0,
+              "confidence": 0.2,
+              "fii_source": "unknown",
+              "why": "Used an unknown-source estimate because direct Food Insulin Index data was unavailable."
+            }
+          ],
+          "insulin_load_total": 0.0,
+          "acute_score": 0.0,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "unknown",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "synthetic reviewed food"
+          ],
+          "persisted": false
+        }
+      },
+      {
+        "input": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice and dal",
+              "quantity": 1,
+              "unit": "serving",
+              "kcalPerUnit": 200
+            }
+          ]
+        },
+        "output": {
+          "meal_name": "Synthetic comparison",
+          "items": [
+            {
+              "name": "rice and dal",
+              "quantity": 1.0,
+              "unit": "serving",
+              "kcalPerUnit": 200.0,
+              "carb_g": 0.0,
+              "protein_g": null,
+              "fat_g": null,
+              "satFat_g": 0.0,
+              "gi": 0,
+              "fii_value": null,
+              "fii": null,
+              "kcal_item": 200.0,
+              "insulin_load": 139.10000000000002,
+              "confidence": 0.9,
+              "fii_source": "mapped_fii",
+              "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+            }
+          ],
+          "insulin_load_total": 139.10000000000002,
+          "acute_score": 463.66666666666674,
+          "kcal_total": 200.0,
+          "carbs_total": 0.0,
+          "protein_total": 0.0,
+          "fat_total": 0.0,
+          "estimate_quality": "medium",
+          "estimate_status": "estimated",
+          "main_insulin_drivers": [
+            "rice and dal"
+          ],
+          "persisted": false
+        }
+      }
+    ],
+    "legacy_reads_after_new_save": [
+      {
+        "formula_version": "current_backend_v2",
+        "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+        "id": "6f5190fa-899a-41e6-8c09-5a7591134393",
+        "created_at": "2026-09-16T13:26:09.600355Z",
+        "meal_name": "Synthetic comparison",
+        "items": [
+          {
+            "name": "rice and dal",
+            "quantity": 1.0,
+            "unit": "serving",
+            "kcalPerUnit": 200.0,
+            "carb_g": 0.0,
+            "protein_g": null,
+            "fat_g": null,
+            "satFat_g": 0.0,
+            "gi": 0,
+            "fii_value": null,
+            "fii": null,
+            "kcal_item": 200.0,
+            "insulin_load": 139.10000000000002,
+            "confidence": 0.9,
+            "fii_source": "mapped_fii",
+            "why": "Used a normalized or nearest measured Food Insulin Index match and scaled it by eaten energy."
+          }
+        ],
+        "insulin_load_total": 139.10000000000002,
+        "acute_score": 463.66666666666674,
+        "kcal_total": 200.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "medium",
+        "estimate_status": "estimated",
+        "main_insulin_drivers": [
+          "rice and dal"
+        ]
+      },
+      {
+        "formula_version": "current_backend_v2",
+        "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+        "id": "255c37c6-b552-4cf5-b21d-3878438786ae",
+        "created_at": "2026-09-16T12:00:00Z",
+        "meal_name": "Synthetic reference comparison",
+        "items": [
+          {
+            "name": "rice",
+            "quantity": 1.0,
+            "unit": "serving",
+            "kcalPerUnit": 200.0,
+            "carb_g": 0.0,
+            "protein_g": null,
+            "fat_g": null,
+            "satFat_g": 0.0,
+            "gi": 0,
+            "fii_value": null,
+            "fii": null,
+            "kcal_item": 200.0,
+            "insulin_load": 158.0,
+            "confidence": 0.7,
+            "fii_source": "exact_fii",
+            "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+          }
+        ],
+        "insulin_load_total": 158.0,
+        "acute_score": 526.6666666666666,
+        "kcal_total": 200.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "main_insulin_drivers": [
+          "rice"
+        ]
+      },
+      {
+        "formula_version": "current_backend_v2",
+        "dataset_version": "fii_foods_csv_fnv1a64_250e9dfc91988b6b",
+        "id": "b9f660ad-9ac6-40fd-926e-613a844f2829",
+        "created_at": "2026-09-16T12:00:00Z",
+        "meal_name": "Synthetic reference comparison",
+        "items": [
+          {
+            "name": "rice",
+            "quantity": 1.0,
+            "unit": "serving",
+            "kcalPerUnit": 200.0,
+            "carb_g": 0.0,
+            "protein_g": null,
+            "fat_g": null,
+            "satFat_g": 0.0,
+            "gi": 0,
+            "fii_value": null,
+            "fii": null,
+            "kcal_item": 200.0,
+            "insulin_load": 158.0,
+            "confidence": 0.7,
+            "fii_source": "exact_fii",
+            "why": "Used a direct Food Insulin Index match and scaled it by eaten energy."
+          }
+        ],
+        "insulin_load_total": 158.0,
+        "acute_score": 526.6666666666666,
+        "kcal_total": 200.0,
+        "carbs_total": 0.0,
+        "protein_total": 0.0,
+        "fat_total": 0.0,
+        "estimate_quality": "high",
+        "estimate_status": "estimated",
+        "main_insulin_drivers": [
+          "rice"
+        ]
+      }
+    ],
+    "old_writer_create_read_delete_preserved_all_assessments": true
+  }
+}

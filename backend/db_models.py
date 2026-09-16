@@ -27,6 +27,7 @@ class MealDB(Base):
     acute_score: Mapped[float] = mapped_column(Float, nullable=False)
     formula_version: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     dataset_version: Mapped[Optional[str]] = mapped_column(String(96), nullable=True)
+    reference_result_json: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     chronic_score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     estimate_quality: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     main_insulin_drivers: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
