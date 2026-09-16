@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import csv
+import io
 import re
 from pathlib import Path
+from threading import Lock
 from typing import Optional
 
 _FII_CSV_PATH = Path(__file__).resolve().parent / "fii_foods.csv"
 _FII_DATA_LOADED = False
+_FII_LOAD_LOCK = Lock()
+_DATASET_VERSION = ""
 _FII_ROWS: list[dict[str, object]] = []
 _FOOD_NAME_INDEX: dict[str, dict[str, object]] = {}
 _ALIAS_INDEX: dict[str, dict[str, object]] = {}
@@ -98,16 +102,43 @@ def _parse_aliases(aliases_raw: str) -> list[str]:
     ]
 
 
+def dataset_version_for_csv(text: str) -> str:
+    """Reuse Rust metadata.rs's non-security FNV-1a normalized-line identifier."""
+    lines = text.replace("\r\n", "\n").split("\n")
+    if lines[-1] == "":
+        lines.pop()
+    fingerprint = 0xCBF29CE484222325
+    for line in lines:
+        for byte in (line + "\n").encode("utf-8"):
+            fingerprint = ((fingerprint ^ byte) * 0x100000001B3) & 0xFFFFFFFFFFFFFFFF
+    return f"fii_foods_csv_fnv1a64_{fingerprint:016x}"
+
+
+def get_dataset_version() -> str:
+    load_fii_data()
+    return _DATASET_VERSION
+
+
 def load_fii_data() -> None:
-    global _FII_DATA_LOADED
     if _FII_DATA_LOADED:
         return
+    # Serialize first load so concurrent callers cannot publish different snapshots.
+    with _FII_LOAD_LOCK:
+        if not _FII_DATA_LOADED:
+            _load_fii_data()
+
+
+def _load_fii_data() -> None:
+    global _FII_DATA_LOADED, _DATASET_VERSION
 
     rows: list[dict[str, object]] = []
     index: dict[str, dict[str, object]] = {}
     alias_index: dict[str, dict[str, object]] = {}
 
-    with _FII_CSV_PATH.open("r", encoding="utf-8", newline="") as csv_file:
+    # Parse and identify the same bytes. File changes take effect only on restart.
+    csv_text = _FII_CSV_PATH.read_bytes().decode("utf-8")
+    dataset_version = dataset_version_for_csv(csv_text)
+    with io.StringIO(csv_text, newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         for raw in reader:
             food_name = normalize_food_name(raw.get("food_name", ""))
@@ -144,6 +175,7 @@ def load_fii_data() -> None:
     _FOOD_NAME_INDEX.update(index)
     _ALIAS_INDEX.clear()
     _ALIAS_INDEX.update(alias_index)
+    _DATASET_VERSION = dataset_version
     _FII_DATA_LOADED = True
 
 

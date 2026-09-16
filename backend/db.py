@@ -21,6 +21,8 @@ def _migrate_sqlite_columns() -> None:
     # Lightweight column migration for local SQLite without Alembic.
     table_columns = {
         "meals": {
+            "formula_version": "ALTER TABLE meals ADD COLUMN formula_version VARCHAR(64)",
+            "dataset_version": "ALTER TABLE meals ADD COLUMN dataset_version VARCHAR(96)",
             "insulin_load_total": "ALTER TABLE meals ADD COLUMN insulin_load_total FLOAT",
             "total_protein": "ALTER TABLE meals ADD COLUMN total_protein FLOAT",
             "total_fat": "ALTER TABLE meals ADD COLUMN total_fat FLOAT",

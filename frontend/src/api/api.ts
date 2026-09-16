@@ -55,6 +55,8 @@ export type MealModelingItemResponse = {
 };
 
 export type MealModelingResponse = {
+	formula_version?: string | null;
+	dataset_version?: string | null;
 	id: string;
 	created_at: string;
 	meal_name: string;
@@ -244,6 +246,8 @@ const normalizeMealModelingResponse = (raw: unknown): MealModelingResponse => {
 	const items = Array.isArray(candidate.items) ? candidate.items.map(normalizeMealModelingItem) : [];
 	return {
 		id: toNonEmptyString(candidate.id) ?? crypto.randomUUID(),
+		formula_version: toNonEmptyString(candidate.formula_version) ?? null,
+		dataset_version: toNonEmptyString(candidate.dataset_version) ?? null,
 		created_at: toNonEmptyString(candidate.created_at) ?? new Date().toISOString(),
 		meal_name: toNonEmptyString(candidate.meal_name ?? candidate.name) ?? "Untitled meal",
 		items,
@@ -321,6 +325,8 @@ const normalizeChronicMetricsResponse = (raw: unknown): ChronicMetricsResponse =
 };
 
 export const mapMealModelingResponseToMeal = (backendMeal: MealModelingResponse, image: string | null = null): Meal => ({
+	formula_version: backendMeal.formula_version ?? null,
+	dataset_version: backendMeal.dataset_version ?? null,
 	id: backendMeal.id,
 	image,
 	name: backendMeal.meal_name,

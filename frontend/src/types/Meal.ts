@@ -13,6 +13,8 @@ export type CalorieSource = "meal_estimate" | "item_sum";
 export type EstimateStatus = "estimated" | "insufficient_data";
 
 export type Meal = {
+	formula_version?: string | null;
+	dataset_version?: string | null;
 	id: string;
 	image: string | null;
 	name: string;
