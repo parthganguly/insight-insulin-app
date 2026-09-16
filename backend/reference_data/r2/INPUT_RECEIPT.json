@@ -1,0 +1,64 @@
+{
+  "task": "Prepare R2 starter inputs; no R2 implementation or fresh scientific validation",
+  "date": "2026-09-16",
+  "source_zip_name": "INSIGHT_FII_CODEX_HANDOFF_20260913.zip",
+  "source_zip_sha256": "025f02fd256d7411fc1a4af1a8c1d8082bc477bf07827dfa54e4cccdb31967b5",
+  "source_manifest_entries_verified": 23,
+  "copied_unchanged": [
+    {
+      "path": "inputs/INSIGHT_FII_147_metadata_v1_1.csv",
+      "source_zip_member": "INSIGHT_FII_CODEX_HANDOFF/derived/INSIGHT_FII_147_metadata_v1_1.csv",
+      "sha256": "2a8f9e612e493f7e93e363126f286807a72517cb994a6c90dc450c4d43aec4c9",
+      "bytes": 95100
+    },
+    {
+      "path": "inputs/INSIGHT_FII_147_metadata_v1_1.json",
+      "source_zip_member": "INSIGHT_FII_CODEX_HANDOFF/derived/INSIGHT_FII_147_metadata_v1_1.json",
+      "sha256": "3ebb953a3eec8510de588d06a03bfdef1bcdc5ec6915444ba36c8b5283ffa7a8",
+      "bytes": 189106
+    },
+    {
+      "path": "historical/SOURCE_ISSUES_20260913.csv",
+      "source_zip_member": "INSIGHT_FII_CODEX_HANDOFF/SOURCE_ISSUES.csv",
+      "sha256": "5d9f21b4826576cb2538ee54d1dac6e69f1bba6d461400c76c0801af1869271e",
+      "bytes": 2930
+    },
+    {
+      "path": "historical/METADATA_CORRECTION_RECEIPT.json",
+      "source_zip_member": "INSIGHT_FII_CODEX_HANDOFF/derived/METADATA_CORRECTION_RECEIPT.json",
+      "sha256": "9801aa7b042b50cf50cee75e69c7cb8e385e5a7c4c9a1cf5150efe31331ffa08",
+      "bytes": 1245
+    }
+  ],
+  "original_vs_corrected_check": {
+    "rows": 147,
+    "unique_ids": 147,
+    "same_membership_and_order": true,
+    "changed_cells": 121,
+    "changed_fields": [
+      "harmonization_note"
+    ],
+    "all_other_fields_identical": true
+  },
+  "limitations": [
+    "No fresh primary-table extraction or source-glyph verification in this packaging step.",
+    "The September 13 source-issue ledger is historical and contains temporal-analysis actions; it is not a runtime-eligibility policy.",
+    "Catalog eligibility, matching and API integration are not implemented or approved by this packet.",
+    "No check of local files on the owner Windows computer was performed."
+  ],
+  "remote_checkpoint_observed": {
+    "main": "a322aad0ee9d0b1eb753aced18758de6eaff2935",
+    "parent": "504b58707955f2cca16c32b6f12f8e36a846b2cb",
+    "tree": "6ce4460d7ed0324be7def5825b9b5ac50ab68b80",
+    "merged_pr": 138,
+    "completed_issue": 135,
+    "post_merge_run": 35061636765,
+    "ci_conclusion": "success",
+    "jobs": [
+      "Backend",
+      "Frontend",
+      "Browser (Cypress)",
+      "Rust"
+    ]
+  }
+}

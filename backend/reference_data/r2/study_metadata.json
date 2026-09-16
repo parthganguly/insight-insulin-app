@@ -1,0 +1,43 @@
+{
+  "bao2011": {
+    "row_sample_size": null,
+    "row_sample_size_limitation": "Neither canonical input supplies per-row sample counts; method-level counts are retained separately and are not copied into rows.",
+    "evidence_access": "Authenticated existing local source; targeted methods-page text inspection only. No fresh source-cell extraction, participant data, author clarification, or redistribution certification.",
+    "doi": "10.3945/ajcn.110.005033",
+    "population": "Healthy University of Sydney GI-testing volunteers; nonsmoking, age 18-40, BMI 19-25, normal glucose tolerance (Methods p.985).",
+    "sample_information": {
+      "subjects_section_group_range": [
+        10,
+        13
+      ],
+      "study_1_stated_subjects_per_food": 10,
+      "scope": "Published method statements, not independently resolved counts for each historical Table 1 row."
+    },
+    "methods_location": "Subjects and Methods / Subjects and Study 1, printed p.985 (PDF page 2)",
+    "source_file": "PIIS0002916523022645.pdf",
+    "source_sha256": "971783d486c7a1138452ef4081071698d2ba183e8fcffbd65f426a622a4ecb57",
+    "lineage": "Earlier Holt measurements recur within Bao; no additional Holt foods or 13 mixed meals appended."
+  },
+  "bell2016": {
+    "row_sample_size": null,
+    "row_sample_size_limitation": "Neither canonical input supplies per-row sample counts; method-level counts are retained separately and are not copied into rows.",
+    "evidence_access": "Authenticated existing local source; targeted methods-page text inspection only. No fresh source-cell extraction, participant data, author clarification, or redistribution certification.",
+    "doi": "10.3390/nu8040210",
+    "population": "Healthy subjects; FII methodology refers to Bao (Methods section 2.1, p.2). Row-level demographics unavailable.",
+    "sample_information": {
+      "method_stated_average_subjects_per_food": 10,
+      "new_food_individual_observations": 254,
+      "new_food_count": 26,
+      "scope": "Method summary n=10 does not establish each row n; 254 observations are not 26 times 10. Row counts remain unknown."
+    },
+    "methods_location": "Materials and Methods sections 2.1-2.2, p.2 (PDF page 2)",
+    "source_file": "nutrients-08-00210.pdf",
+    "source_sha256": "d9f0c790e7c6953237892654825a45d865cf990dc541786ae1125c4e5672e08a",
+    "supplement": {
+      "source_file": "nutrients-08-00210-s001.docx",
+      "sha256": "1b9c369175473000b4afe7417cd2e1422a6053a7835c71a785d654b2f63eb4ff",
+      "location": "Table S1; row identity takes precedence over reflowable S1/S2 page labels"
+    },
+    "lineage": "26 added food means; six starred rows use 300-kJ glucose/test portions despite the general 1000-kJ method summary."
+  }
+}

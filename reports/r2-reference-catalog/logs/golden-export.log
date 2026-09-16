@@ -1,0 +1,3 @@
+COMMAND: python -m validation.export_golden_fixtures --check --out ../crates/insight-core/fixtures/golden
+EXIT: 0
+Golden fixtures are current in <worktree>\crates\insight-core\fixtures\golden

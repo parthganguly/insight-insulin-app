@@ -1,0 +1,30 @@
+[
+  {
+    "check": "catalog-tests",
+    "exit_code": 0
+  },
+  {
+    "check": "backend-tests",
+    "exit_code": 0
+  },
+  {
+    "check": "modeling-characterization",
+    "exit_code": 0
+  },
+  {
+    "check": "validation",
+    "exit_code": 0
+  },
+  {
+    "check": "golden-export",
+    "exit_code": 0
+  },
+  {
+    "check": "compile",
+    "exit_code": 0
+  },
+  {
+    "check": "deterministic-build",
+    "exit_code": 0
+  }
+]

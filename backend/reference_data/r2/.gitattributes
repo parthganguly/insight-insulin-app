@@ -1,0 +1,5 @@
+# Preserve authenticated source and deterministic artifact bytes on every platform.
+* -text
+# Original CSV line endings include historical CRCRLF; preserve, never normalize.
+inputs/*.csv -diff
+historical/*.csv -diff
