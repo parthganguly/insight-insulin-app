@@ -1,0 +1,45 @@
+{
+  "packet_sha256": "a6773ea181f4e13d708fa5f911d0445c5624d4c817438d74d106b09504fdad99",
+  "entries": [
+    {
+      "path": "CODEX_R2_FIRST_PATCH.md",
+      "sha256": "980ef0a58158921f21d43aca67e1639acda7d486d6bbbaf4561f23c5b65ebbfa",
+      "verified": true
+    },
+    {
+      "path": "INPUT_RECEIPT.json",
+      "sha256": "98281f371b618e6c7e05aa55a3c90b6db600229789b75c229657d65808c578e2",
+      "verified": true
+    },
+    {
+      "path": "README_FIRST.md",
+      "sha256": "b3d2f476d141719ae5f91fca0ccaa6b488abdae2a42393b18715bf7d3d00b8fd",
+      "verified": true
+    },
+    {
+      "path": "historical/FINAL_PLAN_20260915.md",
+      "sha256": "3980ee0c08377465429cf07f5081570a9ebe3d5a5630bb6a4822fde7c0ca8c5c",
+      "verified": true
+    },
+    {
+      "path": "historical/METADATA_CORRECTION_RECEIPT.json",
+      "sha256": "9801aa7b042b50cf50cee75e69c7cb8e385e5a7c4c9a1cf5150efe31331ffa08",
+      "verified": true
+    },
+    {
+      "path": "historical/SOURCE_ISSUES_20260913.csv",
+      "sha256": "5d9f21b4826576cb2538ee54d1dac6e69f1bba6d461400c76c0801af1869271e",
+      "verified": true
+    },
+    {
+      "path": "inputs/INSIGHT_FII_147_metadata_v1_1.csv",
+      "sha256": "2a8f9e612e493f7e93e363126f286807a72517cb994a6c90dc450c4d43aec4c9",
+      "verified": true
+    },
+    {
+      "path": "inputs/INSIGHT_FII_147_metadata_v1_1.json",
+      "sha256": "3ebb953a3eec8510de588d06a03bfdef1bcdc5ec6915444ba36c8b5283ffa7a8",
+      "verified": true
+    }
+  ]
+}

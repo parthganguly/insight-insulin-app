@@ -1,0 +1,19 @@
+{
+  "status": "METADATA_ONLY_DERIVATIVE; INDEPENDENT_REVIEW_PENDING",
+  "parent_files": {
+    "INSIGHT_FII_CANONICAL_147.csv": "67643adbda34b587bb300c6a7ecdd17a69f345c1d7cfa3f7e1ed7725f4879a5a",
+    "INSIGHT_FII_CANONICAL_147.json": "3e0231c0d770ed81f026734123272848cb623074296cae9fab2dc0da73d04d1b"
+  },
+  "derivative_files": {
+    "INSIGHT_FII_147_metadata_v1_1.csv": "2a8f9e612e493f7e93e363126f286807a72517cb994a6c90dc450c4d43aec4c9",
+    "INSIGHT_FII_147_metadata_v1_1.json": "3ebb953a3eec8510de588d06a03bfdef1bcdc5ec6915444ba36c8b5283ffa7a8"
+  },
+  "only_changed_field": "harmonization_note",
+  "changed_rows": 121,
+  "numeric_fields_changed": 0,
+  "row_membership_changed": false,
+  "source_anomalies_repaired": false,
+  "regression_or_holdout_run": false,
+  "note": "Bao 2011 Table 1 is already on the glucose=100 response scale. For earlier white-bread=100 scores, conversion to glucose=100 divides GS by (100/70) and FII by (100/73), equivalently multiplying by 0.70 and 0.73 respectively. This note corrects the previous reconstruction metadata only. Do not transform the already harmonized numerical Table 1 values again.",
+  "old_workbook": "Preserved as a legacy reconstruction. Its old metadata is not corrected by this script."
+}

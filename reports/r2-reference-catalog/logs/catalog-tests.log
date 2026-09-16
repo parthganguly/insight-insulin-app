@@ -1,0 +1,24 @@
+COMMAND: python -m unittest tests.test_reference_catalog -v
+EXIT: 0
+test_active_runtime_contract_and_no_production_imports (tests.test_reference_catalog.ReferenceCatalogTests.test_active_runtime_contract_and_no_production_imports) ... ok
+test_builder_rejects_modified_source_bytes (tests.test_reference_catalog.ReferenceCatalogTests.test_builder_rejects_modified_source_bytes) ... ok
+test_corrupt_nonfinite_negative_boolean_and_duplicate_rejected (tests.test_reference_catalog.ReferenceCatalogTests.test_corrupt_nonfinite_negative_boolean_and_duplicate_rejected) ... ok
+test_deep_immutable_snapshot_and_selection (tests.test_reference_catalog.ReferenceCatalogTests.test_deep_immutable_snapshot_and_selection) ... ok
+test_deterministic_artifacts_and_all_raw_fields_unchanged (tests.test_reference_catalog.ReferenceCatalogTests.test_deterministic_artifacts_and_all_raw_fields_unchanged) ... ok
+test_dose_and_named_issues_are_use_specific (tests.test_reference_catalog.ReferenceCatalogTests.test_dose_and_named_issues_are_use_specific) ... ok
+test_duplicate_food_names_do_not_create_ambiguous_auto_selection (tests.test_reference_catalog.ReferenceCatalogTests.test_duplicate_food_names_do_not_create_ambiguous_auto_selection) ... ok
+test_exact_mapping_and_unknown_sample_sizes (tests.test_reference_catalog.ReferenceCatalogTests.test_exact_mapping_and_unknown_sample_sizes) ... ok
+test_missing_gi_and_fibre_do_not_block_fii_or_turn_into_zero (tests.test_reference_catalog.ReferenceCatalogTests.test_missing_gi_and_fibre_do_not_block_fii_or_turn_into_zero) ... ok
+test_new_file_and_policy_identity_cannot_relabel_loaded_snapshot (tests.test_reference_catalog.ReferenceCatalogTests.test_new_file_and_policy_identity_cannot_relabel_loaded_snapshot) ... ok
+test_no_override_and_required_version (tests.test_reference_catalog.ReferenceCatalogTests.test_no_override_and_required_version) ... ok
+test_reference_conflict_missing_dose_and_attribution_require_review (tests.test_reference_catalog.ReferenceCatalogTests.test_reference_conflict_missing_dose_and_attribution_require_review) ... ok
+test_serialization_identity_is_semantic_and_sha256 (tests.test_reference_catalog.ReferenceCatalogTests.test_serialization_identity_is_semantic_and_sha256) ... ok
+test_stripped_or_malformed_study_context_is_rejected (tests.test_reference_catalog.ReferenceCatalogTests.test_stripped_or_malformed_study_context_is_rejected) ... ok
+test_unsupported_versions_forged_mapping_and_eligibility_rejected (tests.test_reference_catalog.ReferenceCatalogTests.test_unsupported_versions_forged_mapping_and_eligibility_rejected) ... ok
+test_wrong_version_unknown_ids_and_names_fail_explicitly (tests.test_reference_catalog.ReferenceCatalogTests.test_wrong_version_unknown_ids_and_names_fail_explicitly) ... ok
+test_zero_missing_and_above_100_are_distinct (tests.test_reference_catalog.ReferenceCatalogTests.test_zero_missing_and_above_100_are_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.950s
+
+OK

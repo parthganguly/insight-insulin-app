@@ -1,0 +1,67 @@
+{
+  "eligibility_version": "experimental_fii_input_v1",
+  "selection_version": "explicit_source_id_v1",
+  "uses": {
+    "experimental_fii_input": "Offline candidate FII input at the published protocol only; not a consumer match or arbitrary-portion prediction.",
+    "composition_energy": "Potential use of source composition for energy/portion calculations; no calculation implemented.",
+    "gi_gl_calculation": "Potential GI/GL-dependent calculation; never zero-fill missing fields.",
+    "fibre_context": "Presence of published fibre context; never zero-fill missing fields."
+  },
+  "issue_rules": [
+    {
+      "issue_id": "P04",
+      "record_ids": [
+        "BELL2016-S1-001",
+        "BELL2016-S1-002",
+        "BELL2016-S1-003",
+        "BELL2016-S1-004",
+        "BELL2016-S1-005",
+        "BELL2016-S1-006"
+      ],
+      "uses": {
+        "experimental_fii_input": "reference_only"
+      },
+      "reason": "300-kJ physiological test; composition remains per 1000 kJ; no scale conversion"
+    },
+    {
+      "issue_id": "P02",
+      "record_ids": [
+        "BELL2016-S1-002"
+      ],
+      "uses": {
+        "gi_gl_calculation": "requires_review"
+      },
+      "reason": "Printed GI, carbohydrate and GL disagree; all three retained"
+    },
+    {
+      "issue_id": "P03",
+      "record_ids": [
+        "BELL2016-S1-017"
+      ],
+      "uses": {
+        "composition_energy": "requires_review",
+        "gi_gl_calculation": "requires_review",
+        "experimental_fii_input": "requires_review"
+      },
+      "reason": "Composition/energy inconsistency; effect on actual test-dose comparability unresolved, so FII-input use also requires review; FII itself is not corrected"
+    },
+    {
+      "issue_id": "P06",
+      "record_ids": [
+        "BELL2016-S1-014",
+        "BELL2016-S1-024"
+      ],
+      "uses": {
+        "experimental_fii_input": "requires_review"
+      },
+      "reason": "Main-text/table FII or item-linkage conflict unresolved; retain table mean/SEM"
+    }
+  ],
+  "limitations": [
+    "Policy is use-specific, not the historical 19/17/10-food statistical masks.",
+    "Candidate means compatible attributed source input, not validated matching, physiology or product eligibility.",
+    "All source issues P01-P10 remain in source_issues. P01 is metadata-only; P05 is handled per missing field; P07-P10 limit inference and do not define product row masks.",
+    "Existing research checks support source transcription; no fresh independent cell-by-cell visual certification in R2.",
+    "No consumer-food match, recipe decomposition, arbitrary portion prediction, scoring, persistence or UI activation authorized."
+  ]
+}

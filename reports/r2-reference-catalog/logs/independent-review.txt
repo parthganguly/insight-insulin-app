@@ -1,0 +1,8 @@
+Independent implementation review: /root/r2_diff_review
+Scope: read-only staged actual diff and docs/r2-reference-catalog.md.
+Initial findings: DOI-only study metadata accepted; oversized integers leaked OverflowError.
+Corrections: mandatory typed study/policy/issue context; oversized numeric CatalogError; regressions.
+Final reviewer result: No remaining findings in the staged correction or documentation.
+Independently reran 17 catalog tests and deterministic builder --check: PASS.
+Counts: 147 records; 138 candidate, 6 reference-only, 3 requires-review.
+Owner/data acceptance remains pending. Not primary-source certification or activation/release approval.
