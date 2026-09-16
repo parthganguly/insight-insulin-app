@@ -1,0 +1,44 @@
+{
+  "base": "cb6083f8386bb0464b1f94ca0a2f7d49c3e55c16",
+  "base_tree": "afb347f07010b7ad20aa5abf3aaffca29d563f56",
+  "branch": "codex/r2-reference-meal-integration",
+  "remote_main": "cb6083f8386bb0464b1f94ca0a2f7d49c3e55c16",
+  "task": {
+    "name": "CODEX_R2_REFERENCE_INTEGRATION.md",
+    "sha256": "c5f570fb50000249452e1bd1196248640793a5fdbc73178e0108eb7802ab46ec"
+  },
+  "protected_unchanged": {
+    "backend/fii_foods.csv": {
+      "base_git_blob": "8fef01a5d690ccd321d29dec5d5a31f981328811",
+      "sha256": "98f7e18cd29e2ef3a5e6f2f96c040bf5175fef1683c487c358ca11aa5073908e"
+    },
+    "backend/scoring_service.py": {
+      "base_git_blob": "9a9bee79344e82bbe620f3873a1be993d8d50714",
+      "sha256": "f300b55795bed169e37c820ac52c5b9f22374dae35d6f075b7e140010a29991c"
+    },
+    "backend/fii_lookup.py": {
+      "base_git_blob": "c195387fc700ef54d8ad8af83d3dcdac82a4ff47",
+      "sha256": "60db0fca83aba18b8f131fa41f8db97c3aab1d42e8a65c986883d70a62a12ad7"
+    },
+    "backend/api/meals.py": {
+      "base_git_blob": "cd955704f729da711cf8846393058c7afebba86e",
+      "sha256": "4f3b8c0b010620316805a956d9e98030f2278c544d55a954344a1fc6cef02085"
+    },
+    "backend/models.py": {
+      "base_git_blob": "aa85552ca0d7bf238090c2005fee97d6f6b0c77a",
+      "sha256": "8d070e72d5f15d6b418c623126b2de3d6cbf4b44074cdd86ac5750e61b6bf863"
+    },
+    "backend/main.py": {
+      "base_git_blob": "412f776dabb29399ed54b8eb5efb96f01029c52a",
+      "sha256": "f21bf7abb30f0257a7c049f9de3186e0731b479e8903858dd1ef57371a23479f"
+    },
+    "backend/reference_catalog.py": {
+      "base_git_blob": "ba1855d0f251511fea3e46fa3c4743eb1189c33d",
+      "sha256": "f646e2604b7c02eae433d4d3c43c83c06a20c8a0925a0cfaece1790e9f907e6e"
+    },
+    "backend/reference_data/r2/candidate_catalog.json": {
+      "base_git_blob": "2c0e4b5859b285a1e394722fed590ea36f96785e",
+      "sha256": "6db5357ae368981b1e2781a2a2402d60d63850e7b59c63e757b654a39bdc51d9"
+    }
+  }
+}

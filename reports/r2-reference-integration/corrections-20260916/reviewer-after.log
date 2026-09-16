@@ -1,0 +1,24 @@
+COMMAND: python "<TASK_WORKTREE>\reports\r2-reference-integration\corrections-20260916\test_r2_boundary_review.py" --out "<TASK_WORKTREE>\reports\r2-reference-integration\corrections-20260916\reviewer-after.json"
+CWD: backend
+PYTHONPATH=backend; PYTHON_DOTENV_DISABLED=1
+EXIT: 0
+<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_all_catalog_sources_match_archived_policy_and_inputs (__main__.IndependentR2Tests.test_all_catalog_sources_match_archived_policy_and_inputs) ... ok
+test_control_invalid_text_unknown_version_and_null_are_handled (__main__.IndependentR2Tests.test_control_invalid_text_unknown_version_and_null_are_handled) ... ok
+test_failure_after_flush_rolls_back_entire_save (__main__.IndependentR2Tests.test_failure_after_flush_rolls_back_entire_save) ... ok
+test_incomplete_energy_or_reference_never_gets_partial_total (__main__.IndependentR2Tests.test_incomplete_energy_or_reference_never_gets_partial_total) ... ok
+test_loaded_file_disappearance_before_item_iteration_and_commit (__main__.IndependentR2Tests.test_loaded_file_disappearance_before_item_iteration_and_commit) ... ok
+test_malformed_requests_and_invalid_zero_quantity_rows_are_rejected (__main__.IndependentR2Tests.test_malformed_requests_and_invalid_zero_quantity_rows_are_rejected) ... ok
+test_material_inputs_and_units_are_all_fingerprinted (__main__.IndependentR2Tests.test_material_inputs_and_units_are_all_fingerprinted) ... ok
+test_migration_preserves_existing_values_and_null_legacy_assessment (__main__.IndependentR2Tests.test_migration_preserves_existing_values_and_null_legacy_assessment) ... ok
+test_regression_blob_assessment_does_not_break_read_list_or_replay (__main__.IndependentR2Tests.test_regression_blob_assessment_does_not_break_read_list_or_replay) ... ok
+test_regression_missing_persisted_versions_must_not_be_reconstructed (__main__.IndependentR2Tests.test_regression_missing_persisted_versions_must_not_be_reconstructed) ... ok
+test_runtime_versions_or_catalog_failure_cannot_change_saved_replay (__main__.IndependentR2Tests.test_runtime_versions_or_catalog_failure_cannot_change_saved_replay) ... ok
+test_snapshot_deep_immutability (__main__.IndependentR2Tests.test_snapshot_deep_immutability) ... ok
+test_unreviewed_catalog_is_not_authorized_by_matching_client_expectation (__main__.IndependentR2Tests.test_unreviewed_catalog_is_not_authorized_by_matching_client_expectation) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 4.255s
+
+OK

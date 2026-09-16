@@ -1,0 +1,4 @@
+COMMAND: rustc --version
+CWD: repository
+EXIT: 0
+rustc 1.96.0 (ac68faa20 2026-05-25)

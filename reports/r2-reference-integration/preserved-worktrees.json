@@ -1,0 +1,25 @@
+[
+  {
+    "worktree": "insight-insulin-app",
+    "head": "f1db1b7798927bb75a5378f08543e23a4e34385a",
+    "status": [
+      "?? reports/ux/premium-redesign/j9-baseline-1-device-recheck.md",
+      "?? reports/ux/premium-redesign/j9-post-stay-navigation.md"
+    ]
+  },
+  {
+    "worktree": "insight-issue-134-fallback-quantity-scaling",
+    "head": "567d13c82831b7d9cc6390587d5a9bc964f29c49",
+    "status": []
+  },
+  {
+    "worktree": "insight-issue-135-scoring-provenance",
+    "head": "fb4394dc2c41d4dda571444d6cc2de605389bf8a",
+    "status": []
+  },
+  {
+    "worktree": "insight-r2-reference-catalog",
+    "head": "9a061f3bb25e50db24c861a63314f71988344b26",
+    "status": []
+  }
+]

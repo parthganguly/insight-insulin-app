@@ -233,13 +233,26 @@ class ReferenceCatalogTests(unittest.TestCase):
         self.assertEqual(FORMULA_VERSION, "current_backend_v2")
         self.assertEqual(lookup_fii("rice")[0], 79)
         backend = Path(__file__).resolve().parents[1]
-        for path in backend.rglob("*.py"):
-            if "tests" in path.parts or path.name in {"reference_catalog.py", "build_reference_catalog.py"}:
+        # Follow every local import reachable from production main, including dormant
+        # branches. Offline modules may import the catalog; production must not reach them.
+        pending, visited = [backend / "main.py"], set()
+        while pending:
+            path = pending.pop()
+            if path in visited:
                 continue
+            visited.add(path)
             for node in ast.walk(ast.parse(path.read_text(encoding="utf-8-sig"))):
                 imports = ([node.module or ""] if isinstance(node, ast.ImportFrom)
                            else [a.name for a in node.names] if isinstance(node, ast.Import) else [])
-                self.assertFalse(any("reference_catalog" in name for name in imports), str(path))
+                if isinstance(node, ast.ImportFrom):
+                    imports += [(node.module + "." if node.module else "") + a.name for a in node.names]
+                self.assertFalse(any("reference_catalog" in name or "experimental_reference" in name
+                                     for name in imports), str(path))
+                for name in imports:
+                    local = backend.joinpath(*name.split("."))
+                    for candidate in (local.with_suffix(".py"), local / "__init__.py"):
+                        if candidate.is_file():
+                            pending.append(candidate)
 
 
 if __name__ == "__main__":

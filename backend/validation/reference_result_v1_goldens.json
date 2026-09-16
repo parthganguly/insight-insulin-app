@@ -1,0 +1,16 @@
+{
+  "version": "reference_meal_result_v1_synthetic_goldens_v1",
+  "basis": "Hand-selected synthetic FII and portions; arithmetic checks, not human validation. Null source ID means no eligible reference in this independent checker.",
+  "cases": [
+    {"id": "ordinary", "synthetic_fii": 69, "items": [{"quantity": 1, "kcal_per_unit": 200}], "expected": {"status": "experimental", "total": 138, "loads": [138]}},
+    {"id": "split", "synthetic_fii": 69, "items": [{"quantity": 0.5, "kcal_per_unit": 200}, {"quantity": 0.5, "kcal_per_unit": 200}], "expected": {"status": "experimental", "total": 138, "loads": [69, 69]}},
+    {"id": "genuine_zero", "synthetic_fii": 0, "items": [{"quantity": 1, "kcal_per_unit": 200}], "expected": {"status": "experimental", "total": 0, "loads": [0]}},
+    {"id": "above_100", "synthetic_fii": 150, "items": [{"quantity": 1, "kcal_per_unit": 200}], "expected": {"status": "experimental", "total": 300, "loads": [300]}},
+    {"id": "partial", "synthetic_fii": 69, "items": [{"quantity": 1, "kcal_per_unit": 200}, {"quantity": 1, "kcal_per_unit": 200, "source_record_id": null}], "expected": {"status": "unavailable", "total": null, "loads": [138, null]}},
+    {"id": "missing_energy", "synthetic_fii": 69, "items": [{"quantity": 1, "kcal_per_unit": null}], "expected": {"status": "unavailable", "total": null, "loads": [null]}},
+    {"id": "zero_energy", "synthetic_fii": 69, "items": [{"quantity": 1, "kcal_per_unit": 0}], "expected": {"status": "unavailable", "total": null, "loads": [null]}},
+    {"id": "not_consumed", "synthetic_fii": 69, "items": [{"quantity": 0, "kcal_per_unit": null}], "expected": {"status": "unavailable", "total": null, "loads": [0]}},
+    {"id": "mixed_not_consumed", "synthetic_fii": 69, "items": [{"quantity": 0, "kcal_per_unit": null}, {"quantity": 1, "kcal_per_unit": 200}], "expected": {"status": "experimental", "total": 138, "loads": [0, 138]}},
+    {"id": "empty", "synthetic_fii": 69, "items": [], "expected": {"status": "unavailable", "total": null, "loads": []}}
+  ]
+}

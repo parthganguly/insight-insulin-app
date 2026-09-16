@@ -1,0 +1,226 @@
+{
+  "tests_run": 13,
+  "passed": 11,
+  "failures": [
+    {
+      "test": "__main__.IndependentR2Tests.test_regression_blob_assessment_does_not_break_read_list_or_replay",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Parth Ganguly\\Documents\\Codex\\2026-06-21\\github-plugin-github-openai-curated-remote\\work\\insight-r2-reference-meal-integration\\reports\\r2-reference-integration\\corrections-20260916\\test_r2_boundary_review.py\", line 295, in test_regression_blob_assessment_does_not_break_read_list_or_replay\n    self.assertEqual(actual,[(200,'evidence_error')]*len(actual),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     'A non-TEXT value escaped the evidence_error boundary and broke the request.')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(500, None), (500, None), (500, None), (50[30 chars]one)] != [(200, 'evidence_error'), (200, 'evidence_e[102 chars]or')]\n\nFirst differing element 0:\n(500, None)\n(200, 'evidence_error')\n\n- [(500, None), (500, None), (500, None), (500, None), (500, None), (500, None)]\n+ [(200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error')] : A non-TEXT value escaped the evidence_error boundary and broke the request.\n"
+    },
+    {
+      "test": "__main__.IndependentR2Tests.test_regression_missing_persisted_versions_must_not_be_reconstructed",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Parth Ganguly\\Documents\\Codex\\2026-06-21\\github-plugin-github-openai-curated-remote\\work\\insight-r2-reference-meal-integration\\reports\\r2-reference-integration\\corrections-20260916\\test_r2_boundary_review.py\", line 278, in test_regression_missing_persisted_versions_must_not_be_reconstructed\n    self.assertEqual(actual,[(200,'evidence_error')]*len(actual),\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                     'Missing persisted identities were restored by defaults before the hash was checked.')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(200, 'evaluated'), (200, 'evaluated'), (200, 'eva[184 chars]ed')] != [(200, 'evidence_error'), (200, 'evidence_error'), [244 chars]or')]\n\nFirst differing element 0:\n(200, 'evaluated')\n(200, 'evidence_error')\n\n- [(200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated'),\n-  (200, 'evaluated')]\n+ [(200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error'),\n+  (200, 'evidence_error')] : Missing persisted identities were restored by defaults before the hash was checked.\n"
+    }
+  ],
+  "errors": [],
+  "details": {
+    "all_records": {
+      "records": 147,
+      "status_counts": {
+        "calculated": 138,
+        "unavailable": 9
+      },
+      "max_fraction_vs_float_difference": 2.842170943040401e-14,
+      "fraction_comparison_rel_tol": 1e-12,
+      "fraction_comparison_abs_tol": 1e-12
+    },
+    "fingerprint_fields_checked": [
+      "name",
+      "quantity",
+      "unit",
+      "kcal_per_unit",
+      "kcal_per_unit_unit",
+      "nutrition_origin",
+      "carb_g",
+      "protein_g",
+      "fat_g",
+      "sat_fat_g",
+      "gi",
+      "source_record_id"
+    ],
+    "blob_regression": [
+      {
+        "blob_case": "invalid_binary",
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 500,
+            "assessment_state": null,
+            "assessment_is_null": null
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 500,
+            "assessment_state": null,
+            "assessment_is_null": null
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 500,
+            "assessment_state": null,
+            "assessment_is_null": null
+          }
+        ],
+        "sqlite_storage_type": "blob",
+        "stored_bytes_unchanged": true,
+        "healthy_single_record_read_unchanged": true
+      },
+      {
+        "blob_case": "valid_json_stored_as_blob",
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 500,
+            "assessment_state": null,
+            "assessment_is_null": null
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 500,
+            "assessment_state": null,
+            "assessment_is_null": null
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 500,
+            "assessment_state": null,
+            "assessment_is_null": null
+          }
+        ],
+        "sqlite_storage_type": "blob",
+        "stored_bytes_unchanged": true,
+        "healthy_single_record_read_unchanged": true
+      }
+    ],
+    "missing_version_regression": [
+      {
+        "deleted_fields": [
+          "formula_version"
+        ],
+        "raw_payload_hash_matches": false,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          }
+        ],
+        "stored_bytes_unchanged": true
+      },
+      {
+        "deleted_fields": [
+          "result_schema_version"
+        ],
+        "raw_payload_hash_matches": false,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          }
+        ],
+        "stored_bytes_unchanged": true
+      },
+      {
+        "deleted_fields": [
+          "envelope_version"
+        ],
+        "raw_payload_hash_matches": true,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          }
+        ],
+        "stored_bytes_unchanged": true
+      },
+      {
+        "deleted_fields": [
+          "formula_version",
+          "result_schema_version",
+          "envelope_version"
+        ],
+        "raw_payload_hash_matches": false,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evaluated",
+            "assessment_is_null": false
+          }
+        ],
+        "stored_bytes_unchanged": true
+      }
+    ]
+  },
+  "synthetic_data_only": true
+}

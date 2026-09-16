@@ -1,0 +1,9 @@
+{
+  "submitted_tree": "f93e0c51431bb312fc0d1a4b018fcbda055f8681",
+  "all_32_paths_modes_blobs_sizes_sha256_match": true,
+  "patch_hash_match": true,
+  "head_base_remote_main": "cb6083f8386bb0464b1f94ca0a2f7d49c3e55c16",
+  "branch": "codex/r2-reference-meal-integration",
+  "review_packet_sha256": "b831e5a72abdff06c7e3bff9291bada6acab75a2678a62ec2f780a54916d4744",
+  "review_packet_manifest_verified": 25
+}

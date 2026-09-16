@@ -1,0 +1,217 @@
+{
+  "tests_run": 13,
+  "passed": 13,
+  "failures": [],
+  "errors": [],
+  "details": {
+    "all_records": {
+      "records": 147,
+      "status_counts": {
+        "calculated": 138,
+        "unavailable": 9
+      },
+      "max_fraction_vs_float_difference": 2.842170943040401e-14,
+      "fraction_comparison_rel_tol": 1e-12,
+      "fraction_comparison_abs_tol": 1e-12
+    },
+    "fingerprint_fields_checked": [
+      "name",
+      "quantity",
+      "unit",
+      "kcal_per_unit",
+      "kcal_per_unit_unit",
+      "nutrition_origin",
+      "carb_g",
+      "protein_g",
+      "fat_g",
+      "sat_fat_g",
+      "gi",
+      "source_record_id"
+    ],
+    "blob_regression": [
+      {
+        "blob_case": "invalid_binary",
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          }
+        ],
+        "sqlite_storage_type": "blob",
+        "stored_bytes_unchanged": true,
+        "healthy_single_record_read_unchanged": true
+      },
+      {
+        "blob_case": "valid_json_stored_as_blob",
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          }
+        ],
+        "sqlite_storage_type": "blob",
+        "stored_bytes_unchanged": true,
+        "healthy_single_record_read_unchanged": true
+      }
+    ],
+    "missing_version_regression": [
+      {
+        "deleted_fields": [
+          "formula_version"
+        ],
+        "raw_payload_hash_matches": false,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          }
+        ],
+        "stored_bytes_unchanged": true
+      },
+      {
+        "deleted_fields": [
+          "result_schema_version"
+        ],
+        "raw_payload_hash_matches": false,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          }
+        ],
+        "stored_bytes_unchanged": true
+      },
+      {
+        "deleted_fields": [
+          "envelope_version"
+        ],
+        "raw_payload_hash_matches": true,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          }
+        ],
+        "stored_bytes_unchanged": true
+      },
+      {
+        "deleted_fields": [
+          "formula_version",
+          "result_schema_version",
+          "envelope_version"
+        ],
+        "raw_payload_hash_matches": false,
+        "outcomes": [
+          {
+            "method": "GET",
+            "path_kind": "read",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "GET",
+            "path_kind": "list",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          },
+          {
+            "method": "POST",
+            "path_kind": "replay",
+            "http_status": 200,
+            "assessment_state": "evidence_error",
+            "assessment_is_null": true
+          }
+        ],
+        "stored_bytes_unchanged": true
+      }
+    ]
+  },
+  "synthetic_data_only": true
+}

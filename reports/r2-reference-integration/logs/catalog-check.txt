@@ -1,0 +1,7 @@
+COMMAND: python build_reference_catalog.py --check
+CWD: backend
+PYTHON_DOTENV_DISABLED=1
+EXIT: 0
+r2_sha256_6db5357ae368981b1e2781a2a2402d60d63850e7b59c63e757b654a39bdc51d9
+{'candidate': 138, 'reference_only': 6, 'requires_review': 3}
+147 source records preserved; CSV/JSON equality and input hashes verified

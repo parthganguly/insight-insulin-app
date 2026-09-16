@@ -1,0 +1,18 @@
+COMMAND: python -m unittest discover -s tests -p test_meal_modeling_golden.py -v
+CWD: backend
+PYTHON_DOTENV_DISABLED=1
+EXIT: 0
+test_none_versus_zero_optional_inputs_preserve_distinct_modeling_paths (test_meal_modeling_golden.MealModelingGoldenTests.test_none_versus_zero_optional_inputs_preserve_distinct_modeling_paths) ... ok
+test_post_meals_exact_fii_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_exact_fii_golden) ... ok
+test_post_meals_macro_fallback_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_macro_fallback_golden) ... ok
+test_post_meals_mapped_fii_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_mapped_fii_golden) ... ok
+test_post_meals_mixed_sources_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_mixed_sources_golden) ... ok
+test_post_meals_unknown_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_unknown_golden) ... ok
+test_post_meals_user_confirmed_fii_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_user_confirmed_fii_golden) ... ok
+test_post_meals_zero_kcal_issue_97_golden (test_meal_modeling_golden.MealModelingGoldenTests.test_post_meals_zero_kcal_issue_97_golden)
+Keep arithmetic and source quality while marking #97 incompleteness. ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.029s
+
+OK
