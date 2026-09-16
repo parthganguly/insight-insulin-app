@@ -6,12 +6,12 @@ import sys
 from dataclasses import asdict
 from pathlib import Path
 
+from scoring_service import FORMULA_VERSION
 from validation.evaluators import evaluate_case
 from validation.fixtures import build_validation_cases
 
 
 SCHEMA_VERSION = 2
-FORMULA_VERSION = "current_backend_v2"
 GENERATED_BY = "python -m validation.export_golden_fixtures"
 WARNING = "Implementation parity fixtures only; passing parity is not scientific validation."
 DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parents[2] / "crates" / "insight-core" / "fixtures" / "golden"

@@ -218,6 +218,12 @@ class B2MigrationCompatibilityTests(unittest.TestCase):
         legacy_row = self.session.get(self.db_models.MealDB, LEGACY_MEAL_ID)
         self.assertIsNone(legacy_row.client_request_id)
         self.assertIsNone(legacy_row.client_request_fingerprint)
+        self.assertIsNone(legacy_row.formula_version)
+        self.assertIsNone(legacy_row.dataset_version)
+        for column in db_inspector.get_columns("meals"):
+            if column["name"] in {"formula_version", "dataset_version"}:
+                self.assertTrue(column["nullable"])
+                self.assertIsNone(column["default"])
         self.assertTrue(all(item.item_position is None for item in legacy_row.items))
 
         legacy_columns = (
@@ -235,6 +241,15 @@ class B2MigrationCompatibilityTests(unittest.TestCase):
             ).fetchall()
         self.assertEqual(migrated_rows, source_rows)
 
+        # Compare every original meal column as well as every original item column.
+        with sqlite3.connect(self.source_db) as source_connection:
+            names = [row[1] for row in source_connection.execute("PRAGMA table_info(meals)")]
+            columns = ", ".join(names)
+            original_meals = source_connection.execute(f"SELECT {columns} FROM meals").fetchall()
+        with sqlite3.connect(self.active_db) as active_connection:
+            migrated_meals = active_connection.execute(f"SELECT {columns} FROM meals").fetchall()
+        self.assertEqual(migrated_meals, original_meals)
+
         loaded_legacy_order = [item.name for item in legacy_row.items]
         hydrated = asyncio.run(self.meals_api.list_meals(self.session))
         self.assertEqual(len(hydrated), 1)
@@ -242,6 +257,8 @@ class B2MigrationCompatibilityTests(unittest.TestCase):
         self.assertEqual(hydrated[0].meal_name, "Synthetic pre-B2 meal")
         self.assertEqual(hydrated[0].insulin_load_total, 40.0)
         self.assertEqual(hydrated[0].estimate_status, "estimated")
+        self.assertIsNone(hydrated[0].formula_version)
+        self.assertIsNone(hydrated[0].dataset_version)
         self.assertEqual([item.name for item in hydrated[0].items], loaded_legacy_order)
 
         chronic = asyncio.run(self.main.get_chronic_metrics(days=3, db=self.session))
@@ -267,6 +284,11 @@ class B2MigrationCompatibilityTests(unittest.TestCase):
         first_idempotent = self.save(name="New B2 save", request_id=request_id)
         replay = self.save(name="Renamed retry", request_id=request_id)
         self.assertEqual(replay.model_dump(mode="json"), first_idempotent.model_dump(mode="json"))
+        history = asyncio.run(self.meals_api.list_meals(self.session))
+        self.assertEqual(len(history), 4)
+        self.assertEqual(sum(meal.formula_version is None for meal in history), 1)
+        self.assertEqual(first_idempotent.formula_version, "current_backend_v2")
+        self.assertTrue(first_idempotent.dataset_version.startswith("fii_foods_csv_fnv1a64_"))
         self.assertEqual(
             self.session.query(self.db_models.MealDB)
             .filter(self.db_models.MealDB.client_request_id == request_id)

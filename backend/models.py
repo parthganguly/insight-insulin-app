@@ -139,6 +139,8 @@ class MealItemResponse(MealItemCreate):
 class MealResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
+    formula_version: str | None = None
+    dataset_version: str | None = None
     id: str
     created_at: datetime
     meal_name: str

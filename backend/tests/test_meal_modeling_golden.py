@@ -43,7 +43,9 @@ BASE_ITEM = {
 
 
 def modeled_fields(response) -> dict:
-    return response.model_dump(mode="json", exclude={"id", "created_at"})
+    return response.model_dump(
+        mode="json", exclude={"id", "created_at", "formula_version", "dataset_version"}
+    )
 
 
 class MealModelingGoldenTests(unittest.TestCase):

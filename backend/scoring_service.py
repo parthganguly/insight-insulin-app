@@ -4,6 +4,8 @@ from food_normalizer import decompose_food_name_weighted
 from fii_lookup import is_likely_mixed_meal, lookup_fii
 
 
+# Python runtime authority; the golden exporter imports this same identity.
+FORMULA_VERSION = "current_backend_v2"
 DEFAULT_TDEE = 2000.0
 K_EST = 0.6
 # TODO: Calibrate this baseline against real meal history once representative data is available.

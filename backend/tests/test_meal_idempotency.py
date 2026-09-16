@@ -16,6 +16,7 @@ import unittest
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from unittest.mock import patch
 
 from fastapi import HTTPException
 from pydantic import ValidationError
@@ -116,6 +117,78 @@ class MealIdempotencyTests(unittest.TestCase):
             row.client_request_fingerprint,
             self.meals_api.compute_client_request_fingerprint(self.request().items),
         )
+
+    def test_server_provenance_survives_save_read_and_runtime_change(self) -> None:
+        from fii_lookup import get_dataset_version
+
+        request_id = str(uuid.uuid4())
+        request = self.models.MealCreate.model_validate({
+            "meal_name": "Synthetic spoofed provenance",
+            "items": [BASE_ITEM | {"formula_version": "spoof", "dataset_version": "spoof"}],
+            "client_request_id": request_id,
+            "formula_version": "spoof",
+            "dataset_version": "spoof",
+        })
+        self.assertNotIn("formula_version", request.model_dump())
+        self.assertNotIn("dataset_version", request.model_dump())
+        saved = asyncio.run(self.meals_api.create_meal(request, self.session))
+        self.assertEqual(saved.formula_version, "current_backend_v2")
+        self.assertEqual(saved.dataset_version, get_dataset_version())
+        self.session.expire_all()
+        row = self.session.get(self.db_models.MealDB, saved.id)
+        self.assertEqual(row.formula_version, saved.formula_version)
+        self.assertEqual(row.dataset_version, saved.dataset_version)
+
+        with patch("scoring_service.FORMULA_VERSION", "synthetic_next_formula"), patch.object(
+            self.meals_api, "get_dataset_version", return_value="synthetic_next_dataset"
+        ):
+            # Replay must not even attempt current scoring or dataset resolution.
+            with patch.object(self.meals_api, "model_meal", side_effect=AssertionError("rescored replay")):
+                replay = self.save(client_request_id=request_id)
+            self.assertEqual(replay.model_dump(), saved.model_dump())
+            self.assert_conflict(client_request_id=request_id, items=[BASE_ITEM | {"quantity": 2}])
+            fresh = self.save(client_request_id=str(uuid.uuid4()))
+            self.assertEqual(fresh.formula_version, "synthetic_next_formula")
+            self.assertEqual(fresh.dataset_version, "synthetic_next_dataset")
+            self.assertEqual(fresh.acute_score, saved.acute_score)
+            self.assertEqual(fresh.insulin_load_total, saved.insulin_load_total)
+
+        self.session.expire_all()
+        history = {meal.id: meal for meal in asyncio.run(self.meals_api.list_meals(self.session))}
+        self.assertEqual(history[saved.id].model_dump(), saved.model_dump())
+        self.assertEqual(history[fresh.id].model_dump(), fresh.model_dump())
+
+    def test_provenance_is_captured_during_modeling_not_when_building_row(self) -> None:
+        modeled = self.meals_api.model_meal(self.request())
+        with patch("scoring_service.FORMULA_VERSION", "synthetic_later"), patch.object(
+            self.meals_api, "get_dataset_version", side_effect=AssertionError("late dataset read")
+        ):
+            row = self.meals_api.build_meal_db(
+                modeled, str(uuid.uuid4()), self.meals_api.coerce_created_at_to_naive_utc(None)
+            )
+        self.assertEqual(row.formula_version, modeled.formula_version)
+        self.assertEqual(row.dataset_version, modeled.dataset_version)
+
+    def test_unknown_legacy_replay_is_not_relabelled(self) -> None:
+        request_id = str(uuid.uuid4())
+        saved = self.save(client_request_id=request_id)
+        row = self.session.get(self.db_models.MealDB, saved.id)
+        row.formula_version = None
+        row.dataset_version = None
+        self.session.commit()
+        replay = self.save(client_request_id=request_id)
+        self.assertIsNone(replay.formula_version)
+        self.assertIsNone(replay.dataset_version)
+        self.assertEqual(replay.acute_score, saved.acute_score)
+
+    def test_fresh_schema_versions_are_nullable_without_defaults(self) -> None:
+        from sqlalchemy import inspect
+
+        columns = {column["name"]: column for column in inspect(self.db.engine).get_columns("meals")}
+        for name in ("formula_version", "dataset_version"):
+            self.assertTrue(columns[name]["nullable"])
+            self.assertIsNone(columns[name]["default"])
+            self.assertIsNone(self.db_models.MealDB.__table__.c[name].default)
 
     def test_same_id_and_material_payload_returns_same_canonical_response(self) -> None:
         request_id = str(uuid.uuid4())
@@ -295,14 +368,28 @@ class MealIdempotencyTests(unittest.TestCase):
         self.assertNotIn("Excluded name", canonical_json)
         self.assertNotIn("2030-01-01", canonical_json)
 
-    def run_concurrent_saves(self, items_by_worker: list[list[dict]]):
+    def run_concurrent_saves(self, items_by_worker: list[list[dict]], *, distinct_versions=False):
         request_id = str(uuid.uuid4())
         barrier = threading.Barrier(len(items_by_worker))
         original_model_meal = self.meals_api.model_meal
+        competing_sources = iter(("exact_fii", "macro_fallback"))
 
         def synchronized_model_meal(meal):
             barrier.wait(timeout=10)
-            return original_model_meal(meal)
+            modeled = original_model_meal(meal)
+            if distinct_versions:
+                from dataclasses import replace
+
+                identity = str(uuid.uuid4())
+                source = next(competing_sources)
+                return replace(
+                    modeled,
+                    formula_version=identity,
+                    dataset_version=identity,
+                    items=[replace(modeled.items[0], fii_source=source)],
+                    estimate_status="insufficient_data" if source == "exact_fii" else "estimated",
+                )
+            return modeled
 
         def worker(items: list[dict]):
             session = self.db.SessionLocal()
@@ -347,6 +434,17 @@ class MealIdempotencyTests(unittest.TestCase):
         self.assertEqual(error[1], 409)
         self.assertEqual(self.session.query(self.db_models.MealDB).count(), 1)
         self.assertEqual(self.session.query(self.db_models.MealItemDB).count(), 1)
+
+    def test_race_returns_winner_provenance_even_when_computations_have_different_versions(self) -> None:
+        missing_energy = BASE_ITEM | {"kcalPerUnit": 0.0}
+        results = self.run_concurrent_saves([[missing_energy], [missing_energy]], distinct_versions=True)
+        self.assertEqual([result[0] for result in results], ["saved", "saved"])
+        self.assertEqual(results[0][1], results[1][1])
+        self.session.expire_all()
+        row = self.session.query(self.db_models.MealDB).one()
+        self.assertEqual(results[0][1]["formula_version"], row.formula_version)
+        self.assertEqual(results[0][1]["dataset_version"], row.dataset_version)
+        self.assertEqual(results[0][1], self.meals_api.map_meal_db_to_schema(row).model_dump(mode="json"))
 
 
 if __name__ == "__main__":

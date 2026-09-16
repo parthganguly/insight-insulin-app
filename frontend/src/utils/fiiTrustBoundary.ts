@@ -28,6 +28,8 @@ export const buildDraftFromSavedMeal = (savedMeal: Meal): Meal => ({
 	backend_created_at: undefined,
 	source_meal_id: savedMeal.id,
 	acute_score: undefined,
+	formula_version: undefined,
+	dataset_version: undefined,
 	insulin_load_total: undefined,
 	kcal_total: undefined,
 	carbs_total: undefined,

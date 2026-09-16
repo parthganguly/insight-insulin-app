@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import uuid
 
+import scoring_service
+from fii_lookup import get_dataset_version
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
@@ -53,6 +55,8 @@ class ModeledMealItem:
 
 @dataclass(frozen=True)
 class ModeledMeal:
+    formula_version: str
+    dataset_version: str
     meal_name: str
     items: list[ModeledMealItem]
     total_kcal: float
@@ -176,6 +180,8 @@ def map_meal_db_to_schema(
         )
 
     return MealResponse(
+        formula_version=meal_db.formula_version,
+        dataset_version=meal_db.dataset_version,
         id=meal_db.id,
         created_at=as_utc(meal_db.created_at),
         meal_name=meal_db.meal_name,
@@ -226,6 +232,9 @@ def resolve_main_insulin_drivers(item_rows: list[ModeledMealItem]) -> list[str]:
 
 
 def model_meal(meal: MealCreate | MealPreviewRequest) -> ModeledMeal:
+    # Capture the process-loaded table identity before scoring, never at read/save time.
+    formula_version = scoring_service.FORMULA_VERSION
+    dataset_version = get_dataset_version()
     total_kcal = 0.0
     total_carb = 0.0
     total_protein = 0.0
@@ -289,6 +298,8 @@ def model_meal(meal: MealCreate | MealPreviewRequest) -> ModeledMeal:
     main_insulin_drivers = resolve_main_insulin_drivers(item_rows)
 
     return ModeledMeal(
+        formula_version=formula_version,
+        dataset_version=dataset_version,
         meal_name=meal.meal_name,
         items=item_rows,
         total_kcal=total_kcal,
@@ -337,6 +348,8 @@ def build_meal_db(
     ]
 
     meal_db = MealDB(
+        formula_version=modeled.formula_version,
+        dataset_version=modeled.dataset_version,
         id=meal_id,
         created_at=created_at,
         meal_name=modeled.meal_name,
@@ -428,7 +441,7 @@ async def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
                 status_code=409,
                 detail="client_request_id was already used for different meal items",
             )
-        return map_meal_db_to_schema(existing, estimate_status=modeled.estimate_status)
+        return map_meal_db_to_schema(existing)
     db.refresh(meal_db)
 
     return map_meal_db_to_schema(meal_db, estimate_status=modeled.estimate_status)

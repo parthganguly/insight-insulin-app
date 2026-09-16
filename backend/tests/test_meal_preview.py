@@ -129,7 +129,7 @@ class MealPreviewTests(unittest.TestCase):
                 meal_name = f"Preview parity {case_name}"
                 preview = self.preview(meal_name, items).model_dump(mode="json")
                 saved = self.save(meal_name, items).model_dump(
-                    mode="json", exclude={"id", "created_at"}
+                    mode="json", exclude={"id", "created_at", "formula_version", "dataset_version"}
                 )
                 preview_without_persistence_marker = {
                     key: value for key, value in preview.items() if key != "persisted"
@@ -354,7 +354,7 @@ class MealPreviewTests(unittest.TestCase):
                         saved = saved_response.json()
                         self.assertEqual(
                             {k: v for k, v in preview.items() if k != "persisted"},
-                            {k: v for k, v in saved.items() if k not in {"id", "created_at"}},
+                            {k: v for k, v in saved.items() if k not in {"id", "created_at", "formula_version", "dataset_version"}},
                         )
                         results[label] = preview
                 self.assertAlmostEqual(results["whole"]["insulin_load_total"], per_unit_load)
@@ -364,6 +364,25 @@ class MealPreviewTests(unittest.TestCase):
                 self.assertAlmostEqual(results["two"]["insulin_load_total"], 2 * results["whole"]["insulin_load_total"])
                 self.assertEqual(results["zero"]["insulin_load_total"], 0)
                 self.assertEqual(results["zero"]["acute_score"], 0)
+
+    def test_http_save_ignores_spoofed_versions_and_read_preserves_server_identity(self) -> None:
+        from fii_lookup import get_dataset_version
+
+        payload = {
+            "meal_name": "Synthetic HTTP provenance",
+            "items": [BASE_ITEM | {"name": "white bread"}],
+            "formula_version": "spoof",
+            "dataset_version": "spoof",
+            "client_request_id": str(uuid.uuid4()),
+        }
+        with self.http_client() as client:
+            saved_response = client.post("/meals", json=payload)
+            self.assertEqual(saved_response.status_code, 200)
+            saved = saved_response.json()
+            self.assertEqual(saved["formula_version"], "current_backend_v2")
+            self.assertEqual(saved["dataset_version"], get_dataset_version())
+            self.assertEqual(client.post("/meals", json=payload).json(), saved)
+            self.assertEqual(client.get("/meals").json(), [saved])
 
     def test_negative_quantity_rejected_by_http_and_raw_scorer(self) -> None:
         from scoring_service import compute_insulin_load_item

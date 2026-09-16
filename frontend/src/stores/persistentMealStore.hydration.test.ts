@@ -2,6 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { syncMealsFromBackend, usePersistentMealStore } from "./persistentMealStore";
 import { Meal } from "../types/Meal";
+import { buildCreateMealPayload, mapMealModelingResponseToMeal, postMealToAPI } from "../api/api";
+import { buildDraftFromSavedMeal } from "../utils/fiiTrustBoundary";
 
 // Synthetic demo-shaped backend payloads only. No real user or health data.
 const backendMealBody = (overrides: Record<string, unknown> = {}) => ({
@@ -77,6 +79,44 @@ describe("private-beta meal hydration from backend", () => {
 		expect(meals.map((meal) => meal.name)).toContain("Demo: Overnight oats");
 		expect(meals.every((meal) => meal.isAiDraft === false)).toBe(true);
 		expect(meals.every((meal) => meal.estimate_status === "estimated")).toBe(true);
+	});
+
+	it("preserves server versions through save, hydration and local reload with unknown history intact", async () => {
+		const versions = { formula_version: "current_backend_v2", dataset_version: "fii_foods_csv_fnv1a64_250e9dfc91988b6b" };
+		stubFetchWithMeals(backendMealBody(versions));
+		const saved = await postMealToAPI({ meal_name: "Synthetic", items: [], client_request_id: "synthetic-request" });
+		usePersistentMealStore.getState().addMeal(mapMealModelingResponseToMeal(saved));
+		expect(usePersistentMealStore.getState().meals[0]).toMatchObject(versions);
+		usePersistentMealStore.getState().addMeal(localMeal("local-only", "Synthetic legacy local"));
+		stubFetchWithMeals([
+			backendMealBody(versions),
+			backendMealBody({ id: "legacy-missing" }),
+			backendMealBody({ id: "legacy-null", formula_version: null, dataset_version: null }),
+			backendMealBody({ id: "different", formula_version: "synthetic_future", dataset_version: "synthetic_future_data" }),
+		]);
+		await syncMealsFromBackend();
+		await usePersistentMealStore.persist.rehydrate();
+		const meals = usePersistentMealStore.getState().meals;
+		expect(meals).toHaveLength(5);
+		expect(meals.find((meal) => meal.id === "demo-meal-1")).toMatchObject(versions);
+		for (const id of ["legacy-missing", "legacy-null"]) {
+			expect(meals.find((meal) => meal.id === id)).toMatchObject({ formula_version: null, dataset_version: null, acute_score: 38 });
+		}
+		expect(meals.find((meal) => meal.id === "local-only")?.formula_version).toBeUndefined();
+		expect(meals.find((meal) => meal.id === "different")?.formula_version).toBe("synthetic_future");
+
+		const draft = buildDraftFromSavedMeal(meals.find((meal) => meal.id === "demo-meal-1")!);
+		expect(draft.formula_version).toBeUndefined();
+		expect(draft.dataset_version).toBeUndefined();
+		expect(buildCreateMealPayload({ ...draft, ...versions })).not.toHaveProperty("formula_version");
+		expect(buildCreateMealPayload({ ...draft, ...versions })).not.toHaveProperty("dataset_version");
+	});
+
+	it("an old backend response cannot inherit cached current versions", async () => {
+		usePersistentMealStore.getState().addMeal({ ...localMeal("demo-meal-1", "Stale"), formula_version: "stale", dataset_version: "stale" });
+		stubFetchWithMeals([backendMealBody()]);
+		await syncMealsFromBackend();
+		expect(usePersistentMealStore.getState().meals[0]).toMatchObject({ formula_version: null, dataset_version: null });
 	});
 
 	it("preserves an insufficient-data status from canonical backend hydration", async () => {
