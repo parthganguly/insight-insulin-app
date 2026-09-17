@@ -96,6 +96,24 @@ class Eligibility(FrozenModel):
     reasons: tuple[str, ...]
 
 
+class CatalogBrowseRecord(FrozenModel):
+    source_record_id: SourceID
+    source_food_wording: str
+    food_category: str
+    fii_mean: Number | None
+    fii_sem: Number | None
+    source_study: str
+    source_doi: str
+    reference_scale: str | None
+    actual_test_energy_kJ: Number
+    eligibility: Eligibility
+
+
+class CatalogBrowse(FrozenModel):
+    catalog_version: CatalogID
+    records: tuple[CatalogBrowseRecord, ...]
+
+
 class SourceEvidence(FrozenModel):
     source_record_id: SourceID
     source_food_wording: str
