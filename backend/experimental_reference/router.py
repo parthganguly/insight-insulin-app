@@ -9,7 +9,7 @@ from api.meals import delete_meal
 from db import get_db
 from db_models import MealDB
 from experimental_reference.contract import ReferencePreview, ReferenceSave
-from experimental_reference.service import evaluate, save, stored_response
+from experimental_reference.service import browse_catalog, evaluate, save, stored_response
 
 class ReferenceRoute(APIRoute):
     def get_route_handler(self):
@@ -26,6 +26,11 @@ class ReferenceRoute(APIRoute):
 
 
 router = APIRouter(prefix="/reference-meals", route_class=ReferenceRoute)
+
+
+@router.get("/catalog")
+def catalog():
+    return browse_catalog().model_dump(mode="json")
 
 
 @router.post("/preview")

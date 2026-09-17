@@ -138,6 +138,31 @@ class ReferenceIntegrationTests(unittest.TestCase):
                 saved = self.client.post("/reference-meals", json=self.save_payload(items)).json()
                 self.assertEqual(saved["assessment"], result)
 
+    def test_catalog_browse_is_safe_read_only_and_preserves_eligibility(self):
+        response = self.client.get("/reference-meals/catalog")
+        self.assertEqual(response.status_code, 200, response.text)
+        body = response.json()
+        self.assertEqual(body["catalog_version"], CATALOG_VERSION)
+        self.assertEqual(len(body["records"]), 147)
+        by_id = {record["source_record_id"]: record for record in body["records"]}
+        for source_id, status in [("BAO2011-002", "candidate"),
+                                  ("BELL2016-S1-001", "reference_only"),
+                                  ("BELL2016-S1-017", "requires_review")]:
+            self.assertEqual(by_id[source_id]["eligibility"]["status"], status)
+        self.assertEqual(by_id["BAO2011-002"]["fii_mean"], 69)
+        for record in body["records"]:
+            self.assertEqual(set(record), {
+                "source_record_id", "source_food_wording", "food_category", "fii_mean", "fii_sem",
+                "source_study", "source_doi", "reference_scale", "actual_test_energy_kJ", "eligibility",
+            })
+        self.assertNotIn("source_file", response.text)
+        self.assertNotIn("source_sha256", response.text)
+        self.assertEqual(self.count(), (0, 0))
+        with patch.object(self.service, "CATALOG_PATH", Path(self.tmp.name) / "missing.json"):
+            error = self.client.get("/reference-meals/catalog")
+        self.assertEqual(error.status_code, 503)
+        self.assertEqual(error.json()["detail"], {"code": "catalog_unavailable"})
+
     def test_units_split_rows_duplicate_source_title_and_composites(self):
         variants = [[ITEM], [ITEM | {"quantity": 2, "kcal_per_unit": 100}],
                     [ITEM | {"quantity": 100, "unit": "g", "kcal_per_unit": 2, "kcal_per_unit_unit": "g"}],
@@ -451,6 +476,7 @@ with patch.object(main, "create_tables", side_effect=AssertionError("startup")):
     assert client.post("/reference-meals/preview", json={}).status_code == 404
     assert client.post("/reference-meals", json={}).status_code == 404
     assert client.get("/reference-meals").status_code == 404
+    assert client.get("/reference-meals/catalog").status_code == 404
     client.close()
 '''
         result = subprocess.run([sys.executable, "-c", script], cwd=BACKEND, text=True, capture_output=True)

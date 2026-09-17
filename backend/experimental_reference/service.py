@@ -14,7 +14,7 @@ from db_models import MealDB
 from models import MealCreate, MealItemCreate
 from reference_catalog import CatalogError, ReferenceCatalog, canonical_bytes
 from experimental_reference.contract import (
-    CATALOG_VERSION, Eligibility, ItemResult, Reason, ReferencePreview,
+    CATALOG_VERSION, CatalogBrowse, CatalogBrowseRecord, Eligibility, ItemResult, Reason, ReferencePreview,
     ReferenceResult, ReferenceSave, SourceEvidence, deserialize_assessment,
     finite_number, serialize_assessment,
 )
@@ -29,6 +29,28 @@ def load_pinned_catalog() -> ReferenceCatalog:
     if catalog.version != CATALOG_VERSION:
         raise CatalogError("Unreviewed catalog identity")
     return catalog
+
+
+def browse_catalog() -> CatalogBrowse:
+    try:
+        catalog = load_pinned_catalog()
+    except (OSError, ValueError) as exc:
+        raise HTTPException(503, detail={"code": "catalog_unavailable"}) from exc
+    return CatalogBrowse(
+        catalog_version=catalog.version,
+        records=tuple(CatalogBrowseRecord(
+            source_record_id=record["source_record_id"],
+            source_food_wording=record["original_food_wording"],
+            food_category=record["raw"]["food_category"],
+            fii_mean=record["fii_mean"],
+            fii_sem=record["fii_uncertainty"]["value"],
+            source_study=record["raw"]["source_study"],
+            source_doi=record["raw"]["source_doi"],
+            reference_scale=record["reference_scale"],
+            actual_test_energy_kJ=record["actual_test_energy_kJ"],
+            eligibility=Eligibility(use="experimental_fii_input", **dict(record["eligibility"]["experimental_fii_input"])),
+        ) for record in catalog.content["records"]),
+    )
 
 
 def reason(code, detail):

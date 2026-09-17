@@ -1,0 +1,16 @@
+.reference-picker input[type="search"],
+.reference-picker button,
+.reference-picker summary,
+.reference-catalog-stale button,
+.reference-evidence summary {
+  min-height: 44px;
+}
+
+.reference-picker input[type="search"]:focus-visible,
+.reference-picker button:focus-visible,
+.reference-picker summary:focus-visible,
+.reference-catalog-stale button:focus-visible,
+.reference-evidence summary:focus-visible {
+  outline: 3px solid var(--accent, #245f8d);
+  outline-offset: 2px;
+}
