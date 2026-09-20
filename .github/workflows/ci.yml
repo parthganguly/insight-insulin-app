@@ -177,26 +177,6 @@ jobs:
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:5199 >/dev/null && break; sleep 2; done
           npx cypress run --config-file cypress.config.r3b.ts
 
-      # E1/T9: the same enabled bundle against a genuine default-OFF backend
-      # (real main:app without the flag: the reference router is unmounted, so
-      # every reference route is a real generic 404). The ON harness is stopped
-      # first so only one backend owns the port; the frontend bundle is untouched.
-      - name: Run OFF-backend mismatch acceptance
-        run: |
-          harness_pid=$(cat /tmp/insight-r3b-harness.pid)
-          ps -p "$harness_pid" -o args= | grep -q "python -m tests.r3b_harness --port 8099"
-          kill "$harness_pid"
-          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8099/__harness/health >/dev/null || break; sleep 2; done
-          mkdir -p /tmp/insight-r3b-off-backend && cd /tmp/insight-r3b-off-backend
-          PYTHON_DOTENV_DISABLED=1 PYTHONPATH=${GITHUB_WORKSPACE}/backend python -m uvicorn main:app --host 127.0.0.1 --port 8099 &
-          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8099/ >/dev/null && break; sleep 2; done
-          if curl -sf http://127.0.0.1:8099/reference-meals/catalog -o /dev/null; then
-            echo "reference router must stay unmounted on the OFF backend"
-            exit 1
-          fi
-          cd ${GITHUB_WORKSPACE}/frontend
-          npx cypress run --config-file cypress.config.r3b.ts --config specPattern=cypress/e2e/r3b-reference-off-backend.cy.ts,screenshotsFolder=cypress/r3b-off-captures
-
       # R08: the runner writes to cypress/r3b-captures (deliberately outside
       # cypress/screenshots, which the legacy suite empties). The old path no
       # longer exists, and `if-no-files-found: ignore` would have let the
@@ -216,6 +196,26 @@ jobs:
           name: r3b-enabled-captures
           path: frontend/cypress/r3b-captures
           if-no-files-found: error
+
+      # E1/T9: the same enabled bundle against a genuine default-OFF backend
+      # (real main:app without the flag: the reference router is unmounted, so
+      # every reference route is a real generic 404). The ON harness is stopped
+      # first so only one backend owns the port; the frontend bundle is untouched.
+      - name: Run OFF-backend mismatch acceptance
+        run: |
+          harness_pid=$(cat /tmp/insight-r3b-harness.pid)
+          ps -p "$harness_pid" -o args= | grep -q "python -m tests.r3b_harness --port 8099"
+          kill "$harness_pid"
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8099/__harness/health >/dev/null || break; sleep 2; done
+          mkdir -p /tmp/insight-r3b-off-backend && cd /tmp/insight-r3b-off-backend
+          PYTHON_DOTENV_DISABLED=1 PYTHONPATH=${GITHUB_WORKSPACE}/backend python -m uvicorn main:app --host 127.0.0.1 --port 8099 &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8099/ >/dev/null && break; sleep 2; done
+          if curl -sf http://127.0.0.1:8099/reference-meals/catalog -o /dev/null; then
+            echo "reference router must stay unmounted on the OFF backend"
+            exit 1
+          fi
+          cd ${GITHUB_WORKSPACE}/frontend
+          npx cypress run --config-file cypress.config.r3b.ts --config specPattern=cypress/e2e/r3b-reference-off-backend.cy.ts,screenshotsFolder=cypress/r3b-off-captures
 
   rust:
     name: Rust
