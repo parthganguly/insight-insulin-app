@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from datetime import datetime, timedelta
 import math
+import os
 import time
 import uuid
 
@@ -25,6 +26,25 @@ from api.meals import router as meals_router
 
 app = FastAPI()
 app.include_router(meals_router)
+
+
+def reference_preview_enabled() -> bool:
+    """Exact opt-in gate for the reference private preview.
+
+    Only the literal value "1" enables it. Absent, "0", "true", "yes" or any
+    other value leaves the router unmounted, so the default build is OFF and
+    /reference-meals does not exist. Nothing here reads the catalog at
+    startup.
+    """
+    return os.environ.get("INSIGHT_REFERENCE_PREVIEW") == "1"
+
+
+if reference_preview_enabled():
+    # Mount the existing R2 router as-is. No new route hierarchy, no
+    # test-only control routes, and no change to legacy endpoints.
+    from experimental_reference.router import router as reference_router
+
+    app.include_router(reference_router)
 
 # Allow all domains
 app.add_middleware(

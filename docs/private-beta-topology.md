@@ -102,6 +102,37 @@ not retained by the backend by default (issue #49, regression-tested).
 `VITE_BACKEND_API_URL`); the README instructs running uvicorn locally. There is
 no hosting, TLS, or production deployment configuration.
 
+
+## Reference private preview (R3B) — configured test status, default OFF
+
+This is not an activated feature. The backend router is mounted only when
+`INSIGHT_REFERENCE_PREVIEW=1` exactly, and the frontend branch exists only in a
+build made with `VITE_REFERENCE_PREVIEW=1`. Both default to OFF, there is no
+runtime toggle, and no normal installation is activated.
+
+What changes when it is enabled, and what does not:
+
+- **Reads and writes stay on the same origin** as the legacy client. No new
+  host, no new service and no public exposure is introduced.
+- **History reads** are routed to `/reference-meals` instead of `/meals`. The
+  rows are the same rows in the same table.
+- **Deletion** uses the reference DELETE and is blocked while any unresolved
+  retry record exists on the device, because deleting the row also removes the
+  record the server uses to replay a repeated save safely.
+- **The legacy chronic endpoint is not called at all** in this mode, and no
+  replacement trend is introduced.
+- **One additional local store** appears: the per-request retry journal
+  described in the decision record. It is purpose-limited to making one
+  unresolved save safe to repeat and is never uploaded on its own.
+- **Nothing new is sent to the backend.** The reference request carries the
+  reviewed portions, nutrition and explicitly selected source IDs the user
+  entered — no photo, no telemetry, and no published FII in a legacy field.
+
+Supported scope for this preview is **one client context against one stable
+local backend**. It is not exactly-once protection across explicit
+abandonment, external deletion, backend replacement or concurrent independent
+clients, and it is not device acceptance — that remains R4.
+
 ## What this beta is not intended for
 
 - sensitive medical records

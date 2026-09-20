@@ -27,7 +27,7 @@ vi.mock("@capacitor/camera", () => ({
 }));
 
 import App from "../../App";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useCurrentMealStore, getLegacyCurrentMeal } from "../../stores/currentMealStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { AI_EXTRACTION_UNAVAILABLE_MESSAGE, CAMERA_CANCELLED_MESSAGE } from "../../utils/aiFailureCopy";
 import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
@@ -208,7 +208,7 @@ describe("Campaign A Smart Camera", () => {
 		fireEvent.click(screen.getByText("Enter manually instead"));
 
 		await waitFor(() => expect(window.location.pathname).toBe("/meals/new"));
-		const draft = useCurrentMealStore.getState().meal;
+		const draft = getLegacyCurrentMeal();
 		expect(draft.name).toBe("New Meal");
 		expect(draft.isAiDraft).toBe(false);
 		expect(draft.backend_created_at).toBeUndefined();

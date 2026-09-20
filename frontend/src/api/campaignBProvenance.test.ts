@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { buildCreateMealPayload, mapDraftMealItemToCreatePayload, normalizeAiExtractedItem } from "./api";
-import { useCurrentMealStore } from "../stores/currentMealStore";
+import { useCurrentMealStore, getLegacyCurrentMeal } from "../stores/currentMealStore";
 import { Meal } from "../types/Meal";
 import { MealItem } from "../types/MealItem";
 import { updateMealItemFii } from "../utils/fiiTrustBoundary";
@@ -56,7 +56,7 @@ describe("Campaign B provenance and create-payload trust boundary", () => {
 		const store = useCurrentMealStore.getState();
 		store.updateMealItem(store.meal.items[0].id, "name", "synthetic oat bowl");
 		useCurrentMealStore.getState().updateMealItem(store.meal.items[0].id, "kcalPerServing", 220);
-		const reviewed = useCurrentMealStore.getState().meal.items[0];
+		const reviewed = getLegacyCurrentMeal().items[0];
 		expect(reviewed.draftProvenance).toBe("user_reviewed");
 		expect(reviewed).not.toHaveProperty("fii");
 		expect(mapDraftMealItemToCreatePayload(reviewed)).not.toHaveProperty("fii");

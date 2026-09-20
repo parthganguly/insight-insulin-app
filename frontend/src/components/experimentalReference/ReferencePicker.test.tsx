@@ -23,8 +23,14 @@ describe("explicit reference picker", () => {
     await user.keyboard("{Enter}");
     expect(onChange).toHaveBeenCalledWith("BAO2011-001");
     expect(screen.getByRole("list", { name: "Published reference results" })).toBeInTheDocument();
-    expect(screen.getAllByText(/reference only/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/requires review/i).length).toBeGreaterThan(0);
+    // M02: eligibility is shown with the approved display labels. "candidate"
+    // means eligible under the source policy, never a search or food match.
+    expect(screen.getAllByText(/Reference only — not selectable/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Requires source review — not selectable/i).length).toBeGreaterThan(0);
+    // The raw policy enum is still exposed, unchanged, in source details.
+    expect(screen.getAllByText(/\(reference_only\)|\(requires_review\)/).length).toBeGreaterThan(0);
+    // Match/recommendation language must never appear.
+    expect(document.body.textContent).not.toMatch(/search match|best match|recommend/i);
     const studyDetails = screen.getByText("Study and eligibility for BELL2016-S1-017").closest("details")!;
     expect(studyDetails).toHaveTextContent("Synthetic study");
     expect(studyDetails).toHaveTextContent("10.synthetic/example");

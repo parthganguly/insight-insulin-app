@@ -9,6 +9,7 @@ import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persi
 import { getHomeTrendCoverageLine, resolveHomeLifecycleState } from "../../utils/homeMealJourney";
 import { getHomeFolioLine, groupJournalMealsByDay } from "../../utils/journalPresentation";
 import { CHRONIC_TREND_DISCLAIMER } from "../../utils/safetyCopy";
+import { currentPresentationGate } from "../../utils/experimentalPresentationGate";
 import {
 	TREND_LOADING_LINE,
 	TREND_NO_DATA_LINE,
@@ -22,6 +23,10 @@ import {
 
 const Dashboard: React.FC = () => {
 	const meals = usePersistentMealStore((state) => state.meals);
+	const listRefresh = usePersistentMealStore((state) => state.listRefresh);
+	// Hiding the trend JSX alone would still call /metrics/chronic, so the
+	// effect itself is short-circuited. No replacement trend is introduced.
+	const { showLegacyTrend } = currentPresentationGate();
 	const [chronicMetrics, setChronicMetrics] = useState<ChronicMetricsResponse | null>(null);
 	const [isChronicLoading, setIsChronicLoading] = useState(false);
 	const [chronicError, setChronicError] = useState<string | null>(null);
@@ -35,7 +40,7 @@ const Dashboard: React.FC = () => {
 		let isActive = true;
 
 		const loadChronicMetrics = async () => {
-			if (meals.length === 0) {
+			if (!showLegacyTrend || meals.length === 0) {
 				if (!isActive) return;
 				setChronicMetrics(null);
 				setChronicError(null);
@@ -65,7 +70,7 @@ const Dashboard: React.FC = () => {
 		return () => {
 			isActive = false;
 		};
-	}, [meals.length]);
+	}, [meals.length, showLegacyTrend]);
 
 	// Logged-days-only trend semantics remain exactly as before J2. Only the
 	// circular presentation is removed; the raw number is still uncapped.
@@ -91,6 +96,7 @@ const Dashboard: React.FC = () => {
 					? TREND_NO_DATA_LINE
 					: TREND_STATUS_LINE;
 	const trendAriaLabel = getTrendAriaLabel(trendState, trendValue, loggedDays, windowDays);
+	const showTrendRegion = showLegacyTrend;
 	const homeState = resolveHomeLifecycleState({
 		mealCount: meals.length,
 		loggedDaysLast7: chronicMetrics?.logged_days_last_7,
@@ -125,7 +131,15 @@ const Dashboard: React.FC = () => {
 					<>
 						<section className='home-folio' aria-labelledby='home-folio-title'>
 							<h1 id='home-folio-title'>{getHomeFolioLine()}</h1>
-							{homeState === "trend-ready" ? (
+							{!showTrendRegion ? (
+								(listRefresh === "read_error" || listRefresh === "offline") && (
+									<p className='home-building-line' role='status'>
+										{listRefresh === "offline"
+											? "Showing this device's saved copy. We couldn't reach the server to refresh it."
+											: "We couldn't read your saved meals from the server. Some entries may be missing or out of date."}
+									</p>
+								)
+							) : homeState === "trend-ready" ? (
 								<div className='home-trend-annotation'>
 									<p className='home-trend-sentence' role='img' aria-label={trendAriaLabel}>
 										{coverageText ? (

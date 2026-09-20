@@ -2,6 +2,7 @@ import { Meal } from "../types/Meal";
 import { calculateTotalCalories, getMealAcuteScore } from "../utils";
 import { getEstimateQualityCopy } from "./safetyCopy";
 import { hasInsufficientEstimateStatus } from "./insulinImpactPresentation";
+import { currentPresentationGate } from "./experimentalPresentationGate";
 
 const startOfLocalDay = (date: Date): number => new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
@@ -72,8 +73,31 @@ const getJournalTimeLabel = (timestamp: number): string => {
 	return Number.isFinite(mealDate.getTime()) ? mealDate.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "Time unavailable";
 };
 
+// Card captions are centralized here so every existing card wrapper inherits
+// the same mode decision (freeze D7). In reference-preview mode the legacy
+// score and data-quality verdict never reach a card, in any state.
+export const describeReferenceAttachment = (meal: Meal): string => {
+	switch (meal.referenceAttachment?.state) {
+		case "evaluated":
+			return meal.referenceAttachment.assessment.status === "experimental"
+				? "Experimental estimate saved"
+				: "Experimental estimate unavailable";
+		case "not_evaluated":
+			return "No experimental assessment saved";
+		case "evidence_error":
+			return "Saved evidence can't be verified";
+		case "invalid_cache":
+			return "This device's copy can't be read";
+		default:
+			return "Not loaded yet";
+	}
+};
+
 export const getJournalEntryMetaLine = (meal: Meal): string => {
 	const time = getJournalTimeLabel(meal.timestamp);
+	if (!currentPresentationGate().showLegacyCardCaptions) {
+		return `${time} · ${describeReferenceAttachment(meal)}`;
+	}
 	if (hasInsufficientEstimateStatus(meal)) return time;
 
 	const score = getMealAcuteScore(meal);
@@ -92,5 +116,11 @@ export const getJournalEntryMetaLine = (meal: Meal): string => {
 // old answer carries over. Time and calories are the two facts that help tell
 // similar saved meals apart, and both are display arithmetic over values the
 // meal already carries.
-export const getPreviousMealMetaLine = (meal: Meal): string =>
-	`${getJournalTimeLabel(meal.timestamp)} · ${Math.round(calculateTotalCalories(meal))} kcal`;
+export const getPreviousMealMetaLine = (meal: Meal): string => {
+	// Reference-mode cache entries hold no legacy items, so a calorie total
+	// here would be a fabricated zero rather than a fact about the meal.
+	if (!currentPresentationGate().showLegacyCardCaptions) {
+		return `${getJournalTimeLabel(meal.timestamp)} · ${describeReferenceAttachment(meal)}`;
+	}
+	return `${getJournalTimeLabel(meal.timestamp)} · ${Math.round(calculateTotalCalories(meal))} kcal`;
+};

@@ -60,3 +60,58 @@ class StubIntersectionObserver {
 window.IntersectionObserver = window.IntersectionObserver || (StubIntersectionObserver as unknown as typeof IntersectionObserver);
 window.IntersectionObserverEntry =
 	window.IntersectionObserverEntry || (StubIntersectionObserverEntry as unknown as typeof IntersectionObserverEntry);
+
+// Node 26 ships its own `localStorage` global, which is inert unless the
+// process was started with --localstorage-file. vitest's jsdom environment
+// skips any key that already exists on globalThis, so jsdom's real Storage is
+// never installed and every test touching localStorage throws
+// "Cannot read properties of undefined". CI runs Node 22, where the global
+// does not exist and jsdom wins, so this only bites local runs.
+//
+// The replacement backs `Storage.prototype` so existing quota tests can still
+// spy on `Storage.prototype.setItem`. It is a test double for browser storage
+// only; real browser storage and real quota behaviour are exercised by the
+// Cypress suites.
+if (typeof globalThis.localStorage === "undefined") {
+	const contents = new WeakMap<Storage, Map<string, string>>();
+	const entriesOf = (storage: Storage): Map<string, string> => {
+		let entries = contents.get(storage);
+		if (!entries) {
+			entries = new Map<string, string>();
+			contents.set(storage, entries);
+		}
+		return entries;
+	};
+
+	Object.defineProperties(Storage.prototype, {
+		length: { configurable: true, get(this: Storage) { return entriesOf(this).size; } },
+		clear: { configurable: true, writable: true, value(this: Storage) { entriesOf(this).clear(); } },
+		getItem: {
+			configurable: true,
+			writable: true,
+			value(this: Storage, key: string) {
+				const entries = entriesOf(this);
+				return entries.has(String(key)) ? entries.get(String(key)) as string : null;
+			},
+		},
+		key: {
+			configurable: true,
+			writable: true,
+			value(this: Storage, index: number) { return Array.from(entriesOf(this).keys())[index] ?? null; },
+		},
+		removeItem: { configurable: true, writable: true, value(this: Storage, key: string) { entriesOf(this).delete(String(key)); } },
+		setItem: {
+			configurable: true,
+			writable: true,
+			value(this: Storage, key: string, value: string) { entriesOf(this).set(String(key), String(value)); },
+		},
+	});
+
+	for (const name of ["localStorage", "sessionStorage"] as const) {
+		Object.defineProperty(globalThis, name, {
+			configurable: true,
+			writable: true,
+			value: Object.create(Storage.prototype) as Storage,
+		});
+	}
+}

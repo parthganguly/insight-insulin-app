@@ -3,28 +3,23 @@ import { describe, expect, it } from "vitest";
 import { ReferenceAssessment } from "./ReferenceAssessment";
 import type { ReferenceResult } from "../../types/experimentalReference";
 
-const item = {
-  position: 0, inputs: { name: "Synthetic user dish", quantity: 1, unit: "serving", source_record_id: "BAO2011-002" },
-  selection_label: "explicit_source_reference_not_verified_food_equivalence" as const,
-  status: "calculated" as const, eaten_kcal: 200, reference_load: 0, reasons: [],
-  source: { source_record_id: "BAO2011-002", source_food_wording: "Source dish", fii_mean: 0,
-    uncertainty_type: "SEM" as const, uncertainty_value: 4,
-    uncertainty_meaning: "published_food_mean_not_personal_interval" as const,
-    reference_scale: "glucose=100", actual_test_energy_kJ: 1000, composition_basis_kJ: 1000,
-    source_study: "Synthetic study", source_doi: "10.synthetic/example", source_table: "Table 1",
-    source_printed_page: 1, source_row: 2, source_footnote: "Synthetic", population: "Study group",
-    issue_ids: [], eligibility: [
-      { use: "composition_energy" as const, status: "requires_review" as const, reasons: ["Composition review"] },
-      { use: "experimental_fii_input" as const, status: "candidate" as const, reasons: ["Experimental source note"] },
-      { use: "fibre_context" as const, status: "reference_only" as const, reasons: ["Fibre context note"] },
-      { use: "gi_gl_calculation" as const, status: "reference_only" as const, reasons: ["GI context note"] },
+import { syntheticItemInput, syntheticItemResult, syntheticResult, syntheticSourceEvidence } from "../../api/referenceFixtures";
+
+const item = syntheticItemResult({
+  inputs: syntheticItemInput({ name: "Synthetic user dish", quantity: 1, unit: "serving", kcal_per_unit: 200, kcal_per_unit_unit: "serving", carb_g: null }),
+  eaten_kcal: 200, reference_load: 0,
+  source: syntheticSourceEvidence({
+    source_food_wording: "Source dish", fii_mean: 0, uncertainty_value: 4,
+    source_doi: "10.synthetic/example", source_footnote: "Synthetic", population: "Study group",
+    eligibility: [
+      { use: "composition_energy", status: "requires_review", reasons: ["Composition review"] },
+      { use: "experimental_fii_input", status: "candidate", reasons: ["Experimental source note"] },
+      { use: "fibre_context", status: "reference_only", reasons: ["Fibre context note"] },
+      { use: "gi_gl_calculation", status: "reference_only", reasons: ["GI context note"] },
     ],
-  },
-};
-const result: ReferenceResult = { result_schema_version: "reference_meal_result_v1", formula_version: "experimental_reference_load_v1",
-  catalog_version: "r2_sha256_synthetic", catalog_schema_version: "insight_reference_catalog_v1",
-  eligibility_policy_version: "experimental_fii_input_v1", selection_policy_version: "explicit_source_id_v1",
-  status: "experimental", reference_load_total: 0, items: [item], reasons: [] };
+  }),
+});
+const result: ReferenceResult = syntheticResult({ reference_load_total: 0, items: [item] });
 
 describe("experimental presentation", () => {
   it("shows genuine zero and distinct source evidence without acute score", () => {

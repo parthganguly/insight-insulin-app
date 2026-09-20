@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { buildCreateMealPayload } from "../api/api";
 import { Meal } from "../types/Meal";
 import { Unit } from "../types/MealItem";
-import { currentDraftStillMatchesSaveRequest, getMaterialItemsSnapshot, isMaterialSnapshotFresh } from "./mealEstimateStore";
+import { currentDraftStillMatchesSaveRequest, getMaterialItemsSnapshot, isMaterialSnapshotFresh, useMealEstimateStore } from "./mealEstimateStore";
 
 const meal = (): Meal => ({
 	id: "draft-x",
@@ -86,5 +86,51 @@ describe("B2-2 material estimate freshness", () => {
 		expect(currentDraftStillMatchesSaveRequest({ ...original, image: "synthetic-image-b" }, request)).toBe(true);
 		expect(currentDraftStillMatchesSaveRequest({ ...original, name: "  Breakfast label  " }, request)).toBe(true);
 		expect(currentDraftStillMatchesSaveRequest({ ...original, name: "Renamed" }, request)).toBe(false);
+	});
+});
+
+describe("N1 reference recalculation keeps its requesting draft", () => {
+	beforeEach(() => {
+		useMealEstimateStore.getState().clearEstimate();
+	});
+
+	it("begin retains the requesting draft identity through loading", () => {
+		const token = useMealEstimateStore.getState().beginReferencePreview("draft-1", 3);
+		expect(typeof token).toBe("number");
+		const reference = useMealEstimateStore.getState().reference;
+		expect(reference.phase).toBe("loading");
+		expect(reference.draftId).toBe("draft-1");
+		expect(reference.materialRevision).toBe(3);
+		expect(reference.result).toBeNull();
+		expect(reference.saveRequestId).toBeNull();
+	});
+
+	it("fail retains the requesting draft identity with its error", () => {
+		const token = useMealEstimateStore.getState().beginReferencePreview("draft-1", 3);
+		expect(useMealEstimateStore.getState().failReferencePreview(token, "read_error", "reference_unknown_failure")).toBe(true);
+		const reference = useMealEstimateStore.getState().reference;
+		expect(reference.phase).toBe("read_error");
+		expect(reference.errorCode).toBe("reference_unknown_failure");
+		expect(reference.draftId).toBe("draft-1");
+		expect(reference.materialRevision).toBe(3);
+		expect(reference.result).toBeNull();
+	});
+
+	it("a stale token failure changes nothing", () => {
+		const token = useMealEstimateStore.getState().beginReferencePreview("draft-1", 3);
+		const newer = useMealEstimateStore.getState().beginReferencePreview("draft-1", 3);
+		expect(newer).not.toBe(token);
+		expect(useMealEstimateStore.getState().failReferencePreview(token, "read_error", "reference_unknown_failure")).toBe(false);
+		expect(useMealEstimateStore.getState().reference.phase).toBe("loading");
+	});
+
+	it("clearEstimate returns to idle with no draft attached", () => {
+		const token = useMealEstimateStore.getState().beginReferencePreview("draft-1", 3);
+		useMealEstimateStore.getState().failReferencePreview(token, "offline", "reference_network_error");
+		useMealEstimateStore.getState().clearEstimate();
+		const reference = useMealEstimateStore.getState().reference;
+		expect(reference.phase).toBe("idle");
+		expect(reference.draftId).toBeNull();
+		expect(reference.result).toBeNull();
 	});
 });

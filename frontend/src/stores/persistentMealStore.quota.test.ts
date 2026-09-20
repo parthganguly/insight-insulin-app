@@ -1,6 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { isPersistableImage, usePersistentMealStore } from "./persistentMealStore";
+import {
+	isMealCacheReadError,
+	replaceUnreadableMealCache,
+	resetMealCacheGuardForTests,
+	isPersistableImage,
+	usePersistentMealStore,
+} from "./persistentMealStore";
 import { Meal } from "../types/Meal";
 
 // Synthetic data only. A ~200k-char data URI stands in for a real camera photo.
@@ -26,10 +32,12 @@ describe("localStorage photo-quota safety", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		usePersistentMealStore.setState({ meals: [] });
+		resetMealCacheGuardForTests();
 	});
 
 	afterEach(() => {
 		vi.restoreAllMocks();
+		resetMealCacheGuardForTests();
 	});
 
 	it("saving a meal with a large base64 photo does not crash and keeps meal data persisted", () => {
@@ -108,5 +116,82 @@ describe("localStorage photo-quota safety", () => {
 		expect(meals.find((meal) => meal.id === "local-only-1")).toBeTruthy();
 		// Persisted copy still refuses the full-size photo.
 		expect(readPersisted()?.state.meals.find((meal) => meal.id === "backend-1")?.image).toBeNull();
+	});
+});
+
+describe("N5 explicit cache replacement confirms persistence", () => {
+	beforeEach(() => {
+		localStorage.clear();
+		usePersistentMealStore.setState({ meals: [], listRefresh: "fresh", referenceRefresh: {} });
+		resetMealCacheGuardForTests();
+	});
+
+	afterEach(() => {
+		vi.restoreAllMocks();
+		resetMealCacheGuardForTests();
+	});
+
+	const breakCache = async () => {
+		localStorage.setItem("insight-meals", "{broken");
+		await usePersistentMealStore.persist.rehydrate();
+		expect(isMealCacheReadError()).toBe(true);
+	};
+
+	it("replaces an unreadable cache after a validated refresh and reads back", async () => {
+		await breakCache();
+		usePersistentMealStore.setState({ meals: [mealWith("m1", null)] });
+
+		const result = replaceUnreadableMealCache();
+		expect(result).toEqual({ replaced: true });
+		expect(isMealCacheReadError()).toBe(false);
+		expect(readPersisted()?.state.meals.map((meal) => meal.id)).toEqual(["m1"]);
+	});
+
+	it("reports failure, preserves the bad bytes and re-arms protection when the write fails", async () => {
+		await breakCache();
+		usePersistentMealStore.setState({ meals: [mealWith("m1", null)] });
+		const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+		vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+			throw new DOMException("QuotaExceededError", "QuotaExceededError");
+		});
+
+		const result = replaceUnreadableMealCache();
+		expect(result.replaced).toBe(false);
+		expect(result.reason).toMatch(/could not be replaced/i);
+		expect(warnSpy).toHaveBeenCalled();
+		// Prior unreadable bytes still on disk; protection re-armed for retry.
+		expect(localStorage.getItem("insight-meals")).toBe("{broken");
+		expect(isMealCacheReadError()).toBe(true);
+
+		// Retry after storage recovers succeeds.
+		vi.restoreAllMocks();
+		const retry = replaceUnreadableMealCache();
+		expect(retry).toEqual({ replaced: true });
+		expect(readPersisted()?.state.meals.map((meal) => meal.id)).toEqual(["m1"]);
+	});
+
+	it("restores original bytes and protection when post-write readback fails, then retries", async () => {
+		await breakCache();
+		usePersistentMealStore.setState({ meals: [mealWith("m1", null)] });
+		const getItem = Storage.prototype.getItem;
+		let reads = 0;
+		vi.spyOn(Storage.prototype, "getItem").mockImplementation(function (this: Storage, key) {
+			if (key === "insight-meals" && ++reads === 2) throw new Error("synthetic readback failure");
+			return getItem.call(this, key);
+		});
+		expect(replaceUnreadableMealCache().replaced).toBe(false);
+		expect(localStorage.getItem("insight-meals")).toBe("{broken");
+		expect(isMealCacheReadError()).toBe(true);
+		vi.restoreAllMocks();
+		expect(replaceUnreadableMealCache()).toEqual({ replaced: true });
+		expect(readPersisted()?.state.meals.map((meal) => meal.id)).toEqual(["m1"]);
+	});
+
+	it("refuses replacement before any validated server refresh", async () => {
+		await breakCache();
+		usePersistentMealStore.setState({ meals: [mealWith("m1", null)], listRefresh: "read_error", referenceRefresh: {} });
+		const result = replaceUnreadableMealCache();
+		expect(result.replaced).toBe(false);
+		expect(localStorage.getItem("insight-meals")).toBe("{broken");
 	});
 });

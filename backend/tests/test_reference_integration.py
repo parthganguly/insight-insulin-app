@@ -4,6 +4,7 @@ import copy
 import hashlib
 import importlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -497,6 +498,90 @@ with patch.object(main, "create_tables", side_effect=AssertionError("startup")):
                 self.assertEqual(preview["reference_load_total"], wanted["total"])
                 self.assertEqual([i["reference_load"] for i in preview["items"]], wanted["loads"])
                 self.assertEqual(self.client.get("/reference-meals/" + saved["legacy_compatibility"]["id"]).json(), saved)
+
+
+# R3B: the reference private preview is mounted only by an exact opt-in flag.
+# These checks import the real production app in a subprocess, from a fresh
+# temporary working directory so the relative app.db is isolated, with dotenv
+# loading disabled so no owner .env is read.
+
+PROBE = """
+import json, os, sys
+os.environ["PYTHON_DOTENV_DISABLED"] = "1"
+import dotenv
+dotenv.load_dotenv = lambda *args, **kwargs: False
+sys.path.insert(0, BACKEND)
+import main
+from fastapi.testclient import TestClient
+
+# FastAPI resolves included routers lazily, so the production route table is
+# read through real requests against the real app rather than app.routes.
+with TestClient(main.app) as client:
+    catalog = client.get("/reference-meals/catalog")
+    listing = client.get("/reference-meals")
+    legacy = client.get("/meals")
+    detail = client.get("/reference-meals/11111111-2222-4333-8444-555555555555")
+    print(json.dumps({
+        "enabled": main.reference_preview_enabled(),
+        "catalog_status": catalog.status_code,
+        "list_status": listing.status_code,
+        "legacy_status": legacy.status_code,
+        "detail_status": detail.status_code,
+        "detail_body": detail.json(),
+        "reference_modules": sorted(name for name in sys.modules
+                                    if "experimental_reference" in name or "reference_catalog" in name),
+        "db_created_here": os.path.exists("app.db"),
+    }))
+"""
+
+
+class ReferenceFlagRegistrationTests(unittest.TestCase):
+    """Real import of production main under each flag value."""
+
+    def probe(self, value):
+        env = dict(os.environ)
+        env.pop("INSIGHT_REFERENCE_PREVIEW", None)
+        if value is not None:
+            env["INSIGHT_REFERENCE_PREVIEW"] = value
+        env["PYTHON_DOTENV_DISABLED"] = "1"
+        with tempfile.TemporaryDirectory(prefix="insight-flag-probe-") as work:
+            script = "BACKEND = %r\n" % str(BACKEND) + PROBE
+            completed = subprocess.run(
+                [sys.executable, "-c", script],
+                cwd=work, env=env, capture_output=True, text=True, timeout=300,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            # A default import must not create a database in the repository.
+            return json.loads(completed.stdout.strip().splitlines()[-1])
+
+    def test_default_build_does_not_mount_or_import_the_reference_module(self):
+        for value in (None, "0", "true", "yes", "TRUE", "2", ""):
+            with self.subTest(flag=value):
+                probe = self.probe(value)
+                self.assertFalse(probe["enabled"])
+                # Neither the router nor the catalog module is even imported.
+                self.assertEqual(probe["reference_modules"], [])
+                self.assertEqual(probe["catalog_status"], 404)
+                self.assertEqual(probe["list_status"], 404)
+                self.assertEqual(probe["detail_status"], 404)
+                # An OFF backend answers with a generic 404, which the client
+                # must never read as proof that one meal was deleted (C3).
+                self.assertEqual(probe["detail_body"], {"detail": "Not Found"})
+                # Legacy operation is untouched in OFF mode.
+                self.assertEqual(probe["legacy_status"], 200)
+                self.assertTrue(probe["db_created_here"])
+
+    def test_exact_flag_mounts_the_existing_router(self):
+        probe = self.probe("1")
+        self.assertTrue(probe["enabled"])
+        self.assertEqual(probe["catalog_status"], 200)
+        self.assertEqual(probe["list_status"], 200)
+        # Legacy endpoints keep working alongside it.
+        self.assertEqual(probe["legacy_status"], 200)
+        # An unknown ID answers with the protocol-specific absence code, which
+        # is the only response that establishes deletion of that one record.
+        self.assertEqual(probe["detail_status"], 404)
+        self.assertEqual(probe["detail_body"], {"detail": {"code": "meal_not_found"}})
 
 
 if __name__ == "__main__":

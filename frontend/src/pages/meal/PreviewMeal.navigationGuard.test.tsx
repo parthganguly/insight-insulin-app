@@ -23,7 +23,7 @@ vi.mock("@ionic/react", async (importOriginal) => {
 });
 
 import App from "../../App";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useCurrentMealStore, getLegacyCurrentMeal } from "../../stores/currentMealStore";
 import { useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
@@ -46,7 +46,7 @@ const syntheticDraft = (): Meal => ({
 });
 
 const makeMeaningfulEdit = () => {
-	const meal = useCurrentMealStore.getState().meal;
+	const meal = getLegacyCurrentMeal();
 	act(() => {
 		useCurrentMealStore.getState().setMeal({
 			...meal,

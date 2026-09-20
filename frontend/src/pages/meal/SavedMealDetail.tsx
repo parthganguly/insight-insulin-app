@@ -16,7 +16,16 @@ import {
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { deleteMealEverywhere, syncMealsFromBackend, usePersistentMealStore } from "../../stores/persistentMealStore";
+import {
+	DELETE_BLOCKED_BY_PENDING_SAVE,
+	deleteMealEverywhere,
+	refreshReferenceMealDetail,
+	syncMealsFromBackend,
+	usePersistentMealStore,
+} from "../../stores/persistentMealStore";
+import { blockingReferenceRecoveryStateFrom, usePendingSaveStore } from "../../stores/pendingSaveStore";
+import { ReferenceAssessment } from "../../components/experimentalReference/ReferenceAssessment";
+import { REFERENCE_PREVIEW_MODE } from "../../utils/experimentalPresentationGate";
 import EvidenceRows from "../../components/EvidenceRows";
 import ResultHero from "../../components/ResultHero";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
@@ -62,7 +71,7 @@ import { getResultCompositionLine, getResultLoggedLine } from "../../utils/resul
 // frozen relative-score, model-coverage, and software-action provenance
 // contract. No scoring, persistence, deletion, routing, or canonical backend
 // token changes are made here.
-const SavedMealDetail: React.FC = () => {
+const LegacySavedMealDetail: React.FC = () => {
 	const { mealId } = useParams<{ mealId: string }>();
 	// react-router v5 does not decode URL params; Dashboard encodes the id.
 	// A malformed hand-typed link (e.g. a stray "%") must fall through to the
@@ -252,5 +261,203 @@ const SavedMealDetail: React.FC = () => {
 		</IonPage>
 	);
 };
+
+// ---------------- Reference saved detail (freeze D6/D7, C3) ----------------
+
+export const REFERENCE_DETAIL_LOADING = "Loading this saved meal…";
+export const REFERENCE_DETAIL_NOT_FOUND = "This meal is no longer saved on the server.";
+export const REFERENCE_DETAIL_OFFLINE = "Showing this device's saved copy. We couldn't reach the server to refresh it.";
+export const REFERENCE_DETAIL_READ_ERROR = "We couldn't read this meal from the server. Showing this device's saved copy if there is one.";
+export const REFERENCE_DETAIL_UNKNOWN = "We couldn't read this meal, and this device has no saved copy of it.";
+export const REFERENCE_DETAIL_CACHED = "Cached on this device — not refreshed from the server yet.";
+export const REFERENCE_DETAIL_OFFLINE_NO_CACHE = "We couldn't reach the server, and this device has no saved evidence for this meal.";
+export const REFERENCE_DETAIL_READ_ERROR_NO_CACHE = "We couldn't read this meal's evidence from the server, and this device has no saved copy of it.";
+export const REFERENCE_DETAIL_INVALID_CACHE = "This device's copy of the saved evidence can't be read. Refresh to fetch it again.";
+
+const ReferenceSavedMealDetail: React.FC = () => {
+	const { mealId } = useParams<{ mealId: string }>();
+	let decodedMealId: string | null = null;
+	try {
+		decodedMealId = decodeURIComponent(mealId);
+	} catch {
+		decodedMealId = null;
+	}
+	const meal = usePersistentMealStore((s) => (decodedMealId === null ? undefined : s.meals.find((m) => m.id === decodedMealId)));
+	const refresh = usePersistentMealStore((s) => (decodedMealId === null ? "idle" : s.referenceRefresh[decodedMealId] ?? "idle"));
+	const recoveryState = usePendingSaveStore((s) => blockingReferenceRecoveryStateFrom(s));
+
+	const router = useIonRouter();
+	const [presentAlert] = useIonAlert();
+	const [isDeleting, setIsDeleting] = useState(false);
+	const [showToast, setShowToast] = useState(false);
+	const [toastMessage, setToastMessage] = useState("");
+	// A read that has not answered yet is loading, never "not found".
+	const [hasAttemptedRead, setHasAttemptedRead] = useState(false);
+
+	useEffect(() => {
+		if (decodedMealId === null) {
+			setHasAttemptedRead(true);
+			return;
+		}
+		let active = true;
+		void refreshReferenceMealDetail(decodedMealId).finally(() => {
+			if (active) setHasAttemptedRead(true);
+		});
+		return () => {
+			active = false;
+		};
+	}, [decodedMealId]);
+
+	const performMealDeletion = async () => {
+		if (!meal) return;
+		setIsDeleting(true);
+		const result = await deleteMealEverywhere(meal);
+		setIsDeleting(false);
+		if (!result.deleted) {
+			setToastMessage(result.reason);
+			setShowToast(true);
+			return;
+		}
+		router.goBack();
+	};
+
+	const handleDeleteMeal = () => {
+		if (!meal) return;
+		void presentAlert({
+			header: "Delete saved meal?",
+			message: recoveryState === "none"
+				? "This permanently removes the saved meal from your history."
+				: DELETE_BLOCKED_BY_PENDING_SAVE,
+			buttons: recoveryState === "none"
+				? [
+					{ text: "Cancel", role: "cancel" },
+					{ text: "Delete", role: "destructive", handler: () => void performMealDeletion() },
+				]
+				: [{ text: "OK", role: "cancel" }],
+		});
+	};
+
+	if (!meal) {
+		const loading = !hasAttemptedRead || refresh === "loading";
+		return (
+			<IonPage>
+				<IonHeader>
+					<IonToolbarWrapper className='ion-text-left'>
+						<IonButtons slot='start'>
+							<IonBackButton defaultHref='/dashboard' />
+						</IonButtons>
+						<IonTitle>Saved Meal</IonTitle>
+					</IonToolbarWrapper>
+				</IonHeader>
+				<IonContent className='ion-padding'>
+					<IonCard className='app-card empty-state-card'>
+						{loading ? (
+							<>
+								<h1>Loading</h1>
+								<p role='status'>{REFERENCE_DETAIL_LOADING}</p>
+							</>
+						) : refresh === "not_found" ? (
+							<>
+								<h1>Meal Not Found</h1>
+								<p>{REFERENCE_DETAIL_NOT_FOUND}</p>
+							</>
+						) : (
+							<>
+								<h1>Meal unavailable</h1>
+								{/* R07: this branch has no meal at all, so it has no saved copy
+								    either. Claiming "showing this device's saved copy" here
+								    would be the same false claim R07 closed for attachments. */}
+								<p>{refresh === "offline" ? REFERENCE_DETAIL_OFFLINE_NO_CACHE : REFERENCE_DETAIL_UNKNOWN}</p>
+							</>
+						)}
+					</IonCard>
+				</IonContent>
+			</IonPage>
+		);
+	}
+
+	const attachment = meal.referenceAttachment ?? { state: "not_loaded" as const };
+	// R07: only claim a saved copy when one actually exists. A `not_loaded`
+	// attachment holds no evidence, so offline/failed-refresh copy that says
+	// "showing this device's saved copy" would be false. A last valid
+	// attachment may coexist with a failed refresh, but is visibly cached and
+	// is never relabelled as a new server result.
+	const hasUsableCache = attachment.state === "evaluated"
+		|| attachment.state === "not_evaluated"
+		|| attachment.state === "evidence_error";
+	const staleLabel = refresh === "fresh"
+		? null
+		: refresh === "offline"
+			? (hasUsableCache ? REFERENCE_DETAIL_OFFLINE : REFERENCE_DETAIL_OFFLINE_NO_CACHE)
+			: refresh === "read_error"
+				? (hasUsableCache ? REFERENCE_DETAIL_READ_ERROR : REFERENCE_DETAIL_READ_ERROR_NO_CACHE)
+				: hasUsableCache
+					? REFERENCE_DETAIL_CACHED
+					: null;
+
+	return (
+		<IonPage>
+			<IonContent className='result-page' fullscreen>
+				<ResultHero image={meal.image} mealName={meal.name} />
+
+				<main className='result-sheet'>
+					<span className='meal-status-pill meal-status-saved'>{SAVED_MEAL_STATUS}</span>
+					<h1 className='result-meal-name'>{meal.name}</h1>
+					<p className='result-meal-meta'>{getResultLoggedLine(meal)}</p>
+					{staleLabel && <p className='result-notice' role='status'>{staleLabel}</p>}
+
+					{attachment.state === "invalid_cache" ? (
+						<section aria-label='Saved evidence'>
+							<h2>This device&rsquo;s copy can&rsquo;t be read</h2>
+							<p>{REFERENCE_DETAIL_INVALID_CACHE}</p>
+						</section>
+					) : attachment.state === "not_loaded" ? (
+						<section aria-label='Saved evidence'>
+							{/* R07: after a failed refresh this is NOT still loading. */}
+							<h2>{refresh === "loading" ? "Loading saved evidence" : "Saved evidence unavailable"}</h2>
+							<p role='status'>
+								{refresh === "loading"
+									? REFERENCE_DETAIL_LOADING
+									: refresh === "offline"
+										? REFERENCE_DETAIL_OFFLINE_NO_CACHE
+										: REFERENCE_DETAIL_READ_ERROR_NO_CACHE}
+							</p>
+						</section>
+					) : (
+						<ReferenceAssessment
+							response={{
+								assessment_state: attachment.state === "evaluated" ? "evaluated" : attachment.state,
+								assessment: attachment.state === "evaluated" ? attachment.assessment : null,
+								reasons: attachment.reasons,
+							}}
+						/>
+					)}
+
+					<details className='result-footnotes'>
+						<summary tabIndex={0}>What this doesn&rsquo;t mean</summary>
+						<div className='result-footnotes-content'>
+							<p>{APP_DISCLAIMER}</p>
+						</div>
+					</details>
+				</main>
+
+				<IonLoading isOpen={isDeleting} message='Deleting meal…' />
+				<IonToast isOpen={showToast} message={toastMessage} duration={3200} color='danger' onDidDismiss={() => setShowToast(false)} />
+			</IonContent>
+
+			<IonFooter className='result-dock'>
+				<IonButton expand='block' routerLink='/log-meal'>Check another meal</IonButton>
+				<div className='result-dock-secondary'>
+					<IonButton expand='block' fill='clear' routerLink='/dashboard'>Done</IonButton>
+					<IonButton expand='block' fill='clear' className='result-delete-button' aria-label='Delete saved meal' aria-disabled={recoveryState !== "none"} onClick={handleDeleteMeal}>Delete</IonButton>
+				</div>
+				{recoveryState !== "none" && <p className='result-notice' role='status'>{DELETE_BLOCKED_BY_PENDING_SAVE}</p>}
+			</IonFooter>
+		</IonPage>
+	);
+};
+
+// The flag is fixed at build time, so this branch never reorders hooks.
+const SavedMealDetail: React.FC = () => (REFERENCE_PREVIEW_MODE ? <ReferenceSavedMealDetail /> : <LegacySavedMealDetail />);
 
 export default SavedMealDetail;

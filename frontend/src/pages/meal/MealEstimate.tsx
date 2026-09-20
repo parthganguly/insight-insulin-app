@@ -14,7 +14,12 @@ import ResultHero from "../../components/ResultHero";
 import { MealPreviewResponse } from "../../api/api";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { isMaterialSnapshotFresh, useMealEstimateStore } from "../../stores/mealEstimateStore";
-import { usePendingSaveStore } from "../../stores/pendingSaveStore";
+import { canDispatchReferenceSave, isReferenceIntent, usePendingSaveStore } from "../../stores/pendingSaveStore";
+import { ReferenceAssessment } from "../../components/experimentalReference/ReferenceAssessment";
+import { REFERENCE_PREVIEW_MODE } from "../../utils/experimentalPresentationGate";
+import { isReferenceDraft } from "../../utils/referenceDraft";
+import { calculateCurrentReferenceEstimate, describeReferenceErrorCode } from "../../utils/mealEstimateWorkflow";
+import { referenceSaveCopy, retryReferenceSaveIntent, saveCurrentReferenceEstimate } from "../../utils/mealSaveCoordinator";
 import { Meal } from "../../types/Meal";
 import { MealItem, Unit } from "../../types/MealItem";
 import { calculateTotalItemCalories, calculateTotalItemCarbohydrates, calculateTotalItemSaturatedFat, getMealAcuteScore } from "../../utils";
@@ -60,24 +65,26 @@ const previewItemsForDisplay = (preview: MealPreviewResponse): MealItem[] => pre
 	why: item.why,
 }));
 
-const MealEstimate = () => {
+const LegacyMealEstimate = () => {
 	const router = useIonRouter();
 	const { pathname } = useLocation();
-	const meal = useCurrentMealStore((state) => state.meal);
+	const editable = useCurrentMealStore((state) => state.meal);
+	const meal = isReferenceDraft(editable) ? null : editable;
 	const estimate = useMealEstimateStore();
 	const intents = usePendingSaveStore((state) => state.intents);
-	const validEstimate = estimate.preview !== null && estimate.frozenItems !== null && estimate.saveRequestId !== null && estimate.draftId === meal.id;
-	const isFresh = validEstimate && isMaterialSnapshotFresh(meal, estimate.frozenItems);
-	const intent = estimate.saveRequestId ? intents[estimate.saveRequestId] : undefined;
+	const validEstimate = meal !== null && estimate.contract === "legacy" && estimate.preview !== null && estimate.frozenItems !== null && estimate.saveRequestId !== null && estimate.draftId === meal.id;
+	const isFresh = validEstimate && meal !== null && isMaterialSnapshotFresh(meal, estimate.frozenItems);
+	const rawIntent = estimate.saveRequestId ? intents[estimate.saveRequestId] : undefined;
+	const intent = rawIntent && !isReferenceIntent(rawIntent) ? rawIntent : undefined;
 
 	useEffect(() => {
 		if (pathname !== "/meals/estimate" || validEstimate) return;
-		const destination = meal.items.length > 0 ? "/meals/new" : "/log-meal";
+		const destination = (meal?.items.length ?? 0) > 0 ? "/meals/new" : "/log-meal";
 		router.push(destination, "back", "replace");
-	}, [meal.items.length, pathname, router, validEstimate]);
+	}, [meal?.items.length, pathname, router, validEstimate]);
 
 	const displayMeal = useMemo<Meal | null>(() => {
-		if (!estimate.preview) return null;
+		if (!estimate.preview || !meal) return null;
 		return {
 			id: meal.id,
 			image: meal.image,
@@ -94,9 +101,9 @@ const MealEstimate = () => {
 			estimate_status: estimate.preview.estimate_status,
 			main_insulin_drivers: estimate.preview.main_insulin_drivers,
 		};
-	}, [estimate.preview, meal.id, meal.image, meal.name, meal.timestamp]);
+	}, [estimate.preview, meal]);
 
-	if (!validEstimate || !displayMeal) return null;
+	if (!validEstimate || !displayMeal || !meal) return null;
 
 	const impactPresentation = getImpactPresentation(displayMeal);
 	const displayScore = getMealAcuteScore(displayMeal);
@@ -107,6 +114,7 @@ const MealEstimate = () => {
 	const hasRoughEstimateItems = displayMeal.items.some((item) => isRoughEstimateSource(item.source));
 	const ownsTransientIntent = (intent?.phase === "inFlight" || intent?.phase === "ambiguous")
 		&& doesPendingSaveCoverCurrentDraft({
+			editRevision: useCurrentMealStore.getState().editRevision,
 			meal,
 			estimateDraftId: estimate.draftId,
 			saveRequestId: estimate.saveRequestId,
@@ -248,5 +256,164 @@ const MealEstimate = () => {
 		</IonPage>
 	);
 };
+
+export const REFERENCE_RESULT_KICKER = "Experimental reference preview — not a medical result";
+export const REFERENCE_NO_ESTIMATE_MESSAGE = "There is no calculated estimate for this draft. Go back and calculate one.";
+export const REFERENCE_STALE_ESTIMATE_MESSAGE = "This estimate describes the meal before your changes. Calculate again before saving.";
+
+/**
+ * Reference-mode result. The entire legacy interpretation subtree — verdict,
+ * acute score, partial model output, estimate quality and FII-source copy —
+ * is absent here rather than hidden, and no legacy chronic trend is requested
+ * anywhere in this mode.
+ *
+ * Exported for focused lifecycle tests (N1).
+ */
+export const ReferenceMealEstimate = () => {
+	const router = useIonRouter();
+	const { pathname } = useLocation();
+	const editable = useCurrentMealStore((state) => state.meal);
+	const materialRevision = useCurrentMealStore((state) => state.materialRevision);
+	const reference = useMealEstimateStore((state) => state.reference);
+	const contract = useMealEstimateStore((state) => state.contract);
+	const intents = usePendingSaveStore((state) => state.intents);
+	const draft = isReferenceDraft(editable) ? editable : null;
+
+	const hasResult = contract === "reference" && reference.phase === "ready" && reference.result !== null && reference.saveRequestId !== null;
+	const isFresh = hasResult && draft !== null && reference.draftId === draft.id && reference.materialRevision === materialRevision;
+	// N1: a legitimate in-flight recalculation or a failed one for THIS draft
+	// is a valid session, not an invalid direct entry. Only a route visit with
+	// no estimate state for the current draft recovers via redirect.
+	const hasSession = contract === "reference" && draft !== null && reference.draftId === draft.id
+		&& (hasResult || reference.phase === "loading" || reference.phase === "read_error" || reference.phase === "offline");
+	const isRecalculating = hasSession && !hasResult && reference.phase === "loading";
+	const rawIntent = reference.saveRequestId ? intents[reference.saveRequestId] : undefined;
+	const intent = rawIntent && isReferenceIntent(rawIntent) ? rawIntent : undefined;
+
+	useEffect(() => {
+		if (pathname !== "/meals/estimate" || hasSession) return;
+		router.push((draft?.items.length ?? 0) > 0 ? "/meals/new" : "/log-meal", "back", "replace");
+	}, [draft?.items.length, hasSession, pathname, router]);
+
+	if (!hasSession || !draft) return null;
+
+	const isSaving = intent?.phase === "inFlight";
+	const canRetry = intent?.phase === "ambiguous";
+	const canSave = isFresh && !intent && canDispatchReferenceSave(draft.id);
+	const footerLabel = !isFresh
+		? "Calculate again"
+		: isSaving
+			? "Saving to History…"
+			: canRetry
+				? "Retry this save"
+				: intent
+					? "Save needs review"
+					: "Save to History";
+	const statusIsLive = Boolean(intent);
+
+	const handlePrimary = () => {
+		if (!isFresh) {
+			if (reference.phase === "loading") return;
+			void calculateCurrentReferenceEstimate();
+			return;
+		}
+		if (canRetry && reference.saveRequestId) {
+			void retryReferenceSaveIntent(reference.saveRequestId, { replaceRoute: (destination) => router.push(destination, "forward", "replace") });
+			return;
+		}
+		void saveCurrentReferenceEstimate({ replaceRoute: (destination) => router.push(destination, "forward", "replace") });
+	};
+
+	// N1: a valid session without a result yet (recalculating) or with a
+	// failed recalculation stays on this route with its draft: loading or
+	// error copy plus retry, Save never enabled, no values recreated.
+	if (!hasResult || !reference.result) {
+		return (
+			<IonPage>
+				<IonContent className='result-page estimate-page' fullscreen>
+					<ResultHero image={draft.image} mealName={draft.name} defaultHref='/meals/new' imageAlt='Meal estimate photo' />
+					<main className='result-sheet'>
+						<p className='confirmation-kicker'>{REFERENCE_RESULT_KICKER}</p>
+						<h1 className='result-meal-name'>{draft.name}</h1>
+						{isRecalculating ? (
+							<section className='estimate-model-status' role='status' aria-live='polite' aria-atomic='true'>
+								<p className='estimate-stale-copy'>Recalculating your estimate…</p>
+							</section>
+						) : (
+							<section className='estimate-model-status' role='alert'>
+								<p className='estimate-stale-copy'>{describeReferenceErrorCode(reference.errorCode, reference.phase)}</p>
+							</section>
+						)}
+					</main>
+				</IonContent>
+				<IonFooter className='result-dock estimate-dock'>
+					<div className='estimate-footer-state'>
+						<IonButton
+							expand='block'
+							aria-label={isRecalculating ? "Calculating estimate" : "Calculate again"}
+							disabled={isRecalculating}
+							onClick={handlePrimary}
+						>
+							{isRecalculating ? "Calculating…" : "Calculate again"}
+						</IonButton>
+					</div>
+				</IonFooter>
+			</IonPage>
+		);
+	}
+
+	return (
+		<IonPage>
+			<IonContent className='result-page estimate-page' fullscreen>
+				<ResultHero image={draft.image} mealName={draft.name} defaultHref='/meals/new' imageAlt='Meal estimate photo' />
+				<main className='result-sheet'>
+					<p className='confirmation-kicker'>{REFERENCE_RESULT_KICKER}</p>
+					<h1 className='result-meal-name'>{draft.name}</h1>
+					<div className='estimate-identity-actions'>
+						<IonButton fill='clear' size='small' onClick={() => router.push("/meals/new", "back")}>Adjust meal</IonButton>
+					</div>
+
+					{!isFresh && (
+						<section className='estimate-model-status' role='status' aria-live='polite' aria-atomic='true'>
+							<p className='estimate-stale-copy'>{REFERENCE_STALE_ESTIMATE_MESSAGE}</p>
+						</section>
+					)}
+
+					<ReferenceAssessment response={{ assessment_state: "evaluated", assessment: reference.result, reasons: reference.result.reasons }} />
+
+					<details className='result-footnotes'>
+						<summary tabIndex={0}>What this doesn&rsquo;t mean</summary>
+						<div className='result-footnotes-content'>
+							<p>{APP_DISCLAIMER}</p>
+						</div>
+					</details>
+				</main>
+			</IonContent>
+
+			<IonFooter className='result-dock estimate-dock'>
+				<div
+					className='estimate-footer-state'
+					role={statusIsLive ? "status" : undefined}
+					aria-live={statusIsLive ? "polite" : undefined}
+					aria-atomic={statusIsLive ? "true" : undefined}
+				>
+					{intent && <p className='estimate-footer-support'>{referenceSaveCopy[intent.phase]}</p>}
+					<IonButton
+						expand='block'
+						aria-label={footerLabel}
+						disabled={isSaving || (isFresh && !canSave && !canRetry)}
+						onClick={handlePrimary}
+					>
+						{isSaving && <IonSpinner name='crescent' aria-hidden='true' />}
+						{footerLabel}
+					</IonButton>
+				</div>
+			</IonFooter>
+		</IonPage>
+	);
+};
+
+// The flag is fixed at build time, so this branch never reorders hooks.
+const MealEstimate = () => (REFERENCE_PREVIEW_MODE ? <ReferenceMealEstimate /> : <LegacyMealEstimate />);
 
 export default MealEstimate;

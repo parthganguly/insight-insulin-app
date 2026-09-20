@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { expect, it, vi } from "vitest";
 import { ReferenceApiError } from "../../api/experimentalReference";
+import { syntheticItemInput, syntheticItemResult } from "../../api/referenceFixtures";
 import type { CatalogBrowseRecord, ItemResult } from "../../types/experimentalReference";
 import { ReferenceEvidenceRow } from "./ReferenceAssessment";
 import { ReferenceCatalogStaleNotice } from "./ReferenceCatalogStaleNotice";
@@ -15,12 +16,11 @@ it("keeps every R3A interactive control in the scoped 44px rule", () => {
     reference_scale: "glucose=100", actual_test_energy_kJ: 1000,
     eligibility: { use: "experimental_fii_input", status: "candidate", reasons: [] },
   };
-  const item: ItemResult = {
-    position: 0, inputs: { name: "Synthetic meal item", quantity: 1, unit: "serving", source_record_id: null },
-    selection_label: "explicit_source_reference_not_verified_food_equivalence",
+  const item: ItemResult = syntheticItemResult({
+    inputs: syntheticItemInput({ name: "Synthetic meal item", quantity: 1, unit: "serving", kcal_per_unit: null, kcal_per_unit_unit: null, carb_g: null, source_record_id: null }),
     status: "unavailable", eaten_kcal: null, reference_load: null, source: null,
     reasons: [{ code: "no_reference_selected", detail: "No selection" }],
-  };
+  });
   const { container } = render(<>
     <ReferencePicker itemName="Synthetic meal item" quantity={1} records={[record]} selectedId={record.source_record_id} onChange={vi.fn()} />
     <ReferenceCatalogStaleNotice error={new ReferenceApiError(409, "stale_catalog_version")} onBrowseAgain={vi.fn()} />

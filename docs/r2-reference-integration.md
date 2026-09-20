@@ -1,5 +1,7 @@
 # Dormant selected-reference integration
 
+> **Status update — 2026-09-19 (R3B):** This component is no longer unmounted. The backend router is mounted only when `INSIGHT_REFERENCE_PREVIEW=1` exactly, and the frontend branch is built only when `VITE_REFERENCE_PREVIEW=1` at build time. Both default to OFF, neither has a runtime or settings toggle, and neither is activated on a normal installation. This is a configured test status under `decisions/2026-09-19-reference-private-preview.md` — not a release, not an activation, and not a claim of scientific validation.
+
 The new `backend/experimental_reference` package is an experimental migration
 component. Only isolated tests register its router. `main.py` has no import,
 route registration or enable switch for it. No production application was started.

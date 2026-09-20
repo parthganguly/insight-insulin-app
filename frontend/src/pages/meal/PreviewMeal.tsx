@@ -1,7 +1,8 @@
 import { IonPage, IonContent, IonHeader, IonTitle, IonText, IonInput, IonButtons, IonButton, useIonRouter, IonToast, IonIcon, IonSelect, IonSelectOption, IonActionSheet, IonThumbnail, IonModal } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { MealItem, Unit } from "../../types/MealItem";
+import type { Meal } from "../../types/Meal";
 import { add, alertCircle, arrowBack, checkmarkCircle, close, create, desktop, pencil, save, trash } from "ionicons/icons";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { useMealEstimateStore } from "../../stores/mealEstimateStore";
@@ -14,7 +15,11 @@ import ComponentCard from "../../components/ComponentCard";
 import NeedsReviewCard from "../../components/NeedsReviewCard";
 import { ADVANCED_DETAILS_LABEL, DRAFT_ITEM_ROW_HINT, DRAFT_REVIEW_KICKER, MEAL_NAME_HELPER, getDraftProvenanceCopy, isDraftMealItem, validateMealBeforeSave } from "../../utils/mealDraftUx";
 import { APP_DISCLAIMER, PROVIDED_FII_DISCLAIMER, ROUGH_ESTIMATE_NOTICE, UNKNOWN_ITEMS_NOTICE, humanizeFiiSource, isRoughEstimateSource, isUnknownSource, shouldShowProvidedFiiDisclaimer } from "../../utils/safetyCopy";
-import { calculateCurrentMealEstimate } from "../../utils/mealEstimateWorkflow";
+import { REFERENCE_CATALOG_CHANGED_MESSAGE, calculateCurrentMealEstimate, calculateCurrentReferenceEstimate, loadReferenceCatalog } from "../../utils/mealEstimateWorkflow";
+import { REFERENCE_PREVIEW_MODE } from "../../utils/experimentalPresentationGate";
+import { isReferenceDraft } from "../../utils/referenceDraft";
+import { ReferencePicker } from "../../components/experimentalReference/ReferencePicker";
+import type { ReferenceDraftItem } from "../../types/experimentalReference";
 import { armMealFlowBypass } from "../../utils/mealFlowGuard";
 
 type SaveFeedback = {
@@ -27,8 +32,11 @@ const releaseFocusedElement = () => {
 	if (focusedElement instanceof HTMLElement) focusedElement.blur();
 };
 
-const PreviewMeal = () => {
-	const { meal, deleteMealItem, addEmptyMealItem, updateMealItem, confirmMealItemReview, setImage, setName, resetMeal } = useCurrentMealStore();
+const LegacyPreviewMeal = () => {
+	const store = useCurrentMealStore();
+	const { deleteMealItem, addEmptyMealItem, updateMealItem, confirmMealItemReview, setImage, setName, resetMeal } = store;
+	// The legacy branch only ever renders for a legacy draft.
+	const meal = store.meal as Meal;
 
 	const [showToast, setShowToast] = useState(false);
 	const [toastMessage, setToastMessage] = useState("");
@@ -316,5 +324,290 @@ const PreviewMeal = () => {
 		</IonPage>
 	);
 };
+
+// ---------------- Reference review (freeze D2/D3) ----------------
+
+export const REFERENCE_REVIEW_KICKER = "Experimental reference preview — draft, not saved";
+export const REFERENCE_AMOUNT_LABEL = "Amount eaten";
+export const REFERENCE_SKIP_LABEL = "Continue without a reference";
+export const REFERENCE_SOURCE_BOUNDARY = "Selecting a published reference does not mean this exact food was measured.";
+export const REFERENCE_CATALOG_OFFLINE = "The published reference catalog isn't available right now. You can still edit this meal and continue without a reference.";
+
+// M03: the two numbers a person must not confuse are "how much I ate" and
+// "what the nutrition figures are per". They are stated with the SAME emphasis
+// for every denominator — per 1 g, per 100 g or anything else — so 100 is not
+// treated as uniquely normal and a reuse normalized to 1 is not mistaken for a
+// per-100 entry. No arithmetic and no auto-conversion is involved.
+const nutritionBasisLabel = (item: ReferenceDraftItem): string =>
+	item.servingSize === null
+		? "Nutrition basis not set yet."
+		: `Nutrition values are per ${item.servingSize} ${item.servingUnit}.`;
+
+/** M03: a reused source is a suggestion to review, never a selected match. */
+const selectionStatusLabel = (item: ReferenceDraftItem): string => {
+	if (item.selection.state === "selected") return `Selected reference: ${item.selection.sourceId}`;
+	if (item.selection.state !== "needs_review") return "No published reference selected";
+	const why = item.selection.cause === "catalog_changed"
+		? "needs review after a catalog change"
+		: item.selection.cause === "reused_suggestion"
+			? "suggested from the saved meal — review before it counts"
+			: "needs review";
+	return `Suggestion only: ${item.selection.sourceId} ${why}`;
+};
+
+/** Exported for focused picker focus-guard tests (N2). */
+export const ReferencePreviewMeal = () => {
+	const router = useIonRouter();
+	const store = useCurrentMealStore();
+	const draft = isReferenceDraft(store.meal) ? store.meal : null;
+	const catalog = useMealEstimateStore((state) => state.catalog);
+
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [modalItemId, setModalItemId] = useState<string | null>(null);
+	// Only one picker is open at a time, and opening it is not a material edit.
+	const [openPickerItemId, setOpenPickerItemId] = useState<string | null>(null);
+	const [errors, setErrors] = useState<string[]>([]);
+	const [showToast, setShowToast] = useState(false);
+	const [toastMessage, setToastMessage] = useState("");
+	const pickerModal = useRef<HTMLIonModalElement>(null);
+
+	// The reference flow owns its own draft contract: an entry that arrived
+	// with a legacy draft starts a fresh reference draft instead of casting.
+	useEffect(() => {
+		if (!isReferenceDraft(useCurrentMealStore.getState().meal)) {
+			useCurrentMealStore.getState().resetMealAs("reference");
+			useCurrentMealStore.getState().addEmptyReferenceItem();
+		}
+	}, []);
+
+	useEffect(() => {
+		if (catalog.phase === "not_loaded") void loadReferenceCatalog();
+	}, [catalog.phase]);
+
+	if (!draft) return null;
+
+	const modalItem = modalItemId ? draft.items.find((item) => item.id === modalItemId) ?? null : null;
+	const pickerItem = openPickerItemId ? draft.items.find((item) => item.id === openPickerItemId) ?? null : null;
+	const catalogRecords = catalog.catalog?.records ?? [];
+
+	// Keep the picker content mounted through Ionic's dismissal. Its overlay
+	// lifecycle restores the native trigger unless the user already moved focus.
+	const closePicker = () => { void pickerModal.current?.dismiss(); };
+
+	const openPicker = (itemId: string) => {
+		setOpenPickerItemId(itemId);
+	};
+
+	const handleSelectSource = (itemId: string, sourceId: string | null) => {
+		const version = catalog.catalog?.catalog_version;
+		if (!version) return;
+		store.selectReferenceItemSource(itemId, sourceId, version);
+		// Explicit review of this catalog establishes the draft's version.
+		store.setReviewedCatalogVersion(version);
+		closePicker();
+	};
+
+	const handleSkipSource = (itemId: string) => {
+		const version = catalog.catalog?.catalog_version;
+		if (!version) return;
+		store.selectReferenceItemSource(itemId, null, version);
+		store.setReviewedCatalogVersion(version);
+		closePicker();
+	};
+
+	const handleCalculate = async () => {
+		releaseFocusedElement();
+		setIsSubmitting(true);
+		const result = await calculateCurrentReferenceEstimate({ onReady: () => router.push("/meals/estimate", "forward") });
+		setIsSubmitting(false);
+		if (result.outcome === "invalid") {
+			setErrors(result.errors);
+			return;
+		}
+		setErrors([]);
+		if (result.outcome === "stale_catalog") {
+			setToastMessage(REFERENCE_CATALOG_CHANGED_MESSAGE);
+			setShowToast(true);
+			void loadReferenceCatalog();
+			return;
+		}
+		if (result.outcome === "failed") {
+			setToastMessage(result.message);
+			setShowToast(true);
+		}
+	};
+
+	const handleDiscardDraft = () => {
+		void clearCameraRecovery().catch(() => undefined);
+		armMealFlowBypass("/log-meal");
+		releaseFocusedElement();
+		useMealEstimateStore.getState().clearEstimate();
+		store.resetMealAs("reference");
+		router.push("/log-meal", "root");
+	};
+
+	const updateNumber = (id: string, field: string, value: string | null | undefined) => store.updateReferenceItem(id, field, value ?? "");
+
+	return (
+		<IonPage>
+			<IonContent className='confirmation-page' fullscreen>
+				<ConfirmHero image={draft.image} mealName={draft.name} disabled={isSubmitting} />
+				<main className='confirmation-sheet' aria-busy={isSubmitting} inert={isSubmitting ? true : undefined}>
+					<p className='confirmation-kicker'>{REFERENCE_REVIEW_KICKER}</p>
+					<h1>Review this meal</h1>
+					<IonInput className='confirmation-meal-name' value={draft.name} label='Meal name' labelPlacement='stacked' placeholder='Enter dish name' onIonInput={(event) => store.setName(event.detail.value ?? "")} disabled={isSubmitting}>
+						<IonIcon slot='end' icon={create} aria-hidden='true' />
+					</IonInput>
+					<p className='meal-name-helper'>{MEAL_NAME_HELPER}</p>
+
+					{(catalog.phase === "offline" || catalog.phase === "read_error") && (
+						<p className='result-notice' role='status'>{REFERENCE_CATALOG_OFFLINE}</p>
+					)}
+
+					<section className='confirmation-component-region' aria-label='Meal components'>
+						{draft.items.length === 0 ? (
+							<div className='draft-empty-note'>
+								<p>This meal is an editable draft</p>
+								<p>Add something below before calculating.</p>
+							</div>
+						) : (
+							<div className='confirmation-item-list'>
+								{draft.items.map((item, index) => (
+									<article key={item.id} className='app-card reference-draft-item' aria-label={item.name || `Item ${index + 1}`}>
+										<h2>{item.name || `Item ${index + 1}`}</h2>
+										{/* M03: amount eaten and the nutrition denominator are grouped
+										    and weighted equally, for every supported basis. */}
+										<dl className='reference-basis-group'>
+											<div><dt>{REFERENCE_AMOUNT_LABEL}</dt><dd>{item.amount === null ? "not set" : `${item.amount} ${item.servingUnit}`}</dd></div>
+											<div><dt>Nutrition values are per</dt><dd>{item.servingSize === null ? "not set" : `${item.servingSize} ${item.servingUnit}`}</dd></div>
+										</dl>
+										<p className='reference-selection-line'>{selectionStatusLabel(item)}</p>
+										{item.needsReview && (
+											<div className='needs-review-actions'>
+												<IonButton size='small' fill='outline' onClick={() => store.clearReferenceNutrition(item.id)} disabled={isSubmitting}>Clear nutrition to unknown</IonButton>
+												<IonButton size='small' onClick={() => store.confirmReferenceBasis(item.id)} disabled={isSubmitting}>These still fit</IonButton>
+											</div>
+										)}
+										<div className='reference-item-actions'>
+											<IonButton size='small' fill='outline' onClick={() => { releaseFocusedElement(); setModalItemId(item.id); }} disabled={isSubmitting}>Edit item</IonButton>
+											<IonButton size='small' fill='outline' onClick={() => openPicker(item.id)} disabled={isSubmitting || catalog.phase !== "ready"}>Choose a published reference</IonButton>
+											<IonButton size='small' fill='clear' onClick={() => handleSkipSource(item.id)} disabled={isSubmitting || catalog.phase !== "ready"}>{REFERENCE_SKIP_LABEL}</IonButton>
+											<IonButton size='small' fill='clear' color='danger' onClick={() => store.deleteReferenceItem(item.id)} disabled={isSubmitting}>Remove item</IonButton>
+										</div>
+									</article>
+								))}
+							</div>
+						)}
+						<IonButton expand='block' fill='clear' className='add-missed-item-button' onClick={() => store.addEmptyReferenceItem()} disabled={isSubmitting}>
+							<IonIcon slot='start' icon={add} aria-hidden='true' />
+							Add another item
+						</IonButton>
+					</section>
+
+					<p className='disclaimer-note confirmation-disclaimer'>{REFERENCE_SOURCE_BOUNDARY}</p>
+					<div className='disclaimer-note confirmation-disclaimer'>{APP_DISCLAIMER}</div>
+
+					{errors.length > 0 && (
+						<div id='reference-validation-error' className='save-feedback-banner save-feedback-error' role='status' aria-live='polite'>
+							<IonIcon icon={alertCircle} aria-hidden='true' />
+							<ul>{errors.map((error) => <li key={error}>{error}</li>)}</ul>
+						</div>
+					)}
+				</main>
+				<div slot='fixed' className='confirmation-dock'>
+					<IonButton expand='block' aria-label='Calculate estimate' aria-describedby={errors.length > 0 ? "reference-validation-error" : undefined} onClick={() => void handleCalculate()} disabled={isSubmitting}>
+						{isSubmitting ? "Calculating…" : "Calculate estimate"}
+					</IonButton>
+					<IonButton expand='block' fill='clear' color='medium' onClick={handleDiscardDraft} disabled={isSubmitting}>Discard draft</IonButton>
+				</div>
+			</IonContent>
+
+			<IonModal isOpen={!!modalItem} onWillDismiss={releaseFocusedElement} onDidDismiss={() => setModalItemId(null)} className='sheet-modal'>
+				<div className='sheet-handle' aria-hidden='true' />
+				<IonHeader>
+					<IonToolbarWrapper className='ion-text-left'>
+						<IonTitle>Edit: {modalItem?.name || "New item"}</IonTitle>
+						<IonButtons slot='start'>
+							<IonButton size='large' aria-label='Close item editor' onClick={() => { releaseFocusedElement(); setModalItemId(null); }}><IonIcon slot='icon-only' icon={arrowBack} /></IonButton>
+						</IonButtons>
+					</IonToolbarWrapper>
+				</IonHeader>
+				<IonContent className='ion-padding'>
+					{modalItem && (
+						<div className='item-editor-sheet-content'>
+							<IonInput value={modalItem.name} label='Item name' labelPlacement='stacked' placeholder='Enter item name' onIonInput={(event) => store.updateReferenceItem(modalItem.id, "name", event.detail.value ?? "")} />
+							<div className='item-editor-fields'>
+								<IonInput className='ion-margin-vertical' labelPlacement='stacked' type='number' fill='outline' label={`${REFERENCE_AMOUNT_LABEL} (${modalItem.servingUnit})`} value={modalItem.amount ?? ""} placeholder='Leave blank if unknown' onIonInput={(event) => updateNumber(modalItem.id, "amount", event.detail.value)} />
+								<IonSelect className='ion-margin-vertical' label='Unit' labelPlacement='stacked' fill='outline' value={modalItem.servingUnit} onIonChange={(event) => store.updateReferenceItem(modalItem.id, "servingUnit", event.detail.value)}>
+									{Object.values(Unit).map((unit) => <IonSelectOption key={unit} value={unit}>{unit}</IonSelectOption>)}
+								</IonSelect>
+								<IonInput className='ion-margin-vertical' labelPlacement='stacked' type='number' fill='outline' label={`Nutrition is measured per this many ${modalItem.servingUnit}`} value={modalItem.servingSize ?? ""} placeholder='For example 100' onIonInput={(event) => updateNumber(modalItem.id, "servingSize", event.detail.value)} />
+								<p className='reference-basis-line'>{nutritionBasisLabel(modalItem)}</p>
+								<IonSelect className='ion-margin-vertical' label='Where this nutrition came from' labelPlacement='stacked' fill='outline' value={modalItem.nutritionOrigin} onIonChange={(event) => store.updateReferenceItem(modalItem.id, "nutritionOrigin", event.detail.value)}>
+									{([["manual", "I entered it"], ["label", "From a label"], ["ai_reviewed", "Suggested, reviewed by me"], ["other", "Other"]] as const).map(([value, label]) => <IonSelectOption key={value} value={value}>{label}</IonSelectOption>)}
+								</IonSelect>
+								<details className='advanced-details' open>
+									<summary>{ADVANCED_DETAILS_LABEL}</summary>
+									<div className='advanced-details-content'>
+										{([
+											["kcalPerServing", "kcal"],
+											["carbPerServing_g", "Carbohydrate (g)"],
+											["proteinPerServing_g", "Protein (g)"],
+											["fatPerServing_g", "Fat (g)"],
+											["satFatPerServing_g", "Saturated fat (g)"],
+										] as const).map(([field, label]) => (
+											<IonInput key={field} labelPlacement='stacked' type='number' fill='outline' label={`${label} per ${modalItem.servingSize ?? "?"} ${modalItem.servingUnit}`} value={modalItem[field] ?? ""} placeholder='Leave blank if unknown' onIonInput={(event) => updateNumber(modalItem.id, field, event.detail.value)} />
+										))}
+										<IonInput labelPlacement='stacked' type='number' fill='outline' label='Glycemic index (whole number)' value={modalItem.gi ?? ""} placeholder='Leave blank if unknown' onIonInput={(event) => updateNumber(modalItem.id, "gi", event.detail.value)} />
+										{modalItem.invalidFields.length > 0 && (
+											<p className='save-feedback-banner save-feedback-error' role='status'>
+												Some entries aren&rsquo;t valid numbers: {modalItem.invalidFields.join(", ")}. Clear them or enter a number of 0 or more.
+											</p>
+										)}
+									</div>
+								</details>
+								<div className='item-editor-actions'>
+									<IonButton onClick={() => { releaseFocusedElement(); setModalItemId(null); }}><IonIcon slot='start' icon={save} />Done</IonButton>
+									<IonButton color='danger' fill='outline' onClick={() => { store.deleteReferenceItem(modalItem.id); setModalItemId(null); }}><IonIcon slot='start' icon={trash} />Remove item</IonButton>
+								</div>
+							</div>
+						</div>
+					)}
+				</IonContent>
+			</IonModal>
+
+			<IonModal ref={pickerModal} isOpen={!!pickerItem} onDidDismiss={() => setOpenPickerItemId(null)} className='sheet-modal'>
+				<IonHeader>
+					<IonToolbarWrapper className='ion-text-left'>
+						<IonTitle>Published references</IonTitle>
+						<IonButtons slot='start'>
+							<IonButton size='large' aria-label='Close reference picker' onClick={closePicker}><IonIcon slot='icon-only' icon={arrowBack} /></IonButton>
+						</IonButtons>
+					</IonToolbarWrapper>
+				</IonHeader>
+				<IonContent className='ion-padding'>
+					{pickerItem && (
+						<>
+							<ReferencePicker
+								itemName={pickerItem.name || "this item"}
+								quantity={pickerItem.amount}
+								records={catalogRecords}
+								selectedId={pickerItem.selection.state === "selected" ? pickerItem.selection.sourceId : null}
+								onChange={(sourceId) => handleSelectSource(pickerItem.id, sourceId)}
+							/>
+							<IonButton expand='block' fill='clear' onClick={() => handleSkipSource(pickerItem.id)}>{REFERENCE_SKIP_LABEL}</IonButton>
+							<IonButton expand='block' fill='clear' onClick={() => void loadReferenceCatalog()}>Refresh published references</IonButton>
+						</>
+					)}
+				</IonContent>
+			</IonModal>
+
+			<IonToast isOpen={showToast} message={toastMessage} duration={2600} color='danger' onDidDismiss={() => setShowToast(false)} />
+		</IonPage>
+	);
+};
+
+// The flag is fixed at build time, so this branch never reorders hooks.
+const PreviewMeal = () => (REFERENCE_PREVIEW_MODE ? <ReferencePreviewMeal /> : <LegacyPreviewMeal />);
 
 export default PreviewMeal;

@@ -1,7 +1,7 @@
 import { App as CapacitorApp, type RestoredListenerEvent } from "@capacitor/app";
 import { Camera, CameraResultType, CameraSource, type Photo } from "@capacitor/camera";
 import { Capacitor } from "@capacitor/core";
-import type { Meal } from "../types/Meal";
+import type { EditableMeal } from "../types/Meal";
 import { useCurrentMealStore } from "../stores/currentMealStore";
 import { describeCameraFailure } from "./aiFailureCopy";
 import { getMealFlowBaseline, restoreMealFlowBaseline, type MealFlowBaseline } from "./mealFlowGuard";
@@ -15,7 +15,7 @@ export type SmartCameraState = { images: string[]; note: string; error: string; 
 export type CameraRecoveryContext = {
 	flow: "smart-camera" | "preview-photo";
 	caller: Caller;
-	meal: Meal;
+	meal: EditableMeal;
 	smart: SmartCameraState | null;
 };
 export type CameraRecoveryEnvelope = CameraRecoveryContext & {
@@ -31,6 +31,56 @@ const isObject = (value: unknown): value is Record<string, unknown> => !!value &
 const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
 const optionalFields = (value: Record<string, unknown>, keys: string[], validate: (field: unknown) => boolean) => keys.every(key => value[key] === undefined || validate(value[key]));
 const string = (value: unknown) => typeof value === "string";
+const nullableFinite = (value: unknown): boolean => value === null || finite(value);
+const NUTRITION_ORIGINS = ["manual", "label", "ai_reviewed", "other"];
+const PROVENANCES = ["ai_proposed", "user_reviewed", "user_entered"];
+const REFERENCE_UNIT_VALUES = ["g", "ml", "pcs", "slice", "cup", "tbsp", "serving"];
+
+// A restored reference draft keeps null apart from zero, so every nullable
+// numeric field is validated as nullable rather than coerced to a number.
+// Selection and review flags round-trip, but a restored draft never carries a
+// ready preview or a save intent — those live in memory-only owners.
+const isValidReferenceSelection = (value: unknown): boolean => {
+	if (!isObject(value)) return false;
+	if (value.state === "none") return true;
+	if (value.state !== "selected" && value.state !== "needs_review") return false;
+	return typeof value.sourceId === "string" && !!value.sourceId && typeof value.catalogVersion === "string";
+};
+
+const isValidReferenceItem = (item: unknown): boolean =>
+	isObject(item)
+	&& typeof item.id === "string" && !!item.id
+	&& typeof item.name === "string"
+	&& typeof item.servingUnit === "string" && REFERENCE_UNIT_VALUES.includes(item.servingUnit)
+	&& ["amount", "servingSize", "kcalPerServing", "carbPerServing_g", "proteinPerServing_g", "fatPerServing_g", "satFatPerServing_g", "gi"].every(key => nullableFinite(item[key]))
+	&& (item.gi === null || Number.isSafeInteger(item.gi))
+	&& typeof item.nutritionOrigin === "string" && NUTRITION_ORIGINS.includes(item.nutritionOrigin)
+	&& typeof item.basisReviewed === "boolean"
+	&& Array.isArray(item.invalidFields) && item.invalidFields.every(string)
+	&& isValidReferenceSelection(item.selection)
+	&& (item.draftProvenance === undefined || PROVENANCES.includes(item.draftProvenance as string))
+	&& (item.needsReview === undefined || (isObject(item.needsReview) && typeof item.needsReview.previousName === "string"))
+	&& optionalFields(item, ["image"], string);
+
+// Baseline, flow and destination checks shared by both draft contracts.
+const isValidCameraFlow = (value: Record<string, unknown>, meal: Record<string, unknown>): boolean => {
+	if (value.baseline != null && (!isObject(value.baseline) || value.baseline.mealId !== meal.id || typeof value.baseline.fingerprint !== "string")) return false;
+	if (value.flow === "smart-camera") {
+		const smart = value.smart;
+		return value.destination === "/meals/new/ai" && isObject(smart) && Array.isArray(smart.images) && smart.images.length <= 5
+			&& smart.images.every(image => typeof image === "string") && typeof smart.note === "string" && typeof smart.error === "string"
+			&& (smart.failureKind === null || smart.failureKind === "analysis" || smart.failureKind === "camera");
+	}
+	return value.flow === "preview-photo" && value.destination === "/meals/new" && value.caller === "/meals/new" && value.smart === null;
+};
+
+const parseReferenceDraftEnvelope = (value: Record<string, unknown>, meal: Record<string, unknown>): CameraRecoveryEnvelope | null => {
+	if (meal.reviewedCatalogVersion !== null && typeof meal.reviewedCatalogVersion !== "string") return null;
+	if (!(meal.items as unknown[]).every(isValidReferenceItem)) return null;
+	if (meal.isAiDraft !== undefined && typeof meal.isAiDraft !== "boolean") return null;
+	if (!optionalFields(meal, ["source_meal_id"], string)) return null;
+	return value as CameraRecoveryEnvelope;
+};
 
 export function parseCameraRecovery(value: unknown, now = Date.now()): CameraRecoveryEnvelope | null {
 	if (!isObject(value) || value.version !== 1 || typeof value.nonce !== "string" || !value.nonce || !finite(value.createdAt) || value.createdAt > now || now - value.createdAt >= CAMERA_RECOVERY_MAX_AGE_MS) return null;
@@ -38,16 +88,17 @@ export function parseCameraRecovery(value: unknown, now = Date.now()): CameraRec
 	if (value.caller !== "/log-meal" && value.caller !== "/meals/new") return null;
 	const meal = value.meal;
 	if (!isObject(meal) || typeof meal.id !== "string" || !meal.id || typeof meal.name !== "string" || !finite(meal.timestamp) || (meal.image !== null && typeof meal.image !== "string") || !Array.isArray(meal.items)) return null;
+	if (meal.contract === "reference") {
+		if (!isValidCameraFlow(value, meal)) return null;
+		return parseReferenceDraftEnvelope(value, meal);
+	}
+	if (meal.contract !== undefined && meal.contract !== "legacy") return null;
 	if (!meal.items.every(item => isObject(item) && typeof item.id === "string" && typeof item.name === "string" && typeof item.servingUnit === "string" && ["servingSize", "amount", "kcalPerServing", "carbPerServing_g", "satFatPerServing_g", "gi"].every(key => finite(item[key])) && (item.needsReview === undefined || (isObject(item.needsReview) && typeof item.needsReview.previousName === "string")))) return null;
 	if (!meal.items.every(item => optionalFields(item, ["proteinPerServing_g", "fatPerServing_g", "fii"], finite) && optionalFields(item, ["image", "source", "why"], string) && (item.draftProvenance === undefined || ["ai_proposed", "user_reviewed", "user_entered"].includes(item.draftProvenance)))) return null;
 	if (!optionalFields(meal, ["acute_score", "insulin_load_total", "kcal_total", "carbs_total", "protein_total", "fat_total"], finite) || !optionalFields(meal, ["backend_created_at", "source_meal_id", "estimate_quality"], string)) return null;
 	if ((meal.isAiDraft !== undefined && typeof meal.isAiDraft !== "boolean") || (meal.calorie_source !== undefined && meal.calorie_source !== "meal_estimate" && meal.calorie_source !== "item_sum") || (meal.estimate_status !== undefined && meal.estimate_status !== "estimated" && meal.estimate_status !== "insufficient_data") || (meal.main_insulin_drivers !== undefined && (!Array.isArray(meal.main_insulin_drivers) || !meal.main_insulin_drivers.every(string)))) return null;
 	if (meal.estimate !== undefined && (!isObject(meal.estimate) || !["estimated_calories", "estimated_carbs_g", "estimated_fat_g", "confidence", "serving_count"].every(key => finite((meal.estimate as Record<string, unknown>)[key])) || typeof meal.estimate.serving_type !== "string")) return null;
-	if (value.baseline != null && (!isObject(value.baseline) || value.baseline.mealId !== meal.id || typeof value.baseline.fingerprint !== "string")) return null;
-	if (value.flow === "smart-camera") {
-		const smart = value.smart;
-		if (value.destination !== "/meals/new/ai" || !isObject(smart) || !Array.isArray(smart.images) || smart.images.length > 5 || !smart.images.every(image => typeof image === "string") || typeof smart.note !== "string" || typeof smart.error !== "string" || (smart.failureKind !== null && smart.failureKind !== "analysis" && smart.failureKind !== "camera")) return null;
-	} else if (value.flow !== "preview-photo" || value.destination !== "/meals/new" || value.caller !== "/meals/new" || value.smart !== null) return null;
+	if (!isValidCameraFlow(value, meal)) return null;
 	return value as CameraRecoveryEnvelope;
 }
 

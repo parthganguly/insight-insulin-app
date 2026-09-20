@@ -24,7 +24,7 @@ vi.mock("@ionic/react", async (importOriginal) => {
 
 import App from "../../App";
 import { MealPreviewResponse } from "../../api/api";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useCurrentMealStore, getLegacyCurrentMeal } from "../../stores/currentMealStore";
 import { getMaterialItemsSnapshot, useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
@@ -221,7 +221,7 @@ describe("B2-2 unsaved estimate route", () => {
 			draftId: "draft-x",
 			request: {
 				meal_name: "Synthetic oats",
-				items: getMaterialItemsSnapshot(useCurrentMealStore.getState().meal),
+				items: getMaterialItemsSnapshot(getLegacyCurrentMeal()),
 				client_request_id: "00000000-0000-4000-8000-000000000001",
 			},
 			phase: "ambiguous",
@@ -254,7 +254,7 @@ describe("B2-2 unsaved estimate route", () => {
 			draftId: "draft-x",
 			request: {
 				meal_name: "Synthetic oats",
-				items: getMaterialItemsSnapshot(useCurrentMealStore.getState().meal),
+				items: getMaterialItemsSnapshot(getLegacyCurrentMeal()),
 				client_request_id: "00000000-0000-4000-8000-000000000001",
 			},
 			phase: "ambiguous",
@@ -279,7 +279,7 @@ describe("B2-2 unsaved estimate route", () => {
 			draftId: "draft-x",
 			request: {
 				meal_name: "Synthetic oats",
-				items: getMaterialItemsSnapshot(useCurrentMealStore.getState().meal),
+				items: getMaterialItemsSnapshot(getLegacyCurrentMeal()),
 				client_request_id: "00000000-0000-4000-8000-000000000001",
 			},
 			phase,

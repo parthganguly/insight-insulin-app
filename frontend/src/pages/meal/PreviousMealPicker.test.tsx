@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "../../App";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useCurrentMealStore, getLegacyCurrentMeal } from "../../stores/currentMealStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
 import { Meal } from "../../types/Meal";
 import { Unit } from "../../types/MealItem";
@@ -152,7 +152,7 @@ describe("Previous-meal picker reuse flow stays a draft conversion (issue #89 gu
 		expect(window.location.pathname).toBe("/meals/new");
 		expect(JSON.stringify(usePersistentMealStore.getState().meals[0])).toBe(originalSavedRecord);
 
-		const draft = useCurrentMealStore.getState().meal;
+		const draft = getLegacyCurrentMeal();
 		// New identity, unsaved, back-link to the original (issue #78 delete path).
 		expect(draft.id).not.toBe("saved-meal-1");
 		expect(draft.backend_created_at).toBeUndefined();
