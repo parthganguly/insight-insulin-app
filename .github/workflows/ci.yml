@@ -119,6 +119,104 @@ jobs:
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:5173 >/dev/null && break; sleep 2; done
           npx cypress run
 
+  reference-preview:
+    name: Reference preview (enabled synthetic)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      # The flag is baked in at build time, so the enabled bundle is built
+      # here and never produced by flipping an env var after a build.
+      - name: Build enabled frontend
+        working-directory: frontend
+        env:
+          VITE_REFERENCE_PREVIEW: "1"
+          VITE_BACKEND_API_URL: http://127.0.0.1:8099
+        run: npm run build
+
+      # Real production app + real reference router + temporary SQLite in a
+      # fresh working directory. No owner .env, no provider request.
+      - name: Start synthetic backend harness
+        working-directory: backend
+        env:
+          PYTHON_DOTENV_DISABLED: "1"
+        run: |
+          python -m tests.r3b_harness --port 8099 &
+          echo $! > /tmp/insight-r3b-harness.pid
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8099/__harness/health >/dev/null && break; sleep 2; done
+          curl -sf http://127.0.0.1:8099/__harness/health
+
+      - name: Run enabled reference acceptance
+        working-directory: frontend
+        run: |
+          npx vite preview --host 127.0.0.1 --port 5199 &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:5199 >/dev/null && break; sleep 2; done
+          npx cypress run --config-file cypress.config.r3b.ts
+
+      # E1/T9: the same enabled bundle against a genuine default-OFF backend
+      # (real main:app without the flag: the reference router is unmounted, so
+      # every reference route is a real generic 404). The ON harness is stopped
+      # first so only one backend owns the port; the frontend bundle is untouched.
+      - name: Run OFF-backend mismatch acceptance
+        run: |
+          harness_pid=$(cat /tmp/insight-r3b-harness.pid)
+          ps -p "$harness_pid" -o args= | grep -q "python -m tests.r3b_harness --port 8099"
+          kill "$harness_pid"
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8099/__harness/health >/dev/null || break; sleep 2; done
+          mkdir -p /tmp/insight-r3b-off-backend && cd /tmp/insight-r3b-off-backend
+          PYTHON_DOTENV_DISABLED=1 PYTHONPATH=${GITHUB_WORKSPACE}/backend python -m uvicorn main:app --host 127.0.0.1 --port 8099 &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8099/ >/dev/null && break; sleep 2; done
+          if curl -sf http://127.0.0.1:8099/reference-meals/catalog -o /dev/null; then
+            echo "reference router must stay unmounted on the OFF backend"
+            exit 1
+          fi
+          cd ${GITHUB_WORKSPACE}/frontend
+          npx cypress run --config-file cypress.config.r3b.ts --config specPattern=cypress/e2e/r3b-reference-off-backend.cy.ts,screenshotsFolder=cypress/r3b-off-captures
+
+      # R08: the runner writes to cypress/r3b-captures (deliberately outside
+      # cypress/screenshots, which the legacy suite empties). The old path no
+      # longer exists, and `if-no-files-found: ignore` would have let the
+      # evidence vanish silently, so this now fails loudly instead.
+      - name: Verify enabled acceptance captures exist
+        if: always()
+        run: |
+          test -d frontend/cypress/r3b-captures || { echo "expected captures directory is missing"; exit 1; }
+          count=$(find frontend/cypress/r3b-captures -name '*.png' | wc -l)
+          echo "captured $count screenshots"
+          test "$count" -gt 0 || { echo "no captures were produced"; exit 1; }
+
+      - name: Upload enabled acceptance captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r3b-enabled-captures
+          path: frontend/cypress/r3b-captures
+          if-no-files-found: error
+
   rust:
     name: Rust
     runs-on: ubuntu-latest

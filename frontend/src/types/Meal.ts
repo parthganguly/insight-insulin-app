@@ -1,4 +1,5 @@
 import { MealItem } from "./MealItem";
+import type { ReferenceAttachment, ReferenceDraft } from "./experimentalReference";
 
 export type MealEstimate = {
 	estimated_calories: number;
@@ -13,6 +14,10 @@ export type CalorieSource = "meal_estimate" | "item_sum";
 export type EstimateStatus = "estimated" | "insufficient_data";
 
 export type Meal = {
+	// Compatibility discriminant only. A legacy Meal keeps every existing
+	// meaning; the reference variant is a separate type and is never cast into
+	// this one just to reach the legacy mapper.
+	contract?: "legacy";
 	formula_version?: string | null;
 	dataset_version?: string | null;
 	id: string;
@@ -36,4 +41,11 @@ export type Meal = {
 	main_insulin_drivers?: string[];
 	estimate?: MealEstimate;
 	calorie_source?: CalorieSource;
+	// One discriminated reference domain attached to the canonical cached meal
+	// (freeze D6). Compatibility fields above stay separately labelled and
+	// never drive the reference-mode result UI.
+	referenceAttachment?: ReferenceAttachment;
 };
+
+/** The current-meal store's single editable owner holds either contract. */
+export type EditableMeal = Meal | ReferenceDraft;

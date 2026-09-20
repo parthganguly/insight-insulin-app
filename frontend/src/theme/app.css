@@ -168,6 +168,25 @@ ion-tab-button ion-label {
 	letter-spacing: normal;
 }
 
+/*
+	M01: reproduced at 320x700 with 200% text — the tab labels were cut off.
+	The cause is the bar's fixed 64px height combined with Ionic's default
+	nowrap/ellipsis on the label, so scaled text had nowhere to go. The J9
+	resting height is unchanged (min-height still 64px); the bar is simply
+	allowed to grow, and the label to wrap, when the user enlarges text.
+	This is not blanket padding and does not suppress zoom.
+*/
+ion-tab-bar {
+	height: auto;
+}
+
+ion-tab-button ion-label {
+	white-space: normal;
+	overflow: visible;
+	text-overflow: clip;
+	line-height: 1.15;
+}
+
 ion-tab-button ion-icon {
 	font-size: 1.05rem;
 }
@@ -2635,4 +2654,32 @@ ion-item.journal-entry-card::part(native):focus-visible {
 	.journal-folio h1 {
 		font-size: 1.5rem;
 	}
+}
+
+
+/*
+	M03: the nutrition denominator and the amount eaten carry equal weight, for
+	every supported basis. Neither 100 g nor 1 g is styled as the normal case.
+*/
+.reference-basis-group {
+	display: grid;
+	gap: 4px;
+	margin: 8px 0;
+}
+
+.reference-basis-group > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: baseline;
+}
+
+.reference-basis-group dt {
+	color: var(--ink-3);
+	font-size: var(--type-caption);
+}
+
+.reference-basis-group dd {
+	margin: 0;
+	font-weight: 600;
 }

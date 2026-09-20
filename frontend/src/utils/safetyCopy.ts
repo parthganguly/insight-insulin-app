@@ -110,3 +110,19 @@ export const shouldShowProvidedFiiDisclaimer = (source: string | undefined, fii:
 	if (isProvidedFiiSource(source)) return true;
 	return fii !== undefined && DRAFT_ITEM_SOURCES.has(source);
 };
+
+// Reference private preview: scoped local-retention disclosure (freeze §C).
+// The retry journal is purpose-limited to making one unresolved save safe to
+// repeat. It is not a second diary, not a backup, and carries no photo,
+// catalog snapshot or provider material.
+export const REFERENCE_RETRY_RETENTION_DISCLOSURE =
+	"While a meal save is unresolved, this device keeps a retry record for it: the meal name, the portions, nutrition and reference IDs you reviewed, and the server address it was sent to. It is kept so the same attempt can be repeated safely instead of creating a duplicate meal.";
+
+export const REFERENCE_RETRY_RETENTION_LIMITS =
+	"No photo, no published-catalog copy and no account credential is kept in a retry record. A record stays until the save is reconciled or you discard it explicitly — nothing is removed by age, and nothing is uploaded on its own.";
+
+export const REFERENCE_DISCARD_MAY_HAVE_SAVED =
+	"Discarding a retry record only clears this device's copy. If the server already accepted that save, the meal stays in your history there.";
+
+export const REFERENCE_PREVIEW_STATUS =
+	"The experimental reference preview is a configured test build. It is off by default, is not activated on normal installations, and is not a released or scientifically validated feature.";

@@ -15,6 +15,11 @@ from reference_catalog import (
 )
 
 
+def _is_reference_preview_guard(node) -> bool:
+    return (isinstance(node, ast.If) and isinstance(node.test, ast.Call)
+            and isinstance(node.test.func, ast.Name) and node.test.func.id == "reference_preview_enabled")
+
+
 class ReferenceCatalogTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -241,7 +246,15 @@ class ReferenceCatalogTests(unittest.TestCase):
             if path in visited:
                 continue
             visited.add(path)
-            for node in ast.walk(ast.parse(path.read_text(encoding="utf-8-sig"))):
+            tree = ast.parse(path.read_text(encoding="utf-8-sig"))
+            # R3B (2026-09-19): main.py may reach the reference module, but only
+            # inside `if reference_preview_enabled():`, which requires an exact
+            # INSIGHT_REFERENCE_PREVIEW=1. Every unguarded path must still be
+            # unable to reach it, so the guarded branch is excised before the
+            # walk. test_reference_integration additionally proves at runtime
+            # that a default import pulls in neither module.
+            tree.body = [node for node in tree.body if not _is_reference_preview_guard(node)]
+            for node in ast.walk(tree):
                 imports = ([node.module or ""] if isinstance(node, ast.ImportFrom)
                            else [a.name for a in node.names] if isinstance(node, ast.Import) else [])
                 if isinstance(node, ast.ImportFrom):

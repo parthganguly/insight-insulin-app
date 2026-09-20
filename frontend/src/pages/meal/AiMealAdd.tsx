@@ -5,6 +5,7 @@ import { useIonRouter } from "@ionic/react";
 import { camera, image, pencil, trash } from "ionicons/icons";
 import { fetchAiMealFromAPI, normalizeAiExtractedItem } from "../../api/api";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { isReferenceDraft, referenceItemFromAiExtraction } from "../../utils/referenceDraft";
 import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { MealEstimate } from "../../types/Meal";
 import { AI_EXTRACTION_PRIVACY_DISCLOSURE } from "../../utils/safetyCopy";
@@ -33,7 +34,7 @@ const AiMealAdd = () => {
 	};
 	const [textualData, setTextualData] = useState(restored?.note ?? "");
 	// const { View: ScanFoodAnimation } = useLottie({ animationData: scanFood, loop: true, autoplay: true });
-	const { meal, setMeal, addEmptyMealItem } = useCurrentMealStore();
+	const { meal, setMeal, addEmptyMealItem, addEmptyReferenceItem } = useCurrentMealStore();
 	const [isLoading, setLoading] = useState(false);
 
 	const returnToMealReview = () => {
@@ -109,17 +110,31 @@ const AiMealAdd = () => {
 		setFailureKind(null);
 		try {
 			const extractedMeal = await fetchAiMealFromAPI(images, textualData);
-			const normalizedItems = (Array.isArray(extractedMeal.items) ? extractedMeal.items : []).map(normalizeAiExtractedItem);
-			const estimate = normalizeEstimate((extractedMeal as Record<string, unknown>).estimate);
-			setMeal({
-				...meal,
-				name: extractedMeal.name || meal.name,
-				items: normalizedItems,
-				image: images[0] ?? meal.image,
-				isAiDraft: true,
-				estimate,
-				calorie_source: estimate ? "meal_estimate" : "item_sum",
-			});
+			const rawItems = Array.isArray(extractedMeal.items) ? extractedMeal.items : [];
+			if (isReferenceDraft(meal)) {
+				// The reference branch runs BEFORE legacy normalization, so no
+				// density is guessed and no missing value becomes a zero. The
+				// whole-meal legacy estimate is deliberately not carried over.
+				setMeal({
+					...meal,
+					name: extractedMeal.name || meal.name,
+					items: rawItems.map(referenceItemFromAiExtraction),
+					image: images[0] ?? meal.image,
+					isAiDraft: true,
+				});
+			} else {
+				const normalizedItems = rawItems.map(normalizeAiExtractedItem);
+				const estimate = normalizeEstimate((extractedMeal as Record<string, unknown>).estimate);
+				setMeal({
+					...meal,
+					name: extractedMeal.name || meal.name,
+					items: normalizedItems,
+					image: images[0] ?? meal.image,
+					isAiDraft: true,
+					estimate,
+					calorie_source: estimate ? "meal_estimate" : "item_sum",
+				});
+			}
 			resetExtractionState();
 			returnToMealReview();
 		} catch (err: unknown) {
@@ -137,7 +152,8 @@ const AiMealAdd = () => {
 		// Land the user back on the meal draft with an editable item row —
 		// the same thing the "Manual" action on the draft screen does.
 		if (meal.items.length === 0) {
-			addEmptyMealItem();
+			if (isReferenceDraft(meal)) addEmptyReferenceItem();
+			else addEmptyMealItem();
 		}
 		returnToMealReview();
 	};

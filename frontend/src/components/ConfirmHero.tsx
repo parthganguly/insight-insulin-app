@@ -7,7 +7,8 @@ type ConfirmHeroProps = {
 	image: string | null;
 	mealName: string;
 	disabled: boolean;
-	onAddPhoto: () => void;
+	/** Omitted when this flow has no photo path; the control is then not rendered. */
+	onAddPhoto?: () => void;
 };
 
 const ConfirmHero = ({ image, mealName, disabled, onAddPhoto }: ConfirmHeroProps) => (
@@ -23,7 +24,9 @@ const ConfirmHero = ({ image, mealName, disabled, onAddPhoto }: ConfirmHeroProps
 			aria-label='Back'
 			disabled={disabled}
 		/>
-		{!image && (
+		{/* R07: a visible control that does nothing is worse than no control,
+		    so a flow without a photo path renders none. */}
+		{!image && onAddPhoto && (
 			<IonButton className='confirm-add-photo' fill='clear' onClick={onAddPhoto} disabled={disabled}>
 				<IonIcon icon={camera} slot='start' aria-hidden='true' />
 				Add a photo

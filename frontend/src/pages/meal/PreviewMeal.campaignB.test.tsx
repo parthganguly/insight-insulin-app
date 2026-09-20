@@ -13,7 +13,7 @@ vi.mock("@ionic/react", async (importOriginal) => {
 });
 
 import App from "../../App";
-import { useCurrentMealStore } from "../../stores/currentMealStore";
+import { useCurrentMealStore, getLegacyCurrentMeal } from "../../stores/currentMealStore";
 import { useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { usePendingSaveStore } from "../../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../../stores/persistentMealStore";
@@ -138,7 +138,7 @@ describe("Campaign B consequential correction UI", () => {
 		renderDraft();
 		fireEvent.click(await screen.findByText("These still fit"));
 		await waitFor(() => expect(screen.queryByText(/These values were for/)).toBeNull());
-		const reviewed = useCurrentMealStore.getState().meal.items[0];
+		const reviewed = getLegacyCurrentMeal().items[0];
 		expect(reviewed.needsReview).toBeUndefined();
 		expect(reviewed.fii).toBeUndefined();
 		expect(reviewed.source).toBeUndefined();

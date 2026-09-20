@@ -9,6 +9,8 @@ import { syncMealsFromBackend, usePersistentMealStore } from "../../stores/persi
 import { Meal } from "../../types/Meal";
 import { buildDraftFromSavedMeal } from "../../utils/fiiTrustBoundary";
 import { groupJournalMealsByDay } from "../../utils/journalPresentation";
+import { REFERENCE_PREVIEW_MODE } from "../../utils/experimentalPresentationGate";
+import { buildReferenceDraftFromEvidence, buildReferenceDraftFromLegacyMeal } from "../../utils/referenceDraft";
 
 // The previous-meal picker as a journal folio (Slice J6, issue #123). It shares
 // the History entry presentation deliberately, but never its meaning: this page
@@ -24,8 +26,26 @@ const PreviousMealPicker: React.FC = () => {
 	}, []);
 
 	const reuseMeal = (meal: Meal) => {
-		const draft = buildDraftFromSavedMeal(meal);
 		useMealEstimateStore.getState().clearEstimate();
+		if (REFERENCE_PREVIEW_MODE) {
+			// Validated reference evidence is reused through its own adapter,
+			// which copies reviewed inputs with denominator 1 and turns a
+			// previous source ID into a suggestion. A legacy, not-evaluated or
+			// evidence-error meal contributes names and known portions only;
+			// its compatibility nutrition never becomes reference input.
+			const attachment = meal.referenceAttachment;
+			const reused = attachment?.state === "evaluated"
+				? buildReferenceDraftFromEvidence({
+					assessment_state: "evaluated",
+					assessment: attachment.assessment,
+					reasons: attachment.reasons,
+					legacy_compatibility: { id: meal.id, meal_name: meal.name, created_at: meal.backend_created_at ?? new Date(meal.timestamp).toISOString() },
+				})
+				: null;
+			setMeal(reused ?? buildReferenceDraftFromLegacyMeal(meal));
+			return;
+		}
+		const draft = buildDraftFromSavedMeal(meal);
 		setMeal({
 			...draft,
 			items: draft.items.map((item) => ({ ...item, draftProvenance: "user_entered" })),

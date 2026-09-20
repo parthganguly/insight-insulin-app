@@ -1,8 +1,19 @@
 import { create } from "zustand";
-import { Meal } from "../types/Meal";
+import { EditableMeal, Meal } from "../types/Meal";
 import { MealItem } from "../types/MealItem";
 import type { Unit } from "../types/MealItem";
+import type { ReferenceDraft, ReferenceDraftItem } from "../types/experimentalReference";
 import { updateMealItemFii } from "../utils/fiiTrustBoundary";
+import {
+	clearReferenceItemNutrition,
+	confirmReferenceItemBasis,
+	createEmptyReferenceItem,
+	createReferenceDraft,
+	isReferenceDraft,
+	markSelectionsNeedingReview,
+	selectReferenceSource,
+	updateReferenceDraftItem,
+} from "../utils/referenceDraft";
 
 export const REVIEW_RESOLVING_NUTRITION_FIELDS = [
 	"kcalPerServing",
@@ -51,10 +62,29 @@ export const updateDraftMealItem = (item: MealItem, field: keyof MealItem, value
 	return updatedItem;
 };
 
+const emptyLegacyMeal = (): Meal => ({
+	id: crypto.randomUUID(),
+	image: null,
+	name: "New Meal",
+	timestamp: Date.now(),
+	items: [],
+	isAiDraft: false,
+});
+
 type CurrentMealStore = {
-	meal: Meal;
-	setMeal: (meal: Meal) => void;
+	meal: EditableMeal;
+	/**
+	 * Monotonic revisions owned here (freeze §C). Every material input,
+	 * review or ordering change increments both; a title, time or photo change
+	 * increments only the edit revision. A pure no-op setter increments
+	 * neither, and UI picker search/open state is not an edit at all.
+	 */
+	materialRevision: number;
+	editRevision: number;
+	setMeal: (meal: EditableMeal) => void;
 	resetMeal: () => void;
+	/** Starts a fresh draft under the given contract with a new draft ID. */
+	resetMealAs: (contract: "legacy" | "reference") => void;
 	addMealItem: (item: MealItem) => void;
 	addEmptyMealItem: () => void;
 	updateMealItem: (id: string, field: keyof MealItem, value: unknown) => void;
@@ -64,134 +94,189 @@ type CurrentMealStore = {
 	setImage: (image: string | null) => void;
 	setName: (name: string) => void;
 	setTimestamp: (timestamp: number) => void;
+
+	// Reference branch. Every action routes through the same shared mutation
+	// path, so revision and ownership rules cannot diverge per caller.
+	addEmptyReferenceItem: () => void;
+	addReferenceItem: (item: ReferenceDraftItem) => void;
+	updateReferenceItem: (id: string, field: string, value: unknown) => void;
+	confirmReferenceBasis: (id: string) => void;
+	clearReferenceNutrition: (id: string) => void;
+	selectReferenceItemSource: (id: string, sourceId: string | null, catalogVersion: string) => void;
+	deleteReferenceItem: (id: string) => void;
+	setReviewedCatalogVersion: (catalogVersion: string | null) => void;
+	markReferenceSelectionsNeedingReview: () => void;
 };
 
-export const useCurrentMealStore = create<CurrentMealStore>((set) => ({
-	meal: {
-		id: crypto.randomUUID(),
-		image: null,
-		name: "New Meal",
-		timestamp: Date.now(),
-		items: [],
-		isAiDraft: false,
-	},
+/**
+ * Reads the current draft as a legacy Meal. Callers that only support the
+ * legacy contract use this instead of casting, so a reference draft surfaces
+ * as a loud failure rather than a zero-filled projection.
+ */
+export const getLegacyCurrentMeal = (): Meal => {
+	const meal = useCurrentMealStore.getState().meal;
+	if (isReferenceDraft(meal)) throw new Error("The current draft uses the reference contract, not the legacy Meal contract");
+	return meal;
+};
 
-	setMeal: (meal: Meal) => {
-		set({ meal }); // Ensure meal has a unique ID
-	},
-
-	setNewMealId: () => {
+export const useCurrentMealStore = create<CurrentMealStore>((set, get) => {
+	// One shared mutation path for the editor, quick portion control, AI
+	// import, reuse and restored drafts.
+	const commit = (next: EditableMeal | null, material: boolean) => {
+		if (next === null || next === get().meal) return;
 		set((state) => ({
-			meal: {
-				...state.meal,
-				id: crypto.randomUUID(),
-			},
+			meal: next,
+			materialRevision: state.materialRevision + (material ? 1 : 0),
+			editRevision: state.editRevision + 1,
 		}));
-	},
+	};
 
-	resetMeal: () => {
-		set({
-			meal: {
-				id: crypto.randomUUID(),
-				image: null,
-				name: "New Meal",
-				timestamp: Date.now(),
-				items: [],
-				isAiDraft: false,
-			},
+	const mapReferenceItems = (id: string, change: (item: ReferenceDraftItem) => ReferenceDraftItem): ReferenceDraft | null => {
+		const meal = get().meal;
+		if (!isReferenceDraft(meal)) return null;
+		let changed = false;
+		const items = meal.items.map((item) => {
+			if (item.id !== id) return item;
+			const next = change(item);
+			if (next !== item) changed = true;
+			return next;
 		});
-	},
+		return changed ? { ...meal, items } : null;
+	};
 
-	// ✅ Add a new item to the meal
-	addMealItem: (item: MealItem) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				items: [...state.meal.items, item],
-			},
-		}));
-	},
+	const legacyMeal = (): Meal | null => {
+		const meal = get().meal;
+		return isReferenceDraft(meal) ? null : meal;
+	};
 
-	// ✅ Add an empty item to the meal
-	addEmptyMealItem: () => {
-		const newItem: MealItem = {
-			id: crypto.randomUUID(),
-			name: "New Item",
-			servingSize: 0,
-			servingUnit: "g" as Unit,
-			amount: 0,
-			kcalPerServing: 0,
-			carbPerServing_g: 0,
-			satFatPerServing_g: 0,
-			gi: 0,
-			draftProvenance: "user_entered",
-		};
+	return {
+		meal: emptyLegacyMeal(),
+		materialRevision: 0,
+		editRevision: 0,
 
-		set((state) => ({
-			meal: {
-				...state.meal,
-				items: [...state.meal.items, newItem],
-			},
-		}));
-	},
+		setMeal: (meal: EditableMeal) => commit(meal, true),
 
-	updateMealItem: (id: string, field: keyof MealItem, value: unknown) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				items: state.meal.items.map((item) => item.id === id ? updateDraftMealItem(item, field, value) : item),
-			},
-		}));
-	},
+		setNewMealId: () => {
+			const meal = get().meal;
+			commit({ ...meal, id: crypto.randomUUID() } as EditableMeal, true);
+		},
 
-	confirmMealItemReview: (id: string) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				items: state.meal.items.map((item) => {
-					if (item.id !== id || !item.needsReview) return item;
-					const confirmedItem = { ...markAiProposalReviewed(item) };
-					delete confirmedItem.needsReview;
-					return confirmedItem;
-				}),
-			},
-		}));
-	},
+		resetMeal: () => get().resetMealAs(isReferenceDraft(get().meal) ? "reference" : "legacy"),
 
-	// Optional: delete by ID instead of index for better reliability
-	deleteMealItem: (id: string) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				items: state.meal.items.filter((item) => item.id !== id),
-			},
-		}));
-	},
+		resetMealAs: (contract) => commit(contract === "reference" ? createReferenceDraft() : emptyLegacyMeal(), true),
 
-	setImage: (image: string | null) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				image,
-			},
-		}));
-	},
+		addMealItem: (item: MealItem) => {
+			const meal = legacyMeal();
+			if (!meal) return;
+			commit({ ...meal, items: [...meal.items, item] }, true);
+		},
 
-	setName: (name: string) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				name,
-			},
-		}));
-	},
+		addEmptyMealItem: () => {
+			const meal = legacyMeal();
+			if (!meal) return;
+			const newItem: MealItem = {
+				id: crypto.randomUUID(),
+				name: "New Item",
+				servingSize: 0,
+				servingUnit: "g" as Unit,
+				amount: 0,
+				kcalPerServing: 0,
+				carbPerServing_g: 0,
+				satFatPerServing_g: 0,
+				gi: 0,
+				draftProvenance: "user_entered",
+			};
+			commit({ ...meal, items: [...meal.items, newItem] }, true);
+		},
 
-	setTimestamp: (timestamp: number) => {
-		set((state) => ({
-			meal: {
-				...state.meal,
-				timestamp,
-			},
-		}));
-	},
-}));
+		updateMealItem: (id: string, field: keyof MealItem, value: unknown) => {
+			const meal = legacyMeal();
+			if (!meal) return;
+			let changed = false;
+			const items = meal.items.map((item) => {
+				if (item.id !== id) return item;
+				const next = updateDraftMealItem(item, field, value);
+				if (next !== item) changed = true;
+				return next;
+			});
+			if (changed) commit({ ...meal, items }, true);
+		},
+
+		confirmMealItemReview: (id: string) => {
+			const meal = legacyMeal();
+			if (!meal) return;
+			let changed = false;
+			const items = meal.items.map((item) => {
+				if (item.id !== id || !item.needsReview) return item;
+				const confirmedItem = { ...markAiProposalReviewed(item) };
+				delete confirmedItem.needsReview;
+				changed = true;
+				return confirmedItem;
+			});
+			if (changed) commit({ ...meal, items }, true);
+		},
+
+		deleteMealItem: (id: string) => {
+			const meal = legacyMeal();
+			if (!meal) return;
+			const items = meal.items.filter((item) => item.id !== id);
+			if (items.length !== meal.items.length) commit({ ...meal, items }, true);
+		},
+
+		// Title, time and photo are edits, not scientific material.
+		setImage: (image: string | null) => {
+			const meal = get().meal;
+			if (meal.image === image) return;
+			commit({ ...meal, image } as EditableMeal, false);
+		},
+
+		setName: (name: string) => {
+			const meal = get().meal;
+			if (meal.name === name) return;
+			commit({ ...meal, name } as EditableMeal, false);
+		},
+
+		setTimestamp: (timestamp: number) => {
+			const meal = get().meal;
+			if (meal.timestamp === timestamp) return;
+			commit({ ...meal, timestamp } as EditableMeal, false);
+		},
+
+		addEmptyReferenceItem: () => get().addReferenceItem(createEmptyReferenceItem()),
+
+		addReferenceItem: (item: ReferenceDraftItem) => {
+			const meal = get().meal;
+			if (!isReferenceDraft(meal)) return;
+			commit({ ...meal, items: [...meal.items, item] }, true);
+		},
+
+		updateReferenceItem: (id, field, value) =>
+			commit(mapReferenceItems(id, (item) => updateReferenceDraftItem(item, field, value)), true),
+
+		confirmReferenceBasis: (id) => commit(mapReferenceItems(id, confirmReferenceItemBasis), true),
+
+		clearReferenceNutrition: (id) => commit(mapReferenceItems(id, clearReferenceItemNutrition), true),
+
+		selectReferenceItemSource: (id, sourceId, catalogVersion) =>
+			commit(mapReferenceItems(id, (item) => selectReferenceSource(item, sourceId, catalogVersion)), true),
+
+		deleteReferenceItem: (id) => {
+			const meal = get().meal;
+			if (!isReferenceDraft(meal)) return;
+			const items = meal.items.filter((item) => item.id !== id);
+			if (items.length !== meal.items.length) commit({ ...meal, items }, true);
+		},
+
+		setReviewedCatalogVersion: (catalogVersion) => {
+			const meal = get().meal;
+			if (!isReferenceDraft(meal) || meal.reviewedCatalogVersion === catalogVersion) return;
+			commit({ ...meal, reviewedCatalogVersion: catalogVersion }, true);
+		},
+
+		markReferenceSelectionsNeedingReview: () => {
+			const meal = get().meal;
+			if (!isReferenceDraft(meal)) return;
+			commit(markSelectionsNeedingReview(meal), true);
+		},
+	};
+});

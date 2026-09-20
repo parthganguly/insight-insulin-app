@@ -22,6 +22,9 @@ export const updateMealItemFii = (item: MealItem, value: unknown): MealItem => {
 
 export const buildDraftFromSavedMeal = (savedMeal: Meal): Meal => ({
 	...savedMeal,
+	// Reference evidence is server-owned and must never ride a spread into a
+	// new draft; reference reuse has its own adapter in referenceDraft.ts.
+	referenceAttachment: undefined,
 	id: crypto.randomUUID(),
 	timestamp: Date.now(),
 	isAiDraft: false,

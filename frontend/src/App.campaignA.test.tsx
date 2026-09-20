@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "./App";
-import { useCurrentMealStore } from "./stores/currentMealStore";
+import { getLegacyCurrentMeal, useCurrentMealStore } from "./stores/currentMealStore";
 import { useMealEstimateStore } from "./stores/mealEstimateStore";
 import { usePendingSaveStore } from "./stores/pendingSaveStore";
 import { usePersistentMealStore } from "./stores/persistentMealStore";
@@ -113,7 +113,7 @@ describe("Campaign A app navigation", () => {
 		expect(choice).not.toHaveFocus();
 		if (name === "Enter manually") {
 			expect(useCurrentMealStore.getState().meal.items).toHaveLength(1);
-			expect(useCurrentMealStore.getState().meal.backend_created_at).toBeUndefined();
+			expect(getLegacyCurrentMeal().backend_created_at).toBeUndefined();
 		}
 	});
 });

@@ -1,6 +1,7 @@
-import { Meal } from "../types/Meal";
-import { PendingSaveIntent } from "../stores/pendingSaveStore";
+import { EditableMeal } from "../types/Meal";
+import { AnySaveIntent, isReferenceIntent } from "../stores/pendingSaveStore";
 import { currentDraftStillMatchesSaveRequest } from "../stores/mealEstimateStore";
+import { isReferenceDraft } from "./referenceDraft";
 
 export const MEAL_FLOW_PATHS = ["/meals/new", "/meals/new/ai", "/meals/estimate"] as const;
 
@@ -14,18 +15,33 @@ export const doesPendingSaveCoverCurrentDraft = ({
 	estimateDraftId,
 	saveRequestId,
 	intent,
+	editRevision,
 }: {
-	meal: Meal;
+	meal: EditableMeal;
 	estimateDraftId: string | null;
 	saveRequestId: string | null;
-	intent?: PendingSaveIntent;
-}): boolean => Boolean(
-	intent
-	&& saveRequestId === intent.request.client_request_id
-	&& estimateDraftId === meal.id
-	&& intent.draftId === meal.id
-	&& currentDraftStillMatchesSaveRequest(meal, intent.request),
-);
+	intent?: AnySaveIntent;
+	/** The current draft's edit revision, from the current-meal store. */
+	editRevision?: number;
+}): boolean => {
+	if (!intent) return false;
+	if (isReferenceIntent(intent)) {
+		// R02: matching IDs are NOT coverage. An in-flight request contains the
+		// draft as it was when the request was frozen, so any edit since then —
+		// amount, source, nutrition, title or photo — is work the pending save
+		// does not carry. The intent records the edit revision it froze; if the
+		// draft has moved on, leaving would discard that newer work silently.
+		return saveRequestId === intent.requestId
+			&& estimateDraftId === meal.id
+			&& intent.draftId === meal.id
+			&& editRevision === intent.editRevision;
+	}
+	if (isReferenceDraft(meal)) return false;
+	return saveRequestId === intent.request.client_request_id
+		&& estimateDraftId === meal.id
+		&& intent.draftId === meal.id
+		&& currentDraftStillMatchesSaveRequest(meal, intent.request);
+};
 
 export const decideMealFlowNavigation = ({
 	fromPath,
@@ -48,13 +64,16 @@ export const decideMealFlowNavigation = ({
 	return "allow";
 };
 
-export const getDraftFingerprint = (meal: Meal): string => JSON.stringify({
+// Covers both contracts: a reference draft additionally carries its reviewed
+// catalog identity, which is part of what "unsaved work" means for it.
+export const getDraftFingerprint = (meal: EditableMeal): string => JSON.stringify({
 	image: meal.image,
 	name: meal.name,
 	items: meal.items,
 	isAiDraft: meal.isAiDraft,
-	estimate: meal.estimate,
-	calorieSource: meal.calorie_source,
+	estimate: isReferenceDraft(meal) ? undefined : meal.estimate,
+	calorieSource: isReferenceDraft(meal) ? undefined : meal.calorie_source,
+	reviewedCatalogVersion: isReferenceDraft(meal) ? meal.reviewedCatalogVersion : undefined,
 });
 
 export type MealFlowBaseline = { mealId: string; fingerprint: string };

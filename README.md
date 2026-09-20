@@ -27,6 +27,54 @@ INSIGHT's current beta is intended for local or tightly controlled single-user t
 
 Full details of the current topology and trust model: [docs/private-beta-topology.md](docs/private-beta-topology.md).
 
+
+## Reference Private Preview (R3B, default OFF)
+
+The experimental reference-preview flow is **off by default on both sides**
+and has no runtime or settings toggle. See
+`docs/decisions/2026-09-19-reference-private-preview.md`.
+
+| Side | Variable | Enabled by | Anything else |
+|---|---|---|---|
+| Backend | `INSIGHT_REFERENCE_PREVIEW` | exactly `1` | router unmounted, module not imported, `/reference-meals` does not exist |
+| Frontend | `VITE_REFERENCE_PREVIEW` | exactly `1`, **at build time** | legacy flow built; changing the value after a build changes nothing |
+
+Backend requests go to `VITE_BACKEND_API_URL` (or `config.json`) as before.
+
+Local browser storage used by the preview:
+
+| Key | Contents | Cleared when |
+|---|---|---|
+| `insight-meals` (schema v2) | Saved-meal cache: server meal identity, title, time and one validated reference attachment per entry | The meal is deleted, or a validated server read replaces it |
+| `insight-reference-pending:v1:<uuid>` | One **unresolved** save: meal name, reviewed portions/nutrition/source IDs, request UUID, frozen endpoint, exact request bytes | The save is reconciled, or the user discards it explicitly. Never by age. |
+
+A retry record holds no photo, no catalog copy and no credential. Nothing is
+uploaded on its own: there is no background retry, no startup POST and no
+retry timer.
+
+### Enabled synthetic acceptance run
+
+Real app, real reference router, temporary SQLite in a fresh working
+directory, no owner `.env` and no provider request:
+
+```bash
+# terminal 1 — backend harness (test-only controls live here, not in main.py)
+cd backend && python -m tests.r3b_harness --port 8099
+
+# terminal 2 — production frontend build with the flag baked in
+cd frontend
+VITE_REFERENCE_PREVIEW=1 VITE_BACKEND_API_URL=http://127.0.0.1:8099 npm run build
+npx vite preview --host 127.0.0.1 --port 5199
+
+# terminal 3 — enabled acceptance suite (separate config from the legacy smoke suite)
+cd frontend && npx cypress run --config-file cypress.config.r3b.ts
+```
+
+Rollback is by configuration: unset the flags and rebuild. Meals saved through
+the reference route stay in the same `meals` table and remain visible to the
+legacy client; a rolled-back client re-reads history from the server because it
+does not read the v2 cache.
+
 ## Backend Setup
 
 From the repo root:

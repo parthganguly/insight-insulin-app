@@ -41,6 +41,7 @@ frontend/backend/decoded_image.png
 
 # Cypress run artifacts (generated on failure; never committed)
 frontend/cypress/screenshots/
+frontend/cypress/r3b-captures/
 frontend/cypress/videos/
 
 # Claude Code local preferences

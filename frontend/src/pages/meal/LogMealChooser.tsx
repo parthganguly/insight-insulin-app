@@ -5,6 +5,7 @@ import IonToolbarWrapper from "../../components/IonToolbarWrapper";
 import { useCurrentMealStore } from "../../stores/currentMealStore";
 import { useMealEstimateStore } from "../../stores/mealEstimateStore";
 import { LOG_MEAL_OPTIONS, LogMealOptionId } from "../../utils/logMealOptions";
+import { REFERENCE_PREVIEW_MODE } from "../../utils/experimentalPresentationGate";
 
 const OPTION_ICONS: Record<LogMealOptionId, string> = {
 	photo: camera,
@@ -24,21 +25,26 @@ const releaseFocusedElement = () => {
 
 const LogMealChooser: React.FC = () => {
 	const router = useIonRouter();
-	const { resetMeal, addEmptyMealItem } = useCurrentMealStore();
+	const { resetMealAs, addEmptyMealItem, addEmptyReferenceItem } = useCurrentMealStore();
+
+	// Every entry point starts a draft under the configured contract, so a
+	// reference draft is never produced by casting a legacy one.
+	const startFreshDraft = () => resetMealAs(REFERENCE_PREVIEW_MODE ? "reference" : "legacy");
 
 	const handleChoice = (choice: LogMealOptionId) => {
 		releaseFocusedElement();
 		useMealEstimateStore.getState().clearEstimate();
 
 		if (choice === "photo") {
-			resetMeal();
+			startFreshDraft();
 			router.push("/meals/new/ai", "forward");
 			return;
 		}
 
 		if (choice === "manual") {
-			resetMeal();
-			addEmptyMealItem();
+			startFreshDraft();
+			if (REFERENCE_PREVIEW_MODE) addEmptyReferenceItem();
+			else addEmptyMealItem();
 			router.push("/meals/new", "forward");
 			return;
 		}

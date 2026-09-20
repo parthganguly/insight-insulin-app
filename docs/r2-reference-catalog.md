@@ -1,5 +1,7 @@
 # R2 inactive reference catalog
 
+> **Status update — 2026-09-19 (R3B):** This component is no longer unmounted. The backend router is mounted only when `INSIGHT_REFERENCE_PREVIEW=1` exactly, and the frontend branch is built only when `VITE_REFERENCE_PREVIEW=1` at build time. Both default to OFF, neither has a runtime or settings toggle, and neither is activated on a normal installation. This is a configured test status under `decisions/2026-09-19-reference-private-preview.md` — not a release, not an activation, and not a claim of scientific validation.
+
 This is a compatibility/migration component preparing a later reviewed integration.
 The current implementation remains Python/FastAPI scoring with the ten-row legacy
 CSV and Ionic/Capacitor UI. The maintained Rust core is a compatibility component;

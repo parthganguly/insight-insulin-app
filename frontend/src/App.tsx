@@ -46,6 +46,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { Capacitor, registerPlugin } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { useSettingsStore } from "./stores/settingsStore";
+import { usePendingSaveStore } from "./stores/pendingSaveStore";
 import { applyRootAppearance, INK_APPEARANCE_CLASS, INK_MEDIA_QUERY, PAPER_APPEARANCE_CLASS, resolveAppearance } from "./utils/appearance";
 
 setupIonicReact();
@@ -173,6 +174,19 @@ const App: React.FC<{ onShellReady?: () => void }> = ({ onShellReady }) => {
 			});
 		}
 	}, [appearance]);
+
+	// One idempotent journal hydration before any save or delete affordance
+	// becomes available. Entries are validated independently of the current
+	// draft, an inFlight entry returns as ambiguous, and nothing is dispatched.
+	//
+	// R01: this must NOT depend on the presentation flag. A device can hold an
+	// unresolved reference save made by an enabled build and then be rebuilt
+	// with the flag off; the record still has to be read so deletion can be
+	// guarded. Reading is local only — no startup POST and no catalog fetch —
+	// and a build that never wrote a record simply finds none.
+	useEffect(() => {
+		usePendingSaveStore.getState().hydrateReferenceJournal();
+	}, []);
 
 	useEffect(() => {
 		onShellReady?.();

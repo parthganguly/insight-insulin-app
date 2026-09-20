@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MealModelingResponse, MealPreviewResponse, MealSaveHttpError, MealSaveRequestPayload } from "../api/api";
-import { useCurrentMealStore } from "../stores/currentMealStore";
+import { getLegacyCurrentMeal, useCurrentMealStore } from "../stores/currentMealStore";
 import { getMaterialItemsSnapshot, useMealEstimateStore } from "../stores/mealEstimateStore";
-import { usePendingSaveStore } from "../stores/pendingSaveStore";
+import { PendingSaveIntent, usePendingSaveStore } from "../stores/pendingSaveStore";
 import { usePersistentMealStore } from "../stores/persistentMealStore";
 import { Meal } from "../types/Meal";
 import { Unit } from "../types/MealItem";
@@ -144,7 +144,7 @@ describe("B2-2 request-bound save coordination", () => {
 	it("classifies 422 as rejected without Retry language and 409 affects only its own intent", async () => {
 		makeReady(draft("x", "Breakfast X"), "request-x");
 		await saveCurrentEstimate({ postMeal: vi.fn(async () => { throw new MealSaveHttpError(422, "raw detail"); }) });
-		const rejected = usePendingSaveStore.getState().intents["request-x"];
+		const rejected = usePendingSaveStore.getState().intents["request-x"] as PendingSaveIntent;
 		expect(rejected.phase).toBe("rejected");
 		expect(rejected.lastError).toContain("was rejected");
 		expect(rejected.lastError).not.toContain("may");
@@ -231,7 +231,7 @@ describe("B2-2 request-bound save coordination", () => {
 		makeReady(draft("x", "Breakfast X"), "request-x");
 		const pending = deferred<MealModelingResponse>();
 		const saving = saveCurrentEstimate({ postMeal: () => pending.promise });
-		makeReady(useCurrentMealStore.getState().meal, "request-x2");
+		makeReady(getLegacyCurrentMeal(), "request-x2");
 		pending.resolve(response("saved-x", "Breakfast X"));
 		await saving;
 		expect(useMealEstimateStore.getState().saveRequestId).toBe("request-x2");

@@ -16,6 +16,7 @@ import {
 	rememberMealFlowBaseline,
 	takeRecoveredMealFlowBaseline,
 } from "../utils/mealFlowGuard";
+import { isReferenceDraft } from "../utils/referenceDraft";
 
 type PendingNavigation = {
 	location: Location;
@@ -34,9 +35,16 @@ const MealFlowGuard = () => {
 	const history = useHistory();
 	const { pathname } = useLocation();
 	const meal = useCurrentMealStore((state) => state.meal);
-	const estimateDraftId = useMealEstimateStore((state) => state.draftId);
+	// The guard follows whichever contract currently owns the estimate.
+	const contract = useMealEstimateStore((state) => state.contract);
+	const legacyDraftId = useMealEstimateStore((state) => state.draftId);
+	const referenceDraftId = useMealEstimateStore((state) => state.reference.draftId);
 	const preview = useMealEstimateStore((state) => state.preview);
-	const saveRequestId = useMealEstimateStore((state) => state.saveRequestId);
+	const referenceResult = useMealEstimateStore((state) => state.reference.result);
+	const legacySaveRequestId = useMealEstimateStore((state) => state.saveRequestId);
+	const referenceSaveRequestId = useMealEstimateStore((state) => state.reference.saveRequestId);
+	const estimateDraftId = contract === "reference" ? referenceDraftId : legacyDraftId;
+	const saveRequestId = contract === "reference" ? referenceSaveRequestId : legacySaveRequestId;
 	const pendingIntent = usePendingSaveStore((state) => saveRequestId === null ? undefined : state.intents[saveRequestId]);
 	const [pending, setPending] = useState<PendingNavigation | null>(null);
 	const destructiveIntent = useRef<PendingNavigation | null>(null);
@@ -52,12 +60,13 @@ const MealFlowGuard = () => {
 	}
 	rememberMealFlowBaseline(baseline.current);
 
-	const pendingSaveCoversCurrentDraft = doesPendingSaveCoverCurrentDraft({ meal, estimateDraftId, saveRequestId, intent: pendingIntent });
+	const editRevision = useCurrentMealStore((state) => state.editRevision);
+	const pendingSaveCoversCurrentDraft = doesPendingSaveCoverCurrentDraft({ meal, estimateDraftId, saveRequestId, intent: pendingIntent, editRevision });
 	const decisionContext = useRef({ pathname, isDirtyDraft: false, hasUnsavedEstimate: false, pendingSaveCoversCurrentDraft: false });
 	decisionContext.current = {
 		pathname,
-		isDirtyDraft: !meal.backend_created_at && fingerprint !== baseline.current.fingerprint,
-		hasUnsavedEstimate: preview !== null && saveRequestId !== null && estimateDraftId === meal.id,
+		isDirtyDraft: (isReferenceDraft(meal) || !meal.backend_created_at) && fingerprint !== baseline.current.fingerprint,
+		hasUnsavedEstimate: (preview !== null || referenceResult !== null) && saveRequestId !== null && estimateDraftId === meal.id,
 		pendingSaveCoversCurrentDraft,
 	};
 
