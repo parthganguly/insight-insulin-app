@@ -1,0 +1,6 @@
+# Preserve original hashed protocol and forecast bytes on every platform.
+components/COMBINATION_FROZEN.json -text whitespace=cr-at-eol
+source-transfer/PLAN.md -text whitespace=cr-at-eol
+source-transfer/predict.py -text whitespace=cr-at-eol,-blank-at-eof
+source-transfer/composition.csv -text whitespace=cr-at-eol
+source-transfer/PREDICTIONS.json -text whitespace=cr-at-eol

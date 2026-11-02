@@ -1,0 +1,16 @@
+# Protein-source transfer at a fixed glucose dose
+
+Decision: can one extra food-composition descriptor improve a numerical forecast of insulin-area ratios for co-ingested protein, beyond reported protein grams and cheaper comparators? Use Thondre et al. Table 1, with 50 g available carbohydrate in every arm. The endpoint is the ratio of published Table 4 mean 0–120 minute insulin iAUC to glucose alone. The paper uses a geometric trapezoid calculation. Separate admission is required for any positive-clipping interpretation. No other window is substituted.
+
+Forecast all four target arms before reading Table 4. Numerical provenance: use the previously frozen central Lan-Pidhainy graph ratios, protein 0/5/30 g = 1, 1.1666666666666667, 1.5518518518518518; fat 0/5/30 g = 1, 1.0736497545008183, 1.1522094926350246. These are operational marginal summaries with unknown exact averaging; they are development inputs, never clinical cell outcomes. Interpolate linearly in grams as in the earlier Lan transfer. All target inputs are inside the interpolation ranges.
+
+Models:
+- Same glucose dose / no change: ratio 1.
+- Proportional printed energy (kcal): kcal/200.
+- Total protein model: Lan protein factor at the actual Table 1 protein grams times the Lan fat factor at the actual fat grams. Available carbohydrate is fixed.
+- Leucine-scaled model: replace protein grams with leucine grams × 8.1/1.29. This fixes the whey reference density from Table 1 composition alone. Keep exactly the same curve and fat factor. Whey arms coincide by construction; differences can only occur for pea arms. No new outcome-fitted coefficients, target insulin measurements or participant-level calibration. Leucine is a candidate proxy for protein source, not an established universal potency.
+- A label-only whey-domain variant can supply the unchanged protein forecast on the two whey arms and abstain for pea. Its coverage is 2/4; do not compare means over incompatible coverage.
+
+Evaluation: retain individual predictions, observed ratios and absolute natural-log errors, equal-weight average over four for complete models; separately evaluate W/P at each powder dose and high/low within each protein source with their own errors. Report every contrast even if ordering reverses. No pooling with Oberoi net weighted 60/180 results. No general score or clinical superiority criterion. Report source-reported paired differences or CIs with actual direction/units/test and ambiguous cases qualified; do not construct model-error intervals from marginal SDs. With only two fixed protein powders, a source-specific lookup can represent the same scaled inputs. Even a numerical gain cannot establish a requirement for an amino-acid assay.
+
+Exposure: the project saw the abstract's 180-minute source contrast and a published 120-minute whey-minus-glucose contrast before locking. The coordinator inspected methods and composition only, and has not inspected numeric Table 4 arm means in selecting these candidates. The full XML was acquired before locking. This is an outcome-informed development hypothesis with independently collected evaluation meals, not pristine validation. No alteration of the delay or old clock results.
