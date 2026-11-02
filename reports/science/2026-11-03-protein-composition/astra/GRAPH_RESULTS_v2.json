@@ -1,0 +1,572 @@
+{
+  "read_areas": {
+    "G": 1942.5947187141217,
+    "G_plus_leucine": 3072.330654420207,
+    "water": -50.51664753157291,
+    "leucine": 169.91963260619977
+  },
+  "source_ratio": {
+    "original_abstract": {
+      "central": 1.66,
+      "reading_range": [
+        1.66,
+        1.66
+      ]
+    },
+    "iverson_2014_citation": {
+      "central": 1.59,
+      "reading_range": [
+        1.59,
+        1.59
+      ]
+    },
+    "graphic_raw": {
+      "central": 1.5815602836879432,
+      "reading_range": [
+        1.5547785547785549,
+        1.6091127098321343
+      ]
+    },
+    "graphic_water_adjusted": {
+      "central": 1.566820276497696,
+      "reading_range": [
+        1.5384615384615385,
+        1.596244131455399
+      ]
+    }
+  },
+  "panels": {
+    "healthy": {
+      "original_abstract": {
+        "whole_multiplier": {
+          "prediction": 1.66,
+          "absolute_log_error": 0.06026563415776606,
+          "error_corner_range": [
+            0.035969734997435686,
+            0.08418469063792207
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.3862863340529198,
+            "macro_energy": -0.2909761542485948,
+            "protein_or_AA_mass": -0.09860426160113886,
+            "conditional_mass_increment": -0.27861061974229007
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.4348781323735804,
+              -0.3384482210926078
+            ],
+            "macro_energy": [
+              -0.3395679525692555,
+              -0.24313804128828287
+            ],
+            "protein_or_AA_mass": [
+              -0.1471960599217995,
+              -0.05076614864082689
+            ],
+            "conditional_mass_increment": [
+              -0.33324075521858404,
+              -0.22500358703482243
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.4349006622516556,
+          "absolute_log_error": 0.08545634630699439,
+          "error_corner_range": [
+            0.058485952953096394,
+            0.11293720076564252
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.36109562190369143,
+            "macro_energy": -0.26578544209936644,
+            "protein_or_AA_mass": -0.07341354945191053,
+            "conditional_mass_increment": -0.2534199075930617
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.3722529739020509,
+              -0.3499616707880062
+            ],
+            "macro_energy": [
+              -0.27694279409772593,
+              -0.25465149098368123
+            ],
+            "protein_or_AA_mass": [
+              -0.08457090145027003,
+              -0.06227959833622532
+            ],
+            "conditional_mass_increment": [
+              -0.2719050000677687,
+              -0.2351068949107112
+            ]
+          }
+        }
+      },
+      "iverson_2014_citation": {
+        "whole_multiplier": {
+          "prediction": 1.59,
+          "absolute_log_error": 0.017182048021454434,
+          "error_corner_range": [
+            0.0020942416031146257,
+            0.04110110450161037
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.42936992018923137,
+            "macro_energy": -0.3340597403849064,
+            "protein_or_AA_mass": -0.1416878477374505,
+            "conditional_mass_increment": -0.32169420587860165
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.46373401623214033,
+              -0.3815318072289195
+            ],
+            "macro_energy": [
+              -0.36842383642781534,
+              -0.28622162742459456
+            ],
+            "protein_or_AA_mass": [
+              -0.1760519437803594,
+              -0.0938497347771386
+            ],
+            "conditional_mass_increment": [
+              -0.3633860423978581,
+              -0.2680871731711341
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.388774834437086,
+          "absolute_log_error": 0.11813002381591425,
+          "error_corner_range": [
+            0.09139233268513004,
+            0.14536728544578062
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.32842194439477157,
+            "macro_energy": -0.23311176459044658,
+            "protein_or_AA_mass": -0.04073987194299067,
+            "conditional_mass_increment": -0.22074623008414185
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.338731587127472,
+              -0.31814267796182805
+            ],
+            "macro_energy": [
+              -0.243421407323147,
+              -0.22283249815750308
+            ],
+            "protein_or_AA_mass": [
+              -0.05104951467569108,
+              -0.0304606055100472
+            ],
+            "conditional_mass_increment": [
+              -0.23838361329318974,
+              -0.2032879020845331
+            ]
+          }
+        }
+      },
+      "graphic_raw": {
+        "whole_multiplier": {
+          "prediction": 1.5815602836879432,
+          "absolute_log_error": 0.01185991287126469,
+          "error_corner_range": [
+            0.0005062009725910612,
+            0.053050003442350495
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.4346920553394211,
+            "macro_energy": -0.33938187553509613,
+            "protein_or_AA_mass": -0.14700998288764022,
+            "conditional_mass_increment": -0.3270163410287914
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.4696158775518838,
+              -0.36958290828817936
+            ],
+            "macro_energy": [
+              -0.37430569774755884,
+              -0.2742727284838544
+            ],
+            "protein_or_AA_mass": [
+              -0.1819338051001029,
+              -0.08190083583639846
+            ],
+            "conditional_mass_increment": [
+              -0.3679785003968874,
+              -0.256138274230394
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.3832135644168897,
+          "absolute_log_error": 0.12214250632404557,
+          "error_corner_range": [
+            0.08229961930307284,
+            0.16209146795051282
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.32440946188664027,
+            "macro_energy": -0.22909928208231528,
+            "protein_or_AA_mass": -0.036727389434859356,
+            "conditional_mass_increment": -0.21673374757601055
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.34799630613948057,
+              -0.3017413153299593
+            ],
+            "macro_energy": [
+              -0.2526861263351556,
+              -0.20643113552563433
+            ],
+            "protein_or_AA_mass": [
+              -0.060314233687699656,
+              -0.014059242878178446
+            ],
+            "conditional_mass_increment": [
+              -0.24764833230519834,
+              -0.18688653945266434
+            ]
+          }
+        }
+      },
+      "graphic_water_adjusted": {
+        "whole_multiplier": {
+          "prediction": 1.566820276497696,
+          "absolute_log_error": 0.002496295859061794,
+          "error_corner_range": [
+            9.804402184446435e-05,
+            0.045020540170252046
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.444055672351624,
+            "macro_energy": -0.34874549254729903,
+            "protein_or_AA_mass": -0.15637359989984312,
+            "conditional_mass_increment": -0.3363799580409943
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.46765345190078184,
+              -0.3776123715602778
+            ],
+            "macro_energy": [
+              -0.3723432720964569,
+              -0.2823021917559529
+            ],
+            "protein_or_AA_mass": [
+              -0.17997137944900096,
+              -0.08993029910849691
+            ],
+            "conditional_mass_increment": [
+              -0.36601607474578546,
+              -0.26416773750249245
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.3735007782219917,
+          "absolute_log_error": 0.12918917505991778,
+          "error_corner_range": [
+            0.0884126361710231,
+            0.16993510077289745
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.31736279315076804,
+            "macro_energy": -0.22205261334644305,
+            "protein_or_AA_mass": -0.02968072069898714,
+            "conditional_mass_increment": -0.20968707884013832
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.341767825796445,
+              -0.2940509182693716
+            ],
+            "macro_energy": [
+              -0.24645764599212,
+              -0.19874073846504667
+            ],
+            "protein_or_AA_mass": [
+              -0.0540857533446641,
+              -0.006368845817590785
+            ],
+            "conditional_mass_increment": [
+              -0.24141985196216276,
+              -0.17919614239207662
+            ]
+          }
+        }
+      }
+    },
+    "T2D": {
+      "original_abstract": {
+        "whole_multiplier": {
+          "prediction": 1.66,
+          "absolute_log_error": 0.27664002439686236,
+          "error_corner_range": [
+            0.2466181756105029,
+            0.30614690690630053
+          ],
+          "central_error_minus_comparator": {
+            "no_change": 0.04646244642527289,
+            "macro_energy": 0.1417726262295978,
+            "protein_or_AA_mass": 0.21913552991667104,
+            "conditional_mass_increment": 0.2145215562986632
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.013581251147445988,
+              0.10547621144414929
+            ],
+            "macro_energy": [
+              0.081728928656879,
+              0.20078639124847425
+            ],
+            "protein_or_AA_mass": [
+              0.2191355299166708,
+              0.21913552991667107
+            ],
+            "conditional_mass_increment": [
+              0.1491384614049137,
+              0.2786027927304133
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.2976470588235294,
+          "absolute_log_error": 0.030375091797550758,
+          "error_corner_range": [
+            0.0017721291569799365,
+            0.0662807330122458
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.1998024861740387,
+            "macro_energy": -0.10449230636971381,
+            "protein_or_AA_mass": -0.027129402682640563,
+            "conditional_mass_increment": -0.03174337630064841
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.2547985530127533,
+              -0.13438996244990545
+            ],
+            "macro_energy": [
+              -0.1594883732084283,
+              -0.039079782645580485
+            ],
+            "protein_or_AA_mass": [
+              -0.040882794033877574,
+              -0.013349580020720602
+            ],
+            "conditional_mass_increment": [
+              -0.08756003704236148,
+              0.030106576062143654
+            ]
+          }
+        }
+      },
+      "iverson_2014_citation": {
+        "whole_multiplier": {
+          "prediction": 1.59,
+          "absolute_log_error": 0.23355643826055072,
+          "error_corner_range": [
+            0.20353458947419134,
+            0.2630633207699889
+          ],
+          "central_error_minus_comparator": {
+            "no_change": 0.003378860288961255,
+            "macro_energy": 0.09868904009328616,
+            "protein_or_AA_mass": 0.1760519437803594,
+            "conditional_mass_increment": 0.17143797016235157
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.05666483728375754,
+              0.06239262530783765
+            ],
+            "macro_energy": [
+              0.03864534252056745,
+              0.15770280511216261
+            ],
+            "protein_or_AA_mass": [
+              0.1760519437803592,
+              0.1760519437803595
+            ],
+            "conditional_mass_increment": [
+              0.10605487526860215,
+              0.23551920659410164
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.266078431372549,
+          "absolute_log_error": 0.005746695942460461,
+          "error_corner_range": [
+            0.0020468334700393686,
+            0.04111787550804838
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.224430882029129,
+            "macro_energy": -0.1291207022248041,
+            "protein_or_AA_mass": -0.05175779853773086,
+            "conditional_mass_increment": -0.05637177215573871
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.24855700689803523,
+              -0.15955281995410286
+            ],
+            "macro_energy": [
+              -0.15324682709371024,
+              -0.0642426401497779
+            ],
+            "protein_or_AA_mass": [
+              -0.06435176814898055,
+              0.0029765617908764745
+            ],
+            "conditional_mass_increment": [
+              -0.0882143568228559,
+              0.0049437185579462375
+            ]
+          }
+        }
+      },
+      "graphic_raw": {
+        "whole_multiplier": {
+          "prediction": 1.5815602836879432,
+          "absolute_log_error": 0.228234303110361,
+          "error_corner_range": [
+            0.1811337002296579,
+            0.27501221971072903
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.0019432748612284723,
+            "macro_energy": 0.09336690494309643,
+            "protein_or_AA_mass": 0.17072980863016968,
+            "conditional_mass_increment": 0.16611583501216182
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.07906572652829097,
+              0.07434152424857779
+            ],
+            "macro_energy": [
+              0.01624445327603402,
+              0.16965170405290275
+            ],
+            "protein_or_AA_mass": [
+              0.1536510545358258,
+              0.18800084272109954
+            ],
+            "conditional_mass_increment": [
+              0.08365398602406872,
+              0.24746810553484178
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.2622722848004448,
+          "absolute_log_error": 0.0027359194525434774,
+          "error_corner_range": [
+            8.716306035029885e-05,
+            0.04805138675688566
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.227441658519046,
+            "macro_energy": -0.13213147871472108,
+            "protein_or_AA_mass": -0.05476857502764784,
+            "conditional_mass_increment": -0.05938254864565569
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.2556609041955087,
+              -0.15261930870526558
+            ],
+            "macro_energy": [
+              -0.1603507243911837,
+              -0.05730912890094062
+            ],
+            "protein_or_AA_mass": [
+              -0.0763721149708535,
+              0.015305733710420991
+            ],
+            "conditional_mass_increment": [
+              -0.09531825412032936,
+              0.011877229806783518
+            ]
+          }
+        }
+      },
+      "graphic_water_adjusted": {
+        "whole_multiplier": {
+          "prediction": 1.566820276497696,
+          "absolute_log_error": 0.218870686098158,
+          "error_corner_range": [
+            0.17058348933450537,
+            0.2669827564386307
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.01130689187343148,
+            "macro_energy": 0.08400328793089343,
+            "protein_or_AA_mass": 0.16136619161796667,
+            "conditional_mass_increment": 0.1567522179999588
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.08961593742344351,
+              0.06631206097647943
+            ],
+            "macro_energy": [
+              0.005694242380881481,
+              0.1616222407808044
+            ],
+            "protein_or_AA_mass": [
+              0.14310084364067327,
+              0.17997137944900118
+            ],
+            "conditional_mass_increment": [
+              0.07310377512891618,
+              0.23943864226274342
+            ]
+          }
+        },
+        "increment_on_carbohydrate": {
+          "prediction": 1.2556248305773923,
+          "absolute_log_error": 0.0025442563154339467,
+          "error_corner_range": [
+            0.00040860321674256265,
+            0.04855204058216547
+          ],
+          "central_error_minus_comparator": {
+            "no_change": -0.22763332165615552,
+            "macro_energy": -0.1323231418518306,
+            "protein_or_AA_mass": -0.054960238164757376,
+            "conditional_mass_increment": -0.05957421178276522
+          },
+          "corner_error_minus_comparator": {
+            "no_change": [
+              -0.2508834084586644,
+              -0.15728234697295995
+            ],
+            "macro_energy": [
+              -0.15557322865433945,
+              -0.061972167168634976
+            ],
+            "protein_or_AA_mass": [
+              -0.0819901279579318,
+              0.021069394888333374
+            ],
+            "conditional_mass_increment": [
+              -0.0905407583834851,
+              0.007214191539089164
+            ]
+          }
+        }
+      }
+    }
+  }
+}

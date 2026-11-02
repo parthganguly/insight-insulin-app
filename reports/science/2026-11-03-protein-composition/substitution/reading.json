@@ -1,0 +1,9 @@
+{
+  "figure":"Churchward-Venne et al. 2014, Figure 1, insulin AUC inset",
+  "url":"https://ars.els-cdn.com/content/image/1-s2.0-S0002916523049444-gr1_lrg.jpg",
+  "size_px":[440,285],
+  "y_zero":147,"y_5000":49,"y_bar":{"W6":92,"low":74,"BCAA":92,"high":90.5},
+  "inspection_x":{"W6":247,"low":276,"BCAA":336,"high":366},
+  "tolerance_px":1,
+  "notes":"Read the top of each bar, excluding its SEM whisker. Use one shared zero. Paired comparisons of forecasts use the same possible observed vector. The 5000 tick calibrates approximate native figure units only; it cancels from ratios."
+}

@@ -1,0 +1,13 @@
+{
+ "id":"kalogeropoulou_2008_figure2b",
+ "source_abstract":"https://pubmed.ncbi.nlm.nih.gov/19013300/",
+ "source_figure":"https://ars.els-cdn.com/content/image/1-s2.0-S0026049508003120-gr2_lrg.jpg",
+ "figure_sha256":"83e0093f4b7a7b0ef2c04f3d0ae2910a7330fd3cba5a2e5ad9a5ca309a4c97d8",
+ "citation_2014":"https://pmc.ncbi.nlm.nih.gov/articles/PMC4121211/",
+ "source_window_min":150,"figure_pixel_size":[1000,1212],"unit":"microU min/mL",
+ "axis":{"zero_y":1088.5,"4000_y":653.0,"read_radius_px":1},
+ "bar_y":{"G":877,"G_plus_leucine":754,"water":1094,"leucine":1070},"bar_read_radius_px":2,
+ "figure_note":"Use glucose + leucine over glucose alone, and the same ratio after subtracting the negative water-control area from each arm. The leucine-alone bar supplies descriptive context only. Shared vertical-axis scale cancels in ratios.",
+ "reported_2008":1.66,"cited_2014":1.59,
+ "exposure":"Post-result sensitivity. Both sources and previous Manders errors were known before implementation."
+}

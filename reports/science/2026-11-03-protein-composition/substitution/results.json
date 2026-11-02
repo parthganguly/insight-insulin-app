@@ -1,0 +1,244 @@
+{
+  "bar_AUC_approximate_plot_units": {
+    "W6": 2806.122448979592,
+    "low": 3724.4897959183672,
+    "BCAA": 2806.122448979592,
+    "high": 2882.6530612244896
+  },
+  "all_contrasts": {
+    "low/W6": {
+      "observed": 1.3272727272727272,
+      "models": {
+        "pooled": {
+          "forecast": 1.2585950126798675,
+          "absolute_log_error": 0.05313022640653805
+        },
+        "whey_training": {
+          "forecast": 1.1259712432321953,
+          "absolute_log_error": 0.164480265394708
+        },
+        "soy_training": {
+          "forecast": 1.3741731782411442,
+          "absolute_log_error": 0.034725969418745284
+        },
+        "matched_tie": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.28312625591592017
+        },
+        "retained_lan": {
+          "forecast": 1.2553275066286949,
+          "absolute_log_error": 0.055729755919563875
+        }
+      }
+    },
+    "BCAA/W6": {
+      "observed": 1.0,
+      "models": {
+        "pooled": {
+          "forecast": 1.5440934040576464,
+          "absolute_log_error": 0.43443694462883303
+        },
+        "whey_training": {
+          "forecast": 1.2512075102226974,
+          "absolute_log_error": 0.22410909320673386
+        },
+        "soy_training": {
+          "forecast": 1.8228250752211235,
+          "absolute_log_error": 0.6003875367432566
+        },
+        "matched_tie": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.0
+        },
+        "retained_lan": {
+          "forecast": null,
+          "absolute_log_error": null
+        }
+      }
+    },
+    "high/W6": {
+      "observed": 1.0272727272727273,
+      "models": {
+        "pooled": {
+          "forecast": 1.5440934040576464,
+          "absolute_log_error": 0.4075294917089086
+        },
+        "whey_training": {
+          "forecast": 1.2512075102226974,
+          "absolute_log_error": 0.1972016402868094
+        },
+        "soy_training": {
+          "forecast": 1.8228250752211235,
+          "absolute_log_error": 0.5734800838233323
+        },
+        "matched_tie": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.02690745291992438
+        },
+        "retained_lan": {
+          "forecast": null,
+          "absolute_log_error": null
+        }
+      }
+    },
+    "BCAA/low": {
+      "observed": 0.7534246575342466,
+      "models": {
+        "pooled": {
+          "forecast": 1.226838966070492,
+          "absolute_log_error": 0.487567171035371
+        },
+        "whey_training": {
+          "forecast": 1.1112251025443605,
+          "absolute_log_error": 0.3885893586014419
+        },
+        "soy_training": {
+          "forecast": 1.3264886144512191,
+          "absolute_log_error": 0.5656615673245114
+        },
+        "matched_tie": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.2831262559159201
+        },
+        "retained_lan": {
+          "forecast": null,
+          "absolute_log_error": null
+        }
+      }
+    },
+    "high/low": {
+      "observed": 0.773972602739726,
+      "models": {
+        "pooled": {
+          "forecast": 1.226838966070492,
+          "absolute_log_error": 0.4606597181154468
+        },
+        "whey_training": {
+          "forecast": 1.1112251025443605,
+          "absolute_log_error": 0.36168190568151753
+        },
+        "soy_training": {
+          "forecast": 1.3264886144512191,
+          "absolute_log_error": 0.5387541144045872
+        },
+        "matched_tie": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.25621880299599586
+        },
+        "retained_lan": {
+          "forecast": null,
+          "absolute_log_error": null
+        }
+      }
+    },
+    "high/BCAA": {
+      "observed": 1.0272727272727273,
+      "models": {
+        "pooled": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.02690745291992438
+        },
+        "whey_training": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.02690745291992438
+        },
+        "soy_training": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.02690745291992438
+        },
+        "matched_tie": {
+          "forecast": 1.0,
+          "absolute_log_error": 0.02690745291992438
+        },
+        "retained_lan": {
+          "forecast": null,
+          "absolute_log_error": null
+        }
+      }
+    }
+  },
+  "loss": {
+    "pooled": {
+      "vs_W6": {
+        "coverage": 3,
+        "eligible": 3,
+        "mean_error": 0.29836555424809325
+      },
+      "all_pairs": {
+        "coverage": 6,
+        "eligible": 6,
+        "mean_error": 0.3117051674691703
+      },
+      "vs_W6_error_minus_tie_reading_enclosure": [
+        0.1456326223956796,
+        0.2129592865827614
+      ]
+    },
+    "whey_training": {
+      "vs_W6": {
+        "coverage": 3,
+        "eligible": 3,
+        "mean_error": 0.19526366629608374
+      },
+      "all_pairs": {
+        "coverage": 6,
+        "eligible": 6,
+        "mean_error": 0.22716161934852253
+      },
+      "vs_W6_error_minus_tie_reading_enclosure": [
+        0.04253073444367012,
+        0.10985739863075193
+      ]
+    },
+    "soy_training": {
+      "vs_W6": {
+        "coverage": 3,
+        "eligible": 3,
+        "mean_error": 0.4028645299951114
+      },
+      "all_pairs": {
+        "coverage": 6,
+        "eligible": 6,
+        "mean_error": 0.38998612077239286
+      },
+      "vs_W6_error_minus_tie_reading_enclosure": [
+        0.2269809518635342,
+        0.3412703173978322
+      ]
+    },
+    "matched_tie": {
+      "vs_W6": {
+        "coverage": 3,
+        "eligible": 3,
+        "mean_error": 0.10334456961194817
+      },
+      "all_pairs": {
+        "coverage": 6,
+        "eligible": 6,
+        "mean_error": 0.14604770344461415
+      },
+      "vs_W6_error_minus_tie_reading_enclosure": [
+        -7.45931094670027e-17,
+        8.90491384334761e-17
+      ]
+    },
+    "retained_lan": {
+      "vs_W6": {
+        "coverage": 1,
+        "eligible": 3,
+        "mean_error": null
+      },
+      "all_pairs": {
+        "coverage": 1,
+        "eligible": 6,
+        "mean_error": null
+      }
+    }
+  },
+  "nitrogen_g_listed_added_free_amino_acids": {
+    "W6": 1.0914463992397831,
+    "low": 0.9450746646088821,
+    "BCAA": 0.6951554302572255,
+    "high": 0.8148359546244566
+  }
+}

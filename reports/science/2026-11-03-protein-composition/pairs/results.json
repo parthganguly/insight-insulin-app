@@ -1,0 +1,313 @@
+{
+  "studies": {
+    "phenylalanine": {
+      "derived_mean_grams": {
+        "leucine": 6.978244,
+        "phenylalanine": 8.788108
+      },
+      "printed_ratio": 1.77,
+      "forecast": {
+        "no_change": 1,
+        "external_protein_panel_constant": 1.244209794846838,
+        "food_energy": 1.63065408,
+        "lan_total_mass": 1.3325482382222222,
+        "lan_leucine_mass_only": 1.197146277925926,
+        "historical_leucine_only": 1.66,
+        "historical_separate_increments": 1.73,
+        "cohort_pair_plus_glucose": 1.4124999999999999
+      },
+      "abs_log_error": {
+        "no_change": 0.5709795465857378,
+        "external_protein_panel_constant": 0.35247892111251106,
+        "food_energy": 0.08199833618315916,
+        "lan_total_mass": 0.2838864688906517,
+        "lan_leucine_mass_only": 0.3910389236951177,
+        "historical_leucine_only": 0.06416194421728601,
+        "historical_separate_increments": 0.022858138076050208,
+        "cohort_pair_plus_glucose": 0.22561836254727888
+      },
+      "figure_center": {
+        "glucose_raw": 1212.1212121212122,
+        "mixture_raw": 2136.3636363636365,
+        "pair_raw": 469.69696969696975,
+        "water_raw": -30.303030303030305,
+        "glucose_corrected": 1242.4242424242425,
+        "mixture_corrected": 2166.666666666667,
+        "pair_corrected": 500.00000000000006,
+        "ratio_raw": 1.7625,
+        "ratio_corrected": 1.7439024390243905,
+        "sum_prediction_native_raw": 1712.1212121212122,
+        "sum_residual": 424.24242424242425,
+        "sum_over_glucose_raw": 1.4124999999999999,
+        "sum_over_glucose_corrected": 1.4024390243902438
+      },
+      "figure_bounds": {
+        "glucose_raw": [
+          1181.818181818182,
+          1242.4242424242425
+        ],
+        "mixture_raw": [
+          2106.060606060606,
+          2166.666666666667
+        ],
+        "pair_raw": [
+          439.39393939393943,
+          500.0
+        ],
+        "water_raw": [
+          -61.224489795918366,
+          0.0
+        ],
+        "glucose_corrected": [
+          1200.0,
+          1285.7142857142856
+        ],
+        "mixture_corrected": [
+          2115.0,
+          2219.387755102041
+        ],
+        "pair_corrected": [
+          465.0,
+          535.7142857142857
+        ],
+        "ratio_raw": [
+          1.7195121951219512,
+          1.8076923076923077
+        ],
+        "ratio_corrected": [
+          1.7023809523809523,
+          1.7875
+        ],
+        "sum_prediction_native_raw": [
+          1651.5151515151517,
+          1772.7272727272727
+        ],
+        "sum_residual": [
+          360.0,
+          489.79591836734676
+        ],
+        "sum_over_glucose_raw": [
+          1.3780487804878048,
+          1.4487179487179487
+        ],
+        "sum_over_glucose_corrected": [
+          1.3780487804878048,
+          1.4268292682926829
+        ]
+      }
+    },
+    "glycine": {
+      "derived_mean_grams": {
+        "leucine": 6.886424999999999,
+        "glycine": 3.941175
+      },
+      "printed_ratio": 1.24,
+      "forecast": {
+        "no_change": 1,
+        "external_protein_panel_constant": 1.244209794846838,
+        "food_energy": 1.433104,
+        "lan_total_mass": 1.2564548740740742,
+        "lan_leucine_mass_only": 1.1957315851851853,
+        "historical_leucine_only": 1.59,
+        "historical_separate_increments": 1.6,
+        "cohort_pair_plus_glucose": 1.1
+      },
+      "abs_log_error": {
+        "no_change": 0.21511137961694543,
+        "external_protein_panel_constant": 0.0033892458562813543,
+        "food_energy": 0.144731341613096,
+        "lan_total_mass": 0.013182783751638644,
+        "lan_leucine_mass_only": 0.03635317637872422,
+        "historical_leucine_only": 0.24862263661519463,
+        "historical_separate_increments": 0.2548922496287902,
+        "cohort_pair_plus_glucose": 0.11980119981262052
+      },
+      "figure_center": {
+        "glucose_raw": 1714.2857142857142,
+        "mixture_raw": 2125.0,
+        "pair_raw": 160.71428571428572,
+        "water_raw": -17.857142857142858,
+        "glucose_corrected": 1732.142857142857,
+        "mixture_corrected": 2142.8571428571427,
+        "pair_corrected": 178.57142857142858,
+        "ratio_raw": 1.2395833333333335,
+        "ratio_corrected": 1.2371134020618555,
+        "sum_prediction_native_raw": 1892.857142857143,
+        "sum_residual": 232.1428571428571,
+        "sum_over_glucose_raw": 1.1041666666666667,
+        "sum_over_glucose_corrected": 1.1030927835051547
+      },
+      "figure_bounds": {
+        "glucose_raw": [
+          1678.5714285714287,
+          1750.0
+        ],
+        "mixture_raw": [
+          2089.285714285714,
+          2160.714285714286
+        ],
+        "pair_raw": [
+          125.0,
+          196.42857142857144
+        ],
+        "water_raw": [
+          -54.21686746987952,
+          17.857142857142858
+        ],
+        "glucose_corrected": [
+          1676.4705882352941,
+          1789.1566265060242
+        ],
+        "mixture_corrected": [
+          2082.3529411764707,
+          2204.819277108434
+        ],
+        "pair_corrected": [
+          141.1764705882353,
+          216.86746987951807
+        ],
+        "ratio_raw": [
+          1.2142857142857142,
+          1.2659574468085106
+        ],
+        "ratio_corrected": [
+          1.212121212121212,
+          1.2631578947368423
+        ],
+        "sum_prediction_native_raw": [
+          1821.4285714285716,
+          1964.2857142857144
+        ],
+        "sum_residual": [
+          158.82352941176464,
+          307.2289156626507
+        ],
+        "sum_over_glucose_raw": [
+          1.0816326530612244,
+          1.1276595744680853
+        ],
+        "sum_over_glucose_corrected": [
+          1.0824742268041236,
+          1.1237113402061856
+        ]
+      }
+    }
+  },
+  "across_studies": {
+    "printed_ratio_of_ratios": 1.4274193548387097,
+    "scores": {
+      "no_change": {
+        "level_error_mean": 0.3930454631013416,
+        "predicted_ratio_of_ratios": 1.0,
+        "separation_error": 0.3558681669687923
+      },
+      "external_protein_panel_constant": {
+        "level_error_mean": 0.1779340834843962,
+        "predicted_ratio_of_ratios": 1.0,
+        "separation_error": 0.3558681669687923
+      },
+      "food_energy": {
+        "level_error_mean": 0.11336483889812758,
+        "predicted_ratio_of_ratios": 1.1378476928401569,
+        "separation_error": 0.2267296777962552
+      },
+      "lan_total_mass": {
+        "level_error_mean": 0.14853462632114517,
+        "predicted_ratio_of_ratios": 1.0605619554814685,
+        "separation_error": 0.29706925264229034
+      },
+      "lan_leucine_mass_only": {
+        "level_error_mean": 0.21369605003692096,
+        "predicted_ratio_of_ratios": 1.001183118986124,
+        "separation_error": 0.35468574731639363
+      },
+      "historical_leucine_only": {
+        "level_error_mean": 0.1563922904162403,
+        "predicted_ratio_of_ratios": 1.0440251572327044,
+        "separation_error": 0.3127845808324806
+      },
+      "historical_separate_increments": {
+        "level_error_mean": 0.1388751938524202,
+        "predicted_ratio_of_ratios": 1.0812499999999998,
+        "separation_error": 0.2777503877048405
+      },
+      "cohort_pair_plus_glucose": {
+        "level_error_mean": 0.1727097811799497,
+        "predicted_ratio_of_ratios": 1.284090909090909,
+        "separation_error": 0.10581716273465838
+      }
+    }
+  },
+  "posthoc_common_basis_decomposition": {
+    "raw": {
+      "center": {
+        "mixture_Phe_over_Gly": 1.0053475935828877,
+        "glucose_Gly_over_Phe": 1.4142857142857141,
+        "ratio_of_ratios": 1.4218487394957982
+      },
+      "bounds": {
+        "mixture_Phe_over_Gly": [
+          0.9747057350363135,
+          1.0370370370370372
+        ],
+        "glucose_Gly_over_Phe": [
+          1.3510452961672474,
+          1.4807692307692306
+        ],
+        "ratio_of_ratios": [
+          1.358270137323222,
+          1.48868778280543
+        ]
+      },
+      "Phe_to_Gly": {
+        "observed": 2125.0,
+        "external_mixture_area": 2136.3636363636365,
+        "external_ratio_times_measured_local_glucose": 3021.428571428571,
+        "abs_log_error_copy": 0.005333345975362603,
+        "abs_log_error_local_glucose_calibrated": 0.3519579540605934
+      },
+      "Gly_to_Phe": {
+        "observed": 2136.3636363636365,
+        "external_mixture_area": 2125.0,
+        "external_ratio_times_measured_local_glucose": 1502.5252525252529,
+        "abs_log_error_copy": 0.005333345975362617,
+        "abs_log_error_local_glucose_calibrated": 0.35195795406059344
+      }
+    },
+    "corrected": {
+      "center": {
+        "mixture_Phe_over_Gly": 1.0111111111111113,
+        "glucose_Gly_over_Phe": 1.394163763066202,
+        "ratio_of_ratios": 1.4096544715447157
+      },
+      "bounds": {
+        "mixture_Phe_over_Gly": [
+          0.959262295081967,
+          1.065807679003805
+        ],
+        "glucose_Gly_over_Phe": [
+          1.3039215686274512,
+          1.4909638554216869
+        ],
+        "ratio_of_ratios": [
+          1.3477182539682535,
+          1.4746875000000004
+        ]
+      },
+      "Phe_to_Gly": {
+        "observed": 2142.8571428571427,
+        "external_mixture_area": 2166.666666666667,
+        "external_ratio_times_measured_local_glucose": 3020.6881533101046,
+        "abs_log_error_copy": 0.011049836186585156,
+        "abs_log_error_local_glucose_calibrated": 0.3433446187169912
+      },
+      "Gly_to_Phe": {
+        "observed": 2166.666666666667,
+        "external_mixture_area": 2142.8571428571427,
+        "external_ratio_times_measured_local_glucose": 1537.0196813495781,
+        "abs_log_error_copy": 0.01104983618658516,
+        "abs_log_error_local_glucose_calibrated": 0.3433446187169911
+      }
+    }
+  }
+}
