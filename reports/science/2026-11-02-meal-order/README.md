@@ -34,4 +34,6 @@ Decision D is unresolved. These experiments support treating course order and ti
 
 ## Reproduction
 
+The [clock-shift follow-up](clock-shift/README.md) tests whether delaying the reference insulin curve reproduces the order contrast. The [measured-control diagnostic](clock-shift/control-profile/README.md) repeats the calculation with the evaluation cohort's own reference curve.
+
 From this directory run `python -I -X utf8 evaluate.py --check` using Python 3. The runner verifies the two protocol hashes and checks all five rows against `RESULTS.json`. Run it without `--check` to print all predictions and errors. `facts.json` contains the small set of published aggregate means and source links. The preceding immutable Sun evidence snapshot has SHA-256 `9b57e946ae6d2d040122d0332b89a6bbd7f35f7c21c82b608b43cfb9df63c5e2`.

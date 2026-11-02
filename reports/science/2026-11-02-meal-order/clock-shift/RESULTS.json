@@ -1,0 +1,251 @@
+{
+  "status": "Outcome-exposed development and structural test; not blind validation. v1 numbers preserved; labels corrected.",
+  "endpoint_note": "Observed: ratios of printed mean participant 0-120 insulin areas. Predicted: area ratios of a transferred group-mean curve.",
+  "assumptions": [
+    "whole carbohydrate-first curve translated by carbohydrate onset",
+    "zero insulin from foods eaten before carbohydrate",
+    "T2D cohort shape transferred to healthy women",
+    "shape undefined beyond 120 min (not needed)"
+  ],
+  "inputs": {
+    "shukla2015": {
+      "source": "https://doi.org/10.2337/dc15-0429",
+      "location": "Table 1",
+      "first_arm_times_min": [
+        0,
+        30,
+        60,
+        120
+      ],
+      "first_arm_insulin_uIU_mL": [
+        18.8,
+        62.4,
+        125.4,
+        152.0
+      ],
+      "iauc_120": {
+        "last": 5202.8,
+        "first": 10097.9
+      },
+      "sem": {
+        "last": 1061.6,
+        "first": 1646.9
+      },
+      "carb_onset_last_min": 15,
+      "population": "11 metformin-treated adults with T2D; visit order fixed"
+    },
+    "imai2023": {
+      "source": "https://doi.org/10.3390/nu15051174",
+      "location": "Table 2, insulin IAUC 0-120 min",
+      "iauc_120": {
+        "slow_last": 4222,
+        "slow_first": 5702,
+        "fast_last": 4113
+      },
+      "sem": {
+        "slow_last": 458,
+        "slow_first": 486,
+        "fast_last": 402
+      },
+      "rice_onset_min": {
+        "slow_first": 0,
+        "slow_last": 14,
+        "fast_last": 7
+      },
+      "grid_min": [
+        0,
+        30,
+        60,
+        120
+      ],
+      "population": "18 healthy young women; randomized crossover; no fast carbohydrate-first arm"
+    }
+  },
+  "operator_check": {
+    "note": "Area of the rounded group-mean curve vs printed mean of participant areas; different operators.",
+    "shukla_first_arm_mean_curve_area": 10101.0,
+    "shukla_first_arm_printed_mean_iauc": 10097.9,
+    "shukla_rounding_allowance": 10.5,
+    "shukla_first_arm_difference_within_rounding": true
+  },
+  "panels": {
+    "P1_imai_slow_last_over_slow_first": {
+      "role": "primary transfer; order changes at matched pace",
+      "numerator": "slow_last",
+      "denominator": "slow_first",
+      "onset_shift_min": [
+        14,
+        0
+      ],
+      "observed_ratio": 0.7404419501929148,
+      "observed_ln": -0.3005080410643513,
+      "zero_correlation_log_sd_scenario": 0.13795827632602506,
+      "predicted": {
+        "no_change": 1.0,
+        "whole_ratio": 0.5152358411154795,
+        "flat_window": 0.8833333333333333,
+        "shift_exact_A": 0.8196858396858396,
+        "shift_grid_B": 0.7901593901593901
+      },
+      "abs_log_error": {
+        "no_change": 0.30050804106435136,
+        "whole_ratio": 0.3626224981648099,
+        "flat_window": 0.17645539239437247,
+        "shift_exact_A": 0.10167390659605893,
+        "shift_grid_B": 0.06498744688796182
+      },
+      "predicted_direction_matches_observed_mean": {
+        "no_change": false,
+        "whole_ratio": true,
+        "flat_window": true,
+        "shift_exact_A": true,
+        "shift_grid_B": true
+      },
+      "reproduced_share_of_observed_log_ratio": {
+        "flat_window": 0.41280974788762487,
+        "shift_exact_A": 0.6616599468155784,
+        "shift_grid_B": 0.7837414045301859
+      }
+    },
+    "P2_imai_fast_last_over_slow_first": {
+      "role": "context; order, onset and pace change together",
+      "numerator": "fast_last",
+      "denominator": "slow_first",
+      "onset_shift_min": [
+        7,
+        0
+      ],
+      "observed_ratio": 0.7213258505787443,
+      "observed_ln": -0.3266643012421932,
+      "zero_correlation_log_sd_scenario": 0.12968267110362852,
+      "predicted": {
+        "no_change": 1.0,
+        "whole_ratio": 0.5152358411154795,
+        "flat_window": 0.9416666666666667,
+        "shift_exact_A": 0.9087676137676137,
+        "shift_grid_B": 0.895079695079695
+      },
+      "abs_log_error": {
+        "no_change": 0.32666430124219326,
+        "whole_ratio": 0.33646623798696806,
+        "flat_window": 0.26656037717248776,
+        "shift_exact_A": 0.23099843333272854,
+        "shift_grid_B": 0.21582178135244237
+      },
+      "predicted_direction_matches_observed_mean": {
+        "no_change": false,
+        "whole_ratio": true,
+        "flat_window": true,
+        "shift_exact_A": true,
+        "shift_grid_B": true
+      }
+    },
+    "P3_imai_fast_last_over_slow_last": {
+      "role": "onset-only check with order fixed; pace and rice duration also differ",
+      "numerator": "fast_last",
+      "denominator": "slow_last",
+      "onset_shift_min": [
+        7,
+        14
+      ],
+      "observed_ratio": 0.9741828517290384,
+      "observed_ln": -0.026156260177841804,
+      "zero_correlation_log_sd_scenario": 0.14601598156388304,
+      "predicted": {
+        "no_change": 1.0,
+        "whole_ratio": 1.0,
+        "flat_window": 1.0660377358490567,
+        "shift_exact_A": 1.1086779468044934,
+        "shift_grid_B": 1.132783722154008
+      },
+      "abs_log_error": {
+        "no_change": 0.026156260177841905,
+        "whole_ratio": 0.026156260177841905,
+        "flat_window": 0.09010498477811539,
+        "shift_exact_A": 0.1293245267366697,
+        "shift_grid_B": 0.15083433446448039
+      },
+      "predicted_direction_matches_observed_mean": {
+        "no_change": false,
+        "whole_ratio": false,
+        "flat_window": false,
+        "shift_exact_A": false,
+        "shift_grid_B": false
+      }
+    },
+    "P4_shukla_last_over_first_in_source": {
+      "role": "in-source check; shape from same cohort; not validation",
+      "numerator": "last",
+      "denominator": "first",
+      "onset_shift_min": [
+        15,
+        0
+      ],
+      "observed_ratio": 0.5152358411154795,
+      "observed_ln": -0.6631305392291613,
+      "zero_correlation_log_sd_scenario": 0.2612151874173631,
+      "predicted": {
+        "no_change": 1.0,
+        "whole_ratio": 0.5152358411154795,
+        "flat_window": 0.875,
+        "shift_exact_A": 0.8071354321354322,
+        "shift_grid_B": 0.775170775170775
+      },
+      "abs_log_error": {
+        "no_change": 0.6631305392291612,
+        "whole_ratio": 0.0,
+        "flat_window": 0.5295991466046387,
+        "shift_exact_A": 0.44886673616564193,
+        "shift_grid_B": 0.40845862038482567
+      },
+      "predicted_direction_matches_observed_mean": {
+        "no_change": false,
+        "whole_ratio": true,
+        "flat_window": true,
+        "shift_exact_A": true,
+        "shift_grid_B": true
+      },
+      "whole_ratio_note": "equals observed by construction in source; not scored",
+      "reproduced_share_of_observed_log_ratio": {
+        "flat_window": 0.2013651682815614,
+        "shift_exact_A": 0.32310953935643594,
+        "shift_grid_B": 0.38404492596642015
+      }
+    }
+  },
+  "terminal_share": {
+    "P1": {
+      "onset_shift_min": 14,
+      "terminal_share_required_for_continuous_translation": 0.2595580498070852,
+      "terminal_share_flat": 0.11666666666666667,
+      "terminal_share_linear_ramp": 0.21972222222222224,
+      "terminal_share_shukla_first_arm": 0.18031416031416037,
+      "required_terminal_share_exceeds_linear_ramp_share": true,
+      "note": "Late-area share, not curvature: exceeding the ramp needs more late area than a ramp, e.g. a late step/plateau; it does not require acceleration throughout."
+    },
+    "P4": {
+      "onset_shift_min": 15,
+      "terminal_share_required_for_continuous_translation": 0.4847641588845205,
+      "terminal_share_flat": 0.125,
+      "terminal_share_linear_ramp": 0.234375,
+      "terminal_share_shukla_first_arm": 0.19286456786456785,
+      "required_terminal_share_exceeds_linear_ramp_share": true,
+      "note": "Late-area share, not curvature: exceeding the ramp needs more late area than a ramp, e.g. a late step/plateau; it does not require acceleration throughout."
+    }
+  },
+  "decisions": {
+    "D1_shift_lower_error_than_no_change_and_flat_on_P1_both_operators": true,
+    "D1_shift_lower_error_than_whole_ratio_on_P1_both_operators": true,
+    "D2_v1_arbitrary_tolerance_log": 0.1,
+    "D2_P4_both_operators_within_v1_tolerance": false,
+    "D2_note": "Within tolerance would not establish a complete explanation; outside it does not quantify a causal share.",
+    "D3_observed_mean_fast_last_over_slow_last_gt_1": false,
+    "D3_onset_only_predicts_gt_1_both_operators": true,
+    "D3_note": "Descriptive mean-direction comparison; pace and rice duration confounded; not a rejection test.",
+    "D4_required_terminal_share_exceeds_linear_ramp_share": {
+      "P1": true,
+      "P4": true
+    },
+    "operator_gap_ln_A_over_B_P1": 0.036686459708097065
+  }
+}
