@@ -1,0 +1,535 @@
+{
+  "status": "Scored after freeze; outcome-exposed design (see PLAN.md); point comparisons only, no paired CI",
+  "endpoints": {
+    "II_120": {
+      "definition": "Insulinemic index: per-subject 0-120 min serum insulin iAUC (trapezoid; below-baseline handling not stated) relative to the reference sandwich = 100, then averaged; mean +/- SEM. Normalised mean of individual indices, NOT a ratio of native means.",
+      "locator": "Table 3, column II (%)",
+      "observed_ratio_to_reference": {
+        "W": 1.18,
+        "W+5AA": 1.23,
+        "W+6AA": 1.21,
+        "S": 1.05,
+        "S+5AA": 1.19,
+        "S+6AA": 1.23
+      },
+      "source_letters": {
+        "reference": "a",
+        "W": "a",
+        "W+5AA": "a",
+        "W+6AA": "a",
+        "S": "a",
+        "S+5AA": "a",
+        "S+6AA": "a"
+      },
+      "rules": {
+        "no_change": {
+          "abs_log_error": {
+            "W": 0.1655144384775733,
+            "W+5AA": 0.20701416938432615,
+            "W+6AA": 0.1906203596086497,
+            "S": 0.048790164169432056,
+            "S+5AA": 0.173953307123438,
+            "S+6AA": 0.20701416938432615
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.1654844346912909,
+          "mean_whey_arms": 0.18771632249018308
+        },
+        "printed_energy": {
+          "abs_log_error": {
+            "W": 0.06969651558033985,
+            "W+5AA": 0.1111962464870926,
+            "W+6AA": 0.08721706532215955,
+            "S": 0.04702775872780142,
+            "S+5AA": 0.07813538422620443,
+            "S+6AA": 0.10361087509783592
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.08281397424023897,
+          "mean_whey_arms": 0.08936994246319734
+        },
+        "total_protein": {
+          "abs_log_error": {
+            "W": 0.04011364577206996,
+            "W+5AA": 0.0013860851346828471,
+            "W+6AA": 0.023750004783576504,
+            "S": 0.1568379200802113,
+            "S+5AA": 0.03167477712620535,
+            "S+6AA": 0.007356195007900179
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.043519771317441024,
+          "mean_whey_arms": 0.021749911896776438
+        },
+        "leucine_whey_equivalent": {
+          "abs_log_error": {
+            "W": 0.040113645772069745,
+            "W+5AA": 0.08166350865221701,
+            "W+6AA": 0.09805731842789335,
+            "S": 0.13481062603825625,
+            "S+5AA": 0.10464867948379665,
+            "S+6AA": 0.07158781722290841
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.0884802659328569,
+          "mean_whey_arms": 0.07327815761739337
+        },
+        "matched_subset_whey_equivalent": {
+          "abs_log_error": {
+            "W": 0.04011364577206996,
+            "W+5AA": 0.06772050044415141,
+            "W+6AA": 0.08411431021982782,
+            "S": null,
+            "S+5AA": null,
+            "S+6AA": null
+          },
+          "coverage": 3,
+          "mean_all_arms": null,
+          "mean_whey_arms": 0.0639828188120164
+        },
+        "intact_protein_only": {
+          "abs_log_error": {
+            "W": 0.04011364577206996,
+            "W+5AA": 0.06725222700916733,
+            "W+6AA": 0.05085841723349085,
+            "S": 0.1568379200802113,
+            "S+5AA": 0.0341913647482792,
+            "S+6AA": 0.06725222700916733
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.06941763364206432,
+          "mean_whey_arms": 0.052741430004909384
+        }
+      },
+      "contrasts": {
+        "W+5AA/W": {
+          "observed": 1.0423728813559323,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0865956956073697,
+            "matched_subset_whey_equivalent": 1.0715504148831163,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "no_change": 0.04149973090675285,
+            "printed_energy": 0.04149973090675285,
+            "total_protein": 0.04149973090675285,
+            "leucine_whey_equivalent": 0.04154986288014711,
+            "matched_subset_whey_equivalent": 0.027606854672081495,
+            "intact_protein_only": 0.10736587278123741
+          },
+          "source_letters": [
+            "a",
+            "a"
+          ]
+        },
+        "S+5AA/S": {
+          "observed": 1.1333333333333333,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0996601707582452,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "no_change": 0.12516314295400605,
+            "printed_energy": 0.12516314295400605,
+            "total_protein": 0.12516314295400605,
+            "leucine_whey_equivalent": 0.030161946554459758,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.19102928482849058
+          },
+          "source_letters": [
+            "a",
+            "a"
+          ]
+        },
+        "W+6AA/W+5AA": {
+          "observed": 0.983739837398374,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0076142131979695,
+            "total_protein": 1.008780605475817,
+            "leucine_whey_equivalent": 1.0,
+            "matched_subset_whey_equivalent": 1.0,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.016393809775676352,
+            "printed_energy": 0.023979181164933052,
+            "total_protein": 0.025136089918259275,
+            "leucine_whey_equivalent": 0.016393809775676352,
+            "matched_subset_whey_equivalent": 0.016393809775676352,
+            "intact_protein_only": 0.016393809775676352
+          },
+          "source_letters": [
+            "a",
+            "a"
+          ]
+        },
+        "S+6AA/S+5AA": {
+          "observed": 1.0336134453781514,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0076142131979695,
+            "total_protein": 1.008780605475817,
+            "leucine_whey_equivalent": 1.0,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.033060862260888176,
+            "printed_energy": 0.025475490871631656,
+            "total_protein": 0.02431858211830524,
+            "leucine_whey_equivalent": 0.033060862260888176,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.033060862260888176
+          },
+          "source_letters": [
+            "a",
+            "a"
+          ]
+        },
+        "S/W": {
+          "observed": 0.8898305084745762,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 0.9782135352855665,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.11672427430814139,
+            "printed_energy": 0.11672427430814139,
+            "total_protein": 0.11672427430814139,
+            "leucine_whey_equivalent": 0.09469698026618664,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.11672427430814139
+          },
+          "source_letters": [
+            "a",
+            "a"
+          ]
+        },
+        "S+5AA/W+5AA": {
+          "observed": 0.967479674796748,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 0.9899748982981864,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.033060862260887995,
+            "printed_energy": 0.033060862260887995,
+            "total_protein": 0.033060862260887995,
+            "leucine_whey_equivalent": 0.022985170831579475,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.033060862260887995
+          },
+          "source_letters": [
+            "a",
+            "a"
+          ]
+        }
+      }
+    },
+    "insulin_iAUC_0_30": {
+      "definition": "Per-subject 0-30 min serum insulin iAUC, group mean +/- SEM (units not printed); ratio of group means test/reference. Early window, not the 120 min target.",
+      "locator": "Table 4, column Insulin iAUC 0-30 min",
+      "observed_ratio_to_reference": {
+        "W": 1.4545454545454546,
+        "W+5AA": 1.575757575757576,
+        "W+6AA": 1.3636363636363638,
+        "S": 0.9696969696969698,
+        "S+5AA": 1.3333333333333335,
+        "S+6AA": 1.303030303030303
+      },
+      "source_letters": {
+        "reference": "ac",
+        "W": "abc",
+        "W+5AA": "b",
+        "W+6AA": "abc",
+        "S": "a",
+        "S+5AA": "abc",
+        "S+6AA": "abc"
+      },
+      "rules": {
+        "no_change": {
+          "abs_log_error": {
+            "W": 0.3746934494414107,
+            "W+5AA": 0.4547361571149472,
+            "W+6AA": 0.3101549283038396,
+            "S": 0.030771658666753472,
+            "S+5AA": 0.28768207245178107,
+            "S+6AA": 0.26469255422708216
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.2871218033676357,
+          "mean_whey_arms": 0.3798615116200659
+        },
+        "printed_energy": {
+          "abs_log_error": {
+            "W": 0.27887552654417724,
+            "W+5AA": 0.35891823421771374,
+            "W+6AA": 0.20675163401734947,
+            "S": 0.12658958156398714,
+            "S+5AA": 0.19186414955454756,
+            "S+6AA": 0.161289259940592
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.22071473097306119,
+          "mean_whey_arms": 0.28151513159308017
+        },
+        "total_protein": {
+          "abs_log_error": {
+            "W": 0.16906536519176743,
+            "W+5AA": 0.2491080728653039,
+            "W+6AA": 0.09578456391161337,
+            "S": 0.2363997429163969,
+            "S+5AA": 0.08205398820213768,
+            "S+6AA": 0.0503221898348559
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.14712232048701254,
+          "mean_whey_arms": 0.17131933398956156
+        },
+        "leucine_whey_equivalent": {
+          "abs_log_error": {
+            "W": 0.16906536519176757,
+            "W+5AA": 0.16605847907840413,
+            "W+6AA": 0.021477250267296546,
+            "S": 0.2143724488744418,
+            "S+5AA": 0.009080085844546467,
+            "S+6AA": 0.013909432380152416
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.09899384360610149,
+          "mean_whey_arms": 0.11886703151248941
+        },
+        "matched_subset_whey_equivalent": {
+          "abs_log_error": {
+            "W": 0.16906536519176743,
+            "W+5AA": 0.18000148728646975,
+            "W+6AA": 0.03542025847536215,
+            "S": null,
+            "S+5AA": null,
+            "S+6AA": null
+          },
+          "coverage": 3,
+          "mean_all_arms": null,
+          "mean_whey_arms": 0.12816237031786645
+        },
+        "intact_protein_only": {
+          "abs_log_error": {
+            "W": 0.16906536519176743,
+            "W+5AA": 0.3149742147397885,
+            "W+6AA": 0.17039298592868077,
+            "S": 0.2363997429163969,
+            "S+5AA": 0.1479201300766222,
+            "S+6AA": 0.12493061185192338
+          },
+          "coverage": 6,
+          "mean_all_arms": 0.19394717511752987,
+          "mean_whey_arms": 0.2181441886200789
+        }
+      },
+      "contrasts": {
+        "W+5AA/W": {
+          "observed": 1.0833333333333335,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0865956956073697,
+            "matched_subset_whey_equivalent": 1.0715504148831163,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "no_change": 0.0800427076735366,
+            "printed_energy": 0.0800427076735366,
+            "total_protein": 0.0800427076735366,
+            "leucine_whey_equivalent": 0.0030068861133633828,
+            "matched_subset_whey_equivalent": 0.01093612209470228,
+            "intact_protein_only": 0.14590884954802105
+          },
+          "source_letters": [
+            "b",
+            "abc"
+          ]
+        },
+        "S+5AA/S": {
+          "observed": 1.375,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0996601707582452,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "no_change": 0.3184537311185346,
+            "printed_energy": 0.3184537311185346,
+            "total_protein": 0.3184537311185346,
+            "leucine_whey_equivalent": 0.2234525347189884,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.3843198729930192
+          },
+          "source_letters": [
+            "abc",
+            "a"
+          ]
+        },
+        "W+6AA/W+5AA": {
+          "observed": 0.8653846153846153,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0076142131979695,
+            "total_protein": 1.008780605475817,
+            "leucine_whey_equivalent": 1.0,
+            "matched_subset_whey_equivalent": 1.0,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.1445812288111077,
+            "printed_energy": 0.1521666002003643,
+            "total_protein": 0.1533235089536906,
+            "leucine_whey_equivalent": 0.1445812288111077,
+            "matched_subset_whey_equivalent": 0.1445812288111077,
+            "intact_protein_only": 0.1445812288111077
+          },
+          "source_letters": [
+            "abc",
+            "b"
+          ]
+        },
+        "S+6AA/S+5AA": {
+          "observed": 0.9772727272727272,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0076142131979695,
+            "total_protein": 1.008780605475817,
+            "leucine_whey_equivalent": 1.0,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.02298951822469878,
+            "printed_energy": 0.030574889613955464,
+            "total_protein": 0.03173179836728171,
+            "leucine_whey_equivalent": 0.02298951822469878,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.02298951822469878
+          },
+          "source_letters": [
+            "abc",
+            "abc"
+          ]
+        },
+        "S/W": {
+          "observed": 0.6666666666666667,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 0.9782135352855665,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.4054651081081642,
+            "printed_energy": 0.4054651081081642,
+            "total_protein": 0.4054651081081642,
+            "leucine_whey_equivalent": 0.3834378140662094,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.4054651081081642
+          },
+          "source_letters": [
+            "a",
+            "abc"
+          ]
+        },
+        "S+5AA/W+5AA": {
+          "observed": 0.8461538461538461,
+          "predicted": {
+            "no_change": 1.0,
+            "printed_energy": 1.0,
+            "total_protein": 1.0,
+            "leucine_whey_equivalent": 0.9899748982981864,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 1.0
+          },
+          "abs_log_error": {
+            "no_change": 0.16705408466316624,
+            "printed_energy": 0.16705408466316624,
+            "total_protein": 0.16705408466316624,
+            "leucine_whey_equivalent": 0.15697839323385773,
+            "matched_subset_whey_equivalent": null,
+            "intact_protein_only": 0.16705408466316624
+          },
+          "source_letters": [
+            "abc",
+            "b"
+          ]
+        }
+      }
+    }
+  },
+  "key_form_sign_discriminator": {
+    "II_120:W+5AA/W": {
+      "observed": 1.0423728813559323,
+      "observed_sign": 1,
+      "predicted_sign": {
+        "no_change": 0,
+        "printed_energy": 0,
+        "total_protein": 0,
+        "leucine_whey_equivalent": 1,
+        "matched_subset_whey_equivalent": 1,
+        "intact_protein_only": -1
+      }
+    },
+    "II_120:S+5AA/S": {
+      "observed": 1.1333333333333333,
+      "observed_sign": 1,
+      "predicted_sign": {
+        "no_change": 0,
+        "printed_energy": 0,
+        "total_protein": 0,
+        "leucine_whey_equivalent": 1,
+        "intact_protein_only": -1
+      }
+    },
+    "insulin_iAUC_0_30:W+5AA/W": {
+      "observed": 1.0833333333333335,
+      "observed_sign": 1,
+      "predicted_sign": {
+        "no_change": 0,
+        "printed_energy": 0,
+        "total_protein": 0,
+        "leucine_whey_equivalent": 1,
+        "matched_subset_whey_equivalent": 1,
+        "intact_protein_only": -1
+      }
+    },
+    "insulin_iAUC_0_30:S+5AA/S": {
+      "observed": 1.375,
+      "observed_sign": 1,
+      "predicted_sign": {
+        "no_change": 0,
+        "printed_energy": 0,
+        "total_protein": 0,
+        "leucine_whey_equivalent": 1,
+        "intact_protein_only": -1
+      }
+    }
+  }
+}

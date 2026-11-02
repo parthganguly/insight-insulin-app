@@ -1,0 +1,309 @@
+{
+  "status": "Post-result descriptive check on fixed forecasts/outcomes; point summaries of printed group/normalized means; no paired CI; not significance",
+  "endpoints_separate": true,
+  "near_tie_threshold_log": 0.005,
+  "results": {
+    "II_120": {
+      "pairs": {
+        "W+5AA/W": {
+          "observed": 1.0423728813559323,
+          "observed_ln": 0.04149973090675284,
+          "predicted": {
+            "tie_total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0865956956073697,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "tie_total_protein": 0.04149973090675285,
+            "leucine_whey_equivalent": 0.04154986288014711,
+            "intact_protein_only": 0.10736587278123741
+          },
+          "error_difference": {
+            "leucine_whey_equivalent-tie_total_protein": 5.013197339425596e-05,
+            "intact_protein_only-tie_total_protein": 0.06586614187448456,
+            "leucine_whey_equivalent-intact_protein_only": -0.0658160099010903
+          },
+          "near_tie": {
+            "leucine_whey_equivalent-tie_total_protein": true,
+            "intact_protein_only-tie_total_protein": false,
+            "leucine_whey_equivalent-intact_protein_only": false
+          },
+          "rounding": {
+            "half_unit": 0.5,
+            "observed_range": [
+              1.0337552742616034,
+              1.0510638297872341
+            ],
+            "abs_log_error_range": {
+              "tie_total_protein": [
+                0.03319806940959586,
+                0.04980282248381825
+              ],
+              "leucine_whey_equivalent": [
+                0.03324677130308161,
+                0.04985152437730402
+              ],
+              "intact_protein_only": [
+                0.09906421128408034,
+                0.11566896435830291
+              ]
+            },
+            "error_difference_range": {
+              "leucine_whey_equivalent-tie_total_protein": [
+                -0.016556051180736643,
+                0.01665345496770816
+              ],
+              "intact_protein_only-tie_total_protein": [
+                0.06586614187448447,
+                0.06586614187448467
+              ],
+              "leucine_whey_equivalent-intact_protein_only": [
+                -0.0824221930552213,
+                -0.04921268690677632
+              ]
+            }
+          }
+        },
+        "S+5AA/S": {
+          "observed": 1.1333333333333333,
+          "observed_ln": 0.125163142954006,
+          "predicted": {
+            "tie_total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0996601707582452,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "tie_total_protein": 0.12516314295400605,
+            "leucine_whey_equivalent": 0.030161946554459758,
+            "intact_protein_only": 0.19102928482849058
+          },
+          "error_difference": {
+            "leucine_whey_equivalent-tie_total_protein": -0.0950011963995463,
+            "intact_protein_only-tie_total_protein": 0.06586614187448453,
+            "leucine_whey_equivalent-intact_protein_only": -0.16086733827403082
+          },
+          "near_tie": {
+            "leucine_whey_equivalent-tie_total_protein": false,
+            "intact_protein_only-tie_total_protein": false,
+            "leucine_whey_equivalent-intact_protein_only": false
+          },
+          "rounding": {
+            "half_unit": 0.5,
+            "observed_range": [
+              1.1232227488151658,
+              1.1435406698564594
+            ],
+            "abs_log_error_range": {
+              "tie_total_protein": [
+                0.11620200765906469,
+                0.13412929996669978
+              ],
+              "leucine_whey_equivalent": [
+                0.021200811259518407,
+                0.03912810356715358
+              ],
+              "intact_protein_only": [
+                0.18206814953354922,
+                0.19999544184118434
+              ]
+            },
+            "error_difference_range": {
+              "leucine_whey_equivalent-tie_total_protein": [
+                -0.09500119639954628,
+                -0.09500119639954621
+              ],
+              "intact_protein_only-tie_total_protein": [
+                0.06586614187448453,
+                0.06586614187448456
+              ],
+              "leucine_whey_equivalent-intact_protein_only": [
+                -0.16086733827403082,
+                -0.16086733827403077
+              ]
+            }
+          }
+        }
+      },
+      "mean_abs_log_contrast_error": {
+        "tie_total_protein": 0.08333143693037945,
+        "leucine_whey_equivalent": 0.03585590471730343,
+        "intact_protein_only": 0.149197578804864
+      },
+      "mean_error_difference": {
+        "leucine_whey_equivalent-tie_total_protein": -0.047475532213076016,
+        "intact_protein_only-tie_total_protein": 0.06586614187448456,
+        "leucine_whey_equivalent-intact_protein_only": -0.11334167408756057
+      },
+      "mean_error_difference_rounding_range_conservative": {
+        "leucine_whey_equivalent-tie_total_protein": [
+          -0.055778623790141466,
+          -0.039173870715919025
+        ],
+        "intact_protein_only-tie_total_protein": [
+          0.0658661418744845,
+          0.06586614187448461
+        ],
+        "leucine_whey_equivalent-intact_protein_only": [
+          -0.12164476566462606,
+          -0.10504001259040355
+        ]
+      },
+      "correct_sign": {
+        "tie_total_protein": 0,
+        "leucine_whey_equivalent": 2,
+        "intact_protein_only": 0
+      }
+    },
+    "insulin_iAUC_0_30": {
+      "pairs": {
+        "W+5AA/W": {
+          "observed": 1.0833333333333335,
+          "observed_ln": 0.08004270767353656,
+          "predicted": {
+            "tie_total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0865956956073697,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "tie_total_protein": 0.0800427076735366,
+            "leucine_whey_equivalent": 0.0030068861133633828,
+            "intact_protein_only": 0.14590884954802105
+          },
+          "error_difference": {
+            "leucine_whey_equivalent-tie_total_protein": -0.07703582156017322,
+            "intact_protein_only-tie_total_protein": 0.06586614187448445,
+            "leucine_whey_equivalent-intact_protein_only": -0.14290196343465766
+          },
+          "near_tie": {
+            "leucine_whey_equivalent-tie_total_protein": false,
+            "intact_protein_only-tie_total_protein": false,
+            "leucine_whey_equivalent-intact_protein_only": false
+          },
+          "rounding": {
+            "half_unit": 0.05,
+            "observed_range": [
+              1.061855670103093,
+              1.105263157894737
+            ],
+            "abs_log_error_range": {
+              "tie_total_protein": [
+                0.06001800972625316,
+                0.10008345855698265
+              ],
+              "leucine_whey_equivalent": [
+                0.0,
+                0.023031584060646718
+              ],
+              "intact_protein_only": [
+                0.12588415160073774,
+                0.16594960043146711
+              ]
+            },
+            "error_difference_range": {
+              "leucine_whey_equivalent-tie_total_protein": [
+                -0.0830495937869,
+                -0.03698642566560644
+              ],
+              "intact_protein_only-tie_total_protein": [
+                0.06586614187448446,
+                0.06586614187448459
+              ],
+              "leucine_whey_equivalent-intact_protein_only": [
+                -0.14891573566138452,
+                -0.10285256754009102
+              ]
+            }
+          }
+        },
+        "S+5AA/S": {
+          "observed": 1.375,
+          "observed_ln": 0.3184537311185346,
+          "predicted": {
+            "tie_total_protein": 1.0,
+            "leucine_whey_equivalent": 1.0996601707582452,
+            "intact_protein_only": 0.9362561814015197
+          },
+          "abs_log_error": {
+            "tie_total_protein": 0.3184537311185346,
+            "leucine_whey_equivalent": 0.2234525347189884,
+            "intact_protein_only": 0.3843198729930192
+          },
+          "error_difference": {
+            "leucine_whey_equivalent-tie_total_protein": -0.09500119639954618,
+            "intact_protein_only-tie_total_protein": 0.06586614187448459,
+            "leucine_whey_equivalent-intact_protein_only": -0.16086733827403077
+          },
+          "near_tie": {
+            "leucine_whey_equivalent-tie_total_protein": false,
+            "intact_protein_only-tie_total_protein": false,
+            "leucine_whey_equivalent-intact_protein_only": false
+          },
+          "rounding": {
+            "half_unit": 0.05,
+            "observed_range": [
+              1.3384615384615386,
+              1.4126984126984126
+            ],
+            "abs_log_error_range": {
+              "tie_total_protein": [
+                0.2915208487589466,
+                0.34550164334060707
+              ],
+              "leucine_whey_equivalent": [
+                0.1965196523594005,
+                0.25050044694106094
+              ],
+              "intact_protein_only": [
+                0.3573869906334312,
+                0.4113677852150916
+              ]
+            },
+            "error_difference_range": {
+              "leucine_whey_equivalent-tie_total_protein": [
+                -0.09500119639954613,
+                -0.09500119639954613
+              ],
+              "intact_protein_only-tie_total_protein": [
+                0.06586614187448453,
+                0.06586614187448459
+              ],
+              "leucine_whey_equivalent-intact_protein_only": [
+                -0.1608673382740307,
+                -0.16086733827403066
+              ]
+            }
+          }
+        }
+      },
+      "mean_abs_log_contrast_error": {
+        "tie_total_protein": 0.1992482193960356,
+        "leucine_whey_equivalent": 0.1132297104161759,
+        "intact_protein_only": 0.2651143612705201
+      },
+      "mean_error_difference": {
+        "leucine_whey_equivalent-tie_total_protein": -0.0860185089798597,
+        "intact_protein_only-tie_total_protein": 0.06586614187448453,
+        "leucine_whey_equivalent-intact_protein_only": -0.15188465085434422
+      },
+      "mean_error_difference_rounding_range_conservative": {
+        "leucine_whey_equivalent-tie_total_protein": [
+          -0.08902539509322306,
+          -0.06599381103257629
+        ],
+        "intact_protein_only-tie_total_protein": [
+          0.0658661418744845,
+          0.06586614187448459
+        ],
+        "leucine_whey_equivalent-intact_protein_only": [
+          -0.15489153696770763,
+          -0.13185995290706085
+        ]
+      },
+      "correct_sign": {
+        "tie_total_protein": 0,
+        "leucine_whey_equivalent": 2,
+        "intact_protein_only": 0
+      }
+    }
+  }
+}

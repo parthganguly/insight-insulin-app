@@ -1,0 +1,76 @@
+{
+  "n_authors": 10,
+  "n_rows": 24,
+  "intercept": 0.16883538797455902,
+  "slope": 0.08183001367986627,
+  "source_offsets": {
+    "whey": 0.11647260174552847,
+    "pea": -0.044578024857346694
+  },
+  "observed": {
+    "pea10": 1.2064089642497182,
+    "pea20": 1.2168435406414893,
+    "whey10": 1.2400841880595246,
+    "whey20": 1.7913885101084956
+  },
+  "observed_contrasts": {
+    "whey_pea_low": 1.0279136054254616,
+    "whey_pea_high": 1.472160101342298,
+    "high_ratio_over_low_ratio": 1.4321827180533906
+  },
+  "forecasts": {
+    "no_change": {
+      "pea10": 1.0,
+      "pea20": 1.0,
+      "whey10": 1.0,
+      "whey20": 1.0
+    },
+    "mean": {
+      "pea10": 1.2270616152232914,
+      "pea20": 1.2270616152232914,
+      "whey10": 1.2270616152232914,
+      "whey20": 1.2270616152232914
+    },
+    "dose": {
+      "pea10": 1.1995280528734706,
+      "pea20": 1.2153364989936726,
+      "whey10": 1.1997243837327414,
+      "whey20": 1.2157343681147448
+    },
+    "dose_source": {
+      "pea10": 1.147229798267743,
+      "pea20": 1.1623490115366293,
+      "whey10": 1.3479224106064227,
+      "whey20": 1.365910055964449
+    }
+  },
+  "contrasts": {
+    "no_change": {
+      "whey_pea_low": 1.0,
+      "whey_pea_high": 1.0,
+      "high_ratio_over_low_ratio": 1.0
+    },
+    "mean": {
+      "whey_pea_low": 1.0,
+      "whey_pea_high": 1.0,
+      "high_ratio_over_low_ratio": 1.0
+    },
+    "dose": {
+      "whey_pea_low": 1.0001636734203927,
+      "whey_pea_high": 1.0003273736297738,
+      "high_ratio_over_low_ratio": 1.0001636734203925
+    },
+    "dose_source": {
+      "whey_pea_low": 1.1749367150693915,
+      "whey_pea_high": 1.1751290209802918,
+      "high_ratio_over_low_ratio": 1.0001636734203927
+    }
+  },
+  "mae_log": {
+    "no_change": 0.29551967177049615,
+    "mean": 0.10356547524436854,
+    "dose": 0.10692233549224948,
+    "dose_source": 0.11266763756193628
+  },
+  "parallel_slopes_implied_double_ratio": 1.0001636734203927
+}
