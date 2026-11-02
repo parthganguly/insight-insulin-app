@@ -3,6 +3,8 @@ Last updated: 2026-03-21
 
 > **Scope notice — 2026-09-19:** Existing acute normalization, mapped/macro fallback and chronic-trend descriptions below document legacy compatibility behavior. The bounded reference private preview follows `decisions/2026-09-19-reference-private-preview.md`, the R2 reference result contract and the R3B implementation contract. It uses explicit selected references, preserves whole-meal unavailability and displays no legacy acute or chronic result. Subjective outcomes, diet-quality interpretation and CGM prediction are not acceptance endpoints or approved claims for this preview. Historical text remains for context. This scope clarification changes no formula, catalog or saved history and does not lift the July native/FFI validation gate.
 
+Research status, 2026-11-02. The absolute two-hour prediction target remains open. The [prepared-meal and eating-order checkpoint](../reports/science/2026-11-02-meal-order/README.md) gives the current evidence, limitations and executable comparisons.
+
 ## Overview
 
 This system estimates the **insulin demand of meals** using established physiological research, primarily the Food Insulin Index (FII), and extends it to mixed meals and longitudinal patterns.
