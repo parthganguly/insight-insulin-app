@@ -1,0 +1,13 @@
+{
+ "study_doi":"10.1017/S0007114515005498","primary_pdf_sha256":"a0d415d062aff165fe9765d3bbd2595b7e7a1478c21bc038489fc7b0ad52f964",
+ "prior_slope_file_sha256":"fd42a694c5e7fce259debba219771f2448b7fcfd0a53965f2c4033be78265e07",
+ "slopes_per_g_leucine":{"pooled":0.1022204575597254,"whey_training":0.05273155134276091,"soy_training":0.14126765570429567},
+ "source":"Table 1 whole meals, Table 2 source foods, Figure 2B native plasma insulin iAUC 0-120 per reported protocol",
+ "columns":["protein_g","available_CHO_g","fat_g","whole_serving_g","leu_mg_per_100g_food","sum_AA_mg_per_100g_food","figure_bar_height_pt"],
+ "rows":{"rice":[4.5,50,0.3,158.4,null,null,70.214],"fish":[29.5,50,1.0,285.8,1710,20900,106.016],"egg_white":[29.5,50,0.4,385.4,1200,14600,83.253],"soy_taukwa":[29.5,50,7.6,290.4,1040,13100,77.067],"chicken":[29.5,50,1.4,267.4,1820,22200,80.031]},
+ "figure_ticks":{"area_span":4500,"height_pt":121.222},
+ "native_means_printed_prose":{"rice":2606.5,"soy_taukwa":2860.6},
+ "strict_leucine_input":"Unavailable. Serving is mixed cooked meal with sauce; source mg/100g tissue state and served ingredient yield unlinked. Rice-only reference lacks a Table 2 AA profile.",
+ "proxy_A":"Added 25 g Kjeldahl protein multiplied by the leucine share of the original source total AA; conditionally assumes this represents weights in consumed additional protein including sauce contribution.",
+ "proxy_B":"Whole cooked meal minus rice-only mass multiplied by Table 2 concentration. Conditionally treats serving difference as entire matched-basis protein-source mass, including sauce and water; diagnostic only."
+}

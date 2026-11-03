@@ -1,0 +1,540 @@
+{
+  "status": "Post-result completion of PLAN panel B; frozen predictions/readings unchanged; point errors, no CI",
+  "note": "Undirected pair a/b with a<b. F4 pair ratio derived from frozen vs-drink-7 values (drink 7 = 1).",
+  "mass_rounding": {
+    "nitrogen_source_g_per_50g_carb": {
+      "5": 25.0,
+      "6": 25.0,
+      "7": 25.0,
+      "8": 25.0
+    },
+    "exact_tie_among_5_8": true,
+    "comment": "All four protein drinks list 57.1 g/L, so F2 equals the tie exactly here; ingredient rounding matters only for free-AA drinks 3, 4, 9."
+  },
+  "table2_reported_sums": {
+    "whey_hydrolysate": {
+      "reported_sum_pct": 88.9,
+      "not_reported": []
+    },
+    "pea_hydrolysate": {
+      "reported_sum_pct": 69.9,
+      "not_reported": [
+        "Trp"
+      ]
+    },
+    "wheat_hydrolysate": {
+      "reported_sum_pct": 81.9,
+      "not_reported": [
+        "Lys",
+        "Trp"
+      ]
+    },
+    "casein": {
+      "reported_sum_pct": 110.8,
+      "not_reported": []
+    }
+  },
+  "table2_interpretation": "Reported-profile proxy only. Sums differ from 100% for unexplained reasons (unreported residues, non-amino-acid mass, analytic/hydration conventions); no chemical cause is established.",
+  "results": {
+    "insulin_AUC_second_hour:per_50g_carbohydrate": {
+      "pairs": {
+        "5/6": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 6 pea hydrolysate",
+          "observed": 1.2727272727272727,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0538572238454493,
+            "F3_lan_leucine_whey_eq_capped": 1.1211674013087631,
+            "F4_substitution_slope": 1.0963630808397038
+          },
+          "abs_log_error": {
+            "tie": 0.2411620568168881,
+            "F2_lan_mass": 0.2411620568168881,
+            "F2b_lan_reported_aa_sum": 0.1887050771206226,
+            "F3_lan_leucine_whey_eq_capped": 0.1267915917537956,
+            "F4_substitution_slope": 0.1491636450131352
+          }
+        },
+        "5/7": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.8615384615384616,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0191894057610391,
+            "F3_lan_leucine_whey_eq_capped": 1.1026117621596847,
+            "F4_substitution_slope": 1.0824433582776458
+          },
+          "abs_log_error": {
+            "tie": 0.14903557916048776,
+            "F2_lan_mass": 0.14903557916048776,
+            "F2b_lan_reported_aa_sum": 0.16804319028076403,
+            "F3_lan_leucine_whey_eq_capped": 0.24671727393501125,
+            "F4_substitution_slope": 0.22825643376927507
+          }
+        },
+        "5/8": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.2173913043478262,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9443717149612144,
+            "F3_lan_leucine_whey_eq_capped": 0.9596669196717951,
+            "F4_substitution_slope": 0.9648552777380184
+          },
+          "abs_log_error": {
+            "tie": 0.19671029424605427,
+            "F2_lan_mass": 0.19671029424605427,
+            "F2b_lan_reported_aa_sum": 0.253945718739373,
+            "F3_lan_leucine_whey_eq_capped": 0.23787930764560997,
+            "F4_substitution_slope": 0.23248745439195823
+          }
+        },
+        "6/7": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.676923076923077,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9671038758382186,
+            "F3_lan_leucine_whey_eq_capped": 0.983449715780696,
+            "F4_substitution_slope": 0.9873037292067544
+          },
+          "abs_log_error": {
+            "tie": 0.39019763597737595,
+            "F2_lan_mass": 0.39019763597737595,
+            "F2b_lan_reported_aa_sum": 0.35674826740138665,
+            "F3_lan_leucine_whey_eq_capped": 0.3735088656888068,
+            "F4_substitution_slope": 0.37742007878241024
+          }
+        },
+        "6/8": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 0.9565217391304348,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.8961097325074737,
+            "F3_lan_leucine_whey_eq_capped": 0.8559532845421254,
+            "F4_substitution_slope": 0.8800508650829764
+          },
+          "abs_log_error": {
+            "tie": 0.044451762570833796,
+            "F2_lan_mass": 0.044451762570833796,
+            "F2b_lan_reported_aa_sum": 0.06524064161875032,
+            "F3_lan_leucine_whey_eq_capped": 0.11108771589181436,
+            "F4_substitution_slope": 0.08332380937882285
+          }
+        },
+        "7/8": {
+          "numerator": "drink 7 wheat hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.4130434782608696,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9265909845835205,
+            "F3_lan_leucine_whey_eq_capped": 0.8703579560879129,
+            "F4_substitution_slope": 0.8913679134890435
+          },
+          "abs_log_error": {
+            "tie": 0.3457458734065422,
+            "F2_lan_mass": 0.3457458734065422,
+            "F2b_lan_reported_aa_sum": 0.4219889090201371,
+            "F3_lan_leucine_whey_eq_capped": 0.4845965815806212,
+            "F4_substitution_slope": 0.46074388816123335
+          }
+        }
+      },
+      "mae_6_pairs": {
+        "tie": 0.227883867029697,
+        "F2_lan_mass": 0.227883867029697,
+        "F2b_lan_reported_aa_sum": 0.24244530069683892,
+        "F3_lan_leucine_whey_eq_capped": 0.2634302227492765,
+        "F4_substitution_slope": 0.25523255158280583
+      }
+    },
+    "insulin_AUC_second_hour:per_bolus_absolute": {
+      "pairs": {
+        "5/6": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 6 pea hydrolysate",
+          "observed": 1.2727272727272727,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0346240584748427,
+            "F3_lan_leucine_whey_eq_capped": 1.0769887634918232,
+            "F4_substitution_slope": 1.0558526810414506
+          },
+          "abs_log_error": {
+            "tie": 0.2411620568168881,
+            "F2_lan_mass": 0.2411620568168881,
+            "F2b_lan_reported_aa_sum": 0.20712392460973747,
+            "F3_lan_leucine_whey_eq_capped": 0.16699309185228686,
+            "F4_substitution_slope": 0.1868133878543031
+          }
+        },
+        "5/7": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.8615384615384616,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0124832505144565,
+            "F3_lan_leucine_whey_eq_capped": 1.0655944854613544,
+            "F4_substitution_slope": 1.0479126599858877
+          },
+          "abs_log_error": {
+            "tie": 0.14903557916048776,
+            "F2_lan_mass": 0.14903557916048776,
+            "F2b_lan_reported_aa_sum": 0.1614415563204417,
+            "F3_lan_leucine_whey_eq_capped": 0.2125684248960495,
+            "F4_substitution_slope": 0.1958358218782693
+          }
+        },
+        "5/8": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.2173913043478262,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.962859410487992,
+            "F3_lan_leucine_whey_eq_capped": 0.9729521233357619,
+            "F4_substitution_slope": 0.9790861978583892
+          },
+          "abs_log_error": {
+            "tie": 0.19671029424605427,
+            "F2_lan_mass": 0.19671029424605427,
+            "F2b_lan_reported_aa_sum": 0.23455816327370213,
+            "F3_lan_leucine_whey_eq_capped": 0.22413069745756892,
+            "F4_substitution_slope": 0.21784588773150385
+          }
+        },
+        "6/7": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.676923076923077,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9786001419752173,
+            "F3_lan_leucine_whey_eq_capped": 0.9894202442804266,
+            "F4_substitution_slope": 0.992479991576352
+          },
+          "abs_log_error": {
+            "tie": 0.39019763597737595,
+            "F2_lan_mass": 0.39019763597737595,
+            "F2b_lan_reported_aa_sum": 0.3685654809301792,
+            "F3_lan_leucine_whey_eq_capped": 0.37956151674833627,
+            "F4_substitution_slope": 0.3826492097325725
+          }
+        },
+        "6/8": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 0.9565217391304348,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9306369812309987,
+            "F3_lan_leucine_whey_eq_capped": 0.9034004404848638,
+            "F4_substitution_slope": 0.9272943237617751
+          },
+          "abs_log_error": {
+            "tie": 0.044451762570833796,
+            "F2_lan_mass": 0.044451762570833796,
+            "F2b_lan_reported_aa_sum": 0.02743423866396457,
+            "F3_lan_leucine_whey_eq_capped": 0.05713760560528213,
+            "F4_substitution_slope": 0.031032499877200814
+          }
+        },
+        "7/8": {
+          "numerator": "drink 7 wheat hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.4130434782608696,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9509879891827839,
+            "F3_lan_leucine_whey_eq_capped": 0.9130603964363775,
+            "F4_substitution_slope": 0.9343204211995823
+          },
+          "abs_log_error": {
+            "tie": 0.3457458734065422,
+            "F2_lan_mass": 0.3457458734065422,
+            "F2b_lan_reported_aa_sum": 0.3959997195941439,
+            "F3_lan_leucine_whey_eq_capped": 0.4366991223536184,
+            "F4_substitution_slope": 0.4136817096097733
+          }
+        }
+      },
+      "mae_6_pairs": {
+        "tie": 0.227883867029697,
+        "F2_lan_mass": 0.227883867029697,
+        "F2b_lan_reported_aa_sum": 0.2325205138986948,
+        "F3_lan_leucine_whey_eq_capped": 0.24618174315219035,
+        "F4_substitution_slope": 0.23797641944727047
+      }
+    },
+    "insulin_AUC_total_2h:per_50g_carbohydrate": {
+      "pairs": {
+        "5/6": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 6 pea hydrolysate",
+          "observed": 1.3013698630136987,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0538572238454493,
+            "F3_lan_leucine_whey_eq_capped": 1.1211674013087631,
+            "F4_substitution_slope": 1.0963630808397038
+          },
+          "abs_log_error": {
+            "tie": 0.26341745045214976,
+            "F2_lan_mass": 0.26341745045214976,
+            "F2b_lan_reported_aa_sum": 0.21096047075588437,
+            "F3_lan_leucine_whey_eq_capped": 0.14904698538905733,
+            "F4_substitution_slope": 0.17141903864839686
+          }
+        },
+        "5/7": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.9047619047619048,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0191894057610391,
+            "F3_lan_leucine_whey_eq_capped": 1.1026117621596847,
+            "F4_substitution_slope": 1.0824433582776458
+          },
+          "abs_log_error": {
+            "tie": 0.10008345855698243,
+            "F2_lan_mass": 0.10008345855698243,
+            "F2b_lan_reported_aa_sum": 0.1190910696772587,
+            "F3_lan_leucine_whey_eq_capped": 0.1977651533315059,
+            "F4_substitution_slope": 0.17930431316576975
+          }
+        },
+        "5/8": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.3194444444444444,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9443717149612144,
+            "F3_lan_leucine_whey_eq_capped": 0.9596669196717951,
+            "F4_substitution_slope": 0.9648552777380184
+          },
+          "abs_log_error": {
+            "tie": 0.2772107725844855,
+            "F2_lan_mass": 0.2772107725844855,
+            "F2b_lan_reported_aa_sum": 0.33444619707780426,
+            "F3_lan_leucine_whey_eq_capped": 0.3183797859840412,
+            "F4_substitution_slope": 0.3129879327303894
+          }
+        },
+        "6/7": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.6952380952380952,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9671038758382186,
+            "F3_lan_leucine_whey_eq_capped": 0.983449715780696,
+            "F4_substitution_slope": 0.9873037292067544
+          },
+          "abs_log_error": {
+            "tie": 0.36350090900913223,
+            "F2_lan_mass": 0.36350090900913223,
+            "F2b_lan_reported_aa_sum": 0.33005154043314305,
+            "F3_lan_leucine_whey_eq_capped": 0.3468121387205632,
+            "F4_substitution_slope": 0.3507233518141667
+          }
+        },
+        "6/8": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.0138888888888888,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.8961097325074737,
+            "F3_lan_leucine_whey_eq_capped": 0.8559532845421254,
+            "F4_substitution_slope": 0.8800508650829764
+          },
+          "abs_log_error": {
+            "tie": 0.01379332213233576,
+            "F2_lan_mass": 0.01379332213233576,
+            "F2b_lan_reported_aa_sum": 0.1234857263219199,
+            "F3_lan_leucine_whey_eq_capped": 0.169332800594984,
+            "F4_substitution_slope": 0.14156889408199247
+          }
+        },
+        "7/8": {
+          "numerator": "drink 7 wheat hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.4583333333333333,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9265909845835205,
+            "F3_lan_leucine_whey_eq_capped": 0.8703579560879129,
+            "F4_substitution_slope": 0.8913679134890435
+          },
+          "abs_log_error": {
+            "tie": 0.37729423114146804,
+            "F2_lan_mass": 0.37729423114146804,
+            "F2b_lan_reported_aa_sum": 0.45353726675506284,
+            "F3_lan_leucine_whey_eq_capped": 0.5161449393155471,
+            "F4_substitution_slope": 0.4922922458961592
+          }
+        }
+      },
+      "mae_6_pairs": {
+        "tie": 0.23255002397942562,
+        "F2_lan_mass": 0.23255002397942562,
+        "F2b_lan_reported_aa_sum": 0.2619287118368455,
+        "F3_lan_leucine_whey_eq_capped": 0.2829136338892831,
+        "F4_substitution_slope": 0.2747159627228124
+      }
+    },
+    "insulin_AUC_total_2h:per_bolus_absolute": {
+      "pairs": {
+        "5/6": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 6 pea hydrolysate",
+          "observed": 1.3013698630136987,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0346240584748427,
+            "F3_lan_leucine_whey_eq_capped": 1.0769887634918232,
+            "F4_substitution_slope": 1.0558526810414506
+          },
+          "abs_log_error": {
+            "tie": 0.26341745045214976,
+            "F2_lan_mass": 0.26341745045214976,
+            "F2b_lan_reported_aa_sum": 0.2293793182449992,
+            "F3_lan_leucine_whey_eq_capped": 0.18924848548754852,
+            "F4_substitution_slope": 0.20906878148956487
+          }
+        },
+        "5/7": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.9047619047619048,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 1.0124832505144565,
+            "F3_lan_leucine_whey_eq_capped": 1.0655944854613544,
+            "F4_substitution_slope": 1.0479126599858877
+          },
+          "abs_log_error": {
+            "tie": 0.10008345855698243,
+            "F2_lan_mass": 0.10008345855698243,
+            "F2b_lan_reported_aa_sum": 0.11248943571693638,
+            "F3_lan_leucine_whey_eq_capped": 0.1636163042925442,
+            "F4_substitution_slope": 0.146883701274764
+          }
+        },
+        "5/8": {
+          "numerator": "drink 5 whey hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.3194444444444444,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.962859410487992,
+            "F3_lan_leucine_whey_eq_capped": 0.9729521233357619,
+            "F4_substitution_slope": 0.9790861978583892
+          },
+          "abs_log_error": {
+            "tie": 0.2772107725844855,
+            "F2_lan_mass": 0.2772107725844855,
+            "F2b_lan_reported_aa_sum": 0.3150586416121333,
+            "F3_lan_leucine_whey_eq_capped": 0.30463117579600013,
+            "F4_substitution_slope": 0.29834636606993514
+          }
+        },
+        "6/7": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 7 wheat hydrolysate",
+          "observed": 0.6952380952380952,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9786001419752173,
+            "F3_lan_leucine_whey_eq_capped": 0.9894202442804266,
+            "F4_substitution_slope": 0.992479991576352
+          },
+          "abs_log_error": {
+            "tie": 0.36350090900913223,
+            "F2_lan_mass": 0.36350090900913223,
+            "F2b_lan_reported_aa_sum": 0.3418687539619356,
+            "F3_lan_leucine_whey_eq_capped": 0.35286478978009267,
+            "F4_substitution_slope": 0.35595248276432884
+          }
+        },
+        "6/8": {
+          "numerator": "drink 6 pea hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.0138888888888888,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9306369812309987,
+            "F3_lan_leucine_whey_eq_capped": 0.9034004404848638,
+            "F4_substitution_slope": 0.9272943237617751
+          },
+          "abs_log_error": {
+            "tie": 0.01379332213233576,
+            "F2_lan_mass": 0.01379332213233576,
+            "F2b_lan_reported_aa_sum": 0.08567932336713421,
+            "F3_lan_leucine_whey_eq_capped": 0.11538269030845165,
+            "F4_substitution_slope": 0.08927758458037036
+          }
+        },
+        "7/8": {
+          "numerator": "drink 7 wheat hydrolysate",
+          "denominator": "drink 8 intact casein",
+          "observed": 1.4583333333333333,
+          "predicted": {
+            "tie": 1.0,
+            "F2_lan_mass": 1.0,
+            "F2b_lan_reported_aa_sum": 0.9509879891827839,
+            "F3_lan_leucine_whey_eq_capped": 0.9130603964363775,
+            "F4_substitution_slope": 0.9343204211995823
+          },
+          "abs_log_error": {
+            "tie": 0.37729423114146804,
+            "F2_lan_mass": 0.37729423114146804,
+            "F2b_lan_reported_aa_sum": 0.4275480773290697,
+            "F3_lan_leucine_whey_eq_capped": 0.46824748008854433,
+            "F4_substitution_slope": 0.4452300673446992
+          }
+        }
+      },
+      "mae_6_pairs": {
+        "tie": 0.23255002397942562,
+        "F2_lan_mass": 0.23255002397942562,
+        "F2b_lan_reported_aa_sum": 0.2520039250387014,
+        "F3_lan_leucine_whey_eq_capped": 0.2656651542921969,
+        "F4_substitution_slope": 0.25745983058727706
+      }
+    }
+  }
+}

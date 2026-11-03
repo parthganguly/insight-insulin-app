@@ -1,0 +1,8 @@
+{
+  "PLAN.md": "9c764923ad74030f4a86d72efcf9a8164414640c181ac15ceacc06afcb5776e3",
+  "inputs.json": "7f94e81a36dbc9f0e0e473a050307d5f748f0b8c132303a1afd6701742279425",
+  "analysis.py": "3b7092f3c2a28eddfe8b86a67257f16ed55e19b131c29398b8338574a89d66ee",
+  "PREDICTIONS.json": "d17f2e8f7e3ee6bd985023fd85fccae3657185df76b2cee7e00e5583b44607a8",
+  "utc": "2026-11-03T03:50:40.517743+00:00",
+  "state": "frozen; only PDF pp1-3 read (abstract exposure for drinks 3 and 9)"
+}

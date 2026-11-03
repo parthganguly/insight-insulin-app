@@ -1,0 +1,271 @@
+{
+  "training_order": [
+    "whey",
+    "pea",
+    "wheat"
+  ],
+  "profile_coordinates": [
+    "Asx",
+    "Ser",
+    "Glx",
+    "His",
+    "Gly",
+    "Thr",
+    "Arg",
+    "Ala",
+    "Tyr",
+    "Val",
+    "Met",
+    "Ile",
+    "Phe",
+    "Leu",
+    "Pro",
+    "Cys"
+  ],
+  "scenarios": {
+    "closed": {
+      "pea": {
+        "weights": {
+          "whey": 0.0048332769437721135,
+          "pea": 0.9951667230562279,
+          "wheat": 0
+        },
+        "residual_l2": 0.001268650343106883,
+        "in_hull_to_1e-10": false,
+        "nearest": "pea",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.1076716983751969,
+          "nearest_profile": 1.106060606060606,
+          "nominal_source": 1.106060606060606,
+          "double_increment_profile": 1.2153433967503937,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "rice": {
+        "weights": {
+          "whey": 0.1780440911365983,
+          "pea": 0.798378838876421,
+          "wheat": 0.023577069986980656
+        },
+        "residual_l2": 0.033669408558365164,
+        "in_hull_to_1e-10": false,
+        "nearest": "pea",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.1768399430998264,
+          "nearest_profile": 1.106060606060606,
+          "nominal_source": null,
+          "double_increment_profile": 1.3536798861996528,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "soy": {
+        "weights": {
+          "whey": 0.2376165789595005,
+          "pea": 0.7202105669122886,
+          "wheat": 0.04217285412821093
+        },
+        "residual_l2": 0.032682379827483836,
+        "in_hull_to_1e-10": false,
+        "nearest": "pea",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.2057135768062388,
+          "nearest_profile": 1.106060606060606,
+          "nominal_source": null,
+          "double_increment_profile": 1.4114271536124776,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "gluten": {
+        "weights": {
+          "whey": 0.0007856021172729655,
+          "pea": 0,
+          "wheat": 0.999214397882727
+        },
+        "residual_l2": 0.0010679371659231731,
+        "in_hull_to_1e-10": false,
+        "nearest": "wheat",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.5907900602852616,
+          "nearest_profile": 1.5909090909090908,
+          "nominal_source": 1.5909090909090908,
+          "double_increment_profile": 2.181580120570523,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "whey": {
+        "weights": {
+          "whey": 0.9936831138754318,
+          "pea": 0.0056300661262971,
+          "wheat": 0.0006868199982710741
+        },
+        "residual_l2": 0.0012184500851629507,
+        "in_hull_to_1e-10": false,
+        "nearest": "whey",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.4376213143212755,
+          "nearest_profile": 1.4393939393939394,
+          "nominal_source": 1.4393939393939394,
+          "double_increment_profile": 1.875242628642551,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "egg": {
+        "weights": {
+          "whey": 0.5430335350828821,
+          "pea": 0.45696646491711784,
+          "wheat": 0
+        },
+        "residual_l2": 0.08677114809695648,
+        "in_hull_to_1e-10": false,
+        "nearest": "whey",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.2870717844215667,
+          "nearest_profile": 1.4393939393939394,
+          "nominal_source": null,
+          "double_increment_profile": 1.5741435688431333,
+          "double_increment_mean": 1.7575757575757578
+        }
+      }
+    },
+    "unclosed": {
+      "pea": {
+        "weights": {
+          "whey": 0.18528563046068353,
+          "pea": 0.675022056283035,
+          "wheat": 0.13969231325628145
+        },
+        "residual_l2": 7.70468429678762,
+        "in_hull_to_1e-10": false,
+        "nearest": "pea",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.2355520893081218,
+          "nearest_profile": 1.106060606060606,
+          "nominal_source": 1.106060606060606,
+          "double_increment_profile": 1.4711041786162435,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "rice": {
+        "weights": {
+          "whey": 0.32494207665842495,
+          "pea": 0.508537642038483,
+          "wheat": 0.1665202813030921
+        },
+        "residual_l2": 7.214693311318994,
+        "in_hull_to_1e-10": false,
+        "nearest": "pea",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.295111737699762,
+          "nearest_profile": 1.106060606060606,
+          "nominal_source": null,
+          "double_increment_profile": 1.5902234753995241,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "soy": {
+        "weights": {
+          "whey": 0.39159926889098406,
+          "pea": 0.44062601067366525,
+          "wheat": 0.16777472043535072
+        },
+        "residual_l2": 6.648715119046459,
+        "in_hull_to_1e-10": false,
+        "nearest": "whey",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.317939014689892,
+          "nearest_profile": 1.4393939393939394,
+          "nominal_source": null,
+          "double_increment_profile": 1.6358780293797839,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "gluten": {
+        "weights": {
+          "whey": 0,
+          "pea": 0,
+          "wheat": 1
+        },
+        "residual_l2": 6.9842680360936855,
+        "in_hull_to_1e-10": false,
+        "nearest": "wheat",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.5909090909090908,
+          "nearest_profile": 1.5909090909090908,
+          "nominal_source": 1.5909090909090908,
+          "double_increment_profile": 2.1818181818181817,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "whey": {
+        "weights": {
+          "whey": 0.9564028633923245,
+          "pea": 0,
+          "wheat": 0.04359713660767552
+        },
+        "residual_l2": 3.048820464360172,
+        "in_hull_to_1e-10": false,
+        "nearest": "whey",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.4459995661526783,
+          "nearest_profile": 1.4393939393939394,
+          "nominal_source": 1.4393939393939394,
+          "double_increment_profile": 1.8919991323053567,
+          "double_increment_mean": 1.7575757575757578
+        }
+      },
+      "egg": {
+        "weights": {
+          "whey": 0.6067219045396196,
+          "pea": 0.3932780954603804,
+          "wheat": 0
+        },
+        "residual_l2": 7.011884781068866,
+        "in_hull_to_1e-10": false,
+        "nearest": "whey",
+        "ratios": {
+          "no_change": 1.0,
+          "macro_energy": 2.0,
+          "training_mean": 1.378787878787879,
+          "profile_projection": 1.308301240907146,
+          "nearest_profile": 1.4393939393939394,
+          "nominal_source": null,
+          "double_increment_profile": 1.616602481814292,
+          "double_increment_mean": 1.7575757575757578
+        }
+      }
+    }
+  }
+}

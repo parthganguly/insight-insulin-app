@@ -1,0 +1,216 @@
+{
+  "kcal": {
+    "rice": 220.7,
+    "fish": 327.0,
+    "egg_white": 321.6,
+    "soy_taukwa": 386.4,
+    "chicken": 330.6
+  },
+  "original_group_mean_areas": {
+    "rice": 2606.482321690782,
+    "fish": 3935.5232548547297,
+    "egg_white": 3090.515747966541,
+    "soy_taukwa": 2860.879213344112,
+    "chicken": 2970.9087459372063
+  },
+  "within_sources": {
+    "rows": [
+      {
+        "pair": [
+          "fish",
+          "egg_white"
+        ],
+        "observed": 1.2734195764717189,
+        "predicted": {
+          "derived_energy": 1.0167910447761193,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 1.0
+        },
+        "abs_log_error": {
+          "derived_energy": 0.2250542282777366,
+          "unchanged_carb": 0.24170586187017856,
+          "proportional_total_protein": 0.24170586187017856
+        }
+      },
+      {
+        "pair": [
+          "fish",
+          "soy_taukwa"
+        ],
+        "observed": 1.3756341884334413,
+        "predicted": {
+          "derived_energy": 0.8462732919254659,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 1.0
+        },
+        "abs_log_error": {
+          "derived_energy": 0.4858277841783208,
+          "unchanged_carb": 0.31891485273721115,
+          "proportional_total_protein": 0.31891485273721115
+        }
+      },
+      {
+        "pair": [
+          "fish",
+          "chicken"
+        ],
+        "observed": 1.324686683909985,
+        "predicted": {
+          "derived_energy": 0.9891107078039927,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 1.0
+        },
+        "abs_log_error": {
+          "derived_energy": 0.2921249809920097,
+          "unchanged_carb": 0.28117596650233917,
+          "proportional_total_protein": 0.28117596650233917
+        }
+      },
+      {
+        "pair": [
+          "egg_white",
+          "soy_taukwa"
+        ],
+        "observed": 1.0802678189108181,
+        "predicted": {
+          "derived_energy": 0.8322981366459629,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 1.0
+        },
+        "abs_log_error": {
+          "derived_energy": 0.26077355590058426,
+          "unchanged_carb": 0.07720899086703277,
+          "proportional_total_protein": 0.07720899086703277
+        }
+      },
+      {
+        "pair": [
+          "egg_white",
+          "chicken"
+        ],
+        "observed": 1.0402593994827005,
+        "predicted": {
+          "derived_energy": 0.9727767695099818,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 1.0
+        },
+        "abs_log_error": {
+          "derived_energy": 0.06707075271427336,
+          "unchanged_carb": 0.039470104632160795,
+          "proportional_total_protein": 0.039470104632160795
+        }
+      },
+      {
+        "pair": [
+          "soy_taukwa",
+          "chicken"
+        ],
+        "observed": 0.9629643513138657,
+        "predicted": {
+          "derived_energy": 1.1687840290381124,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 1.0
+        },
+        "abs_log_error": {
+          "derived_energy": 0.19370280318631106,
+          "unchanged_carb": 0.03773888623487203,
+          "proportional_total_protein": 0.03773888623487203
+        }
+      }
+    ],
+    "mean_abs_log_error": {
+      "derived_energy": 0.25409235087487264,
+      "unchanged_carb": 0.16603577714063242,
+      "proportional_total_protein": 0.16603577714063242
+    }
+  },
+  "meal_vs_plain_rice": {
+    "rows": [
+      {
+        "pair": [
+          "fish",
+          "rice"
+        ],
+        "observed": 1.5098983108781727,
+        "predicted": {
+          "derived_energy": 1.4816492976891709,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 6.555555555555555
+        },
+        "abs_log_error": {
+          "derived_energy": 0.018886447135285915,
+          "unchanged_carb": 0.41204230476984866,
+          "proportional_total_protein": 1.4682705617996514
+        }
+      },
+      {
+        "pair": [
+          "egg_white",
+          "rice"
+        ],
+        "observed": 1.1857037058136555,
+        "predicted": {
+          "derived_energy": 1.4571816946080653,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 6.555555555555555
+        },
+        "abs_log_error": {
+          "derived_energy": 0.20616778114245063,
+          "unchanged_carb": 0.17033644289966998,
+          "proportional_total_protein": 1.70997642366983
+        }
+      },
+      {
+        "pair": [
+          "soy_taukwa",
+          "rice"
+        ],
+        "observed": 1.0976016179109578,
+        "predicted": {
+          "derived_energy": 1.7507929315813322,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 6.555555555555555
+        },
+        "abs_log_error": {
+          "derived_energy": 0.466941337043035,
+          "unchanged_carb": 0.09312745203263728,
+          "proportional_total_protein": 1.7871854145368626
+        }
+      },
+      {
+        "pair": [
+          "chicken",
+          "rice"
+        ],
+        "observed": 1.1398154214259266,
+        "predicted": {
+          "derived_energy": 1.4979610330765747,
+          "unchanged_carb": 1.0,
+          "proportional_total_protein": 6.555555555555555
+        },
+        "abs_log_error": {
+          "derived_energy": 0.2732385338567238,
+          "unchanged_carb": 0.13086633826750935,
+          "proportional_total_protein": 1.7494465283019907
+        }
+      }
+    ],
+    "mean_abs_log_error": {
+      "derived_energy": 0.24130852479437384,
+      "unchanged_carb": 0.2015931344924163,
+      "proportional_total_protein": 1.6787197320770837
+    }
+  },
+  "energy_error_minus_leucine_proxy_MAE": {
+    "source_AA_share": {
+      "pooled": 0.09124943201039779,
+      "whey_training": 0.08970364491880212,
+      "soy_training": 0.09246907211701547
+    },
+    "whole_meal_mass_difference": {
+      "pooled": 0.10124119899383285,
+      "whey_training": 0.11580584954101691,
+      "soy_training": 0.08661555029947546
+    }
+  }
+}

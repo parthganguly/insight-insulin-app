@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Quek2016.pdf",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/43B86919A8D2DC289AC1B5EFD9452B08/S0007114515005498a.pdf/impact-of-protein-rich-meals-on-glycaemic-response-of-rice.pdf",
+    "sha256": "a0d415d062aff165fe9765d3bbd2595b7e7a1478c21bc038489fc7b0ad52f964",
+    "size": 1351636
+  },
+  {
+    "name": "vanLoon2000.pdf",
+    "url": "https://cris.maastrichtuniversity.nl/ws/portalfiles/portal/526718/guid-3a70aa35-87d0-4a49-b3ba-2f588d60238f-ASSET1.0.pdf",
+    "sha256": "799c8b34c7e89bc6ccd8999cd10b63ea02f530b2cbe9b6807cb7efffd1983955",
+    "size": 153128
+  },
+  {
+    "name": "Claessens-thesis.pdf",
+    "url": "https://cris.maastrichtuniversity.nl/ws/files/777184/guid-9f242a19-cd77-461e-b12c-d451b47ab051-ASSET1.0",
+    "sha256": "9f4d968b04719be793a8cda23a3aa509fe15bd45102b8f009794e0cc2a8bbecb",
+    "size": 1425366
+  },
+  {
+    "name": "vanLoon-fig5.jpg",
+    "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916523066704-gr5_lrg.jpg",
+    "sha256": "36e0c20e93daaae8f5211c31461d77fb32ac9fc1751f146597b59c787dd577e6",
+    "size": 19562
+  },
+  {
+    "name": "vanLoon-fig6.jpg",
+    "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916523066704-gr6_lrg.jpg",
+    "sha256": "7f55082c0f30971867b7f3800944963fa8188af77bd50ec441993975155c9ac4",
+    "size": 18560
+  }
+]
