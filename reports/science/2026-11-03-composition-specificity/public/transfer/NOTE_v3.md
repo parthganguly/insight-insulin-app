@@ -19,7 +19,7 @@ Author: Opus 5.5 (`claude-opus-5-5`).
   - The design-power table was **illustrative**: it assumed CVs and equal n.
   - The conservative area-SE intervals were valid but loose upper bounds.
   - Neither is a proof that the data cannot rank forecasts.
-- **Separately, the slope is not identified.** One leucine-fraction gap per age cannot identify a slope uniquely: any one-parameter rule can be tuned to it. That limit is about learning coefficients, not about scoring fixed ones.
+- **Coefficient versus model discrimination (post-review clarification).** For a specified R = exp(beta × delta), one exact positive ratio at nonzero delta determines beta = log(R)/delta. At that single design point a free binary enrichment effect can fit the same response. Shape, comparative predictive value elsewhere and transfer to new preparations require separate evidence.
 
 ## 2. Constructive identifiability (participant-positive endpoint)
 
@@ -74,7 +74,5 @@ The small young differences come from whisker choice where markers overlap.
 ## Bottom line for the decision (quantitative composition beyond a generic flag?)
 
 - **Katsanos:** on observed group-curve summaries, equality ranked best and the label-only multiplier worst. Neither population equivalence nor participant-positive ranking is established.
-- **Farup:** every monotone leucine or DH rule is *forced* above the tie's loss by the H/M reversal, with one DH-only pairwise exception.
-- **Overall:** neither study supports adding quantitative leucine or DH inputs beyond a whey/casein class reference. Neither is decisive. The required next evidence is:
-  - ≥ 3 graded fractions within one product family, in a crossover;
-  - reported positive AUCs, or participant data.
+- **Farup:** a positive score using only leucine and DH that is nondecreasing in both cannot improve on the tie at the printed means; a strict H-over-M forecast increases the lower bound. The DH-only forecast remained favorable for the individual medium/low pair.
+- **Overall:** neither study supports adding quantitative leucine or DH inputs beyond a whey/casein class reference. Neither is decisive. Two conditions with admissible arm-level outcomes can compare the fixed forecasts. Additional fraction contrasts or other independent preparations are useful when learning or evaluating a response shape. Arm means of individual positive area can suffice for the point comparison.

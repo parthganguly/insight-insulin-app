@@ -1,0 +1,43 @@
+{
+  "source": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916526000407-gr2_lrg.jpg",
+  "sha256": "6c3e532260a10b3228f8764a4c610e5c8d591afd0c7dd135fde28e2468575936",
+  "rows": [
+    {
+      "arm": "Egg whites",
+      "main_total": 857,
+      "window_sum": 709,
+      "main_minus_sum": 148
+    },
+    {
+      "arm": "Whole egg",
+      "main_total": 797,
+      "window_sum": 706,
+      "main_minus_sum": 91
+    },
+    {
+      "arm": "Pork",
+      "main_total": 392,
+      "window_sum": 307,
+      "main_minus_sum": 85
+    },
+    {
+      "arm": "Salmon",
+      "main_total": 876,
+      "window_sum": 739,
+      "main_minus_sum": 137
+    },
+    {
+      "arm": "Lentils",
+      "main_total": 1110,
+      "window_sum": 1482,
+      "main_minus_sum": -372
+    },
+    {
+      "arm": "Mycoprotein",
+      "main_total": 1110,
+      "window_sum": 993,
+      "main_minus_sum": 117
+    }
+  ],
+  "note": "The main and supplemental figures do not add under a shared signed baseline. The source does not resolve the discrepancy."
+}

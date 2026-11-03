@@ -1,0 +1,159 @@
+{
+  "doi": "10.1093/jn/nxy018",
+  "source": "https://jn.nutrition.org/article/S0022-3166%2822%2910813-8/fulltext",
+  "trial": "NCT02426606",
+  "snapshot": "Indexed publisher article rows from Table 1 and Tables 3/4, not original PDF bytes",
+  "snapshot_sha256": "128670db67af6fc8a539cbdddbc0a1785fcbfeb23cbce8e18f80d92a63e07a2b",
+  "measure": "2-h plasma insulin iAUC in nmol/L * min, geometric mean (95% CI).",
+  "samples_min": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    90,
+    120
+  ],
+  "baseline": "Following a 10-12 hour overnight fast before eating.",
+  "convention": "Trapezoid rule, ref. 26; below-baseline handling not explicitly described.",
+  "population": "24 per crossover group, 11 participated in both, 37 unique. Cross-trial participant overlap unknown.",
+  "assay": "Capillary EDTA plasma, duplicate ALPCO insulin ELISA",
+  "arms": [
+    {
+      "group": "rice",
+      "intervention": "control",
+      "n": 24,
+      "gm": 10.9,
+      "ci95": [
+        8.9,
+        13.5
+      ],
+      "ratio_of_geometric_means": 1.0,
+      "energy_kcal": 237.0,
+      "protein_g": 4.4,
+      "fat_g": 0.5,
+      "carbohydrate_by_difference_g": 54.2,
+      "fibre_g": 0.9,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "rice",
+      "intervention": "large green",
+      "n": 24,
+      "gm": 10.4,
+      "ci95": [
+        8.5,
+        12.8
+      ],
+      "ratio_of_geometric_means": 0.9541284403669725,
+      "energy_kcal": 339.0,
+      "protein_g": 18.2,
+      "fat_g": 1.4,
+      "carbohydrate_by_difference_g": 67.6,
+      "fibre_g": 8.2,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "rice",
+      "intervention": "small green",
+      "n": 24,
+      "gm": 9.7,
+      "ci95": [
+        7.7,
+        12.2
+      ],
+      "ratio_of_geometric_means": 0.8899082568807338,
+      "energy_kcal": 330.0,
+      "protein_g": 18.0,
+      "fat_g": 1.3,
+      "carbohydrate_by_difference_g": 65.4,
+      "fibre_g": 7.5,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "rice",
+      "intervention": "split red",
+      "n": 24,
+      "gm": 10.0,
+      "ci95": [
+        7.8,
+        12.8
+      ],
+      "ratio_of_geometric_means": 0.9174311926605504,
+      "energy_kcal": 309.0,
+      "protein_g": 14.9,
+      "fat_g": 1.1,
+      "carbohydrate_by_difference_g": 61.5,
+      "fibre_g": 3.2,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "potato",
+      "intervention": "control",
+      "n": 24,
+      "gm": 19.9,
+      "ci95": [
+        17.3,
+        23.0
+      ],
+      "ratio_of_geometric_means": 1.0,
+      "energy_kcal": 265.0,
+      "protein_g": 7.0,
+      "fat_g": 0.3,
+      "carbohydrate_by_difference_g": 61.3,
+      "fibre_g": 5.4,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "potato",
+      "intervention": "large green",
+      "n": 24,
+      "gm": 13.1,
+      "ci95": [
+        10.7,
+        16.1
+      ],
+      "ratio_of_geometric_means": 0.6582914572864322,
+      "energy_kcal": 353.0,
+      "protein_g": 19.5,
+      "fat_g": 1.2,
+      "carbohydrate_by_difference_g": 71.1,
+      "fibre_g": 10.5,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "potato",
+      "intervention": "small green",
+      "n": 24,
+      "gm": 12.8,
+      "ci95": [
+        10.2,
+        16.1
+      ],
+      "ratio_of_geometric_means": 0.6432160804020102,
+      "energy_kcal": 344.0,
+      "protein_g": 19.3,
+      "fat_g": 1.2,
+      "carbohydrate_by_difference_g": 68.9,
+      "fibre_g": 9.7,
+      "available_carbohydrate_g": 50.0
+    },
+    {
+      "group": "potato",
+      "intervention": "split red",
+      "n": 24,
+      "gm": 12.3,
+      "ci95": [
+        9.8,
+        15.5
+      ],
+      "ratio_of_geometric_means": 0.6180904522613067,
+      "energy_kcal": 323.0,
+      "protein_g": 16.2,
+      "fat_g": 1.0,
+      "carbohydrate_by_difference_g": 65.0,
+      "fibre_g": 5.5,
+      "available_carbohydrate_g": 50.0
+    }
+  ]
+}

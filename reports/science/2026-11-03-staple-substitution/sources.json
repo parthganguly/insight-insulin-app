@@ -1,0 +1,31 @@
+{
+  "assets": {
+    "mmc1.docx": {
+      "sha256": "036fc2c8791ed616adaba5d4e218335d094448bda151fab879573afc47334d79",
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916526000407-mmc1.docx"
+    },
+    "published_figure2.jpg": {
+      "sha256": "6c3e532260a10b3228f8764a4c610e5c8d591afd0c7dd135fde28e2468575936",
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916526000407-gr2_lrg.jpg"
+    },
+    "haigh.xml": {
+      "sha256": "3705f0d516ddaf270f877dc19afc6d0313354df05f0a12de11eb3fe4c89aa7a8",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13084606/fullTextXML"
+    },
+    "chamoun.xml": {
+      "sha256": "a18a48302db8ca2f849ddb21597e9c77cac887a575e1425f348b962a357f550c",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11357280/fullTextXML"
+    },
+    "wolever.xml": {
+      "sha256": "ebcd1ba592e753b5e1bdd4cac248096a8b74a82a906aee93ef4c63e81643ea1d",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12719656/fullTextXML"
+    }
+  },
+  "published_table_snapshot": {
+    "doi": "https://doi.org/10.1093/jn/nxy018",
+    "file": "astra/moravek/publisher_table_rows.txt",
+    "sha256": "128670db67af6fc8a539cbdddbc0a1785fcbfeb23cbce8e18f80d92a63e07a2b"
+  },
+  "FII_source": "backend/reference_data/r2/inputs/INSIGHT_FII_147_metadata_v1_1.csv at parent 70e1373. Three public rows with DOIs in family/references.json.",
+  "historical_model_source": "2026-10-26 frozen Wolever N models, SHA256 in native/inputs.json. Code to refit from nine source rows in native/donor_fit.py."
+}

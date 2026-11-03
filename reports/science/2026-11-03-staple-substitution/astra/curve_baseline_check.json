@@ -1,0 +1,309 @@
+{
+  "source": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916526000407-gr2_lrg.jpg",
+  "sha256": "6c3e532260a10b3228f8764a4c610e5c8d591afd0c7dd135fde28e2468575936",
+  "time_min": [
+    -30,
+    0,
+    15,
+    30,
+    45,
+    60,
+    90,
+    120,
+    150,
+    180,
+    240,
+    300
+  ],
+  "x_px": [
+    146,
+    234,
+    277,
+    321,
+    365,
+    408,
+    495,
+    582,
+    669,
+    757,
+    931,
+    1106
+  ],
+  "y_px_by_arm": [
+    [
+      439,
+      209,
+      163,
+      236,
+      302,
+      269,
+      326,
+      320,
+      397,
+      456,
+      469,
+      446
+    ],
+    [
+      416,
+      265,
+      224,
+      264,
+      297,
+      251,
+      358,
+      331,
+      325,
+      384,
+      441,
+      406
+    ],
+    [
+      408,
+      248,
+      287,
+      258,
+      264,
+      248,
+      320,
+      353,
+      403,
+      432,
+      468,
+      460
+    ],
+    [
+      446,
+      232,
+      270,
+      269,
+      175,
+      192,
+      318,
+      342,
+      451,
+      468,
+      469,
+      456
+    ],
+    [
+      462,
+      325,
+      317,
+      241,
+      297,
+      290,
+      244,
+      250,
+      294,
+      299,
+      400,
+      470
+    ],
+    [
+      431,
+      227,
+      224,
+      259,
+      248,
+      248,
+      296,
+      347,
+      425,
+      409,
+      406,
+      337
+    ]
+  ],
+  "y_axis_slope": -0.0422908893691592,
+  "y_axis_intercept": 26.554672233683913,
+  "rows": [
+    {
+      "arm": "Egg whites",
+      "mean_concentration_mIU_per_L": [
+        7.99,
+        17.72,
+        19.66,
+        16.57,
+        13.78,
+        15.18,
+        12.77,
+        13.02,
+        9.77,
+        7.27,
+        6.72,
+        7.69
+      ],
+      "supplementary_early": 698,
+      "supplementary_late": 11,
+      "main_total": 857,
+      "minus30_signed_early_late_total": [
+        844,
+        11,
+        856
+      ],
+      "zero_signed_early_late_total": [
+        -323,
+        -1739,
+        -2062
+      ],
+      "minus30_signed_15_to_120": 684
+    },
+    {
+      "arm": "Whole egg",
+      "mean_concentration_mIU_per_L": [
+        8.96,
+        15.35,
+        17.08,
+        15.39,
+        13.99,
+        15.94,
+        11.41,
+        12.56,
+        12.81,
+        10.31,
+        7.9,
+        9.38
+      ],
+      "supplementary_early": 533,
+      "supplementary_late": 173,
+      "main_total": 797,
+      "minus30_signed_early_late_total": [
+        626,
+        180,
+        806
+      ],
+      "zero_signed_early_late_total": [
+        -140,
+        -970,
+        -1110
+      ],
+      "minus30_signed_15_to_120": 517
+    },
+    {
+      "arm": "Pork",
+      "mean_concentration_mIU_per_L": [
+        9.3,
+        16.07,
+        14.42,
+        15.64,
+        15.39,
+        16.07,
+        13.02,
+        11.63,
+        9.51,
+        8.29,
+        6.76,
+        7.1
+      ],
+      "supplementary_early": 525,
+      "supplementary_late": -218,
+      "main_total": 392,
+      "minus30_signed_early_late_total": [
+        613,
+        -223,
+        390
+      ],
+      "zero_signed_early_late_total": [
+        -199,
+        -1441,
+        -1640
+      ],
+      "minus30_signed_15_to_120": 524
+    },
+    {
+      "arm": "Salmon",
+      "mean_concentration_mIU_per_L": [
+        7.69,
+        16.74,
+        15.14,
+        15.18,
+        19.15,
+        18.43,
+        13.11,
+        12.09,
+        7.48,
+        6.76,
+        6.72,
+        7.27
+      ],
+      "supplementary_early": 784,
+      "supplementary_late": -45,
+      "main_total": 876,
+      "minus30_signed_early_late_total": [
+        934,
+        -53,
+        880
+      ],
+      "zero_signed_early_late_total": [
+        -152,
+        -1682,
+        -1835
+      ],
+      "minus30_signed_15_to_120": 810
+    },
+    {
+      "arm": "Lentils",
+      "mean_concentration_mIU_per_L": [
+        7.02,
+        12.81,
+        13.15,
+        16.36,
+        13.99,
+        14.29,
+        16.24,
+        15.98,
+        14.12,
+        13.91,
+        9.64,
+        6.68
+      ],
+      "supplementary_early": 680,
+      "supplementary_late": 802,
+      "main_total": 1110,
+      "minus30_signed_early_late_total": [
+        955,
+        805,
+        1760
+      ],
+      "zero_signed_early_late_total": [
+        260,
+        -238,
+        22
+      ],
+      "minus30_signed_15_to_120": 866
+    },
+    {
+      "arm": "Mycoprotein",
+      "mean_concentration_mIU_per_L": [
+        8.33,
+        16.95,
+        17.08,
+        15.6,
+        16.07,
+        16.07,
+        14.04,
+        11.88,
+        8.58,
+        9.26,
+        9.38,
+        12.3
+      ],
+      "supplementary_early": 678,
+      "supplementary_late": 315,
+      "main_total": 1110,
+      "minus30_signed_early_late_total": [
+        820,
+        285,
+        1105
+      ],
+      "zero_signed_early_late_total": [
+        -215,
+        -1267,
+        -1483
+      ],
+      "minus30_signed_15_to_120": 690
+    }
+  ],
+  "note": "Approximate graph-digitized means. Conditional signed trapezoidal integration of aggregate curves; does not identify the authors\u2019 individual-level algorithm. Single premeal point shown at -30. Any earlier postabsorptive samples invisible here."
+}

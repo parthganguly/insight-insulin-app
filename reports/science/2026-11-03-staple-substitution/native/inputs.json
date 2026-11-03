@@ -1,0 +1,73 @@
+{
+  "arms": [
+    "egg whites",
+    "whole egg",
+    "pork",
+    "salmon",
+    "lentils",
+    "mycoprotein"
+  ],
+  "body_mass_kg": [
+    77.4,
+    77,
+    74.7,
+    75.2,
+    77.9,
+    77.4
+  ],
+  "C": [
+    4,
+    null,
+    1.1,
+    0.6,
+    16.9,
+    3.3
+  ],
+  "F": [
+    0.2,
+    12.6,
+    7.5,
+    13.1,
+    0.4,
+    2.6
+  ],
+  "protein_g_per80kg": 20,
+  "model_source_sha256": "8bb55315c6b1490f6a3e6b12937833013a0d5cb4854311c9a427790892e8a4bf",
+  "development_doi": "10.1016/j.cdnut.2025.107594",
+  "training_record": "INSIGHT 2026-10-26 combined model freeze, nine Wolever food-dose rows, primary carbohydrate N",
+  "models": {
+    "mean": {
+      "intercept": 97.16666666666667,
+      "slopes": {}
+    },
+    "C": {
+      "intercept": 70.07213642030192,
+      "slopes": {
+        "C": 4.600957966363826
+      }
+    },
+    "CP": {
+      "intercept": 92.22421807571419,
+      "slopes": {
+        "C": 0.8026151105404912,
+        "P": 0.01666755111429054
+      }
+    },
+    "CPF": {
+      "intercept": 83.28854201067435,
+      "slopes": {
+        "C": 4.183680767932842,
+        "P": 0.33808845297176743,
+        "F": -1.4730061882488417
+      }
+    },
+    "CPF_nonnegative": {
+      "intercept": 66.20239555544164,
+      "slopes": {
+        "C": 4.658486701278701,
+        "P": 0.27254412378434095,
+        "F": 0.0
+      }
+    }
+  }
+}

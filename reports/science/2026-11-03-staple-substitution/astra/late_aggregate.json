@@ -1,0 +1,58 @@
+{
+  "endpoint": "120-300 min serum insulin iAUC, supplementary Figure 2b",
+  "units": "mIU/L * min",
+  "late_omnibus_p": 0.005,
+  "pixel_slope": -3.2679716749089067,
+  "pixel_intercept": 1834.312768117519,
+  "arms": [
+    {
+      "arm": "Egg whites",
+      "mean": 11,
+      "sem": 253,
+      "column": 1320,
+      "mean_y": 558.0,
+      "cap_y": 480.5
+    },
+    {
+      "arm": "Whole egg",
+      "mean": 173,
+      "sem": 214,
+      "column": 1435,
+      "mean_y": 508.5,
+      "cap_y": 443.0
+    },
+    {
+      "arm": "Pork",
+      "mean": -218,
+      "sem": 90,
+      "column": 1553,
+      "mean_y": 628.0,
+      "cap_y": 655.5
+    },
+    {
+      "arm": "Salmon",
+      "mean": -45,
+      "sem": 87,
+      "column": 1670,
+      "mean_y": 575.0,
+      "cap_y": 601.5
+    },
+    {
+      "arm": "Lentils",
+      "mean": 802,
+      "sem": 168,
+      "column": 1785,
+      "mean_y": 316.0,
+      "cap_y": 264.5
+    },
+    {
+      "arm": "Mycoprotein",
+      "mean": 315,
+      "sem": 237,
+      "column": 1900,
+      "mean_y": 465.0,
+      "cap_y": 392.5
+    }
+  ],
+  "verification": "Both panels checked at displaced columns; same-source geometry verification."
+}
