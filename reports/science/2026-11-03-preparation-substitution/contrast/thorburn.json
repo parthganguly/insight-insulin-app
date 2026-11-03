@@ -1,0 +1,115 @@
+{
+  "doi": "10.1136/bmj.292.6537.1697",
+  "source_pages": [
+    "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/88fc/1340630/a82c9dc689f5/bmjcred00240-0009.png",
+    "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/88fc/1340630/22e04d1f757e/bmjcred00240-0010.png"
+  ],
+  "time": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    90,
+    120,
+    150,
+    180
+  ],
+  "units": "microU/mL; marker centers read from 3x enlarged crop of 816 by 1120 px publisher page 1698 as displayed by PMC",
+  "crop_y": {
+    "lentils": [
+      104,
+      282,
+      391,
+      384
+    ],
+    "bread": [
+      104,
+      657,
+      391,
+      811
+    ]
+  },
+  "axis": {
+    "lentils": {
+      "y0": 279,
+      "ymax": 50,
+      "max": 50
+    },
+    "bread": {
+      "y0": 437,
+      "ymax": 36,
+      "max": 90
+    }
+  },
+  "marker_y": {
+    "lentils": [
+      198,
+      183,
+      139,
+      155,
+      147,
+      144,
+      179,
+      182,
+      189
+    ],
+    "salt_lentils": [
+      207,
+      167,
+      145,
+      130,
+      169,
+      157,
+      169,
+      167,
+      198
+    ],
+    "bread": [
+      349,
+      292,
+      112,
+      158,
+      201,
+      247,
+      318,
+      356,
+      371
+    ],
+    "salt_bread": [
+      363,
+      256,
+      81,
+      90,
+      119,
+      261,
+      328,
+      367,
+      378
+    ]
+  },
+  "printed_180_areas": {
+    "lentils": [
+      1695,
+      322
+    ],
+    "salt_lentils": [
+      1883,
+      422
+    ],
+    "bread": [
+      3395,
+      352
+    ],
+    "salt_bread": [
+      4716,
+      644
+    ]
+  },
+  "n_per_food": 6,
+  "shared_across_foods": 5,
+  "food_carbohydrate_g": 50,
+  "common_milk_ml": 80,
+  "added_salt_g": 4.25,
+  "baseline": "Fasting; incremental areas above fasting; exact crossing handling not specified. Brown lentils and white sliced bread with intrinsic salt 1.3% w/w."
+}

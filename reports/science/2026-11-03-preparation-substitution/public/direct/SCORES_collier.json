@@ -1,0 +1,120 @@
+{
+  "status": "Scored with frozen donor and rules; panels by operator never pooled",
+  "panels": {
+    "AM_ratio_window_unspecified": [
+      {
+        "id": "collier_no_fat",
+        "source": "Collier G, et al. doi 10.1007/BF00252263 (healthy subjects, oral meals)",
+        "locator": "p52 text (incremental areas, mean +/- SEM)",
+        "displaced_starch": "potato",
+        "pulse": "lentil",
+        "colour": null,
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.5388538853885388,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": 1.0,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": 0.6305281262857537,
+          "scaled_starch": 0.3975657180374234,
+          "linear_starch": 0.26105625257150744
+        },
+        "abs_log_error": {
+          "equality": 0.6183108294455948,
+          "carbohydrate": 0.6183108294455948,
+          "fixed_pooled": 0.33700842191465386,
+          "scaled_pooled": 0.055706014383713066,
+          "fixed_starch": 0.15711331436711984,
+          "scaled_starch": 0.3040842007113551,
+          "linear_starch": 0.7247085383425781
+        },
+        "zero_correlation_log_se_scenario": 0.2563452484339426,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": {
+          "midpoint": 0.5006759104146982,
+          "scaled_closer": false,
+          "margin_log": 0.07348544317211766
+        },
+        "notes": "75 g carbohydrate gram basis (not declared analytical available carbohydrate); 4 h sampled, area window not stated in the numerical paragraph"
+      },
+      {
+        "id": "collier_with_butter",
+        "source": "Collier G, et al. doi 10.1007/BF00252263 (healthy subjects, oral meals)",
+        "locator": "p52 text (incremental areas, mean +/- SEM)",
+        "displaced_starch": "potato",
+        "pulse": "lentil",
+        "colour": null,
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.43783068783068785,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": 1.0,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": 0.6305281262857537,
+          "scaled_starch": 0.3975657180374234,
+          "linear_starch": 0.26105625257150744
+        },
+        "abs_log_error": {
+          "equality": 0.8259230008024702,
+          "carbohydrate": 0.8259230008024702,
+          "fixed_pooled": 0.5446205932715291,
+          "scaled_pooled": 0.2633181857405884,
+          "fixed_starch": 0.36472548572399516,
+          "scaled_starch": 0.09647202935447977,
+          "linear_starch": 0.5170963669857028
+        },
+        "zero_correlation_log_se_scenario": 0.24439131699049396,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": {
+          "midpoint": 0.5006759104146982,
+          "scaled_closer": true,
+          "margin_log": 0.13412672818475765
+        },
+        "notes": "both arms +37.5 g butter: fat-containing control is outside the donor (plain meals)"
+      }
+    ]
+  },
+  "summary": {
+    "AM_ratio_window_unspecified": {
+      "carbohydrate": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.7221169151240325
+      },
+      "equality": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.7221169151240325
+      },
+      "fixed_pooled": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.4408145075930915
+      },
+      "fixed_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.26091940004555747
+      },
+      "linear_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.6209024526641405
+      },
+      "scaled_pooled": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.15951210006215075
+      },
+      "scaled_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.20027811503291743
+      }
+    }
+  }
+}

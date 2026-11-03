@@ -1,0 +1,673 @@
+{
+  "status": "v2 reconciled development analysis; outcomes known; no fitted coefficients; not pooled",
+  "facts": {
+    "citation": "Wei J (first author), Fan Z, Deng Y, Pan K, Shi R, et al. Nutrients 2026;18:973. doi 10.3390/nu18060973",
+    "design": "randomized crossover; 20 healthy female students; lunch test meal after standard breakfast (Sec 2.4.1, 3.4)",
+    "insulin_sampling": "capillary plasma, ELISA; 0,15,30,45,60,90,120 min (Sec 2.4.3)",
+    "endpoint": "iAUC above baseline by trapezoid (Sec 2.5); HOMA-PP uses iAUCins0-120; Table 9 means +/- SEM (arithmetic)",
+    "preparation": "HP: pressure cooker to rated pressure + 30 s hold; SP: 20 min hold; core temperatures 57.6 C (HP) vs 77.4 C (SP) (Sec 2.1/2.2)",
+    "table9": {
+      "RC": [
+        23224,
+        2456
+      ],
+      "HP+R": [
+        14517,
+        801
+      ],
+      "SP+R": [
+        21635,
+        1829
+      ]
+    },
+    "table3": {
+      "RC": {
+        "rice_cho": 69.5,
+        "potato_cho": 0.0,
+        "other_cho": 10.0,
+        "total": 79.5,
+        "energy": 558.3
+      },
+      "P": {
+        "rice_cho": 46.3,
+        "potato_cho": 23.2,
+        "other_cho": 10.0,
+        "total": 79.5,
+        "energy": 562.9
+      }
+    },
+    "table1": {
+      "potato": {
+        "available_cho": 17.87,
+        "starch": 10.0
+      },
+      "rice": {
+        "available_cho": 77.2,
+        "starch": 77.2
+      }
+    },
+    "portions_raw_g": {
+      "rice_RC": 90,
+      "rice_P": 60,
+      "potato_P": 130
+    },
+    "table5": {
+      "R": {
+        "RDS": [
+          36.8,
+          3.5
+        ],
+        "SDS": [
+          53.8,
+          5.3
+        ]
+      },
+      "HP": {
+        "RDS": [
+          9.4,
+          0.8
+        ],
+        "SDS": [
+          3.4,
+          1.2
+        ]
+      },
+      "SP": {
+        "RDS": [
+          68.1,
+          4.6
+        ],
+        "SDS": [
+          12.5,
+          3.0
+        ]
+      },
+      "HP+R_printed": {
+        "RDS": 30.8,
+        "SDS": 42.8
+      },
+      "SP+R_printed": {
+        "RDS": 43.7,
+        "SDS": 44.7
+      }
+    },
+    "donor_moravek_control_GM": {
+      "rice": 10.9,
+      "potato": 19.9
+    }
+  },
+  "assumptions": [
+    "Table 9 iAUCins window = 0-120 (inferred from insulin sampling ending at 120 and the HOMA-PP definition; table itself unlabelled)",
+    "Table 5 fractions apply to the cooked starch actually eaten (1 g samples; raw vs cooked basis of percentages not detailed)",
+    "Potato by-difference available CHO minus measured starch (10.2 g/serving) has unknown glycaemic/insulinaemic activity a_ns in [0,1]",
+    "Common non-staple 10 g CHO (other foods, identical in all meals) has unknown activity a_bg in [0,1]; it enters numerator and denominator equally",
+    "Donor-derived rules use Moravek geometric means (different operator, instant potato) and geometric interpolation x in exchange share",
+    "Lentil-chain P/R = rR/rP (fixed) or (rR/rP)^2 (scaled) is a necessary consequence only if a shared lentil arm cancels across donor meals"
+  ],
+  "derived": {
+    "x_staple": 0.33381294964028774,
+    "x_whole_meal": 0.2918238993710692,
+    "PR_source": 1.8256880733944951,
+    "lentil_PR_fixed": 1.4330287552233687,
+    "lentil_PR_scaled": 2.0535714132970377,
+    "starch_g": {
+      "rice_RC": 69.48,
+      "rice_P": 46.32,
+      "potato": 13.0,
+      "potato_if_AC_is_starch": 23.230999999999998
+    },
+    "potato_nonstarch_g": 10.231000000000002
+  },
+  "table5_reproduction": {
+    "HP+R_printed:RDS": {
+      "calculated": 30.79527983816588,
+      "printed": 30.8,
+      "matches_to_0p05": true
+    },
+    "HP+R_printed:SDS": {
+      "calculated": 42.75482130815914,
+      "printed": 42.8,
+      "matches_to_0p05": true
+    },
+    "SP+R_printed:RDS": {
+      "calculated": 43.65940660822656,
+      "printed": 43.7,
+      "matches_to_0p05": true
+    },
+    "SP+R_printed:SDS": {
+      "calculated": 44.74908968307485,
+      "printed": 44.7,
+      "matches_to_0p05": true
+    }
+  },
+  "digestible_input_ranges": {
+    "RDS": {
+      "HP+R": [
+        0.7065946106561182,
+        0.7239778638742368
+      ],
+      "SP+R": [
+        0.9614834624027336,
+        1.0751494153912116
+      ],
+      "HP_over_SP": [
+        0.6650125665512655,
+        0.7426264655322272
+      ]
+    },
+    "RDS+SDS": {
+      "HP+R": [
+        0.6869958959282465,
+        0.7005192607888427
+      ],
+      "SP+R": [
+        0.8040771977866045,
+        0.8684098289353113
+      ],
+      "HP_over_SP": [
+        0.7961332172779833,
+        0.8637544280711257
+      ]
+    }
+  },
+  "observed": {
+    "HP+R": 0.6250861178091629,
+    "SP+R": 0.9315794006200482,
+    "HP/SP": 0.6709960711809568
+  },
+  "uncertainty": {
+    "paired_se_log_ratio_range": {
+      "HP+R": {
+        "rho_plus1": 0.050575980253447964,
+        "rho_0": 0.11928157523916415,
+        "rho_minus1": 0.16092935905072014
+      },
+      "SP+R": {
+        "rho_plus1": 0.02121372812215569,
+        "rho_0": 0.13539002833866112,
+        "rho_minus1": 0.1902916111820124
+      },
+      "HP/SP": {
+        "rho_plus1": 0.029362252131292274,
+        "rho_0": 0.1009519672319178,
+        "rho_minus1": 0.13971563092856443
+      }
+    },
+    "note": "Paired (crossover) covariance not reported; extrema over rho in [-1,1] shown; rho=0 is one scenario."
+  },
+  "additive_nonnegative_bound": {
+    "HP+R": {
+      "lower_bound": 0.6666666666666666,
+      "observed": 0.6250861178091629,
+      "central_violation": true,
+      "log_gap_below_bound": 0.06440074213487318,
+      "gap_in_SE_units": {
+        "rho_plus1": 1.2733463951098156,
+        "rho_0": 0.5399051949619814,
+        "rho_minus1": 0.4001801940600284
+      },
+      "paired_se_range": {
+        "rho_plus1": 0.050575980253447964,
+        "rho_0": 0.11928157523916415,
+        "rho_minus1": 0.16092935905072014
+      }
+    },
+    "SP+R": {
+      "lower_bound": 0.6666666666666666,
+      "observed": 0.9315794006200482,
+      "central_violation": false,
+      "log_gap_below_bound": -0.3345912550626837,
+      "gap_in_SE_units": null,
+      "paired_se_range": {
+        "rho_plus1": 0.02121372812215569,
+        "rho_0": 0.13539002833866112,
+        "rho_minus1": 0.1902916111820124
+      }
+    },
+    "note": "Central-estimate restriction only: the gap is within sampling noise for every correlation in [-1,1]. Response maps that are nonlinear in rice grams, allow potato to suppress the rice response, or are not additive avoid the restriction."
+  },
+  "source_tests": {
+    "iAUCins_letters": {
+      "RC": "a",
+      "HP+R": "b",
+      "SP+R": "a"
+    },
+    "test": "Friedman (Table 9)"
+  },
+  "scores": {
+    "no_change": {
+      "pred": {
+        "HP+R": 1.0,
+        "SP+R": 1.0
+      },
+      "abs_log_error": {
+        "HP+R": 0.46986585024303756,
+        "SP+R": 0.0708738530454807
+      },
+      "mean_ratio_to_rice_error": 0.27036985164425914,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "proportional_carbohydrate": {
+      "pred": {
+        "HP+R": 1.0,
+        "SP+R": 1.0
+      },
+      "abs_log_error": {
+        "HP+R": 0.46986585024303756,
+        "SP+R": 0.0708738530454807
+      },
+      "mean_ratio_to_rice_error": 0.27036985164425914,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "proportional_energy": {
+      "pred": {
+        "HP+R": 1.0082392978685295,
+        "SP+R": 1.0082392978685295
+      },
+      "abs_log_error": {
+        "HP+R": 0.4780713903967038,
+        "SP+R": 0.0790793931991469
+      },
+      "mean_ratio_to_rice_error": 0.27857539179792534,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "total_starch_grams": {
+      "pred": {
+        "HP+R": 0.8537708693149108,
+        "SP+R": 0.8537708693149108
+      },
+      "abs_log_error": {
+        "HP+R": 0.31177342613986486,
+        "SP+R": 0.08721857105769214
+      },
+      "mean_ratio_to_rice_error": 0.1994959985987785,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "direct_source_PR^x_staple": {
+      "pred": {
+        "HP+R": 1.2225526666348416,
+        "SP+R": 1.2225526666348416
+      },
+      "abs_log_error": {
+        "HP+R": 0.6708068727738591,
+        "SP+R": 0.27181487557630213
+      },
+      "mean_ratio_to_rice_error": 0.4713108741750806,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "lentil_chain_fixed^x_staple": {
+      "pred": {
+        "HP+R": 1.1276125758487587,
+        "SP+R": 1.1276125758487587
+      },
+      "abs_log_error": {
+        "HP+R": 0.5899684831956359,
+        "SP+R": 0.1909764859980791
+      },
+      "mean_ratio_to_rice_error": 0.39047248459685746,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "lentil_chain_scaled^x_staple": {
+      "pred": {
+        "HP+R": 1.2715101212122726,
+        "SP+R": 1.2715101212122726
+      },
+      "abs_log_error": {
+        "HP+R": 0.7100711161482341,
+        "SP+R": 0.3110791189506773
+      },
+      "mean_ratio_to_rice_error": 0.5105751175494557,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "direct_source_PR^x_whole_meal": {
+      "pred": {
+        "HP+R": 1.1920391620979345,
+        "SP+R": 1.1920391620979345
+      },
+      "abs_log_error": {
+        "HP+R": 0.6455312724555167,
+        "SP+R": 0.2465392752579598
+      },
+      "mean_ratio_to_rice_error": 0.44603527385673825,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "lentil_chain_fixed^x_whole_meal": {
+      "pred": {
+        "HP+R": 1.11070548279933,
+        "SP+R": 1.11070548279933
+      },
+      "abs_log_error": {
+        "HP+R": 0.574861233767636,
+        "SP+R": 0.1758692365700792
+      },
+      "mean_ratio_to_rice_error": 0.37536523516885756,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "lentil_chain_scaled^x_whole_meal": {
+      "pred": {
+        "HP+R": 1.2336666695204928,
+        "SP+R": 1.2336666695204928
+      },
+      "abs_log_error": {
+        "HP+R": 0.6798566172922347,
+        "SP+R": 0.2808646200946778
+      },
+      "mean_ratio_to_rice_error": 0.48036061869345625,
+      "hard_soft_separation_error": 0.39899199719755685,
+      "predicted_HP_over_SP": 1.0,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans0.0_abg0.0": {
+      "pred": {
+        "HP+R": 0.7144595879952943,
+        "SP+R": 1.012911128632575
+      },
+      "abs_log_error": {
+        "HP+R": 0.1336370071926183,
+        "SP+R": 0.08370234359728464
+      },
+      "mean_ratio_to_rice_error": 0.10866967539495148,
+      "hard_soft_separation_error": 0.049934663595333606,
+      "predicted_HP_over_SP": 0.705352688700154,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans0.0_abg0.5": {
+      "pred": {
+        "HP+R": 0.7611643828446408,
+        "SP+R": 1.010799302814911
+      },
+      "abs_log_error": {
+        "HP+R": 0.19695991479027455,
+        "SP+R": 0.08161525984120395
+      },
+      "mean_ratio_to_rice_error": 0.13928758731573926,
+      "hard_soft_separation_error": 0.11534465494907037,
+      "predicted_HP_over_SP": 0.7530321605138848,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans0.0_abg1.0": {
+      "pred": {
+        "HP+R": 0.7947382863106377,
+        "SP+R": 1.0092812095148986
+      },
+      "abs_log_error": {
+        "HP+R": 0.2401234321078853,
+        "SP+R": 0.0801122567910485
+      },
+      "mean_ratio_to_rice_error": 0.16011784444946692,
+      "hard_soft_separation_error": 0.16001117531683665,
+      "predicted_HP_over_SP": 0.7874299836540314,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans0.5_abg0.0": {
+      "pred": {
+        "HP+R": 0.9145288916422618,
+        "SP+R": 1.2129804322795426
+      },
+      "abs_log_error": {
+        "HP+R": 0.3805196314219326,
+        "SP+R": 0.26395435120336314
+      },
+      "mean_ratio_to_rice_error": 0.3222369913126479,
+      "hard_soft_separation_error": 0.11656528021856938,
+      "predicted_HP_over_SP": 0.753951891807188,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans0.5_abg0.5": {
+      "pred": {
+        "HP+R": 0.9285090864362956,
+        "SP+R": 1.1781440064065658
+      },
+      "abs_log_error": {
+        "HP+R": 0.39569073815149125,
+        "SP+R": 0.23481417732847643
+      },
+      "mean_ratio_to_rice_error": 0.31525245773998384,
+      "hard_soft_separation_error": 0.16087656082301466,
+      "predicted_HP_over_SP": 0.7881117090841239,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans0.5_abg1.0": {
+      "pred": {
+        "HP+R": 0.9385587978623868,
+        "SP+R": 1.1531017210666477
+      },
+      "abs_log_error": {
+        "HP+R": 0.40645607621723984,
+        "SP+R": 0.21332931339558142
+      },
+      "mean_ratio_to_rice_error": 0.30989269480641063,
+      "hard_soft_separation_error": 0.1931267628216584,
+      "predicted_HP_over_SP": 0.8139427603960184,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans1.0_abg0.0": {
+      "pred": {
+        "HP+R": 1.1145981952892294,
+        "SP+R": 1.41304973592651
+      },
+      "abs_log_error": {
+        "HP+R": 0.5783598272394805,
+        "SP+R": 0.41662415494405486
+      },
+      "mean_ratio_to_rice_error": 0.49749199109176767,
+      "hard_soft_separation_error": 0.16173567229542574,
+      "predicted_HP_over_SP": 0.7887890758200443,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans1.0_abg0.5": {
+      "pred": {
+        "HP+R": 1.0958537900279504,
+        "SP+R": 1.3454887099982205
+      },
+      "abs_log_error": {
+        "HP+R": 0.5613996266106859,
+        "SP+R": 0.3676311532610388
+      },
+      "mean_ratio_to_rice_error": 0.46451538993586233,
+      "hard_soft_separation_error": 0.193768473349647,
+      "predicted_HP_over_SP": 0.8144652436581201,
+      "label": "development forecast"
+    },
+    "digestible_RDS_ans1.0_abg1.0": {
+      "pred": {
+        "HP+R": 1.0823793094141356,
+        "SP+R": 1.2969222326183965
+      },
+      "abs_log_error": {
+        "HP+R": 0.549027532463726,
+        "SP+R": 0.3308677971514601
+      },
+      "mean_ratio_to_rice_error": 0.43994766480759306,
+      "hard_soft_separation_error": 0.21815973531226596,
+      "predicted_HP_over_SP": 0.8345753370492281,
+      "label": "development forecast"
+    },
+    "digestible_RDS_potatoAC_as_starch": {
+      "pred": {
+        "HP+R": 0.7520726170809241,
+        "SP+R": 1.2854055201997445
+      },
+      "abs_log_error": {
+        "HP+R": 0.18494345581580135,
+        "SP+R": 0.3219481015297742
+      },
+      "mean_ratio_to_rice_error": 0.2534457786727878,
+      "hard_soft_separation_error": 0.13700464571397297,
+      "predicted_HP_over_SP": 0.5850858777734643,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans0.0_abg0.0": {
+      "pred": {
+        "HP+R": 0.6931008145021802,
+        "SP+R": 0.8331191913184158
+      },
+      "abs_log_error": {
+        "HP+R": 0.1032860353423949,
+        "SP+R": 0.11170470718893008
+      },
+      "mean_ratio_to_rice_error": 0.1074953712656625,
+      "hard_soft_separation_error": 0.21499074253132489,
+      "predicted_HP_over_SP": 0.8319347600255663,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans0.0_abg0.5": {
+      "pred": {
+        "HP+R": 0.7156839082557357,
+        "SP+R": 0.8453990705954241
+      },
+      "abs_log_error": {
+        "HP+R": 0.13534917182888437,
+        "SP+R": 0.097072637171233
+      },
+      "mean_ratio_to_rice_error": 0.11621090450005869,
+      "hard_soft_separation_error": 0.23242180900011716,
+      "predicted_HP_over_SP": 0.846563396091353,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans0.0_abg1.0": {
+      "pred": {
+        "HP+R": 0.7351712596547061,
+        "SP+R": 0.8559955958199769
+      },
+      "abs_log_error": {
+        "HP+R": 0.1622140496649111,
+        "SP+R": 0.08461619487827063
+      },
+      "mean_ratio_to_rice_error": 0.12341512227159086,
+      "hard_soft_separation_error": 0.2468302445431818,
+      "predicted_HP_over_SP": 0.8588493483432815,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans0.5_abg0.0": {
+      "pred": {
+        "HP+R": 0.7743651674183877,
+        "SP+R": 0.9143835442346235
+      },
+      "abs_log_error": {
+        "HP+R": 0.2141541261217414,
+        "SP+R": 0.018631309861839786
+      },
+      "mean_ratio_to_rice_error": 0.11639271799179059,
+      "hard_soft_separation_error": 0.23278543598358112,
+      "predicted_HP_over_SP": 0.8468712853604152,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans0.5_abg0.5": {
+      "pred": {
+        "HP+R": 0.7909684456903483,
+        "SP+R": 0.9206836080300367
+      },
+      "abs_log_error": {
+        "HP+R": 0.2353686465645273,
+        "SP+R": 0.011764979613622804
+      },
+      "mean_ratio_to_rice_error": 0.12356681308907505,
+      "hard_soft_separation_error": 0.24713362617815005,
+      "predicted_HP_over_SP": 0.8591099469911965,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans0.5_abg1.0": {
+      "pred": {
+        "HP+R": 0.8052957084467917,
+        "SP+R": 0.9261200446120625
+      },
+      "abs_log_error": {
+        "HP+R": 0.25332012091221545,
+        "SP+R": 0.005877561882728989
+      },
+      "mean_ratio_to_rice_error": 0.12959884139747221,
+      "hard_soft_separation_error": 0.25919768279494426,
+      "predicted_HP_over_SP": 0.8695370682578387,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans1.0_abg0.0": {
+      "pred": {
+        "HP+R": 0.8556295203345954,
+        "SP+R": 0.995647897150831
+      },
+      "abs_log_error": {
+        "HP+R": 0.31394805036880585,
+        "SP+R": 0.06651225222926953
+      },
+      "mean_ratio_to_rice_error": 0.1902301512990377,
+      "hard_soft_separation_error": 0.2474357981395361,
+      "predicted_HP_over_SP": 0.859369585154636,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans1.0_abg0.5": {
+      "pred": {
+        "HP+R": 0.866252983124961,
+        "SP+R": 0.9959681454646493
+      },
+      "abs_log_error": {
+        "HP+R": 0.3262875654819826,
+        "SP+R": 0.0668338486712804
+      },
+      "mean_ratio_to_rice_error": 0.1965607070766315,
+      "hard_soft_separation_error": 0.25945371681070223,
+      "predicted_HP_over_SP": 0.8697597278282708,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_ans1.0_abg1.0": {
+      "pred": {
+        "HP+R": 0.8754201572388773,
+        "SP+R": 0.9962444934041482
+      },
+      "abs_log_error": {
+        "HP+R": 0.3368145220707083,
+        "SP+R": 0.06711127682917854
+      },
+      "mean_ratio_to_rice_error": 0.20196289944994342,
+      "hard_soft_separation_error": 0.26970324524152967,
+      "predicted_HP_over_SP": 0.8787201967336186,
+      "label": "development forecast"
+    },
+    "digestible_RDS+SDS_potatoAC_as_starch": {
+      "pred": {
+        "HP+R": 0.7139044888487294,
+        "SP+R": 0.9641173282193424
+      },
+      "abs_log_error": {
+        "HP+R": 0.13285975553317173,
+        "SP+R": 0.03433157103895806
+      },
+      "mean_ratio_to_rice_error": 0.0835956632860649,
+      "hard_soft_separation_error": 0.09852818449421352,
+      "predicted_HP_over_SP": 0.7404746994510111,
+      "label": "development forecast"
+    },
+    "posthoc_limit_HP0_SPlikeRice_staple_AC": {
+      "pred": {
+        "HP+R": 0.6661870503597122,
+        "SP+R": 1.0
+      },
+      "abs_log_error": {
+        "HP+R": 0.06368105876447944,
+        "SP+R": 0.0708738530454807
+      },
+      "mean_ratio_to_rice_error": 0.06727745590498008,
+      "hard_soft_separation_error": 0.007192794281001336,
+      "predicted_HP_over_SP": 0.6661870503597122,
+      "label": "post hoc limiting benchmark (one limit case; not a bound on all descriptors)"
+    }
+  }
+}

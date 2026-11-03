@@ -1,0 +1,48 @@
+{
+  "no_fat": {
+    "observed_AM_ratio": 0.5388538853885388,
+    "zero_correlation_log_se": 0.2563452484339426,
+    "approx_95_scenario": [
+      0.3260359862700822,
+      0.8905873033223788
+    ],
+    "errors": {
+      "equality": 0.6183108294455948,
+      "fixed_pooled": 0.33700842191465386,
+      "scaled_pooled": 0.055706014383713066,
+      "fixed_starch": 0.15711331436711984,
+      "scaled_starch": 0.3040842007113551,
+      "linear_starch": 0.7247085383425781
+    },
+    "fixed_vs_scaled_midpoint": 0.5006759104146982,
+    "scaled_starch_closer_than_fixed": false,
+    "margin_log": 0.07348544317211766,
+    "best_rule": "scaled_pooled",
+    "lognormal_sensitivity_GM_ratio": 0.5342089726682301,
+    "lognormal_note": "Illustrative only: assumes lognormal arms with SD = SEM*sqrt(7); NOT used to replace the reported AM ratio"
+  },
+  "butter": {
+    "observed_AM_ratio": 0.43783068783068785,
+    "zero_correlation_log_se": 0.24439131699049396,
+    "approx_95_scenario": [
+      0.2711915226407286,
+      0.7068646886143617
+    ],
+    "errors": {
+      "equality": 0.8259230008024702,
+      "fixed_pooled": 0.5446205932715291,
+      "scaled_pooled": 0.2633181857405884,
+      "fixed_starch": 0.36472548572399516,
+      "scaled_starch": 0.09647202935447977,
+      "linear_starch": 0.5170963669857028
+    },
+    "fixed_vs_scaled_midpoint": 0.5006759104146982,
+    "scaled_starch_closer_than_fixed": true,
+    "margin_log": 0.13412672818475765,
+    "best_rule": "scaled_starch",
+    "lognormal_sensitivity_GM_ratio": 0.4191607882479996,
+    "lognormal_note": "Illustrative only: assumes lognormal arms with SD = SEM*sqrt(7); NOT used to replace the reported AM ratio"
+  },
+  "butter_over_no_fat_ratio_of_ratios": 0.8125220949552798,
+  "scope": "Four-hour sampling; the numerical paragraph does not state the area window, so this is a reported-area panel distinct from the donor 0-120 GM panel. 75 g carbohydrate gram basis, not declared analytical available carbohydrate: f = 1 is a named-staple scenario. Butter arms add fat to both meals (outside the plain-meal donor). Lentil colour unspecified (no colour rules). IV arms excluded. n = 7."
+}

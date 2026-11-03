@@ -1,0 +1,40 @@
+{
+  "order": [
+    "pea",
+    "blend",
+    "potato"
+  ],
+  "pea_fraction_staple_carbohydrate": [
+    1,
+    0.6767123287671233,
+    0
+  ],
+  "mean120_chart_approx_nmol_min_per_L": [
+    8.3,
+    11.0,
+    22.1
+  ],
+  "sem120_chart_approx": [
+    2.6,
+    2.6,
+    4.2
+  ],
+  "letters120": [
+    "a",
+    "ab",
+    "b"
+  ],
+  "mean180_reported": [
+    13.8,
+    15.4,
+    31.2
+  ],
+  "sem180_reported": [
+    4.3,
+    3.9,
+    6.9
+  ],
+  "p180_reported": 0.0514,
+  "reported_ratio_potato_over_pea_120": 2.7,
+  "ratio_blend_over_potato_180": 0.4935897435897436
+}

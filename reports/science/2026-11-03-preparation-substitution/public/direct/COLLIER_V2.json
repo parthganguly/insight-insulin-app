@@ -1,0 +1,159 @@
+{
+  "no_fat": {
+    "printed_panel": {
+      "observed": 0.5388538853885388,
+      "paired_se_log_range": {
+        "rho_plus1": 0.00839432495588091,
+        "rho_0": 0.2563452484339426,
+        "rho_minus1": 0.3624297284962349
+      },
+      "errors": {
+        "equality": 0.6183108294455948,
+        "fixed_pooled": 0.33700842191465386,
+        "scaled_pooled": 0.055706014383713066,
+        "fixed_starch": 0.15711331436711984,
+        "scaled_starch": 0.3040842007113551,
+        "linear_starch": 0.7247085383425781
+      },
+      "scaled_closer_than_fixed": false
+    },
+    "approx_group_panel": {
+      "observed": 0.5422557335846685,
+      "reading_range": [
+        0.395,
+        0.725
+      ],
+      "errors": {
+        "equality": 0.6120175556387197,
+        "fixed_pooled": 0.3307151481077788,
+        "scaled_pooled": 0.04941274057683801,
+        "fixed_starch": 0.15082004056024467,
+        "scaled_starch": 0.31037747451823017,
+        "linear_starch": 0.7310018121494531
+      },
+      "error_range_over_reading": {
+        "equality": [
+          0.32158362412746233,
+          0.928869514081015
+        ],
+        "fixed_pooled": [
+          0.04028121659652139,
+          0.6475671065500742
+        ],
+        "scaled_pooled": [
+          0.0,
+          0.36626469901913344
+        ],
+        "fixed_starch": [
+          0.0,
+          0.46767199900254014
+        ],
+        "scaled_starch": [
+          0.0,
+          0.6008114060294875
+        ],
+        "linear_starch": [
+          0.41414985370715773,
+          1.0214357436607104
+        ]
+      },
+      "inside_reading_range": {
+        "equality": false,
+        "fixed_pooled": false,
+        "scaled_pooled": true,
+        "fixed_starch": true,
+        "scaled_starch": true,
+        "linear_starch": false
+      },
+      "scaled_closer_than_fixed": false,
+      "fixed_scaled_midpoint_inside_reading_range": true
+    }
+  },
+  "butter": {
+    "printed_panel": {
+      "observed": 0.43783068783068785,
+      "paired_se_log_range": {
+        "rho_plus1": 0.043882574849342215,
+        "rho_0": 0.24439131699049396,
+        "rho_minus1": 0.34282437379114117
+      },
+      "errors": {
+        "equality": 0.8259230008024702,
+        "fixed_pooled": 0.5446205932715291,
+        "scaled_pooled": 0.2633181857405884,
+        "fixed_starch": 0.36472548572399516,
+        "scaled_starch": 0.09647202935447977,
+        "linear_starch": 0.5170963669857028
+      },
+      "scaled_closer_than_fixed": true
+    },
+    "approx_group_panel": {
+      "observed": 0.40843465045592703,
+      "reading_range": [
+        0.248,
+        0.616
+      ],
+      "errors": {
+        "equality": 0.8954233518834446,
+        "fixed_pooled": 0.6141209443525039,
+        "scaled_pooled": 0.3328185368215631,
+        "fixed_starch": 0.43422583680496984,
+        "scaled_starch": 0.0269716782735051,
+        "linear_starch": 0.4475960159047282
+      },
+      "error_range_over_reading": {
+        "equality": [
+          0.4845083154486173,
+          1.3943265328171548
+        ],
+        "fixed_pooled": [
+          0.20320590791767645,
+          1.1130241252862139
+        ],
+        "scaled_pooled": [
+          0.0,
+          0.8317217177552731
+        ],
+        "fixed_starch": [
+          0.02331080037014228,
+          0.9331290177386798
+        ],
+        "scaled_starch": [
+          0.0,
+          0.4719315026602051
+        ],
+        "linear_starch": [
+          0.0,
+          0.8585110523395555
+        ]
+      },
+      "inside_reading_range": {
+        "equality": false,
+        "fixed_pooled": false,
+        "scaled_pooled": true,
+        "fixed_starch": false,
+        "scaled_starch": true,
+        "linear_starch": true
+      },
+      "scaled_closer_than_fixed": true,
+      "fixed_scaled_midpoint_inside_reading_range": true
+    }
+  },
+  "fat_shape": {
+    "printed": {
+      "potato_abs_change": -309,
+      "lentil_abs_change": -472,
+      "potato_log_change": -0.09729234100831605,
+      "lentil_log_change": -0.3049045123651914
+    },
+    "approx": {
+      "potato_abs_change": -551,
+      "lentil_abs_change": -651,
+      "potato_log_change": -0.19008013483688496,
+      "lentil_log_change": -0.47348593108161
+    },
+    "note": "A common additive fat effect would give equal absolute changes; a common multiplicative effect equal log changes. Neither holds at the point estimates in either panel; paired uncertainty of these differences is unavailable, so no shape is established."
+  },
+  "fat_wording": "Coordinator facts: meals with \"no fat\" or \"+37.5 g as butter\"; whether 37.5 g is fat or butter mass is kept as worded, not converted.",
+  "scope": "Panel A is the printed longer experiment (window unstated) and is not reclassified. Panel B is an approximate group-mean-curve signed 0-120 reading (Astra), distinct operator from the donor GM of participant iAUC. n = 7; IV arms excluded; lentil colour unspecified."
+}

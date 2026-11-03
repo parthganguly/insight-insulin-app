@@ -1,0 +1,120 @@
+{
+  "status": "Scored with frozen donor and rules; panels by operator never pooled",
+  "panels": {
+    "approx_group_curve_signed_0_120": [
+      {
+        "id": "collier_fig1_no_fat",
+        "source": "Collier et al. doi 10.1007/BF00252263",
+        "locator": "p51 Fig 1, approximate group-mean-curve reading by Astra",
+        "displaced_starch": "potato",
+        "pulse": "lentil",
+        "colour": null,
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.5422557335846685,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": 1.0,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": 0.6305281262857537,
+          "scaled_starch": 0.3975657180374234,
+          "linear_starch": 0.26105625257150744
+        },
+        "abs_log_error": {
+          "equality": 0.6120175556387197,
+          "carbohydrate": 0.6120175556387197,
+          "fixed_pooled": 0.3307151481077788,
+          "scaled_pooled": 0.04941274057683801,
+          "fixed_starch": 0.15082004056024467,
+          "scaled_starch": 0.31037747451823017,
+          "linear_starch": 0.7310018121494531
+        },
+        "zero_correlation_log_se_scenario": null,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": {
+          "midpoint": 0.5006759104146982,
+          "scaled_closer": false,
+          "margin_log": 0.07977871697899276
+        },
+        "notes": "reading sensitivity 0.395-0.725"
+      },
+      {
+        "id": "collier_fig1_butter",
+        "source": "Collier et al. doi 10.1007/BF00252263",
+        "locator": "p51 Fig 1, approximate group-mean-curve reading by Astra",
+        "displaced_starch": "potato",
+        "pulse": "lentil",
+        "colour": null,
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.40843465045592703,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": 1.0,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": 0.6305281262857537,
+          "scaled_starch": 0.3975657180374234,
+          "linear_starch": 0.26105625257150744
+        },
+        "abs_log_error": {
+          "equality": 0.8954233518834446,
+          "carbohydrate": 0.8954233518834446,
+          "fixed_pooled": 0.6141209443525039,
+          "scaled_pooled": 0.3328185368215631,
+          "fixed_starch": 0.43422583680496984,
+          "scaled_starch": 0.0269716782735051,
+          "linear_starch": 0.4475960159047282
+        },
+        "zero_correlation_log_se_scenario": null,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": {
+          "midpoint": 0.5006759104146982,
+          "scaled_closer": true,
+          "margin_log": 0.20362707926573226
+        },
+        "notes": "reading sensitivity 0.248-0.616; both meals +37.5 g as butter (as worded)"
+      }
+    ]
+  },
+  "summary": {
+    "approx_group_curve_signed_0_120": {
+      "carbohydrate": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.7537204537610822
+      },
+      "equality": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.7537204537610822
+      },
+      "fixed_pooled": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.47241804623014133
+      },
+      "fixed_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.29252293868260726
+      },
+      "linear_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.5892989140270907
+      },
+      "scaled_pooled": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.19111563869920056
+      },
+      "scaled_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.16867457639586764
+      }
+    }
+  }
+}
