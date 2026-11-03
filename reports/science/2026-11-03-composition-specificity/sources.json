@@ -1,0 +1,32 @@
+{
+  "originals": {
+    "katsanos.pdf": {
+      "sha256": "28667197291a3654fe5a868f17efd4daffed46d00d5ac71e6510047cfc126d9e",
+      "doi": "https://doi.org/10.1152/ajpendo.00488.2005",
+      "access": "https://staging-shop.mothervegetable.my/Images/medical/pdf/Leucine%27s%20Role%20in%20Muscle%20Protein%20Synthesis%20in%20Young%20and%20Elderly.pdf",
+      "locator": "Table 2 and Figure 4 (PDF page 4), arterial plasma insulin"
+    },
+    "farup.xml": {
+      "sha256": "b3488c0be2ec20e7707b0be7a790effcaead00e3e1b969cc3a12859e5fdcac53",
+      "doi": "https://doi.org/10.1186/s40064-016-1995-x",
+      "access": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4814394/fullTextXML",
+      "locator": "Table 1; Plasma insulin concentration, Figure 4B; publication reports AUC in arbitrary units"
+    }
+  },
+  "additional_sources": {
+    "glynn": {
+      "doi": "https://doi.org/10.3945/jn.110.127647",
+      "access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2955876/",
+      "locator": "Indexed original text, Table 2 and Plasma insulin; summary admission only; original XML unavailable in this execution"
+    },
+    "power": {
+      "doi": "https://doi.org/10.1007/s00726-008-0156-0",
+      "locator": "Retained 45-g, three-hour whey hydrolysate/intact comparison; the 30% DH donor is a cross-protocol modeling assumption."
+    },
+    "previous": {
+      "revision": "a8c891352d718df3fba99a0850a4ca7166e3b5ee",
+      "url": "https://github.com/parthganguly/insight-insulin-app/tree/a8c891352d718df3fba99a0850a4ca7166e3b5ee/reports/science/2026-11-03-source-specific-dose"
+    }
+  },
+  "optional_audit": "Install PyMuPDF in the local Python environment, store the two named hash-matched originals together, and run python -B audit_source.py DIRECTORY. The offline numeric replay requires only Python standard library."
+}

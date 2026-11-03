@@ -1,0 +1,171 @@
+{
+  "constructive": {
+    "young": {
+      "mean_positive_areas": {
+        "high_aligned": 377.4585859368759,
+        "high_reassigned": 471.77029208341196,
+        "low_aligned": 406.2542194577237,
+        "low_reassigned": 512.4529386638208
+      },
+      "moments_reproduced_and_nonnegative": {
+        "high_aligned": true,
+        "high_reassigned": true,
+        "low_aligned": true,
+        "low_reassigned": true
+      },
+      "min_value": {
+        "high_aligned": 3.486065899776818,
+        "high_reassigned": 3.486065899776818,
+        "low_aligned": 2.6771541274329804,
+        "low_reassigned": 2.6771541274329804
+      },
+      "examples": [
+        {
+          "high": "aligned",
+          "low": "aligned",
+          "ratio": 0.9291191767576352,
+          "slope_closer_than_tie": false
+        },
+        {
+          "high": "aligned",
+          "low": "reassigned",
+          "ratio": 0.7365721951386763,
+          "slope_closer_than_tie": false
+        },
+        {
+          "high": "reassigned",
+          "low": "aligned",
+          "ratio": 1.1612686576231515,
+          "slope_closer_than_tie": true
+        },
+        {
+          "high": "reassigned",
+          "low": "reassigned",
+          "ratio": 0.9206119362170397,
+          "slope_closer_than_tie": false
+        }
+      ],
+      "ratio_span": [
+        0.7365721951386763,
+        1.1612686576231515
+      ]
+    },
+    "old": {
+      "mean_positive_areas": {
+        "high_aligned": 392.8671850161048,
+        "high_reassigned": 652.4308412474345,
+        "low_aligned": 437.48558433908966,
+        "low_reassigned": 555.9716259369219
+      },
+      "moments_reproduced_and_nonnegative": {
+        "high_aligned": true,
+        "high_reassigned": true,
+        "low_aligned": true,
+        "low_reassigned": true
+      },
+      "min_value": {
+        "high_aligned": 2.981700658251567,
+        "high_reassigned": 2.981700658251567,
+        "low_aligned": 2.313779319185427,
+        "low_reassigned": 2.313779319185427
+      },
+      "examples": [
+        {
+          "high": "aligned",
+          "low": "aligned",
+          "ratio": 0.8980117267397738,
+          "slope_closer_than_tie": false
+        },
+        {
+          "high": "aligned",
+          "low": "reassigned",
+          "ratio": 0.7066317176781209,
+          "slope_closer_than_tie": false
+        },
+        {
+          "high": "reassigned",
+          "low": "aligned",
+          "ratio": 1.491319633384179,
+          "slope_closer_than_tie": true
+        },
+        {
+          "high": "reassigned",
+          "low": "reassigned",
+          "ratio": 1.1734966512867626,
+          "slope_closer_than_tie": true
+        }
+      ],
+      "ratio_span": [
+        0.7066317176781209,
+        1.491319633384179
+      ]
+    }
+  },
+  "farup": {
+    "observed": {
+      "H": 210.6,
+      "M": 226.0,
+      "L": 217.1
+    },
+    "order_check": {
+      "H_is_min": true,
+      "M_is_max": true
+    },
+    "inputs": {
+      "leucine_g": {
+        "H": 3.24,
+        "M": 1.6,
+        "L": 1.96
+      },
+      "DH_percent": {
+        "H": 48,
+        "M": 27,
+        "L": 23
+      }
+    },
+    "tie_loss": 0.04704959971494086,
+    "rules": {
+      "tie": {
+        "mean_pairwise_loss": 0.04704959971494086,
+        "two_thirds_range": 0.04704959971494086,
+        "identity_holds": true,
+        "pairwise": {
+          "H/M": 0.0705743995724113,
+          "H/L": 0.030397477184370914,
+          "M/L": 0.04017692238804038
+        },
+        "monotone_lower_bound": 0.04704959971494086,
+        "bound_respected": true,
+        "ML_direction_correct": null
+      },
+      "leucine_slope_P3": {
+        "mean_pairwise_loss": 0.15881063331357423,
+        "two_thirds_range": 0.1588106333135742,
+        "identity_holds": true,
+        "pairwise": {
+          "H/M": 0.23821594997036133,
+          "H/L": 0.1612396628608197,
+          "M/L": 0.07697628710954163
+        },
+        "monotone_lower_bound": 0.15881063331357398,
+        "bound_respected": true,
+        "ML_direction_correct": false
+      },
+      "DH_only_0.011713_per_pp": {
+        "mean_pairwise_loss": 0.215486033032852,
+        "two_thirds_range": 0.215486033032852,
+        "identity_holds": true,
+        "pairwise": {
+          "H/M": 0.3165529203589337,
+          "H/L": 0.323229049549278,
+          "M/L": 0.0066761291903443265
+        },
+        "monotone_lower_bound": 0.21103528023928894,
+        "bound_respected": true,
+        "ML_direction_correct": true
+      }
+    },
+    "note": "Identity: |a-b|+|b-c|+|a-c| = 2(max-min). Any rule with pred_H >= pred_M has d_H - d_M >= ln(226/210.6) + ln(pred_H/pred_M), so its mean pairwise loss >= tie loss + (2/3) ln(pred_H/pred_M). Reported AUC: 0-120 sampled, operator/units unclear, not participant-positive."
+  },
+  "glynn_note": "Glynn 30-min increments 59 vs 73 pmol/L are a single-time increment, not an area; scored separately (facts/early.json), not as AUC."
+}

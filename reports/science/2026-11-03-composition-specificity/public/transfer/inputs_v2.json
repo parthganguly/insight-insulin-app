@@ -1,0 +1,43 @@
+{
+  "source": "Katsanos 2006 Table 2 (original APS reprint recovered by Astra)",
+  "leucine_g": {
+    "low": 1.721,
+    "high": 2.79,
+    "basis": "source Table 2 grams"
+  },
+  "total_EAA_g": {
+    "low": 6.726,
+    "high": 6.726
+  },
+  "other_EAA_g": {
+    "26": {
+      "His": 0.304,
+      "Ile": 0.781,
+      "Lys": 1.36,
+      "Met": 0.362,
+      "Phe": 0.506,
+      "Thr": 0.955,
+      "Val": 0.738
+    },
+    "41": {
+      "His": 0.239,
+      "Ile": 0.614,
+      "Lys": 1.069,
+      "Met": 0.284,
+      "Phe": 0.398,
+      "Thr": 0.751,
+      "Val": 0.58
+    }
+  },
+  "vehicle": "250 ml noncaloric/noncaffeinated soft drink",
+  "n": {
+    "young": {
+      "low": 8,
+      "high": 8
+    },
+    "old": {
+      "low": 10,
+      "high": 10
+    }
+  }
+}

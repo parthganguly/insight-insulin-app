@@ -1,0 +1,263 @@
+{
+  "leucine_grams": {
+    "High DH": 3.24,
+    "Medium DH": 1.6,
+    "Low DH": 1.96,
+    "Casein": 1.84
+  },
+  "conditional_as_is_masses": {
+    "High DH": {
+      "powder_g": 25.974025974025974,
+      "fat_g": 0.025974025974025976,
+      "lactose_g": 0.7012987012987013
+    },
+    "Medium DH": {
+      "powder_g": 26.31578947368421,
+      "fat_g": 0.02631578947368421,
+      "lactose_g": 0.6578947368421053
+    },
+    "Low DH": {
+      "powder_g": 25.0,
+      "fat_g": 1.6,
+      "lactose_g": 0.925
+    },
+    "Casein": {
+      "powder_g": 27.77777777777778,
+      "fat_g": 0.3611111111111111,
+      "lactose_g": 0.05555555555555555
+    }
+  },
+  "log_ratio_per_DH_percentage_point": 0.011713262894596291,
+  "casein_referenced_predictions": {
+    "High DH": {
+      "equal": 1.0,
+      "family": 1.3194444444444444,
+      "family_plus_DH": 1.5790353726722761,
+      "family_plus_DH_dose_scaled": 1.4290851582773325,
+      "family_plus_leucine": 1.4574748030065436,
+      "family_plus_both": 1.744222182613306,
+      "family_swiss": 1.4258555133079847
+    },
+    "Medium DH": {
+      "equal": 1.0,
+      "family": 1.3194444444444444,
+      "family_plus_DH": 1.234709372137305,
+      "family_plus_DH_dose_scaled": 1.281089263391757,
+      "family_plus_leucine": 1.2325236321116693,
+      "family_plus_both": 1.1533706374350239,
+      "family_swiss": 1.4258555133079847
+    },
+    "Low DH": {
+      "equal": 1.0,
+      "family": 1.3194444444444444,
+      "family_plus_DH": 1.1781937726379281,
+      "family_plus_DH_dose_scaled": 1.254688236501581,
+      "family_plus_leucine": 1.2787245880575868,
+      "family_plus_both": 1.1418331047676662,
+      "family_swiss": 1.4258555133079847
+    },
+    "Casein": {
+      "equal": 1.0,
+      "family": 1.0,
+      "family_plus_DH": 1.0,
+      "family_plus_DH_dose_scaled": 1.0,
+      "family_plus_leucine": 1.0,
+      "family_plus_both": 1.0,
+      "family_swiss": 1.0
+    }
+  },
+  "pairs": {
+    "High DH/Medium DH": {
+      "observed": 0.931858407079646,
+      "predicted": {
+        "equal": 1.0,
+        "family": 1.0,
+        "family_plus_DH": 1.2788721040797935,
+        "family_plus_DH_dose_scaled": 1.1155234838935015,
+        "family_plus_leucine": 1.1825126634768601,
+        "family_plus_both": 1.512282458041653,
+        "family_swiss": 1.0
+      },
+      "error": {
+        "equal": 0.07057439957241084,
+        "family": 0.07057439957241084,
+        "family_plus_DH": 0.3165529203589328,
+        "family_plus_DH_dose_scaled": 0.17989818658864273,
+        "family_plus_leucine": 0.23821594997036064,
+        "family_plus_both": 0.4841944707568826,
+        "family_swiss": 0.07057439957241084
+      }
+    },
+    "High DH/Low DH": {
+      "observed": 0.9700598802395209,
+      "predicted": {
+        "equal": 1.0,
+        "family": 1.0,
+        "family_plus_DH": 1.3402170418341968,
+        "family_plus_DH_dose_scaled": 1.1389962196999779,
+        "family_plus_leucine": 1.13978789226262,
+        "family_plus_both": 1.5275631572866426,
+        "family_swiss": 1.0
+      },
+      "error": {
+        "equal": 0.030397477184370948,
+        "family": 0.030397477184370948,
+        "family_plus_DH": 0.3232290495492783,
+        "family_plus_DH_dose_scaled": 0.1605448426798854,
+        "family_plus_leucine": 0.16123966286081978,
+        "family_plus_both": 0.4540712352257269,
+        "family_swiss": 0.030397477184370948
+      }
+    },
+    "High DH/Casein": {
+      "observed": 3.043352601156069,
+      "predicted": {
+        "equal": 1.0,
+        "family": 1.3194444444444444,
+        "family_plus_DH": 1.5790353726722761,
+        "family_plus_DH_dose_scaled": 1.4290851582773325,
+        "family_plus_leucine": 1.4574748030065436,
+        "family_plus_both": 1.744222182613306,
+        "family_swiss": 1.4258555133079847
+      },
+      "error": {
+        "equal": 1.1129597370762512,
+        "family": 0.8357489644917656,
+        "family_plus_DH": 0.6561456001079559,
+        "family_plus_DH_dose_scaled": 0.7559252469878502,
+        "family_plus_leucine": 0.7362543858002994,
+        "family_plus_both": 0.5566510214164897,
+        "family_swiss": 0.758187743283605
+      }
+    },
+    "Medium DH/Low DH": {
+      "observed": 1.0409949332105022,
+      "predicted": {
+        "equal": 1.0,
+        "family": 1.0,
+        "family_plus_DH": 1.047968000520696,
+        "family_plus_DH_dose_scaled": 1.0210419019817938,
+        "family_plus_leucine": 0.9638695021763068,
+        "family_plus_both": 1.010104394958583,
+        "family_swiss": 1.0
+      },
+      "error": {
+        "equal": 0.04017692238803979,
+        "family": 0.04017692238803979,
+        "family_plus_DH": 0.006676129190345207,
+        "family_plus_DH_dose_scaled": 0.01935334390875744,
+        "family_plus_leucine": 0.07697628710954105,
+        "family_plus_both": 0.03012323553115579,
+        "family_swiss": 0.04017692238803979
+      }
+    },
+    "Medium DH/Casein": {
+      "observed": 3.265895953757225,
+      "predicted": {
+        "equal": 1.0,
+        "family": 1.3194444444444444,
+        "family_plus_DH": 1.234709372137305,
+        "family_plus_DH_dose_scaled": 1.281089263391757,
+        "family_plus_leucine": 1.2325236321116693,
+        "family_plus_both": 1.1533706374350239,
+        "family_swiss": 1.4258555133079847
+      },
+      "error": {
+        "equal": 1.183534136648662,
+        "family": 0.9063233640641764,
+        "family_plus_DH": 0.9726985204668886,
+        "family_plus_DH_dose_scaled": 0.9358234335764929,
+        "family_plus_leucine": 0.97447033577066,
+        "family_plus_both": 1.0408454921733723,
+        "family_swiss": 0.8287621428560158
+      }
+    },
+    "Low DH/Casein": {
+      "observed": 3.1372832369942194,
+      "predicted": {
+        "equal": 1.0,
+        "family": 1.3194444444444444,
+        "family_plus_DH": 1.1781937726379281,
+        "family_plus_DH_dose_scaled": 1.254688236501581,
+        "family_plus_leucine": 1.2787245880575868,
+        "family_plus_both": 1.1418331047676662,
+        "family_swiss": 1.4258555133079847
+      },
+      "error": {
+        "equal": 1.1433572142606223,
+        "family": 0.8661464416761366,
+        "family_plus_DH": 0.9793746496572341,
+        "family_plus_DH_dose_scaled": 0.9164700896677356,
+        "family_plus_leucine": 0.897494048661119,
+        "family_plus_both": 1.0107222566422167,
+        "family_swiss": 0.788585220467976
+      }
+    }
+  },
+  "loss": {
+    "within_whey": {
+      "equal": 0.04704959971494053,
+      "family": 0.04704959971494053,
+      "family_plus_DH": 0.21548603303285208,
+      "family_plus_DH_dose_scaled": 0.11993212439242852,
+      "family_plus_leucine": 0.1588106333135738,
+      "family_plus_both": 0.3227963138379218,
+      "family_swiss": 0.04704959971494053
+    },
+    "vs_casein": {
+      "equal": 1.1466170293285118,
+      "family": 0.8694062567440262,
+      "family_plus_DH": 0.8694062567440262,
+      "family_plus_DH_dose_scaled": 0.8694062567440263,
+      "family_plus_leucine": 0.8694062567440262,
+      "family_plus_both": 0.8694062567440263,
+      "family_swiss": 0.7918450355358656
+    },
+    "all": {
+      "equal": 0.5968333145217262,
+      "family": 0.4582279282294834,
+      "family_plus_DH": 0.5424461448884391,
+      "family_plus_DH_dose_scaled": 0.4946691905682274,
+      "family_plus_leucine": 0.5141084450287999,
+      "family_plus_both": 0.5961012852909741,
+      "family_swiss": 0.41944731762540305
+    }
+  },
+  "three_whey_monotonicity_restriction": {
+    "equal": {
+      "reconstructed_loss": 0.04704959971494086,
+      "lower_bound": 0.04704959971494053
+    },
+    "family": {
+      "reconstructed_loss": 0.04704959971494086,
+      "lower_bound": 0.04704959971494053
+    },
+    "family_plus_DH": {
+      "reconstructed_loss": 0.215486033032852,
+      "lower_bound": 0.21103528023928853
+    },
+    "family_plus_DH_dose_scaled": {
+      "reconstructed_loss": 0.11993212439242858,
+      "lower_bound": 0.11993212439242842
+    },
+    "family_plus_leucine": {
+      "reconstructed_loss": 0.15881063331357362,
+      "lower_bound": 0.15881063331357373
+    },
+    "family_plus_both": {
+      "reconstructed_loss": 0.3227963138379219,
+      "lower_bound": 0.3227963138379218
+    },
+    "family_swiss": {
+      "reconstructed_loss": 0.04704959971494027,
+      "lower_bound": 0.04704959971494053
+    }
+  },
+  "coverage": {
+    "within_whey_pairs": 3,
+    "pair_dimensions": 2,
+    "native_area_forecasts_from_food_only": 0,
+    "family_anchored_pairs": 6,
+    "measured_DH_of_casein": null
+  }
+}

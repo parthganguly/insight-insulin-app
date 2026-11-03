@@ -1,0 +1,31 @@
+{
+  "status": "Frozen before outcome reading",
+  "delta_leucine_g": 1.005,
+  "leucine_basis": "STATED PERCENTAGES x 6.7 g from the task brief (~26% / ~41%); to be verified against the source composition table",
+  "predicted_ratio_high_over_low": {
+    "P0_equal_response": 1.0,
+    "P1_generic_AA_flag": 1.0,
+    "P2_fixed_enrichment_multiplier": 1.2670685255785012,
+    "P3_quantitative_slope": 1.1081938854085724,
+    "P3w_whey_slope": 1.0544245934639163,
+    "P3s_soy_slope": 1.1525466749986264
+  },
+  "predicted_age_interaction": {
+    "P0_equal_response": 1.0,
+    "P1_generic_AA_flag": 1.0,
+    "P2_fixed_enrichment_multiplier": 1.0,
+    "P3_quantitative_slope": 1.0,
+    "P3w_whey_slope": 1.0,
+    "P3s_soy_slope": 1.0
+  },
+  "thresholds": {
+    "P3_beats_P0_if_obs_above": 1.052707882277212,
+    "P3_beats_P2_if_obs_below": 1.1849715576501194,
+    "P2_beats_P0_if_obs_above": 1.1256413840910884,
+    "separation_ln_P2_minus_ln_P3": 0.13397442493699363
+  },
+  "abstained": {
+    "per_50g_carbohydrate_basis": "no carbohydrate in drinks",
+    "native_absolute": "no externally calibrated reference arm"
+  }
+}

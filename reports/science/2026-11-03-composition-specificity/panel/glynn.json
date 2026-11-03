@@ -1,0 +1,38 @@
+{
+  "source": "Glynn et al. DOI 10.3945/jn.110.127647, Table 2 and Results, plasma glucose and insulin; published 30-min values are concentrations (not AUC).",
+  "protein_g": 10,
+  "leu_g": {
+    "low": 1.85,
+    "high": 3.5
+  },
+  "means": {
+    "low": {
+      "basal": 30,
+      "min30": 103
+    },
+    "high": {
+      "basal": 33,
+      "min30": 92
+    }
+  },
+  "sem": {
+    "low": {
+      "basal": 5,
+      "min30": 18
+    },
+    "high": {
+      "basal": 6,
+      "min30": 12
+    }
+  },
+  "at60": {
+    "low": null,
+    "high": 56
+  },
+  "units": "pmol/L; within-person baseline-to-time covariance unavailable; two experimental groups, total n=14",
+  "leu_tracer_g": {
+    "low": 0.1,
+    "high": 0.19
+  },
+  "dose_definition": "Primary uses unlabeled EAA table entries, sensitivity adds listed labeled leucine. Do not assume identical product or postdose time courses."
+}
