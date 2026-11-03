@@ -1,0 +1,66 @@
+{
+  "frozen_log_slope_per_gram": 0.1022204575597254,
+  "g_leucine_per_bolus_at_group_mean_mass": {
+    "wheat_low": 0.392392,
+    "wheat_high": 0.783412,
+    "blend_low": 1.9356959999999999,
+    "blend_high": 3.8713919999999997
+  },
+  "observed": {
+    "low_blend_over_wheat": 1.4741196417316895,
+    "high_blend_over_wheat": 1.9086724849883694,
+    "high_over_low_contrast": 1.294788042269214
+  },
+  "reading_box_outer": {
+    "low_blend_over_wheat": [
+      1.2987348244919505,
+      1.6784773876107557
+    ],
+    "high_blend_over_wheat": [
+      1.6994828841342493,
+      2.153006772935623
+    ],
+    "high_over_low_contrast": [
+      1.0125146139462706,
+      1.6577724199994817
+    ]
+  },
+  "predictions": {
+    "tie": {
+      "ratios": {
+        "low_blend_over_wheat": 1.0,
+        "high_blend_over_wheat": 1.0,
+        "high_over_low_contrast": 1.0
+      },
+      "abs_log_error": {
+        "low_blend_over_wheat": 0.3880609585408275,
+        "high_blend_over_wheat": 0.6464079663729032,
+        "high_over_low_contrast": 0.25834700783207587
+      }
+    },
+    "per_bolus_substitution": {
+      "ratios": {
+        "low_blend_over_wheat": 1.1708819181196817,
+        "high_blend_over_wheat": 1.3711567525868775,
+        "high_over_low_contrast": 1.171046141688495
+      },
+      "abs_log_error": {
+        "low_blend_over_wheat": 0.2303037175070732,
+        "high_blend_over_wheat": 0.3307532378376225,
+        "high_over_low_contrast": 0.1004495203305493
+      }
+    },
+    "cumulative_four_boluses": {
+      "ratios": {
+        "low_blend_over_wheat": 1.8795435675271854,
+        "high_blend_over_wheat": 3.534666364037194,
+        "high_over_low_contrast": 1.8805982607189917
+      },
+      "abs_log_error": {
+        "low_blend_over_wheat": 0.2429680055941904,
+        "high_blend_over_wheat": 0.6162109477682202,
+        "high_over_low_contrast": 0.37324294217402976
+      }
+    }
+  }
+}

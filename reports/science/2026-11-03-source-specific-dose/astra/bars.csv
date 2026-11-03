@@ -1,0 +1,12 @@
+figure,window_min,image,arm,x_px,y_top_px,y_zero_px,y_span_px,scale,plot_units,percent_delta_ratio_of_means
+target_fig3,0-180,raw/65.png,control,219,355,601,583,100,42.196,0.0
+target_fig3,0-180,raw/65.png,wheat_low,369,357,601,583,100,41.852,-0.81
+target_fig3,0-180,raw/65.png,wheat_high,519,357,601,583,100,41.852,-0.81
+target_fig3,0-180,raw/65.png,blend_low,669,247,601,583,100,60.72,43.9
+target_fig3,0-180,raw/65.png,blend_high,819,123,601,583,100,81.99,94.31
+rest_fig5,0-120,raw/rest56.png,control,175,300,559,539,70,33.636,0.0
+rest_fig5,0-120,raw/rest56.png,wheat_high,693,152,563,539,70,53.377,58.69
+rest_fig5,0-120,raw/rest56.png,blend_high,865,165,564,539,70,51.818,54.05
+rest_fig6,60-120,raw/rest57.png,control,175,365,561,539,50,18.182,0.0
+rest_fig6,60-120,raw/rest57.png,wheat_high,694,208,567,539,50,33.302,83.16
+rest_fig6,60-120,raw/rest57.png,blend_high,867,166,569,539,50,37.384,105.61

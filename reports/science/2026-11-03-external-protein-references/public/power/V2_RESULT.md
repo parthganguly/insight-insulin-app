@@ -45,4 +45,4 @@ New code is `verify_v2.py` → `VERIFIED_v2.json`, which reuses the frozen `rule
 
 ## Conclusion
 
-With the dose mapping now valid, the dose-specific whey reference still predicts WPH ≤ WPI and is farther from the target point than equal response. The transferable content is no established form effect on area, which equal response already encodes. This does not test the 2-h curves or the significant peak difference.
+With the dose mapping now valid, the dose-specific whey reference still predicts WPH ≤ WPI and is farther from the target point than equal response. The paired area comparison (p=.21) leaves the form effect uncertain. Equality gave a closer point forecast here; the study did not test physiological equivalence. This does not test the 2-h curves or the significant peak difference.

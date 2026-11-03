@@ -1,0 +1,47 @@
+{
+  "positive_area_bounds": {
+    "wheat_low": [
+      20811.651834924967,
+      25968.581582537518
+    ],
+    "wheat_high": [
+      20463.846834924967,
+      25763.99658253752
+    ],
+    "blend_low": [
+      31493.87183492497,
+      36794.02158253752
+    ],
+    "blend_high": [
+      40620.726834924964,
+      45920.876582537516
+    ]
+  },
+  "low_formulation_ratio": [
+    1.2127682728772107,
+    1.767952965693565
+  ],
+  "high_formulation_ratio": [
+    1.5766469578891782,
+    2.2440002093920035
+  ],
+  "ratio_of_ratios": [
+    0.8917923657944499,
+    1.8503124294868507
+  ],
+  "native_difference_in_differences_pmol_min_L": [
+    -1125.6394952251067,
+    19931.739495225098
+  ],
+  "tie_midpoints": [
+    1.0820729726407927,
+    1.1709640270251165
+  ],
+  "both_formulations_beat_tie_under_stress": true,
+  "assumptions": [
+    "Nonnegative individual insulin concentrations and baseline.",
+    "Piecewise linear interpolation between observed concentration samples.",
+    "Figure means allowed independent +/-6pixel errors, baseline included.",
+    "Finite-sample bounds only; neither population CI nor physiological cap imposed."
+  ]
+}

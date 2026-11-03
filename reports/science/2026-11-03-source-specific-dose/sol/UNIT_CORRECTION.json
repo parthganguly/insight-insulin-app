@@ -1,0 +1,10 @@
+{
+  "status": "corrected",
+  "source_locator": "../astra/raw/axis-read.png",
+  "printed_unit": "pmol L^-1 \u00b7 3h",
+  "prior_incorrect_claim": "nmol",
+  "reason": "Direct magnified native label shows p descender; reduced whole-page reading was mistaken.",
+  "different_edition_evidence": false,
+  "numerical_conversion_performed": false,
+  "ratio_results_affected": false
+}

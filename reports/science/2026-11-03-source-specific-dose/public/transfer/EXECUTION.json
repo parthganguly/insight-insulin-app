@@ -1,0 +1,34 @@
+{
+  "utc": "2026-11-03T11:06:48.393698+00:00",
+  "python": "3.13.12",
+  "platform": "Windows",
+  "commands": [
+    "python -I -X utf8 predict.py (freeze)",
+    "python -I -X utf8 digitize_target.py FIG2.png FIG3.png target_data_opus.json (local images)",
+    "python -I -X utf8 score.py target_data_opus.json SCORES_opus.json",
+    "python -I -X utf8 score.py target_data_opus_h15.json SCORES_opus_h15.json",
+    "python -I -X utf8 reproduce.py"
+  ],
+  "sha256": {
+    "EXPOSURE.md": "1113fe466ec3d7166a784ff36c677d5ed1f4944bd07dc3f13650205348f3f3e7",
+    "FREEZE_RECEIPT.json": "78f4c66f6fe0ddfcf99c7a9ee2e60d483e3483f0df24ea08fa4c5e6e25a4b16a",
+    "PLAN.md": "4963fca61750903c513e36ad559fe9c781e7120b065c417b19e7c4940d144c23",
+    "PREDICTIONS.json": "f72d90d475d93253ce1a61d2201eb88f90c203cb766826bf2f3bb61dea4dab8d",
+    "RESULT.md": "c0c3e8231912be6e548964e6c56046f01c0245187e90d8f6ea03c0b7f2b29650",
+    "SCORES_opus.json": "7e50eadb969053ce296338b8b2fc9f4bc13882f1d63391ddaf15ee72a98452aa",
+    "SCORES_opus_h15.json": "50ca251ab412c3a21c9043e39fe69dc6aa8499cf11cf9c8995926c7d6d88d474",
+    "digitize_target.py": "9cce5f45f4773d430f2c6949af7597fa34af2d05ae890fff240c1c0e9a467d41",
+    "predict.py": "ea623a555a2d5540f461d115f9533c674e8576e8f30a3a8b852d5662dc170334",
+    "reproduce.py": "614d3674019f5e544aec5f75ab568c5cc5041c3bc4cb6217e1cd368dd66be183",
+    "score.py": "31230f6129ea12f74cb4c1196c64d50565c2366bde327ace05ea7d8dbafea895",
+    "target_data_opus.json": "59e8474f474eb0f8f2e4ac4753fb9f25adddfb4d84028fcecf828771d2dbab69",
+    "target_data_opus_h15.json": "762906461cb862f905df80b44488726a3b9b0b2cb7463b80321d2956b439ea5e"
+  },
+  "nonfinite_json": [],
+  "raw_local_only": [
+    "raw/postexercise.pdf",
+    "raw/opus_p5_Im3.tiff/.png (Fig 2)",
+    "raw/opus_p5_Im2.tiff/.png (Fig 3)",
+    "raw/opus_p4_Im1.tiff (Fig 1)"
+  ]
+}

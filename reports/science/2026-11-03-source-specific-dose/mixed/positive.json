@@ -1,0 +1,246 @@
+{
+  "0": {
+    "arms": {
+      "control": [
+        21568.894952251023,
+        24004.092769440653
+      ],
+      "wheat_low": [
+        22530.695770804912,
+        25109.140518417462
+      ],
+      "wheat_high": [
+        22182.81036834925,
+        24904.502046384718
+      ],
+      "blend_low": [
+        33212.82401091405,
+        35934.51568894952
+      ],
+      "blend_high": [
+        42339.69986357435,
+        45061.39154160982
+      ]
+    },
+    "ratios": {
+      "low_blend_over_wheat": [
+        1.3227383863080686,
+        1.5949137148047228
+      ],
+      "high_blend_over_wheat": [
+        1.7000821692686936,
+        2.031365313653136
+      ],
+      "high_over_low_contrast": [
+        1.0659399022578768,
+        1.5357271964586554
+      ]
+    },
+    "additive_change_outer": [
+      4031.37789904503,
+      14774.897680763977
+    ],
+    "test": {
+      "tie": {
+        "low_blend_over_wheat": {
+          "tie_crossing": 1.0,
+          "error_minus_tie": [
+            -5.551115123125783e-17,
+            0.0
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_blend_over_wheat": {
+          "tie_crossing": 1.0,
+          "error_minus_tie": [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_over_low_contrast": {
+          "tie_crossing": 1.0,
+          "error_minus_tie": [
+            -4.163336342344337e-17,
+            0.0
+          ],
+          "strictly_better_throughout": false
+        }
+      },
+      "per_bolus_substitution": {
+        "low_blend_over_wheat": {
+          "tie_crossing": 1.0820729726407927,
+          "error_minus_tie": [
+            -0.15775724103375421,
+            -0.15775724103375421
+          ],
+          "strictly_better_throughout": true
+        },
+        "high_blend_over_wheat": {
+          "tie_crossing": 1.1709640270251165,
+          "error_minus_tie": [
+            -0.31565472853528087,
+            -0.31565472853528076
+          ],
+          "strictly_better_throughout": true
+        },
+        "high_over_low_contrast": {
+          "tie_crossing": 1.0821488537574186,
+          "error_minus_tie": [
+            -0.1578974875015266,
+            0.0301835929302587
+          ],
+          "strictly_better_throughout": false
+        }
+      },
+      "cumulative_four_boluses": {
+        "low_blend_over_wheat": {
+          "tie_crossing": 1.3709644661796254,
+          "error_minus_tie": [
+            -0.3026103108097459,
+            0.071620718527658
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_blend_over_wheat": {
+          "tie_crossing": 1.8800708401645918,
+          "error_minus_tie": [
+            -0.15479735642494352,
+            0.2012657446250916
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_over_low_contrast": {
+          "tie_crossing": 1.3713490659635101,
+          "error_minus_tie": [
+            -0.22641807495260166,
+            0.5038760554348376
+          ],
+          "strictly_better_throughout": false
+        }
+      }
+    }
+  },
+  "6": {
+    "arms": {
+      "control": [
+        19849.93178717599,
+        24863.57435197817
+      ],
+      "wheat_low": [
+        20811.732605729878,
+        25968.622100954984
+      ],
+      "wheat_high": [
+        20463.847203274217,
+        25763.98362892224
+      ],
+      "blend_low": [
+        31493.860845839015,
+        36793.99727148704
+      ],
+      "blend_high": [
+        40620.73669849931,
+        45920.873124147336
+      ]
+    },
+    "ratios": {
+      "low_blend_over_wheat": [
+        1.2127659574468082,
+        1.767944936086529
+      ],
+      "high_blend_over_wheat": [
+        1.576648133439237,
+        2.2439999999999998
+      ],
+      "high_over_low_contrast": [
+        0.8917970810387676,
+        1.8503157894736846
+      ]
+    },
+    "additive_change_outer": [
+      -1125.5115961800911,
+      19931.78717598909
+    ],
+    "test": {
+      "tie": {
+        "low_blend_over_wheat": {
+          "tie_crossing": 1.0,
+          "error_minus_tie": [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_blend_over_wheat": {
+          "tie_crossing": 1.0,
+          "error_minus_tie": [
+            0.0,
+            5.551115123125783e-17
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_over_low_contrast": {
+          "tie_crossing": 1.0,
+          "error_minus_tie": [
+            0.0,
+            6.938893903907228e-17
+          ],
+          "strictly_better_throughout": false
+        }
+      },
+      "per_bolus_substitution": {
+        "low_blend_over_wheat": {
+          "tie_crossing": 1.0820729726407927,
+          "error_minus_tie": [
+            -0.15775724103375427,
+            -0.15775724103375421
+          ],
+          "strictly_better_throughout": true
+        },
+        "high_blend_over_wheat": {
+          "tie_crossing": 1.1709640270251165,
+          "error_minus_tie": [
+            -0.3156547285352808,
+            -0.3156547285352808
+          ],
+          "strictly_better_throughout": true
+        },
+        "high_over_low_contrast": {
+          "tie_crossing": 1.0821488537574186,
+          "error_minus_tie": [
+            -0.1578974875015266,
+            0.15789748750152655
+          ],
+          "strictly_better_throughout": false
+        }
+      },
+      "cumulative_four_boluses": {
+        "low_blend_over_wheat": {
+          "tie_crossing": 1.3709644661796254,
+          "error_minus_tie": [
+            -0.5086066738309932,
+            0.2452216318860353
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_blend_over_wheat": {
+          "tie_crossing": 1.8800708401645918,
+          "error_minus_tie": [
+            -0.35390106117977616,
+            0.35201659598723667
+          ],
+          "strictly_better_throughout": false
+        },
+        "high_over_low_contrast": {
+          "tie_crossing": 1.3713490659635101,
+          "error_minus_tie": [
+            -0.5991226930658116,
+            0.6315899500061056
+          ],
+          "strictly_better_throughout": false
+        }
+      }
+    }
+  }
+}

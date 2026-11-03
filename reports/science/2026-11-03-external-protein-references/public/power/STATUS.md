@@ -34,9 +34,9 @@ Corrections already recorded:
 
 ## Assessment of the broader completed result: are the source-specific level and contrast claims justified?
 
-**No, not as source-specific claims.**
+The level and contrast results require separate qualifications.
 
-1. **The reported set (17 rows / 9 authors) does not separate a source effect from a constant.** The gain-calibrated reference scores 0.1402 against a constant of 0.1472, a 0.007 difference. That is over 9 author groups, with equal author weighting and no paired uncertainty. The constant already captures "protein addition raises the response". The cheap (0.1673) and transformed-blind (0.1618) comparators lose to the constant too.
+1. **The named-source calibration improved point accuracy over the constant on the 17 covered rows from nine authors.** The gain-calibrated reference scores 0.1402 against a constant of 0.1472, a 0.007 difference. Six author groups improved and three worsened. The uncertainty of the equal-author mean gain is unavailable. The constant already captures "protein addition raises the response". The cheap (0.1673) and transformed-blind (0.1618) comparators lose to the constant too.
 2. **The calculated set (20 rows / 3 authors) is all whey.** It has zero source variation, so it can inform whey dose or level at most. It cannot support any source-specific level or contrast.
 3. **Thondre 2026 is an informative counterexample for the dose family, not support.**
    - The low-dose match (1.026 vs 1.028) is not discriminating: equal response errs by only 0.028.
@@ -46,15 +46,15 @@ Corrections already recorded:
    - Consequently: if a family member reproduced both low-dose levels exactly, the highest attainable high-dose whey/pea contrast is 1.240²/1.206 = **1.275** < 1.472.
    - Generally, log C(2d) ≤ log C(d) + log Q_whey(d). Reaching 1.472 from a 1.026 low-dose contrast would require a predicted 10 g whey level of ≥ **1.435** vs glucose, against 1.240 observed.
    - So the family cannot be right on both whey level and dose-dependent contrast here. **The high-dose miss is a property of the functional form, not of fitted parameters**, and no reparameterization within the family repairs it.
-4. **Scope.** This is a statement about published *point means* in one study (n = 30 crossover, large SDs; whey 20 g SD about half its mean). It does **not** establish a population source × dose interaction or a superadditive whey dose response; the high whey mean could be sampling variation. It does show the claimed source-specific dose-contrast representation has no capacity for the pattern actually observed. Its apparent low-dose success is indistinguishable from equal response.
+4. **Scope.** This is a statement about published *point means* in one study (n = 30 crossover, large SDs; whey 20 g SD about half its mean). It does **not** establish a population source × dose interaction or a superadditive whey dose response; the high whey mean could be sampling variation. It does show the claimed source-specific dose-contrast representation has no capacity for the pattern actually observed. Equality also gives a close low-dose point forecast. The summaries do not establish equivalence.
 
 **Justified claims:**
 
 - protein addition raises the response (constant ≫ null);
 - whey dose or level information within whey-only data;
-- the equal-response tie as the default source contrast.
+- equality as a useful benchmark for a source contrast.
 
 **Not justified:**
 
-- source-specific response levels beyond the constant;
+- general superiority of source-specific level forecasts beyond the exposed comparison;
 - a transferable source × dose contrast.

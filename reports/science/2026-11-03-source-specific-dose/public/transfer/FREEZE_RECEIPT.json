@@ -1,0 +1,10 @@
+{
+  "PLAN.md": "4963fca61750903c513e36ad559fe9c781e7120b065c417b19e7c4940d144c23",
+  "predict.py": "ea623a555a2d5540f461d115f9533c674e8576e8f30a3a8b852d5662dc170334",
+  "PREDICTIONS.json": "f72d90d475d93253ce1a61d2201eb88f90c203cb766826bf2f3bb61dea4dab8d",
+  "score.py": "31230f6129ea12f74cb4c1196c64d50565c2366bde327ace05ea7d8dbafea895",
+  "../training/outcomes.json": "365653053847b696b338a876b8f202d0170056b87efbbb6920ec15cf08eddc3c",
+  "utc": "2026-11-03T11:01:41.282465+00:00",
+  "state": "Frozen before reading any target Results text, figure or table (read: abstract, intro, methods only).",
+  "pre_freeze_fix": "predict.py beverage-5 N-source corrected from 28.6+2*7.1 to 28.6+2*7.1+2*7.1 g/L before any target result was read; first PREDICTIONS.json deleted and regenerated."
+}

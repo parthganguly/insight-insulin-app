@@ -1,0 +1,28 @@
+{
+  "Claude_Code": {
+    "graded": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "subtype": "success",
+      "process_exited": true,
+      "tool_calls": 36
+    },
+    "reconcile": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "subtype": "success",
+      "process_exited": true,
+      "tool_calls": 7
+    }
+  },
+  "Astra_dispatch": "gpt-6-astra",
+  "Sol_dispatch": "gpt-6.1-sol"
+}

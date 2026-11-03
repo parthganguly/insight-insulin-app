@@ -1,0 +1,28 @@
+{
+  "study": "Thondre et al. 2021, PMID 33515092, Oxford Brookes NCT04610203. Methods and Table 2, accepted manuscript.",
+  "population": "31 healthy participants in crossover",
+  "glucose_g": 50,
+  "pea_powder_g": [
+    0,
+    25,
+    50
+  ],
+  "product": "NUTRALYS S85 Plus",
+  "native_120": [
+    3369.6,
+    4668.7,
+    4952.8
+  ],
+  "sd_120": [
+    1516.5,
+    1904.6,
+    2382.5
+  ],
+  "native_180": [
+    3515.7,
+    4867.9,
+    5849.1
+  ],
+  "reported_area_unit": "microU/ml/min as printed; incremental area over minutes, running integral not concentration per minute",
+  "source_url": "https://radar.brookes.ac.uk/radar/file/2ec7483e-d97f-4ad0-aa48-11163645204e/1/NUTRALYS%C2%AE%20pea%20protein%20-%202021%20-%20Thondre%20et%20al.pdf"
+}
