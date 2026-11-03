@@ -1,0 +1,8 @@
+{
+  "low_ratio": 1.0279136054254614,
+  "high_ratio": 1.4721601013422982,
+  "high_observed_if_low_matched_ceiling": 1.056606380218771,
+  "low_required_if_high_matched_floor": 1.2133260490660778,
+  "log_gap": 0.33166853471834923,
+  "worst_of_two_abs_log_errors_lower_bound": 0.11055617823944974
+}

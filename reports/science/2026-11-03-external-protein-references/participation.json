@@ -1,0 +1,42 @@
+{
+  "Claude_Code": {
+    "power": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "subtype": "success",
+      "is_error": false,
+      "process_exited": true,
+      "tool_calls": 25,
+      "exit_code": 0
+    },
+    "correction": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "subtype": "success",
+      "is_error": false,
+      "process_exited": true,
+      "tool_calls": 12,
+      "exit_code": 0
+    },
+    "final_fix": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "subtype": "success",
+      "is_error": false,
+      "process_exited": true,
+      "tool_calls": 7,
+      "exit_code": 0
+    }
+  },
+  "Astra_dispatch": "gpt-6-astra",
+  "Sol_dispatch": "gpt-6.1-sol"
+}

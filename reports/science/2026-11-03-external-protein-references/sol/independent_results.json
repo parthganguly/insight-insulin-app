@@ -1,0 +1,98 @@
+{
+  "external_ratios": {
+    "whey/soy": 1.5492957746478873,
+    "whey/CHO": 3.0555555555555554,
+    "soy/CHO": 1.9722222222222223
+  },
+  "Acheson": {
+    "2h": {
+      "whey/soy": {
+        "external_predicted": 1.5492957746478873,
+        "observed_ratio_of_means": 1.5060240963855422,
+        "external_abs_log_error": 0.02832735924539744,
+        "tie_energy_abs_log_error": 0.40947312950570325,
+        "native_forecast_conditional_on_local_denominator": 38.57746478873239
+      },
+      "whey/CHO": {
+        "external_predicted": 3.0555555555555554,
+        "observed_ratio_of_means": 0.9057971014492754,
+        "external_abs_log_error": 1.2159013751912098,
+        "tie_energy_abs_log_error": 0.09893994785490354,
+        "native_forecast_conditional_on_local_denominator": 126.49999999999999
+      },
+      "soy/CHO": {
+        "external_predicted": 1.9722222222222223,
+        "observed_ratio_of_means": 0.6014492753623188,
+        "external_abs_log_error": 1.1875740159458121,
+        "tie_energy_abs_log_error": 0.5084130773606067,
+        "native_forecast_conditional_on_local_denominator": 81.65
+      }
+    },
+    "final": {
+      "whey/soy": {
+        "external_predicted": 1.5492957746478873,
+        "observed_ratio_of_means": 1.3593314763231197,
+        "external_abs_log_error": 0.13080747138623255,
+        "tie_energy_abs_log_error": 0.3069930173648682,
+        "native_forecast_conditional_on_local_denominator": 55.61971830985915
+      },
+      "whey/CHO": {
+        "external_predicted": 3.0555555555555554,
+        "observed_ratio_of_means": 0.7648902821316614,
+        "external_abs_log_error": 1.3849843048279489,
+        "tie_energy_abs_log_error": 0.2680228774916427,
+        "native_forecast_conditional_on_local_denominator": 194.94444444444443
+      },
+      "soy/CHO": {
+        "external_predicted": 1.9722222222222223,
+        "observed_ratio_of_means": 0.5626959247648903,
+        "external_abs_log_error": 1.2541768334417165,
+        "tie_energy_abs_log_error": 0.5750158948565111,
+        "native_forecast_conditional_on_local_denominator": 125.82777777777778
+      }
+    },
+    "2h_matched_glucose_anchor": {
+      "whey": {
+        "external_prediction": 3.0555555555555554,
+        "observed_ratio_of_means": 1.5432098765432098,
+        "external_abs_log_error": 0.6830968447064438,
+        "energy_prediction": 2.494565217391304,
+        "energy_abs_log_error": 0.48024986982169715,
+        "tie_abs_log_error": 0.4338645826298623
+      },
+      "soy": {
+        "external_prediction": 1.9722222222222223,
+        "observed_ratio_of_means": 1.0246913580246912,
+        "external_abs_log_error": 0.6547694854610465,
+        "energy_prediction": 2.494565217391304,
+        "energy_abs_log_error": 0.8897229993274005,
+        "tie_abs_log_error": 0.024391453124159048
+      }
+    },
+    "note": "Final glucose 270 min; other final arms330 min. Final ratios to glucose not scored. Primary2h matched-glucose anchor is separate from high-CHO sensitivity. Equal-energy arms459kcal; glucose184kcal."
+  },
+  "Power": {
+    "dose_g_per_kg": 0.5646173149309912,
+    "training_ratios": {
+      "0.3": 1.3589208650352738,
+      "0.4": 0.8020519636617174,
+      "0.6": 0.9226344107837011
+    },
+    "3h_observed_ratio": 1.4210526315789476,
+    "3h_errors": {
+      "nearest_dose": 0.43192009777239826,
+      "log_interpolation": 0.4566985336889617,
+      "flat": 0.35139788683788875,
+      "log_mean_three": 0.349535616294662
+    },
+    "predictions": {
+      "nearest_dose": 0.9226344107837011,
+      "log_interpolation": 0.9000538835390335,
+      "flat": 1,
+      "log_mean_three": 1.0018640056459245
+    },
+    "2h": "UNAVAILABLE pending original source geometry; no substitution of3h or peak",
+    "3h_p_value": 0.21,
+    "peak_ratio": 1.2777777777777777
+  }
+}

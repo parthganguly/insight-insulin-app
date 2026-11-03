@@ -1,0 +1,172 @@
+{
+  "status": "v2: exposed outside-lab transfer with admitted design facts; 2-h curve endpoint UNAVAILABLE (no figure image obtained)",
+  "source_reading_credit": "Admitted from Sol's separate source read and the coordinator's inspection of the author-uploaded article. Opus's own fetches of that page returned HTTP 403 (WebFetch and local urllib); Opus did not read the full text directly.",
+  "dose_g_per_kg": 0.5646173149309912,
+  "nearest": {
+    "nearest_training_dose": 0.6,
+    "inside_training_range": true,
+    "R1_status": "interpolation_nearest"
+  },
+  "predictions": {
+    "R1_nearest_dose": 0.9226344107837011,
+    "R2_log_interpolation": 0.9000538835390335,
+    "R2x_boundary_hold": null,
+    "R3_flat": 1.0,
+    "R4_log_mean_three": 1.0018640056459245
+  },
+  "training_box_range": {
+    "R1_nearest_dose": [
+      0.9105024727858402,
+      0.9349214122076811
+    ],
+    "R2_log_interpolation": [
+      0.886492529519423,
+      0.9138069945701602
+    ],
+    "R2x_boundary_hold": [
+      Infinity,
+      -Infinity
+    ],
+    "R3_flat": [
+      1.0,
+      1.0
+    ],
+    "R4_log_mean_three": [
+      0.9795493098636805,
+      1.0247099830151263
+    ]
+  },
+  "soy_sensitivity": {
+    "R1_nearest_dose": 0.8905703230129757,
+    "R2_log_interpolation": 0.861609033843912,
+    "R2x_boundary_hold": null,
+    "R3_flat": 1.0,
+    "R4_log_mean_three": 0.8007981640500905
+  },
+  "geometric_mean_three_whey_ratios": 1.0018640056459245,
+  "target": {
+    "endpoint": "3-h insulin AUC above baseline by trapezoids; group means (SEM); within-person; paired p = 0.21",
+    "WPH": 10.8,
+    "WPI": 7.6,
+    "sem_WPH": 2.6,
+    "sem_WPI": 0.9,
+    "unit": "as printed in the abstract (\"nM\"); not converted",
+    "ratio_hydro_over_intact": 1.4210526315789476,
+    "rounding_range": [
+      1.4052287581699348,
+      1.437086092715232
+    ],
+    "zero_correlation_log_sd_scenario": 0.2682902345572267
+  },
+  "scored": {
+    "R1_nearest_dose": {
+      "predicted_ratio": 0.9226344107837011,
+      "abs_log_error": 0.43192009777239826,
+      "abs_log_error_over_rounding": [
+        0.42072231766973694,
+        0.4431397276600449
+      ],
+      "abs_log_error_over_training_box": [
+        0.41869069117861124,
+        0.4451565508012019
+      ],
+      "native_reference_calibrated": {
+        "WPH_from_measured_WPI": 7.012021521956128,
+        "WPI_from_measured_WPH": 11.705611533420155
+      }
+    },
+    "R2_log_interpolation": {
+      "predicted_ratio": 0.9000538835390335,
+      "abs_log_error": 0.4566985336889617,
+      "abs_log_error_over_rounding": [
+        0.4455007535863005,
+        0.4679181635766083
+      ],
+      "abs_log_error_over_training_box": [
+        0.44153378234264845,
+        0.4718804672793151
+      ],
+      "native_reference_calibrated": {
+        "WPH_from_measured_WPI": 6.840409514896654,
+        "WPI_from_measured_WPH": 11.999281595824176
+      }
+    },
+    "R2x_boundary_hold": null,
+    "R3_flat": {
+      "predicted_ratio": 1.0,
+      "abs_log_error": 0.35139788683788875,
+      "abs_log_error_over_rounding": [
+        0.3402001067352274,
+        0.3626175167255354
+      ],
+      "abs_log_error_over_training_box": [
+        0.35139788683788875,
+        0.35139788683788875
+      ],
+      "native_reference_calibrated": {
+        "WPH_from_measured_WPI": 7.6,
+        "WPI_from_measured_WPH": 10.8
+      }
+    },
+    "R4_log_mean_three": {
+      "predicted_ratio": 1.0018640056459245,
+      "abs_log_error": 0.349535616294662,
+      "abs_log_error_over_rounding": [
+        0.3383378361920008,
+        0.3607552461823087
+      ],
+      "abs_log_error_over_training_box": [
+        0.32698825768343,
+        0.3720605878304821
+      ],
+      "native_reference_calibrated": {
+        "WPH_from_measured_WPI": 7.614166442909026,
+        "WPI_from_measured_WPH": 10.779906193991863
+      }
+    },
+    "S1_soy_R1_nearest_dose": {
+      "predicted_ratio": 0.8905703230129757,
+      "abs_log_error": 0.4672910959522873,
+      "abs_log_error_over_rounding": [
+        0.456093315849626,
+        0.4785107258399339
+      ],
+      "abs_log_error_over_training_box": null,
+      "native_reference_calibrated": {
+        "WPH_from_measured_WPI": 6.768334454898615,
+        "WPI_from_measured_WPH": 12.127060290378264
+      }
+    },
+    "S1_soy_R2_log_interpolation": {
+      "predicted_ratio": 0.861609033843912,
+      "abs_log_error": 0.5003515550700562,
+      "abs_log_error_over_rounding": [
+        0.48915377496739487,
+        0.5115711849577029
+      ],
+      "abs_log_error_over_training_box": null,
+      "native_reference_calibrated": {
+        "WPH_from_measured_WPI": 6.5482286572137305,
+        "WPI_from_measured_WPH": 12.534687515772397
+      }
+    },
+    "S1_soy_R2x_boundary_hold": null
+  },
+  "individual_dose_spread_descriptive": {
+    "68.7_kg": {
+      "dose_g_per_kg": 0.6550218340611353,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": false,
+      "R1_status": "extrapolation_hold",
+      "R1": 0.9226344107837011
+    },
+    "92.0_kg": {
+      "dose_g_per_kg": 0.4891304347826087,
+      "nearest_training_dose": 0.4,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "R1": 0.8020519636617174
+    }
+  },
+  "estimand_mismatch": "Training: signed net area, pre-drink to 120 min after finishing, protein only, ~250 mL. Target: area above baseline over 3 h, 500 mL, paracetamol co-ingested."
+}

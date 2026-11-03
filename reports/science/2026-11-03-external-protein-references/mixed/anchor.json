@@ -1,0 +1,32 @@
+{
+  "whey_soy_source_ratio": 1.5492957746478873,
+  "target_ratio": 1.5060240963855422,
+  "source_figure_range": [
+    1.5068493150684932,
+    1.5942028985507246
+  ],
+  "target_decimal_rounding_range": [
+    1.501002004008016,
+    1.511066398390342
+  ],
+  "worst_matched_abs_log_reading_rounding": 0.06024097342945605,
+  "best_tie_abs_log_rounding": 0.40613288776570083,
+  "highCHO_sensitivity": {
+    "whey": {
+      "actual": 0.9057971014492754,
+      "naive_reference_swap": 3.0555555555555554,
+      "local_anchor_ratio_glucose_over_highCHO": 0.5869565217391305,
+      "using_local_anchor": 1.7934782608695652,
+      "abs_log_error_translated": 0.6830968447064438,
+      "abs_log_error_naive": 1.2159013751912098
+    },
+    "soy": {
+      "actual": 0.6014492753623188,
+      "naive_reference_swap": 1.9722222222222223,
+      "local_anchor_ratio_glucose_over_highCHO": 0.5869565217391305,
+      "using_local_anchor": 1.157608695652174,
+      "abs_log_error_translated": 0.6547694854610464,
+      "abs_log_error_naive": 1.1875740159458121
+    }
+  }
+}

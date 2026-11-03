@@ -1,0 +1,12 @@
+{
+  "source": "Power O, Hallihan A, Jakeman P. Amino Acids 2009;37:333-339, doi 10.1007/s00726-008-0156-0; author-uploaded full text on ResearchGate (publication 23148702): Methods, Table 1, Figure 2 text",
+  "source_reading_credit": "Admitted from Sol's separate source read and the coordinator's inspection of the author-uploaded article. Opus's own fetches of that page returned HTTP 403 (WebFetch and local urllib); Opus did not read the full text directly.",
+  "protein_g": 45,
+  "groups": [
+    {"name": "power2009_16_healthy_males", "n": 16, "sex": "male", "drink_mL": 500,
+     "design": "within-person, random order, visits 7 days apart, overnight fast",
+     "products": {"WPI": "Isolac (native whey protein isolate)", "WPH": "Optipep 80 (whey protein hydrolysate, DH 30%)"},
+     "matching": "protein and energy matched; paracetamol 20 mg/kg added (gastric emptying marker)",
+     "mean_body_mass_kg": 79.7, "body_mass_sem_kg": 2.79, "body_mass_range_kg": [68.7, 92.0]}
+  ]
+}

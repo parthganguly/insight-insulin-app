@@ -1,0 +1,287 @@
+{
+  "7": {
+    "prior_holdout_mean": 1.2456497656772427,
+    "prior_holdout_dose": 1.2508230802551559,
+    "prior_holdout_dose_source": 1.2508230802551559
+  },
+  "9": {
+    "prior_holdout_mean": 1.2516651266113044,
+    "prior_holdout_dose": 1.2213513284440367,
+    "prior_holdout_dose_source": 1.3422019599654926
+  },
+  "10": {
+    "prior_holdout_mean": 1.2456497656772427,
+    "prior_holdout_dose": 1.2508230802551559,
+    "prior_holdout_dose_source": 1.2052606847937102
+  },
+  "11": {
+    "prior_holdout_mean": 1.2516651266113044,
+    "prior_holdout_dose": 1.2586038875512884,
+    "prior_holdout_dose_source": 1.3831405962800596
+  },
+  "12": {
+    "prior_holdout_mean": 1.2516651266113044,
+    "prior_holdout_dose": 1.3365523945599915,
+    "prior_holdout_dose_source": 1.4688019751535333
+  },
+  "16": {
+    "prior_holdout_mean": 1.2453633092068659,
+    "prior_holdout_dose": 1.2390546644614897,
+    "prior_holdout_dose_source": 1.2024727128112747
+  },
+  "17": {
+    "prior_holdout_mean": 1.2456497656772427,
+    "prior_holdout_dose": 1.2508230802551559,
+    "prior_holdout_dose_source": 1.2648701349850207
+  },
+  "18": {
+    "prior_holdout_mean": 1.243632251550938,
+    "prior_holdout_dose": 1.2641308440299128,
+    "prior_holdout_dose_source": 1.2482784704909244
+  },
+  "21": {
+    "prior_holdout_mean": 1.2494862729423097,
+    "prior_holdout_dose": 1.5767349642156057,
+    "prior_holdout_dose_source": 1.5767349642156057
+  },
+  "22": {
+    "prior_holdout_mean": 1.2453633092068659,
+    "prior_holdout_dose": 1.2029226241654574,
+    "prior_holdout_dose_source": 1.2029226241654574
+  },
+  "33": {
+    "prior_holdout_mean": 1.242641698971743,
+    "prior_holdout_dose": 1.1908190440904276,
+    "prior_holdout_dose_source": 1.3445422069765487
+  },
+  "34": {
+    "prior_holdout_mean": 1.2321508808356632,
+    "prior_holdout_dose": 1.1972487496370174,
+    "prior_holdout_dose_source": 1.342721476014552
+  },
+  "39": {
+    "prior_holdout_mean": 1.2321508808356632,
+    "prior_holdout_dose": 1.218768989364054,
+    "prior_holdout_dose_source": 1.3668565507508876
+  },
+  "40": {
+    "prior_holdout_mean": 1.2144517554278,
+    "prior_holdout_dose": 1.2037089593527968,
+    "prior_holdout_dose_source": 1.3125991017396077
+  },
+  "41": {
+    "prior_holdout_mean": 1.2144517554278,
+    "prior_holdout_dose": 1.2037089593527968,
+    "prior_holdout_dose_source": 1.3125991017396077
+  },
+  "51": {
+    "prior_holdout_mean": 1.2321508808356632,
+    "prior_holdout_dose": 1.2629768842198779,
+    "prior_holdout_dose_source": 1.4164359634254085
+  },
+  "57": {
+    "prior_holdout_mean": 1.2494862729423097,
+    "prior_holdout_dose": 1.5767349642156057,
+    "prior_holdout_dose_source": 1.7387154201656358
+  },
+  "63": {
+    "prior_holdout_mean": 1.2609832504117948,
+    "prior_holdout_dose": 1.2189398551482957,
+    "prior_holdout_dose_source": 1.285851118121298
+  },
+  "64": {
+    "prior_holdout_mean": 1.2609832504117948,
+    "prior_holdout_dose": 1.2189398551482957,
+    "prior_holdout_dose_source": 1.285851118121298
+  },
+  "65": {
+    "prior_holdout_mean": 1.2609832504117948,
+    "prior_holdout_dose": 1.2189398551482957,
+    "prior_holdout_dose_source": 1.285851118121298
+  },
+  "67": {
+    "prior_holdout_mean": 1.2270616152232914,
+    "prior_holdout_dose": 1.2333701659433005,
+    "prior_holdout_dose_source": 1.1795964281744389
+  },
+  "69": {
+    "prior_holdout_mean": 1.2270616152232914,
+    "prior_holdout_dose": 1.2848800936445255,
+    "prior_holdout_dose_source": 1.2288605732053977
+  },
+  "72": {
+    "prior_holdout_mean": 1.2742668055751507,
+    "prior_holdout_dose": 1.2509056732917072,
+    "prior_holdout_dose_source": 1.1418782493188826
+  },
+  "73": {
+    "prior_holdout_mean": 1.2453633092068659,
+    "prior_holdout_dose": 1.2029226241654574,
+    "prior_holdout_dose_source": 1.0323385858950624
+  },
+  "74": {
+    "prior_holdout_mean": 1.2456497656772427,
+    "prior_holdout_dose": 1.2508230802551559,
+    "prior_holdout_dose_source": 1.1291122106996418
+  },
+  "78": {
+    "prior_holdout_mean": 1.2494862729423097,
+    "prior_holdout_dose": 1.5767349642156057,
+    "prior_holdout_dose_source": 1.488317305971807
+  },
+  "3": {
+    "prior_holdout_mean": 1.551800053311134,
+    "prior_holdout_dose": 1.6198829568913615,
+    "prior_holdout_dose_source": 1.5438948802468753
+  },
+  "6": {
+    "prior_holdout_mean": 1.6052426855457513,
+    "prior_holdout_dose": 2.323737196230025,
+    "prior_holdout_dose_source": 2.688925073543383
+  },
+  "8": {
+    "prior_holdout_mean": 1.5643518478270828,
+    "prior_holdout_dose": 1.9383548399594348,
+    "prior_holdout_dose_source": 1.9383548399594348
+  },
+  "13": {
+    "prior_holdout_mean": 1.5832527667927634,
+    "prior_holdout_dose": 1.458089748890816,
+    "prior_holdout_dose_source": 1.2674652850613004
+  },
+  "14": {
+    "prior_holdout_mean": 1.697706192508607,
+    "prior_holdout_dose": 1.6476624199808976,
+    "prior_holdout_dose_source": 1.8543231956378692
+  },
+  "15": {
+    "prior_holdout_mean": 1.688698458988643,
+    "prior_holdout_dose": 1.3431291729115542,
+    "prior_holdout_dose_source": 1.3431291729115542
+  },
+  "24": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "25": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "26": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "27": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "28": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "29": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "30": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "31": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "32": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.3326663376272296,
+    "prior_holdout_dose_source": 1.3860690612644035
+  },
+  "35": {
+    "prior_holdout_mean": 1.65499762066448,
+    "prior_holdout_dose": 1.3600544936853889,
+    "prior_holdout_dose_source": 1.3867479840259676
+  },
+  "42": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "43": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "44": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "45": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "46": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "47": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "48": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "49": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "50": {
+    "prior_holdout_mean": 1.6641411767556957,
+    "prior_holdout_dose": 1.6776023773231303,
+    "prior_holdout_dose_source": 1.7448274085254363
+  },
+  "52": {
+    "prior_holdout_mean": 1.6290513158332498,
+    "prior_holdout_dose": 1.7888226006560877,
+    "prior_holdout_dose_source": 1.8615663510446854
+  },
+  "54": {
+    "prior_holdout_mean": 1.5643518478270828,
+    "prior_holdout_dose": 1.9383548399594348,
+    "prior_holdout_dose_source": 1.8748993407436951
+  },
+  "61": {
+    "prior_holdout_mean": 1.5643518478270828,
+    "prior_holdout_dose": 1.9383548399594348,
+    "prior_holdout_dose_source": 1.9383548399594348
+  },
+  "68": {
+    "prior_holdout_mean": 1.5643518478270828,
+    "prior_holdout_dose": 1.9383548399594348,
+    "prior_holdout_dose_source": 1.9383548399594348
+  },
+  "71": {
+    "prior_holdout_mean": 1.5643518478270828,
+    "prior_holdout_dose": 1.9383548399594348,
+    "prior_holdout_dose_source": 1.9383548399594348
+  },
+  "77": {
+    "prior_holdout_mean": 1.5643518478270828,
+    "prior_holdout_dose": 1.9383548399594348,
+    "prior_holdout_dose_source": 1.9383548399594348
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "utc": "2026-11-03T06:26:02.395331+00:00",
+  "python": "3.13.12",
+  "platform": "Windows",
+  "commands": [
+    "python -I -X utf8 transfer.py predict",
+    "python -I -X utf8 transfer.py score",
+    "python -I -X utf8 transfer.py --check",
+    "python -I -X utf8 addendum.py",
+    "python -I -X utf8 addendum.py --check"
+  ],
+  "sha256": {
+    "SPEC.md": "b571d401ef61a792049b0a1b70006d437b7e7c079818c48fd34b1f1ddc680926",
+    "transfer.py": "0ea627e7ee32d8f86773a11d7234136d4f29bfeab664be2b6d730b25a1e3815c",
+    "addendum.py": "47131d5ccf8c008ad414282ea1dad2687e05c1f1148fc99754c555c28f35937c",
+    "target_inputs.json": "1ed14eb1fe55b67b6f6ec673c902036cec2104199115923ac1310b382717c5ed",
+    "target_outcomes.json": "7a9ec98c2276bacdc96d7bec8c2be04bf481a209d602999fd49fb4993492e40b",
+    "PREDICTIONS.json": "0badfd6cf056884e1850ffc6e98771be1c1107b99b3daff64e2082fce2565805",
+    "RESULTS.json": "7b8e002f44566da24f3f58a7de7e42281cd9d5e2610a5c89504afa67650c82ee",
+    "ADDENDUM.json": "f57a23aea3fc5b86742f8eb3cfc4deb42fb1e2267a29cf267afd41b4aee9dfe3",
+    "RESULT.md": "7788eb9076f6099310fb9ba1a625edb392728fc84d422fd054cb7e7b2fcbb88c",
+    "../readings.json": "38e08d3929c5bf2bf9acbe0a176a154d96bcf2e3656c4572cd8178a95efbc6fe"
+  },
+  "frozen_match": {
+    "SPEC.md": true,
+    "transfer.py": true,
+    "../readings.json": true
+  },
+  "access_log": [
+    "pure.ul.ie record: no full text",
+    "link.springer.com: auth redirect / non-PDF",
+    "researchrepository.ul.ie: WebFetch DNS failure; local download of search-listed bitstream was a different paper (deleted)",
+    "OpenAlex: oa_status closed",
+    "PubMed abstract read"
+  ],
+  "sources": {
+    "target": "https://doi.org/10.1007/s00726-008-0156-0",
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18679613/",
+    "training": "https://doi.org/10.1017/S0007114507886314"
+  }
+}

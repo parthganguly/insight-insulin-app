@@ -1,0 +1,16 @@
+{
+  "ADDENDUM.json": "strict-JSON OK",
+  "BOUND.json": "strict-JSON OK",
+  "CHALLENGE.json": "strict-JSON OK",
+  "EXECUTION.json": "strict-JSON OK",
+  "EXECUTION_v2.json": "strict-JSON OK",
+  "FREEZE_RECEIPT.json": "strict-JSON OK",
+  "JSON_SCAN.json": "strict-JSON OK",
+  "PREDICTIONS.json": "strict-JSON OK",
+  "RESULTS.json": "strict-JSON OK",
+  "target_inputs.json": "strict-JSON OK",
+  "target_inputs_v2.json": "strict-JSON OK",
+  "target_outcomes.json": "strict-JSON OK",
+  "VERIFIED_v2.json": "NON-FINITE: non-finite token Infinity in VERIFIED_v2.json",
+  "VERIFIED_v2_corrected.json": "strict-JSON OK"
+}

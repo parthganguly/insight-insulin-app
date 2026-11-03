@@ -1,0 +1,43 @@
+{
+  "supplied": {
+    "acheson_whey_over_soy": 1.506,
+    "predicted_whey_over_soy": 1.549,
+    "acheson_glucose_normalized": {
+      "whey": 1.543,
+      "soy": 1.025
+    },
+    "predicted_vs_carbohydrate": {
+      "whey": 3.056,
+      "soy": 1.972
+    },
+    "provenance": "Coordinator/Astra-supplied aggregates for Acheson and the Claessens 2009 hydrolysate+maltodextrin reference; not independently re-read here"
+  },
+  "source_ratio_abs_log_error": 0.02815243205702972,
+  "level_log_overprediction": {
+    "whey": 0.6833782979232503,
+    "soy": 0.6543556435900723
+  },
+  "level_offset_difference": 0.029022654333178077,
+  "note_levels": "Level over-predictions are ~0.68 and ~0.65 log: a nearly common multiplicative offset (denominator/reference mismatch) that cancels in the whey/soy ratio.",
+  "form_adjustment_sensitivity": {
+    "0.3": {
+      "whey_intact_over_hydro": 0.7358780233123015,
+      "soy_intact_over_hydro": 1.281176701486054,
+      "form_adjusted_prediction": 0.8897094809705784,
+      "abs_log_error": 0.5263174247979309
+    },
+    "0.4": {
+      "whey_intact_over_hydro": 1.2468020094789911,
+      "soy_intact_over_hydro": 1.3535988605798122,
+      "form_adjusted_prediction": 1.4267863020036005,
+      "abs_log_error": 0.054032555423289844
+    },
+    "0.6": {
+      "whey_intact_over_hydro": 1.0838529197611255,
+      "soy_intact_over_hydro": 1.122875952812802,
+      "form_adjusted_prediction": 1.4951679822729944,
+      "abs_log_error": 0.0072185661228592185
+    }
+  },
+  "note_form": "Reference products are hydrolysates; Acheson proteins are intact. Applying Claessens 2007 intact/hydrolysate factors moves the 1.549 forecast across a wide range depending on the dose cell chosen, so the 1.506 agreement is not robust to the unmodelled form difference."
+}
