@@ -1,0 +1,11 @@
+# Marginal insulin SEM extraction
+
+The statistical-analysis paragraph in the thesis chapter states that all data are means ± SEM for n=8. The chapter reports eight men participating and describes time to complete all trials. It gives no per-sample denominators and no missing-insulin exception. Treat n=8 for every sample as the source's stated assumption. Individual records are unavailable to verify it independently.
+
+The three series in thesis Figure 4.4B (PDF page 65) have one cap at each of seven markers. The figure is rotated on the page. A full error-bar stem runs at constant PDF y, with its initial x at the rendered mean and its final x at a transverse cap. For the first two arms the stems point down (higher PDF x, lower concentration). For pea-first they point up. Because the source defines ±SEM, one visible side measures one SEM magnitude. Do not halve or double the stem length. Publisher Figure 4B visually confirms directions, including the downward caps at 60 minutes for both soy-containing orders and the upward cap for pea-first.
+
+SEM-extract.py verifies source hash, stem starts within 0.5 pt of the intended marker center in both coordinates, horizontality, and cap intersection at the terminal x. The JSON names every stem and cap by zero-based vector path and within-path item (−1 means last). Geometry keeps overlapping caps distinguishable. The first soy-first stem shares path 138 with the axes and series. Its independent path 139 closes the cap.
+
+Raw SEM is the absolute x-length times 80 divided by the axis span in points. The conservative stress adds 1.1 µU/mL independently to every reconstructed SEM, allowing two opposite endpoint perturbations of roughly 0.5 PDF point each and a small calibration allowance. This deliberately exceeds the visible coordinate quantization of the plots. This is a graphical stress assumption and carries no statistical coverage guarantee. Means can independently receive their stated ±0.5 µU/mL stress from the main methods. The outputs contain only published group-level observations.
+
+To reproduce, run python SEM-extract.py PATH_TO_THESIS_PDF and compare stdout with SEM-input.json. All 21 stem and cap pairs passed the geometry checks.

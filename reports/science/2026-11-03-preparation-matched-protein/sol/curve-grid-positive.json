@@ -1,0 +1,62 @@
+{
+  "soy": {
+    "native_grid120": {
+      "net": 1249.174425,
+      "positive": 1249.174425,
+      "B_mean_curve": 0.0
+    },
+    "grid0_30_60_90_120": {
+      "net": 1190.82315,
+      "positive": 1190.82315,
+      "B_mean_curve": 0.0
+    }
+  },
+  "cho": {
+    "native_grid120": {
+      "net": 1463.524425,
+      "positive": 1464.6792571750038,
+      "B_mean_curve": 1.1548321750037263
+    },
+    "grid0_30_60_90_120": {
+      "net": 1275.6852000000001,
+      "positive": 1276.840032175004,
+      "B_mean_curve": 1.1548321750037263
+    }
+  },
+  "soy_then_cho": {
+    "native_grid120": {
+      "net": 2548.80795,
+      "positive": 2548.80795,
+      "B_mean_curve": 0.0
+    },
+    "grid0_30_60_90_120": {
+      "net": 2368.6308,
+      "positive": 2368.6308,
+      "B_mean_curve": 0.0
+    }
+  },
+  "cho_then_soy": {
+    "native_grid120": {
+      "net": 2975.6996249999997,
+      "positive": 2975.6996249999997,
+      "B_mean_curve": 0.0
+    },
+    "grid0_30_60_90_120": {
+      "net": 2736.51855,
+      "positive": 2736.51855,
+      "B_mean_curve": 0.0
+    }
+  },
+  "pea_then_cho": {
+    "native_grid120": {
+      "net": 3537.9222,
+      "positive": 3537.9222,
+      "B_mean_curve": 0.0
+    },
+    "grid0_30_60_90_120": {
+      "net": 3495.2331,
+      "positive": 3495.2331,
+      "B_mean_curve": 0.0
+    }
+  }
+}

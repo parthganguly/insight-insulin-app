@@ -1,0 +1,50 @@
+[
+  {
+    "label": "graph_stress soy_then_cho lower",
+    "status": "PASS",
+    "independent": 2436.30795,
+    "reported": 2436.30795
+  },
+  {
+    "label": "graph_stress soy_then_cho upper_finite_n",
+    "status": "PASS",
+    "independent": 3224.0837067360553,
+    "reported": 3224.0837067360553
+  },
+  {
+    "label": "graph_stress cho_then_soy lower",
+    "status": "PASS",
+    "independent": 2863.199625,
+    "reported": 2863.1996249999997
+  },
+  {
+    "label": "graph_stress cho_then_soy upper_finite_n",
+    "status": "PASS",
+    "independent": 3788.6143018246216,
+    "reported": 3788.6143018246216
+  },
+  {
+    "label": "graph_stress pea_then_cho lower",
+    "status": "PASS",
+    "independent": 3425.4222,
+    "reported": 3425.4222
+  },
+  {
+    "label": "graph_stress pea_then_cho upper_finite_n",
+    "status": "PASS",
+    "independent": 4203.351766363568,
+    "reported": 4203.351766363567
+  },
+  {
+    "label": "graph_stress ratio0",
+    "status": "PASS",
+    "independent": 1.0624482834745541,
+    "reported": 1.0624482834745541
+  },
+  {
+    "label": "graph_stress ratio1",
+    "status": "PASS",
+    "independent": 1.7252957559669613,
+    "reported": 1.7252957559669608
+  }
+]

@@ -1,0 +1,114 @@
+{
+  "curve_areas": {
+    "soy": {
+      "90": 1166.216925,
+      "120": 1249.174425,
+      "150": 1298.387925
+    },
+    "cho": {
+      "90": 1421.583525,
+      "120": 1463.524425,
+      "150": 1438.905225
+    },
+    "soy_then_cho": {
+      "90": 2274.3066,
+      "120": 2548.80795,
+      "150": 2658.7790999999997
+    },
+    "cho_then_soy": {
+      "90": 2669.918925,
+      "120": 2975.699625,
+      "150": 3046.311075
+    },
+    "pea_then_cho": {
+      "90": 3106.9548,
+      "120": 3537.9222,
+      "150": 3553.09965
+    }
+  },
+  "graph_minus_table_at_150": {
+    "soy": 41.387924999999996,
+    "cho": 26.10522500000002,
+    "soy_then_cho": 4.779099999999744,
+    "cho_then_soy": -16.088925000000017,
+    "pea_then_cho": 18.4996500000002
+  },
+  "orders": {
+    "120": {
+      "soy_then_cho": {
+        "observed": 2548.80795,
+        "predictions": {
+          "scheduled": 2670.75795,
+          "full_sum": 2712.6988499999998,
+          "first_only": 1249.174425
+        },
+        "signed_errors": {
+          "scheduled": 121.95000000000027,
+          "full_sum": 163.89089999999987,
+          "first_only": -1299.633525
+        }
+      },
+      "cho_then_soy": {
+        "observed": 2975.699625,
+        "predictions": {
+          "scheduled": 2629.7413500000002,
+          "full_sum": 2712.6988499999998,
+          "first_only": 1463.524425
+        },
+        "signed_errors": {
+          "scheduled": -345.95827499999996,
+          "full_sum": -263.00077500000043,
+          "first_only": -1512.1752000000001
+        }
+      },
+      "cho_first_minus_soy_first": {
+        "observed": 426.8916750000003,
+        "signed_errors": {
+          "scheduled": -467.90827500000023,
+          "full_sum": -426.8916750000003,
+          "first_only": -212.54167500000017
+        }
+      }
+    },
+    "150": {
+      "soy_then_cho": {
+        "observed": 2654.0,
+        "predictions": {
+          "scheduled": 2720.524425,
+          "full_sum": 2669.8,
+          "first_only": 1257.0
+        },
+        "signed_errors": {
+          "scheduled": 66.52442500000006,
+          "full_sum": 15.800000000000182,
+          "first_only": -1397.0
+        }
+      },
+      "cho_then_soy": {
+        "observed": 3062.4,
+        "predictions": {
+          "scheduled": 2661.974425,
+          "full_sum": 2669.8,
+          "first_only": 1412.8
+        },
+        "signed_errors": {
+          "scheduled": -400.4255750000002,
+          "full_sum": -392.5999999999999,
+          "first_only": -1649.6000000000001
+        }
+      },
+      "cho_first_minus_soy_first": {
+        "observed": 408.4000000000001,
+        "signed_errors": {
+          "scheduled": -466.9500000000003,
+          "full_sum": -408.4000000000001,
+          "first_only": -252.60000000000014
+        }
+      }
+    }
+  },
+  "pea_soy_graph_ratio": {
+    "120": 1.3880693521848126,
+    "150": 1.336365119614488
+  }
+}

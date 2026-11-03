@@ -1,0 +1,427 @@
+{
+  "checks": [
+    {
+      "label": "published_150 observed ratio",
+      "status": "PASS",
+      "independent": 1.3318010550113037,
+      "reported": 1.3318010550113037
+    },
+    {
+      "label": "published_150 source_matched_response ratio",
+      "status": "PASS",
+      "independent": 1.3098591549295775,
+      "reported": 1.3098591549295773
+    },
+    {
+      "label": "published_150 source_matched_response logerror",
+      "status": "PASS",
+      "independent": 0.01661258675160339,
+      "reported": 0.016612586751603504
+    },
+    {
+      "label": "published_150 source_matched_response conditional",
+      "status": "PASS",
+      "independent": 3476.366197183099,
+      "reported": 3476.366197183098
+    },
+    {
+      "label": "published_150 same_composition_reference ratio",
+      "status": "PASS",
+      "independent": 1,
+      "reported": 1.0
+    },
+    {
+      "label": "published_150 same_composition_reference logerror",
+      "status": "PASS",
+      "independent": 0.28653220286354386,
+      "reported": 0.28653220286354386
+    },
+    {
+      "label": "published_150 same_composition_reference conditional",
+      "status": "PASS",
+      "independent": 2654.0,
+      "reported": 2654.0
+    },
+    {
+      "label": "published_150 three_reference_projection ratio",
+      "status": "PASS",
+      "independent": 0.9186855980416669,
+      "reported": 0.9186855980416669
+    },
+    {
+      "label": "published_150 three_reference_projection logerror",
+      "status": "PASS",
+      "independent": 0.37134353114518415,
+      "reported": 0.37134353114518415
+    },
+    {
+      "label": "published_150 three_reference_projection conditional",
+      "status": "PASS",
+      "independent": 2438.191577202584,
+      "reported": 2438.191577202584
+    },
+    {
+      "label": "published_150 substitution_slope_dry_product_mean_weight_scenario ratio",
+      "status": "PASS",
+      "independent": 0.9938123963716925,
+      "reported": 0.9938123963716925
+    },
+    {
+      "label": "published_150 substitution_slope_dry_product_mean_weight_scenario logerror",
+      "status": "PASS",
+      "independent": 0.2927390290465704,
+      "reported": 0.2927390290465704
+    },
+    {
+      "label": "published_150 substitution_slope_dry_product_mean_weight_scenario conditional",
+      "status": "PASS",
+      "independent": 2637.578099970472,
+      "reported": 2637.578099970472
+    },
+    {
+      "label": "published_150 native pea",
+      "status": "PASS",
+      "independent": 3534.6,
+      "reported": 3534.6
+    },
+    {
+      "label": "published_150 native soy",
+      "status": "PASS",
+      "independent": 2654.0,
+      "reported": 2654.0
+    },
+    {
+      "label": "curve_net_120 observed ratio",
+      "status": "PASS",
+      "independent": 1.3880693521848126,
+      "reported": 1.3880693521848126
+    },
+    {
+      "label": "curve_net_120 source_matched_response ratio",
+      "status": "PASS",
+      "independent": 1.3098591549295775,
+      "reported": 1.3098591549295773
+    },
+    {
+      "label": "curve_net_120 source_matched_response logerror",
+      "status": "PASS",
+      "independent": 0.057994210275453456,
+      "reported": 0.057994210275453574
+    },
+    {
+      "label": "curve_net_120 source_matched_response conditional",
+      "status": "PASS",
+      "independent": 3338.5794274647888,
+      "reported": 3338.5794274647883
+    },
+    {
+      "label": "curve_net_120 same_composition_reference ratio",
+      "status": "PASS",
+      "independent": 1,
+      "reported": 1.0
+    },
+    {
+      "label": "curve_net_120 same_composition_reference logerror",
+      "status": "PASS",
+      "independent": 0.327913826387394,
+      "reported": 0.327913826387394
+    },
+    {
+      "label": "curve_net_120 same_composition_reference conditional",
+      "status": "PASS",
+      "independent": 2548.80795,
+      "reported": 2548.80795
+    },
+    {
+      "label": "curve_net_120 three_reference_projection ratio",
+      "status": "PASS",
+      "independent": 0.9186855980416669,
+      "reported": 0.9186855980416669
+    },
+    {
+      "label": "curve_net_120 three_reference_projection logerror",
+      "status": "PASS",
+      "independent": 0.4127251546690343,
+      "reported": 0.4127251546690343
+    },
+    {
+      "label": "curve_net_120 three_reference_projection conditional",
+      "status": "PASS",
+      "independent": 2341.553155839105,
+      "reported": 2341.553155839105
+    },
+    {
+      "label": "curve_net_120 substitution_slope_dry_product_mean_weight_scenario ratio",
+      "status": "PASS",
+      "independent": 0.9938123963716925,
+      "reported": 0.9938123963716925
+    },
+    {
+      "label": "curve_net_120 substitution_slope_dry_product_mean_weight_scenario logerror",
+      "status": "PASS",
+      "independent": 0.33412065257042045,
+      "reported": 0.33412065257042045
+    },
+    {
+      "label": "curve_net_120 substitution_slope_dry_product_mean_weight_scenario conditional",
+      "status": "PASS",
+      "independent": 2533.036936680721,
+      "reported": 2533.036936680721
+    },
+    {
+      "label": "curve_net_120 native pea",
+      "status": "PASS",
+      "independent": 3537.9222,
+      "reported": 3537.9222
+    },
+    {
+      "label": "curve_net_120 native soy",
+      "status": "PASS",
+      "independent": 2548.80795,
+      "reported": 2548.80795
+    },
+    {
+      "label": "reading box lower",
+      "status": "PASS",
+      "independent": 1.273972602739726,
+      "reported": 1.273972602739726
+    },
+    {
+      "label": "reading box upper",
+      "status": "PASS",
+      "independent": 1.3478260869565217,
+      "reported": 1.3478260869565217
+    },
+    {
+      "label": "soy geometry mean 0",
+      "status": "PASS",
+      "independent": 9.72732580922877,
+      "reported": 9.72732
+    },
+    {
+      "label": "soy geometry mean 1",
+      "status": "PASS",
+      "independent": 25.836034540750198,
+      "reported": 25.83603
+    },
+    {
+      "label": "soy geometry mean 2",
+      "status": "PASS",
+      "independent": 34.16456378445095,
+      "reported": 34.16457
+    },
+    {
+      "label": "soy geometry mean 3",
+      "status": "PASS",
+      "independent": 20.273894455709694,
+      "reported": 20.2739
+    },
+    {
+      "label": "soy geometry mean 4",
+      "status": "PASS",
+      "independent": 13.617375026199541,
+      "reported": 13.61737
+    },
+    {
+      "label": "soy geometry mean 5",
+      "status": "PASS",
+      "independent": 11.367765137492714,
+      "reported": 11.36777
+    },
+    {
+      "label": "soy geometry mean 6",
+      "status": "PASS",
+      "independent": 11.367765137492714,
+      "reported": 11.36777
+    },
+    {
+      "label": "cho geometry mean 0",
+      "status": "PASS",
+      "independent": 10.54738843146988,
+      "reported": 10.54739
+    },
+    {
+      "label": "cho geometry mean 1",
+      "status": "PASS",
+      "independent": 37.23421603192912,
+      "reported": 37.23422
+    },
+    {
+      "label": "cho geometry mean 2",
+      "status": "PASS",
+      "independent": 38.87582050970576,
+      "reported": 38.87582
+    },
+    {
+      "label": "cho geometry mean 3",
+      "status": "PASS",
+      "independent": 21.67209413441639,
+      "reported": 21.67209
+    },
+    {
+      "label": "cho geometry mean 4",
+      "status": "PASS",
+      "independent": 13.890749497083018,
+      "reported": 13.89075
+    },
+    {
+      "label": "cho geometry mean 5",
+      "status": "PASS",
+      "independent": 10.000092376018674,
+      "reported": 10.00009
+    },
+    {
+      "label": "cho geometry mean 6",
+      "status": "PASS",
+      "independent": 9.453414356395939,
+      "reported": 9.45341
+    },
+    {
+      "label": "soy_then_cho geometry mean 0",
+      "status": "PASS",
+      "independent": 9.659206511542317,
+      "reported": 9.6592
+    },
+    {
+      "label": "soy_then_cho geometry mean 1",
+      "status": "PASS",
+      "independent": 32.13258340052075,
+      "reported": 32.13258
+    },
+    {
+      "label": "soy_then_cho geometry mean 2",
+      "status": "PASS",
+      "independent": 30.582344512642017,
+      "reported": 30.58234
+    },
+    {
+      "label": "soy_then_cho geometry mean 3",
+      "status": "PASS",
+      "independent": 52.51973994263495,
+      "reported": 52.51974
+    },
+    {
+      "label": "soy_then_cho geometry mean 4",
+      "status": "PASS",
+      "independent": 21.700468243354333,
+      "reported": 21.70047
+    },
+    {
+      "label": "soy_then_cho geometry mean 5",
+      "status": "PASS",
+      "independent": 15.91802652042442,
+      "reported": 15.91802
+    },
+    {
+      "label": "soy_then_cho geometry mean 6",
+      "status": "PASS",
+      "independent": 10.731785431634997,
+      "reported": 10.73179
+    },
+    {
+      "label": "cho_then_soy geometry mean 0",
+      "status": "PASS",
+      "independent": 10.97118174005926,
+      "reported": 10.97119
+    },
+    {
+      "label": "cho_then_soy geometry mean 1",
+      "status": "PASS",
+      "independent": 43.90540730452585,
+      "reported": 43.90541
+    },
+    {
+      "label": "cho_then_soy geometry mean 2",
+      "status": "PASS",
+      "independent": 44.94881554350073,
+      "reported": 44.94882
+    },
+    {
+      "label": "cho_then_soy geometry mean 3",
+      "status": "PASS",
+      "independent": 49.65806234421627,
+      "reported": 49.65806
+    },
+    {
+      "label": "cho_then_soy geometry mean 4",
+      "status": "PASS",
+      "independent": 27.691377006888413,
+      "reported": 27.69138
+    },
+    {
+      "label": "cho_then_soy geometry mean 5",
+      "status": "PASS",
+      "independent": 14.636374493123945,
+      "reported": 14.63638
+    },
+    {
+      "label": "cho_then_soy geometry mean 6",
+      "status": "PASS",
+      "independent": 12.013427523417379,
+      "reported": 12.01343
+    },
+    {
+      "label": "pea_then_cho geometry mean 0",
+      "status": "PASS",
+      "independent": 10.73267962826327,
+      "reported": 10.73268
+    },
+    {
+      "label": "pea_then_cho geometry mean 1",
+      "status": "PASS",
+      "independent": 29.50937810734377,
+      "reported": 29.50938
+    },
+    {
+      "label": "pea_then_cho geometry mean 2",
+      "status": "PASS",
+      "independent": 42.594197110902,
+      "reported": 42.5942
+    },
+    {
+      "label": "pea_then_cho geometry mean 3",
+      "status": "PASS",
+      "independent": 67.69061038924985,
+      "reported": 67.69061
+    },
+    {
+      "label": "pea_then_cho geometry mean 4",
+      "status": "PASS",
+      "independent": 37.378159403354985,
+      "reported": 37.37816
+    },
+    {
+      "label": "pea_then_cho geometry mean 5",
+      "status": "PASS",
+      "independent": 12.818363457150518,
+      "reported": 12.81836
+    },
+    {
+      "label": "pea_then_cho geometry mean 6",
+      "status": "PASS",
+      "independent": 9.658828961854818,
+      "reported": 9.65883
+    }
+  ],
+  "all_pass": true,
+  "time_shift_sensitivity": {
+    "150": {
+      "soy_then_CHO_shifted": 2761.91235,
+      "CHO_then_soy_shifted": 2688.0796499999997,
+      "unshifted_sum": 2737.29315,
+      "soy_first_alone": 1298.387925,
+      "CHO_first_alone": 1438.905225,
+      "observed_soy_then_CHO": 2658.7790999999997,
+      "observed_CHO_then_soy": 3046.311075
+    },
+    "120": {
+      "soy_then_CHO_shifted": 2670.75795,
+      "CHO_then_soy_shifted": 2629.7413500000002,
+      "unshifted_sum": 2712.6988499999998,
+      "soy_first_alone": 1249.174425,
+      "CHO_first_alone": 1463.524425,
+      "observed_soy_then_CHO": 2548.80795,
+      "observed_CHO_then_soy": 2975.699625
+    }
+  }
+}

@@ -1,0 +1,322 @@
+[
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "flat",
+    "prediction": 933.1958874979352,
+    "observed": 1019.5274846366642,
+    "error": -86.33159713872897,
+    "absolute_error": 86.33159713872897
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "proportional",
+    "prediction": 1244.2611833305805,
+    "observed": 1019.5274846366642,
+    "error": 224.73369869391627,
+    "absolute_error": 224.73369869391627
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "other_form_direct",
+    "prediction": 752.3131255893896,
+    "observed": 1019.5274846366642,
+    "error": -267.21435904727457,
+    "absolute_error": 267.21435904727457
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 964.8310553872591,
+    "observed": 1019.5274846366642,
+    "error": -54.69642924940513,
+    "absolute_error": 54.69642924940513
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "flat",
+    "prediction": 933.1958874979352,
+    "observed": 1442.9596298162674,
+    "error": -509.7637423183321,
+    "absolute_error": 509.7637423183321
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "proportional",
+    "prediction": 1866.3917749958705,
+    "observed": 1442.9596298162674,
+    "error": 423.43214517960314,
+    "absolute_error": 423.43214517960314
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "other_form_direct",
+    "prediction": 1284.6864290359208,
+    "observed": 1442.9596298162674,
+    "error": -158.27320078034654,
+    "absolute_error": 158.27320078034654
+  },
+  {
+    "cohort": "soy",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 1647.5923668051687,
+    "observed": 1442.9596298162674,
+    "error": 204.63273698890134,
+    "absolute_error": 204.63273698890134
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "flat",
+    "prediction": 727.6460588521879,
+    "observed": 752.3131255893896,
+    "error": -24.667066737201708,
+    "absolute_error": 24.667066737201708
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "proportional",
+    "prediction": 970.1947451362507,
+    "observed": 752.3131255893896,
+    "error": 217.8816195468611,
+    "absolute_error": 217.8816195468611
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "other_form_direct",
+    "prediction": 1019.5274846366642,
+    "observed": 752.3131255893896,
+    "error": 267.21435904727457,
+    "absolute_error": 267.21435904727457
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 794.9618788788272,
+    "observed": 752.3131255893896,
+    "error": 42.648753289437536,
+    "absolute_error": 42.648753289437536
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "flat",
+    "prediction": 727.6460588521879,
+    "observed": 1284.6864290359208,
+    "error": -557.0403701837329,
+    "absolute_error": 557.0403701837329
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "proportional",
+    "prediction": 1455.2921177043759,
+    "observed": 1284.6864290359208,
+    "error": 170.60568866845506,
+    "absolute_error": 170.60568866845506
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "other_form_direct",
+    "prediction": 1442.9596298162674,
+    "observed": 1284.6864290359208,
+    "error": 158.27320078034654,
+    "absolute_error": 158.27320078034654
+  },
+  {
+    "cohort": "soy",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 1125.1269982916017,
+    "observed": 1284.6864290359208,
+    "error": -159.55943074431912,
+    "absolute_error": 159.55943074431912
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "flat",
+    "prediction": 572.9055333473597,
+    "observed": 926.5768988007575,
+    "error": -353.6713654533978,
+    "absolute_error": 353.6713654533978
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "proportional",
+    "prediction": 763.8740444631462,
+    "observed": 926.5768988007575,
+    "error": -162.70285433761126,
+    "absolute_error": 162.70285433761126
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "other_form_direct",
+    "prediction": 742.501577950768,
+    "observed": 926.5768988007575,
+    "error": -184.07532084998945,
+    "absolute_error": 184.07532084998945
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.4,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 545.5515147600148,
+    "observed": 926.5768988007575,
+    "error": -381.02538404074267,
+    "absolute_error": 381.02538404074267
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "flat",
+    "prediction": 572.9055333473597,
+    "observed": 1573.9385651167686,
+    "error": -1001.0330317694089,
+    "absolute_error": 1001.0330317694089
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "proportional",
+    "prediction": 1145.8110666947193,
+    "observed": 1573.9385651167686,
+    "error": -428.12749842204926,
+    "absolute_error": 428.12749842204926
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "other_form_direct",
+    "prediction": 1451.9124763307386,
+    "observed": 1573.9385651167686,
+    "error": -122.02608878602996,
+    "absolute_error": 122.02608878602996
+  },
+  {
+    "cohort": "whey",
+    "target_form": "intact",
+    "dose_g_kg": 0.6,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 1066.7897204303567,
+    "observed": 1573.9385651167686,
+    "error": -507.14884468641185,
+    "absolute_error": 507.14884468641185
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "flat",
+    "prediction": 779.7306964022723,
+    "observed": 742.501577950768,
+    "error": 37.22911845150429,
+    "absolute_error": 37.22911845150429
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "proportional",
+    "prediction": 1039.6409285363632,
+    "observed": 742.501577950768,
+    "error": 297.13935058559514,
+    "absolute_error": 297.13935058559514
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "other_form_direct",
+    "prediction": 926.5768988007575,
+    "observed": 742.501577950768,
+    "error": 184.07532084998945,
+    "absolute_error": 184.07532084998945
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.4,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 1261.0812926712015,
+    "observed": 742.501577950768,
+    "error": 518.5797147204335,
+    "absolute_error": 518.5797147204335
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "flat",
+    "prediction": 779.7306964022723,
+    "observed": 1451.9124763307386,
+    "error": -672.1817799284663,
+    "absolute_error": 672.1817799284663
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "proportional",
+    "prediction": 1559.4613928045446,
+    "observed": 1451.9124763307386,
+    "error": 107.548916473806,
+    "absolute_error": 107.548916473806
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "other_form_direct",
+    "prediction": 1573.9385651167686,
+    "observed": 1451.9124763307386,
+    "error": 122.02608878602996,
+    "absolute_error": 122.02608878602996
+  },
+  {
+    "cohort": "whey",
+    "target_form": "hydrolysate",
+    "dose_g_kg": 0.6,
+    "model": "other_form_shape_low_dose_calibrated",
+    "prediction": 2142.1476003248786,
+    "observed": 1451.9124763307386,
+    "error": 690.2351239941399,
+    "absolute_error": 690.2351239941399
+  }
+]

@@ -1,0 +1,744 @@
+{
+  "status": "O2 correction; O1 unchanged (copied below from v1 RESULTS.json for reference); graph-reading point values, no CI",
+  "provenance": {
+    "levels": "readings.json: vector digitization of thesis Figure 3.1A/B (digitize.py)",
+    "units": "As printed on axis: Total AUC for plasma insulin (mU*2h*mL-1); net area (above minus below baseline) 0-120 min; no conversion. Magnitude suggests a microunit/minute-type scale; label ambiguity flagged, ratios unaffected.",
+    "note": "Native figure units as printed; no conversion and no claim that the label denotes a clean minute scale."
+  },
+  "v1_O2_estimand_audit": {
+    "bridge_same_source": "anchored (equals R_I(d0)/R_H(d0) in either anchored direction)",
+    "proportional_dose": "reciprocal (both forms predicted) -- inconsistent with the other v1 entries",
+    "no_change": "anchored A (pred intact over measured hydro)",
+    "no_form_adjustment": "anchored (=1)",
+    "bridge_cross_source": "absent in v1 O2"
+  },
+  "error_orientation": "|ln(pred/obs)| is identical for intact/hydro and hydro/intact orientation.",
+  "corrected": {
+    "primary_calibrate_0.3": {
+      "cells": {
+        "soy_0.4": {
+          "observed_intact": 1023.368283093052,
+          "observed_hydro": 756.0351245085221,
+          "observed_ratio_intact_over_hydro": 1.3535988605798122,
+          "observed_ratio_hydro_over_intact": 0.7387713074548921,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 968.6145870254265,
+              "pred_hydro": 798.7721614871964,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 1.2126293750924024,
+              "reciprocal_error": 0.10997582885475515,
+              "anchored_pred_intact_over_measured_hydro": 1.281176701486054,
+              "anchored_A_error": 0.054987914427377604,
+              "anchored_measured_intact_over_pred_hydro": 1.281176701486054,
+              "anchored_B_error": 0.054987914427377604
+            },
+            "no_change": {
+              "pred_intact": 936.9991087811286,
+              "pred_hydro": 731.3582175622541,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.281176701486054,
+              "reciprocal_error": 0.054987914427377604,
+              "anchored_pred_intact_over_measured_hydro": 1.2393592287001827,
+              "anchored_A_error": 0.08817237309236547,
+              "anchored_measured_intact_over_pred_hydro": 1.3992709161101915,
+              "anchored_B_error": 0.033184458664987905
+            },
+            "proportional_dose": {
+              "pred_intact": 1249.3321450415049,
+              "pred_hydro": 975.1442900830056,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.281176701486054,
+              "reciprocal_error": 0.054987914427377604,
+              "anchored_pred_intact_over_measured_hydro": 1.6524789716002437,
+              "anchored_A_error": 0.1995096993594155,
+              "anchored_measured_intact_over_pred_hydro": 1.0494531870826436,
+              "anchored_B_error": 0.25449761378679303
+            },
+            "no_form_adjustment": {
+              "pred_intact": 756.0351245085221,
+              "pred_hydro": 1023.368283093052,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.7387713074548921,
+              "reciprocal_error": 0.6055337361984684,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.3027668680992342,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.3027668680992342
+            },
+            "bridge_cross_source": {
+              "pred_intact": 1512.086696211445,
+              "pred_hydro": 696.5880175061722,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 2.1707044310420502,
+              "reciprocal_error": 0.4722848693746411,
+              "anchored_pred_intact_over_measured_hydro": 2.000021754537412,
+              "anchored_A_error": 0.39039118967026,
+              "anchored_measured_intact_over_pred_hydro": 1.4691155422925206,
+              "anchored_B_error": 0.08189367970438101
+            }
+          }
+        },
+        "soy_0.6": {
+          "observed_intact": 1446.9885190039313,
+          "observed_hydro": 1288.6450327653984,
+          "observed_ratio_intact_over_hydro": 1.122875952812802,
+          "observed_ratio_hydro_over_intact": 0.8905703230129757,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 1650.9819924647609,
+              "pred_hydro": 1129.4215055000218,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 1.4617943650132923,
+              "reciprocal_error": 0.26377148911491594,
+              "anchored_pred_intact_over_measured_hydro": 1.2811767014860538,
+              "anchored_A_error": 0.13188574455745777,
+              "anchored_measured_intact_over_pred_hydro": 1.2811767014860542,
+              "anchored_B_error": 0.13188574455745816
+            },
+            "no_change": {
+              "pred_intact": 936.9991087811286,
+              "pred_hydro": 731.3582175622541,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.281176701486054,
+              "reciprocal_error": 0.13188574455745797,
+              "anchored_pred_intact_over_measured_hydro": 0.7271196372598846,
+              "anchored_A_error": 0.4345574611585669,
+              "anchored_measured_intact_over_pred_hydro": 1.9784949211714598,
+              "anchored_B_error": 0.566443205716025
+            },
+            "proportional_dose": {
+              "pred_intact": 1873.9982175622572,
+              "pred_hydro": 1462.7164351245083,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.281176701486054,
+              "reciprocal_error": 0.13188574455745797,
+              "anchored_pred_intact_over_measured_hydro": 1.4542392745197692,
+              "anchored_A_error": 0.25858971940137837,
+              "anchored_measured_intact_over_pred_hydro": 0.9892474605857299,
+              "anchored_B_error": 0.12670397484392035
+            },
+            "no_form_adjustment": {
+              "pred_intact": 1288.6450327653984,
+              "pred_hydro": 1446.9885190039313,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.8905703230129757,
+              "reciprocal_error": 0.2317864182287972,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.11589320911439861,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.11589320911439861
+            },
+            "bridge_cross_source": {
+              "pred_intact": 2564.7323971803758,
+              "pred_hydro": 1359.153496352587,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.887007173261203,
+              "reciprocal_error": 0.5190988586750718,
+              "anchored_pred_intact_over_measured_hydro": 1.990255137736827,
+              "anchored_A_error": 0.5723696313218168,
+              "anchored_measured_intact_over_pred_hydro": 1.0646247998383243,
+              "anchored_B_error": 0.05327077264674495
+            }
+          }
+        },
+        "whey_0.4": {
+          "observed_intact": 928.4361812795687,
+          "observed_hydro": 744.6540623298642,
+          "observed_ratio_intact_over_hydro": 1.2468020094789911,
+          "observed_ratio_hydro_over_intact": 0.8020519636617174,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 547.9745594387758,
+              "pred_hydro": 1261.6712985944778,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.4343243442640158,
+              "reciprocal_error": 1.0545455676040372,
+              "anchored_pred_intact_over_measured_hydro": 0.7358780233123015,
+              "anchored_A_error": 0.5272727838020185,
+              "anchored_measured_intact_over_pred_hydro": 0.7358780233123015,
+              "anchored_B_error": 0.5272727838020185
+            },
+            "no_change": {
+              "pred_intact": 575.3267167807026,
+              "pred_hydro": 781.8234796455363,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.7358780233123015,
+              "reciprocal_error": 0.5272727838020185,
+              "anchored_pred_intact_over_measured_hydro": 0.7726093845249801,
+              "anchored_A_error": 0.4785635627626254,
+              "anchored_measured_intact_over_pred_hydro": 1.1875266034482665,
+              "anchored_B_error": 0.04870922103939324
+            },
+            "proportional_dose": {
+              "pred_intact": 767.1022890409369,
+              "pred_hydro": 1042.4313061940484,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.7358780233123016,
+              "reciprocal_error": 0.5272727838020185,
+              "anchored_pred_intact_over_measured_hydro": 1.0301458460333068,
+              "anchored_A_error": 0.19088149031084437,
+              "anchored_measured_intact_over_pred_hydro": 0.8906449525861999,
+              "anchored_B_error": 0.33639129349117414
+            },
+            "no_form_adjustment": {
+              "pred_intact": 744.6540623298642,
+              "pred_hydro": 928.4361812795687,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.8020519636617174,
+              "reciprocal_error": 0.44116376123782913,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.22058188061891454,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.22058188061891454
+            },
+            "bridge_cross_source": {
+              "pred_intact": 628.3582437290875,
+              "pred_hydro": 808.2031453036692,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.7774756227816857,
+              "reciprocal_error": 0.472284869374641,
+              "anchored_pred_intact_over_measured_hydro": 0.8438257111806898,
+              "anchored_A_error": 0.39039118967025993,
+              "anchored_measured_intact_over_pred_hydro": 1.1487658600124897,
+              "anchored_B_error": 0.08189367970438094
+            }
+          }
+        },
+        "whey_0.6": {
+          "observed_intact": 1574.7710490464924,
+          "observed_hydro": 1452.9379589562413,
+          "observed_ratio_intact_over_hydro": 1.0838529197611255,
+          "observed_ratio_hydro_over_intact": 0.922634410783701,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 1069.1851132321285,
+              "pred_hydro": 2139.989236202765,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.4996217247939572,
+              "reciprocal_error": 0.7744262282352274,
+              "anchored_pred_intact_over_measured_hydro": 0.7358780233123013,
+              "anchored_A_error": 0.3872131141176138,
+              "anchored_measured_intact_over_pred_hydro": 0.7358780233123015,
+              "anchored_B_error": 0.3872131141176136
+            },
+            "no_change": {
+              "pred_intact": 575.3267167807026,
+              "pred_hydro": 781.8234796455363,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.7358780233123015,
+              "reciprocal_error": 0.3872131141176136,
+              "anchored_pred_intact_over_measured_hydro": 0.39597473053426496,
+              "anchored_A_error": 1.0069270924803837,
+              "anchored_measured_intact_over_pred_hydro": 2.014228390480756,
+              "anchored_B_error": 0.6197139783627701
+            },
+            "proportional_dose": {
+              "pred_intact": 1150.653433561405,
+              "pred_hydro": 1563.6469592910726,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.7358780233123015,
+              "reciprocal_error": 0.3872131141176136,
+              "anchored_pred_intact_over_measured_hydro": 0.7919494610685299,
+              "anchored_A_error": 0.3137799119204384,
+              "anchored_measured_intact_over_pred_hydro": 1.007114195240378,
+              "anchored_B_error": 0.07343320219717521
+            },
+            "no_form_adjustment": {
+              "pred_intact": 1452.9379589562413,
+              "pred_hydro": 1574.7710490464924,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.9226344107837011,
+              "reciprocal_error": 0.1610444218690193,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.08052221093450967,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.08052221093450967
+            },
+            "bridge_cross_source": {
+              "pred_intact": 888.4652568568906,
+              "pred_hydro": 1377.56426242496,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.644953764474772,
+              "reciprocal_error": 0.5190988586750717,
+              "anchored_pred_intact_over_measured_hydro": 0.6114956604858369,
+              "anchored_A_error": 0.5723696313218167,
+              "anchored_measured_intact_over_pred_hydro": 1.14315614305672,
+              "anchored_B_error": 0.053270772646745096
+            }
+          }
+        }
+      },
+      "mean_abs_log_error": {
+        "reciprocal": {
+          "bridge_same_source": 0.5506797784522339,
+          "no_change": 0.2753398892261169,
+          "proportional_dose": 0.2753398892261169,
+          "no_form_adjustment": 0.35988208438352853,
+          "bridge_cross_source": 0.4956918640248564
+        },
+        "anchored_pred_intact_vs_measured_hydro": {
+          "bridge_same_source": 0.2753398892261169,
+          "no_change": 0.5020551223734854,
+          "proportional_dose": 0.24069020524801915,
+          "no_form_adjustment": 0.17994104219176427,
+          "bridge_cross_source": 0.48138041049603836
+        },
+        "anchored_measured_intact_vs_pred_hydro": {
+          "bridge_same_source": 0.27533988922611696,
+          "no_change": 0.31701271594579405,
+          "proportional_dose": 0.19775652107976568,
+          "no_form_adjustment": 0.17994104219176427,
+          "bridge_cross_source": 0.067582226175563
+        }
+      }
+    },
+    "S1_calibrate_0.6": {
+      "cells": {
+        "soy_0.3": {
+          "observed_intact": 936.9991087811286,
+          "observed_hydro": 731.3582175622541,
+          "observed_ratio_intact_over_hydro": 1.281176701486054,
+          "observed_ratio_hydro_over_intact": 0.7805324580443015,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 821.2245553926887,
+              "pred_hydro": 834.4635989700799,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.9841346661571202,
+              "reciprocal_error": 0.2637714891149158,
+              "anchored_pred_intact_over_measured_hydro": 1.122875952812802,
+              "anchored_A_error": 0.13188574455745802,
+              "anchored_measured_intact_over_pred_hydro": 1.1228759528128023,
+              "anchored_B_error": 0.13188574455745777
+            },
+            "no_change": {
+              "pred_intact": 1446.9885190039313,
+              "pred_hydro": 1288.6450327653984,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.122875952812802,
+              "reciprocal_error": 0.13188574455745802,
+              "anchored_pred_intact_over_measured_hydro": 1.9784949211714598,
+              "anchored_A_error": 0.4345574611585671,
+              "anchored_measured_intact_over_pred_hydro": 0.7271196372598846,
+              "anchored_B_error": 0.5664432057160249
+            },
+            "proportional_dose": {
+              "pred_intact": 723.4942595019656,
+              "pred_hydro": 644.3225163826992,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.122875952812802,
+              "reciprocal_error": 0.13188574455745802,
+              "anchored_pred_intact_over_measured_hydro": 0.9892474605857299,
+              "anchored_A_error": 0.25858971940137826,
+              "anchored_measured_intact_over_pred_hydro": 1.4542392745197692,
+              "anchored_B_error": 0.1267039748439204
+            },
+            "no_form_adjustment": {
+              "pred_intact": 731.3582175622541,
+              "pred_hydro": 936.9991087811286,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.7805324580443015,
+              "reciprocal_error": 0.495557907343713,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.24777895367185654,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.24777895367185654
+            },
+            "bridge_cross_source": {
+              "pred_intact": 528.642658475318,
+              "pred_hydro": 693.4177315240223,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 0.7623725705909555,
+              "reciprocal_error": 0.5190988586750717,
+              "anchored_pred_intact_over_measured_hydro": 0.7228231607725378,
+              "anchored_A_error": 0.5723696313218167,
+              "anchored_measured_intact_over_pred_hydro": 1.3512765338748305,
+              "anchored_B_error": 0.053270772646745096
+            }
+          }
+        },
+        "soy_0.4": {
+          "observed_intact": 1023.368283093052,
+          "observed_hydro": 756.0351245085221,
+          "observed_ratio_intact_over_hydro": 1.3535988605798122,
+          "observed_ratio_hydro_over_intact": 0.7387713074548921,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 848.9336607924523,
+              "pred_hydro": 911.3814224354137,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.9314801025062733,
+              "reciprocal_error": 0.3737473179696711,
+              "anchored_pred_intact_over_measured_hydro": 1.1228759528128023,
+              "anchored_A_error": 0.18687365898483538,
+              "anchored_measured_intact_over_pred_hydro": 1.122875952812802,
+              "anchored_B_error": 0.18687365898483566
+            },
+            "no_change": {
+              "pred_intact": 1446.9885190039313,
+              "pred_hydro": 1288.6450327653984,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.122875952812802,
+              "reciprocal_error": 0.18687365898483566,
+              "anchored_pred_intact_over_measured_hydro": 1.9139170550370648,
+              "anchored_A_error": 0.34638508806620155,
+              "anchored_measured_intact_over_pred_hydro": 0.794142884248683,
+              "anchored_B_error": 0.533258747051037
+            },
+            "proportional_dose": {
+              "pred_intact": 964.6590126692876,
+              "pred_hydro": 859.0966885102656,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.122875952812802,
+              "reciprocal_error": 0.18687365898483566,
+              "anchored_pred_intact_over_measured_hydro": 1.2759447033580433,
+              "anchored_A_error": 0.059080020041962694,
+              "anchored_measured_intact_over_pred_hydro": 1.1912143263730244,
+              "anchored_B_error": 0.12779363894287277
+            },
+            "no_form_adjustment": {
+              "pred_intact": 756.0351245085221,
+              "pred_hydro": 1023.368283093052,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.7387713074548921,
+              "reciprocal_error": 0.6055337361984684,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.3027668680992342,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.3027668680992342
+            },
+            "bridge_cross_source": {
+              "pred_intact": 853.0995637447268,
+              "pred_hydro": 660.4512963783441,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.291691860433601,
+              "reciprocal_error": 0.04681398930043057,
+              "anchored_pred_intact_over_measured_hydro": 1.1283861504441393,
+              "anchored_A_error": 0.1819784416515569,
+              "anchored_measured_intact_over_pred_hydro": 1.549498484906915,
+              "anchored_B_error": 0.13516445235112645
+            }
+          }
+        },
+        "whey_0.3": {
+          "observed_intact": 575.3267167807026,
+          "observed_hydro": 781.8234796455363,
+          "observed_ratio_intact_over_hydro": 0.7358780233123015,
+          "observed_ratio_hydro_over_intact": 1.3589208650352738,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 847.3816611516172,
+              "pred_hydro": 530.8162263450847,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 1.5963748263428794,
+              "reciprocal_error": 0.7744262282352272,
+              "anchored_pred_intact_over_measured_hydro": 1.0838529197611253,
+              "anchored_A_error": 0.3872131141176135,
+              "anchored_measured_intact_over_pred_hydro": 1.0838529197611255,
+              "anchored_B_error": 0.38721311411761367
+            },
+            "no_change": {
+              "pred_intact": 1574.7710490464924,
+              "pred_hydro": 1452.9379589562413,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.0838529197611255,
+              "reciprocal_error": 0.38721311411761367,
+              "anchored_pred_intact_over_measured_hydro": 2.014228390480756,
+              "anchored_A_error": 1.0069270924803837,
+              "anchored_measured_intact_over_pred_hydro": 0.39597473053426496,
+              "anchored_B_error": 0.6197139783627701
+            },
+            "proportional_dose": {
+              "pred_intact": 787.3855245232462,
+              "pred_hydro": 726.4689794781207,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.0838529197611255,
+              "reciprocal_error": 0.38721311411761367,
+              "anchored_pred_intact_over_measured_hydro": 1.007114195240378,
+              "anchored_A_error": 0.3137799119204384,
+              "anchored_measured_intact_over_pred_hydro": 0.7919494610685299,
+              "anchored_B_error": 0.07343320219717518
+            },
+            "no_form_adjustment": {
+              "pred_intact": 781.8234796455363,
+              "pred_hydro": 575.3267167807026,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 1.3589208650352738,
+              "reciprocal_error": 0.6133818063662081,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.30669090318310405,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.30669090318310405
+            },
+            "bridge_cross_source": {
+              "pred_intact": 1019.7448356443231,
+              "pred_hydro": 824.6011033856436,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.2366522812757093,
+              "reciprocal_error": 0.5190988586750716,
+              "anchored_pred_intact_over_measured_hydro": 1.3043159513534381,
+              "anchored_A_error": 0.5723696313218167,
+              "anchored_measured_intact_over_pred_hydro": 0.6977030644496214,
+              "anchored_B_error": 0.053270772646745304
+            }
+          }
+        },
+        "whey_0.4": {
+          "observed_intact": 928.4361812795687,
+          "observed_hydro": 744.6540623298642,
+          "observed_ratio_intact_over_hydro": 1.2468020094789911,
+          "observed_ratio_hydro_over_intact": 0.8020519636617174,
+          "models": {
+            "bridge_same_source": {
+              "pred_intact": 807.0954796682065,
+              "pred_hydro": 856.6071690651444,
+              "measured_cells_used": [
+                "target@d0",
+                "opp@d0",
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.9422002392870792,
+              "reciprocal_error": 0.2801193393688098,
+              "anchored_pred_intact_over_measured_hydro": 1.0838529197611255,
+              "anchored_A_error": 0.1400596696844048,
+              "anchored_measured_intact_over_pred_hydro": 1.0838529197611253,
+              "anchored_B_error": 0.14005966968440506
+            },
+            "no_change": {
+              "pred_intact": 1574.7710490464924,
+              "pred_hydro": 1452.9379589562413,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.0838529197611255,
+              "reciprocal_error": 0.1400596696844048,
+              "anchored_pred_intact_over_measured_hydro": 2.114768627084862,
+              "anchored_A_error": 0.5283635297177584,
+              "anchored_measured_intact_over_pred_hydro": 0.6390060742487153,
+              "anchored_B_error": 0.6684231994021631
+            },
+            "proportional_dose": {
+              "pred_intact": 1049.847366030995,
+              "pred_hydro": 968.6253059708275,
+              "measured_cells_used": [
+                "target@d0"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.0838529197611255,
+              "reciprocal_error": 0.1400596696844048,
+              "anchored_pred_intact_over_measured_hydro": 1.4098457513899083,
+              "anchored_A_error": 0.12289842160959412,
+              "anchored_measured_intact_over_pred_hydro": 0.9585091113730728,
+              "anchored_B_error": 0.2629580912939989
+            },
+            "no_form_adjustment": {
+              "pred_intact": 744.6540623298642,
+              "pred_hydro": 928.4361812795687,
+              "measured_cells_used": [
+                "opp@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": true,
+              "reciprocal_ratio": 0.8020519636617174,
+              "reciprocal_error": 0.44116376123782913,
+              "anchored_pred_intact_over_measured_hydro": 1.0,
+              "anchored_A_error": 0.22058188061891454,
+              "anchored_measured_intact_over_pred_hydro": 1.0,
+              "anchored_B_error": 0.22058188061891454
+            },
+            "bridge_cross_source": {
+              "pred_intact": 1113.7412104946873,
+              "pred_hydro": 852.4241375806553,
+              "measured_cells_used": [
+                "target@d0",
+                "other_cohort_same_form@d0",
+                "other_cohort_same_form@d"
+              ],
+              "uses_measured_opposite_form_at_target_dose": false,
+              "reciprocal_ratio": 1.3065575708070638,
+              "reciprocal_error": 0.046813989300430646,
+              "anchored_pred_intact_over_measured_hydro": 1.4956491434559933,
+              "anchored_A_error": 0.18197844165155688,
+              "anchored_measured_intact_over_pred_hydro": 1.089171622843354,
+              "anchored_B_error": 0.1351644523511262
+            }
+          }
+        }
+      },
+      "mean_abs_log_error": {
+        "reciprocal": {
+          "bridge_same_source": 0.423016093672156,
+          "no_change": 0.21150804683607805,
+          "proportional_dose": 0.21150804683607805,
+          "no_form_adjustment": 0.5389093027865547,
+          "bridge_cross_source": 0.2829564239877511
+        },
+        "anchored_pred_intact_vs_measured_hydro": {
+          "bridge_same_source": 0.21150804683607793,
+          "no_change": 0.5790582928557276,
+          "proportional_dose": 0.18858701824334337,
+          "no_form_adjustment": 0.26945465139327734,
+          "bridge_cross_source": 0.3771740364866868
+        },
+        "anchored_measured_intact_vs_pred_hydro": {
+          "bridge_same_source": 0.21150804683607805,
+          "no_change": 0.5969597826329988,
+          "proportional_dose": 0.14772222681949182,
+          "no_form_adjustment": 0.26945465139327734,
+          "bridge_cross_source": 0.09421761249893576
+        }
+      }
+    }
+  },
+  "v1_O1_mean": {
+    "primary_calibrate_0.3": {
+      "bridge_same_source": 0.27533988922611696,
+      "no_change": 0.4095339191596397,
+      "proportional_dose": 0.21922336316389243,
+      "no_form_adjustment": 0.17994104219176424,
+      "bridge_cross_source": 0.2744813183358007
+    },
+    "S1_calibrate_0.6": {
+      "bridge_same_source": 0.21150804683607802,
+      "no_change": 0.5880090377443633,
+      "proportional_dose": 0.1681546225314176,
+      "no_form_adjustment": 0.26945465139327734,
+      "bridge_cross_source": 0.23569582449281126
+    }
+  }
+}

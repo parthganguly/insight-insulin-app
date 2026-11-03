@@ -1,0 +1,36 @@
+{
+  "bridge": {
+    "route": "installed Claude Code",
+    "requested_alias": "claude-opus-5-5",
+    "init_model": "claude-opus-5-5",
+    "assistant_returned_models": [
+      "claude-opus-5-5"
+    ],
+    "is_error": false,
+    "subtype": "success",
+    "tool_calls": 23,
+    "exit_code": 0,
+    "process_exited": true
+  },
+  "correct": {
+    "route": "installed Claude Code",
+    "requested_alias": "claude-opus-5-5",
+    "init_model": "claude-opus-5-5",
+    "assistant_returned_models": [
+      "claude-opus-5-5"
+    ],
+    "is_error": false,
+    "subtype": "success",
+    "tool_calls": 5,
+    "exit_code": 0,
+    "process_exited": true
+  },
+  "sol": {
+    "selected_model": "gpt-6.1-sol",
+    "actual": "source-check, independent reconstruction, O2 challenge, corrected recheck and bounds"
+  },
+  "astra": {
+    "selected_model": "gpt-6-astra",
+    "actual": "primary curves, SEM geometry, timing implementation and sampling challenge"
+  }
+}

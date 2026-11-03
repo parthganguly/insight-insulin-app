@@ -1,0 +1,98 @@
+[
+  {
+    "label": "drawn soy_then_cho lower",
+    "status": "PASS",
+    "independent": 2548.80795,
+    "reported": 2548.80795
+  },
+  {
+    "label": "drawn soy_then_cho upper_finite_n",
+    "status": "PASS",
+    "independent": 2870.923683497147,
+    "reported": 2870.923683497147
+  },
+  {
+    "label": "drawn cho_then_soy lower",
+    "status": "PASS",
+    "independent": 2975.699625,
+    "reported": 2975.6996249999997
+  },
+  {
+    "label": "drawn cho_then_soy upper_finite_n",
+    "status": "PASS",
+    "independent": 3423.516962347639,
+    "reported": 3423.516962347639
+  },
+  {
+    "label": "drawn pea_then_cho lower",
+    "status": "PASS",
+    "independent": 3537.9222,
+    "reported": 3537.9222
+  },
+  {
+    "label": "drawn pea_then_cho upper_finite_n",
+    "status": "PASS",
+    "independent": 3832.357228928549,
+    "reported": 3832.357228928549
+  },
+  {
+    "label": "drawn ratio0",
+    "status": "PASS",
+    "independent": 1.2323288913379837,
+    "reported": 1.2323288913379837
+  },
+  {
+    "label": "drawn ratio1",
+    "status": "PASS",
+    "independent": 1.5035880710151384,
+    "reported": 1.5035880710151384
+  },
+  {
+    "label": "graph_stress soy_then_cho lower",
+    "status": "PASS",
+    "independent": 2436.30795,
+    "reported": 2436.30795
+  },
+  {
+    "label": "graph_stress soy_then_cho upper_finite_n",
+    "status": "PASS",
+    "independent": 3188.308520051632,
+    "reported": 3188.308520051632
+  },
+  {
+    "label": "graph_stress cho_then_soy lower",
+    "status": "PASS",
+    "independent": 2863.199625,
+    "reported": 2863.1996249999997
+  },
+  {
+    "label": "graph_stress cho_then_soy upper_finite_n",
+    "status": "PASS",
+    "independent": 3716.0403298903716,
+    "reported": 3716.0403298903716
+  },
+  {
+    "label": "graph_stress pea_then_cho lower",
+    "status": "PASS",
+    "independent": 3425.4222,
+    "reported": 3425.4222
+  },
+  {
+    "label": "graph_stress pea_then_cho upper_finite_n",
+    "status": "PASS",
+    "independent": 4160.797938054542,
+    "reported": 4160.797938054542
+  },
+  {
+    "label": "graph_stress ratio0",
+    "status": "PASS",
+    "independent": 1.074369741340003,
+    "reported": 1.074369741340003
+  },
+  {
+    "label": "graph_stress ratio1",
+    "status": "PASS",
+    "independent": 1.707829233186446,
+    "reported": 1.707829233186446
+  }
+]
