@@ -1,0 +1,789 @@
+{
+  "accounting": "total basis: amylose fraction as the only accessibility descriptor (ignores measured RS). subtracted basis: the barley potentially available starch method is not established as equivalent to wheat total starch less RS. Applying TOTAL-starch amylose fraction to this pool is not established, and may count the RS/amylose accessibility difference twice. Neither basis is preferred.",
+  "costabile_2023_first_breakfast": {
+    "coverage": {
+      "amylose_adjustment": "UNAVAILABLE (flour substitution %, molecular amylose not verified)",
+      "dose_available_carbohydrate": "AVAILABLE (meal available CHO ratio = 1 for all pairs)",
+      "starch_minus_RS": "UNAVAILABLE (total starch per serving missing; resistant starch is reported)"
+    },
+    "equal_CHO_abs_log_error_signed120": {
+      "70HAF/control": 0.04343020308841805,
+      "85HAF/70HAF": 0.02007105041521623,
+      "85HAF/control": 0.06350125350363431
+    },
+    "note": "Only the available-carbohydrate dose (=1) supplies predictions; the frozen starch-RS comparator and every amylose model abstain.",
+    "rows": [
+      {
+        "bread_starch_minus_RS_ratio": "unavailable",
+        "comparison": "85HAF/control",
+        "first_meal_signed_120_ratio": "0.9384729429206821",
+        "first_meal_signed_240_ratio": "1.0146812860063186",
+        "meal_available_CHO_ratio": "1",
+        "published_breakfast_iAUC_ratio": "1.0227272727272727"
+      },
+      {
+        "bread_starch_minus_RS_ratio": "unavailable",
+        "comparison": "70HAF/control",
+        "first_meal_signed_120_ratio": "0.9574993822584632",
+        "first_meal_signed_240_ratio": "1.0810258316298087",
+        "meal_available_CHO_ratio": "1",
+        "published_breakfast_iAUC_ratio": "1.0606060606060606"
+      },
+      {
+        "bread_starch_minus_RS_ratio": "unavailable",
+        "comparison": "85HAF/70HAF",
+        "first_meal_signed_120_ratio": "0.9801290322580645",
+        "first_meal_signed_240_ratio": "0.9386281588447651",
+        "meal_available_CHO_ratio": "1",
+        "published_breakfast_iAUC_ratio": "0.9642857142857143"
+      }
+    ]
+  },
+  "distinguishes": "High vs low pairs co-vary amylose (0.24 vs 0.743), total starch, RS, fibre, protein, moisture and sugars, with the same amylose contrast in both milling strata: the trial cannot separate amylose from RS or dose. Milling pairs hold amylose fixed (amylose terms cancel).",
+  "hoebler": {
+    "amylose_coverage": {
+      "HAWB/SP": "ABSTAIN",
+      "HAWB/WWB": "ABSTAIN: HAWB amylose fraction not established",
+      "SP/WWB": "strict amylose model UNAVAILABLE: WWB bread wheat vs spaghetti durum wheat, neither amylose fraction established; a cancelled factor is only a conditional equal-fraction sensitivity, identical to the dose rule"
+    },
+    "dose_only": {
+      "available_starch": {
+        "HAWB/SP": 0.7789473684210526,
+        "HAWB/WWB": 0.8043478260869565,
+        "SP/WWB": 1.0326086956521738
+      },
+      "total_starch": {
+        "HAWB/SP": 0.978021978021978,
+        "HAWB/WWB": 0.956989247311828,
+        "SP/WWB": 0.978494623655914
+      }
+    },
+    "dose_only_abs_log_error": {
+      "available_starch": {
+        "HAWB/SP": 0.2186983219151824,
+        "HAWB/WWB": 0.33079408424795675,
+        "SP/WWB": 0.5494924061631391
+      },
+      "total_starch": {
+        "HAWB/SP": 0.0088903396964784,
+        "HAWB/WWB": 0.5045544446717112,
+        "SP/WWB": 0.4956641049752327
+      }
+    },
+    "note": "II normalized indices not used as native ratios; available > total for spaghetti (95 vs 91) retained as printed.",
+    "observed_signed120_group": {
+      "HAWB/SP": 0.9693655666410845,
+      "HAWB/WWB": 0.5778057334553217,
+      "SP/WWB": 0.5960658737419946
+    }
+  },
+  "status": "v2 outcome-exposed transfer audit; EMPIRICAL barley-trained amylose model; no target fit; bounds/implied theta are diagnostics only",
+  "training": {
+    "barley_pairs": {
+      "flour": {
+        "Ah": 0.42,
+        "An": 0.33,
+        "cvh": 0.29411764705882354,
+        "cvn": 0.2727272727272727,
+        "ratio": 0.9272727272727272
+      },
+      "kernel": {
+        "Ah": 0.42,
+        "An": 0.33,
+        "cvh": 0.3846153846153846,
+        "cvn": 0.1724137931034483,
+        "ratio": 0.896551724137931
+      }
+    },
+    "bornet_b_matches_model_py": true,
+    "bornet_heated_b_exact": 1.7282696920791498,
+    "dof": "1 parameter from 2 within-form barley pairs (kernel n=10, flour n=9); amylose support 0.33-0.42",
+    "empirical_barley_power_b": 0.6402334327027194,
+    "identification_sensitivity_range_theta_ge_0": {
+      "flour": {
+        "ratio_at_theta0": 0.8656716417910449,
+        "ratio_limit_theta_inf": 1.2727272727272727,
+        "rho_0": {
+          "includes_0": true,
+          "includes_1": true,
+          "log_se": 0.4011051677561321,
+          "theta_band_sensitivity_range": [
+            0.0,
+            "unbounded"
+          ]
+        },
+        "rho_minus1": {
+          "includes_0": true,
+          "includes_1": true,
+          "log_se": 0.5668449197860963,
+          "theta_band_sensitivity_range": [
+            0.0,
+            "unbounded"
+          ]
+        },
+        "rho_plus1": {
+          "includes_0": false,
+          "includes_1": false,
+          "log_se": 0.021390374331550832,
+          "theta_band_sensitivity_range": [
+            0.1245556373638863,
+            0.6726919267989389
+          ]
+        }
+      },
+      "kernel": {
+        "ratio_at_theta0": 0.8656716417910449,
+        "ratio_limit_theta_inf": 1.2727272727272727,
+        "rho_0": {
+          "includes_0": true,
+          "includes_1": true,
+          "log_se": 0.4214920048294616,
+          "theta_band_sensitivity_range": [
+            0.0,
+            "unbounded"
+          ]
+        },
+        "rho_minus1": {
+          "includes_0": true,
+          "includes_1": true,
+          "log_se": 0.5570291777188329,
+          "theta_band_sensitivity_range": [
+            0.0,
+            "unbounded"
+          ]
+        },
+        "rho_plus1": {
+          "includes_0": true,
+          "includes_1": true,
+          "log_se": 0.2122015915119363,
+          "theta_band_sensitivity_range": [
+            0.0,
+            "unbounded"
+          ]
+        }
+      }
+    },
+    "theta": {
+      "flour_donor": 0.36204146730462494,
+      "joint": 0.25937434213269683,
+      "kernel_donor": 0.16666666666666663
+    },
+    "theta_fit_domain": [
+      0.0,
+      1.0
+    ]
+  },
+  "wheat": {
+    "dose": {
+      "HAW-R": {
+        "available": 28.798,
+        "total": 34.485
+      },
+      "HAW-W": {
+        "available": 20.206999999999997,
+        "total": 24.078999999999997
+      },
+      "LAW-R": {
+        "available": 42.108000000000004,
+        "total": 42.592
+      },
+      "LAW-W": {
+        "available": 32.186,
+        "total": 32.549
+      }
+    },
+    "pairs": {
+      "HAW-R/LAW-R": {
+        "admissibility": {
+          "available": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.12044515477773389,
+              "180": 0.17505538081037328
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.5821415688766319,
+              "envelope_no_reading": 0.4953875772068618,
+              "sol_lower_reading": 0.6044881524495277
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.6839080459770114
+          },
+          "bornet_heated_exact_x_total": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 1.5846282240315024,
+              "180": 1.530017997998863
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -1.1229318099326042,
+              "envelope_no_reading": -1.2096858016023746,
+              "sol_lower_reading": -1.1005852263597087
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.1243064756459419
+          },
+          "empirical_barley_power:joint:available": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.5737230458105528,
+              "180": 0.5191128197779133
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.1120266317116548,
+              "envelope_no_reading": -0.19878062338142502,
+              "sol_lower_reading": -0.08968004813875904
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.34160505926205514
+          },
+          "empirical_barley_power:joint:total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.40493323503699946,
+              "180": 0.35032300900436025
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.056763179061898476,
+              "envelope_no_reading": -0.02999081260787177,
+              "sol_lower_reading": 0.07910976263479419
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.40441641732251044
+          },
+          "empirical_barley_theta:flour_donor:available": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.35583045633870647,
+              "180": 0.30122023030606715
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.10586595776019148,
+              "envelope_no_reading": 0.019111966090421352,
+              "sol_lower_reading": 0.12821254133308732
+            },
+            "near_a_lower_boundary": true,
+            "pred": 0.42477000671039233
+          },
+          "empirical_barley_theta:flour_donor:total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.18704064556515343,
+              "180": 0.1324304195325141
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.2746557685337446,
+              "envelope_no_reading": 0.18790177686397436,
+              "sol_lower_reading": 0.2970023521066403
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.5028730097586028
+          },
+          "empirical_barley_theta:joint:available": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.48298478661236616,
+              "180": 0.42837456057972684
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.02128837251346814,
+              "envelope_no_reading": -0.10804236418323825,
+              "sol_lower_reading": 0.0010582110594277204
+            },
+            "near_a_lower_boundary": true,
+            "pred": 0.37405151609154413
+          },
+          "empirical_barley_theta:joint:total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.3141949758388127,
+              "180": 0.25958474980617335
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.1475014382600852,
+              "envelope_no_reading": 0.06074744659031495,
+              "sol_lower_reading": 0.16984802183298103
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.44282884556387697
+          },
+          "empirical_barley_theta:kernel_donor:available": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.6218047387899432,
+              "180": 0.5671945127573039
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.16010832469104533,
+              "envelope_no_reading": -0.24686231636081546,
+              "sol_lower_reading": -0.1377617411181495
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.3255687260536398
+          },
+          "empirical_barley_theta:kernel_donor:total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.45301492801639004,
+              "180": 0.3984047019837508
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.008681486082507921,
+              "envelope_no_reading": -0.07807250558726227,
+              "sol_lower_reading": 0.031028069655403674
+            },
+            "near_a_lower_boundary": true,
+            "pred": 0.3854314630681818
+          },
+          "equality": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.5003769608807338,
+              "180": 0.5549871869133731
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.9620733749796316,
+              "envelope_no_reading": 0.8753193833098616,
+              "sol_lower_reading": 0.9844199585525275
+            },
+            "near_a_lower_boundary": false,
+            "pred": 1.0
+          },
+          "total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.2892349655512873,
+              "180": 0.3438451915839266
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.7509313796501852,
+              "envelope_no_reading": 0.664177387980415,
+              "sol_lower_reading": 0.7732779632230808
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.8096590909090909
+          }
+        },
+        "graph_reading_bounds": {
+          "120": [
+            0.539396043040611,
+            0.6792881484286256
+          ],
+          "180": [
+            0.49191489361702123,
+            0.6658219828951535
+          ]
+        },
+        "input_differences": {
+          "Fiber": [
+            5.5,
+            3.3
+          ],
+          "Moisture": [
+            44.0,
+            37.0
+          ],
+          "Protein": [
+            13.1,
+            10.8
+          ],
+          "Resistant starch": [
+            4.7,
+            0.4
+          ],
+          "Starch": [
+            28.5,
+            35.2
+          ],
+          "Sugars": [
+            5.0,
+            6.1
+          ],
+          "amylose_fraction": [
+            0.743,
+            0.24
+          ]
+        },
+        "observed_signed_group": {
+          "120": 0.6063020644693952,
+          "180": 0.5740796168811733
+        },
+        "participant_positive_outer_bounds": {
+          "coordinator_with_reading": [
+            0.38209982788296043,
+            1.0980689132904204
+          ],
+          "envelope_no_reading": [
+            0.4167289021657954,
+            1.032234697573343
+          ],
+          "sol_lower_reading": 0.3736559
+        },
+        "target_implied_theta_DIAGNOSTIC": {
+          "available": {
+            "120": 0.7859919796959929,
+            "180": 0.7034585973939537
+          },
+          "total": {
+            "120": 0.5541043949641866,
+            "180": 0.4920640473155643
+          }
+        },
+        "theta_admissibility_threshold_in_fit_domain_DIAGNOSTIC": {
+          "available": {
+            "coordinator_with_reading": 0.2752655330791249,
+            "envelope_no_reading": 0.3453557258994783,
+            "sol_lower_reading": 0.2585969908902591
+          },
+          "total": {
+            "coordinator_with_reading": 0.1614392679287417,
+            "envelope_no_reading": 0.21658664237902955,
+            "sol_lower_reading": 0.1482637294769836
+          }
+        }
+      },
+      "HAW-W/LAW-W": {
+        "admissibility": {
+          "available": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.018872218304517206,
+              "180": 0.024242317820413927
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.5072295464141628,
+              "envelope_no_reading": 0.41106574632237286,
+              "sol_lower_reading": 0.5011913998642819
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.6278195488721804
+          },
+          "bornet_heated_exact_x_total": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 1.7286394663997096,
+              "180": 1.7340095659156063
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -1.2025377016810295,
+              "envelope_no_reading": -1.2987015017728194,
+              "sol_lower_reading": -1.2085758482309106
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.11357751263349555
+          },
+          "empirical_barley_power:joint:available": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.7130404188928041,
+              "180": 0.7184105184087007
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.186938654174124,
+              "envelope_no_reading": -0.28310245426591396,
+              "sol_lower_reading": -0.19297680072400492
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.31358942983625443
+          },
+          "empirical_barley_power:joint:total": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.5489444774052068,
+              "180": 0.5543145769211036
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.022842712686526847,
+              "envelope_no_reading": -0.11900651277831673,
+              "sol_lower_reading": -0.028880859236407753
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.3695110050297685
+          },
+          "empirical_barley_theta:flour_donor:available": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.4951478294209578,
+              "180": 0.5005179289368545
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.03095393529772216,
+              "envelope_no_reading": -0.06520986479406767,
+              "sol_lower_reading": 0.024915788747841262
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.3899338742336065
+          },
+          "empirical_barley_theta:flour_donor:total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.3310518879333606,
+              "180": 0.33642198744925733
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.19504987678531951,
+              "envelope_no_reading": 0.09888607669352961,
+              "sol_lower_reading": 0.18901173023543863
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.45946975265858747
+          },
+          "empirical_barley_theta:joint:available": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.6223021596946172,
+              "180": 0.627672259210514
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.09620039497593731,
+              "envelope_no_reading": -0.19236419506772726,
+              "sol_lower_reading": -0.10223854152581818
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.3433748958927178
+          },
+          "empirical_barley_theta:joint:total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.45820621820702,
+              "180": 0.46357631772291663
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.06789554651165998,
+              "envelope_no_reading": -0.02826825358012991,
+              "sol_lower_reading": 0.06185739996177904
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.40460803461890626
+          },
+          "empirical_barley_theta:kernel_donor:available": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.7611221118721945,
+              "180": 0.7664922113880912
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.23502034715351441,
+              "envelope_no_reading": -0.3311841472453043,
+              "sol_lower_reading": -0.24105849370339535
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.29886826441102754
+          },
+          "empirical_barley_theta:kernel_donor:total": {
+            "above_sol_lower": false,
+            "abs_log_error_signed": {
+              "120": 0.5970261703845972,
+              "180": 0.602396269900494
+            },
+            "inside_coordinator_with_reading": false,
+            "inside_envelope_no_reading": false,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": -0.0709244056659172,
+              "envelope_no_reading": -0.16708820575770714,
+              "sol_lower_reading": -0.07696255221579815
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.3521646530359355
+          },
+          "equality": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.4466302780604269,
+              "180": 0.44126017854453004
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.9727320427791069,
+              "envelope_no_reading": 0.8765682426873169,
+              "sol_lower_reading": 0.9666938962292259
+            },
+            "near_a_lower_boundary": false,
+            "pred": 1.0
+          },
+          "total": {
+            "above_sol_lower": true,
+            "abs_log_error_signed": {
+              "120": 0.14522372318308,
+              "180": 0.13985362366718335
+            },
+            "inside_coordinator_with_reading": true,
+            "inside_envelope_no_reading": true,
+            "log_margin_to_lower": {
+              "coordinator_with_reading": 0.67132548790176,
+              "envelope_no_reading": 0.5751616878099701,
+              "sol_lower_reading": 0.6652873413518792
+            },
+            "near_a_lower_boundary": false,
+            "pred": 0.7397769516728624
+          }
+        },
+        "graph_reading_bounds": {
+          "120": [
+            0.5606913183279743,
+            0.7273131672597865
+          ],
+          "180": [
+            0.5389655172413794,
+            0.7626382306477093
+          ]
+        },
+        "input_differences": {
+          "Fiber": [
+            10.4,
+            8.2
+          ],
+          "Moisture": [
+            43.4,
+            37.3
+          ],
+          "Protein": [
+            15.2,
+            12.1
+          ],
+          "Resistant starch": [
+            3.2,
+            0.3
+          ],
+          "Starch": [
+            19.9,
+            26.9
+          ],
+          "Sugars": [
+            5.2,
+            6.0
+          ],
+          "amylose_fraction": [
+            0.743,
+            0.24
+          ]
+        },
+        "observed_signed_group": {
+          "120": 0.6397804054054054,
+          "180": 0.6432253313696613
+        },
+        "participant_positive_outer_bounds": {
+          "coordinator_with_reading": [
+            0.3780487804878049,
+            1.2548932384341638
+          ],
+          "envelope_no_reading": [
+            0.4162087912087912,
+            1.1701858108108107
+          ],
+          "sol_lower_reading": 0.3803384
+        },
+        "target_implied_theta_DIAGNOSTIC": {
+          "available": {
+            "120": 1.0382230477489578,
+            "180": 1.0493623440693225
+          },
+          "total": {
+            "120": 0.7475516669159827,
+            "180": 0.7557387863427245
+          }
+        },
+        "theta_admissibility_threshold_in_fit_domain_DIAGNOSTIC": {
+          "available": {
+            "coordinator_with_reading": 0.3352532248393713,
+            "envelope_no_reading": 0.4227430178924025,
+            "sol_lower_reading": 0.3403822048488973
+          },
+          "total": {
+            "coordinator_with_reading": 0.21178822619652798,
+            "envelope_no_reading": 0.28058261307199944,
+            "sol_lower_reading": 0.21583839943790215
+          }
+        }
+      }
+    },
+    "primary_signed120_mean_high_low": {
+      "available": 0.06965868654112554,
+      "bornet_heated_exact_x_total": 1.656633845215606,
+      "empirical_barley_power:joint:available": 0.6433817323516784,
+      "empirical_barley_power:joint:total": 0.4769388562211031,
+      "empirical_barley_theta:flour_donor:available": 0.42548914287983214,
+      "empirical_barley_theta:flour_donor:total": 0.259046266749257,
+      "empirical_barley_theta:joint:available": 0.5526434731534917,
+      "empirical_barley_theta:joint:total": 0.3862005970229163,
+      "empirical_barley_theta:kernel_donor:available": 0.6914634253310689,
+      "empirical_barley_theta:kernel_donor:total": 0.5250205492004936,
+      "equality": 0.47350361947058034,
+      "total": 0.21722934436718366
+    },
+    "table3_marginal": {
+      "abs_log_error": {
+        "available": 0.001964863922135584,
+        "bornet_heated_exact_x_total": 1.7050366398368975,
+        "empirical_barley_power:joint:available": 0.692203336666151,
+        "empirical_barley_power:joint:total": 0.5253416508423947,
+        "empirical_barley_theta:flour_donor:available": 0.4743107471943049,
+        "empirical_barley_theta:flour_donor:total": 0.3074490613705485,
+        "empirical_barley_theta:joint:available": 0.6014650774679645,
+        "empirical_barley_theta:joint:total": 0.43460339164420786,
+        "empirical_barley_theta:kernel_donor:available": 0.7402850296455417,
+        "empirical_barley_theta:kernel_donor:total": 0.5734233438217853,
+        "equality": 0.4180727249627392,
+        "total": 0.16882654974589215
+      },
+      "observed": 0.6583143507972665,
+      "pred": {
+        "available": 0.6596091205211725,
+        "bornet_heated_exact_x_total": 0.11965898603185482,
+        "empirical_barley_power:joint:available": 0.3294679950482718,
+        "empirical_barley_power:joint:total": 0.3892963595016609,
+        "empirical_barley_theta:flour_donor:available": 0.4096781317285926,
+        "empirical_barley_theta:flour_donor:total": 0.48407192093428053,
+        "empirical_barley_theta:joint:available": 0.36076164480019585,
+        "empirical_barley_theta:joint:total": 0.42627264887434857,
+        "empirical_barley_theta:kernel_donor:available": 0.31400142508143314,
+        "empirical_barley_theta:kernel_donor:total": 0.37102120236178204,
+        "equality": 1.0,
+        "total": 0.7793880837359098
+      }
+    }
+  }
+}

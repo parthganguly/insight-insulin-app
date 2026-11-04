@@ -1,0 +1,47 @@
+{
+  "arms": [
+    "HAW-R",
+    "LAW-W"
+  ],
+  "signed_ratios": {
+    "120": 0.7069256756756757,
+    "180": 0.7061855670103091
+  },
+  "predictions": {
+    "equal_serving": 1.0,
+    "starch": 1.0594795539033457,
+    "stated_carbohydrate": 1.0182370820668694,
+    "starch_less_RS": 0.894736842105263,
+    "starch_less_RS_plus_sugar": 0.8834355828220859,
+    "amylopectin_dose": 0.358271375464684,
+    "heated": 0.16266126181179016,
+    "shared": 2.9222518514837574,
+    "fixed_dose_heated": 0.1535294014995493,
+    "fixed_dose_unit": 0.3381578947368421
+  },
+  "paper_carbohydrate_g_rounded": [
+    40,
+    40
+  ],
+  "paper_carbohydrate_g_from_composition": [
+    40.535,
+    39.809
+  ],
+  "positive_outer_reading": [
+    0.4211382113821138,
+    1.2900355871886122
+  ],
+  "errors_signed120": {
+    "equal_serving": 0.3468297449544757,
+    "starch": 0.4046075456212871,
+    "stated_carbohydrate": 0.36490252601417034,
+    "starch_less_RS": 0.2356041098442512,
+    "starch_less_RS_plus_sugar": 0.22289284372371396,
+    "amylopectin_dose": 0.67963480276387,
+    "heated": 1.4692556439615023,
+    "shared": 1.4191842460415924,
+    "fixed_dose_heated": 1.5270334446283138,
+    "fixed_dose_unit": 0.7374126034306813
+  },
+  "scope": "Outcome-exposed diagonal contrast changes both wheat and milling. Corresponding three-hour individual cell means not reported."
+}

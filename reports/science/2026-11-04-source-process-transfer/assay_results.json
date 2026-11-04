@@ -1,0 +1,310 @@
+{
+  "q_gram_equivalent": 14.276159823706797,
+  "prior_affine_example": {
+    "direct_pea_cassava": 4.19510858768316,
+    "quotient_via_wheat": 1.461193214886789
+  },
+  "panels": {
+    "15": {
+      "pairs": {
+        "HAWB/WWB": {
+          "d_grams": [
+            21.525581395348837,
+            27.683720930232557
+          ],
+          "observed": {
+            "signed120": 0.5778057334553217,
+            "relative_reported_indices": 0.57
+          },
+          "forecast": {
+            "tie": 1,
+            "direct": 0.7775537634408602,
+            "power": 0.9375480818065569,
+            "oriented_affine": 0.9120036338146404,
+            "offset_score": 0.8532374395676621,
+            "total_starch": 0.956989247311828,
+            "available_starch": 0.8043478260869565
+          },
+          "abs_log_error": {
+            "signed120": {
+              "tie": 0.5485175680928273,
+              "direct": 0.2969150798934667,
+              "power": 0.484030332900437,
+              "oriented_affine": 0.45640626362296144,
+              "offset_score": 0.3898001560949424,
+              "total_starch": 0.5045544446717112,
+              "available_starch": 0.33079408424795675
+            },
+            "relative_reported_indices": {
+              "tie": 0.5621189181535413,
+              "direct": 0.31051642995418066,
+              "power": 0.49763168296115096,
+              "oriented_affine": 0.4700076136836754,
+              "offset_score": 0.40340150615565634,
+              "total_starch": 0.5181557947324253,
+              "available_starch": 0.34439543430867076
+            }
+          }
+        },
+        "SP/WWB": {
+          "d_grams": [
+            18.811369509043928,
+            27.683720930232557
+          ],
+          "observed": {
+            "signed120": 0.5960658737419946,
+            "relative_reported_indices": 0.61
+          },
+          "forecast": {
+            "tie": 1,
+            "direct": 0.679510155316607,
+            "power": 0.9057134358484727,
+            "oriented_affine": 0.8732190655698009,
+            "offset_score": 0.7885515577792567,
+            "total_starch": 0.978494623655914,
+            "available_starch": 1.0326086956521738
+          },
+          "abs_log_error": {
+            "signed120": {
+              "tie": 0.5174040916116386,
+              "direct": 0.13102099138732345,
+              "power": 0.41837177266737124,
+              "oriented_affine": 0.38183527120550087,
+              "offset_score": 0.27984660405950856,
+              "total_starch": 0.4956641049752327,
+              "available_starch": 0.5494924061631391
+            },
+            "relative_reported_indices": {
+              "tie": 0.49429632181478017,
+              "direct": 0.10791322159046497,
+              "power": 0.3952640028705127,
+              "oriented_affine": 0.35872750140864246,
+              "offset_score": 0.2567388342626501,
+              "total_starch": 0.4725563351783743,
+              "available_starch": 0.5263846363662806
+            }
+          }
+        },
+        "HAWB/SP": {
+          "d_grams": [
+            21.525581395348837,
+            18.811369509043928
+          ],
+          "observed": {
+            "signed120": 0.9693655666410845,
+            "relative_reported_indices": 0.9344262295081968
+          },
+          "forecast": {
+            "tie": 1,
+            "direct": 1.1442857142857144,
+            "power": 1.0351486957110905,
+            "oriented_affine": 1.057077245926911,
+            "offset_score": 1.0820312649823125,
+            "total_starch": 0.978021978021978,
+            "available_starch": 0.7789473684210526
+          },
+          "abs_log_error": {
+            "signed120": {
+              "tie": 0.031113476481188708,
+              "direct": 0.16589408850614334,
+              "power": 0.06565856023306567,
+              "oriented_affine": 0.08662126104617576,
+              "offset_score": 0.10995355203543394,
+              "total_starch": 0.0088903396964784,
+              "available_starch": 0.2186983219151824
+            },
+            "relative_reported_indices": {
+              "tie": 0.06782259633876109,
+              "direct": 0.20260320836371568,
+              "power": 0.10236768009063807,
+              "oriented_affine": 0.12333038090374818,
+              "offset_score": 0.14666267189300625,
+              "total_starch": 0.04559945955405077,
+              "available_starch": 0.18198920205761002
+            }
+          }
+        }
+      },
+      "primary": {
+        "signed120": {
+          "tie": 0.5329608298522329,
+          "direct": 0.21396803564039507,
+          "power": 0.4512010527839041,
+          "oriented_affine": 0.41912076741423115,
+          "offset_score": 0.33482338007722545,
+          "total_starch": 0.5001092748234719,
+          "available_starch": 0.44014324520554793
+        },
+        "relative_reported_indices": {
+          "tie": 0.5282076199841608,
+          "direct": 0.2092148257723228,
+          "power": 0.44644784291583184,
+          "oriented_affine": 0.41436755754615895,
+          "offset_score": 0.3300701702091532,
+          "total_starch": 0.49535606495539986,
+          "available_starch": 0.43539003533747567
+        }
+      },
+      "direct_minus_WWB_derived_HAWB_SP": {
+        "tie": 0.0,
+        "direct": 0.0,
+        "power": 0.0,
+        "oriented_affine": 0.012661623577287395,
+        "offset_score": 2.220446049250313e-16,
+        "total_starch": 0.0,
+        "available_starch": -1.1102230246251565e-16
+      }
+    },
+    "30": {
+      "pairs": {
+        "HAWB/WWB": {
+          "d_grams": [
+            32.19638242894057,
+            42.29457364341085
+          ],
+          "observed": {
+            "signed120": 0.5778057334553217,
+            "relative_reported_indices": 0.57
+          },
+          "forecast": {
+            "tie": 1,
+            "direct": 0.7612414467253177,
+            "power": 0.9324670260551319,
+            "oriented_affine": 0.9055507280822892,
+            "offset_score": 0.8214944266130124,
+            "total_starch": 0.956989247311828,
+            "available_starch": 0.8043478260869565
+          },
+          "abs_log_error": {
+            "signed120": {
+              "tie": 0.5485175680928273,
+              "direct": 0.27571287224286367,
+              "power": 0.4785960792046669,
+              "oriented_affine": 0.4493055870430965,
+              "offset_score": 0.35188744216209245,
+              "total_starch": 0.5045544446717112,
+              "available_starch": 0.33079408424795675
+            },
+            "relative_reported_indices": {
+              "tie": 0.5621189181535413,
+              "direct": 0.28931422230357773,
+              "power": 0.4921974292653809,
+              "oriented_affine": 0.46290693710381037,
+              "offset_score": 0.36548879222280645,
+              "total_starch": 0.5181557947324253,
+              "available_starch": 0.34439543430867076
+            }
+          }
+        },
+        "SP/WWB": {
+          "d_grams": [
+            26.524031007751937,
+            42.29457364341085
+          ],
+          "observed": {
+            "signed120": 0.5960658737419946,
+            "relative_reported_indices": 0.61
+          },
+          "forecast": {
+            "tie": 1,
+            "direct": 0.6271260997067449,
+            "power": 0.8872802863047986,
+            "oriented_affine": 0.8524967255966804,
+            "offset_score": 0.7212243563215296,
+            "total_starch": 0.978494623655914,
+            "available_starch": 1.0326086956521738
+          },
+          "abs_log_error": {
+            "signed120": {
+              "tie": 0.5174040916116386,
+              "direct": 0.05079644900103954,
+              "power": 0.39780973860287944,
+              "oriented_affine": 0.3578181808374867,
+              "offset_score": 0.19059907532618836,
+              "total_starch": 0.4956641049752327,
+              "available_starch": 0.5494924061631391
+            },
+            "relative_reported_indices": {
+              "tie": 0.49429632181478017,
+              "direct": 0.027688679204181024,
+              "power": 0.37470196880602086,
+              "oriented_affine": 0.33471041104062826,
+              "offset_score": 0.16749130552932998,
+              "total_starch": 0.4725563351783743,
+              "available_starch": 0.5263846363662806
+            }
+          }
+        },
+        "HAWB/SP": {
+          "d_grams": [
+            32.19638242894057,
+            26.524031007751937
+          ],
+          "observed": {
+            "signed120": 0.9693655666410845,
+            "relative_reported_indices": 0.9344262295081968
+          },
+          "forecast": {
+            "tie": 1,
+            "direct": 1.2138570649208946,
+            "power": 1.0509272441276925,
+            "oriented_affine": 1.0845986198157238,
+            "offset_score": 1.1390275708420217,
+            "total_starch": 0.978021978021978,
+            "available_starch": 0.7789473684210526
+          },
+          "abs_log_error": {
+            "signed120": {
+              "tie": 0.031113476481188708,
+              "direct": 0.22491642324182412,
+              "power": 0.08078634060178747,
+              "oriented_affine": 0.11232345937682656,
+              "offset_score": 0.16128836683590425,
+              "total_starch": 0.0088903396964784,
+              "available_starch": 0.2186983219151824
+            },
+            "relative_reported_indices": {
+              "tie": 0.06782259633876109,
+              "direct": 0.26162554309939656,
+              "power": 0.11749546045936002,
+              "oriented_affine": 0.14903257923439897,
+              "offset_score": 0.19799748669347655,
+              "total_starch": 0.04559945955405077,
+              "available_starch": 0.18198920205761002
+            }
+          }
+        }
+      },
+      "primary": {
+        "signed120": {
+          "tie": 0.5329608298522329,
+          "direct": 0.1632546606219516,
+          "power": 0.43820290890377317,
+          "oriented_affine": 0.4035618839402916,
+          "offset_score": 0.2712432587441404,
+          "total_starch": 0.5001092748234719,
+          "available_starch": 0.44014324520554793
+        },
+        "relative_reported_indices": {
+          "tie": 0.5282076199841608,
+          "direct": 0.15850145075387936,
+          "power": 0.43344969903570085,
+          "oriented_affine": 0.3988086740722193,
+          "offset_score": 0.2664900488760682,
+          "total_starch": 0.49535606495539986,
+          "available_starch": 0.43539003533747567
+        }
+      },
+      "direct_minus_WWB_derived_HAWB_SP": {
+        "tie": 0.0,
+        "direct": 0.0,
+        "power": 0.0,
+        "oriented_affine": 0.022364946779061867,
+        "offset_score": 2.220446049250313e-16,
+        "total_starch": 0.0,
+        "available_starch": -1.1102230246251565e-16
+      }
+    }
+  },
+  "units": "Offset requires served amount of early starch release on the donor gram-equivalent scale. A percentage-only input does not supply this. The oriented pair comparator and its primary wheat-relative scores are unchanged."
+}

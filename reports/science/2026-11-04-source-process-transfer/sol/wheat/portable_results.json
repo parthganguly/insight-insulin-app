@@ -1,0 +1,154 @@
+{
+  "fit": {
+    "raw": -3.5997640160767137,
+    "gel": 1.7282696920791498,
+    "shared": -0.935747161998782
+  },
+  "signed120": {
+    "LAW-W": 71528.95322939867,
+    "LAW-R": 84066.81514476615,
+    "HAW-W": 46182.6280623608,
+    "HAW-R": 49580.178173719374
+  },
+  "marginals": {
+    "heated_as_served": {
+      "HAW_over_LAW": 0.11965898603185482,
+      "wholemeal_over_refined": 0.7569119410982336
+    },
+    "shared_as_served": {
+      "HAW_over_LAW": 2.1497047888565657,
+      "wholemeal_over_refined": 0.718646136490841
+    },
+    "amylopectin_dose": {
+      "HAW_over_LAW": 0.2635562335791169,
+      "wholemeal_over_refined": 0.7500271448065382
+    },
+    "total_starch": {
+      "HAW_over_LAW": 0.7793880837359098,
+      "wholemeal_over_refined": 0.7346938775510204
+    },
+    "digestible_starch_derived": {
+      "HAW_over_LAW": 0.6596091205211725,
+      "wholemeal_over_refined": 0.7389078498293515
+    },
+    "carbohydrate_paper_definition": {
+      "HAW_over_LAW": 0.7897574123989216,
+      "wholemeal_over_refined": 0.7754010695187165
+    },
+    "available_carbohydrate_derived": {
+      "HAW_over_LAW": 0.6897959183673469,
+      "wholemeal_over_refined": 0.781922525107604
+    },
+    "equal_serving": {
+      "HAW_over_LAW": 1.0,
+      "wholemeal_over_refined": 1.0
+    },
+    "heated_fixed_dose": {
+      "HAW_over_LAW": 0.1535294014995493,
+      "wholemeal_over_refined": 1.0
+    },
+    "shared_fixed_dose": {
+      "HAW_over_LAW": 2.7581956071899323,
+      "wholemeal_over_refined": 1.0
+    },
+    "amylopectin_fixed_dose": {
+      "HAW_over_LAW": 0.3381578947368421,
+      "wholemeal_over_refined": 1.0
+    }
+  },
+  "positive_bounds": {
+    "refined": [
+      0.3736559139784946,
+      1.094544095665172
+    ],
+    "wholemeal": [
+      0.38033843674456086,
+      1.2678176184152279
+    ]
+  },
+  "ratios120": {
+    "heated_as_served": {
+      "HAW_over_LAW_refined": 0.1243064756459419,
+      "HAW_over_LAW_wholemeal": 0.11357751263349555,
+      "wholemeal_over_refined_LAW": 0.7642045454545454,
+      "wholemeal_over_refined_HAW": 0.6982456140350876
+    },
+    "shared_as_served": {
+      "HAW_over_LAW_refined": 2.233198147866849,
+      "HAW_over_LAW_wholemeal": 2.040449538404448,
+      "wholemeal_over_refined_LAW": 0.7642045454545454,
+      "wholemeal_over_refined_HAW": 0.6982456140350877
+    },
+    "amylopectin_dose": {
+      "HAW_over_LAW_refined": 0.27379261363636365,
+      "HAW_over_LAW_wholemeal": 0.2501614165525337,
+      "wholemeal_over_refined_LAW": 0.7642045454545454,
+      "wholemeal_over_refined_HAW": 0.6982456140350876
+    },
+    "total_starch": {
+      "HAW_over_LAW_refined": 0.8096590909090909,
+      "HAW_over_LAW_wholemeal": 0.7397769516728624,
+      "wholemeal_over_refined_LAW": 0.7642045454545454,
+      "wholemeal_over_refined_HAW": 0.6982456140350877
+    },
+    "digestible_starch_derived": {
+      "HAW_over_LAW_refined": 0.6839080459770114,
+      "HAW_over_LAW_wholemeal": 0.6278195488721804,
+      "wholemeal_over_refined_LAW": 0.7643678160919539,
+      "wholemeal_over_refined_HAW": 0.7016806722689075
+    },
+    "carbohydrate_paper_definition": {
+      "HAW_over_LAW_refined": 0.8111380145278448,
+      "HAW_over_LAW_wholemeal": 0.762917933130699,
+      "wholemeal_over_refined_LAW": 0.7966101694915253,
+      "wholemeal_over_refined_HAW": 0.7492537313432835
+    },
+    "available_carbohydrate_derived": {
+      "HAW_over_LAW_refined": 0.7041564792176038,
+      "HAW_over_LAW_wholemeal": 0.6717791411042945,
+      "wholemeal_over_refined_LAW": 0.7970660146699265,
+      "wholemeal_over_refined_HAW": 0.7604166666666666
+    },
+    "equal_serving": {
+      "HAW_over_LAW_refined": 1.0,
+      "HAW_over_LAW_wholemeal": 1.0,
+      "wholemeal_over_refined_LAW": 1.0,
+      "wholemeal_over_refined_HAW": 1.0
+    },
+    "heated_fixed_dose": {
+      "HAW_over_LAW_refined": 0.1535294014995493,
+      "HAW_over_LAW_wholemeal": 0.1535294014995493,
+      "wholemeal_over_refined_LAW": 1.0,
+      "wholemeal_over_refined_HAW": 1.0
+    },
+    "shared_fixed_dose": {
+      "HAW_over_LAW_refined": 2.7581956071899323,
+      "HAW_over_LAW_wholemeal": 2.7581956071899323,
+      "wholemeal_over_refined_LAW": 1.0,
+      "wholemeal_over_refined_HAW": 1.0
+    },
+    "amylopectin_fixed_dose": {
+      "HAW_over_LAW_refined": 0.3381578947368421,
+      "HAW_over_LAW_wholemeal": 0.3381578947368421,
+      "wholemeal_over_refined_LAW": 1.0,
+      "wholemeal_over_refined_HAW": 1.0
+    }
+  },
+  "table3_observed_marginal_ratios": {
+    "HAW_over_LAW": 0.6583143507972665,
+    "wholemeal_over_refined": 0.801980198019802
+  },
+  "comparison": {
+    "numeric_fields_checked_against_independent_snapshot": 77,
+    "all_match": true,
+    "relative_tolerance": 1e-11,
+    "absolute_tolerance": 1e-09
+  },
+  "assumptions": [
+    "All wheat outcomes exposed before arithmetic; no wheat data fit coefficients.",
+    "Displayed-grid signed120 differs from original individual positive180 IAUC.",
+    "Positive bounds require nonnegative concentrations, same sample at plotted times and displayed-grid interpolation.",
+    "Table3 per-bread exclusions and missing intermediate hormone means limit original-endpoint inference.",
+    "Food score predicts ratios; absolute levels require explicit measured-control anchors."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "hoebler_independent_of_2019": {
+    "HAWB/WWB": {
+      "observed_signed120": 0.5778057334553217,
+      "subtracted": 0.7906215921483096,
+      "separately_reported_available": 0.8043478260869565,
+      "subtracted_error": 0.3135817506910371,
+      "available_error": 0.33079408424795675
+    },
+    "SP/WWB": {
+      "observed_signed120": 0.5960658737419946,
+      "subtracted": 0.965103598691385,
+      "separately_reported_available": 1.0326086956521738,
+      "subtracted_error": 0.4818842643631032,
+      "available_error": 0.5494924061631391
+    },
+    "HAWB/SP": {
+      "observed_signed120": 0.9693655666410845,
+      "subtracted": 0.8192090395480226,
+      "separately_reported_available": 0.7789473684210526,
+      "subtracted_error": 0.1683025136720661,
+      "available_error": 0.2186983219151824
+    }
+  },
+  "Costabile_matched_meal_available_g": [
+    80,
+    80,
+    80
+  ],
+  "Costabile_control_85_70_RS_g": [
+    1,
+    8,
+    7
+  ],
+  "Costabile_serving_starch_less_RS": null,
+  "basis_note": "Table 1 values for total/available/RS in Hoebler are retained as separately printed (not algebraically forced to agree). Costabile lacked numeric total starch in the serving."
+}

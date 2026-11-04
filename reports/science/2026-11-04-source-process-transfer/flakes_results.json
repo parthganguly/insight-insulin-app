@@ -1,0 +1,277 @@
+{
+  "data": {
+    "area120": {
+      "observed": {
+        "oat": 0.7248322147651007,
+        "barley": 1.0408163265306123
+      },
+      "oat_over_barley": 0.6964074220292144,
+      "forecasts": {
+        "equality": {
+          "oat_barley": [
+            1,
+            1
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.18091020671746932,
+          "cross_error": 0.3618204134349387
+        },
+        "inverse_thickness": {
+          "oat_barley": [
+            0.5,
+            0.5
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.5522423084561752,
+          "cross_error": 0.3618204134349387
+        },
+        "common_grain": {
+          "oat_barley": [
+            0.5288338316958565,
+            0.5288338316958565
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.4961761421425992,
+          "cross_error": 0.3618204134349387
+        },
+        "grain_specific": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5184647568541393
+          ],
+          "oat_over_barley": 1.6197014635435711,
+          "mean_abs_log_error": 0.4220311319670165,
+          "cross_error": 0.8440622639340333
+        },
+        "grain_specific_normal": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5272727272727272
+          ],
+          "oat_over_barley": 1.5926447207235386,
+          "mean_abs_log_error": 0.41360819710280494,
+          "cross_error": 0.82721639420561
+        },
+        "grain_specific_high": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5098039215686275
+          ],
+          "oat_over_barley": 1.6472178615035755,
+          "mean_abs_log_error": 0.43045406683122817,
+          "cross_error": 0.8609081336624566
+        }
+      }
+    },
+    "area90": {
+      "observed": {
+        "oat": 0.7333333333333334,
+        "barley": 1.0514705882352942
+      },
+      "oat_over_barley": 0.6974358974358975,
+      "forecasts": {
+        "equality": {
+          "oat_barley": [
+            1,
+            1
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.18017233641384736,
+          "cross_error": 0.36034467282769467
+        },
+        "inverse_thickness": {
+          "oat_barley": [
+            0.5,
+            0.5
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.5631645886699532,
+          "cross_error": 0.36034467282769467
+        },
+        "common_grain": {
+          "oat_barley": [
+            0.5288338316958565,
+            0.5288338316958565
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.5070984223563773,
+          "cross_error": 0.36034467282769467
+        },
+        "grain_specific": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5184647568541393
+          ],
+          "oat_over_barley": 1.6197014635435711,
+          "mean_abs_log_error": 0.42129326166339465,
+          "cross_error": 0.8425865233267893
+        },
+        "grain_specific_normal": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5272727272727272
+          ],
+          "oat_over_barley": 1.5926447207235386,
+          "mean_abs_log_error": 0.412870326799183,
+          "cross_error": 0.8257406535983659
+        },
+        "grain_specific_high": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5098039215686275
+          ],
+          "oat_over_barley": 1.6472178615035755,
+          "mean_abs_log_error": 0.4297161965276063,
+          "cross_error": 0.8594323930552126
+        }
+      }
+    },
+    "II120": {
+      "observed": {
+        "oat": 0.6904761904761905,
+        "barley": 0.9529411764705882
+      },
+      "oat_over_barley": 0.7245737801293357,
+      "forecasts": {
+        "equality": {
+          "oat_barley": [
+            1,
+            1
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.209287945057386,
+          "cross_error": 0.3221716864790165
+        },
+        "inverse_thickness": {
+          "oat_barley": [
+            0.5,
+            0.5
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.4838592355025593,
+          "cross_error": 0.3221716864790165
+        },
+        "common_grain": {
+          "oat_barley": [
+            0.5288338316958565,
+            0.5288338316958565
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.4277930691889833,
+          "cross_error": 0.3221716864790165
+        },
+        "grain_specific": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5184647568541393
+          ],
+          "oat_over_barley": 1.6197014635435711,
+          "mean_abs_log_error": 0.40220676848905546,
+          "cross_error": 0.8044135369781111
+        },
+        "grain_specific_normal": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5272727272727272
+          ],
+          "oat_over_barley": 1.5926447207235386,
+          "mean_abs_log_error": 0.3937838336248438,
+          "cross_error": 0.7875676672496879
+        },
+        "grain_specific_high": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5098039215686275
+          ],
+          "oat_over_barley": 1.6472178615035755,
+          "mean_abs_log_error": 0.4106297033532672,
+          "cross_error": 0.8212594067065344
+        }
+      }
+    },
+    "II90": {
+      "observed": {
+        "oat": 0.7023809523809523,
+        "barley": 0.9655172413793104
+      },
+      "oat_over_barley": 0.7274659863945577,
+      "forecasts": {
+        "equality": {
+          "oat_barley": [
+            1,
+            1
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.19418533737443217,
+          "cross_error": 0.31818803512632415
+        },
+        "inverse_thickness": {
+          "oat_barley": [
+            0.5,
+            0.5
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.4989618431855132,
+          "cross_error": 0.31818803512632415
+        },
+        "common_grain": {
+          "oat_barley": [
+            0.5288338316958565,
+            0.5288338316958565
+          ],
+          "oat_over_barley": 1.0,
+          "mean_abs_log_error": 0.44289567687193715,
+          "cross_error": 0.31818803512632415
+        },
+        "grain_specific": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5184647568541393
+          ],
+          "oat_over_barley": 1.6197014635435711,
+          "mean_abs_log_error": 0.40021494281270936,
+          "cross_error": 0.8004298856254186
+        },
+        "grain_specific_normal": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5272727272727272
+          ],
+          "oat_over_barley": 1.5926447207235386,
+          "mean_abs_log_error": 0.3917920079484978,
+          "cross_error": 0.7835840158969954
+        },
+        "grain_specific_high": {
+          "oat_barley": [
+            0.8397581254724111,
+            0.5098039215686275
+          ],
+          "oat_over_barley": 1.6472178615035755,
+          "mean_abs_log_error": 0.40863787767692106,
+          "cross_error": 0.8172757553538421
+        }
+      }
+    }
+  },
+  "donors": {
+    "oat": 0.8397581254724111,
+    "barley_normal_high": [
+      0.5272727272727272,
+      0.5098039215686275
+    ],
+    "barley_geomean": 0.5184647568541393,
+    "Heaton_median": 0.5288338316958565
+  },
+  "barley_matched9_with_printed_rounding": {
+    "normal": [
+      0.3846153846153846,
+      0.5936073059360731
+    ],
+    "high": [
+      0.25853658536585367,
+      0.574712643678161
+    ]
+  },
+  "oat_lower_bound_printed_rounding": 0.8390630902908953,
+  "invariant": "If the same positive exponent k transports both log ratios, the forecast oat/barley double ratio is always greater than one. Exponent zero predicts one. Same ordering for a shared strictly increasing map."
+}

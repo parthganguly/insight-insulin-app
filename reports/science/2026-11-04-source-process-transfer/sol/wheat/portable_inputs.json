@@ -1,0 +1,126 @@
+{
+  "source": {
+    "doi": "10.1093/jn/nxz067",
+    "table1_units": "g/100g bread; multiply by1.21 for121g",
+    "table3_unit_printed": "ng/L x3h; discrepancy with graph remains unresolved",
+    "figure_coordinates": "Own original1184x2105 JPEG readings; no figure needed for replay",
+    "figure_sha256": "00938781a5fa898dffe960b334506d4ba54996413044db16365258a47e5bdfce"
+  },
+  "training": {
+    "amylose": [
+      0.27,
+      0.17,
+      0.35
+    ],
+    "raw": [
+      11,
+      3.4,
+      8
+    ],
+    "gel": [
+      24.8,
+      29.2,
+      19.1
+    ]
+  },
+  "arms": {
+    "LAW-R": {
+      "starch": 35.2,
+      "sugar": 6.1,
+      "RS": 0.4,
+      "amylose": 0.24
+    },
+    "LAW-W": {
+      "starch": 26.9,
+      "sugar": 6,
+      "RS": 0.3,
+      "amylose": 0.24
+    },
+    "HAW-R": {
+      "starch": 28.5,
+      "sugar": 5,
+      "RS": 4.7,
+      "amylose": 0.743
+    },
+    "HAW-W": {
+      "starch": 19.9,
+      "sugar": 5.2,
+      "RS": 3.2,
+      "amylose": 0.743
+    }
+  },
+  "figure": {
+    "time": [
+      0,
+      15,
+      30,
+      60,
+      120,
+      180
+    ],
+    "zero_y": 991,
+    "high_y": 542,
+    "high_concentration": 1800,
+    "marker_uncertainty_px": 4,
+    "zero_axis_uncertainty_px": 1,
+    "marker_y": {
+      "LAW-W": [
+        912,
+        855,
+        687,
+        697,
+        837,
+        898
+      ],
+      "LAW-R": [
+        915,
+        856,
+        701,
+        647,
+        808,
+        871
+      ],
+      "HAW-W": [
+        913,
+        874,
+        771,
+        771,
+        868,
+        898
+      ],
+      "HAW-R": [
+        916,
+        894,
+        771,
+        749,
+        874,
+        900
+      ]
+    }
+  },
+  "table3_insulin": {
+    "LAW": {
+      "mean": 87.8,
+      "sem": 9.3
+    },
+    "HAW": {
+      "mean": 57.8,
+      "sem": 6.1
+    },
+    "refined": {
+      "mean": 80.8,
+      "sem": 9.2
+    },
+    "wholemeal": {
+      "mean": 64.8,
+      "sem": 7.1
+    }
+  },
+  "assumptions": [
+    "All wheat outcomes exposed before arithmetic; no wheat data fit coefficients.",
+    "Displayed-grid signed120 differs from original individual positive180 IAUC.",
+    "Positive bounds require nonnegative concentrations, same sample at plotted times and displayed-grid interpolation.",
+    "Table3 per-bread exclusions and missing intermediate hormone means limit original-endpoint inference.",
+    "Food score predicts ratios; absolute levels require explicit measured-control anchors."
+  ]
+}

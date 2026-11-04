@@ -1,0 +1,102 @@
+{
+  "parent_commit": "012d7cee116b231f9a88bcae8251bb31cc28233d",
+  "source_sha256": {
+    "bornet_inputs.json": "70b352669cae4efa4d218b95beb8ec8593516468e9112ece69ae37240b101ddf",
+    "barley_inputs.json": "043006c44c96a9dc4acab0ebd72da20789073ac56277bb8a63a761909a596978",
+    "donors.json": "b25bc48e9e004dc153cb97bb1d4a5d19bbc91000ffad89bd90859ba64f7d222d"
+  },
+  "Bornet": {
+    "raw": [
+      {
+        "source": "wheat",
+        "amylose_pct": 27,
+        "area180": 11.0
+      },
+      {
+        "source": "manihot",
+        "amylose_pct": 17,
+        "area180": 3.4
+      },
+      {
+        "source": "smooth_pea",
+        "amylose_pct": 35,
+        "area180": 8.0
+      }
+    ],
+    "gel": [
+      {
+        "source": "wheat",
+        "amylose_pct": 27,
+        "area180": 24.8
+      },
+      {
+        "source": "manihot",
+        "amylose_pct": 17,
+        "area180": 29.2
+      },
+      {
+        "source": "smooth_pea",
+        "amylose_pct": 35,
+        "area180": 19.1
+      }
+    ]
+  },
+  "hummus": {
+    "ICC_area": 1725.498338870432,
+    "RCC_area": 2443.106312292359,
+    "ICC_release_g": 2.4058455114822546,
+    "RCC_release_g": 9.343632567849687
+  },
+  "Heaton": {
+    "wheat": [
+      1211,
+      2366
+    ],
+    "maize": [
+      1238,
+      2341
+    ],
+    "oats": [
+      1111,
+      1323
+    ]
+  },
+  "barley": {
+    "normal_kernel": {
+      "n": 10,
+      "mean_120": 5.8,
+      "sem_120": 1,
+      "mean_90": 5.3,
+      "II_120": 28.0,
+      "HI_180": 47.0,
+      "amylose_pct": 33
+    },
+    "normal_flour": {
+      "n": 9,
+      "mean_120": 11.0,
+      "sem_120": 3,
+      "mean_90": 9.8,
+      "II_120": 56.0,
+      "HI_180": 75.0,
+      "amylose_pct": 33
+    },
+    "high_kernel": {
+      "n": 10,
+      "mean_120": 5.2,
+      "sem_120": 2,
+      "mean_90": 4.4,
+      "II_120": 24.0,
+      "HI_180": 34.0,
+      "amylose_pct": 42
+    },
+    "high_flour": {
+      "n": 9,
+      "mean_120": 10.2,
+      "sem_120": 3,
+      "mean_90": 9.0,
+      "II_120": 47.0,
+      "HI_180": 56.0,
+      "amylose_pct": 42
+    }
+  }
+}
