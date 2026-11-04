@@ -1,0 +1,483 @@
+{
+  "donors": {
+    "hummus_response": 0.706272310045895,
+    "hummus_release": 0.25748502994011974,
+    "power": 0.2563060312078195,
+    "affine_slope": 0.3955848727607704,
+    "grain_donors": {
+      "wheat": 0.5118343195266272,
+      "maize": 0.5288338316958565,
+      "oats": 0.8397581254724111
+    },
+    "grain_reference": 0.5288338316958565
+  },
+  "milling": [
+    {
+      "x": "normal_kernel",
+      "y": "normal_flour",
+      "observed": {
+        "mean_120": 0.5272727272727272,
+        "mean_90": 0.5408163265306122,
+        "II_120": 0.5
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 1.0,
+        "release": 0.6266666666666667,
+        "power": 0.8871136362926628,
+        "affine": 0.8523149808359791,
+        "grain_reference": 0.5288338316958565,
+        "hummus_reference": 0.706272310045895
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.640037355245997,
+          "amylopectin": 0.640037355245997,
+          "release": 0.17269684341974512,
+          "power": 0.5202551634371794,
+          "affine": 0.4802382305893921,
+          "grain_reference": 0.002956340999627613,
+          "hummus_reference": 0.29228294767108953
+        },
+        "mean_90": {
+          "equality": 0.6146755651184502,
+          "amylopectin": 0.6146755651184502,
+          "release": 0.14733505329219834,
+          "power": 0.4948933733096326,
+          "affine": 0.4548764404618454,
+          "grain_reference": 0.022405449127919065,
+          "hummus_reference": 0.26692115754354284
+        },
+        "II_120": {
+          "equality": 0.6931471805599453,
+          "amylopectin": 0.6931471805599453,
+          "release": 0.2258066687336935,
+          "power": 0.5733649887511277,
+          "affine": 0.5333480559033404,
+          "grain_reference": 0.05606616631357604,
+          "hummus_reference": 0.34539277298503795
+        }
+      },
+      "matched_nine": [
+        0.43636363636363634,
+        0.5858585858585859
+      ],
+      "rounded_matched_nine": [
+        0.3846153846153846,
+        0.5936073059360731
+      ],
+      "grain_HI_midpoint": 0.5756757199408391,
+      "printed_mean_rounding_interval": [
+        0.5203619909502262,
+        0.5342465753424658
+      ]
+    },
+    {
+      "x": "high_kernel",
+      "y": "high_flour",
+      "observed": {
+        "mean_120": 0.5098039215686275,
+        "mean_90": 0.48888888888888893,
+        "II_120": 0.5106382978723404
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 1.0,
+        "release": 0.6071428571428571,
+        "power": 0.8799462566216407,
+        "affine": 0.8445916571296973,
+        "grain_reference": 0.5288338316958565,
+        "hummus_reference": 0.706272310045895
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.6737290947028436,
+          "amylopectin": 0.6737290947028436,
+          "release": 0.17473792858385567,
+          "power": 0.5458346493071241,
+          "affine": 0.5048270802765431,
+          "grain_reference": 0.03664808045647438,
+          "hummus_reference": 0.32597468712793615
+        },
+        "mean_90": {
+          "equality": 0.7156200364120039,
+          "amylopectin": 0.7156200364120039,
+          "release": 0.21662887029301583,
+          "power": 0.5877255910162843,
+          "affine": 0.5467180219857034,
+          "grain_reference": 0.07853902216563449,
+          "hummus_reference": 0.3678656288370964
+        },
+        "II_120": {
+          "equality": 0.672093771362113,
+          "amylopectin": 0.672093771362113,
+          "release": 0.1731026052431252,
+          "power": 0.5441993259663935,
+          "affine": 0.5031917569358126,
+          "grain_reference": 0.035012757115743726,
+          "hummus_reference": 0.3243393637872056
+        }
+      },
+      "matched_nine": [
+        0.3137254901960785,
+        0.5664488017429194
+      ],
+      "rounded_matched_nine": [
+        0.25853658536585367,
+        0.574712643678161
+      ],
+      "grain_HI_midpoint": 0.5666371709741844,
+      "printed_mean_rounding_interval": [
+        0.5024390243902439,
+        0.5172413793103449
+      ]
+    }
+  ],
+  "primary": {
+    "mean_120": {
+      "equality": 0.6568832249744203,
+      "amylopectin": 0.6568832249744203,
+      "release": 0.1737173860018004,
+      "power": 0.5330449063721517,
+      "affine": 0.4925326554329676,
+      "grain_reference": 0.019802210728050995,
+      "hummus_reference": 0.3091288173995128
+    },
+    "mean_90": {
+      "equality": 0.6651478007652271,
+      "amylopectin": 0.6651478007652271,
+      "release": 0.1819819617926071,
+      "power": 0.5413094821629585,
+      "affine": 0.5007972312237744,
+      "grain_reference": 0.050472235646776775,
+      "hummus_reference": 0.3173933931903196
+    },
+    "II_120": {
+      "equality": 0.6826204759610291,
+      "amylopectin": 0.6826204759610291,
+      "release": 0.19945463698840937,
+      "power": 0.5587821573587606,
+      "affine": 0.5182699064195766,
+      "grain_reference": 0.04553946171465988,
+      "hummus_reference": 0.33486606838612176
+    }
+  },
+  "same_form": [
+    {
+      "x": "high_hullless_kernel",
+      "y": "high_kernel",
+      "observed": {
+        "mean_120": 0.7115384615384616,
+        "mean_90": 0.7727272727272726,
+        "II_120": 0.7916666666666666
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.9655172413793104,
+        "release": 1.0,
+        "power": 1.0,
+        "affine": 1.0
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.3403258059372028,
+          "amylopectin": 0.3052344861259328,
+          "release": 0.3403258059372028,
+          "power": 0.3403258059372028,
+          "affine": 0.3403258059372028
+        },
+        "mean_90": {
+          "equality": 0.2578291093021,
+          "amylopectin": 0.22273778949082992,
+          "release": 0.2578291093021,
+          "power": 0.2578291093021,
+          "affine": 0.2578291093021
+        },
+        "II_120": {
+          "equality": 0.23361485118150527,
+          "amylopectin": 0.19852353137023518,
+          "release": 0.23361485118150527,
+          "power": 0.23361485118150527,
+          "affine": 0.23361485118150527
+        }
+      }
+    },
+    {
+      "x": "high_hullless_kernel",
+      "y": "normal_kernel",
+      "observed": {
+        "mean_120": 0.6379310344827587,
+        "mean_90": 0.6415094339622641,
+        "II_120": 0.6785714285714286
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.835820895522388,
+        "release": 0.723404255319149,
+        "power": 0.9203616570585808,
+        "affine": 0.8905829075342551
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.44952509790219486,
+          "amylopectin": 0.2701841692463779,
+          "release": 0.1257380208082976,
+          "power": 0.36653651721587777,
+          "affine": 0.33364601954427886
+        },
+        "mean_90": {
+          "equality": 0.44393138893596046,
+          "amylopectin": 0.2645904602801437,
+          "release": 0.12014431184206341,
+          "power": 0.3609428082496435,
+          "affine": 0.32805231057804446
+        },
+        "II_120": {
+          "equality": 0.38776553100876343,
+          "amylopectin": 0.20842460235294646,
+          "release": 0.06397845391486634,
+          "power": 0.30477695032244634,
+          "affine": 0.27188645265084754
+        }
+      }
+    },
+    {
+      "x": "high_hullless_kernel",
+      "y": "waxy_kernel",
+      "observed": {
+        "mean_120": 0.6851851851851851,
+        "mean_90": 0.7083333333333334,
+        "II_120": 0.7037037037037037
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.6021505376344086,
+        "release": 0.7727272727272727,
+        "power": 0.9360530228780034,
+        "affine": 0.9100943470998248
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.37806613392005006,
+          "amylopectin": 0.1291816684980566,
+          "release": 0.12023702461795031,
+          "power": 0.31198297818498166,
+          "affine": 0.2838591272062783
+        },
+        "mean_90": {
+          "equality": 0.3448404862917294,
+          "amylopectin": 0.16240731612637715,
+          "release": 0.08701137698962969,
+          "power": 0.27875733055666113,
+          "affine": 0.25063347957795773
+        },
+        "II_120": {
+          "equality": 0.3513978868378886,
+          "amylopectin": 0.15584991558021813,
+          "release": 0.09356877753578875,
+          "power": 0.2853147311028203,
+          "affine": 0.25719088012411695
+        }
+      }
+    },
+    {
+      "x": "high_kernel",
+      "y": "normal_kernel",
+      "observed": {
+        "mean_120": 0.896551724137931,
+        "mean_90": 0.8301886792452832,
+        "II_120": 0.8571428571428571
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.8656716417910447,
+        "release": 0.723404255319149,
+        "power": 0.9203616570585808,
+        "affine": 0.8905829075342551
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.109199291964992,
+          "amylopectin": 0.03505031687955485,
+          "release": 0.2145877851289051,
+          "power": 0.02621071127867493,
+          "affine": 0.006679786392924017
+        },
+        "mean_90": {
+          "equality": 0.18610227963386053,
+          "amylopectin": 0.041852670789313706,
+          "release": 0.1376847974600367,
+          "power": 0.10311369894754344,
+          "affine": 0.07022320127594453
+        },
+        "II_120": {
+          "equality": 0.15415067982725836,
+          "amylopectin": 0.009901070982711537,
+          "release": 0.16963639726663876,
+          "power": 0.07116209914094136,
+          "affine": 0.03827160146934237
+        }
+      }
+    },
+    {
+      "x": "high_kernel",
+      "y": "waxy_kernel",
+      "observed": {
+        "mean_120": 0.9629629629629629,
+        "mean_90": 0.9166666666666667,
+        "II_120": 0.8888888888888888
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.6236559139784946,
+        "release": 0.7727272727272727,
+        "power": 0.9360530228780034,
+        "affine": 0.9100943470998248
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.03774032798284711,
+          "amylopectin": 0.4344161546239896,
+          "release": 0.22008878131925266,
+          "power": 0.02834282775222119,
+          "affine": 0.05646667873092462
+        },
+        "mean_90": {
+          "equality": 0.08701137698962969,
+          "amylopectin": 0.3851451056172069,
+          "release": 0.1708177323124702,
+          "power": 0.02092822125456144,
+          "affine": 0.007195629724142042
+        },
+        "II_120": {
+          "equality": 0.11778303565638346,
+          "amylopectin": 0.3543734469504531,
+          "release": 0.14004607364571625,
+          "power": 0.05169987992131521,
+          "affine": 0.023576028942611793
+        }
+      }
+    },
+    {
+      "x": "normal_kernel",
+      "y": "waxy_kernel",
+      "observed": {
+        "mean_120": 1.074074074074074,
+        "mean_90": 1.1041666666666667,
+        "II_120": 1.037037037037037
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.7204301075268817,
+        "release": 1.0681818181818181,
+        "power": 1.0170491303055489,
+        "affine": 1.0269716958700525
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.07145896398214487,
+          "amylopectin": 0.3993658377444347,
+          "release": 0.005500996190347474,
+          "power": 0.05455353903089615,
+          "affine": 0.04484459342519362
+        },
+        "mean_90": {
+          "equality": 0.09909090264423101,
+          "amylopectin": 0.42699777640652076,
+          "release": 0.03313293485243361,
+          "power": 0.08218547769298223,
+          "affine": 0.07247653208727976
+        },
+        "II_120": {
+          "equality": 0.03636764417087483,
+          "amylopectin": 0.3642745179331647,
+          "release": 0.02959032362092251,
+          "power": 0.019462219219626063,
+          "affine": 0.009753273613923561
+        }
+      }
+    },
+    {
+      "x": "high_flour",
+      "y": "normal_flour",
+      "observed": {
+        "mean_120": 0.9272727272727272,
+        "mean_90": 0.9183673469387754,
+        "II_120": 0.8392857142857143
+      },
+      "predicted": {
+        "equality": 1,
+        "amylopectin": 0.8656716417910447,
+        "release": 0.7466666666666667,
+        "power": 0.9278582301517103,
+        "affine": 0.8997851655672715
+      },
+      "error": {
+        "mean_120": {
+          "equality": 0.0755075525081451,
+          "amylopectin": 0.0687420563364016,
+          "release": 0.21662887029301603,
+          "power": 0.0006312254087300654,
+          "affine": 0.030091696569490282
+        },
+        "mean_90": {
+          "equality": 0.08515780834030696,
+          "amylopectin": 0.0590918005042398,
+          "release": 0.20697861446085425,
+          "power": 0.010281481240891881,
+          "affine": 0.020441440737328547
+        },
+        "II_120": {
+          "equality": 0.1752040890250906,
+          "amylopectin": 0.03095448018054387,
+          "release": 0.11693233377607051,
+          "power": 0.10032776192567547,
+          "affine": 0.06960483994745514
+        }
+      }
+    }
+  ],
+  "deletion_witness_errors": {
+    "grain_reference": 0.08555830492977533,
+    "release": 0.06835687034397411
+  },
+  "secondary_factorized_meal_ratios": {
+    "waxy_kernel": {
+      "observe_to_normal_flour": 0.49090909090909096,
+      "form_only": 0.5288338316958565,
+      "form_times_amylopectin": 0.7340529305629053,
+      "form_times_local_HI_power": 0.5199688156038053
+    },
+    "normal_kernel": {
+      "observe_to_normal_flour": 0.5272727272727272,
+      "form_only": 0.5288338316958565,
+      "form_times_amylopectin": 0.5288338316958565,
+      "form_times_local_HI_power": 0.5288338316958565
+    },
+    "high_kernel": {
+      "observe_to_normal_flour": 0.4727272727272727,
+      "form_only": 0.5288338316958565,
+      "form_times_amylopectin": 0.45779645131880115,
+      "form_times_local_HI_power": 0.4867183816482371
+    },
+    "high_hullless_kernel": {
+      "observe_to_normal_flour": 0.33636363636363636,
+      "form_only": 0.5288338316958565,
+      "form_times_amylopectin": 0.4420103667905666,
+      "form_times_local_HI_power": 0.4867183816482371
+    },
+    "normal_flour": {
+      "observe_to_normal_flour": 1.0,
+      "form_only": 1,
+      "form_times_amylopectin": 1.0,
+      "form_times_local_HI_power": 1.0
+    },
+    "high_flour": {
+      "observe_to_normal_flour": 0.9272727272727272,
+      "form_only": 1,
+      "form_times_amylopectin": 0.8656716417910447,
+      "form_times_local_HI_power": 0.9278582301517103
+    }
+  },
+  "same_individual_removed_in_both_arms_possible": true
+}
