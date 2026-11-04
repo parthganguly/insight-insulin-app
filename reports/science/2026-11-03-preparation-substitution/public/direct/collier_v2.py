@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent
 PRINTED = {'potato': (3333, 590), 'potato_butter': (3024, 452), 'lentil': (1796, 333), 'lentil_butter': (1324, 256)}  # mean, SEM, mU/L*min
 APPROX = {'no_fat': dict(lentil=1726, potato=3183, reading_range=(0.395, 0.725)),
           'butter': dict(lentil=1075, potato=2632, reading_range=(0.248, 0.616))}
-FAT_WORDING = 'Coordinator facts: meals with "no fat" or "+37.5 g as butter"; whether 37.5 g is fat or butter mass is kept as worded, not converted.'
+FAT_WORDING = 'The original Methods report 37.5 g fat supplied as 46.5 g butter.'
 
 
 def forecasts():

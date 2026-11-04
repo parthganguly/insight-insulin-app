@@ -1,0 +1,39 @@
+{
+  "originals": {
+    "hummus.pdf": {
+      "url": "https://kclpure.kcl.ac.uk/ws/portalfiles/portal/323409227/1-s2.0-S0963996924005878-main.pdf",
+      "sha256": "aead12b83ac2f299643a16fde06a3a0ce5a1b2e26e34e43834ab1c5c6ac5f9a3"
+    },
+    "cai.pdf": {
+      "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12286859.1/PMC12286859.1.pdf",
+      "sha256": "94014b24c642652a33e9b19ee308359b4b4c45c5f1896b956b0c54920d0e9c4c"
+    },
+    "cai-supp.pdf": {
+      "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12286859.1/42255_2025_1309_MOESM1_ESM.pdf",
+      "sha256": "646e8b38dd29cc483d9a11ecafd5758538af5ed2af609971ce2a32a121b72ff7"
+    },
+    "PMC7859705.xml": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7859705/fullTextXML",
+      "sha256": "988a00a6ad9a68a7be4cd83ff12d85ba869a0dccf1d3e7045293e12cf195fc89"
+    },
+    "PMC7859705_gr3.jpg": {
+      "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7859705.1/gr3.jpg",
+      "sha256": "5ce123c1e0c2547486c5f0946b43f1ca0c0cc5d1e9425b5d87823e6e7152fafb"
+    },
+    "target_mmc.docx": {
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916522105599-mmc1.docx",
+      "sha256": "184e16150ecd85a21c6c543e42ad7d97cd1d7523184756b62a3aeb67f1001259"
+    },
+    "kanata-screenshot.png": {
+      "url": "https://www.researchgate.net/figure/Postprandial-responses-and-the-iAUC-for-a-glucose-b-insulin-and-c-GLP-1-p-005_fig3_391879497",
+      "sha256": "ec1b3daca69d69dd129fd8f1bd93ead5c80814b14e6eacd4c7b30b66960bd07e",
+      "note": "SHA identifies the local browser capture of the original figure, not a server-distributed PNG. Offline replay uses documented coordinates."
+    }
+  },
+  "clinical_source": {
+    "paper": "https://doi.org/10.1038/s42255-025-01309-7",
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12286859.1/42255_2025_1309_MOESM4_ESM.xlsx",
+    "sha256": "00eb9d8e0337ef722010a699fecbd291e51ae35533589f25c561902dd030152c",
+    "attribution": "Cai et al., Nature Metabolism (2025), CC BY 4.0; new derived statistical summaries only. Only streamed transiently."
+  }
+}

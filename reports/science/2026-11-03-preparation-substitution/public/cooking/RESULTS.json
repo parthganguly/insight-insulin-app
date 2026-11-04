@@ -224,7 +224,7 @@
         "rho_minus1": 0.1902916111820124
       }
     },
-    "note": "Central-estimate restriction only: the gap is within sampling noise for every correlation in [-1,1]. Response maps that are nonlinear in rice grams, allow potato to suppress the rice response, or are not additive avoid the restriction."
+    "note": "Central-estimate restriction only: the gap is not statistically distinguished from zero under the stated normal-theory covariance sensitivity for any correlation in [-1,1]. Response maps that are nonlinear in rice grams, allow potato to suppress the rice response, or are not additive avoid the restriction."
   },
   "source_tests": {
     "iAUCins_letters": {

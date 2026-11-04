@@ -1,0 +1,63 @@
+{
+  "Kanata_primary_source": "https://doi.org/10.1039/D5FO00348B",
+  "independent_visual_means": {
+    "CFM": [
+      3.5,
+      43,
+      52,
+      49,
+      36,
+      20.5,
+      8
+    ],
+    "CLP": [
+      4.5,
+      50.5,
+      55,
+      50,
+      32,
+      25,
+      5
+    ]
+  },
+  "signed_group_curve_areas": {
+    "120": {
+      "CFM": 3870.0,
+      "CLP": 3948.75
+    },
+    "180": {
+      "CFM": 4515.0,
+      "CLP": 4578.75
+    }
+  },
+  "CLP_CFM_signed120_ratio": 1.0203488372093024,
+  "published_positive180_bar_visual_approximate": {
+    "CFM": 4500,
+    "CLP": 4600,
+    "ratio": 1.0222222222222221
+  },
+  "conditional_nominal_flour_fraction_predictions": {
+    "equality": 1,
+    "process_Cai": 0.78539454851149,
+    "external_H20": 0.8354515050167224,
+    "hummus": 0.9118816930137684,
+    "zero": 0.7,
+    "measured_total_starch": 0.9497607655502394
+  },
+  "abs_log_errors_against_rounded_signed120": {
+    "equality": 0.020144566092467463,
+    "process_Cai": 0.26171364398930175,
+    "external_H20": 0.19992754179167663,
+    "hummus": 0.11238958598759619,
+    "zero": 0.37681951003119996,
+    "measured_total_starch": 0.07168971793003323
+  },
+  "Cai_Fieller_C_S_95_normal_theory": [
+    0.2538077859070686,
+    0.5722141165959539
+  ],
+  "shared_intact_factor_primary_error_floor": 0.46984271067750066,
+  "posthoc_duration_C_S": 0.625,
+  "frozen_measured_H20_C_S": 0.6164383561643835,
+  "minimum_error_scope": "Only common multiplicative factor predicting same C/B and S/B; not all cheap process models or duration rules."
+}

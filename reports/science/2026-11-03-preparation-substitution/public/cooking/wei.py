@@ -101,7 +101,7 @@ def additive_bound(obs):
         gap = math.log(lb) - math.log(obs[m])
         out[m] = dict(lower_bound=lb, observed=obs[m], central_violation=obs[m] < lb, log_gap_below_bound=gap,
                       gap_in_SE_units={k: gap / v for k, v in se.items()} if gap > 0 else None, paired_se_range=se)
-    out['note'] = ('Central-estimate restriction only: the gap is within sampling noise for every correlation in [-1,1]. Response maps that are '
+    out['note'] = ('Central-estimate restriction only: the gap is not statistically distinguished from zero under the stated normal-theory covariance sensitivity for any correlation in [-1,1]. Response maps that are '
                    'nonlinear in rice grams, allow potato to suppress the rice response, or are not additive avoid the restriction.')
     return out
 

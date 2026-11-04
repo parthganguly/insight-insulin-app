@@ -1,0 +1,353 @@
+{
+  "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12286859.1/42255_2025_1309_MOESM4_ESM.xlsx",
+  "sha256": "00eb9d8e0337ef722010a699fecbd291e51ae35533589f25c561902dd030152c",
+  "arm_timepoint_means": {
+    "Broken": [
+      8.659,
+      31.598,
+      41.496,
+      43.091,
+      22.515,
+      18.53,
+      9.611,
+      12.939,
+      8.957
+    ],
+    "Intact-S": [
+      7.354,
+      20.943,
+      25.259,
+      26.375,
+      22.376,
+      16.036,
+      13.156,
+      14.656,
+      10.241
+    ],
+    "Intact-C": [
+      9.071,
+      18.128,
+      16.624,
+      16.851,
+      12.105,
+      12.258000000000001,
+      9.721,
+      11.137,
+      10.251
+    ]
+  },
+  "windows": {
+    "120": {
+      "positive": {
+        "arms": {
+          "Broken": {
+            "n": 10,
+            "mean": 1983.0586995359351,
+            "sd": 832.2634114809989,
+            "sem": 263.1847993501886
+          },
+          "Intact-S": {
+            "n": 10,
+            "mean": 1444.5901688664596,
+            "sd": 713.990081980847,
+            "sem": 225.7834885829822
+          },
+          "Intact-C": {
+            "n": 10,
+            "mean": 564.4746743955126,
+            "sd": 323.16087773100435,
+            "sem": 102.19244242891601
+          }
+        },
+        "pairs": {
+          "Intact-C/Broken": {
+            "ratio": 0.28464849503830014,
+            "mean_difference": -1418.5840251404225,
+            "paired_difference_sem": 249.06396910116106,
+            "paired_delta_log_ratio_sem": 0.18600469729814378
+          },
+          "Intact-S/Broken": {
+            "ratio": 0.7284656622643167,
+            "mean_difference": -538.4685306694755,
+            "paired_difference_sem": 256.0784234260485,
+            "paired_delta_log_ratio_sem": 0.1515213744862591
+          },
+          "Intact-C/Intact-S": {
+            "ratio": 0.39075073786390524,
+            "mean_difference": -880.115494470947,
+            "paired_difference_sem": 193.56566872643157,
+            "paired_delta_log_ratio_sem": 0.1668182650352029
+          }
+        }
+      },
+      "signed": {
+        "arms": {
+          "Broken": {
+            "n": 10,
+            "mean": 1975.29,
+            "sd": 837.3279351604124,
+            "sem": 264.78634235926893
+          },
+          "Intact-S": {
+            "n": 10,
+            "mean": 1443.21,
+            "sd": 716.0970419573034,
+            "sem": 226.4497678294239
+          },
+          "Intact-C": {
+            "n": 10,
+            "mean": 539.475,
+            "sd": 344.58256993063367,
+            "sem": 108.96657629750511
+          }
+        },
+        "pairs": {
+          "Intact-C/Broken": {
+            "ratio": 0.27311179624257703,
+            "mean_difference": -1435.815,
+            "paired_difference_sem": 248.50747619538527,
+            "paired_delta_log_ratio_sem": 0.19945892385999495
+          },
+          "Intact-S/Broken": {
+            "ratio": 0.7306319578391022,
+            "mean_difference": -532.0799999999999,
+            "paired_difference_sem": 257.5598280497174,
+            "paired_delta_log_ratio_sem": 0.15256768972864485
+          },
+          "Intact-C/Intact-S": {
+            "ratio": 0.3738021493753508,
+            "mean_difference": -903.735,
+            "paired_difference_sem": 192.21166191207024,
+            "paired_delta_log_ratio_sem": 0.1782048392902048
+          }
+        }
+      },
+      "positive_nodes": {
+        "arms": {
+          "Broken": {
+            "n": 10,
+            "mean": 1990.56,
+            "sd": 829.2485836587241,
+            "sem": 262.23142708302527
+          },
+          "Intact-S": {
+            "n": 10,
+            "mean": 1446.9,
+            "sd": 710.50990668674,
+            "sem": 224.68296052437975
+          },
+          "Intact-C": {
+            "n": 10,
+            "mean": 583.995,
+            "sd": 318.83904677752383,
+            "sem": 100.82575948139444
+          }
+        },
+        "pairs": {
+          "Intact-C/Broken": {
+            "ratio": 0.2933822642874367,
+            "mean_difference": -1406.565,
+            "paired_difference_sem": 248.41508252318332,
+            "paired_delta_log_ratio_sem": 0.17985570423042557
+          },
+          "Intact-S/Broken": {
+            "ratio": 0.7268808777429467,
+            "mean_difference": -543.6599999999999,
+            "paired_difference_sem": 253.52702957475753,
+            "paired_delta_log_ratio_sem": 0.14960596466146933
+          },
+          "Intact-C/Intact-S": {
+            "ratio": 0.40361808003317434,
+            "mean_difference": -862.9050000000001,
+            "paired_difference_sem": 193.21428492738315,
+            "paired_delta_log_ratio_sem": 0.16225608121728824
+          }
+        }
+      },
+      "positive_covariance_of_means": [
+        [
+          69266.23860899903,
+          27334.131690665043,
+          8838.336597081117
+        ],
+        [
+          27334.131690665043,
+          50978.18371670165,
+          11976.90544838916
+        ],
+        [
+          8838.336597081117,
+          11976.90544838916,
+          10443.295289587315
+        ]
+      ],
+      "covariance_order": [
+        "Broken",
+        "Intact-S",
+        "Intact-C"
+      ],
+      "n_complete_triplets": 10,
+      "complete_by_arm": {
+        "Broken": 10,
+        "Intact-S": 10,
+        "Intact-C": 10
+      }
+    },
+    "180": {
+      "positive": {
+        "arms": {
+          "Broken": {
+            "n": 10,
+            "mean": 2155.21773282873,
+            "sd": 796.0039793361759,
+            "sem": 251.71856012599213
+          },
+          "Intact-S": {
+            "n": 10,
+            "mean": 1797.0344718875156,
+            "sd": 909.1165516742833,
+            "sem": 287.4878961848898
+          },
+          "Intact-C": {
+            "n": 10,
+            "mean": 693.2151260499725,
+            "sd": 448.91694544922774,
+            "sem": 141.96000278651198
+          }
+        },
+        "pairs": {
+          "Intact-C/Broken": {
+            "ratio": 0.32164505492450896,
+            "mean_difference": -1462.0026067787574,
+            "paired_difference_sem": 238.98471493913942,
+            "paired_delta_log_ratio_sem": 0.1946966868190863
+          },
+          "Intact-S/Broken": {
+            "ratio": 0.8338064616464075,
+            "mean_difference": -358.18326094121426,
+            "paired_difference_sem": 268.6951471063053,
+            "paired_delta_log_ratio_sem": 0.14204098359670625
+          },
+          "Intact-C/Intact-S": {
+            "ratio": 0.38575505194502685,
+            "mean_difference": -1103.819345837543,
+            "paired_difference_sem": 231.9486827931624,
+            "paired_delta_log_ratio_sem": 0.16791202092381724
+          }
+        }
+      },
+      "signed": {
+        "arms": {
+          "Broken": {
+            "n": 10,
+            "mean": 2122.44,
+            "sd": 829.2510602947698,
+            "sem": 262.2322102641092
+          },
+          "Intact-S": {
+            "n": 10,
+            "mean": 1792.605,
+            "sd": 913.786545233623,
+            "sem": 288.9646778154728
+          },
+          "Intact-C": {
+            "n": 10,
+            "mean": 628.9050000000001,
+            "sd": 503.2458360483473,
+            "sem": 159.14030649084475
+          }
+        },
+        "pairs": {
+          "Intact-C/Broken": {
+            "ratio": 0.2963122632441907,
+            "mean_difference": -1493.5349999999999,
+            "paired_difference_sem": 248.8181529249825,
+            "paired_delta_log_ratio_sem": 0.23491964710083094
+          },
+          "Intact-S/Broken": {
+            "ratio": 0.8445963136767117,
+            "mean_difference": -329.83500000000004,
+            "paired_difference_sem": 272.0816662327692,
+            "paired_delta_log_ratio_sem": 0.143828055148117
+          },
+          "Intact-C/Intact-S": {
+            "ratio": 0.3508330055979985,
+            "mean_difference": -1163.6999999999998,
+            "paired_difference_sem": 234.69044718522306,
+            "paired_delta_log_ratio_sem": 0.20577139914046616
+          }
+        }
+      },
+      "positive_nodes": {
+        "arms": {
+          "Broken": {
+            "n": 10,
+            "mean": 2170.62,
+            "sd": 792.6726493326232,
+            "sem": 250.66510108110378
+          },
+          "Intact-S": {
+            "n": 10,
+            "mean": 1800.195,
+            "sd": 905.7045132105725,
+            "sem": 286.408914883947
+          },
+          "Intact-C": {
+            "n": 10,
+            "mean": 721.845,
+            "sd": 446.553664468225,
+            "sem": 141.2126677214194
+          }
+        },
+        "pairs": {
+          "Intact-C/Broken": {
+            "ratio": 0.33255245045194465,
+            "mean_difference": -1448.7749999999999,
+            "paired_difference_sem": 239.2917871031097,
+            "paired_delta_log_ratio_sem": 0.18794321703255126
+          },
+          "Intact-S/Broken": {
+            "ratio": 0.829345993310667,
+            "mean_difference": -370.42499999999995,
+            "paired_difference_sem": 265.19833144271473,
+            "paired_delta_log_ratio_sem": 0.13990761949247132
+          },
+          "Intact-C/Intact-S": {
+            "ratio": 0.40098156033096416,
+            "mean_difference": -1078.35,
+            "paired_difference_sem": 231.82447320117,
+            "paired_delta_log_ratio_sem": 0.16269084125318417
+          }
+        }
+      },
+      "positive_covariance_of_means": [
+        [
+          63362.23351190272,
+          36907.220943118824,
+          13200.590964253726
+        ],
+        [
+          36907.220943118824,
+          82649.29045281398,
+          24500.870697238694
+        ],
+        [
+          13200.590964253726,
+          24500.870697238694,
+          20152.642391146488
+        ]
+      ],
+      "covariance_order": [
+        "Broken",
+        "Intact-S",
+        "Intact-C"
+      ],
+      "n_complete_triplets": 10,
+      "complete_by_arm": {
+        "Broken": 10,
+        "Intact-S": 10,
+        "Intact-C": 10
+      }
+    }
+  }
+}

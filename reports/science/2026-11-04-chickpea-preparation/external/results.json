@@ -1,0 +1,73 @@
+{
+  "forecasts": {
+    "same_bake_equal": 1,
+    "measured_total_starch": 0.9497607655502394,
+    "same_starch_nominal30_measured_porridge_response": 0.78539454851149,
+    "measured_total_nominal30_measured_porridge_response": 0.7459369276532574,
+    "same_starch_nominal30_measured_porridge_H20": 0.8354515050167224,
+    "measured_total_nominal30_measured_porridge_H20": 0.7934790609847819,
+    "same_starch_nominal30_hummus_reference": 0.9118816930137684,
+    "measured_total_nominal30_hummus_reference": 0.866069454848005,
+    "same_starch_nominal30_zero_limit": 0.7,
+    "measured_total_nominal30_zero_limit": 0.6648325358851676
+  },
+  "sourced_starch_grams": {
+    "CFM": 41.8,
+    "CLP": 39.7
+  },
+  "assumed_share": 0.3,
+  "unknown_actual_share": true,
+  "own_bread_H20_coverage": 0,
+  "outcomes": {
+    "120": {
+      "operator": "derived_signed_net_AUC_uU_min_mL",
+      "n": 15,
+      "areas_CFM_CLP": [
+        3850.8254716981132,
+        3949.882075471698
+      ],
+      "ratio_CLP_CFM": 1.0257234726688103,
+      "abs_log_error": {
+        "same_bake_equal": 0.02539819060561046,
+        "measured_total_starch": 0.07694334244317615,
+        "same_starch_nominal30_measured_porridge_response": 0.26696726850244473,
+        "measured_total_nominal30_measured_porridge_response": 0.31851242034001054,
+        "same_starch_nominal30_measured_porridge_H20": 0.20518116630481958,
+        "measured_total_nominal30_measured_porridge_H20": 0.2567263181423853,
+        "same_starch_nominal30_hummus_reference": 0.11764321050073903,
+        "measured_total_nominal30_hummus_reference": 0.16918836233830487,
+        "same_starch_nominal30_zero_limit": 0.38207313454434294,
+        "measured_total_nominal30_zero_limit": 0.43361828638190864
+      },
+      "graph_read_range": [
+        0.9553072625698323,
+        1.1014009339559707
+      ]
+    },
+    "180": {
+      "operator": "author_positive_iAUC_uU_min_mL",
+      "n": 15,
+      "areas_CFM_CLP": [
+        4470.355731225296,
+        4565.217391304348
+      ],
+      "ratio_CLP_CFM": 1.0212201591511938,
+      "abs_log_error": {
+        "same_bake_equal": 0.02099814683977358,
+        "measured_total_starch": 0.0725432986773394,
+        "same_starch_nominal30_measured_porridge_response": 0.2625672247366079,
+        "measured_total_nominal30_measured_porridge_response": 0.3141123765741737,
+        "same_starch_nominal30_measured_porridge_H20": 0.20078112253898273,
+        "measured_total_nominal30_measured_porridge_H20": 0.2523262743765484,
+        "same_starch_nominal30_hummus_reference": 0.11324316673490226,
+        "measured_total_nominal30_hummus_reference": 0.16478831857246806,
+        "same_starch_nominal30_zero_limit": 0.377673090778506,
+        "measured_total_nominal30_zero_limit": 0.4292182426160717
+      },
+      "graph_read_range": [
+        1.0,
+        1.0428954423592494
+      ]
+    }
+  }
+}

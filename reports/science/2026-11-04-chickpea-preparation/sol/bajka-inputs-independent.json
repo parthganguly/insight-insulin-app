@@ -1,0 +1,26 @@
+[
+  {
+    "arm": "0%",
+    "wheat_flour_g_per_roll": 78.03333333333333,
+    "added_gluten_g_per_roll": 1.2249999999999999,
+    "ICP_g_per_roll": 0.0,
+    "amylolysis_model_C20_percent": 37.610831750793764,
+    "amylolysis_model_C120_percent": 67.73790827655193
+  },
+  {
+    "arm": "30%",
+    "wheat_flour_g_per_roll": 57.38333333333333,
+    "added_gluten_g_per_roll": 4.158333333333333,
+    "ICP_g_per_roll": 26.458333333333332,
+    "amylolysis_model_C20_percent": 30.5023194893332,
+    "amylolysis_model_C120_percent": 51.16784773954971
+  },
+  {
+    "arm": "60%",
+    "wheat_flour_g_per_roll": 29.233333333333334,
+    "added_gluten_g_per_roll": 11.783333333333333,
+    "ICP_g_per_roll": 61.65833333333333,
+    "amylolysis_model_C20_percent": 21.22457016046712,
+    "amylolysis_model_C120_percent": 43.93493729960546
+  }
+]

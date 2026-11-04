@@ -154,6 +154,6 @@
     },
     "note": "A common additive fat effect would give equal absolute changes; a common multiplicative effect equal log changes. Neither holds at the point estimates in either panel; paired uncertainty of these differences is unavailable, so no shape is established."
   },
-  "fat_wording": "Coordinator facts: meals with \"no fat\" or \"+37.5 g as butter\"; whether 37.5 g is fat or butter mass is kept as worded, not converted.",
+  "fat_wording": "The original Methods report 37.5 g fat supplied as 46.5 g butter.",
   "scope": "Panel A is the printed longer experiment (window unstated) and is not reclassified. Panel B is an approximate group-mean-curve signed 0-120 reading (Astra), distinct operator from the donor GM of participant iAUC. n = 7; IV arms excluded; lentil colour unspecified."
 }
