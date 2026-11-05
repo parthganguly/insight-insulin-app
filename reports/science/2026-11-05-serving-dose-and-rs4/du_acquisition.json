@@ -1,0 +1,79 @@
+{
+  "doi": "10.1039/C9FO02674F",
+  "pmid": "32101207",
+  "registry": "NCT03844503",
+  "classification": "qualitative only",
+  "primary_sources": [
+    {
+      "local_file": "abstract.json",
+      "sha256": "6c9635c6e4c14141595c986103f11fb3579ff1d9873439abd539ea944ada6aa8",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:32101207&resulttype=core&format=json",
+      "locator": "resultList.result[0].abstractText"
+    },
+    {
+      "local_file": "registry.json",
+      "sha256": "1e6a7494245eeb55567975461bc3d21c74538af60f4766fab5833cf6153edfef",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT03844503",
+      "locator": "protocolSection.descriptionModule, armsInterventionsModule, outcomesModule, statusModule; hasResults"
+    }
+  ],
+  "matrix": "Ready-to-eat baked breakfast cereal bar; potato-derived distarch phosphate, VERSAFIBE 1490. Recipe, bake conditions and actual portion masses were not recovered.",
+  "design": "Randomized participant-blinded single-center crossover, 31 healthy adults.",
+  "matching": "Original publication abstract describes matching energy, available carbohydrate and sugars; actual per-arm grams unavailable.",
+  "arms": [
+    {
+      "published_nominal_RS4_g": 0,
+      "registry_arm_label_fiber_g": 0,
+      "consumed_available_carbohydrate_g": null,
+      "verified_total_dietary_fiber_g": null,
+      "published_insulin_iAUC_mean": null
+    },
+    {
+      "published_nominal_RS4_g": 10,
+      "registry_arm_label_fiber_g": 10,
+      "consumed_available_carbohydrate_g": null,
+      "verified_total_dietary_fiber_g": null,
+      "published_insulin_iAUC_mean": null
+    },
+    {
+      "published_nominal_RS4_g": 20,
+      "registry_arm_label_fiber_g": 20,
+      "consumed_available_carbohydrate_g": null,
+      "verified_total_dietary_fiber_g": null,
+      "published_insulin_iAUC_mean": null
+    }
+  ],
+  "label_caveat": "Arm labels do not establish analytical total fiber for a consumed portion.",
+  "sampling": {
+    "planned_venous_plasma_min": [
+      -5,
+      15,
+      30,
+      45,
+      60,
+      90,
+      120
+    ],
+    "published": "Serial blood collection over two hours; exact actual times not in abstract."
+  },
+  "outcomes": {
+    "current_registration": "Positive glucose iAUC primary. Insulin positive iAUC, peak and net iAUC secondary under detailedDescription. Original version wording unverified. First submitted Feb 5 2019; started Feb 11; first publicly posted Feb 18; primary completion October 25.",
+    "observed_publication": "Abstract reports P > 0.05 for insulin iAUC across tested doses; does not provide native arm estimates, paired contrasts, ranking, interval, units, or positive/net implementation.",
+    "registry_has_results": false,
+    "prespecified_insulin_subgroups": null,
+    "reviewer_derived_insulin_effect": null
+  },
+  "acquisition": "Publisher HTML led to unauthenticated abstract; PDF and graphical abstract could not be recovered. OpenAlex, Semantic Scholar and Unpaywall had no open version. DataCite related-DOI and Figshare resource-DOI searches returned no records. Searched IIT/ProQuest, conference and post-completion regulatory deposits; no verified arm table or figure. Ingredion submission FDA-2016-N-3389-0423 dated Feb 13 2017 predates trial. No author contact or access agreement.",
+  "secondary_context_only": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7698388/",
+      "locator": "Introduction and Discussion citing reference 22",
+      "finding": "Overlapping investigators described the two active arms as delivering 10 and 20 g potato fiber; also report matching available carbohydrate, fat and protein. No arm-specific grams of available carbohydrate or native insulin means."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9654973/",
+      "locator": "Discussion citing reference 19",
+      "finding": "Later authors describe Du as adding RS4 atop the control formulation. Their general remark on testing at 50 g includes multiple references and is insufficient to assign per-arm doses."
+    }
+  ]
+}

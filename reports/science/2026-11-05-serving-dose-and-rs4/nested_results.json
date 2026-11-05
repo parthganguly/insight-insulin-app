@@ -1,0 +1,119 @@
+{
+  "high_bar_rounding_corners": 256,
+  "upper_exponent_after_rounding": 0.16057853068441866,
+  "conservative_doubling_cap_after_rounding": 1.1177352677836894,
+  "density_intervals_after_rounding": [
+    [
+      0.01501998070828166,
+      0.015299793246037217
+    ],
+    [
+      0.05631231568599915,
+      0.056609074308189344
+    ],
+    [
+      0.5975592450688236,
+      0.5980127750177431
+    ],
+    [
+      0.8514269324537502,
+      0.8519581121790275
+    ],
+    [
+      1.8973653165552495,
+      1.8996458087367176
+    ]
+  ],
+  "cookie": {
+    "D_ratio": 0.35033076074972436,
+    "Y_ratio": 0.5414847161572053,
+    "x0": 0.01515986769570011,
+    "x1": 1.8985051140833986
+  },
+  "nested_contrasts": {
+    "medium": {
+      "target": {
+        "D_ratio": 0.9896067415730336,
+        "Y_ratio": 0.681988948414704,
+        "x0": 0.05646067415730336,
+        "x1": 0.5977859778597786
+      },
+      "upper_exponent": 0.22216098864405243,
+      "upper_for_doubling": 1.166479528605863
+    },
+    "high": {
+      "target": {
+        "D_ratio": 0.9792134831460674,
+        "Y_ratio": 0.6346069611509821,
+        "x0": 0.05646067415730336,
+        "x1": 0.8516924842226048
+      },
+      "upper_exponent": 0.15438791631610851,
+      "upper_for_doubling": 1.1129493336242289
+    }
+  },
+  "necessary_exponent_ceiling": 0.15438791631610851,
+  "upper_for_doubling": 1.1129493336242289,
+  "within_recipe": {
+    "25_to_50": {
+      "barley": {
+        "observed_ratio": 2.142857142857143,
+        "sample_log_slope": 1.0995356735509143,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 2.0877192982456143,
+        "above_conservative_rounding_cap": true
+      },
+      "bread": {
+        "observed_ratio": 1.53125,
+        "sample_log_slope": 0.6147098441152082,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 1.5181347150259066,
+        "above_conservative_rounding_cap": true
+      },
+      "potato": {
+        "observed_ratio": 2.265306122448979,
+        "sample_log_slope": 1.1797060222348974,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 2.2487309644670046,
+        "above_conservative_rounding_cap": true
+      },
+      "spaghetti": {
+        "observed_ratio": 1.9607843137254903,
+        "sample_log_slope": 0.9714308478032292,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 1.9320388349514563,
+        "above_conservative_rounding_cap": true
+      }
+    },
+    "50_to_100": {
+      "barley": {
+        "observed_ratio": 1.1333333333333333,
+        "sample_log_slope": 0.18057224564182084,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 1.115702479338843,
+        "above_conservative_rounding_cap": false
+      },
+      "bread": {
+        "observed_ratio": 2.3265306122448983,
+        "sample_log_slope": 1.2181801700495336,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 2.315254237288136,
+        "above_conservative_rounding_cap": true
+      },
+      "potato": {
+        "observed_ratio": 1.3423423423423424,
+        "sample_log_slope": 0.4247526541120557,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 1.3370786516853932,
+        "above_conservative_rounding_cap": true
+      },
+      "spaghetti": {
+        "observed_ratio": 1.45,
+        "sample_log_slope": 0.5360529002402098,
+        "exceeds_cap": true,
+        "lower_ratio_from_printed_precision": 1.4378109452736316,
+        "above_conservative_rounding_cap": true
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "doi": "10.1093/jn/126.11.2798",
+  "operator": "mean participant-positive incremental plasma insulin area0\u2013120",
+  "unit": "nmol*min/L",
+  "n": 7,
+  "source_locator": "Table 2, plasma insulin. Actual solid-food portion; Table 1 available carbohydrate excludes dietary fibre.",
+  "common_beverage": "Four subjects had coffee with 30 mL 2% milk and aspartame, one had plain coffee, two had water. The beverage was constant for each person and outside the Table 1 food amounts.",
+  "retained_extraction_sha256": "86195ced7405c9fd7708612d247a402d661e9165f2462b0d9b50f483ca0bfd27",
+  "rows": [
+    {
+      "food": "barley",
+      "C": 25,
+      "mean": 2.8,
+      "SEM": 1.1
+    },
+    {
+      "food": "barley",
+      "C": 50,
+      "mean": 6.0,
+      "SEM": 1.6
+    },
+    {
+      "food": "barley",
+      "C": 100,
+      "mean": 6.8,
+      "SEM": 1.7
+    },
+    {
+      "food": "spaghetti",
+      "C": 25,
+      "mean": 5.1,
+      "SEM": 2.2
+    },
+    {
+      "food": "spaghetti",
+      "C": 50,
+      "mean": 10.0,
+      "SEM": 4.2
+    },
+    {
+      "food": "spaghetti",
+      "C": 100,
+      "mean": 14.5,
+      "SEM": 4.7
+    },
+    {
+      "food": "bread",
+      "C": 25,
+      "mean": 9.6,
+      "SEM": 3.6
+    },
+    {
+      "food": "bread",
+      "C": 50,
+      "mean": 14.7,
+      "SEM": 5.5
+    },
+    {
+      "food": "bread",
+      "C": 75,
+      "mean": 31.0,
+      "SEM": 14.3
+    },
+    {
+      "food": "bread",
+      "C": 100,
+      "mean": 34.2,
+      "SEM": 11.4
+    },
+    {
+      "food": "potato",
+      "C": 25,
+      "mean": 9.8,
+      "SEM": 5.7
+    },
+    {
+      "food": "potato",
+      "C": 50,
+      "mean": 22.2,
+      "SEM": 5.7
+    },
+    {
+      "food": "potato",
+      "C": 100,
+      "mean": 29.8,
+      "SEM": 9.9
+    }
+  ]
+}

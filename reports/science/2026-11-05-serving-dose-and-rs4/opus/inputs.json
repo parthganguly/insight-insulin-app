@@ -1,0 +1,69 @@
+{
+  "donor": {
+    "citation": "Al-Tamimi EK, Seib PA, Snyder BS, Haub MD. J Nutr Metab 2010;651063. doi 10.1155/2010/651063; PMC2925102",
+    "design": "randomized crossover (Latin square), n=13 normoglycaemic adults; GLU beverage, puffed-wheat control bar 65 g (PWB), cross-linked wheat RS4 bar 80 g (RS4XL, Fibersym RW)",
+    "composition_locator": "Table 2 (proximate analysis; TDF by Medallion Labs; available = total CHO - TDF)",
+    "arms": {
+      "PWB": {
+        "serving_g": 65,
+        "total_cho_g": 56,
+        "available_cho_g": 51,
+        "tdf_g": 5,
+        "energy_kcal": 261
+      },
+      "RS4XL": {
+        "serving_g": 80,
+        "total_cho_g": 71,
+        "available_cho_g": 51,
+        "tdf_g": 20,
+        "energy_kcal": 326
+      }
+    },
+    "insulin_locator": "Table 3, insulin iAUC (pM x 2 hr), mean +/- SE",
+    "insulin_iAUC": {
+      "PWB": [
+        8758,
+        1132
+      ],
+      "RS4XL": [
+        3659,
+        974
+      ]
+    },
+    "operator": "venous plasma insulin, LINCOplex/Luminex; samples -10,10,20,30,60,90,120 min from first bite; trapezoid iAUC (GraphPad Prism), below-baseline handling unspecified"
+  },
+  "target": {
+    "citation": "Gourineni V, Stewart ML, Wilcox ML, Maki KC. Foods 2020;9(11):1679. doi 10.3390/foods9111679; PMC7698388",
+    "design": "randomized double-blind crossover, 41 randomized, 38 evaluable (completed control + >=1 other); cold-pressed bars",
+    "composition_locator": "Table 1 (ESHA Genesis labeling software, calculated; available = total CHO - dietary fiber); Table 2 formulation",
+    "arms": {
+      "control": {
+        "serving_g": 60,
+        "total_cho_g": 37.61,
+        "available_cho_g": 35.6,
+        "dietary_fiber_RS_g": 2.01,
+        "protein_g": 6.16,
+        "fat_g": 2.18
+      },
+      "medium": {
+        "serving_g": 80,
+        "total_cho_g": 56.29,
+        "available_cho_g": 35.23,
+        "dietary_fiber_RS_g": 21.06,
+        "protein_g": 4.13,
+        "fat_g": 2.23
+      },
+      "high": {
+        "serving_g": 90.4,
+        "total_cho_g": 64.55,
+        "available_cho_g": 34.86,
+        "dietary_fiber_RS_g": 29.69,
+        "protein_g": 4.07,
+        "fat_g": 2.12
+      }
+    },
+    "ingredient": "VERSAFIBE 1490 potato RS4 (90% dietary fiber, AOAC 991.43); control uses puffed wheat",
+    "operator": "venous plasma insulin, electrochemiluminescence; t=-5 counted as 0; 15,30,45,60,90,120 min from start; iAUC0-120 = area above pre-consumption value without subtraction below (participant-positive)"
+  },
+  "exposure": "Target title and Results prose (venous insulin iAUC significantly reduced with fiber bars, p<0.001) seen before freeze; no Table 4 numbers seen."
+}

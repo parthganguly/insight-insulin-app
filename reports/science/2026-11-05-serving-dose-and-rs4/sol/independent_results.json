@@ -1,0 +1,96 @@
+{
+  "donor": {
+    "D": [
+      51.0,
+      51.0
+    ],
+    "F": [
+      5.0,
+      20.0
+    ],
+    "Y": [
+      8758.0,
+      3659.0
+    ]
+  },
+  "target": {
+    "D": [
+      35.6,
+      35.23,
+      34.86
+    ],
+    "F": [
+      2.01,
+      21.06,
+      29.69
+    ],
+    "Y": [
+      11871.6,
+      8096.3,
+      7533.8
+    ]
+  },
+  "generic_factor": 0.4177894496460379,
+  "k": -2.967444119963265,
+  "donor_density_delta": 0.29411764705882354,
+  "primary": [
+    {
+      "target_index": 1,
+      "D_ratio": 0.9896067415730336,
+      "density_delta": 0.5413253037024752,
+      "observed_ratio": 0.681988948414704,
+      "predictions": {
+        "equality": 1.0,
+        "available": 0.9896067415730336,
+        "generic": 0.4134472559278066,
+        "density": 0.19853294259556234
+      },
+      "absolute_log_errors": {
+        "equality": 0.38274182594049394,
+        "available": 0.37229418043565543,
+        "generic": 0.5004835019064813,
+        "density": 1.2340584090235833
+      }
+    },
+    {
+      "target_index": 2,
+      "D_ratio": 0.9792134831460674,
+      "density_delta": 0.7952318100653014,
+      "observed_ratio": 0.6346069611509821,
+      "predictions": {
+        "equality": 1.0,
+        "available": 0.9792134831460674,
+        "generic": 0.4091050622095753,
+        "density": 0.09247549795253539
+      },
+      "absolute_log_errors": {
+        "equality": 0.45474943054088496,
+        "available": 0.43374383277477496,
+        "generic": 0.43903384956736186,
+        "density": 1.9260621260112478
+      }
+    }
+  ],
+  "MALE": {
+    "equality": 0.41874562824068945,
+    "available": 0.40301900660521517,
+    "generic": 0.46975867573692154,
+    "density": 1.5800602675174156
+  },
+  "secondary": {
+    "observed": 0.930523819522498,
+    "predictions": {
+      "equality": 1.0,
+      "available": 0.9894975872835652,
+      "generic": 0.9894975872835651,
+      "density": 0.46579422408965204
+    },
+    "absolute_log_errors": {
+      "equality": 0.0720076046003908,
+      "available": 0.06144965233911942,
+      "generic": 0.06144965233911942,
+      "density": 0.6920037169876645
+    }
+  },
+  "note": "Ratios of marginal arithmetic means, not mean participant ratios. No paired uncertainty inferred. Donor positive-only iAUC operator not explicitly documented; transfer conditional."
+}

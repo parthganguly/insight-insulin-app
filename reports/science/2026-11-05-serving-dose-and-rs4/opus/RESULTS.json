@@ -1,0 +1,136 @@
+{
+  "status": "Scored after freeze; relative forecasts only; paired covariance not reconstructed",
+  "endpoints": {
+    "venous_insulin_iAUC_0_120": {
+      "definition": "participant-positive venous insulin iAUC 0-120 min (area above pre-consumption value, no below-baseline subtraction), min*pmol/L, mean +/- SEM",
+      "locator": "Table 4",
+      "n": "38 evaluable (Table 3); Figure 2 curves n=37/36/37; per-arm iAUC n not printed",
+      "observed_ratio": {
+        "medium": 0.681988948414704,
+        "high": 0.6346069611509821,
+        "high_over_medium": 0.930523819522498
+      },
+      "marginal_log_se_scenarios": {
+        "medium": {
+          "rho_plus1": 0.01581124969142869,
+          "rho_0": 0.14549589536086083,
+          "rho_minus1": 0.20515388252946232
+        },
+        "high": {
+          "rho_plus1": 0.02915729596782647,
+          "rho_0": 0.1558723304443758,
+          "rho_minus1": 0.2184999288058601
+        },
+        "high_over_medium": {
+          "rho_plus1": 0.01334604627639778,
+          "rho_0": 0.16595156721164173,
+          "rho_minus1": 0.23431117849728877
+        }
+      },
+      "abs_log_error": {
+        "equality": {
+          "medium": 0.38274182594049394,
+          "high": 0.45474943054088496
+        },
+        "available_cho": {
+          "medium": 0.37229418043565543,
+          "high": 0.43374383277477496
+        },
+        "generic_enriched": {
+          "medium": 0.5004835019064813,
+          "high": 0.43903384956736186
+        },
+        "graded_fiber_density": {
+          "medium": 1.2340584090235833,
+          "high": 1.9260621260112478
+        }
+      },
+      "primary_mean": {
+        "equality": 0.41874562824068945,
+        "available_cho": 0.40301900660521517,
+        "generic_enriched": 0.46975867573692154,
+        "graded_fiber_density": 1.5800602675174156
+      },
+      "high_over_medium_abs_log_error": {
+        "equality": 0.0720076046003908,
+        "available_cho": 0.06144965233911942,
+        "generic_enriched": 0.06144965233911942,
+        "graded_fiber_density": 0.6920037169876645
+      },
+      "inside_donor_band_rho0": {
+        "medium": {
+          "generic_enriched_band_rho0": true,
+          "graded_band_rho0": false
+        },
+        "high": {
+          "generic_enriched_band_rho0": true,
+          "graded_band_rho0": false
+        }
+      },
+      "paired_evidence": "Repeated-measures ANOVA p<0.001 (methods describe RM ANCOVA with treatment, sequence, period); letters control a, medium b, high b; no paired ratio CI or covariance reported"
+    },
+    "venous_insulin_peak": {
+      "definition": "peak venous insulin, pmol/L (NOT an area; separate operator)",
+      "locator": "Table 4",
+      "n": null,
+      "observed_ratio": {
+        "medium": 0.700445053064019,
+        "high": 0.7055802807257787,
+        "high_over_medium": 1.0073313782991202
+      },
+      "marginal_log_se_scenarios": {
+        "medium": {
+          "rho_plus1": 0.005196134239435782,
+          "rho_0": 0.13919968041129155,
+          "rho_minus1": 0.19678948712311128
+        },
+        "high": {
+          "rho_plus1": 0.0073041325501675275,
+          "rho_0": 0.14808030160212912,
+          "rho_minus1": 0.2092897539127146
+        },
+        "high_over_medium": {
+          "rho_plus1": 0.01250026678960331,
+          "rho_0": 0.14458641405946865,
+          "rho_minus1": 0.2040936196732788
+        }
+      },
+      "abs_log_error": {
+        "equality": {
+          "medium": 0.35603935587616936,
+          "high": 0.3487347214972821
+        },
+        "available_cho": {
+          "medium": 0.34559171037133074,
+          "high": 0.3277291237311722
+        },
+        "generic_enriched": {
+          "medium": 0.527185971970806,
+          "high": 0.5450485586109647
+        },
+        "graded_fiber_density": {
+          "medium": 1.2607608790879081,
+          "high": 2.0320768350548506
+        }
+      },
+      "primary_mean": null,
+      "high_over_medium_abs_log_error": {
+        "equality": 0.00730463437888722,
+        "available_cho": 0.01786258664015865,
+        "generic_enriched": 0.017862586640158766,
+        "graded_fiber_density": 0.7713159559669426
+      },
+      "inside_donor_band_rho0": {
+        "medium": {
+          "generic_enriched_band_rho0": true,
+          "graded_band_rho0": false
+        },
+        "high": {
+          "generic_enriched_band_rho0": true,
+          "graded_band_rho0": false
+        }
+      },
+      "paired_evidence": "p<0.001; letters a,b,b"
+    }
+  }
+}

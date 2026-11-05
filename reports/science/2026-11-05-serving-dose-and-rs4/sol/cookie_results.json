@@ -1,0 +1,31 @@
+{
+  "potato_log_generic": -0.4030190066052153,
+  "potato_density_slope": -0.5904942487458439,
+  "cookie_D_ratio": 0.35033076074972436,
+  "cookie_density_delta": 1.8833452463876985,
+  "cookie_observed": 0.5414847161572053,
+  "cookie_residual_factor": 1.5456385131536907,
+  "threshold_D_exponent": 0.5848542032109382,
+  "predictions": {
+    "equality": 1.0,
+    "D": 0.35033076074972436,
+    "wheat_generic": 0.14636449572770513,
+    "wheat_density": 0.001310168770925804,
+    "potato_generic": 0.23412583619463964,
+    "potato_density": 0.1152119185495593,
+    "label_energy": 0.6040987424312995,
+    "macro_energy": 0.5225465501061887
+  },
+  "absolute_log_errors": {
+    "equality": 0.6134404379492028,
+    "D": 0.43543710209637054,
+    "wheat_generic": 1.3082147844385072,
+    "wheat_density": 6.024158879350313,
+    "potato_generic": 0.8384561087015856,
+    "potato_density": 1.547541638491131,
+    "label_energy": 0.10942282438686557,
+    "macro_energy": 0.03560077005002295
+  },
+  "macro_energy_control": 202.47,
+  "macro_energy_fibre": 105.80000000000001
+}

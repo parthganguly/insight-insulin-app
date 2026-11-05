@@ -1,0 +1,9 @@
+# Cookie Figure2c independent scale receipt
+
+Viewed original-labelled Figure2c at ../sources/cookie_figure2.jpg (the requested lab/sources path did not exist). Primary figure: https://pmc.ncbi.nlm.nih.gov/articles/PMC5372900/figure/nutrients-09-00237-f002/ . This is a coarse visual scale check, not participant-data extraction.
+
+Axes are insulin pmol/L, time minutes0,15,30,45,60,90,120. Visually read control approximately45,185,230,227,158,125,97 pmol/L; fibre50,175,185,132,105,66,55. Using each curve's own baseline and ordinary signed trapezoids yields control13327.5 and fibre6922.5 pmol*min/L, or222.125 and115.375 pmol*h/L. Use approximately +/-1800pmol*min/L (+/-30pmol*h/L) conservative reading sensitivity, not a confidence interval; plotting line thickness, point interpolation and baseline reading dominate this rough check. Executable curve_scale.py and cookie_curve_scale.json retain points and calculation.
+
+Table3 arithmetic participant-positive areas229/124 pmol*h/L correspond13740/7440 pmol*min/L, close to coarse signed group-curve integrals (difference412.5/517.5), easily within reading sensitivity. Interpreting Table3 numbers as pmol*min/L instead makes them roughly58/56 times smaller than plotted signed integrals and is incompatible with figure scale. Thus figure supports the explicit printed hour convention and x60 unit conversion.
+
+Do NOT equate signed integral of group mean with arithmetic mean of participant-positive integrals. Positive-part operation is nonlinear; below-baseline participant segments may persist even when the mean curve is above baseline. Per-arm missingness/group membership, rounding and averaging further limit identity. This receipt supports order-of-magnitude unit interpretation, not recovery of the Table3 endpoint or statistical uncertainty from a figure.
