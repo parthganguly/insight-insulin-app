@@ -1,0 +1,3205 @@
+{
+  "study": {
+    "fast": {
+      "signed60": {
+        "observed": {
+          "T": 2320.7827059531637,
+          "G": 4144.254832059227,
+          "I": 1473.1557651682986,
+          "S": 3262.6939765472393
+        },
+        "ratios": {
+          "T/G": 0.5599999999999992,
+          "I/S": 0.45151515151515137
+        },
+        "D": 1.2402684563758375,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.5798184952529437,
+              "I/S": 0.795146348515067
+            },
+            "mean_absolute_log_error": 0.6874824218840054,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21532785326212342
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.28768207245177946,
+              "I/S": 0.07235421918965601
+            },
+            "mean_absolute_log_error": 0.18001814582071773,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21532785326212342
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.07265138036357567,
+              "I/S": 0.14267647289854776
+            },
+            "mean_absolute_log_error": 0.10766392663106172,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21532785326212342
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.1563493037336873,
+              "I/S": 0.3716771569958107
+            },
+            "mean_absolute_log_error": 0.264013230364749,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21532785326212342
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.48372265096288203,
+              "I/S": 0.3716771569958107
+            },
+            "mean_absolute_log_error": 0.4276999039793464,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.8553998079586929
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.16368667361459746,
+              "I/S": 0.051641179647525966
+            },
+            "mean_absolute_log_error": 0.10766392663106171,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21532785326212342
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.48109854571810357,
+              "I/S": 0.41470337160713994
+            },
+            "errors": {
+              "T/G": 0.15186465785499398,
+              "I/S": 0.08504543301595442
+            },
+            "mean_absolute_log_error": 0.1184550454354742,
+            "predicted_D": 1.1601028075890871,
+            "absolute_log_error_D": 0.06681922483903968
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.4466689926383846,
+              "I/S": 0.4466689926383846
+            },
+            "errors": {
+              "T/G": 0.22611897206653592,
+              "I/S": 0.010791118804412572
+            },
+            "mean_absolute_log_error": 0.11845504543547425,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21532785326212342
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.48109854571810357,
+              "I/S": 0.41470337160713994
+            },
+            "errors": {
+              "T/G": 0.15186465785499398,
+              "I/S": 0.08504543301595442
+            },
+            "mean_absolute_log_error": 0.1184550454354742,
+            "predicted_D": 1.1601028075890871,
+            "absolute_log_error_D": 0.06681922483903968
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 2060.6796199880687,
+              "G": 4283.27966968229,
+              "I": 1272.5687320475995,
+              "S": 3068.624031475537
+            },
+            "signed_error": {
+              "T": -260.10308596509503,
+              "G": 139.02483762306292,
+              "I": -200.58703312069906,
+              "S": -194.06994507170248
+            },
+            "MAE": 198.44622544513987,
+            "mean_absolute_log_error": 0.08988950490897223
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 2060.6796199880687,
+              "G": 4283.27966968229,
+              "I": 1272.5687320475995,
+              "S": 3068.624031475537
+            },
+            "signed_error": {
+              "T": -260.10308596509503,
+              "G": 139.02483762306292,
+              "I": -200.58703312069906,
+              "S": -194.06994507170248
+            },
+            "MAE": 198.44622544513987,
+            "mean_absolute_log_error": 0.08988950490897223
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 4283.27966968229,
+              "S": 3068.624031475537,
+              "T": 1913.2082152454611,
+              "I": 1370.6592049251167
+            },
+            "signed_error": {
+              "G": 139.02483762306292,
+              "S": -194.06994507170248,
+              "T": -407.5744907077026,
+              "I": -102.49656024318188
+            },
+            "MAE": 210.79145841141246,
+            "mean_absolute_log_error": 0.0898895049089723
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 1851.1101310726526,
+              "I": 1457.3442317916806
+            },
+            "signed_error": {
+              "T": -469.6725748805111,
+              "I": -15.811533376617945
+            },
+            "MAE": 242.74205412856452,
+            "mean_absolute_log_error": 0.11845504543547432
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 4283.27966968229,
+              "S": 3068.624031475537,
+              "T": 4283.27966968229,
+              "I": 3068.624031475537
+            },
+            "signed_error": {
+              "G": 139.02483762306292,
+              "S": -194.06994507170248,
+              "T": 1962.496963729126,
+              "I": 1595.4682663072383
+            },
+            "MAE": 972.7650031827825,
+            "mean_absolute_log_error": 0.36023920935526166
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 4144.254832059227,
+              "I": 3262.6939765472393
+            },
+            "signed_error": {
+              "T": 1823.4721261060631,
+              "I": 1789.5382113789408
+            },
+            "MAE": 1806.505168742502,
+            "mean_absolute_log_error": 0.6874824218840053
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 4283.27966968229,
+              "S": 3068.624031475537,
+              "T": 1478.7214775380637,
+              "I": 2009.2470931837179
+            },
+            "signed_error": {
+              "G": 139.02483762306292,
+              "S": -194.06994507170248,
+              "T": -842.0612284151,
+              "I": 536.0913280154193
+            },
+            "MAE": 427.8118347813212,
+            "mean_absolute_log_error": 0.21384995198967324
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 1430.725775842565,
+              "I": 2136.3185326986277
+            },
+            "signed_error": {
+              "T": -890.0569301105986,
+              "I": 663.1627675303291
+            },
+            "MAE": 776.6098488204639,
+            "mean_absolute_log_error": 0.42769990397934654
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 4283.27966968229,
+              "S": 3068.624031475537,
+              "T": 2060.6796199880687,
+              "I": 1272.5687320475995
+            },
+            "signed_error": {
+              "G": 139.02483762306292,
+              "S": -194.06994507170248,
+              "T": -260.10308596509503,
+              "I": -200.58703312069906
+            },
+            "MAE": 198.44622544513987,
+            "mean_absolute_log_error": 0.08988950490897223
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 1993.7949727889174,
+              "I": 1353.050192596447
+            },
+            "signed_error": {
+              "T": -326.98773316424627,
+              "I": -120.10557257185155
+            },
+            "MAE": 223.5466528680489,
+            "mean_absolute_log_error": 0.11845504543547425
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.575381749049483,
+          "control_G_S": 1.270194159136219,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.3958307129670395,
+            "matched_product_levels": 1.6193071290321397
+          },
+          "absolute_log_errors": {
+            "equality": 0.4544976232571033,
+            "constituents": 0.10049921882202471,
+            "constituents_and_lower_dose_ratios": 0.5395727358745447,
+            "matched_control_ratio_only": 0.12100789205313509,
+            "matched_product_levels": 0.02750073636994879
+          },
+          "matched_vs_control_only_midpoint": 1.50342230408809
+        }
+      },
+      "signed120": {
+        "observed": {
+          "T": 6547.922634653571,
+          "G": 11177.647318468315,
+          "I": 4014.1022862975115,
+          "S": 6673.692224755717
+        },
+        "ratios": {
+          "T/G": 0.585805084745762,
+          "I/S": 0.6014814814814813
+        },
+        "D": 0.9739370251315012,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.5347681646231671,
+              "I/S": 0.5083595312707976
+            },
+            "mean_absolute_log_error": 0.5215638479469824,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.0264086333523697
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.33273240308155594,
+              "I/S": 0.35914103643392553
+            },
+            "mean_absolute_log_error": 0.34593671975774076,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.0264086333523697
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.11770171099335218,
+              "I/S": 0.1441103443457217
+            },
+            "mean_absolute_log_error": 0.13090602766953693,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.0264086333523697
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.11129897310391075,
+              "I/S": 0.08489033975154117
+            },
+            "mean_absolute_log_error": 0.09809465642772597,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.0264086333523697
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.5287729815926586,
+              "I/S": 0.08489033975154117
+            },
+            "mean_absolute_log_error": 0.3068316606720999,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.6136633213441998
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.20873700424437389,
+              "I/S": 0.2351456375967436
+            },
+            "mean_absolute_log_error": 0.22194132092055874,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.0264086333523697
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.5010820652024776,
+              "I/S": 0.5799043269598717
+            },
+            "errors": {
+              "T/G": 0.15621722388896236,
+              "I/S": 0.03653261129466489
+            },
+            "mean_absolute_log_error": 0.09637491759181363,
+            "predicted_D": 0.8640771277382648,
+            "absolute_log_error_D": 0.11968461259429751
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.5390544107721458,
+              "I/S": 0.5390544107721458
+            },
+            "errors": {
+              "T/G": 0.08317060091562885,
+              "I/S": 0.10957923426799851
+            },
+            "mean_absolute_log_error": 0.09637491759181369,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.0264086333523697
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.5010820652024776,
+              "I/S": 0.5799043269598717
+            },
+            "errors": {
+              "T/G": 0.15621722388896236,
+              "I/S": 0.03653261129466489
+            },
+            "mean_absolute_log_error": 0.09637491759181363,
+            "predicted_D": 0.8640771277382648,
+            "absolute_log_error_D": 0.11968461259429751
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 3936.0295692060718,
+              "G": 7855.059764742524,
+              "I": 2583.3993096623144,
+              "S": 4454.871587535302
+            },
+            "signed_error": {
+              "T": -2611.893065447499,
+              "G": -3322.5875537257907,
+              "I": -1430.702976635197,
+              "S": -2218.820637220415
+            },
+            "MAE": 2396.0010582572254,
+            "mean_absolute_log_error": 0.42665403695668064
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 3936.0295692060718,
+              "G": 7855.059764742524,
+              "I": 2583.3993096623144,
+              "S": 4454.871587535302
+            },
+            "signed_error": {
+              "T": -2611.893065447499,
+              "G": -3322.5875537257907,
+              "I": -1430.702976635197,
+              "S": -2218.820637220415
+            },
+            "MAE": 2396.0010582572254,
+            "mean_absolute_log_error": 0.42665403695668064
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 7855.059764742524,
+              "S": 4454.871587535302,
+              "T": 4234.304613063271,
+              "I": 2401.4181786844156
+            },
+            "signed_error": {
+              "G": -3322.5875537257907,
+              "S": -2218.820637220415,
+              "T": -2313.6180215902996,
+              "I": -1612.6841076130959
+            },
+            "MAE": 2366.9275800374003,
+            "mean_absolute_log_error": 0.4266540369566807
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 6025.3600890757925,
+              "I": 3597.4832298903434
+            },
+            "signed_error": {
+              "T": -522.5625455777781,
+              "I": -416.61905640716805
+            },
+            "MAE": 469.5908009924731,
+            "mean_absolute_log_error": 0.0963749175918138
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 7855.059764742524,
+              "S": 4454.871587535302,
+              "T": 7855.059764742524,
+              "I": 4454.871587535302
+            },
+            "signed_error": {
+              "G": -3322.5875537257907,
+              "S": -2218.820637220415,
+              "T": 1307.1371300889532,
+              "I": 440.7693012377904
+            },
+            "MAE": 1822.3286555682373,
+            "mean_absolute_log_error": 0.2607819239734911
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 11177.647318468315,
+              "I": 6673.692224755717
+            },
+            "signed_error": {
+              "T": 4629.724683814744,
+              "I": 2659.5899384582053
+            },
+            "MAE": 3644.6573111364746,
+            "mean_absolute_log_error": 0.5215638479469823
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 7855.059764742524,
+              "S": 4454.871587535302,
+              "T": 2711.8111534219365,
+              "I": 2916.922273941136
+            },
+            "signed_error": {
+              "G": -3322.5875537257907,
+              "S": -2218.820637220415,
+              "T": -3836.111481231634,
+              "I": -1097.1800123563753
+            },
+            "MAE": 2618.6749211335537,
+            "mean_absolute_log_error": 0.48943723862105315
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 3858.871806843947,
+              "I": 4369.742453247192
+            },
+            "signed_error": {
+              "T": -2689.0508278096236,
+              "I": 355.64016694968086
+            },
+            "MAE": 1522.3454973796522,
+            "mean_absolute_log_error": 0.30683166067209994
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 7855.059764742524,
+              "S": 4454.871587535302,
+              "T": 3936.0295692060713,
+              "I": 2583.3993096623144
+            },
+            "signed_error": {
+              "G": -3322.5875537257907,
+              "S": -2218.820637220415,
+              "T": -2611.8930654474993,
+              "I": -1430.702976635197
+            },
+            "MAE": 2396.0010582572254,
+            "mean_absolute_log_error": 0.42665403695668064
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 5600.918602443038,
+              "I": 3870.102997934293
+            },
+            "signed_error": {
+              "T": -947.0040322105324,
+              "I": -143.9992883632185
+            },
+            "MAE": 545.5016602868754,
+            "mean_absolute_log_error": 0.0963749175918137
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.6312296418069554,
+          "control_G_S": 1.6748820505994282,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.7632516696375544,
+            "matched_product_levels": 1.523585438180118
+          },
+          "absolute_log_errors": {
+            "equality": 0.48933411189264775,
+            "constituents": 0.0656627301864805,
+            "constituents_and_lower_dose_ratios": 0.5744092245100889,
+            "matched_control_ratio_only": 0.07782553212220317,
+            "matched_product_levels": 0.06826771382446406
+          },
+          "matched_vs_control_only_midpoint": 1.6390437967627827
+        }
+      },
+      "signed180": {
+        "observed": {
+          "T": 9223.927183354668,
+          "G": 14990.361763962805,
+          "I": 5714.657934679709,
+          "S": 7108.718088295347
+        },
+        "ratios": {
+          "T/G": 0.6153238546603468,
+          "I/S": 0.803894297635605
+        },
+        "D": 0.7654288088248951,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.48560655683337456,
+              "I/S": 0.2182874890486691
+            },
+            "mean_absolute_log_error": 0.3519470229410218,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.2673190677847052
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.38189401087134855,
+              "I/S": 0.6492130786560539
+            },
+            "mean_absolute_log_error": 0.5155535447637012,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.2673190677847052
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.1668633187831448,
+              "I/S": 0.4341823865678501
+            },
+            "mean_absolute_log_error": 0.30052285267549744,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.2673190677847052
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.062137365314118134,
+              "I/S": 0.20518170247058712
+            },
+            "mean_absolute_log_error": 0.13365953389235263,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.2673190677847052
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.5779345893824512,
+              "I/S": 0.20518170247058712
+            },
+            "mean_absolute_log_error": 0.39155814592651916,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.37275288691186415
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.25789861203416653,
+              "I/S": 0.5252176798188719
+            },
+            "mean_absolute_log_error": 0.3915581459265192,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.2673190677847052
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.5248019993251648,
+              "I/S": 0.6887563107610193
+            },
+            "errors": {
+              "T/G": 0.15912767483642065,
+              "I/S": 0.15458026687889115
+            },
+            "mean_absolute_log_error": 0.1568539708576559,
+            "predicted_D": 0.7619559939063231,
+            "absolute_log_error_D": 0.004547407957529532
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.6012160085486808,
+              "I/S": 0.6012160085486808
+            },
+            "errors": {
+              "T/G": 0.023194436965303145,
+              "I/S": 0.2905135047500084
+            },
+            "mean_absolute_log_error": 0.1568539708576558,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.2673190677847052
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.5248019993251648,
+              "I/S": 0.6887563107610193
+            },
+            "errors": {
+              "T/G": 0.15912767483642065,
+              "I/S": 0.15458026687889115
+            },
+            "mean_absolute_log_error": 0.1568539708576559,
+            "predicted_D": 0.7619559939063231,
+            "absolute_log_error_D": 0.004547407957529532
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 4732.344811476845,
+              "G": 9017.39097328535,
+              "I": 3112.8563325206987,
+              "S": 4519.532211735741
+            },
+            "signed_error": {
+              "T": -4491.582371877823,
+              "G": -5972.970790677455,
+              "I": -2601.80160215901,
+              "S": -2589.185876559606
+            },
+            "MAE": 3913.8851603184735,
+            "mean_absolute_log_error": 0.5590099041301779
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 4732.344811476845,
+              "G": 9017.39097328535,
+              "I": 3112.8563325206987,
+              "S": 4519.532211735741
+            },
+            "signed_error": {
+              "T": -4491.582371877823,
+              "G": -5972.970790677455,
+              "I": -2601.80160215901,
+              "S": -2589.185876559606
+            },
+            "MAE": 3913.8851603184735,
+            "mean_absolute_log_error": 0.5590099041301779
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 9017.39097328535,
+              "S": 4519.532211735741,
+              "T": 5421.399808481522,
+              "I": 2717.2151168469536
+            },
+            "signed_error": {
+              "G": -5972.970790677455,
+              "S": -2589.185876559606,
+              "T": -3802.527374873146,
+              "I": -2997.4428178327553
+            },
+            "MAE": 3840.5317149857406,
+            "mean_absolute_log_error": 0.5590099041301779
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 9012.44546643048,
+              "I": 4273.875114942737
+            },
+            "signed_error": {
+              "T": -211.48171692418873,
+              "I": -1440.7828197369718
+            },
+            "MAE": 826.1322683305802,
+            "mean_absolute_log_error": 0.15685397085765593
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 9017.39097328535,
+              "S": 4519.532211735741,
+              "T": 9017.39097328535,
+              "I": 4519.532211735741
+            },
+            "signed_error": {
+              "G": -5972.970790677455,
+              "S": -2589.185876559606,
+              "T": -206.53621006931826,
+              "I": -1195.125722943968
+            },
+            "MAE": 2490.9546500625866,
+            "mean_absolute_log_error": 0.30460940723083907
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 14990.361763962805,
+              "I": 7108.718088295347
+            },
+            "signed_error": {
+              "T": 5766.4345806081365,
+              "I": 1394.0601536156382
+            },
+            "MAE": 3580.2473671118873,
+            "mean_absolute_log_error": 0.3519470229410219
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 9017.39097328535,
+              "S": 4519.532211735741,
+              "T": 3113.0840691856974,
+              "I": 2959.260198002725
+            },
+            "signed_error": {
+              "G": -5972.970790677455,
+              "S": -2589.185876559606,
+              "T": -6110.843114168971,
+              "I": -2755.397736676984
+            },
+            "MAE": 4357.099379520754,
+            "mean_absolute_log_error": 0.6763619916646096
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 5175.139520619107,
+              "I": 4654.584924273675
+            },
+            "signed_error": {
+              "T": -4048.787662735561,
+              "I": -1060.073010406034
+            },
+            "MAE": 2554.4303365707974,
+            "mean_absolute_log_error": 0.3915581459265193
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 9017.39097328535,
+              "S": 4519.532211735741,
+              "T": 4732.344811476845,
+              "I": 3112.8563325206987
+            },
+            "signed_error": {
+              "G": -5972.970790677455,
+              "S": -2589.185876559606,
+              "T": -4491.582371877823,
+              "I": -2601.80160215901
+            },
+            "MAE": 3913.8851603184735,
+            "mean_absolute_log_error": 0.5590099041301779
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 7866.9718243351845,
+              "I": 4896.174444734429
+            },
+            "signed_error": {
+              "T": -1356.9553590194837,
+              "I": -818.4834899452799
+            },
+            "MAE": 1087.7194244823818,
+            "mean_absolute_log_error": 0.15685397085765584
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.6140821180877285,
+          "control_G_S": 2.108729250164632,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.9952044925955272,
+            "matched_product_levels": 1.5202580222019861
+          },
+          "absolute_log_errors": {
+            "equality": 0.4787664471704162,
+            "constituents": 0.07623039490871189,
+            "constituents_and_lower_dose_ratios": 0.5638415597878577,
+            "matched_control_ratio_only": 0.21198010047253157,
+            "matched_product_levels": 0.05988637526970304
+          },
+          "matched_vs_control_only_midpoint": 1.7416158117684262
+        }
+      },
+      "reported180": {
+        "observed": {
+          "T": 9425,
+          "G": 15216,
+          "I": 5779,
+          "S": 7326
+        },
+        "ratios": {
+          "T/G": 0.6194137749737119,
+          "I/S": 0.7888342888342889
+        },
+        "D": 0.7852267374039476,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.47898177246896,
+              "I/S": 0.2371990070209817
+            },
+            "mean_absolute_log_error": 0.35809038974497087,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.24178276544797833
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.38851879523576305,
+              "I/S": 0.6303015606837414
+            },
+            "mean_absolute_log_error": 0.5094101779597522,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.24178276544797833
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.17348810314755916,
+              "I/S": 0.41527086859553763
+            },
+            "mean_absolute_log_error": 0.2943794858715484,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.24178276544797833
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.05551258094970375,
+              "I/S": 0.1862701844982747
+            },
+            "mean_absolute_log_error": 0.12089138272398922,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.24178276544797833
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.5845593737468656,
+              "I/S": 0.1862701844982747
+            },
+            "mean_absolute_log_error": 0.38541477912257016,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.398289189248591
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.264523396398581,
+              "I/S": 0.5063061618465593
+            },
+            "mean_absolute_log_error": 0.38541477912257016,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.24178276544797833
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.5254749568221071,
+              "I/S": 0.6720270842149809
+            },
+            "errors": {
+              "T/G": 0.16447097323639862,
+              "I/S": 0.16025762835884513
+            },
+            "mean_absolute_log_error": 0.16236430079762187,
+            "predicted_D": 0.7819252663543068,
+            "absolute_log_error_D": 0.004213344877553321
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.5942502865469681,
+              "I/S": 0.5942502865469681
+            },
+            "errors": {
+              "T/G": 0.04147291807363255,
+              "I/S": 0.28325568352161107
+            },
+            "mean_absolute_log_error": 0.16236430079762182,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.24178276544797833
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.5254749568221071,
+              "I/S": 0.6720270842149809
+            },
+            "errors": {
+              "T/G": 0.16447097323639862,
+              "I/S": 0.16025762835884513
+            },
+            "mean_absolute_log_error": 0.16236430079762187,
+            "predicted_D": 0.7819252663543068,
+            "absolute_log_error_D": 0.004213344877553321
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 4868.0,
+              "G": 9264.0,
+              "I": 3176.0,
+              "S": 4726.0
+            },
+            "signed_error": {
+              "T": -4557.0,
+              "G": -5952.0,
+              "I": -2603.0,
+              "S": -2600.0
+            },
+            "MAE": 3928.0,
+            "mean_absolute_log_error": 0.5484631856809618
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 4868.0,
+              "G": 9264.0,
+              "I": 3176.0,
+              "S": 4726.0
+            },
+            "signed_error": {
+              "T": -4557.0,
+              "G": -5952.0,
+              "I": -2603.0,
+              "S": -2600.0
+            },
+            "MAE": 3928.0,
+            "mean_absolute_log_error": 0.5484631856809618
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 9264.0,
+              "S": 4726.0,
+              "T": 5505.134654571112,
+              "I": 2808.426854220971
+            },
+            "signed_error": {
+              "G": -5952.0,
+              "S": -2600.0,
+              "T": -3919.865345428888,
+              "I": -2970.573145779029
+            },
+            "MAE": 3860.609622801979,
+            "mean_absolute_log_error": 0.5484631856809618
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 9042.112360098667,
+              "I": 4353.477599243089
+            },
+            "signed_error": {
+              "T": -382.8876399013334,
+              "I": -1425.5224007569113
+            },
+            "MAE": 904.2050203291224,
+            "mean_absolute_log_error": 0.1623643007976218
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 9264.0,
+              "S": 4726.0,
+              "T": 9264.0,
+              "I": 4726.0
+            },
+            "signed_error": {
+              "G": -5952.0,
+              "S": -2600.0,
+              "T": -161.0,
+              "I": -1053.0
+            },
+            "MAE": 2441.5,
+            "mean_absolute_log_error": 0.2882358404096654
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 15216,
+              "I": 7326
+            },
+            "signed_error": {
+              "T": 5791,
+              "I": 1547
+            },
+            "MAE": 3669.0,
+            "mean_absolute_log_error": 0.35809038974497087
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 9264.0,
+              "S": 4726.0,
+              "T": 3198.221181977765,
+              "I": 3094.449390015458
+            },
+            "signed_error": {
+              "G": -5952.0,
+              "S": -2600.0,
+              "T": -6226.778818022235,
+              "I": -2684.550609984542
+            },
+            "MAE": 4365.832357001695,
+            "mean_absolute_log_error": 0.6599884248434358
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 5253.036863662961,
+              "I": 4796.854894467466
+            },
+            "signed_error": {
+              "T": -4171.963136337039,
+              "I": -982.1451055325342
+            },
+            "MAE": 2577.0541209347866,
+            "mean_absolute_log_error": 0.3854147791225702
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 9264.0,
+              "S": 4726.0,
+              "T": 4868.0,
+              "I": 3176.0
+            },
+            "signed_error": {
+              "G": -5952.0,
+              "S": -2600.0,
+              "T": -4557.0,
+              "I": -2603.0
+            },
+            "MAE": 3928.0,
+            "mean_absolute_log_error": 0.5484631856809618
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 7995.626943005182,
+              "I": 4923.27041895895
+            },
+            "signed_error": {
+              "T": -1429.3730569948184,
+              "I": -855.7295810410496
+            },
+            "MAE": 1142.551319017934,
+            "mean_absolute_log_error": 0.16236430079762187
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.6309050008652015,
+          "control_G_S": 2.076986076986077,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.9602200592467203,
+            "matched_product_levels": 1.5327455919395465
+          },
+          "absolute_log_errors": {
+            "equality": 0.4891350759984334,
+            "constituents": 0.06586176608069462,
+            "constituents_and_lower_dose_ratios": 0.5742101886158748,
+            "matched_control_ratio_only": 0.18392166606748978,
+            "matched_product_levels": 0.06207444425804207
+          },
+          "matched_vs_control_only_midpoint": 1.7333547401042544
+        }
+      }
+    },
+    "lunch": {
+      "signed60": {
+        "observed": {
+          "T": 6015.089870531678,
+          "G": 6382.152441371207,
+          "I": 4162.406557958751,
+          "S": 5942.057817893612
+        },
+        "ratios": {
+          "T/G": 0.9424860853432285,
+          "I/S": 0.7004991680532443
+        },
+        "D": 1.3454492572239443,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.05923412333051495,
+              "I/S": 0.35596210085282654
+            },
+            "mean_absolute_log_error": 0.20759811209167073,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.29672797752231156
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.8082664443742081,
+              "I/S": 0.5115384668518966
+            },
+            "mean_absolute_log_error": 0.6599024556130524,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.29672797752231156
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.5932357522860043,
+              "I/S": 0.2965077747636927
+            },
+            "mean_absolute_log_error": 0.44487176352484853,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.29672797752231156
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.36423506818874146,
+              "I/S": 0.06750709066642978
+            },
+            "mean_absolute_log_error": 0.21587107942758563,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.29672797752231156
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 1.0043070228853108,
+              "I/S": 0.06750709066642978
+            },
+            "mean_absolute_log_error": 0.5359070567758702,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.936799932218881
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.684271045537026,
+              "I/S": 0.38754306801471444
+            },
+            "mean_absolute_log_error": 0.5359070567758702,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.29672797752231156
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.7355483374656484,
+              "I/S": 0.7431511655147585
+            },
+            "errors": {
+              "T/G": 0.24790489721810335,
+              "I/S": 0.05910629880824913
+            },
+            "mean_absolute_log_error": 0.15350559801317623,
+            "predicted_D": 0.9897694730198751,
+            "absolute_log_error_D": 0.3070111960263523
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.7393399788189731,
+              "I/S": 0.7393399788189731
+            },
+            "errors": {
+              "T/G": 0.24276328796608293,
+              "I/S": 0.05396468955622871
+            },
+            "mean_absolute_log_error": 0.1483639887611558,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.29672797752231156
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.48109854571810357,
+              "I/S": 0.41470337160713994
+            },
+            "errors": {
+              "T/G": 0.6724490297774227,
+              "I/S": 0.524229680678195
+            },
+            "mean_absolute_log_error": 0.5983393552278089,
+            "predicted_D": 1.1601028075890871,
+            "absolute_log_error_D": 0.1482193490992277
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 4757.527414835671,
+              "G": 6468.001044265642,
+              "I": 3102.9906587173236,
+              "S": 4175.450167756886
+            },
+            "signed_error": {
+              "T": -1257.5624556960065,
+              "G": 85.84860289443532,
+              "I": -1059.4158992414277,
+              "S": -1766.607650136726
+            },
+            "MAE": 1042.358651992149,
+            "mean_absolute_log_error": 0.22361631473565738
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 2060.6796199880687,
+              "G": 4283.27966968229,
+              "I": 1272.5687320475995,
+              "S": 3068.624031475537
+            },
+            "signed_error": {
+              "T": -3954.410250543609,
+              "G": -2098.872771688917,
+              "I": -2889.837825911152,
+              "S": -2873.433786418075
+            },
+            "MAE": 2954.1386586404383,
+            "mean_absolute_log_error": 0.8289760096419903
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 6468.001044265642,
+              "S": 4175.450167756886,
+              "T": 4782.051755068455,
+              "I": 3087.0772385890536
+            },
+            "signed_error": {
+              "G": 85.84860289443532,
+              "S": -1766.607650136726,
+              "T": -1233.0381154632223,
+              "I": -1075.3293193696977
+            },
+            "MAE": 1040.2059219660205,
+            "mean_absolute_log_error": 0.22361631473565738
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 4718.580450822846,
+              "I": 4393.200901222576
+            },
+            "signed_error": {
+              "T": -1296.509419708832,
+              "I": 230.79434326382489
+            },
+            "MAE": 763.6518814863284,
+            "mean_absolute_log_error": 0.1483639887611558
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 6468.001044265642,
+              "S": 4175.450167756886,
+              "T": 6468.001044265642,
+              "I": 4175.450167756886
+            },
+            "signed_error": {
+              "G": 85.84860289443532,
+              "S": -1766.607650136726,
+              "T": 452.91117373396446,
+              "I": 13.04360979813464
+            },
+            "MAE": 579.6027591408151,
+            "mean_absolute_log_error": 0.11047990077139673
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 6382.152441371207,
+              "I": 5942.057817893612
+            },
+            "signed_error": {
+              "T": 367.06257083952914,
+              "I": 1779.6512599348607
+            },
+            "MAE": 1073.356915387195,
+            "mean_absolute_log_error": 0.20759811209167073
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 6468.001044265642,
+              "S": 4175.450167756886,
+              "T": 2232.955304924944,
+              "I": 2733.9651342901475
+            },
+            "signed_error": {
+              "G": 85.84860289443532,
+              "S": -1766.607650136726,
+              "T": -3782.1345656067338,
+              "I": -1428.4414236686039
+            },
+            "MAE": 1765.7580605766248,
+            "mean_absolute_log_error": 0.444370193521129
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 2203.3176947975494,
+              "I": 3890.689206520836
+            },
+            "signed_error": {
+              "T": -3811.7721757341283,
+              "I": -271.71735143791557
+            },
+            "MAE": 2041.744763586022,
+            "mean_absolute_log_error": 0.5359070567758704
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 6468.001044265642,
+              "S": 4175.450167756886,
+              "T": 4757.527414835671,
+              "I": 3102.9906587173236
+            },
+            "signed_error": {
+              "G": 85.84860289443532,
+              "S": -1766.607650136726,
+              "T": -1257.5624556960065,
+              "I": -1059.4158992414277
+            },
+            "MAE": 1042.358651992149,
+            "mean_absolute_log_error": 0.22361631473565738
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 4694.38161770292,
+              "I": 4415.84719292372
+            },
+            "signed_error": {
+              "T": -1320.7082528287574,
+              "I": 253.44063496496892
+            },
+            "MAE": 787.0744438968632,
+            "mean_absolute_log_error": 0.15350559801317623
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.4450990759253186,
+          "control_G_S": 1.0740643455457999,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.549054780778368,
+            "matched_product_levels": 1.5332071340499231
+          },
+          "absolute_log_errors": {
+            "equality": 0.36817788386814676,
+            "constituents": 0.1868189582109815,
+            "constituents_and_lower_dose_ratios": 0.4532529964855881,
+            "matched_control_ratio_only": 0.06946704219519856,
+            "matched_product_levels": 0.05918382369115768
+          },
+          "matched_vs_control_only_midpoint": 1.5411105868572617
+        }
+      },
+      "signed120": {
+        "observed": {
+          "T": 12693.260514192832,
+          "G": 14990.3617639628,
+          "I": 8492.891290466905,
+          "S": 12892.584683083644
+        },
+        "ratios": {
+          "T/G": 0.8467614533965248,
+          "I/S": 0.6587423312883433
+        },
+        "D": 1.285421344853398,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.1663362610733739,
+              "I/S": 0.4174228205023433
+            },
+            "mean_absolute_log_error": 0.2918795407878586,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25108655942896946
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.7011643066313492,
+              "I/S": 0.4500777472023797
+            },
+            "mean_absolute_log_error": 0.5756210269168645,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25108655942896946
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.4861336145431454,
+              "I/S": 0.2350470551141759
+            },
+            "mean_absolute_log_error": 0.36059033482866065,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25108655942896946
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.2571329304458825,
+              "I/S": 0.006046371016913039
+            },
+            "mean_absolute_log_error": 0.13158965073139775,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25108655942896946
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.8972048851424519,
+              "I/S": 0.006046371016913039
+            },
+            "mean_absolute_log_error": 0.4516256280796825,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.891158514125539
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.5771689077941672,
+              "I/S": 0.3260823483651977
+            },
+            "mean_absolute_log_error": 0.45162562807968243,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25108655942896946
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.6871186463168462,
+              "I/S": 0.7971281080743803
+            },
+            "errors": {
+              "T/G": 0.20891203853533125,
+              "I/S": 0.1906829452534259
+            },
+            "mean_absolute_log_error": 0.19979749189437856,
+            "predicted_D": 0.8619927454028894,
+            "absolute_log_error_D": 0.3995949837887571
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.7400821485221603,
+              "I/S": 0.7400821485221603
+            },
+            "errors": {
+              "T/G": 0.13465782635543733,
+              "I/S": 0.11642873307353212
+            },
+            "mean_absolute_log_error": 0.12554327971448473,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25108655942896946
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.5010820652024776,
+              "I/S": 0.5799043269598717
+            },
+            "errors": {
+              "T/G": 0.5246491274387557,
+              "I/S": 0.12746932206311898
+            },
+            "mean_absolute_log_error": 0.32605922475093735,
+            "predicted_D": 0.8640771277382648,
+            "absolute_log_error_D": 0.39717980537563663
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 7826.557152360876,
+              "G": 11390.401343804999,
+              "I": 5635.355065292428,
+              "S": 7069.572642351975
+            },
+            "signed_error": {
+              "T": -4866.7033618319565,
+              "G": -3599.9604201578004,
+              "I": -2857.5362251744773,
+              "S": -5823.012040731668
+            },
+            "MAE": 4286.803011973976,
+            "mean_absolute_log_error": 0.4423016313358079
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 3936.0295692060718,
+              "G": 7855.059764742524,
+              "I": 2583.3993096623144,
+              "S": 4454.871587535302
+            },
+            "signed_error": {
+              "T": -8757.23094498676,
+              "G": -7135.301999220275,
+              "I": -5909.491980804591,
+              "S": -8437.71309554834
+            },
+            "MAE": 7559.934505139992,
+            "mean_absolute_log_error": 1.0174814346225873
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 11390.401343804999,
+              "S": 7069.572642351975,
+              "T": 8429.832699052904,
+              "I": 5232.064510285336
+            },
+            "signed_error": {
+              "G": -3599.9604201578004,
+              "S": -5823.012040731668,
+              "T": -4263.4278151399285,
+              "I": -3260.826780181569
+            },
+            "MAE": 4236.8067640527415,
+            "mean_absolute_log_error": 0.44230163133580785
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 11094.099141398028,
+              "I": 9541.571772260437
+            },
+            "signed_error": {
+              "T": -1599.1613727948043,
+              "I": 1048.6804817935317
+            },
+            "MAE": 1323.920927294168,
+            "mean_absolute_log_error": 0.12554327971448473
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 11390.401343804999,
+              "S": 7069.572642351975,
+              "T": 11390.401343804999,
+              "I": 7069.572642351975
+            },
+            "signed_error": {
+              "G": -3599.9604201578004,
+              "S": -5823.012040731668,
+              "T": -1302.8591703878337,
+              "I": -1423.3186481149296
+            },
+            "MAE": 3037.287569848058,
+            "mean_absolute_log_error": 0.2918045876214022
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 14990.3617639628,
+              "I": 12892.584683083644
+            },
+            "signed_error": {
+              "T": 2297.1012497699667,
+              "I": 4399.6933926167385
+            },
+            "MAE": 3348.3973211933526,
+            "mean_absolute_log_error": 0.29187954078785866
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 11390.401343804999,
+              "S": 7069.572642351975,
+              "T": 3932.3211192773256,
+              "I": 4628.953607870512
+            },
+            "signed_error": {
+              "G": -3599.9604201578004,
+              "S": -5823.012040731668,
+              "T": -8760.939394915507,
+              "I": -3863.9376825963927
+            },
+            "MAE": 5511.962384600342,
+            "mean_absolute_log_error": 0.6635571720551727
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 5175.1395206191055,
+              "I": 8441.695050421247
+            },
+            "signed_error": {
+              "T": -7518.120993573727,
+              "I": -51.19624004565776
+            },
+            "MAE": 3784.6586168096924,
+            "mean_absolute_log_error": 0.4516256280796825
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 11390.401343804999,
+              "S": 7069.572642351975,
+              "T": 7826.557152360876,
+              "I": 5635.355065292428
+            },
+            "signed_error": {
+              "G": -3599.9604201578004,
+              "S": -5823.012040731668,
+              "T": -4866.7033618319565,
+              "I": -2857.5362251744773
+            },
+            "MAE": 4286.803011973976,
+            "mean_absolute_log_error": 0.4423016313358079
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 10300.15708305393,
+              "I": 10277.041636615199
+            },
+            "signed_error": {
+              "T": -2393.103431138903,
+              "I": 1784.1503461482935
+            },
+            "MAE": 2088.6268886435982,
+            "mean_absolute_log_error": 0.1997974918943785
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.4945747072543782,
+          "control_G_S": 1.1627119101751295,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.6111866897820752,
+            "matched_product_levels": 1.3888312380818444
+          },
+          "absolute_log_errors": {
+            "equality": 0.4018416896185384,
+            "constituents": 0.15315515246058964,
+            "constituents_and_lower_dose_ratios": 0.4869168022359797,
+            "matched_control_ratio_only": 0.0751292922707081,
+            "matched_product_levels": 0.07337913208907942
+          },
+          "matched_vs_control_only_midpoint": 1.4958831522385123
+        }
+      },
+      "signed180": {
+        "observed": {
+          "T": 17180.896460908392,
+          "G": 20993.61090640288,
+          "I": 11458.97672369167,
+          "S": 17381.26063869712
+        },
+        "ratios": {
+          "T/G": 0.8183869148336154,
+          "I/S": 0.6592718998862341
+        },
+        "D": 1.24134960852243,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.20042005319002004,
+              "I/S": 0.41661923490537095
+            },
+            "mean_absolute_log_error": 0.3085196440476955,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21619918171535096
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.6670805145147031,
+              "I/S": 0.4508813327993521
+            },
+            "mean_absolute_log_error": 0.5589809236570276,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21619918171535096
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.4520498224264993,
+              "I/S": 0.2358506407111484
+            },
+            "mean_absolute_log_error": 0.34395023156882387,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21619918171535096
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.22304913832923634,
+              "I/S": 0.006849956613885453
+            },
+            "mean_absolute_log_error": 0.1149495474715609,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21619918171535096
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.8631210930258056,
+              "I/S": 0.006849956613885453
+            },
+            "mean_absolute_log_error": 0.43498552481984554,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.8562711364119204
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.5430851156775209,
+              "I/S": 0.32688593396217014
+            },
+            "mean_absolute_log_error": 0.43498552481984554,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21619918171535096
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.7054577781357848,
+              "I/S": 0.8194499308383201
+            },
+            "errors": {
+              "T/G": 0.1484883030147491,
+              "I/S": 0.2174972550329447
+            },
+            "mean_absolute_log_error": 0.18299277902384692,
+            "predicted_D": 0.860891863660397,
+            "absolute_log_error_D": 0.3659855580476937
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.7603205426020816,
+              "I/S": 0.7603205426020816
+            },
+            "errors": {
+              "T/G": 0.07359511484857768,
+              "I/S": 0.1426040668667733
+            },
+            "mean_absolute_log_error": 0.10809959085767548,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.21619918171535096
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.5248019993251648,
+              "I/S": 0.6887563107610193
+            },
+            "errors": {
+              "T/G": 0.4443141784797751,
+              "I/S": 0.04375147897781057
+            },
+            "mean_absolute_log_error": 0.24403282872879284,
+            "predicted_D": 0.7619559939063231,
+            "absolute_log_error_D": 0.48806565745758584
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 10168.357205261174,
+              "G": 14413.842359399137,
+              "I": 7465.796302107219,
+              "S": 9110.741268193777
+            },
+            "signed_error": {
+              "T": -7012.539255647218,
+              "G": -6579.768547003741,
+              "I": -3993.1804215844513,
+              "S": -8270.519370503343
+            },
+            "MAE": 6464.001898684688,
+            "mean_absolute_log_error": 0.4937316137748353
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 4732.344811476845,
+              "G": 9017.39097328535,
+              "I": 3112.8563325206987,
+              "S": 4519.532211735741
+            },
+            "signed_error": {
+              "T": -12448.551649431547,
+              "G": -11976.219933117529,
+              "I": -8346.12039117097,
+              "S": -12861.72842696138
+            },
+            "MAE": 11408.155100170356,
+            "mean_absolute_log_error": 1.1961643055239224
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 14413.842359399137,
+              "S": 9110.741268193777,
+              "T": 10959.14044367922,
+              "I": 6927.083744540269
+            },
+            "signed_error": {
+              "G": -6579.768547003741,
+              "S": -8270.519370503343,
+              "T": -6221.756017229172,
+              "I": -4531.892979151401
+            },
+            "MAE": 6400.984228471914,
+            "mean_absolute_log_error": 0.49373161377483543
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 15961.873635533215,
+              "I": 13215.329519922398
+            },
+            "signed_error": {
+              "T": -1219.0228253751775,
+              "I": 1756.352796230727
+            },
+            "MAE": 1487.6878108029523,
+            "mean_absolute_log_error": 0.1080995908576754
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 14413.842359399137,
+              "S": 9110.741268193777,
+              "T": 14413.842359399137,
+              "I": 9110.741268193777
+            },
+            "signed_error": {
+              "G": -6579.768547003741,
+              "S": -8270.519370503343,
+              "T": -2767.054101509255,
+              "I": -2348.235455497894
+            },
+            "MAE": 4991.394368628558,
+            "mean_absolute_log_error": 0.3567240297555366
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 20993.61090640288,
+              "I": 17381.26063869712
+            },
+            "signed_error": {
+              "T": 3812.7144454944864,
+              "I": 5922.28391500545
+            },
+            "MAE": 4867.499180249968,
+            "mean_absolute_log_error": 0.3085196440476955
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 14413.842359399137,
+              "S": 9110.741268193777,
+              "T": 4976.107075509357,
+              "I": 5965.45234023506
+            },
+            "signed_error": {
+              "G": -6579.768547003741,
+              "S": -8270.519370503343,
+              "T": -12204.789385399035,
+              "I": -5493.524383456611
+            },
+            "MAE": 8137.1504215906825,
+            "mean_absolute_log_error": 0.7284766141893071
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 7247.648001625335,
+              "I": 11380.751456012695
+            },
+            "signed_error": {
+              "T": -9933.248459283057,
+              "I": -78.2252676789758
+            },
+            "MAE": 5005.736863481016,
+            "mean_absolute_log_error": 0.4349855248198456
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 14413.842359399137,
+              "S": 9110.741268193777,
+              "T": 10168.357205261174,
+              "I": 7465.796302107219
+            },
+            "signed_error": {
+              "G": -6579.768547003741,
+              "S": -8270.519370503343,
+              "T": -7012.539255647218,
+              "I": -3993.1804215844513
+            },
+            "MAE": 6464.001898684688,
+            "mean_absolute_log_error": 0.4937316137748353
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 14810.106105078154,
+              "I": 14243.07282826317
+            },
+            "signed_error": {
+              "T": -2370.7903558302387,
+              "I": 2784.0961045714994
+            },
+            "MAE": 2577.443230200869,
+            "mean_absolute_log_error": 0.18299277902384692
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.499339502574129,
+          "control_G_S": 1.2078301650723382,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.5820713084805569,
+            "matched_product_levels": 1.3619923172014696
+          },
+          "absolute_log_errors": {
+            "equality": 0.40502467951648213,
+            "constituents": 0.14997216256264612,
+            "constituents_and_lower_dose_ratios": 0.4900997921339235,
+            "matched_control_ratio_only": 0.05371026370603059,
+            "matched_product_levels": 0.09607611262631216
+          },
+          "matched_vs_control_only_midpoint": 1.4679131334705724
+        }
+      },
+      "reported180": {
+        "observed": {
+          "T": 17934,
+          "G": 20875,
+          "I": 11726,
+          "S": 17658
+        },
+        "ratios": {
+          "T/G": 0.8591137724550898,
+          "I/S": 0.6640616151319515
+        },
+        "D": 1.2937259930080143,
+        "models": {
+          "equal_grams": {
+            "predicted_ratios": {
+              "T/G": 1,
+              "I/S": 1
+            },
+            "errors": {
+              "T/G": 0.15185391820706343,
+              "I/S": 0.4093803399373674
+            },
+            "mean_absolute_log_error": 0.2806171290722154,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "common_polymer": {
+            "predicted_ratios": {
+              "T/G": 0.42,
+              "I/S": 0.42
+            },
+            "errors": {
+              "T/G": 0.7156466494976598,
+              "I/S": 0.45812022776735567
+            },
+            "mean_absolute_log_error": 0.5868834386325077,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "common_scalar": {
+            "predicted_ratios": {
+              "T/G": 0.520757979630314,
+              "I/S": 0.520757979630314
+            },
+            "errors": {
+              "T/G": 0.5006159574094559,
+              "I/S": 0.24308953567915187
+            },
+            "mean_absolute_log_error": 0.3718527465443039,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "common_Holub": {
+            "predicted_ratios": {
+              "T/G": 0.654771347866157,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.271615273312193,
+              "I/S": 0.014088851581888875
+            },
+            "mean_absolute_log_error": 0.14285206244704093,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "lower_dose_separate": {
+            "predicted_ratios": {
+              "T/G": 0.34523112931538913,
+              "I/S": 0.654771347866157
+            },
+            "errors": {
+              "T/G": 0.9116872280087623,
+              "I/S": 0.014088851581888875
+            },
+            "mean_absolute_log_error": 0.4628880397953256,
+            "predicted_D": 0.527254484241663,
+            "absolute_log_error_D": 0.8975983764268733
+          },
+          "lower_dose_common": {
+            "predicted_ratios": {
+              "T/G": 0.4754444782171656,
+              "I/S": 0.4754444782171656
+            },
+            "errors": {
+              "T/G": 0.5916512506604776,
+              "I/S": 0.3341248289301737
+            },
+            "mean_absolute_log_error": 0.46288803979532567,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "matched_separate": {
+            "predicted_ratios": {
+              "T/G": 0.7306956402897362,
+              "I/S": 0.7306956402897362
+            },
+            "errors": {
+              "T/G": 0.1619043484802553,
+              "I/S": 0.09562207325004875
+            },
+            "mean_absolute_log_error": 0.12876321086515202,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "matched_common": {
+            "predicted_ratios": {
+              "T/G": 0.7306956402897362,
+              "I/S": 0.7306956402897362
+            },
+            "errors": {
+              "T/G": 0.1619043484802553,
+              "I/S": 0.09562207325004875
+            },
+            "mean_absolute_log_error": 0.12876321086515202,
+            "predicted_D": 1.0,
+            "absolute_log_error_D": 0.25752642173030404
+          },
+          "fast_donor_both_periods": {
+            "predicted_ratios": {
+              "T/G": 0.5254749568221071,
+              "I/S": 0.6720270842149809
+            },
+            "errors": {
+              "T/G": 0.49159882749829525,
+              "I/S": 0.011923704557540538
+            },
+            "mean_absolute_log_error": 0.2517612660279179,
+            "predicted_D": 0.7819252663543068,
+            "absolute_log_error_D": 0.5035225320558356
+          }
+        },
+        "native": {
+          "matched_same_protocol": {
+            "forecast": {
+              "T": 10693.0,
+              "G": 14634.0,
+              "I": 10693.0,
+              "S": 14634.0
+            },
+            "signed_error": {
+              "T": -7241.0,
+              "G": -6241.0,
+              "I": -1033.0,
+              "S": -3024.0
+            },
+            "MAE": 4384.75,
+            "mean_absolute_log_error": 0.28809358495386833
+          },
+          "matched_fast_only": {
+            "forecast": {
+              "T": 4868.0,
+              "G": 9264.0,
+              "I": 3176.0,
+              "S": 4726.0
+            },
+            "signed_error": {
+              "T": -13066.0,
+              "G": -11611.0,
+              "I": -8550.0,
+              "S": -12932.0
+            },
+            "MAE": 11539.75,
+            "mean_absolute_log_error": 1.1851818355456658
+          },
+          "matched_common_donor_controls": {
+            "forecast": {
+              "G": 14634.0,
+              "S": 14634.0,
+              "T": 10693.0,
+              "I": 10693.0
+            },
+            "signed_error": {
+              "G": -6241.0,
+              "S": -3024.0,
+              "T": -7241.0,
+              "I": -1033.0
+            },
+            "MAE": 4384.75,
+            "mean_absolute_log_error": 0.28809358495386833
+          },
+          "matched_common_measured_target_controls": {
+            "forecast": {
+              "T": 15253.271491048243,
+              "I": 12902.623616236162
+            },
+            "signed_error": {
+              "T": -2680.7285089517572,
+              "I": 1176.623616236162
+            },
+            "MAE": 1928.6760625939596,
+            "mean_absolute_log_error": 0.12876321086515208
+          },
+          "equal_grams_donor_controls": {
+            "forecast": {
+              "G": 14634.0,
+              "S": 14634.0,
+              "T": 14634.0,
+              "I": 14634.0
+            },
+            "signed_error": {
+              "G": -6241.0,
+              "S": -3024.0,
+              "T": -3300.0,
+              "I": 2908.0
+            },
+            "MAE": 3868.25,
+            "mean_absolute_log_error": 0.2419839465701165
+          },
+          "equal_grams_measured_target_controls": {
+            "forecast": {
+              "T": 20875,
+              "I": 17658
+            },
+            "signed_error": {
+              "T": 2941,
+              "I": 5932
+            },
+            "MAE": 4436.5,
+            "mean_absolute_log_error": 0.2806171290722154
+          },
+          "lower_dose_separate_donor_controls": {
+            "forecast": {
+              "G": 14634.0,
+              "S": 14634.0,
+              "T": 5052.1123464014045,
+              "I": 9581.923904673342
+            },
+            "signed_error": {
+              "G": -6241.0,
+              "S": -3024.0,
+              "T": -12881.887653598595,
+              "I": -2144.076095326658
+            },
+            "MAE": 6072.740937231313,
+            "mean_absolute_log_error": 0.5029670360439795
+          },
+          "lower_dose_separate_measured_target_controls": {
+            "forecast": {
+              "T": 7206.6998244587485,
+              "I": 11561.9524606206
+            },
+            "signed_error": {
+              "T": -10727.300175541252,
+              "I": -164.0475393794004
+            },
+            "MAE": 5445.673857460326,
+            "mean_absolute_log_error": 0.46288803979532567
+          },
+          "matched_separate_donor_controls": {
+            "forecast": {
+              "G": 14634.0,
+              "S": 14634.0,
+              "T": 10693.0,
+              "I": 10693.0
+            },
+            "signed_error": {
+              "G": -6241.0,
+              "S": -3024.0,
+              "T": -7241.0,
+              "I": -1033.0
+            },
+            "MAE": 4384.75,
+            "mean_absolute_log_error": 0.28809358495386833
+          },
+          "matched_separate_measured_target_controls": {
+            "forecast": {
+              "T": 15253.271491048243,
+              "I": 12902.623616236162
+            },
+            "signed_error": {
+              "T": -2680.7285089517572,
+              "I": 1176.623616236162
+            },
+            "MAE": 1928.6760625939596,
+            "mean_absolute_log_error": 0.12876321086515208
+          }
+        },
+        "exposed_direct_T_I": {
+          "observed": 1.5294217977144806,
+          "control_G_S": 1.1821837127647525,
+          "predictions": {
+            "equality": 1,
+            "constituents": 1.7419354838709677,
+            "constituents_and_lower_dose_ratios": 0.9184432951306387,
+            "matched_control_ratio_only": 1.0,
+            "matched_product_levels": 1.0
+          },
+          "absolute_log_errors": {
+            "equality": 0.42488975398783235,
+            "constituents": 0.13010708809129565,
+            "constituents_and_lower_dose_ratios": 0.5099648666052737,
+            "matched_control_ratio_only": 0.42488975398783235,
+            "matched_product_levels": 0.42488975398783235
+          },
+          "matched_vs_control_only_midpoint": 1.0
+        }
+      }
+    }
+  },
+  "positive_bounds_D": {
+    "fast": {
+      "60": {
+        "signed_D": 1.2402684563758375,
+        "sample_positive_D_bounds": {
+          "caps_0px": [
+            0.8424865599093031,
+            1.5588523339352665
+          ],
+          "baseline_sem_unknown_0px": [
+            0.6905747873258452,
+            2.1171468446191897
+          ],
+          "all_sems_unknown_0px": [
+            0.6905747873258452,
+            2.1171468446191897
+          ],
+          "caps_1px": [
+            0.7103789447106766,
+            1.839795603632434
+          ],
+          "baseline_sem_unknown_1px": [
+            0.6440053671644047,
+            2.286212494469039
+          ],
+          "all_sems_unknown_1px": [
+            0.6440053671644047,
+            2.286212494469039
+          ],
+          "caps_2px": [
+            0.6210491002416436,
+            2.1835192542524697
+          ],
+          "baseline_sem_unknown_2px": [
+            0.5999051265191382,
+            2.4734488426759214
+          ],
+          "all_sems_unknown_2px": [
+            0.5999051265191382,
+            2.4734488426759214
+          ],
+          "caps_3px": [
+            0.5587815704473177,
+            2.574340581886733
+          ],
+          "baseline_sem_unknown_3px": [
+            0.5581531119081314,
+            2.681543253701403
+          ],
+          "all_sems_unknown_3px": [
+            0.5581531119081314,
+            2.681543253701403
+          ]
+        }
+      },
+      "120": {
+        "signed_D": 0.9739370251315013,
+        "sample_positive_D_bounds": {
+          "caps_0px": [
+            0.7113967565547009,
+            1.1941333215084318
+          ],
+          "baseline_sem_unknown_0px": [
+            0.5823706986899558,
+            1.6343049359033979
+          ],
+          "all_sems_unknown_0px": [
+            0.5823706986899558,
+            1.6343049359033979
+          ],
+          "caps_1px": [
+            0.6086026517962165,
+            1.397908901807837
+          ],
+          "baseline_sem_unknown_1px": [
+            0.5458080354022601,
+            1.748844244372881
+          ],
+          "all_sems_unknown_1px": [
+            0.5458080354022601,
+            1.748844244372881
+          ],
+          "caps_2px": [
+            0.5341099398425057,
+            1.631798699103547
+          ],
+          "baseline_sem_unknown_2px": [
+            0.5110580291109739,
+            1.8739315996137902
+          ],
+          "all_sems_unknown_2px": [
+            0.5110580291109739,
+            1.8739315996137902
+          ],
+          "caps_3px": [
+            0.4790283538095669,
+            1.9099699079054324
+          ],
+          "baseline_sem_unknown_3px": [
+            0.47804017899140155,
+            2.010883870025016
+          ],
+          "all_sems_unknown_3px": [
+            0.47804017899140155,
+            2.010883870025016
+          ]
+        }
+      },
+      "180": {
+        "signed_D": 0.765428808824895,
+        "sample_positive_D_bounds": {
+          "caps_0px": [
+            0.5418686577960471,
+            1.0141253559734147
+          ],
+          "baseline_sem_unknown_0px": [
+            0.4339435096558537,
+            1.4624569836185541
+          ],
+          "all_sems_unknown_0px": [
+            0.4339435096558537,
+            1.4624569836185541
+          ],
+          "caps_1px": [
+            0.45248877924962333,
+            1.2361345499873084
+          ],
+          "baseline_sem_unknown_1px": [
+            0.40154775109057883,
+            1.5802899099442063
+          ],
+          "all_sems_unknown_1px": [
+            0.40154775109057883,
+            1.5802899099442063
+          ],
+          "caps_2px": [
+            0.38775958991267373,
+            1.4820933539051326
+          ],
+          "baseline_sem_unknown_2px": [
+            0.37141216436807806,
+            1.7104508905006057
+          ],
+          "all_sems_unknown_2px": [
+            0.37141216436807806,
+            1.7104508905006057
+          ],
+          "caps_3px": [
+            0.34414788869063834,
+            1.7663893899012044
+          ],
+          "baseline_sem_unknown_3px": [
+            0.3433875307189144,
+            1.8546793214797022
+          ],
+          "all_sems_unknown_3px": [
+            0.3433875307189144,
+            1.8546793214797022
+          ]
+        }
+      }
+    },
+    "lunch": {
+      "60": {
+        "signed_D": 1.3454492572239443,
+        "sample_positive_D_bounds": {
+          "caps_0px": [
+            1.1391743211498528,
+            1.6120214906103152
+          ],
+          "baseline_sem_unknown_0px": [
+            0.9378044514098043,
+            1.7216067149794212
+          ],
+          "all_sems_unknown_0px": [
+            0.9304392827834417,
+            1.731505817929668
+          ],
+          "caps_1px": [
+            1.0487651507302258,
+            1.704623758183453
+          ],
+          "baseline_sem_unknown_1px": [
+            0.9037298355863435,
+            1.7877497522957284
+          ],
+          "all_sems_unknown_1px": [
+            0.9007611558795965,
+            1.7933846867235361
+          ],
+          "caps_2px": [
+            0.9742065609553493,
+            1.8135214326048519
+          ],
+          "baseline_sem_unknown_2px": [
+            0.8724028993153755,
+            1.856917361091252
+          ],
+          "all_sems_unknown_2px": [
+            0.8718647536038617,
+            1.8580138666569668
+          ],
+          "caps_3px": [
+            0.9078663459546272,
+            1.9019245537397862
+          ],
+          "baseline_sem_unknown_3px": [
+            0.843730565456673,
+            1.9255489774001757
+          ],
+          "all_sems_unknown_3px": [
+            0.843730565456673,
+            1.9255489774001757
+          ]
+        }
+      },
+      "120": {
+        "signed_D": 1.285421344853398,
+        "sample_positive_D_bounds": {
+          "caps_0px": [
+            1.0523081752023276,
+            1.6131297320157911
+          ],
+          "baseline_sem_unknown_0px": [
+            0.8718711734874081,
+            1.6821742265397295
+          ],
+          "all_sems_unknown_0px": [
+            0.8667316972639221,
+            1.6910224923550479
+          ],
+          "caps_1px": [
+            0.9623424102725812,
+            1.6998448803285864
+          ],
+          "baseline_sem_unknown_1px": [
+            0.8392097721820028,
+            1.7512453826542766
+          ],
+          "all_sems_unknown_1px": [
+            0.836860011690149,
+            1.756294520554718
+          ],
+          "caps_2px": [
+            0.8867202692642138,
+            1.796465921118891
+          ],
+          "baseline_sem_unknown_2px": [
+            0.8082572005988938,
+            1.823732916075124
+          ],
+          "all_sems_unknown_2px": [
+            0.8078322171396152,
+            1.8247179040085963
+          ],
+          "caps_3px": [
+            0.8270288416405691,
+            1.8812377392133792
+          ],
+          "baseline_sem_unknown_3px": [
+            0.7796258673677929,
+            1.896487874721656
+          ],
+          "all_sems_unknown_3px": [
+            0.7796258673677929,
+            1.896487874721656
+          ]
+        }
+      },
+      "180": {
+        "signed_D": 1.2413496085224298,
+        "sample_positive_D_bounds": {
+          "caps_0px": [
+            0.9569462959792141,
+            1.644373509720233
+          ],
+          "baseline_sem_unknown_0px": [
+            0.7982061544741429,
+            1.6951485350544193
+          ],
+          "all_sems_unknown_0px": [
+            0.794906878216027,
+            1.7016442137158694
+          ],
+          "caps_1px": [
+            0.8659863519412054,
+            1.7359065056011582
+          ],
+          "baseline_sem_unknown_1px": [
+            0.7650166634681791,
+            1.7734020111492708
+          ],
+          "all_sems_unknown_1px": [
+            0.7635154095632694,
+            1.7771266142663933
+          ],
+          "caps_2px": [
+            0.7915345116878851,
+            1.8361111757760649
+          ],
+          "baseline_sem_unknown_2px": [
+            0.7333999546764761,
+            1.8560873875714483
+          ],
+          "all_sems_unknown_2px": [
+            0.7331298148232813,
+            1.8568175912978633
+          ],
+          "caps_3px": [
+            0.73755498900869,
+            1.9297922910297318
+          ],
+          "baseline_sem_unknown_3px": [
+            0.7037201562482278,
+            1.9410197869610981
+          ],
+          "all_sems_unknown_3px": [
+            0.7037201562482278,
+            1.9410197869610981
+          ]
+        }
+      }
+    }
+  },
+  "positive_bounds_pairs120": {
+    "fast": {
+      "caps_0px": {
+        "T/I": [
+          1.2868798006976745,
+          1.8170106761695672
+        ],
+        "T/G": [
+          0.5423894856539144,
+          0.6525225301560782
+        ],
+        "I/S": [
+          0.5464402662608983,
+          0.7624289549487268
+        ]
+      },
+      "baseline_sem_unknown_0px": {
+        "T/I": [
+          1.1269534897625906,
+          2.1051776567851146
+        ],
+        "T/G": [
+          0.5070267683760429,
+          0.7560086845110384
+        ],
+        "I/S": [
+          0.46258728582566394,
+          0.8706254787828452
+        ]
+      },
+      "all_sems_unknown_0px": {
+        "T/I": [
+          1.1269534897625906,
+          2.1051776567851146
+        ],
+        "T/G": [
+          0.5070267683760429,
+          0.7560086845110384
+        ],
+        "I/S": [
+          0.46258728582566394,
+          0.8706254787828452
+        ]
+      },
+      "caps_1px": {
+        "T/I": [
+          1.1599544310294432,
+          1.9859675115960929
+        ],
+        "T/G": [
+          0.5123847844648062,
+          0.6989711509051209
+        ],
+        "I/S": [
+          0.5000119464159508,
+          0.8419036344198714
+        ]
+      },
+      "baseline_sem_unknown_1px": {
+        "T/I": [
+          1.085493274530637,
+          2.2017484951659574
+        ],
+        "T/G": [
+          0.49103912888972356,
+          0.7749163421273336
+        ],
+        "I/S": [
+          0.44310197698892917,
+          0.8996553678947362
+        ]
+      },
+      "all_sems_unknown_1px": {
+        "T/I": [
+          1.085493274530637,
+          2.2017484951659574
+        ],
+        "T/G": [
+          0.49103912888972356,
+          0.7749163421273336
+        ],
+        "I/S": [
+          0.44310197698892917,
+          0.8996553678947362
+        ]
+      },
+      "caps_2px": {
+        "T/I": [
+          1.0702472198658313,
+          2.1710022796472392
+        ],
+        "T/G": [
+          0.4849730232847675,
+          0.7480671756014928
+        ],
+        "I/S": [
+          0.458431040552033,
+          0.9080022428112322
+        ]
+      },
+      "baseline_sem_unknown_2px": {
+        "T/I": [
+          1.0449977756591942,
+          2.3054727289824193
+        ],
+        "T/G": [
+          0.47525410783915134,
+          0.794401963076878
+        ],
+        "I/S": [
+          0.4239226038136083,
+          0.9299415736915312
+        ]
+      },
+      "all_sems_unknown_2px": {
+        "T/I": [
+          1.0449977756591942,
+          2.3054727289824193
+        ],
+        "T/G": [
+          0.47525410783915134,
+          0.794401963076878
+        ],
+        "I/S": [
+          0.4239226038136083,
+          0.9299415736915312
+        ]
+      },
+      "caps_3px": {
+        "T/I": [
+          1.007512078954511,
+          2.39350817752807
+        ],
+        "T/G": [
+          0.45966787766872375,
+          0.8065174249595232
+        ],
+        "I/S": [
+          0.4222670847437539,
+          0.9595838618176248
+        ]
+      },
+      "baseline_sem_unknown_3px": {
+        "T/I": [
+          1.0054337091513406,
+          2.4171757500155318
+        ],
+        "T/G": [
+          0.45966787766872375,
+          0.8144924591778495
+        ],
+        "I/S": [
+          0.4050420172536951,
+          0.9615674536783898
+        ]
+      },
+      "all_sems_unknown_3px": {
+        "T/I": [
+          1.0054337091513406,
+          2.4171757500155318
+        ],
+        "T/G": [
+          0.45966787766872375,
+          0.8144924591778495
+        ],
+        "I/S": [
+          0.4050420172536951,
+          0.9615674536783898
+        ]
+      }
+    },
+    "lunch": {
+      "caps_0px": {
+        "T/I": [
+          1.3035355681970948,
+          1.6948377551277587
+        ],
+        "T/G": [
+          0.7947915833811563,
+          0.9602218436037168
+        ],
+        "I/S": [
+          0.5952539492306109,
+          0.7552840528187871
+        ]
+      },
+      "baseline_sem_unknown_0px": {
+        "T/I": [
+          1.1858064478718038,
+          1.7673794817975992
+        ],
+        "T/G": [
+          0.7238885582270022,
+          1.0013208516417225
+        ],
+        "I/S": [
+          0.5952539492306109,
+          0.8302700906276229
+        ]
+      },
+      "all_sems_unknown_0px": {
+        "T/I": [
+          1.1858064478718038,
+          1.7673794817975992
+        ],
+        "T/G": [
+          0.71962140483715,
+          1.0013208516417225
+        ],
+        "I/S": [
+          0.5921392862416668,
+          0.8302700906276229
+        ]
+      },
+      "caps_1px": {
+        "T/I": [
+          1.2327165279312458,
+          1.7535578577806927
+        ],
+        "T/G": [
+          0.7667934083371933,
+          0.9882264484864518
+        ],
+        "I/S": [
+          0.5813627231064895,
+          0.7967989357551031
+        ]
+      },
+      "baseline_sem_unknown_1px": {
+        "T/I": [
+          1.1628020910775265,
+          1.8065825518514045
+        ],
+        "T/G": [
+          0.7088864784390495,
+          1.0181087844875565
+        ],
+        "I/S": [
+          0.5813627231064895,
+          0.8447071303708682
+        ]
+      },
+      "all_sems_unknown_1px": {
+        "T/I": [
+          1.1628020910775265,
+          1.8065825518514045
+        ],
+        "T/G": [
+          0.706901618996917,
+          1.0181087844875565
+        ],
+        "I/S": [
+          0.5796913744091118,
+          0.8447071303708682
+        ]
+      },
+      "caps_2px": {
+        "T/I": [
+          1.173111258364558,
+          1.8194900849111233
+        ],
+        "T/G": [
+          0.7406504045657394,
+          1.0197977877574669
+        ],
+        "I/S": [
+          0.5676688746326495,
+          0.8352695097184585
+        ]
+      },
+      "baseline_sem_unknown_2px": {
+        "T/I": [
+          1.1400914054419191,
+          1.8471065436398746
+        ],
+        "T/G": [
+          0.6946655179265872,
+          1.035276412098886
+        ],
+        "I/S": [
+          0.5676688746326495,
+          0.8594609703592635
+        ]
+      },
+      "all_sems_unknown_2px": {
+        "T/I": [
+          1.1400914054419191,
+          1.8471065436398746
+        ],
+        "T/G": [
+          0.6943002612302889,
+          1.035276412098886
+        ],
+        "I/S": [
+          0.5673624453536401,
+          0.8594609703592635
+        ]
+      },
+      "caps_3px": {
+        "T/I": [
+          1.1306085026443573,
+          1.8738292832388057
+        ],
+        "T/G": [
+          0.7149938146570793,
+          1.0443706382710325
+        ],
+        "I/S": [
+          0.5551508012526506,
+          0.864533107743562
+        ]
+      },
+      "baseline_sem_unknown_3px": {
+        "T/I": [
+          1.117668803169672,
+          1.8890193625643021
+        ],
+        "T/G": [
+          0.6818156852571866,
+          1.0528367632176638
+        ],
+        "I/S": [
+          0.5551508012526506,
+          0.8745421538656261
+        ]
+      },
+      "all_sems_unknown_3px": {
+        "T/I": [
+          1.117668803169672,
+          1.8890193625643021
+        ],
+        "T/G": [
+          0.6818156852571866,
+          1.0528367632176638
+        ],
+        "I/S": [
+          0.5551508012526506,
+          0.8745421538656261
+        ]
+      }
+    }
+  },
+  "nominal_conditional_native_fast120_from_25_50g": {
+    "6.0_flat": {
+      "forecast": {
+        "G": 1709.0,
+        "T": 590.0,
+        "I": 2533.344936595394,
+        "S": 3869.0528301999548
+      },
+      "signed_error": {
+        "G": -9468.647318468315,
+        "T": -5957.922634653571,
+        "I": -1480.7573497021176,
+        "S": -2804.639394555762
+      },
+      "MAE": 4927.991674344941,
+      "mean_absolute_log_error": 1.322556229538378
+    },
+    "6.0_linear": {
+      "forecast": {
+        "G": 5127.0,
+        "T": 1770.0,
+        "I": 3800.0174048930908,
+        "S": 5803.579245299932
+      },
+      "signed_error": {
+        "G": -6050.647318468315,
+        "T": -4777.922634653571,
+        "I": -214.08488140442068,
+        "S": -870.1129794557846
+      },
+      "MAE": 2978.1919534955227,
+      "mean_absolute_log_error": 0.570517531150241
+    },
+    "6.0_prior_sublinear": {
+      "forecast": {
+        "G": 4017.8940644024533,
+        "T": 1387.1021053232578,
+        "I": 3473.0739044096385,
+        "S": 5304.254555010822
+      },
+      "signed_error": {
+        "G": -7159.753254065861,
+        "T": -5160.820529330313,
+        "I": -541.0283818878729,
+        "S": -1369.4376697448952
+      },
+      "MAE": 3557.7599587572354,
+      "mean_absolute_log_error": 0.7373817240153164
+    },
+    "6.945_flat": {
+      "forecast": {
+        "G": 1709.0,
+        "T": 590.0,
+        "I": 2188.6349344236664,
+        "S": 3342.5942377537403
+      },
+      "signed_error": {
+        "G": -9468.647318468315,
+        "T": -5957.922634653571,
+        "I": -1825.467351873845,
+        "S": -3331.0979870019764
+      },
+      "MAE": 5145.783822999427,
+      "mean_absolute_log_error": 1.395687483027504
+    },
+    "6.945_linear": {
+      "forecast": {
+        "G": 5127.0,
+        "T": 1770.0,
+        "I": 3282.9524016355,
+        "S": 5013.891356630611
+      },
+      "signed_error": {
+        "G": -6050.647318468315,
+        "T": -4777.922634653571,
+        "I": -731.1498846620116,
+        "S": -1659.8008681251058
+      },
+      "MAE": 3304.8801764772506,
+      "mean_absolute_log_error": 0.6436487846393669
+    },
+    "6.945_prior_sublinear": {
+      "forecast": {
+        "G": 4017.8940644024533,
+        "T": 1387.1021053232578,
+        "I": 3000.4958137448284,
+        "S": 4582.509334782567
+      },
+      "signed_error": {
+        "G": -7159.753254065861,
+        "T": -5160.820529330313,
+        "I": -1013.606472552683,
+        "S": -2091.18288997315
+      },
+      "MAE": 3856.3407864805017,
+      "mean_absolute_log_error": 0.8105129775044425
+    }
+  },
+  "between_protocol_change": {
+    "signed60": {
+      "observed_lunch_D_over_fast_D": 1.084804866484675,
+      "matched": 0.8531739312628707,
+      "matched_log_error": 0.24019197118731275,
+      "no_change_log_error": 0.08140012426018811
+    },
+    "signed120": {
+      "observed_lunch_D_over_fast_D": 1.3198197744662599,
+      "matched": 0.9975877357836894,
+      "matched_log_error": 0.27991037119445944,
+      "no_change_log_error": 0.2774951927813391
+    },
+    "signed180": {
+      "observed_lunch_D_over_fast_D": 1.6217701688393205,
+      "matched": 1.1298445980414946,
+      "matched_log_error": 0.3614381500901641,
+      "no_change_log_error": 0.4835182495000561
+    },
+    "reported180": {
+      "observed_lunch_D_over_fast_D": 1.6475827062196398,
+      "matched": 1.2788945990483942,
+      "matched_log_error": 0.25331307685275056,
+      "no_change_log_error": 0.4993091871782825
+    }
+  },
+  "clock_sensitivity": {
+    "fast": {
+      "carry": {
+        "T": 6547.922634653571,
+        "G": 11177.647318468315,
+        "I": 4014.1022862975115,
+        "S": 6673.692224755717
+      },
+      "interpolate_from_minus5": {
+        "T": 6644.339991970867,
+        "G": 11351.875174673254,
+        "I": 4077.661259866614,
+        "S": 6821.996496416955
+      }
+    },
+    "lunch": {
+      "carry": {
+        "T": 12693.260514192832,
+        "G": 14990.3617639628,
+        "I": 8492.891290466905,
+        "S": 12892.584683083644
+      },
+      "interpolate_from_minus5": {
+        "T": 12984.204118729234,
+        "G": 15281.305368499203,
+        "I": 8689.217897713686,
+        "S": 13177.893853327168
+      }
+    }
+  },
+  "fixed_midpoint": 0.7261229126268245
+}

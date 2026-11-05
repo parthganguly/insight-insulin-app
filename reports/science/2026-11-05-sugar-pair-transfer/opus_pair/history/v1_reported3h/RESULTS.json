@@ -1,0 +1,460 @@
+{
+  "plan": "../PLAN.md",
+  "plan_matches_freeze": true,
+  "fitted_parameters": null,
+  "exposure": "Target Tables 2-3 were read before the 2009 donor tables. The donor route was nominated in the frozen plan, and its ratios are read mechanically from the donor tables; no choice depended on the target values.",
+  "endpoint_admitted": "author-reported insulin iAUC over 0-180 min (trapezoid; below-baseline handling unstated), plasma RIA, means only. The plan target is a participant-positive 0-120 area; that endpoint is not reported, and the signed 0-120 group-curve route was not executed because the figure axes are not legible in the accessible image.",
+  "A_frozen_primary_yoshizane_holub": {
+    "fasting": {
+      "observed": {
+        "TG": 0.6194137749737119,
+        "IS": 0.7888342888342889,
+        "D": 0.7852267374039476
+      },
+      "comparators": {
+        "pair": {
+          "forecast_TG": 0.34523112931538913,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 0.527254484241663,
+          "abs_log_error_D": 0.398289189248591,
+          "abs_log_error_TG": 0.5845593737468656,
+          "abs_log_error_IS": 0.1862701844982747,
+          "magnitude_mean": 0.38541477912257016
+        },
+        "common_geomean": {
+          "forecast_TG": 0.4754444782171656,
+          "forecast_IS": 0.4754444782171656,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.264523396398581,
+          "abs_log_error_IS": 0.5063061618465593,
+          "magnitude_mean": 0.38541477912257016
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.47898177246896,
+          "abs_log_error_IS": 0.2371990070209817,
+          "magnitude_mean": 0.35809038974497087
+        },
+        "johansen_0420": {
+          "forecast_TG": 0.42,
+          "forecast_IS": 0.42,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.38851879523576305,
+          "abs_log_error_IS": 0.6303015606837414,
+          "magnitude_mean": 0.5094101779597522
+        },
+        "holub_scalar": {
+          "forecast_TG": 0.520757979630314,
+          "forecast_IS": 0.520757979630314,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.17348810314755916,
+          "abs_log_error_IS": 0.41527086859553763,
+          "magnitude_mean": 0.2943794858715484
+        },
+        "holub_120": {
+          "forecast_TG": 0.654771347866157,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.05551258094970375,
+          "abs_log_error_IS": 0.1862701844982747,
+          "magnitude_mean": 0.12089138272398922
+        }
+      },
+      "order_on_D": [
+        "common_geomean",
+        "equality",
+        "johansen_0420",
+        "holub_scalar",
+        "holub_120",
+        "pair"
+      ],
+      "order_on_magnitude": [
+        "holub_120",
+        "holub_scalar",
+        "equality",
+        "pair",
+        "common_geomean",
+        "johansen_0420"
+      ],
+      "pair_vs_common": {
+        "pair_forecast_D": 0.527254484241663,
+        "geometric_midpoint": 0.7261229126268245,
+        "observed_D": 0.7852267374039476,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.07825321190030629,
+        "observed_direction_matches_pair": true,
+        "distance_in_approx_SE_units": [
+          0.25771899077673543,
+          1.1685365212175702
+        ]
+      },
+      "magnitude_identity": {
+        "all_forecasts_below_observed": true,
+        "magnitude_difference": 0.0,
+        "reading": "With every forecast below both observations, the sum of log errors equals (sum of observed logs) - (sum of forecast logs), and the geometric-mean rule has the same forecast-log sum as the pair rule. Magnitude then cannot separate them; only D can."
+      },
+      "uncertainty": {
+        "SE_paired_difference_bounds": {
+          "TG": [
+            1746.4741380370413,
+            1746.4741380370413
+          ],
+          "IS": [
+            476.02408805034787,
+            683.860531638049
+          ]
+        },
+        "approx_SE_ln_ratio_bounds": {
+          "TG": [
+            0.1853022958129487,
+            0.1853022958129487
+          ],
+          "IS": [
+            0.08237135975953415,
+            0.1183354441318652
+          ]
+        },
+        "approx_SE_lnD_range_over_cross_pair_correlation": [
+          0.06696685168108349,
+          0.3036377399448139
+        ],
+        "conditions": "Derived from reported p-values of paired t-tests (n = 10). Ignores uncertainty in the control means and the unknown correlation between the two pairs, so it UNDERSTATES uncertainty; None means unbounded. No participant data or covariance is inferred."
+      }
+    },
+    "lunch": {
+      "observed": {
+        "TG": 0.8591137724550898,
+        "IS": 0.6640616151319515,
+        "D": 1.2937259930080143
+      },
+      "comparators": {
+        "pair": {
+          "forecast_TG": 0.34523112931538913,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 0.527254484241663,
+          "abs_log_error_D": 0.8975983764268733,
+          "abs_log_error_TG": 0.9116872280087623,
+          "abs_log_error_IS": 0.014088851581888875,
+          "magnitude_mean": 0.4628880397953256
+        },
+        "common_geomean": {
+          "forecast_TG": 0.4754444782171656,
+          "forecast_IS": 0.4754444782171656,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.5916512506604776,
+          "abs_log_error_IS": 0.3341248289301737,
+          "magnitude_mean": 0.46288803979532567
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.15185391820706343,
+          "abs_log_error_IS": 0.4093803399373674,
+          "magnitude_mean": 0.2806171290722154
+        },
+        "johansen_0420": {
+          "forecast_TG": 0.42,
+          "forecast_IS": 0.42,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.7156466494976598,
+          "abs_log_error_IS": 0.45812022776735567,
+          "magnitude_mean": 0.5868834386325077
+        },
+        "holub_scalar": {
+          "forecast_TG": 0.520757979630314,
+          "forecast_IS": 0.520757979630314,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.5006159574094559,
+          "abs_log_error_IS": 0.24308953567915187,
+          "magnitude_mean": 0.3718527465443039
+        },
+        "holub_120": {
+          "forecast_TG": 0.654771347866157,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.271615273312193,
+          "abs_log_error_IS": 0.014088851581888875,
+          "magnitude_mean": 0.14285206244704093
+        }
+      },
+      "order_on_D": [
+        "common_geomean",
+        "equality",
+        "johansen_0420",
+        "holub_scalar",
+        "holub_120",
+        "pair"
+      ],
+      "order_on_magnitude": [
+        "holub_120",
+        "equality",
+        "holub_scalar",
+        "pair",
+        "common_geomean",
+        "johansen_0420"
+      ],
+      "pair_vs_common": {
+        "pair_forecast_D": 0.527254484241663,
+        "geometric_midpoint": 0.7261229126268245,
+        "observed_D": 1.2937259930080143,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.5775623990785888,
+        "observed_direction_matches_pair": false,
+        "distance_in_approx_SE_units": [
+          null,
+          null
+        ]
+      },
+      "magnitude_identity": {
+        "all_forecasts_below_observed": true,
+        "magnitude_difference": -5.551115123125783e-17,
+        "reading": "With every forecast below both observations, the sum of log errors equals (sum of observed logs) - (sum of forecast logs), and the geometric-mean rule has the same forecast-log sum as the pair rule. Magnitude then cannot separate them; only D can."
+      },
+      "uncertainty": {
+        "SE_paired_difference_bounds": {
+          "TG": [
+            1300.0865052020051,
+            null
+          ],
+          "IS": [
+            1240.7672998364758,
+            1240.7672998364758
+          ]
+        },
+        "approx_SE_ln_ratio_bounds": {
+          "TG": [
+            0.07249283512891742,
+            null
+          ],
+          "IS": [
+            0.10581334639574243,
+            0.10581334639574243
+          ]
+        },
+        "approx_SE_lnD_range_over_cross_pair_correlation": [
+          0.0,
+          null
+        ],
+        "conditions": "Derived from reported p-values of paired t-tests (n = 10). Ignores uncertainty in the control means and the unknown correlation between the two pairs, so it UNDERSTATES uncertainty; None means unbounded. No participant data or covariance is inferred."
+      }
+    }
+  },
+  "B_matched_protocol_donor_route": {
+    "fasting": {
+      "observed": {
+        "TG": 0.6194137749737119,
+        "IS": 0.7888342888342889,
+        "D": 0.7852267374039476
+      },
+      "comparators": {
+        "donor_pair_fasting": {
+          "forecast_TG": 0.5254749568221071,
+          "forecast_IS": 0.6720270842149809,
+          "forecast_D": 0.7819252663543068,
+          "abs_log_error_D": 0.004213344877553321,
+          "abs_log_error_TG": 0.16447097323639862,
+          "abs_log_error_IS": 0.16025762835884513,
+          "magnitude_mean": 0.16236430079762187
+        },
+        "donor_common_geomean": {
+          "forecast_TG": 0.5942502865469681,
+          "forecast_IS": 0.5942502865469681,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.04147291807363255,
+          "abs_log_error_IS": 0.28325568352161107,
+          "magnitude_mean": 0.16236430079762182
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.47898177246896,
+          "abs_log_error_IS": 0.2371990070209817,
+          "magnitude_mean": 0.35809038974497087
+        }
+      },
+      "order_on_D": [
+        "donor_pair_fasting",
+        "donor_common_geomean",
+        "equality"
+      ],
+      "order_on_magnitude": [
+        "donor_common_geomean",
+        "donor_pair_fasting",
+        "equality"
+      ],
+      "pair_vs_common": {
+        "pair_forecast_D": 0.7819252663543068,
+        "geometric_midpoint": 0.884265382311389,
+        "observed_D": 0.7852267374039476,
+        "pair_beats_common": true,
+        "log_distance_obs_to_midpoint": 0.11878471028521259,
+        "observed_direction_matches_pair": true,
+        "distance_in_approx_SE_units": [
+          0.39120535644482696,
+          1.7737837049724468
+        ]
+      },
+      "magnitude_identity": {
+        "all_forecasts_below_observed": true,
+        "magnitude_difference": 5.551115123125783e-17,
+        "reading": "With every forecast below both observations, the sum of log errors equals (sum of observed logs) - (sum of forecast logs), and the geometric-mean rule has the same forecast-log sum as the pair rule. Magnitude then cannot separate them; only D can."
+      }
+    },
+    "lunch": {
+      "observed_D": 1.2937259930080143,
+      "donor_afternoon_face_value": {
+        "TG": 0.7306956402897362,
+        "IS": 0.7306956402897362,
+        "D": 1.0,
+        "abs_log_error_D": 0.25752642173030404,
+        "abs_log_error_TG": 0.1619043484802553,
+        "abs_log_error_IS": 0.09562207325004875,
+        "admissible": false,
+        "status": "INADMISSIBLE: both donor papers print identical afternoon insulin means for different sugar pairs"
+      },
+      "fasting_donor_for_both_meals": {
+        "D": 0.7819252663543068,
+        "abs_log_error_D": 0.5035225320558356
+      },
+      "protocol_change_reference_D_lunch_equals_observed_D_fasting": {
+        "D": 0.7852267374039476,
+        "abs_log_error_D": 0.4993091871782823,
+        "note": "uses the target fasting outcome; a reference, not a forecast"
+      },
+      "common_D1": {
+        "D": 1.0,
+        "abs_log_error_D": 0.25752642173030404
+      },
+      "confounding": "Each lunch follows the same sugar at breakfast on the same day, and the lunch beverage dose is described as 25 En% of an individualised meal; lunch contrasts mix current composition with prior feeding and matrix."
+    }
+  },
+  "C_native_levels": {
+    "fasting_levels_uU_ml_3h": {
+      "observed": {
+        "TRE": 9425,
+        "GLUC": 15216,
+        "IMU": 5779,
+        "SUC": 7326
+      },
+      "donor_as_given": {
+        "TRE": {
+          "pred": 4868,
+          "signed_log_error": -0.6606825582087936
+        },
+        "GLUC": {
+          "pred": 9264,
+          "signed_log_error": -0.4962115849723951
+        },
+        "IMU": {
+          "pred": 3176,
+          "signed_log_error": -0.5986081139507516
+        },
+        "SUC": {
+          "pred": 4726,
+          "signed_log_error": -0.4383504855919065
+        }
+      },
+      "measured_control_calibration": {
+        "TRE": {
+          "pred": 7995.626943005182,
+          "signed_log_error": -0.16447097323639862
+        },
+        "IMU": {
+          "pred": 4923.27041895895,
+          "signed_log_error": -0.16025762835884513
+        },
+        "note": "separate benchmark: uses the measured target control arm"
+      },
+      "equality_within_pair": {
+        "TRE": {
+          "pred": 15216,
+          "signed_log_error": 0.47898177246896
+        },
+        "IMU": {
+          "pred": 7326,
+          "signed_log_error": 0.2371990070209817
+        }
+      },
+      "no_dose_change": "donor and target both 75 g CHO equivalents, so no dose adjustment applies",
+      "population": "donors healthy overweight (fasting insulin 14 uU/ml); target IGT (fasting insulin 18 uU/ml)"
+    },
+    "yoshizane_conditional_level_transfer": {
+      "proportional": {
+        "GLUC": {
+          "pred": 5127.0,
+          "signed_log_error": -1.087826813001471
+        },
+        "TRE": {
+          "pred": 1770.0,
+          "signed_log_error": -1.6723861867483367
+        }
+      },
+      "frozen_exponent": {
+        "GLUC": {
+          "pred": 4017.8940644024533,
+          "signed_log_error": -1.3315896050135971
+        },
+        "TRE": {
+          "pred": 1387.1021053232578,
+          "signed_log_error": -1.9161489787604629
+        }
+      },
+      "limits": "CONDITIONAL and not comparable: 0-120 vs 0-180 window, serum CLEIA vs plasma RIA, lean healthy vs overweight IGT, and a minute-unit reading that is not printed. Reported to expose level-transport failure, not as a forecast test."
+    }
+  },
+  "D_source_integrity": {
+    "donor_afternoon_insulin_identical_across_papers": true,
+    "values": {
+      "trehalose_paper": {
+        "TRE": 10693,
+        "GLUC": 14634
+      },
+      "isomaltulose_paper": {
+        "IMU": 10693,
+        "SUC": 14634
+      }
+    },
+    "donor_subject_descriptions_identical": true,
+    "reading": "Two papers on different sugar pairs print the same afternoon insulin means (and significance marks) while their morning means differ. At most one afternoon row can describe its stated pair unless the agreement is coincidental. The subject descriptions are also identical, suggesting the same participants. This is an unresolved source inconsistency, not an allegation; the afternoon donor route is excluded from scoring until it is resolved."
+  },
+  "E_development_diagnostics": {
+    "label": "DEVELOPMENT DIAGNOSTICS only (within-target cross-pair quantities the authors did not test)",
+    "sucrose_over_glucose_control": {
+      "fasting": 0.48146687697160884,
+      "lunch": 0.8458922155688623
+    },
+    "absolute_reduction_uU_ml_3h": {
+      "fasting": {
+        "GLUC_minus_TRE": 5791,
+        "SUC_minus_IMU": 1547
+      },
+      "lunch": {
+        "GLUC_minus_TRE": 2941,
+        "SUC_minus_IMU": 5932
+      }
+    },
+    "reading": "The two control arms differ by about twofold at fasting, so D compares fractional reductions on very different baselines; a ratio-of-ratios can favour one pair while the absolute reductions rank differently."
+  },
+  "t_quantiles_check": {
+    "t_0.05_df9": 2.2621571627982036,
+    "t_0.01_df9": 3.249835541592126,
+    "t_0.009_df9": 3.3158235062723715,
+    "t_0.001_df9": 4.780912585931137
+  }
+}

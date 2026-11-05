@@ -1,0 +1,676 @@
+{
+  "Holub": {
+    "pair": "I/S",
+    "areas_numerator_denominator_ratio": {
+      "60": [
+        7830.630968459048,
+        15845.389272012335,
+        0.49418987656493035
+      ],
+      "120": [
+        15200.069619572365,
+        23214.31698119973,
+        0.6547713478661571
+      ],
+      "180": [
+        18497.106156402013,
+        24290.61838912859,
+        0.7614917767873913
+      ]
+    },
+    "scored": {
+      "matched_time": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.5799043269598717,
+          "180": 0.6887563107610193
+        },
+        "MALE": 0.13239037098951262,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.398359325395674,
+            "observed_fold": 1.324938811813415,
+            "absolute_log_error": 0.05393336035715207,
+            "predicted_ratio_with_measured_target60": 0.6910550224107074
+          },
+          "180": {
+            "predicted_fold": 1.6608408754715824,
+            "observed_fold": 1.5408890649085176,
+            "absolute_log_error": 0.07496446088438481,
+            "predicted_ratio_with_measured_target60": 0.8207707472432922
+          }
+        }
+      },
+      "same_donor_constant120": {
+        "ratio_forecast": {
+          "60": 0.5799043269598717,
+          "120": 0.5799043269598717,
+          "180": 0.5799043269598717
+        },
+        "MALE": 0.18459417192176086,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.324938811813415,
+            "absolute_log_error": 0.2813662786084071,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.5408890649085176,
+            "absolute_log_error": 0.4323595647190763,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          }
+        }
+      },
+      "historical_scalar": {
+        "ratio_forecast": {
+          "60": 0.654771347866157,
+          "120": 0.654771347866157,
+          "180": 0.654771347866157
+        },
+        "MALE": 0.14411985490635887,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.324938811813415,
+            "absolute_log_error": 0.2813662786084071,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.5408890649085176,
+            "absolute_log_error": 0.4323595647190763,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          }
+        }
+      },
+      "equal": {
+        "ratio_forecast": {
+          "60": 1.0,
+          "120": 1.0,
+          "180": 1.0
+        },
+        "MALE": 0.46692685568516873,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.324938811813415,
+            "absolute_log_error": 0.2813662786084071,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.5408890649085176,
+            "absolute_log_error": 0.4323595647190763,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          }
+        }
+      },
+      "posthoc_same_donor_constant60": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.41470337160713994,
+          "180": 0.41470337160713994
+        },
+        "MALE": 0.41326492584585267,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.324938811813415,
+            "absolute_log_error": 0.2813662786084071,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.5408890649085176,
+            "absolute_log_error": 0.4323595647190763,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          }
+        }
+      },
+      "target_fitted_constant": {
+        "ratio_forecast": {
+          "60": 0.6547713478661571,
+          "120": 0.6547713478661571,
+          "180": 0.6547713478661571
+        },
+        "MALE": 0.14411985490635876,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.324938811813415,
+            "absolute_log_error": 0.2813662786084071,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.5408890649085176,
+            "absolute_log_error": 0.4323595647190763,
+            "predicted_ratio_with_measured_target60": 0.49418987656493035
+          }
+        }
+      }
+    }
+  },
+  "Suraphad_water": {
+    "pair": "I/S",
+    "areas_numerator_denominator_ratio": {
+      "60": [
+        771.0251046025105,
+        2015.794979079498,
+        0.38249182709771157
+      ],
+      "120": [
+        1476.8828451882846,
+        2670.397489539749,
+        0.5530573073759254
+      ]
+    },
+    "scored": {
+      "matched_time": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.5799043269598717
+        },
+        "MALE": 0.06412886088330823,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.398359325395674,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.033454701188604254,
+            "predicted_ratio_with_measured_target60": 0.5348610133097147
+          }
+        }
+      },
+      "same_donor_constant120": {
+        "ratio_forecast": {
+          "60": 0.5799043269598717,
+          "120": 0.5799043269598717
+        },
+        "MALE": 0.23177868036608779,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.3687543401541635,
+            "predicted_ratio_with_measured_target60": 0.38249182709771157
+          }
+        }
+      },
+      "historical_scalar": {
+        "ratio_forecast": {
+          "60": 0.654771347866157,
+          "120": 0.654771347866157
+        },
+        "MALE": 0.3532016314122939,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.3687543401541635,
+            "predicted_ratio_with_measured_target60": 0.38249182709771157
+          }
+        }
+      },
+      "equal": {
+        "ratio_forecast": {
+          "60": 1.0,
+          "120": 1.0
+        },
+        "MALE": 0.7766708229315502,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.3687543401541635,
+            "predicted_ratio_with_measured_target60": 0.38249182709771157
+          }
+        }
+      },
+      "posthoc_same_donor_constant60": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.41470337160713994
+        },
+        "MALE": 0.18437717007708174,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.3687543401541635,
+            "predicted_ratio_with_measured_target60": 0.3824918270977115
+          }
+        }
+      },
+      "Holub_time": {
+        "ratio_forecast": {
+          "60": 0.49418987656493035,
+          "120": 0.6547713478661571
+        },
+        "MALE": 0.21251849210809043,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.324938811813415,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.08738806154575633,
+            "predicted_ratio_with_measured_target60": 0.5067782669231842
+          }
+        }
+      },
+      "target_fitted_constant": {
+        "ratio_forecast": {
+          "60": 0.45993466926070964,
+          "120": 0.45993466926070964
+        },
+        "MALE": 0.1843771700770817,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.4459323525222438,
+            "absolute_log_error": 0.3687543401541635,
+            "predicted_ratio_with_measured_target60": 0.38249182709771157
+          }
+        }
+      }
+    }
+  },
+  "Suraphad_tea": {
+    "pair": "I/S",
+    "areas_numerator_denominator_ratio": {
+      "60": [
+        494.2468619246862,
+        1176.673640167364,
+        0.4200373366521468
+      ],
+      "120": [
+        1037.55230125523,
+        1826.8828451882844,
+        0.567935871743487
+      ]
+    },
+    "scored": {
+      "matched_time": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.5799043269598717
+        },
+        "MALE": 0.016817366297757354,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.398359325395674,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.03363473259551483,
+            "predicted_ratio_with_measured_target60": 0.5873631267218916
+          }
+        }
+      },
+      "same_donor_constant120": {
+        "ratio_forecast": {
+          "60": 0.5799043269598717,
+          "120": 0.5799043269598717
+        },
+        "MALE": 0.1716870791144983,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.30166490637004434,
+            "predicted_ratio_with_measured_target60": 0.4200373366521468
+          }
+        }
+      },
+      "historical_scalar": {
+        "ratio_forecast": {
+          "60": 0.654771347866157,
+          "120": 0.654771347866157
+        },
+        "MALE": 0.29311003016070436,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.30166490637004434,
+            "predicted_ratio_with_measured_target60": 0.4200373366521468
+          }
+        }
+      },
+      "equal": {
+        "ratio_forecast": {
+          "60": 1.0,
+          "120": 1.0
+        },
+        "MALE": 0.7165792216799607,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.30166490637004434,
+            "predicted_ratio_with_measured_target60": 0.4200373366521468
+          }
+        }
+      },
+      "posthoc_same_donor_constant60": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.41470337160713994
+        },
+        "MALE": 0.16361255985106085,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.30166490637004434,
+            "predicted_ratio_with_measured_target60": 0.4200373366521468
+          }
+        }
+      },
+      "Holub_time": {
+        "ratio_forecast": {
+          "60": 0.49418987656493035,
+          "120": 0.6547713478661571
+        },
+        "MALE": 0.15242689085650094,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.324938811813415,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.020298627761637156,
+            "predicted_ratio_with_measured_target60": 0.5565237697411668
+          }
+        }
+      },
+      "target_fitted_constant": {
+        "ratio_forecast": {
+          "60": 0.4884201786948913,
+          "120": 0.4884201786948913
+        },
+        "MALE": 0.1508324531850222,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.3521080679878277,
+            "absolute_log_error": 0.30166490637004434,
+            "predicted_ratio_with_measured_target60": 0.4200373366521468
+          }
+        }
+      }
+    }
+  },
+  "Kawai": {
+    "pair": "I/S",
+    "areas_numerator_denominator_ratio": {
+      "60": [
+        563.6324417601381,
+        1440.142364106989,
+        0.3913727252302854
+      ],
+      "120": [
+        1265.0992234685075,
+        2749.8921484037965,
+        0.46005412401459
+      ]
+    },
+    "scored": {
+      "matched_time": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.5799043269598717
+        },
+        "MALE": 0.14471106151306845,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.398359325395674,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.17361586288136788,
+            "predicted_ratio_with_measured_target60": 0.5472797000312883
+          }
+        }
+      },
+      "same_donor_constant120": {
+        "ratio_forecast": {
+          "60": 0.5799043269598717,
+          "120": 0.5799043269598717
+        },
+        "MALE": 0.312360880995848,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.16168377608419132,
+            "predicted_ratio_with_measured_target60": 0.3913727252302854
+          }
+        }
+      },
+      "historical_scalar": {
+        "ratio_forecast": {
+          "60": 0.654771347866157,
+          "120": 0.654771347866157
+        },
+        "MALE": 0.433783832042054,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.16168377608419132,
+            "predicted_ratio_with_measured_target60": 0.3913727252302854
+          }
+        }
+      },
+      "equal": {
+        "ratio_forecast": {
+          "60": 1.0,
+          "120": 1.0
+        },
+        "MALE": 0.8572530235613105,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.16168377608419132,
+            "predicted_ratio_with_measured_target60": 0.3913727252302854
+          }
+        }
+      },
+      "posthoc_same_donor_constant60": {
+        "ratio_forecast": {
+          "60": 0.41470337160713994,
+          "120": 0.41470337160713994
+        },
+        "MALE": 0.08084188804209569,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.16168377608419132,
+            "predicted_ratio_with_measured_target60": 0.3913727252302854
+          }
+        }
+      },
+      "Holub_time": {
+        "ratio_forecast": {
+          "60": 0.49418987656493035,
+          "120": 0.6547713478661571
+        },
+        "MALE": 0.2931006927378506,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.324938811813415,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.11968250252421586,
+            "predicted_ratio_with_measured_target60": 0.5185449135427925
+          }
+        }
+      },
+      "target_fitted_constant": {
+        "ratio_forecast": {
+          "60": 0.4243260966155885,
+          "120": 0.4243260966155885
+        },
+        "MALE": 0.08084188804209576,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1754884649764292,
+            "absolute_log_error": 0.16168377608419132,
+            "predicted_ratio_with_measured_target60": 0.3913727252302854
+          }
+        }
+      }
+    }
+  },
+  "Yoshizane": {
+    "pair": "T/G",
+    "areas_numerator_denominator_ratio": {
+      "60": [
+        383.25,
+        1255.5,
+        0.3052568697729988
+      ],
+      "120": [
+        558.75,
+        1680.0,
+        0.3325892857142857
+      ],
+      "180": [
+        576.75,
+        1677.0,
+        0.34391771019677997
+      ]
+    },
+    "scored": {
+      "matched_time": {
+        "ratio_forecast": {
+          "60": 0.48109854571810357,
+          "120": 0.5010820652024776,
+          "180": 0.5248019993251648
+        },
+        "MALE": 0.42913289293157525,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0415372685330944,
+            "observed_fold": 1.0895390690522784,
+            "absolute_log_error": 0.04505696978038189,
+            "predicted_ratio_with_measured_target60": 0.3179364063443317
+          },
+          "180": {
+            "predicted_fold": 1.0908409597078037,
+            "observed_fold": 1.1266501895683163,
+            "absolute_log_error": 0.032299874638227914,
+            "predicted_ratio_with_measured_target60": 0.33298669678057813
+          }
+        }
+      },
+      "same_donor_constant120": {
+        "ratio_forecast": {
+          "60": 0.5010820652024776,
+          "120": 0.5010820652024776,
+          "180": 0.5010820652024776
+        },
+        "MALE": 0.42728176218273317,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.0895390690522784,
+            "absolute_log_error": 0.08575473437619006,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1266501895683163,
+            "absolute_log_error": 0.1192487960763704,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          }
+        }
+      },
+      "historical_scalar": {
+        "ratio_forecast": {
+          "60": 0.42,
+          "120": 0.42,
+          "180": 0.42
+        },
+        "MALE": 0.2507665829901396,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.0895390690522784,
+            "absolute_log_error": 0.08575473437619006,
+            "predicted_ratio_with_measured_target60": 0.30525686977299876
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1266501895683163,
+            "absolute_log_error": 0.1192487960763704,
+            "predicted_ratio_with_measured_target60": 0.30525686977299876
+          }
+        }
+      },
+      "equal": {
+        "ratio_forecast": {
+          "60": 1.0,
+          "120": 1.0,
+          "180": 1.0
+        },
+        "MALE": 1.1182671506948625,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.0895390690522784,
+            "absolute_log_error": 0.08575473437619006,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1266501895683163,
+            "absolute_log_error": 0.1192487960763704,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          }
+        }
+      },
+      "posthoc_same_donor_constant60": {
+        "ratio_forecast": {
+          "60": 0.48109854571810357,
+          "120": 0.48109854571810357,
+          "180": 0.48109854571810357
+        },
+        "MALE": 0.38658399758692497,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.0895390690522784,
+            "absolute_log_error": 0.08575473437619006,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1266501895683163,
+            "absolute_log_error": 0.1192487960763704,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          }
+        }
+      },
+      "target_fitted_constant": {
+        "ratio_forecast": {
+          "60": 0.33258928571428575,
+          "120": 0.33258928571428575,
+          "180": 0.33258928571428575
+        },
+        "MALE": 0.03974959869212356,
+        "shape": {
+          "120": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.0895390690522784,
+            "absolute_log_error": 0.08575473437619006,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          },
+          "180": {
+            "predicted_fold": 1.0,
+            "observed_fold": 1.1266501895683163,
+            "absolute_log_error": 0.1192487960763704,
+            "predicted_ratio_with_measured_target60": 0.3052568697729988
+          }
+        }
+      }
+    }
+  }
+}

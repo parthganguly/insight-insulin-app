@@ -1,0 +1,1185 @@
+{
+  "note": "Aggregate published facts transcribed by Opus 5.5 from public Cambridge Core reader pages and their table images on 2026-11-05. No original asset is needed for the default replay; hashes allow an optional audit with --sources DIRECTORY.",
+  "target": {
+    "citation": "van Can JGP, van Loon LJC, Brouns F, Blaak EE. Reduced glycaemic and insulinaemic responses following trehalose and isomaltulose ingestion: implications for postprandial substrate use in impaired glucose-tolerant subjects. Br J Nutr 2012;108:1210-1217.",
+    "doi": "10.1017/S0007114511006714",
+    "design": "randomised single-blind crossover; ten overweight IGT subjects (6 men, 4 women) each 'studied four times' (GLUC, TRE, SUC, IMU), 1-week washout; on each trial day the same sugar drink was taken after an overnight fast (breakfast, 08.45) and again with a standardised mixed lunch (12.30)",
+    "all_four_conditions_verified": "Methods: 'Each subject participated in four trials'; Abstract: 'ten overweight IGT subjects were studied four times'",
+    "dose_text": "'The CHO load consisted of 75 g CHO equivalents and was dissolved in 400 ml of water'; lunch: '25 En% of the total energy content of the meal was provided in the form of a beverage containing either TRE, IMU, GLUC or SUC'",
+    "dose_ambiguity": "Whether the lunch beverage was 75 g or 25 En% of an individualised lunch is not reconciled in the text; the mass basis of 'CHO equivalents' for trehalose and isomaltulose (anhydrous vs hydrate) is not stated",
+    "sampling": "venous, t = -5 (baseline), 30, 60, 90, 120, 150, 180 min after ingestion; no 15 or 45 min samples",
+    "assay": "plasma insulin, double-antibody RIA (Linco Research)",
+    "operator": "'incremental area under the curve (iAUC) ... calculated by the trapezoid method'; handling of area below baseline not stated",
+    "statistics": "paired t-tests only within GLUC v. TRE and SUC v. IMU; 'The four CHO were not compared with each other'",
+    "unit_printed": "uU/ml over 3 h",
+    "conversion_printed": "To convert insulin from uU/ml to pmol/l, multiply by 6",
+    "dispersion": "Tables 2 and 3 print means only (no SE)",
+    "insulin_iAUC_0_180": {
+      "locator": "Table 2 (TRE v. GLUC) and Table 3 (IMU v. SUC), Insulin row",
+      "fasting": {
+        "TRE": 9425,
+        "GLUC": 15216,
+        "IMU": 5779,
+        "SUC": 7326
+      },
+      "lunch": {
+        "TRE": 17934,
+        "GLUC": 20875,
+        "IMU": 11726,
+        "SUC": 17658
+      }
+    },
+    "paired_tests": {
+      "fasting_TRE_v_GLUC": {
+        "p_exact": 0.009,
+        "source": "Results text P = 0.009; Table 2 **"
+      },
+      "lunch_TRE_v_GLUC": {
+        "p_at_least": 0.05,
+        "source": "Results text 'but not when TRE was ingested with a mixed meal'; Table 2 no mark"
+      },
+      "fasting_IMU_v_SUC": {
+        "p_range": [
+          0.01,
+          0.05
+        ],
+        "source": "Results text 'iAUC, P < 0.05'; Table 3 single *"
+      },
+      "lunch_IMU_v_SUC": {
+        "p_exact": 0.001,
+        "source": "Results text 'iAUC, P = 0.001'; Table 3 **"
+      }
+    },
+    "subjects_table1": {
+      "age": [
+        56,
+        8
+      ],
+      "BMI": [
+        30.8,
+        4.9
+      ],
+      "fasting_insulin_uU_ml": [
+        18,
+        8.9
+      ],
+      "stat": "mean, SD"
+    },
+    "assets": {
+      "S0007114511006714_tab2.gif": "0a4407af92e37f07b9d9b4d275585434a624e4532686bff990f2e48bd46e97ad",
+      "S0007114511006714_tab3.gif": "af27cfcab6a2fe183d4dc6ab6698891745d8f88cbe2e4e1481e4201eaa39f204",
+      "S0007114511006714_tab1.gif": "3695ea884a7a4cf39a2ec754b8cb645292e549175c3518505487c8ce71ded1ff",
+      "S0007114511006714_fig1g.gif": "295c3d6bed52f995e2e45ed28b29e8d6c1fb6fd0a000387b3e384e66223cd270"
+    },
+    "figure_status": "Version 1: the web GIF of Fig. 1 rendered with a transparent background and was not read. Version 2: investigator pixel readings of Fig. 1c,d from the primary PDF (image xref 118) are imported under lab_readings from ../figure.json"
+  },
+  "constituent_weight": {
+    "R": 0.14814814814814814,
+    "definition": "R = Y(fructose 25 g)/Y(glucose 25 g) = 1.2/8.1 nmol*min/L, Lee MSc thesis (University of Toronto 1997) Table 3-1; w = (1+R)/2 weights a 1:1 glucose-fructose disaccharide relative to an all-glucose one",
+    "use": "only for the separate T/I question"
+  },
+  "donors_2009": {
+    "common_protocol": "same laboratory; 75 g CHO (equivalents) in 400 ml water after an overnight fast (08.40); repeated the same day with a standardised lunch (12.30) in which '25 % energy of the total energy content of the meal was provided in the form of a beverage'; samples t = -5, 30 ... 180 min; plasma insulin RIA (LINCO); 'incremental area under the curve (minus baseline values, change in area under the curve)' by trapezoid; paired t-tests",
+    "trehalose": {
+      "citation": "van Can JGP, IJzerman TH, van Loon LJC, Brouns F, Blaak EE. Reduced glycaemic and insulinaemic responses following trehalose ingestion: implications for postprandial substrate use. Br J Nutr 2009;102:1395-1399.",
+      "doi": "10.1017/S000711450999050X",
+      "subjects": "ten healthy overweight, 8 men 2 women; age 31 (SE 4); BMI 27.7 (SE 0.8); fasting glucose 5.1 (SE 0.1); fasting insulin 14 (SE 1.9) uU/ml",
+      "insulin_dAUC_0_180": {
+        "locator": "Table 1, Insulin row",
+        "morning": {
+          "TRE": 4868,
+          "GLUC": 9264
+        },
+        "afternoon": {
+          "TRE": 10693,
+          "GLUC": 14634
+        }
+      },
+      "marks": {
+        "morning": "GLUC ** (P < 0.01)",
+        "afternoon": "GLUC ** (P < 0.01)"
+      },
+      "asset": {
+        "S000711450999050X_tab1.gif": "43e6c3d530b7576647165c27cba7257fa0380a82d1f2dd0726c60904496b52c3"
+      }
+    },
+    "isomaltulose": {
+      "citation": "van Can JGP, IJzerman TH, van Loon LJC, Brouns F, Blaak EE. Reduced glycaemic and insulinaemic responses following isomaltulose ingestion: implications for postprandial substrate use. Br J Nutr 2009;102:1408-1413.",
+      "doi": "10.1017/S0007114509990687",
+      "subjects": "ten healthy overweight, 8 men 2 women; age 31 (SE 4); BMI 27.7 (SE 0.8); fasting glucose 5.1 (SE 0.1); fasting insulin 14 (SE 1.9) uU/ml",
+      "insulin_dAUC_0_180": {
+        "locator": "Table 1, Insulin row",
+        "morning": {
+          "IMU": 3176,
+          "SUC": 4726
+        },
+        "afternoon": {
+          "IMU": 10693,
+          "SUC": 14634
+        }
+      },
+      "marks": {
+        "morning": "SUC * ; text P = 0.03",
+        "afternoon": "SUC ** ; text P < 0.01"
+      },
+      "asset": {
+        "S0007114509990687_tab1.gif": "69937fb59e3bdb2b68bee82e32700c2623fad2ac7eabd71ff7138145bf2b1199"
+      }
+    }
+  },
+  "frozen_forecasts": {
+    "locator": "../PLAN.md (sha256 in ../FREEZE.json)",
+    "TG_yoshizane_positive120": {
+      "num": 590,
+      "den": 1709,
+      "note": "25 g, healthy lean Japanese, serum CLEIA, mean participant-positive 0-120"
+    },
+    "IS_holub_signed120": 0.654771347866157,
+    "common_factors": {
+      "equality": 1.0,
+      "johansen_0420": 0.42,
+      "holub_scalar": 0.520757979630314,
+      "holub_120": 0.654771347866157
+    },
+    "frozen_dose_exponent": 0.7781175447184837
+  },
+  "yoshizane_levels_conditional": {
+    "note": "25 g, 0-120 min, serum CLEIA, uIU*min/mL under the conditional minute reading; window and assay differ from the target",
+    "GLUC": 1709,
+    "TRE": 590,
+    "dose_g": 25
+  },
+  "lab_readings": {
+    "note": "Investigator figure readings (not participant data) copied from the lab so the default replay is standalone.",
+    "target_figure": {
+      "file": "../figure.json",
+      "sha256": "0d9b19beba9f62387b853db7b0c8dcf4939684fd3a14cdf879ef1fd094235ba3",
+      "content": {
+        "source": "van Can 2012 Fig 1c,d; primary PDF page index 3, image xref 118. Pixel coordinates below on original 809 by 988 embedded image; y increases downward. Each entry is an investigator reading, not participant data.",
+        "sample_n": 10,
+        "times": [
+          0,
+          30,
+          60,
+          90,
+          120,
+          150,
+          180
+        ],
+        "image_pdf_box": [
+          111.053,
+          176.819519,
+          499.371002,
+          650.9370117
+        ],
+        "height": 988,
+        "panels": {
+          "TG": {
+            "top": 348.977,
+            "bottom": 482.718,
+            "top_value": 220
+          },
+          "IS": {
+            "top": 351.67,
+            "bottom": 482.718,
+            "top_value": 180
+          }
+        },
+        "series": [
+          [
+            "fast",
+            "T",
+            "TG",
+            [
+              5,
+              34,
+              58,
+              82,
+              106,
+              130,
+              154
+            ],
+            [
+              614,
+              557,
+              532,
+              520,
+              527,
+              557,
+              589
+            ],
+            [
+              610,
+              543,
+              515,
+              501,
+              509,
+              546,
+              582
+            ]
+          ],
+          [
+            "fast",
+            "G",
+            "TG",
+            [
+              5,
+              34,
+              58,
+              82,
+              106,
+              130,
+              154
+            ],
+            [
+              616,
+              513,
+              472,
+              461,
+              476,
+              536,
+              594
+            ],
+            [
+              610,
+              492,
+              443,
+              432,
+              452,
+              514,
+              582
+            ]
+          ],
+          [
+            "fast",
+            "I",
+            "IS",
+            [
+              461,
+              489,
+              513,
+              537,
+              561,
+              585,
+              609
+            ],
+            [
+              611,
+              566,
+              552,
+              542,
+              551,
+              568,
+              585
+            ],
+            [
+              602,
+              552,
+              539,
+              528,
+              537,
+              560,
+              577
+            ]
+          ],
+          [
+            "fast",
+            "S",
+            "IS",
+            [
+              461,
+              489,
+              513,
+              537,
+              561,
+              585,
+              609
+            ],
+            [
+              608,
+              503,
+              488,
+              511,
+              577,
+              600,
+              611
+            ],
+            [
+              602,
+              481,
+              467,
+              494,
+              570,
+              592,
+              605
+            ]
+          ],
+          [
+            "lunch",
+            "T",
+            "TG",
+            [
+              186,
+              214,
+              238,
+              262,
+              286,
+              310,
+              334
+            ],
+            [
+              609,
+              437,
+              445,
+              466,
+              495,
+              520,
+              522
+            ],
+            [
+              595,
+              411,
+              421,
+              429,
+              460,
+              485,
+              492
+            ]
+          ],
+          [
+            "lunch",
+            "G",
+            "TG",
+            [
+              186,
+              214,
+              238,
+              262,
+              286,
+              310,
+              334
+            ],
+            [
+              605,
+              433,
+              410,
+              419,
+              445,
+              473,
+              522
+            ],
+            [
+              595,
+              411,
+              389,
+              393,
+              412,
+              446,
+              492
+            ]
+          ],
+          [
+            "lunch",
+            "I",
+            "IS",
+            [
+              641,
+              668,
+              692,
+              716,
+              740,
+              764,
+              788
+            ],
+            [
+              605,
+              466,
+              462,
+              504,
+              512,
+              535,
+              538
+            ],
+            [
+              594,
+              439,
+              439,
+              478,
+              486,
+              512,
+              520
+            ]
+          ],
+          [
+            "lunch",
+            "S",
+            "IS",
+            [
+              641,
+              668,
+              692,
+              716,
+              740,
+              764,
+              788
+            ],
+            [
+              616,
+              414,
+              419,
+              424,
+              494,
+              495,
+              526
+            ],
+            [
+              594,
+              387,
+              399,
+              392,
+              461,
+              459,
+              503
+            ]
+          ]
+        ],
+        "notes": "At baseline and nearly superimposed markers, the most distant visible upper cap is used as a conservative common limit for error-bar height, not the exact individual SEM. Comparator no-baseline-SEM scenario uses only concentration nonnegativity. Printed axes and original raster checked visually. Source timing holds pre-dose value from -5 to zero."
+      }
+    },
+    "donor_coordinates": {
+      "file": "../matched/coordinates.csv",
+      "sha256": "6e1d1477b7718f711f9282976d11596d6a6eea27469219af7ab071a0ebe43fac",
+      "rows": [
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": -5.0,
+          "x_pt": 336.7829895019531,
+          "y_pt": 284.4389953613281,
+          "sem_cap_y_pt": 283.0989990234375,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": 30.0,
+          "x_pt": 351.82000732421875,
+          "y_pt": 231.13397216796875,
+          "sem_cap_y_pt": 220.41802978515625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": 60.0,
+          "x_pt": 364.74200439453125,
+          "y_pt": 238.83697509765625,
+          "sem_cap_y_pt": 227.61798095703125,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": 90.0,
+          "x_pt": 377.66400146484375,
+          "y_pt": 254.46502685546875,
+          "sem_cap_y_pt": 244.530029296875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": 120.0,
+          "x_pt": 390.5840148925781,
+          "y_pt": 263.06097412109375,
+          "sem_cap_y_pt": 256.2509765625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": 150.0,
+          "x_pt": 403.45098876953125,
+          "y_pt": 275.34100341796875,
+          "sem_cap_y_pt": 270.98699951171875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "fasting",
+          "sample_min": 180.0,
+          "x_pt": 416.37298583984375,
+          "y_pt": 282.7080078125,
+          "sem_cap_y_pt": 280.47601318359375,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": -5.0,
+          "x_pt": 433.5820007324219,
+          "y_pt": 287.11700439453125,
+          "sem_cap_y_pt": 286.2250061035156,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": 30.0,
+          "x_pt": 448.67498779296875,
+          "y_pt": 202.8909912109375,
+          "sem_cap_y_pt": 183.635009765625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": 60.0,
+          "x_pt": 461.59698486328125,
+          "y_pt": 225.719970703125,
+          "sem_cap_y_pt": 212.2130126953125,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": 90.0,
+          "x_pt": 474.4620056152344,
+          "y_pt": 244.083984375,
+          "sem_cap_y_pt": 231.302001953125,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": 120.0,
+          "x_pt": 487.3840026855469,
+          "y_pt": 259.656005859375,
+          "sem_cap_y_pt": 253.85198974609375,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": 150.0,
+          "x_pt": 500.3059997558594,
+          "y_pt": 263.50799560546875,
+          "sem_cap_y_pt": 259.37701416015625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "glucose",
+          "period": "lunch",
+          "sample_min": 180.0,
+          "x_pt": 513.22802734375,
+          "y_pt": 254.35400390625,
+          "sem_cap_y_pt": 246.3170166015625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": -5.0,
+          "x_pt": 336.7829895019531,
+          "y_pt": 285.77801513671875,
+          "sem_cap_y_pt": 284.6619873046875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": 30.0,
+          "x_pt": 351.82000732421875,
+          "y_pt": 258.9310302734375,
+          "sem_cap_y_pt": 251.34002685546875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": 60.0,
+          "x_pt": 364.74200439453125,
+          "y_pt": 266.24298095703125,
+          "sem_cap_y_pt": 257.47998046875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": 90.0,
+          "x_pt": 377.66400146484375,
+          "y_pt": 268.25201416015625,
+          "sem_cap_y_pt": 263.1729736328125,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": 120.0,
+          "x_pt": 390.5840148925781,
+          "y_pt": 273.72198486328125,
+          "sem_cap_y_pt": 269.7039794921875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": 150.0,
+          "x_pt": 403.45098876953125,
+          "y_pt": 279.5269775390625,
+          "sem_cap_y_pt": 275.7869873046875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "fasting",
+          "sample_min": 180.0,
+          "x_pt": 416.37298583984375,
+          "y_pt": 282.0379943847656,
+          "sem_cap_y_pt": 278.7449951171875,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": -5.0,
+          "x_pt": 433.5820007324219,
+          "y_pt": 287.0060119628906,
+          "sem_cap_y_pt": 286.1679992675781,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": 30.0,
+          "x_pt": 448.67498779296875,
+          "y_pt": 222.594970703125,
+          "sem_cap_y_pt": 207.52398681640625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": 60.0,
+          "x_pt": 461.59698486328125,
+          "y_pt": 246.76300048828125,
+          "sem_cap_y_pt": 236.26898193359375,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": 90.0,
+          "x_pt": 474.4620056152344,
+          "y_pt": 264.7919921875,
+          "sem_cap_y_pt": 259.60101318359375,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": 120.0,
+          "x_pt": 487.3840026855469,
+          "y_pt": 262.614990234375,
+          "sem_cap_y_pt": 256.531005859375,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": 150.0,
+          "x_pt": 500.3059997558594,
+          "y_pt": 270.26202392578125,
+          "sem_cap_y_pt": 265.6290283203125,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "trehalose",
+          "period": "lunch",
+          "sample_min": 180.0,
+          "x_pt": 513.22802734375,
+          "y_pt": 261.666015625,
+          "sem_cap_y_pt": 255.6929931640625,
+          "tick_0900_x_pt": 345.3590087890625,
+          "tick_1600_x_pt": 526.1480102539062,
+          "tick_zero_y_pt": 292.5880126953125,
+          "tick_top_y_pt": 185.97900390625,
+          "top_uU_per_mL": 200.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": -5.0,
+          "x_pt": 340.0050048828125,
+          "y_pt": 321.0400085449219,
+          "sem_cap_y_pt": 319.40399169921875,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": 30.0,
+          "x_pt": 353.4840087890625,
+          "y_pt": 259.510009765625,
+          "sem_cap_y_pt": 246.66900634765625,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": 60.0,
+          "x_pt": 365.031005859375,
+          "y_pt": 288.9119873046875,
+          "sem_cap_y_pt": 282.1189880371094,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": 90.0,
+          "x_pt": 376.5790100097656,
+          "y_pt": 305.6700134277344,
+          "sem_cap_y_pt": 300.2659912109375,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": 120.0,
+          "x_pt": 388.125,
+          "y_pt": 313.802001953125,
+          "sem_cap_y_pt": 310.6780090332031,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": 150.0,
+          "x_pt": 399.6730041503906,
+          "y_pt": 321.68499755859375,
+          "sem_cap_y_pt": 320.593994140625,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "fasting",
+          "sample_min": 180.0,
+          "x_pt": 411.2200012207031,
+          "y_pt": 323.7179870605469,
+          "sem_cap_y_pt": 322.9739990234375,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": -5.0,
+          "x_pt": 426.63299560546875,
+          "y_pt": 323.6180114746094,
+          "sem_cap_y_pt": 322.7760009765625,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": 30.0,
+          "x_pt": 440.11199951171875,
+          "y_pt": 242.45501708984375,
+          "sem_cap_y_pt": 228.72100830078125,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": 60.0,
+          "x_pt": 451.65899658203125,
+          "y_pt": 274.781005859375,
+          "sem_cap_y_pt": 266.25299072265625,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": 90.0,
+          "x_pt": 463.2070007324219,
+          "y_pt": 289.05999755859375,
+          "sem_cap_y_pt": 279.739013671875,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": 120.0,
+          "x_pt": 474.7539978027344,
+          "y_pt": 295.2080078125,
+          "sem_cap_y_pt": 289.5069885253906,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": 150.0,
+          "x_pt": 486.302001953125,
+          "y_pt": 300.9100036621094,
+          "sem_cap_y_pt": 294.4649963378906,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "sucrose",
+          "period": "lunch",
+          "sample_min": 180.0,
+          "x_pt": 497.8479919433594,
+          "y_pt": 294.2170104980469,
+          "sem_cap_y_pt": 288.614013671875,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": -5.0,
+          "x_pt": 340.0050048828125,
+          "y_pt": 320.39599609375,
+          "sem_cap_y_pt": 319.0570068359375,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": 30.0,
+          "x_pt": 353.4840087890625,
+          "y_pt": 300.4639892578125,
+          "sem_cap_y_pt": 296.49700927734375,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": 60.0,
+          "x_pt": 365.031005859375,
+          "y_pt": 295.90301513671875,
+          "sem_cap_y_pt": 291.44000244140625,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": 90.0,
+          "x_pt": 376.5790100097656,
+          "y_pt": 304.33099365234375,
+          "sem_cap_y_pt": 301.0090026855469,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": 120.0,
+          "x_pt": 388.125,
+          "y_pt": 310.72698974609375,
+          "sem_cap_y_pt": 308.34698486328125,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": 150.0,
+          "x_pt": 399.6730041503906,
+          "y_pt": 314.6440124511719,
+          "sem_cap_y_pt": 311.27301025390625,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "fasting",
+          "sample_min": 180.0,
+          "x_pt": 411.2200012207031,
+          "y_pt": 314.7929992675781,
+          "sem_cap_y_pt": 310.13299560546875,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": -5.0,
+          "x_pt": 426.63299560546875,
+          "y_pt": 321.48699951171875,
+          "sem_cap_y_pt": 320.34600830078125,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": 30.0,
+          "x_pt": 440.11199951171875,
+          "y_pt": 264.07098388671875,
+          "sem_cap_y_pt": 254.4530029296875,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": 60.0,
+          "x_pt": 451.65899658203125,
+          "y_pt": 279.39300537109375,
+          "sem_cap_y_pt": 269.22802734375,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": 90.0,
+          "x_pt": 463.2070007324219,
+          "y_pt": 290.5979919433594,
+          "sem_cap_y_pt": 283.7550048828125,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": 120.0,
+          "x_pt": 474.7539978027344,
+          "y_pt": 297.2909851074219,
+          "sem_cap_y_pt": 290.8949890136719,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": 150.0,
+          "x_pt": 486.302001953125,
+          "y_pt": 296.447998046875,
+          "sem_cap_y_pt": 289.05999755859375,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        },
+        {
+          "arm": "isomaltulose",
+          "period": "lunch",
+          "sample_min": 180.0,
+          "x_pt": 497.8479919433594,
+          "y_pt": 303.1910095214844,
+          "sem_cap_y_pt": 297.73699951171875,
+          "tick_0900_x_pt": 347.7359924316406,
+          "tick_1600_x_pt": 509.3949890136719,
+          "tick_zero_y_pt": 331.75,
+          "tick_top_y_pt": 210.3759765625,
+          "top_uU_per_mL": 160.0
+        }
+      ]
+    },
+    "imported_utc": "2026-11-05T10:59:02Z"
+  }
+}

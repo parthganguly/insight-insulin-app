@@ -11,6 +11,8 @@ Research status, 2026-11-05. The [sugar-formulation and portion comparison](../r
 
 Research status, 2026-11-05. The [carbohydrate linkage and dose test](../reports/science/2026-11-05-carbohydrate-linkage-and-dose/README.md) evaluates a reference across serving sizes and on directly reported positive two-hour insulin areas. Product contrasts, portion forecasts and absolute levels have separate results. Decision D remains open.
 
+Research status, 2026-11-05. The [sugar substitution and timing comparison](../reports/science/2026-11-05-sugar-pair-transfer/README.md) found that earlier pair-specific references missed relative two-hour reductions in a four-drink crossover. An external fasting test separated accuracy on response ratio levels from accuracy on change between windows. Neither supports an absolute consumer score. Decision D remains open.
+
 ## Overview
 
 This system estimates the **insulin demand of meals** using established physiological research, primarily the Food Insulin Index (FII), and extends it to mixed meals and longitudinal patterns.

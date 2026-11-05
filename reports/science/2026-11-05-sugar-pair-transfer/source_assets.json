@@ -1,0 +1,62 @@
+[
+  {
+    "name": "target.pdf",
+    "sha256": "48de10fc0a77499cbbfbabaefc42fe88dc2dfa2bdc0241ba77dffdeae2d3b676",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/C6D41ED65F5C0F1B16F4ABE96AE48C75/S0007114511006714a.pdf",
+    "locator": "IGT original; Methods, Fig 1c,d, Tables 1\u20133"
+  },
+  {
+    "name": "S0007114511006714_tab1.gif",
+    "sha256": "3695ea884a7a4cf39a2ec754b8cb645292e549175c3518505487c8ce71ded1ff",
+    "url": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20160319093238583-0537:S0007114511006714_tab1.gif?pub-status=live",
+    "locator": "IGT original; Methods, Fig 1c,d, Tables 1\u20133"
+  },
+  {
+    "name": "S0007114511006714_tab2.gif",
+    "sha256": "0a4407af92e37f07b9d9b4d275585434a624e4532686bff990f2e48bd46e97ad",
+    "url": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20160319093238583-0537:S0007114511006714_tab2.gif?pub-status=live",
+    "locator": "IGT original; Methods, Fig 1c,d, Tables 1\u20133"
+  },
+  {
+    "name": "S0007114511006714_tab3.gif",
+    "sha256": "af27cfcab6a2fe183d4dc6ab6698891745d8f88cbe2e4e1481e4201eaa39f204",
+    "url": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20160319093238583-0537:S0007114511006714_tab3.gif?pub-status=live",
+    "locator": "IGT original; Methods, Fig 1c,d, Tables 1\u20133"
+  },
+  {
+    "name": "S0007114511006714_fig1g.gif",
+    "sha256": "295c3d6bed52f995e2e45ed28b29e8d6c1fb6fd0a000387b3e384e66223cd270",
+    "url": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20160319093238583-0537:S0007114511006714_fig1g.gif?pub-status=live",
+    "locator": "IGT original; Methods, Fig 1c,d, Tables 1\u20133"
+  },
+  {
+    "name": "isomaltulose.pdf",
+    "sha256": "cf930fd53f51a79622f2bbdbfdd523aee86b05671d29f5dc53518f255bda52a6",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/1C4E08DA88181EE6CA6F3B034AE69F25/S0007114509990687a.pdf",
+    "locator": "2009 companion: Methods, Fig 1b, Table 1"
+  },
+  {
+    "name": "S0007114509990687_tab1.gif",
+    "sha256": "69937fb59e3bdb2b68bee82e32700c2623fad2ac7eabd71ff7138145bf2b1199",
+    "url": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20160318061327409-0796:S0007114509990687_tab1.gif?pub-status=live",
+    "locator": "Original numerical donor table"
+  },
+  {
+    "name": "trehalose.pdf",
+    "sha256": "6ff640e34dc1eafd568d5c5e225d52ace0f6223071d7bc61efae6e4f7e217b2a",
+    "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/B19BCBF346888F5A16EE3E291D3293AE/S000711450999050Xa.pdf",
+    "locator": "2009 companion: Methods, Fig 1b, Table 1"
+  },
+  {
+    "name": "S000711450999050X_tab1.gif",
+    "sha256": "43e6c3d530b7576647165c27cba7257fa0380a82d1f2dd0726c60904496b52c3",
+    "url": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20160318061327409-0796:S000711450999050X_tab1.gif?pub-status=live",
+    "locator": "Original numerical donor table"
+  },
+  {
+    "name": "kawai.pdf",
+    "sha256": "d962607fc93e0564f395d4c4818f94f8b78b47e76ea61cd558f8c49d6d686273",
+    "url": "https://www.jstage.jst.go.jp/article/endocrj1954/32/6/32_6_933/_pdf/-char/en",
+    "locator": "Kawai et al. 1985, pp 933\u2013936, methods and Fig 1 bottom; nominal 50 g"
+  }
+]

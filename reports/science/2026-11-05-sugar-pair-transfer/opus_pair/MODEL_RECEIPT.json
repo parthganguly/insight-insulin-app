@@ -1,0 +1,15 @@
+{
+  "model_id": "claude-opus-5-5",
+  "model_name": "Opus 5.5",
+  "identity_basis": "As stated by this Claude Code session's system configuration. No fallback or alternate model was used, and no other model was called. This file is a self-report, not a cryptographic attestation.",
+  "work": "opus_pair version 2: signed 0-120 primary, post-hoc time-window secondary, T/I separate question, archive of version-1 reported 3 h analysis",
+  "date": "2026-11-05",
+  "runs_and_checks": "see EXECUTION.json (version-2 run 10:59:02Z; portable test PASS 10:59:52Z; --check --lab PASS 10:59:52Z)",
+  "files_sha256_at_completion": {
+    "pair.py": "98685a0e2d301d3d330457bf0e2526404bd52a5581a91618381b0194c4acddf6",
+    "inputs.json": "c3ca2fb90cc06ba4b324dfbcdf8928f28f48b9fe6ce88472c44b15b333c76f4c",
+    "RESULTS.json": "602c486ad922b0681e61c7bb2bebb6fe643d78dc1b302e4694e1ce6c348f4ca4",
+    "portable_test.py": "a8e5b485772a59ac5d84cccec4612938bcadf8dd41382ba1f61275e2c3df9d86"
+  },
+  "history": "history/v1_reported3h/ holds the version-1 files verbatim (not replayable in place; superseded)"
+}
