@@ -1,0 +1,14 @@
+# Crapo, Kolterman & Olefsky, 1980 (PMID 7002511)
+
+**Eligibility**. The crossover sugar challenges contain a within-study comparison of sugar identity in two nutrient contexts. Each challenge contained 50 g of the named sugar. The healthy cohort comprised 9 participants. The 10 participants with impaired glucose tolerance and 17 with diabetes were separate cohorts.
+
+**Verified primary result**. The authors report significantly lower postprandial serum insulin for fructose than for either dextrose or sucrose in the healthy group, both in a sugar-only drink and when protein and fat accompanied the sugar. The accessible abstract gives neither arm values nor the sucrose-to-dextrose insulin ordering. It does not quantify the effect of adding protein and fat for any sugar. [Primary abstract](https://pubmed.ncbi.nlm.nih.gov/7002511/).
+
+**Protocol details from later sources**. EFSA describes random test order, a liquid formula mixed meal and samples at 0, 15, 30, 45, 60, 120 and 180 min. Therefore the contrast is nutrient context in two liquids. Gram amounts of protein and fat, liquid volume and energy balance were not verified. Evans et al. Table 1 identifies the healthy mixed-meal comparisons as replacement crossovers (Crapo 1980/1 and /4). Their listed contrasts do not establish that every participant provided complete six-condition data or furnish the paired covariance. EFSA separately describes similar flat diabetic insulin responses across sugars, whereas the primary abstract summarizes significantly lower responses across all groups. The healthy conclusion does not depend on resolving this discrepancy. [EFSA p. 6](https://backend.orbit.dtu.dk/ws/files/6353410/prod11324394458635.Scientific.pdf) and [Evans et al., Table 1](https://doi.org/10.3945/ajcn.116.145151).
+
+**Acquisition**. PubMed XML, Crossref metadata and OpenAlex metadata are in this folder. Crossref links to the [publisher PDF](https://diabetesjournals.org/care/article-pdf/3/5/575/464421/3-5-575.pdf). The publisher download and legacy journal PDF route returned HTTP 403. The web index returned the abstract at the PDF address. OpenAlex, Unpaywall and Semantic Scholar exposed no open PDF. The [digitized journal issue](https://archive.org/details/sim_diabetes-care_september-october-1980_3_5) exists, with its PDF and OCR marked private; the access record is saved here.
+
+**Quantitative disposition**. No original figure or results table verified. Leave reported insulin areas, fasting and time-point means, signed 0-120 minute areas, same-sugar composition contrasts and paired uncertainty missing. Preserve the 50 g tested dose and two within-context qualitative comparisons. This single dose supplies no dose slope.
+
+
+The source files named in this acquisition note were retained in the local research lab. The paper contributes qualitative evidence only.

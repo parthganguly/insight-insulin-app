@@ -1,0 +1,49 @@
+[
+  {
+    "route": "installed Claude Code",
+    "requested_alias": "claude-opus-5-5",
+    "init_model": "claude-opus-5-5",
+    "assistant_returned_models": [
+      "claude-opus-5",
+      "claude-opus-5-5"
+    ],
+    "exit_code": 0,
+    "is_error": false,
+    "tool_calls": 58,
+    "process_exited": true,
+    "task": "research",
+    "assistant_tool_uses_by_model": {
+      "claude-opus-5-5": 5,
+      "claude-opus-5": 53
+    },
+    "last_assistant_text_model": "claude-opus-5",
+    "model_switches": [
+      {
+        "subtype": "model_refusal_fallback",
+        "original_model": "claude-opus-5-5",
+        "fallback_model": "claude-opus-5"
+      }
+    ],
+    "outcome": "implementation completed"
+  },
+  {
+    "route": "installed Claude Code",
+    "requested_alias": "claude-opus-5-5",
+    "init_model": "claude-opus-5-5",
+    "assistant_returned_models": [
+      "<synthetic>",
+      "claude-opus-5-5"
+    ],
+    "exit_code": 1,
+    "is_error": true,
+    "tool_calls": 1,
+    "process_exited": true,
+    "task": "correction",
+    "assistant_tool_uses_by_model": {
+      "claude-opus-5-5": 1
+    },
+    "last_assistant_text_model": "<synthetic>",
+    "model_switches": [],
+    "outcome": "5-hour Claude Code limit after one tool use. No completed correction assessment."
+  }
+]

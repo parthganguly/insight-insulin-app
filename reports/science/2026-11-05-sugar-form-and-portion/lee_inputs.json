@@ -1,0 +1,77 @@
+{
+  "source": "Brenda M Lee MSc University of Toronto 1997, Table 3-1 (printed page 34), independent primary thesis transcription. Not attributed to 1998 journal Table until verified.",
+  "endpoint": "arithmetic mean participant-positive incremental plasma insulin 0–120 min, unit nmol min/L; dispersion SEM",
+  "arms": [
+    [
+      "glucose",
+      25,
+      8.1,
+      1.6,
+      8
+    ],
+    [
+      "glucose",
+      50,
+      16.3,
+      2.7,
+      8
+    ],
+    [
+      "glucose",
+      100,
+      32,
+      5.9,
+      8
+    ],
+    [
+      "fructose",
+      25,
+      1.2,
+      0.2,
+      8
+    ],
+    [
+      "fructose",
+      50,
+      2.4,
+      0.4,
+      7
+    ],
+    [
+      "sucrose",
+      25,
+      4.7,
+      1,
+      8
+    ],
+    [
+      "sucrose",
+      50,
+      7.4,
+      1.9,
+      8
+    ],
+    [
+      "sucrose",
+      100,
+      22.2,
+      3.6,
+      8
+    ],
+    [
+      "free_mixture",
+      100,
+      18.9,
+      3.6,
+      8
+    ]
+  ],
+  "columns": [
+    "form",
+    "served_g",
+    "mean",
+    "SEM",
+    "n"
+  ],
+  "notes": "One omitted F50 after symptoms at F25. M100 is 50 g G + 50 g F, not 100 g of each."
+}

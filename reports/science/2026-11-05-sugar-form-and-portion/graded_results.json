@@ -1,0 +1,3530 @@
+{
+  "r": 0.14814814814814814,
+  "solid_derived_a": 0.7781175447184837,
+  "tests": [
+    {
+      "a": 1.0,
+      "hydrolysis": false,
+      "model": "equality",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "absolute_log_error": 0.7896851076025926
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "absolute_log_error": 0.3656436139214929
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6993010461343236
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6745707949870099
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6931471805599453
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.0,
+            "absolute_log_error": 0.45391749149411126
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.0,
+            "absolute_log_error": 1.0986122886681096
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 8.1,
+          "absolute_error": 8.200000000000001
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 8.1,
+          "absolute_error": 23.9
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 8.1,
+          "absolute_error": 5.699999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.1,
+          "absolute_error": 3.3999999999999995
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.1,
+          "absolute_error": 0.6999999999999993
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 8.1,
+          "absolute_error": 14.1
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 8.1,
+          "absolute_error": 10.799999999999999
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.899399768179258,
+        "full_mean": 0.899399768179258
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.7187826637339075,
+        "full_mean": 0.7187826637339075
+      },
+      "native_area_MAE": 9.542857142857143
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": false,
+      "model": "reference_dose_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "absolute_log_error": 0.7896851076025926
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "absolute_log_error": 0.3656436139214929
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 2.0,
+            "absolute_log_error": 0.006153865574378335
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 2.0,
+            "absolute_log_error": 0.018576385572935457
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 2.0,
+            "absolute_log_error": 0.0
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 2.0,
+            "absolute_log_error": 0.23922968906583406
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 2.0,
+            "absolute_log_error": 0.4054651081081643
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 16.2,
+          "absolute_error": 0.10000000000000142
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 32.4,
+          "absolute_error": 0.3999999999999986
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 16.2,
+          "absolute_error": 13.799999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.1,
+          "absolute_error": 3.3999999999999995
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 16.2,
+          "absolute_error": 8.799999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 32.4,
+          "absolute_error": 10.2
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 32.4,
+          "absolute_error": 13.5
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.899399768179258,
+        "full_mean": 0.899399768179258
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.11157084138688536,
+        "full_mean": 0.11157084138688536
+      },
+      "native_area_MAE": 7.171428571428571
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": false,
+      "model": "composition",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "absolute_log_error": 0.006153865574378286
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.2346882655234644
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.18935322815763536
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.028422861344998177
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 2.0,
+            "absolute_log_error": 0.006153865574378335
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 2.0,
+            "absolute_log_error": 0.018576385572935457
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 2.0,
+            "absolute_log_error": 0.0
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 2.0,
+            "absolute_log_error": 0.23922968906583406
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 2.0,
+            "absolute_log_error": 0.4054651081081643
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 16.2,
+          "absolute_error": 0.10000000000000142
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 32.4,
+          "absolute_error": 0.3999999999999986
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 2.4,
+          "absolute_error": 0.0
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.6499999999999995,
+          "absolute_error": 0.05000000000000071
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 9.299999999999999,
+          "absolute_error": 1.8999999999999986
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 18.599999999999998,
+          "absolute_error": 3.6000000000000014
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 18.599999999999998,
+          "absolute_error": 0.3000000000000007
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.11465455515011905,
+        "full_mean": 0.11465455515011905
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.11157084138688536,
+        "full_mean": 0.11157084138688536
+      },
+      "native_area_MAE": 0.9071428571428574
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": false,
+      "model": "glucose_moiety_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "absolute_log_error": null
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5,
+          "absolute_log_error": 0.09653792704264724
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.5,
+          "absolute_log_error": 0.3275035666384524
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "absolute_log_error": 0.1665731998258154
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 2.0,
+            "absolute_log_error": 0.006153865574378335
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 2.0,
+            "absolute_log_error": 0.018576385572935457
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": null,
+            "absolute_log_error": null
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 2.0,
+            "absolute_log_error": 0.23922968906583406
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 2.0,
+            "absolute_log_error": 0.4054651081081643
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 16.2,
+          "absolute_error": 0.10000000000000142
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 32.4,
+          "absolute_error": 0.3999999999999986
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 0.0,
+          "absolute_error": 2.4
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.05,
+          "absolute_error": 0.6500000000000004
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.1,
+          "absolute_error": 0.6999999999999993
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 16.2,
+          "absolute_error": 6.0
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 16.2,
+          "absolute_error": 2.6999999999999993
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          3,
+          4
+        ],
+        "partial_mean": 0.19687156450230503,
+        "full_mean": null
+      },
+      "portion_error": {
+        "coverage": [
+          2,
+          3
+        ],
+        "partial_mean": 0.16735626208032803,
+        "full_mean": null
+      },
+      "native_area_MAE": 1.8499999999999999
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": true,
+      "model": "equality",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "absolute_log_error": 0.7896851076025926
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "absolute_log_error": 0.3656436139214929
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6993010461343236
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6745707949870099
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6931471805599453
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.0,
+            "absolute_log_error": 0.45391749149411126
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.0,
+            "absolute_log_error": 1.0986122886681096
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 8.1,
+          "absolute_error": 8.200000000000001
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 8.1,
+          "absolute_error": 23.9
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 8.1,
+          "absolute_error": 5.699999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.1,
+          "absolute_error": 3.3999999999999995
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.1,
+          "absolute_error": 0.6999999999999993
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 8.1,
+          "absolute_error": 14.1
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 8.1,
+          "absolute_error": 10.799999999999999
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.899399768179258,
+        "full_mean": 0.899399768179258
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.7187826637339075,
+        "full_mean": 0.7187826637339075
+      },
+      "native_area_MAE": 9.542857142857143
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": true,
+      "model": "reference_dose_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0526315789473684,
+          "absolute_log_error": 0.8409784019901431
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0526315789473684,
+          "absolute_log_error": 0.4169369083090433
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 2.0,
+            "absolute_log_error": 0.006153865574378335
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 2.0,
+            "absolute_log_error": 0.018576385572935457
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 2.0,
+            "absolute_log_error": 0.0
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 2.0,
+            "absolute_log_error": 0.23922968906583406
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 2.0,
+            "absolute_log_error": 0.4054651081081643
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 16.2,
+          "absolute_error": 0.10000000000000142
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 32.4,
+          "absolute_error": 0.3999999999999986
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 16.2,
+          "absolute_error": 13.799999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.526315789473683,
+          "absolute_error": 3.826315789473683
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 17.052631578947366,
+          "absolute_error": 9.652631578947366
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 34.10526315789473,
+          "absolute_error": 11.905263157894733
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 32.4,
+          "absolute_error": 13.5
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.9250464153730333,
+        "full_mean": 0.9250464153730333
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.11157084138688536,
+        "full_mean": 0.11157084138688536
+      },
+      "native_area_MAE": 7.597744360902254
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": true,
+      "model": "composition",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "absolute_log_error": 0.006153865574378286
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.6042884990253411,
+          "absolute_log_error": 0.285981559911015
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.6042884990253411,
+          "absolute_log_error": 0.13805993377008483
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.028422861344998177
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 2.0,
+            "absolute_log_error": 0.006153865574378335
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 2.0,
+            "absolute_log_error": 0.018576385572935457
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 2.0,
+            "absolute_log_error": 0.0
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 2.0,
+            "absolute_log_error": 0.23922968906583406
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 2.0,
+            "absolute_log_error": 0.4054651081081643
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 16.2,
+          "absolute_error": 0.10000000000000142
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 32.4,
+          "absolute_error": 0.3999999999999986
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 2.4,
+          "absolute_error": 0.0
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.894736842105263,
+          "absolute_error": 0.19473684210526265
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 9.789473684210526,
+          "absolute_error": 2.3894736842105253
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 19.57894736842105,
+          "absolute_error": 2.621052631578948
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 18.599999999999998,
+          "absolute_error": 0.3000000000000007
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.11465455515011906,
+        "full_mean": 0.11465455515011906
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.11157084138688536,
+        "full_mean": 0.11157084138688536
+      },
+      "native_area_MAE": 0.8578947368421053
+    },
+    {
+      "a": 1.0,
+      "hydrolysis": true,
+      "model": "glucose_moiety_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "absolute_log_error": null
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5263157894736842,
+          "absolute_log_error": 0.1478312214301978
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.5263157894736842,
+          "absolute_log_error": 0.276210272250902
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "absolute_log_error": 0.1665731998258154
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 2.0,
+            "absolute_log_error": 0.006153865574378335
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 2.0,
+            "absolute_log_error": 0.018576385572935457
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": null,
+            "absolute_log_error": null
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 2.0,
+            "absolute_log_error": 0.23922968906583406
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 2.0,
+            "absolute_log_error": 0.4054651081081643
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 16.2,
+          "absolute_error": 0.10000000000000142
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 32.4,
+          "absolute_error": 0.3999999999999986
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 0.0,
+          "absolute_error": 2.4
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.263157894736842,
+          "absolute_error": 0.4368421052631586
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.526315789473683,
+          "absolute_error": 1.1263157894736828
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 17.052631578947366,
+          "absolute_error": 5.147368421052633
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 16.2,
+          "absolute_error": 2.6999999999999993
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          3,
+          4
+        ],
+        "partial_mean": 0.19687156450230506,
+        "full_mean": null
+      },
+      "portion_error": {
+        "coverage": [
+          2,
+          3
+        ],
+        "partial_mean": 0.16735626208032803,
+        "full_mean": null
+      },
+      "native_area_MAE": 1.7586466165413535
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": false,
+      "model": "equality",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "absolute_log_error": 0.7896851076025926
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "absolute_log_error": 0.3656436139214929
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6993010461343236
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6745707949870099
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6931471805599453
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.0,
+            "absolute_log_error": 0.45391749149411126
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.0,
+            "absolute_log_error": 1.0986122886681096
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 8.1,
+          "absolute_error": 8.200000000000001
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 8.1,
+          "absolute_error": 23.9
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 8.1,
+          "absolute_error": 5.699999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.1,
+          "absolute_error": 3.3999999999999995
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.1,
+          "absolute_error": 0.6999999999999993
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 8.1,
+          "absolute_error": 14.1
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 8.1,
+          "absolute_error": 10.799999999999999
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.899399768179258,
+        "full_mean": 0.899399768179258
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.7187826637339075,
+        "full_mean": 0.7187826637339075
+      },
+      "native_area_MAE": 9.542857142857143
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": false,
+      "model": "reference_dose_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "absolute_log_error": 0.7896851076025926
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "absolute_log_error": 0.3656436139214929
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1599510638684794
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.13522081272116598
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1537971982941011
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.08543249077173304
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.5592623064022656
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 13.890623496895614,
+          "absolute_error": 2.4093765031043866
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 23.820916189198577,
+          "absolute_error": 8.179083810801423
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 13.890623496895614,
+          "absolute_error": 11.490623496895614
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.1,
+          "absolute_error": 3.3999999999999995
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 13.890623496895614,
+          "absolute_error": 6.490623496895614
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 23.820916189198577,
+          "absolute_error": 1.620916189198578
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 23.820916189198577,
+          "absolute_error": 4.920916189198579
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.899399768179258,
+        "full_mean": 0.899399768179258
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.20791017839197437,
+        "full_mean": 0.20791017839197437
+      },
+      "native_area_MAE": 5.5016485265848845
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": false,
+      "model": "composition",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "absolute_log_error": 0.006153865574378286
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.2346882655234644
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.18935322815763536
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.028422861344998177
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1599510638684794
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.13522081272116598
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1537971982941011
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.08543249077173304
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.714891789740199,
+            "absolute_log_error": 0.5592623064022655
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 13.890623496895614,
+          "absolute_error": 2.4093765031043866
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 23.820916189198577,
+          "absolute_error": 8.179083810801423
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 2.057870147688239,
+          "absolute_error": 0.3421298523117611
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.6499999999999995,
+          "absolute_error": 0.05000000000000071
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 7.974246822291925,
+          "absolute_error": 0.5742468222919248
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 13.674970404910296,
+          "absolute_error": 8.525029595089704
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 13.674970404910296,
+          "absolute_error": 5.225029595089703
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.11465455515011905,
+        "full_mean": 0.11465455515011905
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.20791017839197434,
+        "full_mean": 0.20791017839197434
+      },
+      "native_area_MAE": 3.6149851683841288
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": false,
+      "model": "glucose_moiety_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "absolute_log_error": null
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5,
+          "absolute_log_error": 0.09653792704264724
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.5,
+          "absolute_log_error": 0.3275035666384524
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "absolute_log_error": 0.1665731998258154
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1599510638684794
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.13522081272116598
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": null,
+            "absolute_log_error": null
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.08543249077173304
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.5592623064022656
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 13.890623496895614,
+          "absolute_error": 2.4093765031043866
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 23.820916189198577,
+          "absolute_error": 8.179083810801423
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 0.0,
+          "absolute_error": 2.4
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.05,
+          "absolute_error": 0.6500000000000004
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 6.945311748447807,
+          "absolute_error": 0.4546882515521933
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 11.910458094599289,
+          "absolute_error": 10.28954190540071
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 11.910458094599289,
+          "absolute_error": 6.98954190540071
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          3,
+          4
+        ],
+        "partial_mean": 0.19687156450230503,
+        "full_mean": null
+      },
+      "portion_error": {
+        "coverage": [
+          2,
+          3
+        ],
+        "partial_mean": 0.23496666844091102,
+        "full_mean": null
+      },
+      "native_area_MAE": 4.481747482322775
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": true,
+      "model": "equality",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "absolute_log_error": 0.7896851076025926
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "absolute_log_error": 0.3656436139214929
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6993010461343236
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6745707949870099
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.0,
+            "absolute_log_error": 0.6931471805599453
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.0,
+            "absolute_log_error": 0.45391749149411126
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.0,
+            "absolute_log_error": 1.0986122886681096
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 8.1,
+          "absolute_error": 8.200000000000001
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 8.1,
+          "absolute_error": 23.9
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 8.1,
+          "absolute_error": 5.699999999999999
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.1,
+          "absolute_error": 3.3999999999999995
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.1,
+          "absolute_error": 0.6999999999999993
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 8.1,
+          "absolute_error": 14.1
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 8.1,
+          "absolute_error": 10.799999999999999
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.899399768179258,
+        "full_mean": 0.899399768179258
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.7187826637339075,
+        "full_mean": 0.7187826637339075
+      },
+      "native_area_MAE": 9.542857142857143
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": true,
+      "model": "reference_dose_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "absolute_log_error": 1.9156963704588168
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 1.040719407807797,
+          "absolute_log_error": 0.8295973198919555
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 1.0407194078077975,
+          "absolute_log_error": 0.4055558262108561
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "absolute_log_error": 0.52657398073413
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1599510638684794
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.13522081272116598
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1537971982941011
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.714891789740199,
+            "absolute_log_error": 0.08543249077173284
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.5592623064022655
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 13.890623496895614,
+          "absolute_error": 2.4093765031043866
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 23.820916189198577,
+          "absolute_error": 8.179083810801423
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 13.890623496895614,
+          "absolute_error": 11.490623496895614
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 8.429827203243157,
+          "absolute_error": 3.7298272032431568
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 14.456241459770274,
+          "absolute_error": 7.056241459770273
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 24.790889789861918,
+          "absolute_error": 2.5908897898619188
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 23.820916189198577,
+          "absolute_error": 4.920916189198579
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.9193558743239396,
+        "full_mean": 0.9193558743239396
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.20791017839197432,
+        "full_mean": 0.20791017839197432
+      },
+      "native_area_MAE": 5.768136921839336
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": true,
+      "model": "composition",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "absolute_log_error": 0.006153865574378286
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5974500304081799,
+          "absolute_log_error": 0.2746004778128276
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.59745003040818,
+          "absolute_log_error": 0.14944101586827194
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "absolute_log_error": 0.028422861344998177
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1599510638684794
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.13522081272116598
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1537971982941011
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.08543249077173304
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.5592623064022655
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 13.890623496895614,
+          "absolute_error": 2.4093765031043866
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 23.820916189198577,
+          "absolute_error": 8.179083810801423
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 2.057870147688239,
+          "absolute_error": 0.3421298523117611
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.839345246306257,
+          "absolute_error": 0.13934524630625678
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 8.298953430608861,
+          "absolute_error": 0.8989534306088611
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 14.231807101587396,
+          "absolute_error": 7.968192898412603
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 13.674970404910296,
+          "absolute_error": 5.225029595089703
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          4,
+          4
+        ],
+        "partial_mean": 0.11465455515011899,
+        "full_mean": 0.11465455515011899
+      },
+      "portion_error": {
+        "coverage": [
+          3,
+          3
+        ],
+        "partial_mean": 0.20791017839197434,
+        "full_mean": 0.20791017839197434
+      },
+      "native_area_MAE": 3.5945873338049994
+    },
+    {
+      "a": 0.7781175447184837,
+      "hydrolysis": true,
+      "model": "glucose_moiety_only",
+      "formulation": [
+        {
+          "numerator": [
+            "fructose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "absolute_log_error": null
+        },
+        {
+          "numerator": [
+            "sucrose",
+            50
+          ],
+          "denominator": [
+            "glucose",
+            50
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": 0.5203597039038985,
+          "absolute_log_error": 0.1364501393320102
+        },
+        {
+          "numerator": [
+            "sucrose",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.69375,
+          "predicted": 0.5203597039038987,
+          "absolute_log_error": 0.28759135434908917
+        },
+        {
+          "numerator": [
+            "free_mixture",
+            100
+          ],
+          "denominator": [
+            "glucose",
+            100
+          ],
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "absolute_log_error": 0.1665731998258154
+        }
+      ],
+      "portion": {
+        "glucose": [
+          {
+            "numerator": [
+              "glucose",
+              50
+            ],
+            "denominator": [
+              "glucose",
+              25
+            ],
+            "observed": 2.0123456790123457,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.1599510638684794
+          },
+          {
+            "numerator": [
+              "glucose",
+              100
+            ],
+            "denominator": [
+              "glucose",
+              50
+            ],
+            "observed": 1.9631901840490797,
+            "predicted": 1.7148917897401987,
+            "absolute_log_error": 0.13522081272116598
+          }
+        ],
+        "fructose": [
+          {
+            "numerator": [
+              "fructose",
+              50
+            ],
+            "denominator": [
+              "fructose",
+              25
+            ],
+            "observed": 2.0,
+            "predicted": null,
+            "absolute_log_error": null
+          }
+        ],
+        "sucrose": [
+          {
+            "numerator": [
+              "sucrose",
+              50
+            ],
+            "denominator": [
+              "sucrose",
+              25
+            ],
+            "observed": 1.574468085106383,
+            "predicted": 1.714891789740199,
+            "absolute_log_error": 0.08543249077173284
+          },
+          {
+            "numerator": [
+              "sucrose",
+              100
+            ],
+            "denominator": [
+              "sucrose",
+              50
+            ],
+            "observed": 2.9999999999999996,
+            "predicted": 1.7148917897401992,
+            "absolute_log_error": 0.5592623064022655
+          }
+        ]
+      },
+      "native_levels": [
+        {
+          "arm": [
+            "glucose",
+            50
+          ],
+          "observed": 16.3,
+          "forecast": 13.890623496895614,
+          "absolute_error": 2.4093765031043866
+        },
+        {
+          "arm": [
+            "glucose",
+            100
+          ],
+          "observed": 32,
+          "forecast": 23.820916189198577,
+          "absolute_error": 8.179083810801423
+        },
+        {
+          "arm": [
+            "fructose",
+            50
+          ],
+          "observed": 2.4,
+          "forecast": 0.0,
+          "absolute_error": 2.4
+        },
+        {
+          "arm": [
+            "sucrose",
+            25
+          ],
+          "observed": 4.7,
+          "forecast": 4.2149136016215785,
+          "absolute_error": 0.4850863983784217
+        },
+        {
+          "arm": [
+            "sucrose",
+            50
+          ],
+          "observed": 7.4,
+          "forecast": 7.228120729885137,
+          "absolute_error": 0.17187927011486348
+        },
+        {
+          "arm": [
+            "sucrose",
+            100
+          ],
+          "observed": 22.2,
+          "forecast": 12.395444894930959,
+          "absolute_error": 9.80455510506904
+        },
+        {
+          "arm": [
+            "free_mixture",
+            100
+          ],
+          "observed": 18.9,
+          "forecast": 11.910458094599289,
+          "absolute_error": 6.98954190540071
+        }
+      ],
+      "formulation_error": {
+        "coverage": [
+          3,
+          4
+        ],
+        "partial_mean": 0.19687156450230492,
+        "full_mean": null
+      },
+      "portion_error": {
+        "coverage": [
+          2,
+          3
+        ],
+        "partial_mean": 0.23496666844091094,
+        "full_mean": null
+      },
+      "native_area_MAE": 4.348503284695549
+    }
+  ],
+  "observed_free_over_sucrose_at_100": 0.8513513513513513,
+  "component_measurement_benchmarks": {
+    "sucrose_50": {
+      "observed": 7.4,
+      "forecasts": {
+        "measured_sum": 9.299999999999999,
+        "measured_component_glucose": 8.1,
+        "measured_whole_dose_glucose": 16.3,
+        "proportional_from_glucose25": 16.2
+      },
+      "absolute_log_error": {
+        "measured_sum": 0.22853439994908603,
+        "measured_component_glucose": 0.09038406146826894,
+        "measured_whole_dose_glucose": 0.7896851076025926,
+        "proportional_from_glucose25": 0.7835312420282142
+      }
+    },
+    "sucrose_100": {
+      "observed": 22.2,
+      "forecasts": {
+        "measured_sum": 18.7,
+        "measured_component_glucose": 16.3,
+        "measured_whole_dose_glucose": 32,
+        "proportional_from_glucose25": 32.4
+      },
+      "absolute_log_error": {
+        "measured_sum": 0.1715687650176929,
+        "measured_component_glucose": 0.30892718106551703,
+        "measured_whole_dose_glucose": 0.3656436139214929,
+        "proportional_from_glucose25": 0.3780661339200499
+      }
+    },
+    "free_mixture_100": {
+      "observed": 18.9,
+      "forecasts": {
+        "measured_sum": 18.7,
+        "measured_component_glucose": 16.3,
+        "measured_whole_dose_glucose": 32,
+        "proportional_from_glucose25": 32.4
+      },
+      "absolute_log_error": {
+        "measured_sum": 0.010638398205055754,
+        "measured_component_glucose": 0.14799681425287992,
+        "measured_whole_dose_glucose": 0.52657398073413,
+        "proportional_from_glucose25": 0.5389965007326871
+      }
+    }
+  },
+  "independent_30g": {
+    "1.0": {
+      "observed": 0.7854093907644548,
+      "forecasts": {
+        "constituents": 0.5740740740740741,
+        "equality": 1,
+        "glucose_only": 0.5,
+        "hydro_constituents": 0.6042884990253411,
+        "hydro_glucose_only": 0.5263157894736842,
+        "same_sugar_ref_25": 0.5802469135802469,
+        "same_sugar_ref_50": 0.4539877300613497
+      },
+      "absolute_log_error": {
+        "constituents": 0.31344666183411934,
+        "equality": 0.24155018024500893,
+        "glucose_only": 0.4515970003149364,
+        "hydro_constituents": 0.2621533674465688,
+        "hydro_glucose_only": 0.40030370592738596,
+        "same_sugar_ref_25": 0.3027513727173713,
+        "same_sugar_ref_50": 0.5481349273575837
+      },
+      "donor_anchored_forecast_nmol_min_L": {
+        "glucose": 9.72,
+        "sucrose": 5.58
+      }
+    },
+    "0.7781175447184837": {
+      "observed": 0.7854093907644548,
+      "forecasts": {
+        "constituents": 0.5740740740740741,
+        "equality": 1,
+        "glucose_only": 0.5,
+        "hydro_constituents": 0.5974500304081799,
+        "hydro_glucose_only": 0.5203597039038986,
+        "same_sugar_ref_25": 0.5802469135802469,
+        "same_sugar_ref_50": 0.4539877300613497
+      },
+      "absolute_log_error": {
+        "constituents": 0.31344666183411934,
+        "equality": 0.24155018024500893,
+        "glucose_only": 0.4515970003149364,
+        "hydro_constituents": 0.2735344495447562,
+        "hydro_glucose_only": 0.41168478802557323,
+        "same_sugar_ref_25": 0.3027513727173713,
+        "same_sugar_ref_50": 0.5481349273575837
+      },
+      "donor_anchored_forecast_nmol_min_L": {
+        "glucose": 9.334634885478847,
+        "sucrose": 5.3587718787008205
+      }
+    }
+  }
+}

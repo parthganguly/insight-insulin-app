@@ -1,0 +1,27 @@
+{
+  "a": 0.7781175447184837,
+  "per_food_exponent": {
+    "barley": 0.6400539595963678,
+    "bread": 0.916445007082371,
+    "potato": 0.8022293381734766,
+    "spaghetti": 0.7537418740217195
+  },
+  "foods_used": [
+    "barley",
+    "bread",
+    "potato",
+    "spaghetti"
+  ],
+  "fold_per_doubling": 1.7148917897401992,
+  "source": "../wb_portions.json (Wolever & Bolognesi 1996, J Nutr 126:2798, Table 2 plasma insulin)",
+  "operator": "mean participant-positive incremental plasma insulin area0\u2013120",
+  "unit": "nmol*min/L",
+  "n": 7,
+  "exposure": "ALREADY EXPOSED: these portion means were read and used in the previous reviewed result (../PRIOR.md).",
+  "limits": [
+    "Solid foods, n = 7 crossover, nmol*min/L; transported to drinks only as a dose exponent, not as a level.",
+    "Each subject kept a constant self-chosen beverage (four had coffee with milk), outside the Table 1 food amounts.",
+    "Equal food weights are a stipulated choice; the per-food exponents range 0.640-0.916.",
+    "A single exponent assumes each food's own composition is fixed across its portions."
+  ]
+}

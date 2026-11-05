@@ -1,0 +1,1796 @@
+{
+  "source": "Lee 1997 thesis Table3-1, pp34; OCR only; published article data unavailable",
+  "R": 0.14814814814814814,
+  "external_a": 0.7781175447184837,
+  "rows": [
+    {
+      "food": "G",
+      "dose": 25,
+      "mean": 8.1,
+      "SEM": 1.6,
+      "n": 8
+    },
+    {
+      "food": "G",
+      "dose": 50,
+      "mean": 16.3,
+      "SEM": 2.7,
+      "n": 8
+    },
+    {
+      "food": "G",
+      "dose": 100,
+      "mean": 32.0,
+      "SEM": 5.9,
+      "n": 8
+    },
+    {
+      "food": "F",
+      "dose": 25,
+      "mean": 1.2,
+      "SEM": 0.2,
+      "n": 8
+    },
+    {
+      "food": "F",
+      "dose": 50,
+      "mean": 2.4,
+      "SEM": 0.4,
+      "n": 7
+    },
+    {
+      "food": "S",
+      "dose": 25,
+      "mean": 4.7,
+      "SEM": 1.0,
+      "n": 8
+    },
+    {
+      "food": "S",
+      "dose": 50,
+      "mean": 7.4,
+      "SEM": 1.9,
+      "n": 8
+    },
+    {
+      "food": "S",
+      "dose": 100,
+      "mean": 22.2,
+      "SEM": 3.6,
+      "n": 8
+    },
+    {
+      "food": "M",
+      "dose": 100,
+      "mean": 18.9,
+      "SEM": 3.6,
+      "n": 8
+    }
+  ],
+  "results": [
+    {
+      "a": 1,
+      "model": "composition",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "ALE": 0.006153865574378286
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.2346882655234644
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.18935322815763536
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.028422861344998177
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 2.0,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 2.0,
+          "ALE": 0.018576385572935457
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 2.0,
+          "ALE": 0.0
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 2.0,
+          "ALE": 0.23922968906583406
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 2.0,
+          "ALE": 0.4054651081081643
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 16.2,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 32.4,
+          "ALE": 0.01242251999855711
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 2.4,
+          "ALE": 0.0
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.6499999999999995,
+          "ALE": 0.010695289116748143
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 9.299999999999999,
+          "ALE": 0.22853439994908603
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 18.599999999999998,
+          "ALE": 0.17693070815907835
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 18.599999999999998,
+          "ALE": 0.01600034134644119
+        }
+      ],
+      "form_ALE": 0.11465455515011905,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.11157084138688535,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 1,
+      "model": "composition",
+      "hydrolysis": true,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "ALE": 0.006153865574378286
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.6042884990253411,
+          "ALE": 0.285981559911015
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.6042884990253411,
+          "ALE": 0.13805993377008483
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.028422861344998177
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 2.0,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 2.0,
+          "ALE": 0.018576385572935457
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 2.0,
+          "ALE": 0.0
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 2.0,
+          "ALE": 0.23922968906583406
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 2.0,
+          "ALE": 0.4054651081081643
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 16.2,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 32.4,
+          "ALE": 0.01242251999855711
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 2.4,
+          "ALE": 0.0
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.894736842105263,
+          "ALE": 0.04059800527080248
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 9.789473684210526,
+          "ALE": 0.2798276943366366
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 19.57894736842105,
+          "ALE": 0.12563741377152765
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 18.599999999999998,
+          "ALE": 0.01600034134644119
+        }
+      ],
+      "form_ALE": 0.11465455515011906,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.11157084138688535,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 0.95
+    },
+    {
+      "a": 1,
+      "model": "mass",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "ALE": 1.9156963704588168
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "ALE": 0.7896851076025926
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "ALE": 0.3656436139214929
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "ALE": 0.52657398073413
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 2.0,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 2.0,
+          "ALE": 0.018576385572935457
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 2.0,
+          "ALE": 0.0
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 2.0,
+          "ALE": 0.23922968906583406
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 2.0,
+          "ALE": 0.4054651081081643
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 16.2,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 32.4,
+          "ALE": 0.01242251999855711
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 16.2,
+          "ALE": 1.9095425048844386
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 8.1,
+          "ALE": 0.5443015529623801
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 16.2,
+          "ALE": 0.7835312420282142
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 32.4,
+          "ALE": 0.3780661339200499
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 32.4,
+          "ALE": 0.5389965007326871
+        }
+      ],
+      "form_ALE": 0.899399768179258,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.11157084138688535,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 1,
+      "model": "mass",
+      "hydrolysis": true,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "ALE": 1.9156963704588168
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 1.0526315789473684,
+          "ALE": 0.8409784019901431
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 1.0526315789473684,
+          "ALE": 0.4169369083090433
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "ALE": 0.52657398073413
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 2.0,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 2.0,
+          "ALE": 0.018576385572935457
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 2.0,
+          "ALE": 0.0
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 2.0,
+          "ALE": 0.23922968906583406
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 2.0,
+          "ALE": 0.4054651081081643
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 16.2,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 32.4,
+          "ALE": 0.01242251999855711
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 16.2,
+          "ALE": 1.9095425048844386
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 8.526315789473683,
+          "ALE": 0.5955948473499306
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 17.052631578947366,
+          "ALE": 0.8348245364157647
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 34.10526315789473,
+          "ALE": 0.42935942830760043
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 32.4,
+          "ALE": 0.5389965007326871
+        }
+      ],
+      "form_ALE": 0.9250464153730333,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.11157084138688535,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 0.9500000000000001
+    },
+    {
+      "a": 1,
+      "model": "glucose_only",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5,
+          "ALE": 0.09653792704264724
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.5,
+          "ALE": 0.3275035666384524
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "ALE": 0.1665731998258154
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 2.0,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 2.0,
+          "ALE": 0.018576385572935457
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": null,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 2.0,
+          "ALE": 0.23922968906583406
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 2.0,
+          "ALE": 0.4054651081081643
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 16.2,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 32.4,
+          "ALE": 0.01242251999855711
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.05,
+          "ALE": 0.14884562759756517
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 8.1,
+          "ALE": 0.09038406146826894
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 16.2,
+          "ALE": 0.3150810466398954
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 16.2,
+          "ALE": 0.15415067982725822
+        }
+      ],
+      "form_ALE": 0.19687156450230503,
+      "form_coverage": "3/4",
+      "portion_ALE": 0.16735626208032803,
+      "portion_food_coverage": "2/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 1,
+      "model": "glucose_only",
+      "hydrolysis": true,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5263157894736842,
+          "ALE": 0.1478312214301978
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.5263157894736842,
+          "ALE": 0.276210272250902
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "ALE": 0.1665731998258154
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 2.0,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 2.0,
+          "ALE": 0.018576385572935457
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": null,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 2.0,
+          "ALE": 0.23922968906583406
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 2.0,
+          "ALE": 0.4054651081081643
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 16.2,
+          "ALE": 0.006153865574378335
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 32.4,
+          "ALE": 0.01242251999855711
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.263157894736842,
+          "ALE": 0.09755233321001473
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 8.526315789473683,
+          "ALE": 0.14167735585581936
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 17.052631578947366,
+          "ALE": 0.26378775225234485
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 16.2,
+          "ALE": 0.15415067982725822
+        }
+      ],
+      "form_ALE": 0.19687156450230506,
+      "form_coverage": "3/4",
+      "portion_ALE": 0.16735626208032803,
+      "portion_food_coverage": "2/3",
+      "mix_over_sucrose_prediction": 0.9500000000000001
+    },
+    {
+      "a": 1,
+      "model": "equality",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "ALE": 1.9156963704588168
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "ALE": 0.7896851076025926
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "ALE": 0.3656436139214929
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "ALE": 0.52657398073413
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.0,
+          "ALE": 0.6993010461343236
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.0,
+          "ALE": 0.6745707949870099
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 1.0,
+          "ALE": 0.6931471805599453
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.0,
+          "ALE": 0.45391749149411126
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.0,
+          "ALE": 1.0986122886681096
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 8.1,
+          "ALE": 0.6993010461343236
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 8.1,
+          "ALE": 1.3738718411213335
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 8.1,
+          "ALE": 1.2163953243244932
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 8.1,
+          "ALE": 0.5443015529623801
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 8.1,
+          "ALE": 0.09038406146826894
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 8.1,
+          "ALE": 1.0082282271998406
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 8.1,
+          "ALE": 0.8472978603872036
+        }
+      ],
+      "form_ALE": 0.899399768179258,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.7187826637339075,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "composition",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "ALE": 0.006153865574378286
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.2346882655234644
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.18935322815763536
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.028422861344998177
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.13522081272116598
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1537971982941011
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.08543249077173304
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.714891789740199,
+          "ALE": 0.5592623064022655
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 13.890623496895614,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 23.820916189198577,
+          "ALE": 0.2951718765896453
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 2.057870147688239,
+          "ALE": 0.1537971982941011
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.6499999999999995,
+          "ALE": 0.010695289116748143
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 7.974246822291925,
+          "ALE": 0.07473720165498487
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 13.674970404910296,
+          "ALE": 0.4845251047472805
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 13.674970404910296,
+          "ALE": 0.3235947379346434
+        }
+      ],
+      "form_ALE": 0.11465455515011905,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.20791017839197434,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "composition",
+      "hydrolysis": true,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.14814814814814814,
+          "ALE": 0.006153865574378286
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5974500304081799,
+          "ALE": 0.2746004778128276
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.59745003040818,
+          "ALE": 0.14944101586827194
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5740740740740741,
+          "ALE": 0.028422861344998177
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.13522081272116598
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1537971982941011
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.08543249077173304
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.5592623064022655
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 13.890623496895614,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 23.820916189198577,
+          "ALE": 0.2951718765896453
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 2.057870147688239,
+          "ALE": 0.1537971982941011
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.839345246306257,
+          "ALE": 0.029216923172615202
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 8.298953430608861,
+          "ALE": 0.11464941394434812
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 14.231807101587396,
+          "ALE": 0.44461289245791735
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 13.674970404910296,
+          "ALE": 0.3235947379346434
+        }
+      ],
+      "form_ALE": 0.11465455515011899,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.20791017839197434,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 0.9608737883599481
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "mass",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "ALE": 1.9156963704588168
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "ALE": 0.7896851076025926
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "ALE": 0.3656436139214929
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "ALE": 0.52657398073413
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.13522081272116598
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1537971982941011
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.08543249077173304
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.5592623064022656
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 13.890623496895614,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 23.820916189198577,
+          "ALE": 0.2951718765896453
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 13.890623496895614,
+          "ALE": 1.7557453065903375
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 8.1,
+          "ALE": 0.5443015529623801
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 13.890623496895614,
+          "ALE": 0.6297340437341131
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 23.820916189198577,
+          "ALE": 0.07047173733184749
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 23.820916189198577,
+          "ALE": 0.23140210414448464
+        }
+      ],
+      "form_ALE": 0.899399768179258,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.20791017839197437,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "mass",
+      "hydrolysis": true,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "ALE": 1.9156963704588168
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 1.040719407807797,
+          "ALE": 0.8295973198919555
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 1.0407194078077975,
+          "ALE": 0.4055558262108561
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "ALE": 0.52657398073413
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.13522081272116598
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1537971982941011
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.714891789740199,
+          "ALE": 0.08543249077173284
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.5592623064022655
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 13.890623496895614,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 23.820916189198577,
+          "ALE": 0.2951718765896453
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 13.890623496895614,
+          "ALE": 1.7557453065903375
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 8.429827203243157,
+          "ALE": 0.5842137652517432
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 14.456241459770274,
+          "ALE": 0.669646256023476
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 24.790889789861918,
+          "ALE": 0.11038394962121086
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 23.820916189198577,
+          "ALE": 0.23140210414448464
+        }
+      ],
+      "form_ALE": 0.9193558743239396,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.20791017839197434,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 0.9608737883599481
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "glucose_only",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5,
+          "ALE": 0.09653792704264724
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.5,
+          "ALE": 0.3275035666384524
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "ALE": 0.1665731998258154
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.13522081272116598
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": null,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.08543249077173304
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.5592623064022656
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 13.890623496895614,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 23.820916189198577,
+          "ALE": 0.2951718765896453
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.05,
+          "ALE": 0.14884562759756517
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 6.945311748447807,
+          "ALE": 0.06341313682583213
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 11.910458094599289,
+          "ALE": 0.6226754432280979
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 11.910458094599289,
+          "ALE": 0.4617450764154607
+        }
+      ],
+      "form_ALE": 0.19687156450230503,
+      "form_coverage": "3/4",
+      "portion_ALE": 0.23496666844091102,
+      "portion_food_coverage": "2/3",
+      "mix_over_sucrose_prediction": 1.0
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "glucose_only",
+      "hydrolysis": true,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 0.5203597039038985,
+          "ALE": 0.1364501393320102
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 0.5203597039038987,
+          "ALE": 0.28759135434908917
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 0.5,
+          "ALE": 0.1665731998258154
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.7148917897401987,
+          "ALE": 0.13522081272116598
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": null,
+          "ALE": null
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.714891789740199,
+          "ALE": 0.08543249077173284
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.7148917897401992,
+          "ALE": 0.5592623064022655
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 13.890623496895614,
+          "ALE": 0.1599510638684794
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 23.820916189198577,
+          "ALE": 0.2951718765896453
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 0.0,
+          "ALE": null
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 4.2149136016215785,
+          "ALE": 0.10893341530820212
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 7.228120729885137,
+          "ALE": 0.02350092453646923
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 12.395444894930959,
+          "ALE": 0.5827632309387345
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 11.910458094599289,
+          "ALE": 0.4617450764154607
+        }
+      ],
+      "form_ALE": 0.19687156450230492,
+      "form_coverage": "3/4",
+      "portion_ALE": 0.23496666844091094,
+      "portion_food_coverage": "2/3",
+      "mix_over_sucrose_prediction": 0.9608737883599481
+    },
+    {
+      "a": 0.7781175447184837,
+      "model": "equality",
+      "hydrolysis": false,
+      "formulation": [
+        {
+          "comparison": "F50/G50",
+          "observed": 0.14723926380368096,
+          "predicted": 1.0,
+          "ALE": 1.9156963704588168
+        },
+        {
+          "comparison": "S50/G50",
+          "observed": 0.4539877300613497,
+          "predicted": 1.0,
+          "ALE": 0.7896851076025926
+        },
+        {
+          "comparison": "S100/G100",
+          "observed": 0.69375,
+          "predicted": 1.0,
+          "ALE": 0.3656436139214929
+        },
+        {
+          "comparison": "M100/G100",
+          "observed": 0.590625,
+          "predicted": 1.0,
+          "ALE": 0.52657398073413
+        }
+      ],
+      "portion": [
+        {
+          "comparison": "G50/G25",
+          "food": "G",
+          "observed": 2.0123456790123457,
+          "predicted": 1.0,
+          "ALE": 0.6993010461343236
+        },
+        {
+          "comparison": "G100/G50",
+          "food": "G",
+          "observed": 1.9631901840490797,
+          "predicted": 1.0,
+          "ALE": 0.6745707949870099
+        },
+        {
+          "comparison": "F50/F25",
+          "food": "F",
+          "observed": 2.0,
+          "predicted": 1.0,
+          "ALE": 0.6931471805599453
+        },
+        {
+          "comparison": "S50/S25",
+          "food": "S",
+          "observed": 1.574468085106383,
+          "predicted": 1.0,
+          "ALE": 0.45391749149411126
+        },
+        {
+          "comparison": "S100/S50",
+          "food": "S",
+          "observed": 2.9999999999999996,
+          "predicted": 1.0,
+          "ALE": 1.0986122886681096
+        }
+      ],
+      "levels": [
+        {
+          "cell": "G50",
+          "observed": 16.3,
+          "predicted": 8.1,
+          "ALE": 0.6993010461343236
+        },
+        {
+          "cell": "G100",
+          "observed": 32.0,
+          "predicted": 8.1,
+          "ALE": 1.3738718411213335
+        },
+        {
+          "cell": "F50",
+          "observed": 2.4,
+          "predicted": 8.1,
+          "ALE": 1.2163953243244932
+        },
+        {
+          "cell": "S25",
+          "observed": 4.7,
+          "predicted": 8.1,
+          "ALE": 0.5443015529623801
+        },
+        {
+          "cell": "S50",
+          "observed": 7.4,
+          "predicted": 8.1,
+          "ALE": 0.09038406146826894
+        },
+        {
+          "cell": "S100",
+          "observed": 22.2,
+          "predicted": 8.1,
+          "ALE": 1.0082282271998406
+        },
+        {
+          "cell": "M100",
+          "observed": 18.9,
+          "predicted": 8.1,
+          "ALE": 0.8472978603872036
+        }
+      ],
+      "form_ALE": 0.899399768179258,
+      "form_coverage": "4/4",
+      "portion_ALE": 0.7187826637339075,
+      "portion_food_coverage": "3/3",
+      "mix_over_sucrose_prediction": 1.0
+    }
+  ],
+  "secondary": [
+    {
+      "cell": "M100",
+      "benchmark": "measured_component_sum",
+      "observed": 18.9,
+      "predicted": 18.7,
+      "ALE": 0.010638398205055754
+    },
+    {
+      "cell": "M100",
+      "benchmark": "whole_dose_glucose",
+      "observed": 18.9,
+      "predicted": 32.0,
+      "ALE": 0.52657398073413
+    },
+    {
+      "cell": "M100",
+      "benchmark": "component_glucose",
+      "observed": 18.9,
+      "predicted": 16.3,
+      "ALE": 0.14799681425287992
+    },
+    {
+      "cell": "M100",
+      "benchmark": "nominal_scaling_glucose25",
+      "observed": 18.9,
+      "predicted": 32.4,
+      "ALE": 0.5389965007326871
+    },
+    {
+      "cell": "S50",
+      "benchmark": "measured_component_sum",
+      "observed": 7.4,
+      "predicted": 9.299999999999999,
+      "ALE": 0.22853439994908603
+    },
+    {
+      "cell": "S50",
+      "benchmark": "whole_dose_glucose",
+      "observed": 7.4,
+      "predicted": 16.3,
+      "ALE": 0.7896851076025926
+    },
+    {
+      "cell": "S50",
+      "benchmark": "component_glucose",
+      "observed": 7.4,
+      "predicted": 8.1,
+      "ALE": 0.09038406146826894
+    },
+    {
+      "cell": "S50",
+      "benchmark": "nominal_scaling_glucose25",
+      "observed": 7.4,
+      "predicted": 16.2,
+      "ALE": 0.7835312420282142
+    },
+    {
+      "cell": "S100",
+      "benchmark": "measured_component_sum",
+      "observed": 22.2,
+      "predicted": 18.7,
+      "ALE": 0.1715687650176929
+    },
+    {
+      "cell": "S100",
+      "benchmark": "whole_dose_glucose",
+      "observed": 22.2,
+      "predicted": 32.0,
+      "ALE": 0.3656436139214929
+    },
+    {
+      "cell": "S100",
+      "benchmark": "component_glucose",
+      "observed": 22.2,
+      "predicted": 16.3,
+      "ALE": 0.30892718106551703
+    },
+    {
+      "cell": "S100",
+      "benchmark": "nominal_scaling_glucose25",
+      "observed": 22.2,
+      "predicted": 32.4,
+      "ALE": 0.3780661339200499
+    }
+  ]
+}

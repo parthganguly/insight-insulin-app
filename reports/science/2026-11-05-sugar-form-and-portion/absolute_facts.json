@@ -1,0 +1,20 @@
+{
+  "intact": {
+    "doi": "10.3945/ajcn.112.042184",
+    "dose": 35,
+    "n": 20,
+    "area": 1373,
+    "SD": 449,
+    "assay": "Siemens ADVIA Centaur IRI"
+  },
+  "free": {
+    "doi": "10.1017/jns.2016.44",
+    "dose": 35,
+    "n": 18,
+    "area": 1089,
+    "SD": 492,
+    "assay": "DiaSorin Liaison",
+    "study_pmol_per_mU": 6.945
+  },
+  "operator": "Positive area above fasting in mU min/L (equivalent to microIU min/mL), Table 3 controls, in two separate studies. No same-cohort pure glucose. Treat cross-lab calibration conditionally; no causal free vs bonded contrast."
+}
