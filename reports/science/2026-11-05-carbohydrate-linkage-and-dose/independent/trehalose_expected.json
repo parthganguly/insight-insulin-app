@@ -1,0 +1,142 @@
+{
+  "native_insulin": {
+    "glucose_mean": 1709,
+    "glucose_SE": 142,
+    "trehalose_mean": 590,
+    "trehalose_SE": 101,
+    "n": 20,
+    "window_min": 120,
+    "operator": "individual positive incremental area; below fasting ignored",
+    "units_printed": "uIU/mL x 2h",
+    "ratio_of_means": 0.34523112931538913,
+    "mean_of_individual_ratios_reported": 0.36
+  },
+  "predictions": {
+    "nominal_grams": 1,
+    "complete_hydrolysis_stated_anhydrous_basis": 1.052629733827641,
+    "Holub_q120": 0.65477135,
+    "Holub_scalar": 0.52075798,
+    "Johansen33": 0.42
+  },
+  "absolute_log_errors": {
+    "nominal_grams": 1.0635411462158257,
+    "complete_hydrolysis_stated_anhydrous_basis": 1.114832687738099,
+    "Holub_q120": 0.6400719579554826,
+    "Holub_scalar": 0.4110712713092062,
+    "Johansen33": 0.19604057851110257
+  },
+  "product_28g_98to100pct_dihydrate_glucose_yield_ratio": [
+    1.0453349911584422,
+    1.0666683583249412
+  ],
+  "loss_individual_ratio_sensitivity": {
+    "nominal_grams": 1.0216512475319812,
+    "complete_hydrolysis_stated_anhydrous_basis": 1.0729427890542544,
+    "Holub_q120": 0.5981820592716383,
+    "Holub_scalar": 0.36918137262536177,
+    "Johansen33": 0.15415067982725836
+  },
+  "paired_uncertainty": {
+    "paired_covariance": null,
+    "paired_ratio_CI": null,
+    "marginal_SD_glucose": 635.0433056099403,
+    "marginal_SD_trehalose": 451.68573145495753,
+    "possible_SE_difference_given_unknown_correlation": [
+      41,
+      243
+    ]
+  },
+  "exclusions": {
+    "recruited": 24,
+    "anemia": 1,
+    "high_fasting_insulin": 1,
+    "trehalose_diarrhea": 2,
+    "analyzed": 20
+  },
+  "rounding_envelope_interval": [
+    0.1878007482104697,
+    0.5693638054484866
+  ],
+  "conservative_paired_t_ratio_interval": {
+    "df": 19,
+    "critical": 2.093024,
+    "interval": [
+      0.18871637950169554,
+      0.5676446836670804
+    ],
+    "equality_vs_Johansen_midpoint": 0.648074069840786,
+    "transport_pair_midpoints": {
+      "Johansen_vs_scalar": 0.46767333856015353,
+      "Johansen_vs_q": 0.5244082064575267,
+      "scalar_vs_q": 0.5839327063865091
+    },
+    "interpretation": "Approximate paired-t uncertainty set using worst-case marginal-SE covariance bound; not distribution-free or a simultaneous interval."
+  },
+  "conditional_cross_study_levels": {
+    "6": {
+      "Lee_glucose25_anchor": 1350.0,
+      "glucose_error": -359.0,
+      "trehalose_predictions": {
+        "nominal_grams": {
+          "level": 1350.0,
+          "signed_error": 760.0,
+          "same_control_calibrated_level": 1709,
+          "same_control_signed_error": 1119
+        },
+        "Holub_q120": {
+          "level": 883.9413225,
+          "signed_error": 293.94132249999996,
+          "same_control_calibrated_level": 1119.0042371499999,
+          "same_control_signed_error": 529.0042371499999
+        },
+        "Holub_scalar": {
+          "level": 703.0232729999999,
+          "signed_error": 113.0232729999999,
+          "same_control_calibrated_level": 889.9753878199999,
+          "same_control_signed_error": 299.9753878199999
+        },
+        "Johansen33": {
+          "level": 567.0,
+          "signed_error": -23.0,
+          "same_control_calibrated_level": 717.78,
+          "same_control_signed_error": 127.77999999999997
+        }
+      }
+    },
+    "6.945": {
+      "Lee_glucose25_anchor": 1166.3066954643627,
+      "glucose_error": -542.6933045356373,
+      "trehalose_predictions": {
+        "nominal_grams": {
+          "level": 1166.3066954643627,
+          "signed_error": 576.3066954643627,
+          "same_control_calibrated_level": 1709,
+          "same_control_signed_error": 1119
+        },
+        "Holub_q120": {
+          "level": 763.6642095032396,
+          "signed_error": 173.6642095032396,
+          "same_control_calibrated_level": 1119.0042371499999,
+          "same_control_signed_error": 529.0042371499999
+        },
+        "Holub_scalar": {
+          "level": 607.3635187904966,
+          "signed_error": 17.36351879049664,
+          "same_control_calibrated_level": 889.9753878199999,
+          "same_control_signed_error": 299.9753878199999
+        },
+        "Johansen33": {
+          "level": 489.8488120950323,
+          "signed_error": -100.15118790496768,
+          "same_control_calibrated_level": 717.78,
+          "same_control_signed_error": 127.77999999999997
+        }
+      }
+    }
+  },
+  "literal_hour_positive_area_upper_bounds": {
+    "glucose": 68.66,
+    "trehalose": 22.5,
+    "interpretation": "Published mean area values exceed these bounds, so literal hours are inconsistent; native level comparisons require a conditional minute-unit reading."
+  }
+}

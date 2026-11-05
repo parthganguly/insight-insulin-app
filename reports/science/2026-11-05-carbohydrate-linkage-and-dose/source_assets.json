@@ -1,0 +1,92 @@
+{
+  "holub.pdf": {
+    "sha256": "727eca38ebe0b9522dd4ae0a093f2475d296547bb938e46a763bd0ead4bb164a",
+    "url": "https://doi.org/10.1017/S0007114509993874",
+    "locator": "Figure 2b, clinical trial 2"
+  },
+  "vancan.pdf": {
+    "sha256": "cf930fd53f51a79622f2bbdbfdd523aee86b05671d29f5dc53518f255bda52a6",
+    "url": "https://doi.org/10.1017/S0007114509990687",
+    "locator": "Figure 1b and Table 1"
+  },
+  "keesing.jpg": {
+    "sha256": "6165a64da1cc285b5d597a42ad4ec7159d55705ea0510082a9aa0fca43477926",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6893461/",
+    "locator": "Figure 3b"
+  },
+  "tea.pdf": {
+    "sha256": "469f78ec4b99dca41d8921c9a5d5552e0ea7517ed9bd4222c29a400d27ca65c2",
+    "url": "https://doi.org/10.3390/nu9050464",
+    "locator": "Figures 2B and 3B"
+  },
+  "suklaew-excerpt.pdf": {
+    "sha256": "4d7bac117a938706bada21b3797fb1b163698d0a17a3c433c73da06d2f759e02",
+    "url": "https://digital.car.chula.ac.th/chulaetd/19253/",
+    "locator": "Locally extracted aggregate pages, incl. Tables 10,11,16,17"
+  },
+  "zhang.png": {
+    "sha256": "851729a394de7da739fba998d2b30b7f14dbb968d4d56ce1ff1a260ca7d14a3d",
+    "url": "https://doi.org/10.3390/nu17152539",
+    "locator": "Figure 5A/B"
+  },
+  "johansen.png": {
+    "sha256": "12a65bfe1cba8de5fe23232ed497ddf7faf40c4a80b0a903ce15692249711eaa",
+    "url": "https://doi.org/10.3390/metabo14080410",
+    "locator": "Figure 2"
+  },
+  "johansen.pdf": {
+    "sha256": "790ce8510b66d0ff4f10861c8f73573c4d44449e9e7bede9b518cf79c21f4a10",
+    "url": "https://doi.org/10.3390/metabo14080410",
+    "locator": "Methods, Table 3"
+  },
+  "johansen.zip": {
+    "sha256": "96b312e0d7846ad09f101620693984e75530e256fab94f4d2cb6fe90411c7658",
+    "url": "https://mdpi-res.com/d_attachment/metabolites/metabolites-14-00410/article_deploy/metabolites-14-00410-s001.zip",
+    "locator": "Figure S5, Table S3"
+  },
+  "keesing.xml": {
+    "sha256": "e5b487bdce68a5cc7006367bd6cf1a1bf364f88283b0f98be1040a121b39449c",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6893461/",
+    "locator": "Methods and area results"
+  },
+  "holub.xml": {
+    "sha256": "8a95174b22659704cca234a80a501b576780612474e1e57300049941a6c323bc",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2943747/",
+    "locator": "Native areas"
+  },
+  "johansen.xml": {
+    "sha256": "2751274b5755f4516ed2f3b570487a332eb0dd61eff163081d60586c2ba1ddf6",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11356256/fullTextXML",
+    "locator": "Study design, products and insulin-index results"
+  },
+  "trehalose.xml": {
+    "sha256": "54db5e747524e3641e981c8b8a7b3c2f701f994464a144242442fa4747c61e41",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292800/",
+    "locator": "Test substances, Data analysis, Table 1 and Discussion"
+  },
+  "zhang.xml": {
+    "sha256": "fa4861ece6d3a52712a55e1b77721cb35fc7b766231a1615de9c8ce51675313a",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12348355/",
+    "locator": "Timing, Table A1"
+  },
+  "tea.xml": {
+    "sha256": "3763fcb9dc8634f85ade43dd44ad1e97d551b8fbcbedc5d5bfe31bf19ad36e3d",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5452194/",
+    "locator": "Methods and prose percentages"
+  },
+  "keller.xml": {
+    "sha256": "8a1dadaec0ed4783537cffe72d27bc477de3d79596a2aed01ef14e168b5e5a84",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5188457/",
+    "locator": "Acute test drinks and outcome tables"
+  },
+  "PMC5292800.xml": {
+    "sha256": "54db5e747524e3641e981c8b8a7b3c2f701f994464a144242442fa4747c61e41",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292800/",
+    "locator": "Opus independent Europe PMC XML or publisher rendering of Figure 1"
+  },
+  "Fig1.png": {
+    "sha256": "49d0a05045b9da23b0d5543dd32e29d51e8f238b074a745f091c78cd2fb6fcb7",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5292800/",
+    "locator": "Opus independent Europe PMC XML or publisher rendering of Figure 1"
+  }
+}

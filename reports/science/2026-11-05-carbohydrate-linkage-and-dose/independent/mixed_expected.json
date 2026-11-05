@@ -1,0 +1,116 @@
+{
+  "q": 0.65477135,
+  "w": 0.5740740740740741,
+  "mixed": {
+    "Suklaew": {
+      "B": 27,
+      "d": 40,
+      "observed_signed120": 0.6206660032438089,
+      "predicted_ratios": {
+        "equality": 1,
+        "grams": 1,
+        "named_q1": 1,
+        "q_whole": 0.65477135,
+        "dilution_w1": 0.7938933432835821,
+        "combined": 0.8413330148257969
+      },
+      "abs_log_errors": {
+        "equality": 0.47696217870133145,
+        "grams": 0.47696217870133145,
+        "named_q1": 0.47696217870133145,
+        "q_whole": 0.05349299044098845,
+        "dilution_w1": 0.2461560235852592,
+        "combined": 0.3041944561373905
+      }
+    },
+    "Zhang": {
+      "B": 24,
+      "d": 50,
+      "observed_signed120": 0.7289388184688601,
+      "predicted_ratios": {
+        "equality": 1,
+        "grams": 1,
+        "named_q1": 1,
+        "q_whole": 0.65477135,
+        "dilution_w1": 0.7667373986486486,
+        "combined": 0.8119801800773014
+      },
+      "abs_log_errors": {
+        "equality": 0.31616547577817333,
+        "grams": 0.31616547577817333,
+        "named_q1": 0.31616547577817333,
+        "q_whole": 0.10730371248216981,
+        "dilution_w1": 0.050554564896490975,
+        "combined": 0.10788612788801902
+      }
+    },
+    "vanCan_lunch": {
+      "B": 30,
+      "d": 25,
+      "observed_signed120": 0.7971273379234254,
+      "predicted_ratios": {
+        "equality": 1,
+        "grams": 1,
+        "named_q1": 1,
+        "q_whole": 0.65477135,
+        "dilution_w1": 0.8430778863636363,
+        "combined": 0.8882871800626305
+      },
+      "abs_log_errors": {
+        "equality": 0.22674084140645126,
+        "grams": 0.22674084140645126,
+        "named_q1": 0.22674084140645126,
+        "q_whole": 0.19672834685389193,
+        "dilution_w1": 0.05604490804873636,
+        "combined": 0.1082806541050928
+      }
+    }
+  },
+  "portion_readings": {
+    "Sol": {
+      "MD": {
+        "observed_50_over33": 1.3826507505175982,
+        "implied_two_point_exponent": 0.779760403960615,
+        "log_errors": {
+          "linear": 0.09151295352624292,
+          "WB": 0.0006826333873607782,
+          "no_change": 0.32400249043542273
+        }
+      },
+      "OM": {
+        "observed_50_over33": 1.5293116651067813,
+        "implied_two_point_exponent": 1.0223873703348005,
+        "log_errors": {
+          "linear": 0.009302298123798812,
+          "WB": 0.10149788503740262,
+          "no_change": 0.42481774208546463
+        }
+      }
+    },
+    "mixed_reader": {
+      "MD": {
+        "observed_50_over33": 1.3629122618989624,
+        "implied_two_point_exponent": 0.7451558872911539,
+        "log_errors": {
+          "linear": 0.10589166463323293,
+          "WB": 0.013696077719629154,
+          "no_change": 0.3096237793284329
+        }
+      },
+      "OM": {
+        "observed_50_over33": 1.5248313172451524,
+        "implied_two_point_exponent": 1.0153263817983498,
+        "log_errors": {
+          "linear": 0.006368348337267258,
+          "WB": 0.098563935250871,
+          "no_change": 0.4218837922989331
+        }
+      }
+    }
+  },
+  "cautions": [
+    "vanCan B30 d25 are energy shares with common carbohydrate factor cancelled, not observed gram doses.",
+    "Native positive area endpoint unavailable for these graph comparisons.",
+    "Linear vs WB differences depend on product and graph readings."
+  ]
+}

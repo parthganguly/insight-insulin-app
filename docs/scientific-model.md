@@ -9,6 +9,8 @@ Research status, 2026-11-05. The [serving-dose and RS4 comparison](../reports/sc
 
 Research status, 2026-11-05. The [sugar-formulation and portion comparison](../reports/science/2026-11-05-sugar-form-and-portion/README.md) tests a drink-derived glucose/fructose weight in graded drinks and muffins. Useful formulation contrasts, external sucrose misses and the remaining native-area limitations are reported separately. Decision D remains open.
 
+Research status, 2026-11-05. The [carbohydrate linkage and dose test](../reports/science/2026-11-05-carbohydrate-linkage-and-dose/README.md) evaluates a reference across serving sizes and on directly reported positive two-hour insulin areas. Product contrasts, portion forecasts and absolute levels have separate results. Decision D remains open.
+
 ## Overview
 
 This system estimates the **insulin demand of meals** using established physiological research, primarily the Food Insulin Index (FII), and extends it to mixed meals and longitudinal patterns.

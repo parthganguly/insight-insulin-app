@@ -1,0 +1,91 @@
+{
+  "source": {
+    "citation": "Yoshizane C, Mizote A, Yamada M, Arai N, Arai S, Maruta K, Mitsuzumi H, Ariyasu T. Glycemic, insulinemic and incretin responses after oral trehalose ingestion in healthy subjects. Nutr J 2017;16:9.",
+    "doi": "10.1186/s12937-017-0233-x",
+    "pmcid": "PMC5292800",
+    "license": "CC BY 4.0",
+    "original_assets_kept_outside_public_replay": {
+      "note": "Not needed for the default --check. Audit with: python -I -X utf8 trehalose.py --check --sources DIRECTORY",
+      "PMC5292800.xml": {"origin": "Europe PMC REST fullTextXML", "sha256": "54db5e747524e3641e981c8b8a7b3c2f701f994464a144242442fa4747c61e41"},
+      "Fig1.png": {"origin": "Springer media CDN rendering of Fig. 1 (served as PNG)", "sha256": "49d0a05045b9da23b0d5543dd32e29d51e8f238b074a745f091c78cd2fb6fcb7"}
+    }
+  },
+  "design": {
+    "type": "crossover, two occasions at least 1 week apart, overnight fast",
+    "recruited": 24,
+    "analysed": 20,
+    "exclusions": [
+      {"n": 1, "reason": "anaemic at blood sampling"},
+      {"n": 2, "reason": "borborygmus and osmotic diarrhoea after trehalose (onset 50 and 90 min), withdrawn"},
+      {"n": 1, "reason": "suspected insulin resistance from high fasting insulin"}
+    ],
+    "excluded_outcomes": "not reported; their effect on either ratio has unknown direction",
+    "analysed_demographics": "10 women, 10 men; age 39.0 +/- 1.6 y; BMI 20.8 +/- 0.3 kg/m2; healthy Japanese",
+    "locator": "Methods (Subjects, Study design); Results (Analytical subjects of this study)"
+  },
+  "products": {
+    "stated_dose": "25 g trehalose (i.e., 28 g of TREHA) or 25 g glucose, in 100 mL water, within 2 min",
+    "treha_composition": "more than 98.0% trehalose dihydrate",
+    "glucose_product": "100% anhydrous glucose",
+    "treha_served_g": 28.0,
+    "treha_dihydrate_fraction_range": [0.98, 1.0],
+    "glucose_served_g": 25.0,
+    "rounding_note": "28 g is printed to whole grams; the non-dihydrate remainder of TREHA (up to 2%) is unspecified",
+    "locator": "Methods (Test substances, Study design)"
+  },
+  "molar_masses_g_per_mol": {"trehalose_anhydrous": 342.30, "trehalose_dihydrate": 378.33, "glucose": 180.16},
+  "sampling_and_assay": {
+    "times_min": [0, 15, 30, 45, 60, 90, 120, 180],
+    "specimen": "venous serum insulin",
+    "assay": "chemiluminescent enzyme immunoassay, SRL Inc. (Nara, Japan)",
+    "locator": "Methods (Study design)"
+  },
+  "operator": {
+    "text": "incremental area under the response curve (IAUC), ignoring the area beneath the fasting concentration",
+    "statistic": "mean +/- SE, n = 20; paired Student t-test on IAUC (p < 0.01)",
+    "locator": "Methods (Data analysis, Statistics); Table 1"
+  },
+  "table1_insulin": {
+    "locator": "Table 1, Insulin rows",
+    "unit_printed": {"fasting_and_Cmax": "uIU/mL", "Tmax": "min", "IAUC": "uIU/mL.2 h"},
+    "n": 20,
+    "glucose": {"fasting": [3.77, 0.34], "Cmax": [38.1, 3.2], "Tmax": [36, 2], "IAUC_0_2h": [1709, 142]},
+    "trehalose": {"fasting": [4.25, 0.50], "Cmax": [15.5, 2.5], "Tmax": [39, 4], "IAUC_0_2h": [590, 101]}
+  },
+  "discussion_insulin_individual_ratio": {
+    "locator": "Discussion: 'the mean individual blood insulin IAUC ratio of trehalose loading to glucose loading was 36%'",
+    "value": 0.36,
+    "printed_precision": "whole percent; rounding range [0.355, 0.365)",
+    "dispersion": "not reported",
+    "context_not_scored": "the same paragraph gives a mean individual glucose IAUC ratio of 38% and GIP 14%"
+  },
+  "figure1_insulin_visual_reading": {
+    "status": "APPROXIMATE visual reading of plotted group means by this implementer (about +/-0.5 uIU/mL); descriptive check only",
+    "unit": "uIU/mL",
+    "times_min": [0, 15, 30, 45, 60, 90, 120, 180],
+    "glucose": [3.8, 20.5, 33.5, 32.5, 21.0, 9.0, 4.5, 3.0],
+    "trehalose": [4.2, 8.5, 12.5, 14.0, 10.5, 6.5, 5.0, 4.0],
+    "locator": "Fig. 1 right panel (serum insulin, mean +/- SE, n = 20)"
+  },
+  "frozen_comparators": {
+    "locator": "../TREHALOSE_PLAN.md, receipt ../receipts/TREHALOSE_FREEZE.json",
+    "equality_nominal_grams": 1.0,
+    "holub_whole_120_ratio": 0.65477135,
+    "holub_whole_trajectory_scalar": 0.52075798,
+    "johansen_33g_polymer_reference": 0.420,
+    "provenance_note": "Holub: isomaltulose/sucrose; Johansen: oligomalt/maltodextrin. Rival transport hypotheses from distinct substrates."
+  },
+  "external_level_anchor": {
+    "status": "cross-cohort challenge only; not a frozen comparator",
+    "source": "Lee BM, MSc thesis, University of Toronto 1997, Table 3-1 (printed p. 34); values visually confirmed by the coordinator and Sol",
+    "glucose_25g_mean_nmol_min_L": 8.1,
+    "operator": "mean participant-positive incremental plasma insulin area 0-120 min",
+    "n": 8,
+    "differences": "plasma vs serum; different assay, laboratory and cohort (Toronto vs lean Japanese adults); same 0-120 positive-area operator family"
+  },
+  "unit_conversion_conventions": {
+    "status": "CONDITIONAL; neither source states a conversion between uIU/mL and pmol/L",
+    "pmol_per_uIU_options": [6.0, 6.945]
+  },
+  "t_quantile_0975_df19": 2.0930240544
+}
