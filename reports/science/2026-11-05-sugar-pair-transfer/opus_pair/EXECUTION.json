@@ -1,0 +1,131 @@
+{
+  "runs": [
+    {
+      "utc": "2026-11-05T10:51:22Z",
+      "command": "python -I -X utf8 pair.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "plan_freeze": "raw bytes"
+    },
+    {
+      "utc": "2026-11-05T10:59:02Z",
+      "command": "python -I -X utf8 pair.py run",
+      "version": 2,
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "plan_freeze": "raw bytes"
+    }
+  ],
+  "checks": [
+    {
+      "utc": "2026-11-05T10:51:45Z",
+      "command": "python -I -X utf8 pair.py --check --sources _view_local --record",
+      "result": "FAIL",
+      "plan_freeze": "raw bytes",
+      "source_audit": {
+        "S0007114511006714_tab2.gif": "MISSING",
+        "S0007114511006714_tab3.gif": "MISSING",
+        "S0007114511006714_tab1.gif": "MISSING",
+        "S0007114511006714_fig1g.gif": "MISSING",
+        "S000711450999050X_tab1.gif": "MATCH",
+        "S0007114509990687_tab1.gif": "MATCH"
+      },
+      "problems": [
+        "source audit: {\"S0007114511006714_tab2.gif\": \"MISSING\", \"S0007114511006714_tab3.gif\": \"MISSING\", \"S0007114511006714_tab1.gif\": \"MISSING\", \"S0007114511006714_fig1g.gif\": \"MISSING\", \"S000711450999050X_tab1.gif\": \"MATCH\", \"S0007114509990687_tab1.gif\": \"MATCH\"}"
+      ]
+    },
+    {
+      "utc": "2026-11-05T10:51:52Z",
+      "command": "python -I -X utf8 pair.py --check --sources _view_local --record",
+      "result": "PASS",
+      "plan_freeze": "raw bytes",
+      "source_audit": {
+        "S0007114511006714_tab2.gif": "MATCH",
+        "S0007114511006714_tab3.gif": "MATCH",
+        "S0007114511006714_tab1.gif": "MATCH",
+        "S0007114511006714_fig1g.gif": "MATCH",
+        "S000711450999050X_tab1.gif": "MATCH",
+        "S0007114509990687_tab1.gif": "MATCH"
+      },
+      "problems": []
+    },
+    {
+      "utc": "2026-11-05T10:59:52Z",
+      "command": "python -I -X utf8 pair.py --check --lab --record",
+      "version": 2,
+      "result": "PASS",
+      "plan_freeze": "raw bytes",
+      "lab_crosscheck": "OK",
+      "source_audit": null,
+      "problems": []
+    }
+  ],
+  "portable_tests": [
+    {
+      "utc": "2026-11-05T10:52:10Z",
+      "command": "python -I -X utf8 portable_test.py --record",
+      "result": "PASS",
+      "trials": [
+        {
+          "line_endings": "as stored",
+          "files_present": [
+            "public\\FREEZE.json",
+            "public\\PLAN.md",
+            "public\\opus_pair\\RESULTS.json",
+            "public\\opus_pair\\inputs.json",
+            "public\\opus_pair\\pair.py"
+          ],
+          "exit_code": 0,
+          "output": "PASS check (plan freeze via raw bytes); source audit not requested",
+          "files_unchanged": true
+        },
+        {
+          "line_endings": "CRLF",
+          "files_present": [
+            "public\\FREEZE.json",
+            "public\\PLAN.md",
+            "public\\opus_pair\\RESULTS.json",
+            "public\\opus_pair\\inputs.json",
+            "public\\opus_pair\\pair.py"
+          ],
+          "exit_code": 0,
+          "output": "PASS check (plan freeze via LF-normalised bytes); source audit not requested",
+          "files_unchanged": true
+        }
+      ]
+    },
+    {
+      "utc": "2026-11-05T10:59:52Z",
+      "command": "python -I -X utf8 portable_test.py --record",
+      "result": "PASS",
+      "trials": [
+        {
+          "line_endings": "as stored",
+          "files_present": [
+            "public\\FREEZE.json",
+            "public\\PLAN.md",
+            "public\\opus_pair\\RESULTS.json",
+            "public\\opus_pair\\inputs.json",
+            "public\\opus_pair\\pair.py"
+          ],
+          "exit_code": 0,
+          "output": "PASS check (plan freeze via raw bytes); lab cross-check not requested; source audit not requested",
+          "files_unchanged": true
+        },
+        {
+          "line_endings": "CRLF",
+          "files_present": [
+            "public\\FREEZE.json",
+            "public\\PLAN.md",
+            "public\\opus_pair\\RESULTS.json",
+            "public\\opus_pair\\inputs.json",
+            "public\\opus_pair\\pair.py"
+          ],
+          "exit_code": 0,
+          "output": "PASS check (plan freeze via LF-normalised bytes); lab cross-check not requested; source audit not requested",
+          "files_unchanged": true
+        }
+      ]
+    }
+  ]
+}

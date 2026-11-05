@@ -1,0 +1,19 @@
+{
+  "doi": "10.1093/jn/nxy018",
+  "table": "Tables 3 and 4, rice then potato, control/large green/small green/split red",
+  "units": "nmol min/L, geometric mean plasma insulin iAUC, 0–120 min",
+  "geometric_areas": [
+    [
+      10.9,
+      10.4,
+      9.7,
+      10
+    ],
+    [
+      19.9,
+      13.1,
+      12.8,
+      12.3
+    ]
+  ]
+}

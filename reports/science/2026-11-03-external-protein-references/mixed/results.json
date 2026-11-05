@@ -1,0 +1,2188 @@
+{
+  "external_response_ratios": {
+    "pea": 2.5833333333333335,
+    "rice": 2.6666666666666665,
+    "soy": 1.9722222222222223,
+    "gluten": 2.111111111111111,
+    "whey": 3.0555555555555554,
+    "egg": 2.8055555555555554
+  },
+  "forest": {
+    "Reported": {
+      "eligible_before_name_matching": 26,
+      "eligible_authors_before": 11,
+      "matched_rows": 17,
+      "matched_authors": 9,
+      "unmatched_rows": [
+        9,
+        10,
+        11,
+        12,
+        16,
+        17,
+        18,
+        21,
+        22
+      ],
+      "fits": {
+        "Acheson": {
+          "training_authors": [
+            "Camps",
+            "Fahmi",
+            "Gunnerud",
+            "Quek",
+            "Roberts",
+            "Sun",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.22923914512204327,
+            "cheap": 0.7570791814341972,
+            "reference": 0.5286961790680004
+          }
+        },
+        "Camps": {
+          "training_authors": [
+            "Acheson",
+            "Fahmi",
+            "Gunnerud",
+            "Quek",
+            "Roberts",
+            "Sun",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.2599885487693405,
+            "cheap": 0.5512864546310149,
+            "reference": 0.4254231546864821
+          }
+        },
+        "Fahmi": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Gunnerud",
+            "Quek",
+            "Roberts",
+            "Sun",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.2468895679695684,
+            "cheap": 0.539883297119411,
+            "reference": 0.42034551968916284
+          }
+        },
+        "Gunnerud": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Fahmi",
+            "Quek",
+            "Roberts",
+            "Sun",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.21797650760830695,
+            "cheap": 0.505559272626985,
+            "reference": 0.4060962914175351
+          }
+        },
+        "Quek": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Fahmi",
+            "Gunnerud",
+            "Roberts",
+            "Sun",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.24063424242166542,
+            "cheap": 0.568569915573613,
+            "reference": 0.43904543936640406
+          }
+        },
+        "Roberts": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Fahmi",
+            "Gunnerud",
+            "Quek",
+            "Sun",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.19989078140021213,
+            "cheap": 0.4726696740940032,
+            "reference": 0.37323482587181306
+          }
+        },
+        "Sun": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Fahmi",
+            "Gunnerud",
+            "Quek",
+            "Roberts",
+            "Thondre",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.22370981820301808,
+            "cheap": 0.5218187937481809,
+            "reference": 0.4109507998805102
+          }
+        },
+        "Thondre": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Fahmi",
+            "Gunnerud",
+            "Quek",
+            "Roberts",
+            "Sun",
+            "Wolever"
+          ],
+          "beta": {
+            "constant_log": 0.21280282610882278,
+            "cheap": 0.5196266391728473,
+            "reference": 0.4143390272864717
+          }
+        },
+        "Wolever": {
+          "training_authors": [
+            "Acheson",
+            "Camps",
+            "Fahmi",
+            "Gunnerud",
+            "Quek",
+            "Roberts",
+            "Sun",
+            "Thondre"
+          ],
+          "beta": {
+            "constant_log": 0.22857424523422729,
+            "cheap": 0.5269607979786435,
+            "reference": 0.41069085738052674
+          }
+        }
+      },
+      "predictions": [
+        {
+          "row": 57,
+          "author": "Acheson",
+          "year": "2011",
+          "food": "whey",
+          "d": 1.25,
+          "obs": 1.54,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 3.569444444444444,
+            "blind_dose": 2.9155092592592595,
+            "constant_fit": 1.257642762182015,
+            "cheap_fit": 1.847694016998821,
+            "reference_fit": 1.9595567254279862,
+            "prior_holdout_mean": 1.2494862729423097,
+            "prior_holdout_dose": 1.5767349642156057,
+            "prior_holdout_dose_source": 1.7387154201656358
+          },
+          "abs_log_error": {
+            "no_change": 0.4317824164255378,
+            "ref": 0.6851790109107684,
+            "ref_dose": 0.8406275494536267,
+            "blind_dose": 0.6382620911230169,
+            "constant_fit": 0.20254327130349442,
+            "cheap_fit": 0.1821559678677769,
+            "reference_fit": 0.24093587074282116,
+            "prior_holdout_mean": 0.20904993123358326,
+            "prior_holdout_dose": 0.02357381415632677,
+            "prior_holdout_dose_source": 0.12136415987700787
+          }
+        },
+        {
+          "row": 78,
+          "author": "Acheson",
+          "year": "2011",
+          "food": "soy",
+          "d": 1.25,
+          "obs": 1.02,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.9722222222222223,
+            "ref_dose": 2.2152777777777777,
+            "blind_dose": 2.9155092592592595,
+            "constant_fit": 1.257642762182015,
+            "cheap_fit": 1.847694016998821,
+            "reference_fit": 1.522742835078474,
+            "prior_holdout_mean": 1.2494862729423097,
+            "prior_holdout_dose": 1.5767349642156057,
+            "prior_holdout_dose_source": 1.488317305971807
+          },
+          "abs_log_error": {
+            "no_change": 0.019802627296179754,
+            "ref": 0.6593583112890258,
+            "ref_dose": 0.7755751759126641,
+            "blind_dose": 1.050241880252375,
+            "constant_fit": 0.2094365178258637,
+            "cheap_fit": 0.594135756997135,
+            "reference_fit": 0.40071057817583594,
+            "prior_holdout_mean": 0.2029298578957749,
+            "prior_holdout_dose": 0.4355536032856849,
+            "prior_holdout_dose_source": 0.3778435296422309
+          }
+        },
+        {
+          "row": 72,
+          "author": "Camps",
+          "year": "2018",
+          "food": "soy",
+          "d": 0.15,
+          "obs": 0.98,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.9722222222222223,
+            "ref_dose": 1.1458333333333333,
+            "blind_dose": 1.229861111111111,
+            "constant_fit": 1.2969152353052336,
+            "cheap_fit": 1.0800948546989,
+            "reference_fit": 1.0596236300213238,
+            "prior_holdout_mean": 1.2742668055751507,
+            "prior_holdout_dose": 1.2509056732917072,
+            "prior_holdout_dose_source": 1.1418782493188826
+          },
+          "abs_log_error": {
+            "no_change": 0.02020270731751947,
+            "ref": 0.699363645902725,
+            "ref_dose": 0.15633488164209938,
+            "blind_dose": 0.22710395253030666,
+            "constant_fit": 0.28019125608686013,
+            "cheap_fit": 0.09725157302186498,
+            "reference_fit": 0.07811648637301251,
+            "prior_holdout_mean": 0.2625736660698208,
+            "prior_holdout_dose": 0.2440705349136942,
+            "prior_holdout_dose_source": 0.15287720106306416
+          }
+        },
+        {
+          "row": 63,
+          "author": "Fahmi",
+          "year": "2022",
+          "food": "pea",
+          "d": 0.06,
+          "obs": 1.02,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 2.5833333333333335,
+            "ref_dose": 1.095,
+            "blind_dose": 1.0919444444444444,
+            "constant_fit": 1.280037747805284,
+            "cheap_fit": 1.0319584557960744,
+            "reference_fit": 1.0388851738577098,
+            "prior_holdout_mean": 1.2609832504117948,
+            "prior_holdout_dose": 1.2189398551482957,
+            "prior_holdout_dose_source": 1.285851118121298
+          },
+          "abs_log_error": {
+            "no_change": 0.019802627296179754,
+            "ref": 0.9292779274009662,
+            "ref_dose": 0.0709517359722844,
+            "blind_dose": 0.06815737368147907,
+            "constant_fit": 0.2270869406733887,
+            "cheap_fit": 0.011655782941340438,
+            "reference_fit": 0.01834556269596194,
+            "prior_holdout_mean": 0.21208914681630395,
+            "prior_holdout_dose": 0.17817888248473365,
+            "prior_holdout_dose_source": 0.23161822052741995
+          }
+        },
+        {
+          "row": 64,
+          "author": "Fahmi",
+          "year": "2022",
+          "food": "pea",
+          "d": 0.06,
+          "obs": 1.08,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 2.5833333333333335,
+            "ref_dose": 1.095,
+            "blind_dose": 1.0919444444444444,
+            "constant_fit": 1.280037747805284,
+            "cheap_fit": 1.0319584557960744,
+            "reference_fit": 1.0388851738577098,
+            "prior_holdout_mean": 1.2609832504117948,
+            "prior_holdout_dose": 1.2189398551482957,
+            "prior_holdout_dose_source": 1.285851118121298
+          },
+          "abs_log_error": {
+            "no_change": 0.07696104113612844,
+            "ref": 0.8721195135610177,
+            "ref_dose": 0.01379332213233577,
+            "blind_dose": 0.010998959841530475,
+            "constant_fit": 0.16992852683344004,
+            "cheap_fit": 0.045502630898608225,
+            "reference_fit": 0.038812851143986714,
+            "prior_holdout_mean": 0.15493073297635526,
+            "prior_holdout_dose": 0.12102046864478491,
+            "prior_holdout_dose_source": 0.17445980668747127
+          }
+        },
+        {
+          "row": 65,
+          "author": "Fahmi",
+          "year": "2022",
+          "food": "pea",
+          "d": 0.06,
+          "obs": 1.17,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 2.5833333333333335,
+            "ref_dose": 1.095,
+            "blind_dose": 1.0919444444444444,
+            "constant_fit": 1.280037747805284,
+            "cheap_fit": 1.0319584557960744,
+            "reference_fit": 1.0388851738577098,
+            "prior_holdout_mean": 1.2609832504117948,
+            "prior_holdout_dose": 1.2189398551482957,
+            "prior_holdout_dose_source": 1.285851118121298
+          },
+          "abs_log_error": {
+            "no_change": 0.15700374880966467,
+            "ref": 0.7920768058874814,
+            "ref_dose": 0.0662493855412006,
+            "blind_dose": 0.0690437478320058,
+            "constant_fit": 0.08988581915990385,
+            "cheap_fit": 0.1255453385721445,
+            "reference_fit": 0.11885555881752306,
+            "prior_holdout_mean": 0.07488802530281911,
+            "prior_holdout_dose": 0.04097776097124856,
+            "prior_holdout_dose_source": 0.09441709901393494
+          }
+        },
+        {
+          "row": 34,
+          "author": "Gunnerud",
+          "year": "2013",
+          "food": "whey",
+          "d": 0.18,
+          "obs": 1.3,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.3699999999999999,
+            "blind_dose": 1.2758333333333334,
+            "constant_fit": 1.2435578531277256,
+            "cheap_fit": 1.087278036875362,
+            "reference_fit": 1.13637511646431,
+            "prior_holdout_mean": 1.2321508808356632,
+            "prior_holdout_dose": 1.1972487496370174,
+            "prior_holdout_dose_source": 1.342721476014552
+          },
+          "abs_log_error": {
+            "no_change": 0.2623642644674911,
+            "ref": 0.854597162868815,
+            "ref_dose": 0.052446475372542316,
+            "blind_dose": 0.01876470458589902,
+            "constant_fit": 0.044387756859184134,
+            "cheap_fit": 0.17868690534150525,
+            "reference_fit": 0.1345207905200431,
+            "prior_holdout_mean": 0.053602938644016655,
+            "prior_holdout_dose": 0.08233804858993755,
+            "prior_holdout_dose_source": 0.032334242149629475
+          }
+        },
+        {
+          "row": 39,
+          "author": "Gunnerud",
+          "year": "2013",
+          "food": "whey",
+          "d": 0.36,
+          "obs": 1.21,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.7399999999999998,
+            "blind_dose": 1.5516666666666667,
+            "constant_fit": 1.2435578531277256,
+            "cheap_fit": 1.1681855594134973,
+            "reference_fit": 1.252235921153923,
+            "prior_holdout_mean": 1.2321508808356632,
+            "prior_holdout_dose": 1.218768989364054,
+            "prior_holdout_dose_source": 1.3668565507508876
+          },
+          "abs_log_error": {
+            "no_change": 0.1906203596086497,
+            "ref": 0.9263410677276565,
+            "ref_dose": 0.36326475361778787,
+            "blind_dose": 0.2487092624522711,
+            "constant_fit": 0.027356147999657267,
+            "cheap_fit": 0.035168618460143894,
+            "reference_fit": 0.03431033074398815,
+            "prior_holdout_mean": 0.018140966214824843,
+            "prior_holdout_dose": 0.007220964616547238,
+            "prior_holdout_dose_source": 0.12189325535611434
+          }
+        },
+        {
+          "row": 51,
+          "author": "Gunnerud",
+          "year": "2013",
+          "food": "whey",
+          "d": 0.72,
+          "obs": 1.64,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.4799999999999995,
+            "blind_dose": 2.1033333333333335,
+            "constant_fit": 1.2435578531277256,
+            "cheap_fit": 1.315447713202109,
+            "reference_fit": 1.44605684221967,
+            "prior_holdout_mean": 1.2321508808356632,
+            "prior_holdout_dose": 1.2629768842198779,
+            "prior_holdout_dose_source": 1.4164359634254085
+          },
+          "abs_log_error": {
+            "no_change": 0.49469624183610705,
+            "ref": 0.6222651855001992,
+            "ref_dose": 0.4135623183407836,
+            "blind_dose": 0.24882714604890518,
+            "constant_fit": 0.2767197342278,
+            "cheap_fit": 0.22051916783849165,
+            "reference_fit": 0.12585580890004153,
+            "prior_holdout_mean": 0.28593491601263255,
+            "prior_holdout_dose": 0.26122470091562344,
+            "prior_holdout_dose_source": 0.14655241017605633
+          }
+        },
+        {
+          "row": 7,
+          "author": "Quek",
+          "year": "2016",
+          "food": "egg",
+          "d": 0.5,
+          "obs": 1.19,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 2.8055555555555554,
+            "ref_dose": 1.9027777777777777,
+            "blind_dose": 1.7662037037037037,
+            "constant_fit": 1.2720556862036436,
+            "cheap_fit": 1.2592738713770462,
+            "reference_fit": 1.3263680694382853,
+            "prior_holdout_mean": 1.2456497656772427,
+            "prior_holdout_dose": 1.2508230802551559,
+            "prior_holdout_dose_source": 1.2508230802551559
+          },
+          "abs_log_error": {
+            "no_change": 0.173953307123438,
+            "ref": 0.8576482712617115,
+            "ref_dose": 0.46936149968863167,
+            "blind_dose": 0.39487913591690865,
+            "constant_fit": 0.06668093529822747,
+            "cheap_fit": 0.056581955161667044,
+            "reference_fit": 0.1084911248842804,
+            "prior_holdout_mean": 0.04570398679308371,
+            "prior_holdout_dose": 0.049848491702460106,
+            "prior_holdout_dose_source": 0.049848491702460106
+          }
+        },
+        {
+          "row": 74,
+          "author": "Quek",
+          "year": "2016",
+          "food": "soy",
+          "d": 0.5,
+          "obs": 1.1,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.9722222222222223,
+            "ref_dose": 1.4861111111111112,
+            "blind_dose": 1.7662037037037037,
+            "constant_fit": 1.2720556862036436,
+            "cheap_fit": 1.2592738713770462,
+            "reference_fit": 1.1899763505796883,
+            "prior_holdout_mean": 1.2456497656772427,
+            "prior_holdout_dose": 1.2508230802551559,
+            "prior_holdout_dose_source": 1.1291122106996418
+          },
+          "abs_log_error": {
+            "no_change": 0.0953101798043249,
+            "ref": 0.5838507587808806,
+            "ref_dose": 0.300852535641526,
+            "blind_dose": 0.47352226323602176,
+            "constant_fit": 0.14532406261734046,
+            "cheap_fit": 0.1352250824807799,
+            "reference_fit": 0.07862325365918632,
+            "prior_holdout_mean": 0.1243471141121967,
+            "prior_holdout_dose": 0.12849161902157305,
+            "prior_holdout_dose_source": 0.026121489883776588
+          }
+        },
+        {
+          "row": 40,
+          "author": "Roberts",
+          "year": "2013",
+          "food": "whey",
+          "d": 0.4,
+          "obs": 1.59,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.8222222222222222,
+            "blind_dose": 1.6129629629629632,
+            "constant_fit": 1.2212693655457565,
+            "cheap_fit": 1.172385101904698,
+            "reference_fit": 1.2510235789597166,
+            "prior_holdout_mean": 1.2144517554278,
+            "prior_holdout_dose": 1.2037089593527968,
+            "prior_holdout_dose_source": 1.3125991017396077
+          },
+          "abs_log_error": {
+            "no_change": 0.4637340162321402,
+            "ref": 0.6532274111041659,
+            "ref_dose": 0.13632274126179306,
+            "blind_dose": 0.014338821062042552,
+            "constant_fit": 0.263843234831928,
+            "cheap_fit": 0.30469379380671113,
+            "reference_fit": 0.23977193683568726,
+            "prior_holdout_mean": 0.26944127137514146,
+            "prior_holdout_dose": 0.27832642667875523,
+            "prior_holdout_dose_source": 0.19172479751161944
+          }
+        },
+        {
+          "row": 41,
+          "author": "Roberts",
+          "year": "2013",
+          "food": "whey",
+          "d": 0.4,
+          "obs": 1.58,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.8222222222222222,
+            "blind_dose": 1.6129629629629632,
+            "constant_fit": 1.2212693655457565,
+            "cheap_fit": 1.172385101904698,
+            "reference_fit": 1.2510235789597166,
+            "prior_holdout_mean": 1.2144517554278,
+            "prior_holdout_dose": 1.2037089593527968,
+            "prior_holdout_dose_source": 1.3125991017396077
+          },
+          "abs_log_error": {
+            "no_change": 0.45742484703887554,
+            "ref": 0.6595365802974307,
+            "ref_dose": 0.1426319104550579,
+            "blind_dose": 0.020647990255307468,
+            "constant_fit": 0.2575340656386632,
+            "cheap_fit": 0.29838462461344645,
+            "reference_fit": 0.23346276764242258,
+            "prior_holdout_mean": 0.26313210218187677,
+            "prior_holdout_dose": 0.2720172574854905,
+            "prior_holdout_dose_source": 0.1854156283183547
+          }
+        },
+        {
+          "row": 73,
+          "author": "Sun",
+          "year": "2015 (a)",
+          "food": "soy",
+          "d": 0.17,
+          "obs": 1.31,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.9722222222222223,
+            "ref_dose": 1.1652777777777779,
+            "blind_dose": 1.2605092592592593,
+            "constant_fit": 1.2507080340602128,
+            "cheap_fit": 1.085377124535867,
+            "reference_fit": 1.0648764963800117,
+            "prior_holdout_mean": 1.2453633092068659,
+            "prior_holdout_dose": 1.2029226241654574,
+            "prior_holdout_dose_source": 1.0323385858950624
+          },
+          "abs_log_error": {
+            "no_change": 0.27002713721306026,
+            "ref": 0.4091338013721453,
+            "ref_dose": 0.11706764275595494,
+            "blind_dose": 0.03851132389070426,
+            "constant_fit": 0.046317319010042254,
+            "cheap_fit": 0.18809963039525854,
+            "reference_fit": 0.2071683106165943,
+            "prior_holdout_mean": 0.050599835242006584,
+            "prior_holdout_dose": 0.08527302135353584,
+            "prior_holdout_dose_source": 0.23820043685487663
+          }
+        },
+        {
+          "row": 67,
+          "author": "Thondre",
+          "year": "2021",
+          "food": "pea",
+          "d": 0.5,
+          "obs": 1.39,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 2.5833333333333335,
+            "ref_dose": 1.7916666666666667,
+            "blind_dose": 1.7662037037037037,
+            "constant_fit": 1.237140695348689,
+            "cheap_fit": 1.2345301735548107,
+            "reference_fit": 1.2733105799427649,
+            "prior_holdout_mean": 1.2270616152232914,
+            "prior_holdout_dose": 1.2333701659433005,
+            "prior_holdout_dose_source": 1.1795964281744389
+          },
+          "abs_log_error": {
+            "no_change": 0.3293037471426003,
+            "ref": 0.6197768075545457,
+            "ref_dose": 0.25384253820301655,
+            "blind_dose": 0.23952869589774645,
+            "constant_fit": 0.1165009210337775,
+            "cheap_fit": 0.11861327571449974,
+            "reference_fit": 0.0876834825067781,
+            "prior_holdout_mean": 0.12468136651871324,
+            "prior_holdout_dose": 0.11955335232810822,
+            "prior_holdout_dose_source": 0.16413137718545487
+          }
+        },
+        {
+          "row": 69,
+          "author": "Thondre",
+          "year": "2021",
+          "food": "pea",
+          "d": 1.0,
+          "obs": 1.47,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 2.5833333333333335,
+            "ref_dose": 2.5833333333333335,
+            "blind_dose": 2.5324074074074074,
+            "constant_fit": 1.237140695348689,
+            "cheap_fit": 1.4335841970096312,
+            "reference_fit": 1.4817756228854106,
+            "prior_holdout_mean": 1.2270616152232914,
+            "prior_holdout_dose": 1.2848800936445255,
+            "prior_holdout_dose_source": 1.2288605732053977
+          },
+          "abs_log_error": {
+            "no_change": 0.38526240079064494,
+            "ref": 0.563818153906501,
+            "ref_dose": 0.563818153906501,
+            "blind_dose": 0.5439079939471713,
+            "constant_fit": 0.17245957468182208,
+            "cheap_fit": 0.025084660904145763,
+            "reference_fit": 0.007978713059075692,
+            "prior_holdout_mean": 0.18064002016675776,
+            "prior_holdout_dose": 0.13459699913621959,
+            "prior_holdout_dose_source": 0.17917502399356633
+          }
+        },
+        {
+          "row": 33,
+          "author": "Wolever",
+          "year": "2016",
+          "food": "whey",
+          "d": 0.15,
+          "obs": 1.26,
+          "method": "Reported",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.3083333333333333,
+            "blind_dose": 1.229861111111111,
+            "constant_fit": 1.256806833585739,
+            "cheap_fit": 1.0764289822561324,
+            "reference_fit": 1.1166965705193184,
+            "prior_holdout_mean": 1.242641698971743,
+            "prior_holdout_dose": 1.1908190440904276,
+            "prior_holdout_dose_source": 1.3445422069765487
+          },
+          "abs_log_error": {
+            "no_change": 0.2311117209633867,
+            "ref": 0.8858497063729196,
+            "ref_dose": 0.03764234160287545,
+            "blind_dose": 0.024210475750599446,
+            "constant_fit": 0.0025374757291592815,
+            "cheap_fit": 0.1574626562823277,
+            "reference_fit": 0.12073688458354874,
+            "prior_holdout_mean": 0.01387220503917587,
+            "prior_holdout_dose": 0.056470378245835375,
+            "prior_holdout_dose_source": 0.06494186759238418
+          }
+        }
+      ],
+      "per_author_mae": {
+        "Acheson": {
+          "no_change": 0.22579252186085877,
+          "ref": 0.6722686610998971,
+          "ref_dose": 0.8081013626831455,
+          "blind_dose": 0.844251985687696,
+          "constant_fit": 0.20598989456467906,
+          "cheap_fit": 0.3881458624324559,
+          "reference_fit": 0.32082322445932854,
+          "prior_holdout_mean": 0.2059898945646791,
+          "prior_holdout_dose": 0.22956370872100582,
+          "prior_holdout_dose_source": 0.2496038447596194
+        },
+        "Camps": {
+          "no_change": 0.02020270731751947,
+          "ref": 0.699363645902725,
+          "ref_dose": 0.15633488164209938,
+          "blind_dose": 0.22710395253030666,
+          "constant_fit": 0.28019125608686013,
+          "cheap_fit": 0.09725157302186498,
+          "reference_fit": 0.07811648637301251,
+          "prior_holdout_mean": 0.2625736660698208,
+          "prior_holdout_dose": 0.2440705349136942,
+          "prior_holdout_dose_source": 0.15287720106306416
+        },
+        "Fahmi": {
+          "no_change": 0.08458913908065763,
+          "ref": 0.8644914156164885,
+          "ref_dose": 0.05033148121527359,
+          "blind_dose": 0.049400027118338456,
+          "constant_fit": 0.16230042888891086,
+          "cheap_fit": 0.060901250804031054,
+          "reference_fit": 0.05867132421915724,
+          "prior_holdout_mean": 0.1473026350318261,
+          "prior_holdout_dose": 0.1133923707002557,
+          "prior_holdout_dose_source": 0.16683170874294206
+        },
+        "Gunnerud": {
+          "no_change": 0.31589362197074927,
+          "ref": 0.8010678053655568,
+          "ref_dose": 0.2764245157770379,
+          "blind_dose": 0.1721003710290251,
+          "constant_fit": 0.1161545463622138,
+          "cheap_fit": 0.14479156388004694,
+          "reference_fit": 0.0982289767213576,
+          "prior_holdout_mean": 0.1192262736238247,
+          "prior_holdout_dose": 0.11692790470736941,
+          "prior_holdout_dose_source": 0.10025996922726671
+        },
+        "Quek": {
+          "no_change": 0.13463174346388146,
+          "ref": 0.720749515021296,
+          "ref_dose": 0.3851070176650788,
+          "blind_dose": 0.43420069957646523,
+          "constant_fit": 0.10600249895778396,
+          "cheap_fit": 0.09590351882122347,
+          "reference_fit": 0.09355718927173336,
+          "prior_holdout_mean": 0.08502555045264021,
+          "prior_holdout_dose": 0.08917005536201658,
+          "prior_holdout_dose_source": 0.037984990793118345
+        },
+        "Roberts": {
+          "no_change": 0.46057943163550785,
+          "ref": 0.6563819957007984,
+          "ref_dose": 0.13947732585842548,
+          "blind_dose": 0.01749340565867501,
+          "constant_fit": 0.26068865023529564,
+          "cheap_fit": 0.3015392092100788,
+          "reference_fit": 0.23661735223905492,
+          "prior_holdout_mean": 0.2662866867785091,
+          "prior_holdout_dose": 0.27517184208212286,
+          "prior_holdout_dose_source": 0.18857021291498707
+        },
+        "Sun": {
+          "no_change": 0.27002713721306026,
+          "ref": 0.4091338013721453,
+          "ref_dose": 0.11706764275595494,
+          "blind_dose": 0.03851132389070426,
+          "constant_fit": 0.046317319010042254,
+          "cheap_fit": 0.18809963039525854,
+          "reference_fit": 0.2071683106165943,
+          "prior_holdout_mean": 0.050599835242006584,
+          "prior_holdout_dose": 0.08527302135353584,
+          "prior_holdout_dose_source": 0.23820043685487663
+        },
+        "Thondre": {
+          "no_change": 0.3572830739666226,
+          "ref": 0.5917974807305233,
+          "ref_dose": 0.40883034605475876,
+          "blind_dose": 0.3917183449224588,
+          "constant_fit": 0.14448024785779978,
+          "cheap_fit": 0.07184896830932275,
+          "reference_fit": 0.04783109778292689,
+          "prior_holdout_mean": 0.1526606933427355,
+          "prior_holdout_dose": 0.1270751757321639,
+          "prior_holdout_dose_source": 0.1716532005895106
+        },
+        "Wolever": {
+          "no_change": 0.2311117209633867,
+          "ref": 0.8858497063729196,
+          "ref_dose": 0.03764234160287545,
+          "blind_dose": 0.024210475750599446,
+          "constant_fit": 0.0025374757291592815,
+          "cheap_fit": 0.1574626562823277,
+          "reference_fit": 0.12073688458354874,
+          "prior_holdout_mean": 0.01387220503917587,
+          "prior_holdout_dose": 0.056470378245835375,
+          "prior_holdout_dose_source": 0.06494186759238418
+        }
+      },
+      "equal_author_mae": {
+        "no_change": 0.233345677496916,
+        "ref": 0.7001226696869278,
+        "ref_dose": 0.2643685461394055,
+        "blind_dose": 0.24433228735158544,
+        "constant_fit": 0.14718470196586053,
+        "cheap_fit": 0.16732713701740112,
+        "reference_fit": 0.14019453847407937,
+        "prior_holdout_mean": 0.14483749334946866,
+        "prior_holdout_dose": 0.14856833242422218,
+        "prior_holdout_dose_source": 0.1523248258375299
+      },
+      "same_dose_shared_control_pairs": [
+        {
+          "author": "Acheson",
+          "foods": [
+            "whey",
+            "soy"
+          ],
+          "obs": 1.5098039215686274,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.549295774647887,
+            "ref_dose": 1.6112852664576802,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.2868599216406762,
+            "prior_holdout_mean": 1.0,
+            "prior_holdout_dose": 1.0,
+            "prior_holdout_dose_source": 1.168242425986124
+          },
+          "abs_log_error": {
+            "no_change": 0.41197978912935806,
+            "ref": 0.025820699621742573,
+            "ref_dose": 0.06505237354096252,
+            "blind_dose": 0.41197978912935806,
+            "constant_fit": 0.41197978912935806,
+            "cheap_fit": 0.41197978912935806,
+            "reference_fit": 0.15977470743301486,
+            "prior_holdout_mean": 0.41197978912935806,
+            "prior_holdout_dose": 0.41197978912935806,
+            "prior_holdout_dose_source": 0.2564793697652229
+          }
+        },
+        {
+          "author": "Quek",
+          "foods": [
+            "egg",
+            "soy"
+          ],
+          "obs": 1.0818181818181818,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.4225352112676055,
+            "ref_dose": 1.2803738317757007,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.114617167637117,
+            "prior_holdout_mean": 1.0,
+            "prior_holdout_dose": 1.0,
+            "prior_holdout_dose_source": 1.1077934224802133
+          },
+          "abs_log_error": {
+            "no_change": 0.0786431273191131,
+            "ref": 0.2737975124808309,
+            "ref_dose": 0.1685089640471054,
+            "blind_dose": 0.0786431273191131,
+            "constant_fit": 0.0786431273191131,
+            "cheap_fit": 0.0786431273191131,
+            "reference_fit": 0.02986787122509376,
+            "prior_holdout_mean": 0.0786431273191131,
+            "prior_holdout_dose": 0.0786431273191131,
+            "prior_holdout_dose_source": 0.02372700181868348
+          }
+        }
+      ]
+    },
+    "Calculated": {
+      "eligible_before_name_matching": 25,
+      "eligible_authors_before": 8,
+      "matched_rows": 20,
+      "matched_authors": 3,
+      "unmatched_rows": [
+        3,
+        6,
+        13,
+        14,
+        15
+      ],
+      "fits": {
+        "Allerton": {
+          "training_authors": [
+            "Lan-Pidhainy",
+            "Nilsson"
+          ],
+          "beta": {
+            "constant_log": 0.3847582290681995,
+            "cheap": 0.8970405434039241,
+            "reference": 0.5323946636879199
+          }
+        },
+        "Lan-Pidhainy": {
+          "training_authors": [
+            "Allerton",
+            "Nilsson"
+          ],
+          "beta": {
+            "constant_log": 0.40679666681790627,
+            "cheap": 0.9695502300992535,
+            "reference": 0.5768886866967159
+          }
+        },
+        "Nilsson": {
+          "training_authors": [
+            "Allerton",
+            "Lan-Pidhainy"
+          ],
+          "beta": {
+            "constant_log": 0.32155126664037015,
+            "cheap": 1.17351928390154,
+            "reference": 0.6753347060610781
+          }
+        }
+      },
+      "predictions": [
+        {
+          "row": 35,
+          "author": "Allerton",
+          "year": "2016",
+          "food": "whey",
+          "d": 0.21,
+          "obs": 1.41,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.4316666666666666,
+            "blind_dose": 1.3218055555555557,
+            "constant_fit": 1.4692590543656185,
+            "cheap_fit": 1.1864838566780462,
+            "reference_fit": 1.210512847532046,
+            "prior_holdout_mean": 1.65499762066448,
+            "prior_holdout_dose": 1.3600544936853889,
+            "prior_holdout_dose_source": 1.3867479840259676
+          },
+          "abs_log_error": {
+            "no_change": 0.34358970439007686,
+            "ref": 0.7733717229462292,
+            "ref_dose": 0.01524956237803217,
+            "blind_dose": 0.06459105732188,
+            "constant_fit": 0.0411685246781225,
+            "cheap_fit": 0.17259551342288232,
+            "reference_fit": 0.15254559364104966,
+            "prior_holdout_mean": 0.16020986677294916,
+            "prior_holdout_dose": 0.03606493655853722,
+            "prior_holdout_dose_source": 0.016628278177989682
+          }
+        },
+        {
+          "row": 24,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.17,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.15700374880966467,
+            "ref": 0.9599576785266415,
+            "ref_dose": 0.02993675384058444,
+            "blind_dose": 0.014427734225694948,
+            "constant_fit": 0.2497929180082416,
+            "cheap_fit": 0.06459574204958021,
+            "reference_fit": 0.04915988774533854,
+            "prior_holdout_mean": 0.35230543179078805,
+            "prior_holdout_dose": 0.1301779516973741,
+            "prior_holdout_dose_source": 0.16946797846878045
+          }
+        },
+        {
+          "row": 25,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.14,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.13102826240640403,
+            "ref": 0.9859331649299022,
+            "ref_dose": 0.055912240243845154,
+            "blind_dose": 0.011547752177565675,
+            "constant_fit": 0.2757684044115023,
+            "cheap_fit": 0.038620255646319546,
+            "reference_fit": 0.023184401342077922,
+            "prior_holdout_mean": 0.3782809181940488,
+            "prior_holdout_dose": 0.15615343810063484,
+            "prior_holdout_dose_source": 0.19544346487204112
+          }
+        },
+        {
+          "row": 26,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.08,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.07696104113612844,
+            "ref": 1.0400003862001779,
+            "ref_dose": 0.10997946151412065,
+            "blind_dose": 0.0656149734478413,
+            "constant_fit": 0.32983562568177777,
+            "cheap_fit": 0.015446965623956158,
+            "reference_fit": 0.030882819928197802,
+            "prior_holdout_mean": 0.43234813946432443,
+            "prior_holdout_dose": 0.21022065937091042,
+            "prior_holdout_dose_source": 0.2495106861423168
+          }
+        },
+        {
+          "row": 27,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.15,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.1397619423751586,
+            "ref": 0.9771994849611476,
+            "ref_dose": 0.04717856027509047,
+            "blind_dose": 0.0028140722088110495,
+            "constant_fit": 0.26703472444274756,
+            "cheap_fit": 0.047353935615074144,
+            "reference_fit": 0.03191808131083256,
+            "prior_holdout_mean": 0.3695472382252941,
+            "prior_holdout_dose": 0.14741975813188032,
+            "prior_holdout_dose_source": 0.1867097849032866
+          }
+        },
+        {
+          "row": 28,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.2,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.1823215567939546,
+            "ref": 0.9346398705423516,
+            "ref_dose": 0.004618945856294458,
+            "blind_dose": 0.03974554220998481,
+            "constant_fit": 0.2244751100239516,
+            "cheap_fit": 0.08991355003387014,
+            "reference_fit": 0.07447769572962848,
+            "prior_holdout_mean": 0.32698762380649815,
+            "prior_holdout_dose": 0.1048601437130842,
+            "prior_holdout_dose_source": 0.14415017048449053
+          }
+        },
+        {
+          "row": 29,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.22,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.19885085874516517,
+            "ref": 0.918110568591141,
+            "ref_dose": 0.01191035609491599,
+            "blind_dose": 0.05627484416119538,
+            "constant_fit": 0.20794580807274102,
+            "cheap_fit": 0.10644285198508079,
+            "reference_fit": 0.09100699768083903,
+            "prior_holdout_mean": 0.3104583218552877,
+            "prior_holdout_dose": 0.08833084176187374,
+            "prior_holdout_dose_source": 0.12762086853328003
+          }
+        },
+        {
+          "row": 30,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.03,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.02955880224154439,
+            "ref": 1.0874026250947617,
+            "ref_dose": 0.1573817004087046,
+            "blind_dose": 0.1130172123424254,
+            "constant_fit": 0.37723786457636177,
+            "cheap_fit": 0.0628492045185401,
+            "reference_fit": 0.07828505882278176,
+            "prior_holdout_mean": 0.47975037835890844,
+            "prior_holdout_dose": 0.2576228982654944,
+            "prior_holdout_dose_source": 0.2969129250369007
+          }
+        },
+        {
+          "row": 31,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.26,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.2311117209633867,
+            "ref": 0.8858497063729196,
+            "ref_dose": 0.04417121831313754,
+            "blind_dose": 0.08853570637941682,
+            "constant_fit": 0.17568494585451958,
+            "cheap_fit": 0.13870371420330224,
+            "reference_fit": 0.12326785989906049,
+            "prior_holdout_mean": 0.2781974596370661,
+            "prior_holdout_dose": 0.056069979543652296,
+            "prior_holdout_dose_source": 0.09536000631505863
+          }
+        },
+        {
+          "row": 32,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.1,
+          "obs": 1.26,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 1.2055555555555555,
+            "blind_dose": 1.1532407407407408,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.0968122376078178,
+            "reference_fit": 1.1138738127363959,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.3326663376272296,
+            "prior_holdout_dose_source": 1.3860690612644035
+          },
+          "abs_log_error": {
+            "no_change": 0.2311117209633867,
+            "ref": 0.8858497063729196,
+            "ref_dose": 0.04417121831313754,
+            "blind_dose": 0.08853570637941682,
+            "constant_fit": 0.17568494585451958,
+            "cheap_fit": 0.13870371420330224,
+            "reference_fit": 0.12326785989906049,
+            "prior_holdout_mean": 0.2781974596370661,
+            "prior_holdout_dose": 0.056069979543652296,
+            "prior_holdout_dose_source": 0.09536000631505863
+          }
+        },
+        {
+          "row": 42,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.57,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.45107561936021673,
+            "ref": 0.6658858079760894,
+            "ref_dose": 0.3524196183685939,
+            "blind_dose": 0.20096017295729746,
+            "constant_fit": 0.04427895254231046,
+            "cheap_fit": 0.004616507522470285,
+            "reference_fit": 0.012451693100222462,
+            "prior_holdout_mean": 0.05823356124023601,
+            "prior_holdout_dose": 0.06628999834206958,
+            "prior_holdout_dose_source": 0.105580025113476
+          }
+        },
+        {
+          "row": 43,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.64,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.49469624183610705,
+            "ref": 0.6222651855001992,
+            "ref_dose": 0.30879899589270365,
+            "blind_dose": 0.1573395504814071,
+            "constant_fit": 0.08789957501820071,
+            "cheap_fit": 0.03900411495341995,
+            "reference_fit": 0.031168929375667745,
+            "prior_holdout_mean": 0.014612938764345676,
+            "prior_holdout_dose": 0.022669375866179262,
+            "prior_holdout_dose_source": 0.06195940263758568
+          }
+        },
+        {
+          "row": 44,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.41,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.34358970439007686,
+            "ref": 0.7733717229462292,
+            "ref_dose": 0.4599055333387338,
+            "blind_dose": 0.30844608792743733,
+            "constant_fit": 0.06320696242782935,
+            "cheap_fit": 0.11210242249261018,
+            "reference_fit": 0.1199376080703624,
+            "prior_holdout_mean": 0.165719476210376,
+            "prior_holdout_dose": 0.17377591331220943,
+            "prior_holdout_dose_source": 0.21306594008361585
+          }
+        },
+        {
+          "row": 45,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.55,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.4382549309311553,
+            "ref": 0.6787064964051508,
+            "ref_dose": 0.36524030679765546,
+            "blind_dose": 0.21378086138635885,
+            "constant_fit": 0.03145826411324902,
+            "cheap_fit": 0.017437195951531894,
+            "reference_fit": 0.025272381529284006,
+            "prior_holdout_mean": 0.07105424966929758,
+            "prior_holdout_dose": 0.0791106867711309,
+            "prior_holdout_dose_source": 0.1184007135425374
+          }
+        },
+        {
+          "row": 46,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.63,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.48858001481867097,
+            "ref": 0.6283814125176352,
+            "ref_dose": 0.31491522291013985,
+            "blind_dose": 0.1634557774988432,
+            "constant_fit": 0.08178334800076463,
+            "cheap_fit": 0.03288788793598374,
+            "reference_fit": 0.025052702358231666,
+            "prior_holdout_mean": 0.020729165781781977,
+            "prior_holdout_dose": 0.028785602883615362,
+            "prior_holdout_dose_source": 0.0680756296550218
+          }
+        },
+        {
+          "row": 47,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.28,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.24686007793152578,
+            "ref": 0.8701013494047803,
+            "ref_dose": 0.556635159797285,
+            "blind_dose": 0.4051757143859883,
+            "constant_fit": 0.15993658888638035,
+            "cheap_fit": 0.20883204895116134,
+            "reference_fit": 0.21666723452891334,
+            "prior_holdout_mean": 0.26244910266892696,
+            "prior_holdout_dose": 0.2705055397707605,
+            "prior_holdout_dose_source": 0.3097955665421669
+          }
+        },
+        {
+          "row": 48,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.45,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.37156355643248296,
+            "ref": 0.7453978709038231,
+            "ref_dose": 0.43193168129632775,
+            "blind_dose": 0.28047223588503106,
+            "constant_fit": 0.03523311038542322,
+            "cheap_fit": 0.08412857045020403,
+            "reference_fit": 0.09196375602795621,
+            "prior_holdout_mean": 0.1377456241679698,
+            "prior_holdout_dose": 0.14580206126980327,
+            "prior_holdout_dose_source": 0.1850920880412097
+          }
+        },
+        {
+          "row": 49,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.72,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.5423242908253616,
+            "ref": 0.5746371365109445,
+            "ref_dose": 0.26117094690344905,
+            "blind_dose": 0.10971150149215239,
+            "constant_fit": 0.13552762400745538,
+            "cheap_fit": 0.08663216394267458,
+            "reference_fit": 0.07879697836492244,
+            "prior_holdout_mean": 0.03301511022490891,
+            "prior_holdout_dose": 0.02495867312307545,
+            "prior_holdout_dose_source": 0.01433135364833108
+          }
+        },
+        {
+          "row": 50,
+          "author": "Lan-Pidhainy",
+          "year": "2010",
+          "food": "whey",
+          "d": 0.6,
+          "obs": 1.89,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.2333333333333334,
+            "blind_dose": 1.9194444444444443,
+            "constant_fit": 1.501998668441487,
+            "cheap_fit": 1.5772646726160289,
+            "reference_fit": 1.5896713749681823,
+            "prior_holdout_mean": 1.6641411767556957,
+            "prior_holdout_dose": 1.6776023773231303,
+            "prior_holdout_dose_source": 1.7448274085254363
+          },
+          "abs_log_error": {
+            "no_change": 0.6365768290715509,
+            "ref": 0.48038459826475516,
+            "ref_dose": 0.1669184086572597,
+            "blind_dose": 0.015458963245963154,
+            "constant_fit": 0.2297801622536447,
+            "cheap_fit": 0.18088470218886385,
+            "reference_fit": 0.17304951661111176,
+            "prior_holdout_mean": 0.12726764847109814,
+            "prior_holdout_dose": 0.1192112113692647,
+            "prior_holdout_dose_source": 0.07992118459785824
+          }
+        },
+        {
+          "row": 52,
+          "author": "Nilsson",
+          "year": "2007",
+          "food": "whey",
+          "d": 0.72,
+          "obs": 1.6,
+          "method": "Calculated",
+          "pred": {
+            "no_change": 1.0,
+            "ref": 3.0555555555555554,
+            "ref_dose": 2.4799999999999995,
+            "blind_dose": 2.1033333333333335,
+            "constant_fit": 1.3792657145329734,
+            "cheap_fit": 1.8897187593300768,
+            "reference_fit": 1.846659862956145,
+            "prior_holdout_mean": 1.6290513158332498,
+            "prior_holdout_dose": 1.7888226006560877,
+            "prior_holdout_dose_source": 1.8615663510446854
+          },
+          "abs_log_error": {
+            "no_change": 0.4700036292457356,
+            "ref": 0.6469577980905706,
+            "ref_dose": 0.438254930931155,
+            "blind_dose": 0.27351975863927663,
+            "constant_fit": 0.1484523626053654,
+            "cheap_fit": 0.16642438416605343,
+            "reference_fit": 0.14337489851878296,
+            "prior_holdout_mean": 0.017994201310333146,
+            "prior_holdout_dose": 0.11155400918802494,
+            "prior_holdout_dose_source": 0.15141462830929323
+          }
+        }
+      ],
+      "per_author_mae": {
+        "Allerton": {
+          "no_change": 0.34358970439007686,
+          "ref": 0.7733717229462292,
+          "ref_dose": 0.01524956237803217,
+          "blind_dose": 0.06459105732188,
+          "constant_fit": 0.0411685246781225,
+          "cheap_fit": 0.17259551342288232,
+          "reference_fit": 0.15254559364104966,
+          "prior_holdout_mean": 0.16020986677294916,
+          "prior_holdout_dose": 0.03606493655853722,
+          "prior_holdout_dose_source": 0.016628278177989682
+        },
+        "Lan-Pidhainy": {
+          "no_change": 0.29951282889066344,
+          "ref": 0.8174485984456428,
+          "ref_dose": 0.20684424049010997,
+          "blind_dose": 0.1297396893773795,
+          "constant_fit": 0.17514249636453447,
+          "cheap_fit": 0.08161975268155253,
+          "reference_fit": 0.07776730346247161,
+          "prior_holdout_mean": 0.22760554712045686,
+          "prior_holdout_dose": 0.11877970626870361,
+          "prior_holdout_dose_source": 0.1509309886073898
+        },
+        "Nilsson": {
+          "no_change": 0.4700036292457356,
+          "ref": 0.6469577980905706,
+          "ref_dose": 0.438254930931155,
+          "blind_dose": 0.27351975863927663,
+          "constant_fit": 0.1484523626053654,
+          "cheap_fit": 0.16642438416605343,
+          "reference_fit": 0.14337489851878296,
+          "prior_holdout_mean": 0.017994201310333146,
+          "prior_holdout_dose": 0.11155400918802494,
+          "prior_holdout_dose_source": 0.15141462830929323
+        }
+      },
+      "equal_author_mae": {
+        "no_change": 0.3710353875088253,
+        "ref": 0.7459260398274808,
+        "ref_dose": 0.22011624459976573,
+        "blind_dose": 0.1559501684461787,
+        "constant_fit": 0.12158779454934078,
+        "cheap_fit": 0.14021321675682943,
+        "reference_fit": 0.12456259854076808,
+        "prior_holdout_mean": 0.13526987173457972,
+        "prior_holdout_dose": 0.08879955067175527,
+        "prior_holdout_dose_source": 0.10632463169822425
+      },
+      "same_dose_shared_control_pairs": []
+    }
+  },
+  "acheson": {
+    "16": {
+      "distances": {
+        "whey": {
+          "whey": 0.1313802988923004,
+          "egg": 0.1734178701420688,
+          "soy": 0.21314524236199137,
+          "pea": 0.22779186153240966,
+          "rice": 0.2334217279726262,
+          "gluten": 0.3291592490694287
+        },
+        "casein": {
+          "egg": 0.13886860491322964,
+          "soy": 0.1590435439214699,
+          "rice": 0.17389162561576355,
+          "whey": 0.17439093484419266,
+          "gluten": 0.19874417520969245,
+          "pea": 0.20066448527561037
+        },
+        "soy": {
+          "soy": 0.052254255935832675,
+          "rice": 0.07756888168557537,
+          "egg": 0.09323206321966929,
+          "pea": 0.099303197719126,
+          "whey": 0.17523335521875474,
+          "gluten": 0.21447500985588505
+        }
+      },
+      "normalized_levels": {
+        "whey": {
+          "no_change": 1.0,
+          "ref": 3.0555555555555554,
+          "ref_dose": 3.569444444444444,
+          "blind_dose": 2.9155092592592595,
+          "constant_fit": 1.257642762182015,
+          "cheap_fit": 1.847694016998821,
+          "reference_fit": 1.9595567254279862,
+          "nearest_removed": 2.8055555555555554,
+          "source_blind": 2.5324074074074074,
+          "energy": 2.494565217391304,
+          "family": 3.0555555555555554
+        },
+        "casein": {
+          "no_change": 1.0,
+          "ref": 2.8055555555555554,
+          "ref_dose": 3.256944444444444,
+          "blind_dose": 2.9155092592592595,
+          "constant_fit": 1.257642762182015,
+          "cheap_fit": 1.847694016998821,
+          "reference_fit": 1.8668992144353513,
+          "nearest_removed": 1.9722222222222223,
+          "source_blind": 2.5324074074074074,
+          "energy": 2.494565217391304
+        },
+        "soy": {
+          "no_change": 1.0,
+          "ref": 1.9722222222222223,
+          "ref_dose": 2.2152777777777777,
+          "blind_dose": 2.9155092592592595,
+          "constant_fit": 1.257642762182015,
+          "cheap_fit": 1.847694016998821,
+          "reference_fit": 1.522742835078474,
+          "nearest_removed": 2.6666666666666665,
+          "source_blind": 2.5324074074074074,
+          "energy": 2.494565217391304,
+          "family": 1.9722222222222223
+        }
+      },
+      "observed_levels": {
+        "whey": 1.5432098765432098,
+        "casein": 1.0823045267489713,
+        "soy": 1.0246913580246912
+      },
+      "level_errors": {
+        "whey": {
+          "no_change": 0.4338645826298623,
+          "ref": 0.6830968447064438,
+          "ref_dose": 0.8385453832493021,
+          "blind_dose": 0.6361799249186924,
+          "constant_fit": 0.20462543750781897,
+          "cheap_fit": 0.1800738016634523,
+          "reference_fit": 0.23885370453849664,
+          "nearest_removed": 0.597736995755287,
+          "source_blind": 0.4953058121079539,
+          "energy": 0.48024986982169715,
+          "family": 0.6830968447064438
+        },
+        "casein": {
+          "no_change": 0.07909258883721619,
+          "ref": 0.9525089895479332,
+          "ref_dose": 1.1016968800330627,
+          "blind_dose": 0.9909519187113386,
+          "constant_fit": 0.1501465562848272,
+          "cheap_fit": 0.5348457954560986,
+          "reference_fit": 0.5451862916382337,
+          "nearest_removed": 0.6000683497479894,
+          "source_blind": 0.8500778059006001,
+          "energy": 0.8350218636143434
+        },
+        "soy": {
+          "no_change": 0.02439145312415901,
+          "ref": 0.6547694854610465,
+          "ref_dose": 0.770986350084685,
+          "blind_dose": 1.0456530544243956,
+          "constant_fit": 0.20484769199788433,
+          "cheap_fit": 0.5895469311691556,
+          "reference_fit": 0.3961217523478566,
+          "nearest_removed": 0.956437799887567,
+          "source_blind": 0.9047789416136571,
+          "energy": 0.8897229993274005,
+          "family": 0.6547694854610465
+        }
+      },
+      "level_mae": {
+        "no_change": 0.17911620819707919,
+        "ref": 0.7634584399051412,
+        "ref_dose": 0.90374287112235,
+        "blind_dose": 0.8909282993514754,
+        "constant_fit": 0.18653989526351014,
+        "cheap_fit": 0.43482217609623547,
+        "reference_fit": 0.39338724950819565,
+        "nearest_removed": 0.7180810484636145,
+        "source_blind": 0.7500541865407371,
+        "energy": 0.7349982442544803,
+        "family": 0.6689331650837451
+      },
+      "contrasts": [
+        {
+          "a": "whey",
+          "b": "casein",
+          "obs": 1.4258555133079847,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.0891089108910892,
+            "ref_dose": 1.095948827292111,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.0496317692332735,
+            "nearest_removed": 1.4225352112676055,
+            "source_blind": 1.0,
+            "energy": 1.0,
+            "leucine_scenario": 1.1993885212870565
+          },
+          "abs_log_error": {
+            "no_change": 0.35477199379264623,
+            "ref": 0.2694121448414894,
+            "ref_dose": 0.2631514967837604,
+            "blind_dose": 0.35477199379264623,
+            "constant_fit": 0.35477199379264623,
+            "cheap_fit": 0.35477199379264623,
+            "reference_fit": 0.30633258709973704,
+            "nearest_removed": 0.0023313539927021765,
+            "source_blind": 0.35477199379264623,
+            "energy": 0.35477199379264623,
+            "leucine_scenario": 0.17296013246547945
+          }
+        },
+        {
+          "a": "whey",
+          "b": "soy",
+          "obs": 1.5060240963855422,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.549295774647887,
+            "ref_dose": 1.6112852664576802,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.2868599216406762,
+            "nearest_removed": 1.0520833333333333,
+            "source_blind": 1.0,
+            "energy": 1.0,
+            "family": 1.549295774647887,
+            "leucine_scenario": 1.2718351390487566
+          },
+          "abs_log_error": {
+            "no_change": 0.4094731295057033,
+            "ref": 0.02832735924539744,
+            "ref_dose": 0.06755903316461719,
+            "blind_dose": 0.4094731295057033,
+            "constant_fit": 0.4094731295057033,
+            "cheap_fit": 0.4094731295057033,
+            "reference_fit": 0.1572680478093601,
+            "nearest_removed": 0.35870080413228017,
+            "source_blind": 0.4094731295057033,
+            "energy": 0.4094731295057033,
+            "family": 0.02832735924539744,
+            "leucine_scenario": 0.16901228065364404
+          }
+        },
+        {
+          "a": "casein",
+          "b": "soy",
+          "obs": 1.0562248995983936,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.4225352112676055,
+            "ref_dose": 1.4702194357366771,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.2260108348098984,
+            "nearest_removed": 0.7395833333333334,
+            "source_blind": 1.0,
+            "energy": 1.0,
+            "leucine_scenario": 1.0604029607386587
+          },
+          "abs_log_error": {
+            "no_change": 0.054701135713056945,
+            "ref": 0.29773950408688693,
+            "ref_dose": 0.3307105299483778,
+            "blind_dose": 0.054701135713056945,
+            "constant_fit": 0.054701135713056945,
+            "cheap_fit": 0.054701135713056945,
+            "reference_fit": 0.14906453929037722,
+            "nearest_removed": 0.3563694501395777,
+            "source_blind": 0.054701135713056945,
+            "energy": 0.054701135713056945,
+            "leucine_scenario": 0.003947851811835398
+          }
+        }
+      ],
+      "contrast_mae": {
+        "no_change": 0.2729820863371355,
+        "ref": 0.19849300272459125,
+        "ref_dose": 0.22047368663225178,
+        "blind_dose": 0.2729820863371355,
+        "constant_fit": 0.2729820863371355,
+        "cheap_fit": 0.2729820863371355,
+        "reference_fit": 0.20422172473315814,
+        "nearest_removed": 0.23913386942152,
+        "source_blind": 0.2729820863371355,
+        "energy": 0.2729820863371355,
+        "family": 0.02832735924539744,
+        "leucine_scenario": 0.1153067549769863
+      },
+      "support": {
+        "family_arms": 2,
+        "family_pairs": 1,
+        "profile_arms": 3,
+        "profile_pairs": 3,
+        "exact_formulations": 0,
+        "absolute_food_input_levels": 0
+      }
+    },
+    "18": {
+      "distances": {
+        "whey": {
+          "whey": 0.1052437643550359,
+          "egg": 0.15371582346609255,
+          "soy": 0.17318442948871363,
+          "pea": 0.18047829457947867,
+          "rice": 0.18671210382728146,
+          "gluten": 0.38290880271504596
+        },
+        "casein": {
+          "rice": 0.1483910826016089,
+          "whey": 0.1548663805991256,
+          "soy": 0.1553911141070715,
+          "egg": 0.16032793522267205,
+          "pea": 0.17255113307744888,
+          "gluten": 0.2557048214942952
+        },
+        "soy": {
+          "soy": 0.04292084288285088,
+          "rice": 0.06649945319618376,
+          "pea": 0.07450722896044205,
+          "egg": 0.11383765501691094,
+          "whey": 0.1294547320241141,
+          "gluten": 0.29550494601227406
+        }
+      },
+      "normalized_levels": {
+        "whey": {
+          "no_change": 1.0,
+          "ref": 3.0555555555555554,
+          "ref_dose": 3.569444444444444,
+          "blind_dose": 2.9155092592592595,
+          "constant_fit": 1.257642762182015,
+          "cheap_fit": 1.847694016998821,
+          "reference_fit": 1.9595567254279862,
+          "nearest_removed": 2.8055555555555554,
+          "source_blind": 2.5324074074074074,
+          "energy": 2.494565217391304,
+          "family": 3.0555555555555554
+        },
+        "casein": {
+          "no_change": 1.0,
+          "ref": 2.6666666666666665,
+          "ref_dose": 3.083333333333333,
+          "blind_dose": 2.9155092592592595,
+          "constant_fit": 1.257642762182015,
+          "cheap_fit": 1.847694016998821,
+          "reference_fit": 1.813607312537788,
+          "nearest_removed": 3.0555555555555554,
+          "source_blind": 2.5324074074074074,
+          "energy": 2.494565217391304
+        },
+        "soy": {
+          "no_change": 1.0,
+          "ref": 1.9722222222222223,
+          "ref_dose": 2.2152777777777777,
+          "blind_dose": 2.9155092592592595,
+          "constant_fit": 1.257642762182015,
+          "cheap_fit": 1.847694016998821,
+          "reference_fit": 1.522742835078474,
+          "nearest_removed": 2.6666666666666665,
+          "source_blind": 2.5324074074074074,
+          "energy": 2.494565217391304,
+          "family": 1.9722222222222223
+        }
+      },
+      "observed_levels": {
+        "whey": 1.5432098765432098,
+        "casein": 1.0823045267489713,
+        "soy": 1.0246913580246912
+      },
+      "level_errors": {
+        "whey": {
+          "no_change": 0.4338645826298623,
+          "ref": 0.6830968447064438,
+          "ref_dose": 0.8385453832493021,
+          "blind_dose": 0.6361799249186924,
+          "constant_fit": 0.20462543750781897,
+          "cheap_fit": 0.1800738016634523,
+          "reference_fit": 0.23885370453849664,
+          "nearest_removed": 0.597736995755287,
+          "source_blind": 0.4953058121079539,
+          "energy": 0.48024986982169715,
+          "family": 0.6830968447064438
+        },
+        "casein": {
+          "no_change": 0.07909258883721619,
+          "ref": 0.90173666417451,
+          "ref_dose": 1.046918674019008,
+          "blind_dose": 0.9909519187113386,
+          "constant_fit": 0.1501465562848272,
+          "cheap_fit": 0.5348457954560986,
+          "reference_fit": 0.5162252634224033,
+          "nearest_removed": 1.03786883849909,
+          "source_blind": 0.8500778059006001,
+          "energy": 0.8350218636143434
+        },
+        "soy": {
+          "no_change": 0.02439145312415901,
+          "ref": 0.6547694854610465,
+          "ref_dose": 0.770986350084685,
+          "blind_dose": 1.0456530544243956,
+          "constant_fit": 0.20484769199788433,
+          "cheap_fit": 0.5895469311691556,
+          "reference_fit": 0.3961217523478566,
+          "nearest_removed": 0.956437799887567,
+          "source_blind": 0.9047789416136571,
+          "energy": 0.8897229993274005,
+          "family": 0.6547694854610465
+        }
+      },
+      "level_mae": {
+        "no_change": 0.17911620819707919,
+        "ref": 0.7465343314473335,
+        "ref_dose": 0.885483469117665,
+        "blind_dose": 0.8909282993514754,
+        "constant_fit": 0.18653989526351014,
+        "cheap_fit": 0.43482217609623547,
+        "reference_fit": 0.38373357343625214,
+        "nearest_removed": 0.8640145447139814,
+        "source_blind": 0.7500541865407371,
+        "energy": 0.7349982442544803,
+        "family": 0.6689331650837451
+      },
+      "contrasts": [
+        {
+          "a": "whey",
+          "b": "casein",
+          "obs": 1.4258555133079847,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.1458333333333333,
+            "ref_dose": 1.1576576576576576,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.0804746495458106,
+            "nearest_removed": 0.9181818181818182,
+            "source_blind": 1.0,
+            "energy": 1.0,
+            "leucine_scenario": 1.1993885212870565
+          },
+          "abs_log_error": {
+            "no_change": 0.35477199379264623,
+            "ref": 0.2186398194680662,
+            "ref_dose": 0.20837329076970582,
+            "blind_dose": 0.35477199379264623,
+            "constant_fit": 0.35477199379264623,
+            "cheap_fit": 0.35477199379264623,
+            "reference_fit": 0.27737155888390685,
+            "nearest_removed": 0.44013184274380285,
+            "source_blind": 0.35477199379264623,
+            "energy": 0.35477199379264623,
+            "leucine_scenario": 0.17296013246547945
+          }
+        },
+        {
+          "a": "whey",
+          "b": "soy",
+          "obs": 1.5060240963855422,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.549295774647887,
+            "ref_dose": 1.6112852664576802,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.2868599216406762,
+            "nearest_removed": 1.0520833333333333,
+            "source_blind": 1.0,
+            "energy": 1.0,
+            "family": 1.549295774647887,
+            "leucine_scenario": 1.2718351390487566
+          },
+          "abs_log_error": {
+            "no_change": 0.4094731295057033,
+            "ref": 0.02832735924539744,
+            "ref_dose": 0.06755903316461719,
+            "blind_dose": 0.4094731295057033,
+            "constant_fit": 0.4094731295057033,
+            "cheap_fit": 0.4094731295057033,
+            "reference_fit": 0.1572680478093601,
+            "nearest_removed": 0.35870080413228017,
+            "source_blind": 0.4094731295057033,
+            "energy": 0.4094731295057033,
+            "family": 0.02832735924539744,
+            "leucine_scenario": 0.16901228065364404
+          }
+        },
+        {
+          "a": "casein",
+          "b": "soy",
+          "obs": 1.0562248995983936,
+          "pred": {
+            "no_change": 1.0,
+            "ref": 1.3521126760563378,
+            "ref_dose": 1.3918495297805642,
+            "blind_dose": 1.0,
+            "constant_fit": 1.0,
+            "cheap_fit": 1.0,
+            "reference_fit": 1.1910135255663998,
+            "nearest_removed": 1.1458333333333333,
+            "source_blind": 1.0,
+            "energy": 1.0,
+            "leucine_scenario": 1.0604029607386587
+          },
+          "abs_log_error": {
+            "no_change": 0.054701135713056945,
+            "ref": 0.24696717871346371,
+            "ref_dose": 0.2759323239343232,
+            "blind_dose": 0.054701135713056945,
+            "constant_fit": 0.054701135713056945,
+            "cheap_fit": 0.054701135713056945,
+            "reference_fit": 0.12010351107454684,
+            "nearest_removed": 0.08143103861152295,
+            "source_blind": 0.054701135713056945,
+            "energy": 0.054701135713056945,
+            "leucine_scenario": 0.003947851811835398
+          }
+        }
+      ],
+      "contrast_mae": {
+        "no_change": 0.2729820863371355,
+        "ref": 0.1646447858089758,
+        "ref_dose": 0.18395488262288207,
+        "blind_dose": 0.2729820863371355,
+        "constant_fit": 0.2729820863371355,
+        "cheap_fit": 0.2729820863371355,
+        "reference_fit": 0.18491437258927126,
+        "nearest_removed": 0.29342122849586866,
+        "source_blind": 0.2729820863371355,
+        "energy": 0.2729820863371355,
+        "family": 0.02832735924539744,
+        "leucine_scenario": 0.1153067549769863
+      },
+      "support": {
+        "family_arms": 2,
+        "family_pairs": 1,
+        "profile_arms": 3,
+        "profile_pairs": 3,
+        "exact_formulations": 0,
+        "absolute_food_input_levels": 0
+      }
+    }
+  }
+}

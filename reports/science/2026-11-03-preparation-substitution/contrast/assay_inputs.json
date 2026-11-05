@@ -1,0 +1,89 @@
+{
+  "zhao": {
+    "source": "https://doi.org/10.3390/nu12092759",
+    "figure": "Figure 1; JPEG 783 x 404 pixels",
+    "image": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7551673.1/nutrients-12-02759-g001.jpg",
+    "origin_y": 341,
+    "bars": {
+      "short": [
+        288,
+        276.5,
+        124
+      ],
+      "long": [
+        192,
+        283.5,
+        213
+      ]
+    },
+    "x_columns": {
+      "short": [
+        209,
+        232,
+        257
+      ],
+      "long": [
+        627,
+        650,
+        675
+      ]
+    },
+    "order": [
+      "RDS",
+      "SDS",
+      "RS"
+    ],
+    "glucose_iAUC": {
+      "rice": 230.4,
+      "minimal_potato_rice": 213.5,
+      "highly_cooked_potato_rice": 229.3
+    },
+    "standalone_GI": {
+      "minimal": 56.2,
+      "high": 82.9
+    },
+    "fraction": 0.3
+  },
+  "wei": {
+    "source": "https://doi.org/10.3390/nu18060973",
+    "fraction_whole": 0.2918238993710692,
+    "fraction_staple": 0.33381294964028774,
+    "starch_g": {
+      "control_rice": 69.48,
+      "test_rice": 46.32,
+      "test_potato": 13
+    },
+    "RDS_SDS_RS_percent": {
+      "rice": [
+        36.8,
+        53.8,
+        9.4
+      ],
+      "hard": [
+        9.4,
+        3.4,
+        87.2
+      ],
+      "soft": [
+        68.1,
+        12.5,
+        19.4
+      ]
+    },
+    "insulin_area": [
+      23224,
+      14517,
+      21635
+    ],
+    "SEM": [
+      2456,
+      801,
+      1829
+    ],
+    "other_carb_g": 10,
+    "hold_seconds": [
+      30,
+      1200
+    ]
+  }
+}

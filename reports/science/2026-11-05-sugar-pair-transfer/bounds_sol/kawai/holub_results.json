@@ -1,0 +1,92 @@
+{
+  "Holub_source_csv_sha256": "6124cb583fe8791337fe32114e596508cf8da100c06f1ffc6702a33384a39d0c",
+  "Holub_area_units": "pmol min/L",
+  "Holub_signed_areas": {
+    "isomaltulose": [
+      7830.630968459048,
+      15200.069619572365
+    ],
+    "sucrose": [
+      15845.389272012335,
+      23214.31698119973
+    ]
+  },
+  "Holub_ratios": [
+    0.49418987656493035,
+    0.6547713478661571
+  ],
+  "Kawai_ratios": [
+    0.39021693111662964,
+    0.4594704703643119
+  ],
+  "Kawai_shape": 1.1774744602944547,
+  "level_MALE": {
+    "Holub_per_window": 0.29521420159216416,
+    "Maastricht_frozen": 0.14682457036738183,
+    "equality_constant_one": 0.8593665324156239
+  },
+  "forecast_shapes": {
+    "Holub_per_window": 1.324938811813415,
+    "Maastricht_frozen": 1.398359325395674,
+    "no_change": 1.0
+  },
+  "shape_log_errors": {
+    "Holub_per_window": 0.11799442170636167,
+    "Maastricht_frozen": 0.17192778206351364,
+    "no_change": 0.16337185690204553
+  },
+  "geometric_threshold_Holub_vs_Maastricht": 1.3611541217209582,
+  "geometric_threshold_Holub_vs_no_change": 1.1510598645654426,
+  "per_window_level_thresholds_Holub_vs_Maastricht": [
+    0.4527054318490037,
+    0.6162018644867377
+  ],
+  "graph_error": {
+    "5": {
+      "Kawai_shape_interval": [
+        1.1431335787989518,
+        1.2143829391675869
+      ],
+      "Kawai_ratio_intervals": [
+        [
+          0.3661429336853273,
+          0.4151546060188376
+        ],
+        [
+          0.4287523968425893,
+          0.4915384392714992
+        ]
+      ],
+      "minimax_target_informed_center": 1.178219807711207,
+      "minimax_target_informed_radius": 0.030231416980247745,
+      "candidate_worst_case_shape_log_error": {
+        "Holub_per_window": 0.14759303378340294,
+        "Maastricht_frozen": 0.201526394140555,
+        "no_change": 0.19423607878549973
+      }
+    },
+    "10": {
+      "Kawai_shape_interval": [
+        1.117258923170141,
+        1.247190539905797
+      ],
+      "Kawai_ratio_intervals": [
+        [
+          0.34525922613016163,
+          0.4382834461825823
+        ],
+        [
+          0.40441344650519784,
+          0.51902041518241
+        ]
+      ],
+      "minimax_target_informed_center": 1.1804383760294892,
+      "minimax_target_informed_radius": 0.05500757907037979,
+      "candidate_worst_case_shape_log_error": {
+        "Holub_per_window": 0.17048798308241367,
+        "Maastricht_frozen": 0.22442134343956585,
+        "no_change": 0.2208934536667529
+      }
+    }
+  }
+}

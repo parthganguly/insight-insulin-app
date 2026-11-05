@@ -1,0 +1,220 @@
+{
+  "positive_area_means": [
+    590,
+    1709
+  ],
+  "ratio_of_means": 0.34523112931538913,
+  "mean_of_individual_ratios": 0.36,
+  "unknown_covariance_t_interval": [
+    0.1887163760358299,
+    0.567644690665882
+  ],
+  "rounding_envelope": [
+    0.187800744734703,
+    0.5693638124946551
+  ],
+  "model_midpoints": {
+    "grams vs stoichiometric": {
+      "cutoff": 1.0259774528846337,
+      "closer_throughout_rounding_envelope": "grams"
+    },
+    "Holub120 vs grams": {
+      "cutoff": 0.809179430040087,
+      "closer_throughout_rounding_envelope": "Holub120"
+    },
+    "Holub120 vs stoichiometric": {
+      "cutoff": 0.8301998505591681,
+      "closer_throughout_rounding_envelope": "Holub120"
+    },
+    "Holub_scalar vs grams": {
+      "cutoff": 0.7216356282778726,
+      "closer_throughout_rounding_envelope": "Holub_scalar"
+    },
+    "Holub_scalar vs stoichiometric": {
+      "cutoff": 0.7403818838113342,
+      "closer_throughout_rounding_envelope": "Holub_scalar"
+    },
+    "Holub_scalar vs Holub120": {
+      "cutoff": 0.5839327063865091,
+      "closer_throughout_rounding_envelope": "Holub_scalar"
+    },
+    "Johansen33 vs grams": {
+      "cutoff": 0.648074069840786,
+      "closer_throughout_rounding_envelope": "Johansen33"
+    },
+    "Johansen33 vs stoichiometric": {
+      "cutoff": 0.6649093834558278,
+      "closer_throughout_rounding_envelope": "Johansen33"
+    },
+    "Johansen33 vs Holub120": {
+      "cutoff": 0.5244082064575267,
+      "closer_throughout_rounding_envelope": null
+    },
+    "Johansen33 vs Holub_scalar": {
+      "cutoff": 0.46767333856015353,
+      "closer_throughout_rounding_envelope": null
+    }
+  },
+  "native_levels_conditional_minute_unit": {
+    "Lee25_6": {
+      "grams": {
+        "glucose": 1350.0,
+        "trehalose": 1350.0,
+        "signed_errors": [
+          -359.0,
+          760.0
+        ],
+        "level_MAE": 559.5,
+        "ratio_log_error": 1.0635411462158257
+      },
+      "stoichiometric": {
+        "glucose": 1350.0,
+        "trehalose": 1421.0501406673152,
+        "signed_errors": [
+          -359.0,
+          831.0501406673152
+        ],
+        "level_MAE": 595.0250703336576,
+        "ratio_log_error": 1.114832687738099
+      },
+      "Holub120": {
+        "glucose": 1350.0,
+        "trehalose": 883.9413225,
+        "signed_errors": [
+          -359.0,
+          293.94132249999996
+        ],
+        "level_MAE": 326.47066125,
+        "ratio_log_error": 0.6400719579554826
+      },
+      "Holub_scalar": {
+        "glucose": 1350.0,
+        "trehalose": 703.0232729999999,
+        "signed_errors": [
+          -359.0,
+          113.0232729999999
+        ],
+        "level_MAE": 236.01163649999995,
+        "ratio_log_error": 0.4110712713092062
+      },
+      "Johansen33": {
+        "glucose": 1350.0,
+        "trehalose": 567.0,
+        "signed_errors": [
+          -359.0,
+          -23.0
+        ],
+        "level_MAE": 191.0,
+        "ratio_log_error": 0.19604057851110257
+      }
+    },
+    "Lee25_6.945_sensitivity": {
+      "grams": {
+        "glucose": 1166.3066954643627,
+        "trehalose": 1166.3066954643627,
+        "signed_errors": [
+          -542.6933045356373,
+          576.3066954643627
+        ],
+        "level_MAE": 559.5,
+        "ratio_log_error": 1.0635411462158257
+      },
+      "stoichiometric": {
+        "glucose": 1166.3066954643627,
+        "trehalose": 1227.6891064080476,
+        "signed_errors": [
+          -542.6933045356373,
+          637.6891064080476
+        ],
+        "level_MAE": 590.1912054718424,
+        "ratio_log_error": 1.114832687738099
+      },
+      "Holub120": {
+        "glucose": 1166.3066954643627,
+        "trehalose": 763.6642095032396,
+        "signed_errors": [
+          -542.6933045356373,
+          173.6642095032396
+        ],
+        "level_MAE": 358.1787570194384,
+        "ratio_log_error": 0.6400719579554826
+      },
+      "Holub_scalar": {
+        "glucose": 1166.3066954643627,
+        "trehalose": 607.3635187904966,
+        "signed_errors": [
+          -542.6933045356373,
+          17.36351879049664
+        ],
+        "level_MAE": 280.02841166306695,
+        "ratio_log_error": 0.4110712713092062
+      },
+      "Johansen33": {
+        "glucose": 1166.3066954643627,
+        "trehalose": 489.8488120950323,
+        "signed_errors": [
+          -542.6933045356373,
+          -100.15118790496768
+        ],
+        "level_MAE": 321.42224622030244,
+        "ratio_log_error": 0.19604057851110257
+      }
+    },
+    "target_glucose_calibrated": {
+      "grams": {
+        "glucose": 1709,
+        "trehalose": 1709,
+        "signed_errors": [
+          0,
+          1119
+        ],
+        "level_MAE": 559.5,
+        "ratio_log_error": 1.0635411462158257
+      },
+      "stoichiometric": {
+        "glucose": 1709,
+        "trehalose": 1798.9442151114383,
+        "signed_errors": [
+          0,
+          1208.9442151114383
+        ],
+        "level_MAE": 604.4721075557192,
+        "ratio_log_error": 1.114832687738099
+      },
+      "Holub120": {
+        "glucose": 1709,
+        "trehalose": 1119.0042371499999,
+        "signed_errors": [
+          0,
+          529.0042371499999
+        ],
+        "level_MAE": 264.50211857499994,
+        "ratio_log_error": 0.6400719579554826
+      },
+      "Holub_scalar": {
+        "glucose": 1709,
+        "trehalose": 889.9753878199999,
+        "signed_errors": [
+          0,
+          299.9753878199999
+        ],
+        "level_MAE": 149.98769390999996,
+        "ratio_log_error": 0.4110712713092062
+      },
+      "Johansen33": {
+        "glucose": 1709,
+        "trehalose": 717.78,
+        "signed_errors": [
+          0,
+          127.77999999999997
+        ],
+        "level_MAE": 63.889999999999986,
+        "ratio_log_error": 0.19604057851110257
+      }
+    }
+  },
+  "max_possible_literal_hour_integrals": [
+    22.5,
+    68.66
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "younger_60": {
+    "additive_control": {
+      "predicted": 41.800000000000004,
+      "observed": 46.2,
+      "signed_error": -4.399999999999999,
+      "residual_observed_minus_predicted": 4.399999999999999,
+      "absolute_error": 4.399999999999999,
+      "absolute_error_reduction_vs_glucose_only": 14.700000000000003,
+      "rounding_residual_range": [
+        4.200000000000003,
+        4.600000000000001
+      ],
+      "rounding_gain_range": [
+        14.599999999999998,
+        14.8
+      ]
+    },
+    "glucose_only": {
+      "predicted": 27.1,
+      "observed": 46.2,
+      "signed_error": -19.1,
+      "residual_observed_minus_predicted": 19.1,
+      "absolute_error": 19.1,
+      "absolute_error_reduction_vs_glucose_only": 0.0,
+      "rounding_residual_range": [
+        19.000000000000004,
+        19.2
+      ],
+      "rounding_gain_range": [
+        0.0,
+        0.0
+      ]
+    },
+    "additive_raw": {
+      "predicted": 43.6,
+      "observed": 46.2,
+      "signed_error": -2.6000000000000014,
+      "residual_observed_minus_predicted": 2.6000000000000014,
+      "absolute_error": 2.6000000000000014,
+      "absolute_error_reduction_vs_glucose_only": 16.5,
+      "rounding_residual_range": [
+        2.450000000000003,
+        2.75
+      ],
+      "rounding_gain_range": [
+        16.45,
+        16.55
+      ]
+    }
+  },
+  "older_60": {
+    "additive_control": {
+      "predicted": 34.1,
+      "observed": 39.8,
+      "signed_error": -5.699999999999996,
+      "residual_observed_minus_predicted": 5.699999999999996,
+      "absolute_error": 5.699999999999996,
+      "absolute_error_reduction_vs_glucose_only": 13.200000000000003,
+      "rounding_residual_range": [
+        5.5,
+        5.899999999999999
+      ],
+      "rounding_gain_range": [
+        13.099999999999998,
+        13.3
+      ]
+    },
+    "glucose_only": {
+      "predicted": 20.9,
+      "observed": 39.8,
+      "signed_error": -18.9,
+      "residual_observed_minus_predicted": 18.9,
+      "absolute_error": 18.9,
+      "absolute_error_reduction_vs_glucose_only": 0.0,
+      "rounding_residual_range": [
+        18.8,
+        18.999999999999996
+      ],
+      "rounding_gain_range": [
+        0.0,
+        0.0
+      ]
+    },
+    "additive_raw": {
+      "predicted": 36.4,
+      "observed": 39.8,
+      "signed_error": -3.3999999999999986,
+      "residual_observed_minus_predicted": 3.3999999999999986,
+      "absolute_error": 3.3999999999999986,
+      "absolute_error_reduction_vs_glucose_only": 15.5,
+      "rounding_residual_range": [
+        3.25,
+        3.549999999999997
+      ],
+      "rounding_gain_range": [
+        15.45,
+        15.55
+      ]
+    }
+  },
+  "younger_180": {
+    "additive_control": {
+      "predicted": 18.8,
+      "observed": 25.8,
+      "signed_error": -7.0,
+      "residual_observed_minus_predicted": 7.0,
+      "absolute_error": 7.0,
+      "absolute_error_reduction_vs_glucose_only": 8.100000000000001,
+      "rounding_residual_range": [
+        6.799999999999997,
+        7.200000000000003
+      ],
+      "rounding_gain_range": [
+        8.0,
+        8.200000000000003
+      ]
+    },
+    "glucose_only": {
+      "predicted": 10.7,
+      "observed": 25.8,
+      "signed_error": -15.100000000000001,
+      "residual_observed_minus_predicted": 15.100000000000001,
+      "absolute_error": 15.100000000000001,
+      "absolute_error_reduction_vs_glucose_only": 0.0,
+      "rounding_residual_range": [
+        15.0,
+        15.200000000000003
+      ],
+      "rounding_gain_range": [
+        0.0,
+        0.0
+      ]
+    },
+    "additive_raw": {
+      "predicted": 19.0,
+      "observed": 25.8,
+      "signed_error": -6.800000000000001,
+      "residual_observed_minus_predicted": 6.800000000000001,
+      "absolute_error": 6.800000000000001,
+      "absolute_error_reduction_vs_glucose_only": 8.3,
+      "rounding_residual_range": [
+        6.649999999999999,
+        6.950000000000003
+      ],
+      "rounding_gain_range": [
+        8.25,
+        8.350000000000001
+      ]
+    }
+  },
+  "older_180": {
+    "additive_control": {
+      "predicted": 19.7,
+      "observed": 26.6,
+      "signed_error": -6.900000000000002,
+      "residual_observed_minus_predicted": 6.900000000000002,
+      "absolute_error": 6.900000000000002,
+      "absolute_error_reduction_vs_glucose_only": 8.1,
+      "rounding_residual_range": [
+        6.699999999999999,
+        7.100000000000005
+      ],
+      "rounding_gain_range": [
+        7.999999999999998,
+        8.200000000000001
+      ]
+    },
+    "glucose_only": {
+      "predicted": 11.6,
+      "observed": 26.6,
+      "signed_error": -15.000000000000002,
+      "residual_observed_minus_predicted": 15.000000000000002,
+      "absolute_error": 15.000000000000002,
+      "absolute_error_reduction_vs_glucose_only": 0.0,
+      "rounding_residual_range": [
+        14.9,
+        15.100000000000003
+      ],
+      "rounding_gain_range": [
+        0.0,
+        0.0
+      ]
+    },
+    "additive_raw": {
+      "predicted": 21.2,
+      "observed": 26.6,
+      "signed_error": -5.400000000000002,
+      "residual_observed_minus_predicted": 5.400000000000002,
+      "absolute_error": 5.400000000000002,
+      "absolute_error_reduction_vs_glucose_only": 9.6,
+      "rounding_residual_range": [
+        5.25,
+        5.550000000000004
+      ],
+      "rounding_gain_range": [
+        9.549999999999999,
+        9.65
+      ]
+    }
+  }
+}

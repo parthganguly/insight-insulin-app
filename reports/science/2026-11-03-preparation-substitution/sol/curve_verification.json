@@ -1,0 +1,233 @@
+{
+  "collier": {
+    "t": [
+      0,
+      15,
+      30,
+      60,
+      90,
+      120
+    ],
+    "coarse_visual_means": {
+      "P": [
+        13,
+        24,
+        61,
+        58,
+        27,
+        23
+      ],
+      "PF": [
+        13,
+        24,
+        50,
+        49,
+        25,
+        26
+      ],
+      "L": [
+        9,
+        14,
+        22,
+        32,
+        28,
+        22
+      ],
+      "LF": [
+        13,
+        20,
+        24,
+        24,
+        22,
+        19
+      ]
+    },
+    "signed_area120": {
+      "P": 3165.0,
+      "PF": 2632.5,
+      "L": 1822.5,
+      "LF": 1042.5
+    },
+    "ratios": {
+      "no_fat": 0.5758293838862559,
+      "butter": 0.396011396011396
+    },
+    "predictions": {
+      "fixed": 0.6305281262857538,
+      "full_scaled": 0.3975657180374235,
+      "equality": 1
+    },
+    "geometric_midpoint_fixed_scaled": 0.5006759104146983,
+    "absolute_log_errors": {
+      "no_fat": {
+        "fixed": 0.09074635561698853,
+        "full_scaled": 0.37045115946148627,
+        "equality": 0.5519438706954634
+      },
+      "butter": {
+        "fixed": 0.46511477525669925,
+        "full_scaled": 0.003917260178224528,
+        "equality": 0.926312290335174
+      }
+    },
+    "reading_sensitivity": {
+      "marker_delta": 1.5,
+      "area_bound": 337.5,
+      "ratio_intervals": {
+        "no_fat": [
+          0.42398286937901497,
+          0.7639257294429708
+        ],
+        "butter": [
+          0.23737373737373738,
+          0.6013071895424836
+        ]
+      },
+      "is_sampling_CI": false
+    },
+    "pooled_MALE": {
+      "fixed": 0.2779305654368439,
+      "full_scaled": 0.1871842098198554,
+      "equality": 0.7391280805153186
+    },
+    "astra_finer_read_ratios_comparison": {
+      "no_fat": 0.542,
+      "butter": 0.408,
+      "note": "Seen after own trace; compatible with coarse reading bounds; not independent exact digitization."
+    }
+  },
+  "thorburn": {
+    "t": [
+      0,
+      15,
+      30,
+      45,
+      60,
+      90,
+      120,
+      150,
+      180
+    ],
+    "coarse_visual_means": {
+      "L": [
+        18,
+        22,
+        30,
+        27,
+        29,
+        29,
+        22,
+        22,
+        20
+      ],
+      "LS": [
+        17,
+        25,
+        29,
+        33,
+        24,
+        27,
+        25,
+        25,
+        18
+      ],
+      "B": [
+        22,
+        33,
+        73,
+        62,
+        53,
+        43,
+        28,
+        20,
+        17
+      ],
+      "BS": [
+        18,
+        41,
+        80,
+        78,
+        71,
+        39,
+        25,
+        18,
+        15
+      ]
+    },
+    "signed_area120": {
+      "L": 1012.5,
+      "LS": 1117.5,
+      "B": 2947.5,
+      "BS": 4102.5
+    },
+    "signed_area180_coarse_check": {
+      "L": 1222.5,
+      "LS": 1492.5,
+      "B": 2902.5,
+      "BS": 4162.5
+    },
+    "printed180": {
+      "L": 1695,
+      "LS": 1883,
+      "B": 3395,
+      "BS": 4716
+    },
+    "printed180_SEM": {
+      "L": 322,
+      "LS": 422,
+      "B": 352,
+      "BS": 644
+    },
+    "ratio120": {
+      "unsalted": 0.3435114503816794,
+      "salted": 0.27239488117001825
+    },
+    "printed180_ratios": {
+      "unsalted": 0.4992636229749632,
+      "salted": 0.3992790500424088
+    },
+    "predictions": {
+      "wheat_fixed": 0.8459932771868134,
+      "wheat_scaled": 0.7410397526208842,
+      "pooled_fixed": 0.7548000437457948,
+      "pooled_scaled": 0.5697231060386537,
+      "equality": 1
+    },
+    "absolute_log_errors120": {
+      "unsalted": {
+        "wheat_fixed": 0.9012909674356525,
+        "wheat_scaled": 0.7688338255674707,
+        "pooled_fixed": 0.787232425899891,
+        "pooled_scaled": 0.5059300183689504,
+        "equality": 1.0685348334308318
+      },
+      "salted": {
+        "wheat_fixed": 1.133258630481343,
+        "wheat_scaled": 1.000801488613161,
+        "pooled_fixed": 1.0192000889455815,
+        "pooled_scaled": 0.7378976814146407,
+        "equality": 1.3005024964765222
+      }
+    },
+    "n_per_food": 6,
+    "n_shared": 5,
+    "common_added_milk_ml": 80,
+    "milk_AC": "unknown; not included in stated50g foodCHO",
+    "reading_sensitivity120": {
+      "marker_delta": 1.5,
+      "area_bound": 337.5,
+      "ratio_intervals": {
+        "unsalted": [
+          0.2054794520547945,
+          0.5172413793103449
+        ],
+        "salted": [
+          0.17567567567567569,
+          0.38645418326693226
+        ]
+      },
+      "is_sampling_CI": false
+    },
+    "note": "Graph signed0\u2013180 and printed180 summaries disagree beyond simple rounding; retain as distinct operators/uncertain extraction, no forced rescaling."
+  }
+}

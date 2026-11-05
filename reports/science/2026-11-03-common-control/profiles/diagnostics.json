@@ -1,0 +1,69 @@
+{
+  "positive_endpoint_requirements": {
+    "whey_minus_gluten_net": 815.0684931506851,
+    "predicted_gluten_over_whey": 1.106543179652494,
+    "B_gluten_minus_q_times_B_whey_for_predicted_ratio": 1096.0213983987003,
+    "minimum_B_CHO_for_all_positive_ratios_below_library_ceiling": 794.5205479452056
+  },
+  "library_ratio_range": [
+    1.106060606060606,
+    1.5909090909090908
+  ],
+  "generous_reading_ceiling": 1.7580645161290323,
+  "target_lower_readings": {
+    "pea": 2.4473684210526314,
+    "rice": 2.526315789473684,
+    "soy": 1.868421052631579,
+    "gluten": 2.0,
+    "whey": 2.8947368421052633,
+    "egg": 2.6578947368421053
+  },
+  "closed_profile_total_variation_matched": {
+    "gluten": 0.001832126704184033,
+    "pea": 0.002194003285870756,
+    "whey": 0.0022904784162655033
+  },
+  "leave_label_out_scoring_only": {
+    "pea": {
+      "remaining_pairs": 10,
+      "tie": 0.231997630811426,
+      "projection": 0.2714336237187541
+    },
+    "rice": {
+      "remaining_pairs": 10,
+      "tie": 0.231997630811426,
+      "projection": 0.28296317981144087
+    },
+    "soy": {
+      "remaining_pairs": 10,
+      "tie": 0.1644030149400348,
+      "projection": 0.23833965355735867
+    },
+    "gluten": {
+      "remaining_pairs": 10,
+      "tie": 0.19162440023804106,
+      "projection": 0.1546973530604588
+    },
+    "whey": {
+      "remaining_pairs": 10,
+      "tie": 0.18769922615627865,
+      "projection": 0.290716089086705
+    },
+    "egg": {
+      "remaining_pairs": 10,
+      "tie": 0.22184316573674137,
+      "projection": 0.29071608908670504
+    }
+  },
+  "paired_improvements": 8,
+  "permutation": {
+    "n": 720,
+    "observed_loss": 0.25481099805357044,
+    "min_loss": 0.09157709545856826,
+    "max_loss": 0.3699689780075291,
+    "better": 350,
+    "equal": 1,
+    "worse": 369,
+    "average_loss": 0.25080929185443745
+  }
+}

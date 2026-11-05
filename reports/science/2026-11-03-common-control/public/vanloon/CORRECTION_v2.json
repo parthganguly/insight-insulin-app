@@ -1,0 +1,325 @@
+{
+  "endpoints": {
+    "insulin_AUC_second_hour": {
+      "convex_interval_test": {
+        "parent_interval_with_reading_bounds": [
+          31.0,
+          38.0
+        ],
+        "drink10_reading_interval": [
+          28.5,
+          31.5
+        ],
+        "central_drink10_below_both_parents": true,
+        "below_entire_parent_interval_for_all_readings": false,
+        "above_entire_parent_interval_for_all_readings": false,
+        "note": "Graph-reading box only; not a sampling/confidence result. A 50:50 combination of measured full-dose responses assumes linear mixing; no half-dose human arms exist. Nominal recipe: wheat 28.6 vs 57.1/2 = 28.55 g/L."
+      },
+      "comparisons": {
+        "per_50g_carbohydrate:leucine_capped_minus_energy:all_9": {
+          "central": -0.05737077957942155,
+          "shared_reading_range": [
+            -0.06113359635196453,
+            -0.039708985651654954
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_50g_carbohydrate:leucine_capped_minus_energy:excluding_drink2": {
+          "central": -0.013858988513328702,
+          "shared_reading_range": [
+            -0.018092157382439543,
+            0.006010529655408714
+          ],
+          "settled_by_reading_box": false
+        },
+        "per_50g_carbohydrate:leucine_capped_minus_lan_mass:all_9": {
+          "central": -0.06302902407485061,
+          "shared_reading_range": [
+            -0.06453575829983405,
+            -0.04536723014708404
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_50g_carbohydrate:leucine_capped_minus_lan_mass:excluding_drink2": {
+          "central": -0.02234109800524181,
+          "shared_reading_range": [
+            -0.024036174008348163,
+            -0.002471579836504409
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_bolus_absolute:leucine_capped_minus_energy:all_9": {
+          "central": -0.05822588614925617,
+          "shared_reading_range": [
+            -0.08016696185718707,
+            -0.003844846729065882
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_bolus_absolute:leucine_capped_minus_energy:excluding_drink2": {
+          "central": -0.01482098340439264,
+          "shared_reading_range": [
+            -0.039504693575814896,
+            0.046357685943321424
+          ],
+          "settled_by_reading_box": false
+        },
+        "per_bolus_absolute:leucine_capped_minus_lan_mass:all_9": {
+          "central": -0.10158101726341726,
+          "shared_reading_range": [
+            -0.10767444019930943,
+            -0.08509902504906143
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_bolus_absolute:leucine_capped_minus_lan_mass:excluding_drink2": {
+          "central": -0.07984197809322219,
+          "shared_reading_range": [
+            -0.0866970788961009,
+            -0.06129973685207192
+          ],
+          "settled_by_reading_box": true
+        }
+      },
+      "lan_domain_only": {
+        "per_50g_carbohydrate": {
+          "covered_drinks": [
+            "2",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "abstained": [
+            "3",
+            "4",
+            "9",
+            "10"
+          ],
+          "mean_abs_log_error": {
+            "no_change": 0.3459617330989217,
+            "energy": 0.24873749332250011,
+            "lan_mass": 0.24535095822721145,
+            "lan_leucine_whey_eq": 0.17254052032306458
+          },
+          "leucine_minus_energy_shared_reading_range": [
+            -0.08297004319001287,
+            -0.04440574392945564
+          ],
+          "note": "Strict Lan support: leucine whey-equivalent <= 30 g; capped/linear-tail values for other drinks are sensitivities only"
+        },
+        "per_bolus_absolute": {
+          "covered_drinks": [
+            "2",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "abstained": [
+            "3",
+            "4",
+            "9",
+            "10"
+          ],
+          "mean_abs_log_error": {
+            "no_change": 0.3459617330989217,
+            "energy": 0.24873749332250011,
+            "lan_mass": 0.22274313782586272,
+            "lan_leucine_whey_eq": 0.17100132849736227
+          },
+          "leucine_minus_energy_shared_reading_range": [
+            -0.11723010109941343,
+            0.020149706131204693
+          ],
+          "note": "Strict Lan support: leucine whey-equivalent <= 30 g; capped/linear-tail values for other drinks are sensitivities only"
+        }
+      },
+      "ties_up_to_rounding": {
+        "per_50g_carbohydrate": {
+          "energy": [
+            1.499124343257443,
+            1.500875656742557
+          ],
+          "lan_mass": [
+            1.474140234805734,
+            1.4754893948238956
+          ]
+        },
+        "per_bolus_absolute": {
+          "energy": [
+            1.499124343257443,
+            1.500875656742557
+          ],
+          "lan_mass": [
+            1.3167818074074074,
+            1.3175788325925928
+          ]
+        }
+      }
+    },
+    "insulin_AUC_total_2h": {
+      "convex_interval_test": {
+        "parent_interval_with_reading_bounds": [
+          50.0,
+          54.5
+        ],
+        "drink10_reading_interval": [
+          45.0,
+          49.0
+        ],
+        "central_drink10_below_both_parents": true,
+        "below_entire_parent_interval_for_all_readings": true,
+        "above_entire_parent_interval_for_all_readings": false,
+        "note": "Graph-reading box only; not a sampling/confidence result. A 50:50 combination of measured full-dose responses assumes linear mixing; no half-dose human arms exist. Nominal recipe: wheat 28.6 vs 57.1/2 = 28.55 g/L."
+      },
+      "comparisons": {
+        "per_50g_carbohydrate:leucine_capped_minus_energy:all_9": {
+          "central": -0.05266365357829428,
+          "shared_reading_range": [
+            -0.06113359635196453,
+            -0.029655696525714332
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_50g_carbohydrate:leucine_capped_minus_energy:excluding_drink2": {
+          "central": -0.008563471762060529,
+          "shared_reading_range": [
+            -0.01809215738243954,
+            0.017320479922091916
+          ],
+          "settled_by_reading_box": false
+        },
+        "per_50g_carbohydrate:leucine_capped_minus_lan_mass:all_9": {
+          "central": -0.05079626452863753,
+          "shared_reading_range": [
+            -0.06302902407485068,
+            -0.017871462485312562
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_50g_carbohydrate:leucine_capped_minus_lan_mass:excluding_drink2": {
+          "central": -0.00857924351575208,
+          "shared_reading_range": [
+            -0.022341098005241863,
+            0.028461158782988504
+          ],
+          "settled_by_reading_box": false
+        },
+        "per_bolus_absolute:leucine_capped_minus_energy:all_9": {
+          "central": -0.058921045272041284,
+          "shared_reading_range": [
+            -0.08230062987571582,
+            -0.03051080309554894
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_bolus_absolute:leucine_capped_minus_energy:excluding_drink2": {
+          "central": -0.01560303741752593,
+          "shared_reading_range": [
+            -0.041905070096659745,
+            0.016358485031027985
+          ],
+          "settled_by_reading_box": false
+        },
+        "per_bolus_absolute:leucine_capped_minus_lan_mass:all_9": {
+          "central": -0.08159439274206129,
+          "shared_reading_range": [
+            -0.10158101726341726,
+            -0.0032408562801065754
+          ],
+          "settled_by_reading_box": true
+        },
+        "per_bolus_absolute:leucine_capped_minus_lan_mass:excluding_drink2": {
+          "central": -0.05735702550669676,
+          "shared_reading_range": [
+            -0.07984197809322223,
+            0.03079070301300229
+          ],
+          "settled_by_reading_box": false
+        }
+      },
+      "lan_domain_only": {
+        "per_50g_carbohydrate": {
+          "covered_drinks": [
+            "2",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "abstained": [
+            "3",
+            "4",
+            "9",
+            "10"
+          ],
+          "mean_abs_log_error": {
+            "no_change": 0.27117019482663507,
+            "energy": 0.2936339694172494,
+            "lan_mass": 0.28347436413138355,
+            "lan_leucine_whey_eq": 0.2106639262272366
+          },
+          "leucine_minus_energy_shared_reading_range": [
+            -0.09850597651651843,
+            -0.07619697299943554
+          ],
+          "note": "Strict Lan support: leucine whey-equivalent <= 30 g; capped/linear-tail values for other drinks are sensitivities only"
+        },
+        "per_bolus_absolute": {
+          "covered_drinks": [
+            "2",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "abstained": [
+            "3",
+            "4",
+            "9",
+            "10"
+          ],
+          "mean_abs_log_error": {
+            "no_change": 0.27117019482663507,
+            "energy": 0.2936339694172494,
+            "lan_mass": 0.2511424305069925,
+            "lan_leucine_whey_eq": 0.199400621178492
+          },
+          "leucine_minus_energy_shared_reading_range": [
+            -0.14526080914491818,
+            -0.07159749636585147
+          ],
+          "note": "Strict Lan support: leucine whey-equivalent <= 30 g; capped/linear-tail values for other drinks are sensitivities only"
+        }
+      },
+      "ties_up_to_rounding": {
+        "per_50g_carbohydrate": {
+          "energy": [
+            1.499124343257443,
+            1.500875656742557
+          ],
+          "lan_mass": [
+            1.474140234805734,
+            1.4754893948238956
+          ]
+        },
+        "per_bolus_absolute": {
+          "energy": [
+            1.499124343257443,
+            1.500875656742557
+          ],
+          "lan_mass": [
+            1.3167818074074074,
+            1.3175788325925928
+          ]
+        }
+      }
+    }
+  },
+  "notes": {
+    "lan_aa_sum": "Hydrolysate sums omit Table 2 dashes (wheat Lys/Trp, pea Trp, wheat Trp): lower-bound input scenario, not a measured total.",
+    "exposure": "Drinks 3 and 9 were named in the abstract; the other 7 are 'not named in the abstract'. All scoring is retrospective.",
+    "units": "Axis labels as printed: Fig.6 nmol*h/L, Fig.5 nmol*2 h/L. Magnitudes (control ~18 and ~33) match a ~0.3 nmol/L increment (Fig.4) integrated over 60 and 120 MINUTES, not hours; possible label/scale ambiguity. No conversion applied; ratios unaffected."
+  }
+}

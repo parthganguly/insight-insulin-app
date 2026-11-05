@@ -1,0 +1,23 @@
+[
+  {
+    "canonical_id": "BAO2011-097",
+    "food_name_clean": "Eggs, poached (Australia)",
+    "FII_pct": 23.0,
+    "source_doi": "10.3945/ajcn.110.005033",
+    "actual_test_energy_kJ": "1000"
+  },
+  {
+    "canonical_id": "BELL2016-S1-015",
+    "food_name_clean": "Pork, grilled",
+    "FII_pct": 19.0,
+    "source_doi": "10.3390/nu8040210",
+    "actual_test_energy_kJ": "1000"
+  },
+  {
+    "canonical_id": "BAO2011-096",
+    "food_name_clean": "Lentils, served with tomato sauce (Australia)",
+    "FII_pct": 42.0,
+    "source_doi": "10.3945/ajcn.110.005033",
+    "actual_test_energy_kJ": "1000"
+  }
+]

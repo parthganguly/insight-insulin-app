@@ -1,0 +1,12 @@
+{
+  "low": {
+    "lower_positive_ratio": 1.2127659574468082,
+    "delta_leucine_g": 1.5433039999999998,
+    "exclusive_upper_slope": 0.24998790403509782
+  },
+  "high": {
+    "lower_positive_ratio": 1.576648133439237,
+    "delta_leucine_g": 3.08798,
+    "exclusive_upper_slope": 0.2948860802705609
+  }
+}

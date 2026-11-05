@@ -1,0 +1,25 @@
+{
+  "source": "Gunnerud et al. 2012, doi 10.1371/journal.pone.0044731, PMC3446992",
+  "admission": "Requested after FREEZE_RECEIPT.json; transcribed through a summarising extraction of the Europe PMC fullTextXML (not verbatim XML). Values to be verified against the XML independently.",
+  "endpoints": {
+    "II_120": {
+      "definition": "Insulinemic index: per-subject 0-120 min serum insulin iAUC (trapezoid; below-baseline handling not stated) relative to the reference sandwich = 100, then averaged; mean +/- SEM. Normalised mean of individual indices, NOT a ratio of native means.",
+      "locator": "Table 3, column II (%)",
+      "reference": 100,
+      "arms": {"W": 118, "W+5AA": 123, "W+6AA": 121, "S": 105, "S+5AA": 119, "S+6AA": 123},
+      "sem": {"W": 10, "W+5AA": 14, "W+6AA": 10, "S": 13, "S+5AA": 9, "S+6AA": 9},
+      "letters": {"reference": "a", "W": "a", "W+5AA": "a", "W+6AA": "a", "S": "a", "S+5AA": "a", "S+6AA": "a"},
+      "source_statement": "No significant differences were found between the meals neither in insulinemic index (II in %)"
+    },
+    "insulin_iAUC_0_30": {
+      "definition": "Per-subject 0-30 min serum insulin iAUC, group mean +/- SEM (units not printed); ratio of group means test/reference. Early window, not the 120 min target.",
+      "locator": "Table 4, column Insulin iAUC 0-30 min",
+      "reference": 3.3,
+      "arms": {"W": 4.8, "W+5AA": 5.2, "W+6AA": 4.5, "S": 3.2, "S+5AA": 4.4, "S+6AA": 4.3},
+      "sem": {"reference": 0.6, "W": 0.7, "W+5AA": 0.6, "W+6AA": 0.6, "S": 0.4, "S+5AA": 0.5, "S+6AA": 0.6},
+      "letters": {"reference": "ac", "W": "abc", "W+5AA": "b", "W+6AA": "abc", "S": "a", "S+5AA": "abc", "S+6AA": "abc"},
+      "source_statement": "In the early postprandial phase, expressed as iAUC 0-30 min, the W+5AA resulted in a higher insulin response compared to the reference and S"
+    }
+  },
+  "n": {"default": 14, "S": 13, "S+6AA": 13, "W+6AA": 12}
+}

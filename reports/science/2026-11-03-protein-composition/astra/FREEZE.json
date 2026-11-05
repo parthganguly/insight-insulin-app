@@ -1,0 +1,8 @@
+{
+ "primary":"Healthy group only. Ratio of mean postprandial insulin area for CHO+hydrolysate+leucine vs CHO+hydrolysate. Use full reported insulin area window and original definition; no reconstruction from mean curves. Fixed cheap predictors and externally sourced ligand ratio; absolute log errors. T2D only a separate contrast if admitted; no selection across cohorts.",
+ "ingredients_per_kg":{"carb":0.7,"hydrolysate":0.3,"free_leucine":0.1},
+ "food_input_rules":{"no_change":1,"macro_energy":1.1,"protein_or_AA_mass":1.3333333333333333,"external_free_leucine_multiplier":1.66},
+ "conditional_rules":{"mass_increment":"1 + (0.1/0.3)*(H-G)/H","external_leucine_increment":"1 + .66*G/H"},
+ "notation":"H and G are observed hydrolysate+CHO and CHO group areas. The two conditional forecasts may use them but never the ternary outcome. Direct use of the approximate source multiplier assumes transport from 25g glucose plus 1 mmol/kg lean mass leucine, no hydrolysate, 150 min. Do not call these amounts identical. No conversion between free and bound leucine or implied mechanism.",
+ "exposure":"Qualitative target title/abstract direction and doses known. No target insulin area values inspected in this turn before lock. Historical literature collection means untouched status cannot be asserted. Source 66% increase and administration schedule from PMID 19013300. Direct mixture vs comparator paired condition p if reported. No derived paired errors. No dose adjustment or new fit after target release."
+}

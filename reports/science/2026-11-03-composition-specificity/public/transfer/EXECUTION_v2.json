@@ -1,0 +1,34 @@
+{
+  "utc": "2026-11-03T12:58:52.446100+00:00",
+  "python": "3.13.12",
+  "platform": "Windows",
+  "commands": [
+    "python -I -X utf8 -W ignore digitize_fig4.py <local katsanos.pdf> fig4_vector.json",
+    "python -I -X utf8 analysis_v2.py",
+    "python -I -X utf8 reproduce_v2.py"
+  ],
+  "sha256": {
+    "DESIGN_POWER.json": "5caa36663a4d10505aa9121950e0d49a8228f7158445002f1678b3d2335b73cd",
+    "FREEZE_RECEIPT.json": "e539f0c07cba73dc22b78abc67aa1b3bc96cd91c2410388d033851205f0512e0",
+    "PLAN.md": "32038a0d7aef2384e5803b3134e2be3d184b71bf40453deb2a7833907e5f9e88",
+    "PREDICTIONS.json": "e36e51496f3c52d649eefb6c0aa0481e8b96cd1cf859294b3c98e248769cf8cc",
+    "PREDICTIONS_v2.json": "5a90b38809e969836ffa95c70ab94a531f51a7f537c8a2e5f8d89e0a01ca25a9",
+    "PREDICTION_RECEIPT.json": "243ad05387135fd64ac89a8fb75aee2fdf55de1015054696baaed4d38905e5a9",
+    "PREDICTION_RECEIPT_v2.json": "a0b65e1314048bb70f6894222c3275cb42b519e65a3f0ea07493006705dc64a2",
+    "RESULT.md": "db9dba5d1b48c9d34022046cf4004ca21b309a7a2a8fe56ebcc0533a76293b92",
+    "RESULTS_v2.json": "0fb9c996bb69ce1f757f8f3a6a6cf6980ed10be123604f9ae4b3f5ad1c6b54d2",
+    "RESULT_v2.md": "c6eae2b36ef2a2a8674b28fa45170b952ff9368cc327ed5758c1cdc6019af2e0",
+    "analysis_v2.py": "b0f6c84afc5fb0199426f4c0db1b3aff85ec339a40af1a7eeac098f7ce61c6f2",
+    "design_power.py": "50c80550f3ea09f9d9581ef9cab287e4542533d55ee5ef5e0ea302273d362e3c",
+    "digitize_fig4.py": "7fbfc435c65849f8948935240d216b739ee075a21c5af2156696f2c8c638f12e",
+    "fig4_vector.json": "b6d38fa89bf6cbedbaec85ea0712aa46ef6af4d16fec5a0b66c6f5bdae10cbb0",
+    "inputs.json": "6891dd30394699759ee3ed19d0bd9c3adbd45e88aab49e9ce49565ed15281401",
+    "inputs_v2.json": "e1f1b71b54abaac61b55a16a5d25a9cd08163b8a1292086de09aaa76eec0edf3",
+    "katsanos.py": "3f7096c2140962d7530bc13c079b435212595c8b28405df1628b7434bfa850de",
+    "outcomes_TEMPLATE.json": "0c48bdd8ae2dc7002bb64107f5f1db75a98412a8a149af3f4b206c11db812d23",
+    "reproduce_v2.py": "0b06f7321a8f142a6f8bbf5e23b0cd11173d7bd85b6ba1fe231785f041ea9849"
+  },
+  "nonfinite_json": [],
+  "source_credit": "Original APS reprint recovered by Astra; Table 2 and Fig. 4 read by Opus from it; raw PDF and renders kept in public/raw (not curated)",
+  "digitizer_note": "digitize_fig4.py revised twice before scoring: point-to-segment test (PDF drops collinear vertices), then per-shape polyline assignment"
+}

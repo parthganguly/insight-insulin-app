@@ -1,0 +1,41 @@
+period,sugar,nominal_min,original_image_mean_y,original_image_upper_tip_y,mean_units,sem_units_if_resolved,tip_status
+breakfast,T,0,613,,19.422874179876736,,unresolved; SEM<=mean
+breakfast,T,30,557,544,63.60182772183597,10.255828500811964,read; retain pixel bound
+breakfast,T,60,531,515,84.11348472345989,12.622558154845494,read; retain pixel bound
+breakfast,T,90,520,501,92.79149345491618,14.989287808879025,read; retain pixel bound
+breakfast,T,120,527,509,87.26912426217127,14.200377924201181,read; retain pixel bound
+breakfast,G,0,616,,17.05614452584321,,unresolved; SEM<=mean
+breakfast,G,30,513,493,98.31386264766108,15.778197693556868,read; retain pixel bound
+breakfast,G,60,472,443,130.65916791945267,22.878386655657458,read; retain pixel bound
+breakfast,G,90,461,432,139.33717665090893,22.878386655657458,read; retain pixel bound
+breakfast,G,120,476,453,127.50352838074129,18.144927347590396,read; retain pixel bound
+breakfast,I,0,610,,18.193994939993438,,unresolved; SEM<=mean
+breakfast,I,30,566,553,47.17802753697353,8.563464176380482,read; retain pixel bound
+breakfast,I,60,552,539,56.40021972692174,8.563464176380482,read; retain pixel bound
+breakfast,I,90,543,528,62.328771849031305,9.88092020351594,read; retain pixel bound
+breakfast,I,120,551,537,57.05894774048947,9.222192189948212,read; retain pixel bound
+breakfast,S,0,606,,20.828906994264358,,unresolved; SEM<=mean
+breakfast,S,30,503,482,88.67789239174049,13.833288284922316,read; retain pixel bound
+breakfast,S,60,488,467,98.55881259525643,13.833288284922316,read; retain pixel bound
+breakfast,S,90,511,494,83.40806828319865,11.1983762306514,read; retain pixel bound
+breakfast,S,120,576,569,40.59074740129624,4.611096094974106,read; retain pixel bound
+lunch,T,0,610,,21.789603833910267,,unresolved; SEM<=mean
+lunch,T,30,438,,157.48210399849933,,unresolved; SEM<=mean
+lunch,T,60,446,421,151.1708249210766,19.722747116946085,read; retain pixel bound
+lunch,T,90,466,441,135.3926272275197,19.722747116946085,read; retain pixel bound
+lunch,T,120,496,465,111.72533068718441,24.456206425013146,read; retain pixel bound
+lunch,G,0,606,,24.94524337262164,,unresolved; SEM<=mean
+lunch,G,30,434,,160.6377435372107,,unresolved; SEM<=mean
+lunch,G,60,410,389,179.57158076947894,16.56710757823471,read; retain pixel bound
+lunch,G,90,420,393,171.6824819227005,21.300566886301773,read; retain pixel bound
+lunch,G,120,450,412,148.01518538236522,29.97857561775805,read; retain pixel bound
+lunch,I,0,606,,20.828906994264358,,unresolved; SEM<=mean
+lunch,I,30,466,440,113.05082889374647,17.126928352760963,read; retain pixel bound
+lunch,I,60,462,440,115.68574094801738,14.492016298490046,read; retain pixel bound
+lunch,I,90,505,479,87.36043636460502,17.126928352760963,read; retain pixel bound
+lunch,I,120,512,485,82.74934026963092,17.78565636632869,read; retain pixel bound
+lunch,S,0,616,,14.241626858587063,,unresolved; SEM<=mean
+lunch,S,30,415,388,146.64595758570067,17.78565636632869,read; retain pixel bound
+lunch,S,60,420,400,143.35231751786202,13.174560271354586,read; retain pixel bound
+lunch,S,90,424,392,140.7174054635911,21.07929643416734,read; retain pixel bound
+lunch,S,120,493,462,95.26517252741777,20.42056842059961,read; retain pixel bound

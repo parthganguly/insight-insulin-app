@@ -1,0 +1,1633 @@
+{
+  "plan": "../PLAN.md",
+  "plan_matches_freeze": true,
+  "fitted_parameters": null,
+  "version": 2,
+  "endpoints": {
+    "primary": "signed group-mean curve area 0-120 min, nominal timing (pre-dose -5 min value at t = 0), uU*min/ml, from investigator figure readings of target Fig. 1c,d and donor Fig. 1b",
+    "archive": "author-reported insulin iAUC over 3 h (tables); the version-1 analysis",
+    "not_reported": "the plan target, participant-positive 0-120 area, is not reported by either study"
+  },
+  "exposure": "Target tables were read before donor tables (version 1). For version 2 the coordinator's figure readings and results.json were inspected before this code was written; the secondary time-window objective was chosen after inspecting released curves and is labelled post-hoc.",
+  "areas": {
+    "target": {
+      "fasting": {
+        "nominal": {
+          "60": {
+            "T": 2320.7827059531687,
+            "G": 4144.254832059229,
+            "I": 1473.1557651682986,
+            "S": 3262.69397654724
+          },
+          "120": {
+            "T": 6547.922634653583,
+            "G": 11177.647318468316,
+            "I": 4014.1022862975115,
+            "S": 6673.692224755716
+          },
+          "180": {
+            "T": 9223.927183354686,
+            "G": 14990.361763962803,
+            "I": 5714.657934679709,
+            "S": 7108.718088295346
+          }
+        },
+        "minus5_to_end": {
+          "60": {
+            "T": 2433.269622823348,
+            "G": 4347.520664298324,
+            "I": 1547.3079009989176,
+            "S": 3435.715626818684
+          },
+          "120": {
+            "T": 6660.409551523762,
+            "G": 11380.91315070741,
+            "I": 4088.2544221281305,
+            "S": 6846.713875027161
+          },
+          "180": {
+            "T": 9336.414100224865,
+            "G": 15193.627596201899,
+            "I": 5788.810070510328,
+            "S": 7281.739738566791
+          }
+        },
+        "interpolate_zero": {
+          "60": {
+            "T": 2417.2000632704653,
+            "G": 4318.482688264167,
+            "I": 1536.7147387374007,
+            "S": 3410.998248208478
+          },
+          "120": {
+            "T": 6644.339991970879,
+            "G": 11351.875174673254,
+            "I": 4077.661259866614,
+            "S": 6821.996496416954
+          },
+          "180": {
+            "T": 9320.344540671982,
+            "G": 15164.589620167742,
+            "I": 5778.216908248811,
+            "S": 7257.022359956584
+          }
+        }
+      },
+      "lunch": {
+        "nominal": {
+          "60": {
+            "T": 6015.089870531675,
+            "G": 6382.152441371208,
+            "I": 4162.406557958751,
+            "S": 5942.057817893612
+          },
+          "120": {
+            "T": 12693.260514192829,
+            "G": 14990.3617639628,
+            "I": 8492.891290466905,
+            "S": 12892.584683083645
+          },
+          "180": {
+            "T": 17180.89646090839,
+            "G": 20993.61090640288,
+            "I": 11458.976723691667,
+            "S": 17381.26063869712
+          }
+        },
+        "minus5_to_end": {
+          "60": {
+            "T": 6354.524075824145,
+            "G": 6721.586646663678,
+            "I": 4391.4542664133305,
+            "S": 6274.9185165110575
+          },
+          "120": {
+            "T": 13032.694719485298,
+            "G": 15329.795969255272,
+            "I": 8721.938998921485,
+            "S": 13225.44538170109
+          },
+          "180": {
+            "T": 17520.330666200858,
+            "G": 21333.04511169535,
+            "I": 11688.024432146247,
+            "S": 17714.121337314566
+          }
+        },
+        "interpolate_zero": {
+          "60": {
+            "T": 6306.033475068078,
+            "G": 6673.0960459076105,
+            "I": 4358.733165205534,
+            "S": 6227.366988137137
+          },
+          "120": {
+            "T": 12984.20411872923,
+            "G": 15281.305368499205,
+            "I": 8689.217897713688,
+            "S": 13177.893853327168
+          },
+          "180": {
+            "T": 17471.84006544479,
+            "G": 21284.554510939284,
+            "I": 11655.30333093845,
+            "S": 17666.569808940643
+          }
+        }
+      }
+    },
+    "donor": {
+      "fasting": {
+        "nominal": {
+          "60": {
+            "T": 2060.6796199880687,
+            "G": 4283.27966968229,
+            "I": 1272.5687320475995,
+            "S": 3068.624031475537
+          },
+          "120": {
+            "T": 3936.0295692060718,
+            "G": 7855.059764742524,
+            "I": 2583.3993096623144,
+            "S": 4454.871587535302
+          },
+          "180": {
+            "T": 4732.344811476845,
+            "G": 9017.39097328535,
+            "I": 3112.8563325206987,
+            "S": 4519.532211735741
+          }
+        },
+        "minus5_to_end": {
+          "60": {
+            "T": 2186.5929230392253,
+            "G": 4533.282102867037,
+            "I": 1338.2566157361591,
+            "S": 3271.402178023446
+          },
+          "120": {
+            "T": 4061.9428722572284,
+            "G": 8105.062197927271,
+            "I": 2649.0871933508733,
+            "S": 4657.649734083212
+          },
+          "180": {
+            "T": 4858.258114528002,
+            "G": 9267.393406470097,
+            "I": 3178.5442162092577,
+            "S": 4722.310358283652
+          }
+        },
+        "interpolate_zero": {
+          "60": {
+            "T": 2168.605308317631,
+            "G": 4497.56746955493,
+            "I": 1328.8726323520793,
+            "S": 3242.4338713737448
+          },
+          "120": {
+            "T": 4043.9552575356347,
+            "G": 8069.347564615164,
+            "I": 2639.703209966794,
+            "S": 4628.68142743351
+          },
+          "180": {
+            "T": 4840.270499806408,
+            "G": 9231.67877315799,
+            "I": 3169.1602328251784,
+            "S": 4693.34205163395
+          }
+        },
+        "clock_0840": {
+          "60": {
+            "T": 1997.637377610807,
+            "G": 4099.510719944062,
+            "I": 1179.3237627426845,
+            "S": 3043.4905702124925
+          },
+          "120": {
+            "T": 3944.580734596605,
+            "G": 7897.815639404694,
+            "I": 2581.843770198546,
+            "S": 4605.475985018546
+          },
+          "180": {
+            "T": 4821.213663964018,
+            "G": 9245.398036582123,
+            "I": 3141.5319314704407,
+            "S": 4738.844787333619
+          }
+        }
+      },
+      "lunch": {
+        "nominal": {
+          "60": {
+            "T": 4757.527414835671,
+            "G": 6468.001044265642,
+            "I": 3102.9906587173236,
+            "S": 4175.450167756886
+          },
+          "120": {
+            "T": 7826.557152360876,
+            "G": 11390.401343804999,
+            "I": 5635.355065292428,
+            "S": 7069.572642351975
+          },
+          "180": {
+            "T": 10168.357205261174,
+            "G": 14413.842359399137,
+            "I": 7465.796302107219,
+            "S": 9110.741268193777
+          }
+        },
+        "minus5_to_end": {
+          "60": {
+            "T": 5059.617463281811,
+            "G": 6863.024007804512,
+            "I": 3292.2107702334115,
+            "S": 4442.93077715288
+          },
+          "120": {
+            "T": 8128.647200807016,
+            "G": 11785.424307343867,
+            "I": 5824.575176808516,
+            "S": 7337.05325174797
+          },
+          "180": {
+            "T": 10470.447253707314,
+            "G": 14808.865322938005,
+            "I": 7655.016413623307,
+            "S": 9378.22187758977
+          }
+        },
+        "interpolate_zero": {
+          "60": {
+            "T": 5016.46174207522,
+            "G": 6806.592155870387,
+            "I": 3265.1793257311133,
+            "S": 4404.719261524881
+          },
+          "120": {
+            "T": 8085.491479600425,
+            "G": 11728.992455409742,
+            "I": 5797.543732306218,
+            "S": 7298.841736119972
+          },
+          "180": {
+            "T": 10427.291532500723,
+            "G": 14752.43347100388,
+            "I": 7627.984969121009,
+            "S": 9340.010361961773
+          }
+        }
+      }
+    }
+  },
+  "primary_signed120": {
+    "fasting": {
+      "observed": {
+        "TG": 0.5858050847457631,
+        "IS": 0.6014814814814814,
+        "D": 0.9739370251315028
+      },
+      "comparators": {
+        "frozen_pair": {
+          "forecast_TG": 0.34523112931538913,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 0.527254484241663,
+          "abs_log_error_D": 0.6136633213442015,
+          "abs_log_error_TG": 0.5287729815926605,
+          "abs_log_error_IS": 0.08489033975154096,
+          "magnitude_mean": 0.3068316606721007
+        },
+        "frozen_common_geomean": {
+          "forecast_TG": 0.4754444782171656,
+          "forecast_IS": 0.4754444782171656,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.02640863335236797,
+          "abs_log_error_TG": 0.2087370042443758,
+          "abs_log_error_IS": 0.23514563759674373,
+          "magnitude_mean": 0.22194132092055976
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.02640863335236797,
+          "abs_log_error_TG": 0.5347681646231652,
+          "abs_log_error_IS": 0.5083595312707972,
+          "magnitude_mean": 0.5215638479469813
+        },
+        "johansen_0420": {
+          "forecast_TG": 0.42,
+          "forecast_IS": 0.42,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.02640863335236797,
+          "abs_log_error_TG": 0.33273240308155777,
+          "abs_log_error_IS": 0.3591410364339257,
+          "magnitude_mean": 0.34593671975774176
+        },
+        "holub_scalar": {
+          "forecast_TG": 0.520757979630314,
+          "forecast_IS": 0.520757979630314,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.02640863335236797,
+          "abs_log_error_TG": 0.11770171099335405,
+          "abs_log_error_IS": 0.14411034434572195,
+          "magnitude_mean": 0.13090602766953802
+        },
+        "holub_120": {
+          "forecast_TG": 0.654771347866157,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.02640863335236797,
+          "abs_log_error_TG": 0.11129897310390896,
+          "abs_log_error_IS": 0.08489033975154096,
+          "magnitude_mean": 0.09809465642772497
+        },
+        "matched_donor_pair": {
+          "forecast_TG": 0.5010820652024776,
+          "forecast_IS": 0.5799043269598717,
+          "forecast_D": 0.8640771277382648,
+          "abs_log_error_D": 0.11968461259429927,
+          "abs_log_error_TG": 0.1562172238889643,
+          "abs_log_error_IS": 0.03653261129466501,
+          "magnitude_mean": 0.09637491759181466
+        },
+        "matched_donor_common_geomean": {
+          "forecast_TG": 0.5390544107721458,
+          "forecast_IS": 0.5390544107721458,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.02640863335236797,
+          "abs_log_error_TG": 0.08317060091563078,
+          "abs_log_error_IS": 0.10957923426799863,
+          "magnitude_mean": 0.09637491759181471
+        }
+      },
+      "order_on_D": [
+        "frozen_common_geomean",
+        "equality",
+        "johansen_0420",
+        "holub_scalar",
+        "holub_120",
+        "matched_donor_common_geomean",
+        "matched_donor_pair",
+        "frozen_pair"
+      ],
+      "order_on_magnitude": [
+        "matched_donor_pair",
+        "matched_donor_common_geomean",
+        "holub_120",
+        "holub_scalar",
+        "frozen_common_geomean",
+        "frozen_pair",
+        "johansen_0420",
+        "equality"
+      ],
+      "observed_areas_uU_min_ml": {
+        "T": 6547.922634653583,
+        "G": 11177.647318468316,
+        "I": 4014.1022862975115,
+        "S": 6673.692224755716
+      },
+      "frozen_pair_vs_common": {
+        "pair_forecast_D": 0.527254484241663,
+        "geometric_midpoint": 0.7261229126268245,
+        "observed_D": 0.9739370251315028,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.2936273439959167,
+        "observed_direction_matches_pair": true
+      },
+      "matched_donor_pair_vs_common": {
+        "pair_forecast_D": 0.8640771277382648,
+        "geometric_midpoint": 0.9295574902814052,
+        "observed_D": 0.9739370251315028,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.046637989620965645,
+        "observed_direction_matches_pair": true
+      },
+      "magnitude_identity_frozen_pair_vs_geomean": {
+        "all_forecasts_on_one_side_of_both_observations": false,
+        "magnitude_difference": 0.08489033975154095,
+        "reading": "If every forecast of both rules lies on the same side of both observations, the two rules (which share a forecast-log sum) have identical magnitude error by construction; only D can separate them."
+      },
+      "magnitude_identity_donor_pair_vs_geomean": {
+        "all_forecasts_on_one_side_of_both_observations": true,
+        "magnitude_difference": -5.551115123125783e-17,
+        "reading": "If every forecast of both rules lies on the same side of both observations, the two rules (which share a forecast-log sum) have identical magnitude error by construction; only D can separate them."
+      }
+    },
+    "lunch": {
+      "observed": {
+        "TG": 0.8467614533965245,
+        "IS": 0.6587423312883431,
+        "D": 1.2854213448533978
+      },
+      "comparators": {
+        "frozen_pair": {
+          "forecast_TG": 0.34523112931538913,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 0.527254484241663,
+          "abs_log_error_D": 0.8911585141255389,
+          "abs_log_error_TG": 0.8972048851424516,
+          "abs_log_error_IS": 0.006046371016912815,
+          "magnitude_mean": 0.4516256280796822
+        },
+        "frozen_common_geomean": {
+          "forecast_TG": 0.4754444782171656,
+          "forecast_IS": 0.4754444782171656,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25108655942896935,
+          "abs_log_error_TG": 0.5771689077941669,
+          "abs_log_error_IS": 0.32608234836519756,
+          "magnitude_mean": 0.4516256280796822
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25108655942896935,
+          "abs_log_error_TG": 0.1663362610733741,
+          "abs_log_error_IS": 0.4174228205023436,
+          "magnitude_mean": 0.2918795407878588
+        },
+        "johansen_0420": {
+          "forecast_TG": 0.42,
+          "forecast_IS": 0.42,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25108655942896935,
+          "abs_log_error_TG": 0.7011643066313489,
+          "abs_log_error_IS": 0.45007774720237953,
+          "magnitude_mean": 0.5756210269168642
+        },
+        "holub_scalar": {
+          "forecast_TG": 0.520757979630314,
+          "forecast_IS": 0.520757979630314,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25108655942896935,
+          "abs_log_error_TG": 0.4861336145431452,
+          "abs_log_error_IS": 0.23504705511417576,
+          "magnitude_mean": 0.3605903348286605
+        },
+        "holub_120": {
+          "forecast_TG": 0.654771347866157,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25108655942896935,
+          "abs_log_error_TG": 0.2571329304458822,
+          "abs_log_error_IS": 0.006046371016912815,
+          "magnitude_mean": 0.1315896507313975
+        },
+        "matched_donor_pair": {
+          "forecast_TG": 0.6871186463168462,
+          "forecast_IS": 0.7971281080743803,
+          "forecast_D": 0.8619927454028894,
+          "abs_log_error_D": 0.3995949837887569,
+          "abs_log_error_TG": 0.20891203853533097,
+          "abs_log_error_IS": 0.1906829452534259,
+          "magnitude_mean": 0.19979749189437845
+        },
+        "matched_donor_common_geomean": {
+          "forecast_TG": 0.7400821485221603,
+          "forecast_IS": 0.7400821485221603,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25108655942896935,
+          "abs_log_error_TG": 0.13465782635543708,
+          "abs_log_error_IS": 0.11642873307353231,
+          "magnitude_mean": 0.1255432797144847
+        }
+      },
+      "order_on_D": [
+        "frozen_common_geomean",
+        "equality",
+        "johansen_0420",
+        "holub_scalar",
+        "holub_120",
+        "matched_donor_common_geomean",
+        "matched_donor_pair",
+        "frozen_pair"
+      ],
+      "order_on_magnitude": [
+        "matched_donor_common_geomean",
+        "holub_120",
+        "matched_donor_pair",
+        "equality",
+        "holub_scalar",
+        "frozen_pair",
+        "frozen_common_geomean",
+        "johansen_0420"
+      ],
+      "observed_areas_uU_min_ml": {
+        "T": 12693.260514192829,
+        "G": 14990.3617639628,
+        "I": 8492.891290466905,
+        "S": 12892.584683083645
+      },
+      "frozen_pair_vs_common": {
+        "pair_forecast_D": 0.527254484241663,
+        "geometric_midpoint": 0.7261229126268245,
+        "observed_D": 1.2854213448533978,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.5711225367772541,
+        "observed_direction_matches_pair": false
+      },
+      "matched_donor_pair_vs_common": {
+        "pair_forecast_D": 0.8619927454028894,
+        "geometric_midpoint": 0.9284356441902095,
+        "observed_D": 1.2854213448533978,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.3253407716088631,
+        "observed_direction_matches_pair": false
+      },
+      "magnitude_identity_frozen_pair_vs_geomean": {
+        "all_forecasts_on_one_side_of_both_observations": true,
+        "magnitude_difference": 0.0,
+        "reading": "If every forecast of both rules lies on the same side of both observations, the two rules (which share a forecast-log sum) have identical magnitude error by construction; only D can separate them."
+      },
+      "magnitude_identity_donor_pair_vs_geomean": {
+        "all_forecasts_on_one_side_of_both_observations": false,
+        "magnitude_difference": 0.07425421217989375,
+        "reading": "If every forecast of both rules lies on the same side of both observations, the two rules (which share a forecast-log sum) have identical magnitude error by construction; only D can separate them."
+      },
+      "interpretation": "CONDITIONAL: each lunch follows the same sugar at breakfast, and the lunch beverage dose is described as 25 En% of an individualised meal; lunch contrasts mix composition with prior feeding and matrix."
+    }
+  },
+  "primary_sensitivity": {
+    "nominal": {
+      "fasting": {
+        "target_D": 0.9739370251315028,
+        "donor_D": 0.8640771277382648
+      },
+      "lunch": {
+        "target_D": 1.2854213448533978,
+        "donor_D": 0.8619927454028894
+      }
+    },
+    "minus5_to_end": {
+      "fasting": {
+        "target_D": 0.9800948103802886,
+        "donor_D": 0.8811463195235402
+      },
+      "lunch": {
+        "target_D": 1.2891252325370766,
+        "donor_D": 0.8688213168787458
+      }
+    },
+    "interpolate_zero": {
+      "fasting": {
+        "target_D": 0.979229722621671,
+        "donor_D": 0.8787596569134526
+      },
+      "lunch": {
+        "target_D": 1.2886061412844931,
+        "donor_D": 0.8678719066533429
+      }
+    },
+    "reading_bounds_target_D_120": {
+      "fasting": {
+        "0.25": [
+          0.9267689532751276,
+          1.0235996266590082
+        ],
+        "0.5": [
+          0.8819489991072499,
+          1.0759146438871838
+        ],
+        "1.0": [
+          0.7988192834874747,
+          1.189197641691196
+        ]
+      },
+      "lunch": {
+        "0.25": [
+          1.251635679947393,
+          1.32015557489161
+        ],
+        "0.5": [
+          1.2187686592390985,
+          1.3558694733811034
+        ],
+        "1.0": [
+          1.1556764634420298,
+          1.4303669394370113
+        ]
+      }
+    },
+    "reading_bounds_donor_D_120": {
+      "fasting": {
+        "0.25": [
+          0.7977268475972736,
+          0.9359530015753138
+        ],
+        "0.5": [
+          0.7364171834846589,
+          1.0138979931787617
+        ],
+        "1.0": [
+          0.6272289130116013,
+          1.1905163838112114
+        ]
+      },
+      "lunch": {
+        "0.25": [
+          0.8254504969599402,
+          0.9001269472225311
+        ],
+        "0.5": [
+          0.7904261599172686,
+          0.9399314941263043
+        ],
+        "1.0": [
+          0.7246551285044508,
+          1.0248887951775172
+        ]
+      }
+    }
+  },
+  "secondary_time_windows_posthoc": {
+    "by_zero_time_operator": {
+      "nominal": {
+        "fasting": {
+          "target_D": {
+            "60": 1.24026845637584,
+            "120": 0.9739370251315028,
+            "180": 0.7654288088248964
+          },
+          "donor_D": {
+            "60": 1.1601028075890871,
+            "120": 0.8640771277382648,
+            "180": 0.7619559939063231
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.06681922483904158,
+            "120": 0.11968461259429927,
+            "180": 0.004547407957531316
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.06368374846362405,
+            "matched_donor_120_constant": 0.20077717788037608,
+            "frozen_pair_constant": 0.6139386720715875,
+            "common_D1": 0.16968518479973235,
+            "oracle_best_constant_uses_outcomes": 0.16088230701560965
+          },
+          "order": [
+            "matched_donor_time_specific",
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 0.9739370251315028,
+          "oracle_min_error_formula": 0.16088230701560965,
+          "donor_beats_oracle_constant": true
+        },
+        "lunch": {
+          "target_D": {
+            "60": 1.3454492572239436,
+            "120": 1.2854213448533978,
+            "180": 1.2413496085224303
+          },
+          "donor_D": {
+            "60": 0.9897694730198751,
+            "120": 0.8619927454028894,
+            "180": 0.860891863660397
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.30701119602635185,
+            "120": 0.3995949837887569,
+            "180": 0.3659855580476939
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.3575305792876009,
+            "matched_donor_120_constant": 0.4031796639153314,
+            "frozen_pair_constant": 0.8947431942521135,
+            "common_D1": 0.2546712395555439,
+            "oracle_best_constant_uses_outcomes": 0.026842931935653274
+          },
+          "order": [
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_time_specific",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 1.2854213448533978,
+          "oracle_min_error_formula": 0.02684293193565329,
+          "donor_beats_oracle_constant": false
+        }
+      },
+      "minus5_to_end": {
+        "fasting": {
+          "target_D": {
+            "60": 1.2427650937800483,
+            "120": 0.9800948103802886,
+            "180": 0.7729732775525434
+          },
+          "donor_D": {
+            "60": 1.179097536266497,
+            "120": 0.8811463195235402,
+            "180": 0.7788418044503572
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.052589465291770714,
+            "120": 0.10642561667061087,
+            "180": 0.007563471888043351
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.05552618461680831,
+            "matched_donor_120_constant": 0.1937584096130799,
+            "frozen_pair_constant": 0.619979302661109,
+            "common_D1": 0.16498519295988762,
+            "oracle_best_constant_uses_outcomes": 0.15828320405620963
+          },
+          "order": [
+            "matched_donor_time_specific",
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 0.9800948103802886,
+          "oracle_min_error_formula": 0.15828320405620963,
+          "donor_beats_oracle_constant": true
+        },
+        "lunch": {
+          "target_D": {
+            "60": 1.3508619046622286,
+            "120": 1.2891252325370766,
+            "180": 1.244709347843694
+          },
+          "donor_D": {
+            "60": 0.9949106509580068,
+            "120": 0.8688213168787458,
+            "180": 0.8661992971242493
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.30584518051491444,
+            "120": 0.39458166813896184,
+            "180": 0.3625423087638038
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.35432305247256,
+            "matched_donor_120_constant": 0.3984873800276669,
+            "frozen_pair_constant": 0.8979415406230071,
+            "common_D1": 0.25786958592643766,
+            "oracle_best_constant_uses_outcomes": 0.027280263170894267
+          },
+          "order": [
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_time_specific",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 1.2891252325370766,
+          "oracle_min_error_formula": 0.027280263170894225,
+          "donor_beats_oracle_constant": false
+        }
+      },
+      "interpolate_zero": {
+        "fasting": {
+          "target_D": {
+            "60": 1.2424234896661377,
+            "120": 0.979229722621671,
+            "180": 0.7719086815112361
+          },
+          "donor_D": {
+            "60": 1.1764963918130067,
+            "120": 0.8787596569134526,
+            "180": 0.7764740710510082
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.05452303706086452,
+            "120": 0.1082548328422514,
+            "180": 0.005896995122371831
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.05622495500849592,
+            "matched_donor_120_constant": 0.19473591878442098,
+            "frozen_pair_constant": 0.619133908532279,
+            "common_D1": 0.16564731240373673,
+            "oracle_best_constant_uses_outcomes": 0.15865097450367052
+          },
+          "order": [
+            "matched_donor_time_specific",
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 0.979229722621671,
+          "oracle_min_error_formula": 0.15865097450367052,
+          "donor_beats_oracle_constant": true
+        },
+        "lunch": {
+          "target_D": {
+            "60": 1.3501221839173934,
+            "120": 1.2886061412844931,
+            "180": 1.244235917713845
+          },
+          "donor_D": {
+            "60": 0.994211932155843,
+            "120": 0.8678719066533429,
+            "180": 0.8654567722220183
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.30599997858783806,
+            "120": 0.39527227176072094,
+            "180": 0.3630194718540522
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.3547639074008704,
+            "matched_donor_120_constant": 0.399137094635285,
+            "frozen_pair_constant": 0.8974979011400844,
+            "common_D1": 0.2574259464435149,
+            "oracle_best_constant_uses_outcomes": 0.027224491386361304
+          },
+          "order": [
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_time_specific",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 1.2886061412844931,
+          "oracle_min_error_formula": 0.02722449138636131,
+          "donor_beats_oracle_constant": false
+        }
+      },
+      "target_nominal_vs_donor_clock_0840": {
+        "fasting": {
+          "target_D": {
+            "60": 1.24026845637584,
+            "120": 0.9739370251315028,
+            "180": 0.7654288088248964
+          },
+          "donor_D": {
+            "60": 1.2575450154253744,
+            "120": 0.8909194093992966,
+            "180": 0.786614180737758
+          },
+          "per_window_error_donor_time_specific": {
+            "60": 0.013833566643884387,
+            "120": 0.0890926718577447,
+            "180": 0.02730167652711927
+          },
+          "mean_abs_log_error": {
+            "matched_donor_time_specific": 0.04340930500958279,
+            "matched_donor_120_constant": 0.1905798643015246,
+            "frozen_pair_constant": 0.6139386720715875,
+            "common_D1": 0.16968518479973235,
+            "oracle_best_constant_uses_outcomes": 0.16088230701560965
+          },
+          "order": [
+            "matched_donor_time_specific",
+            "oracle_best_constant_uses_outcomes",
+            "common_D1",
+            "matched_donor_120_constant",
+            "frozen_pair_constant"
+          ],
+          "oracle_constant": 0.9739370251315028,
+          "oracle_min_error_formula": 0.16088230701560965,
+          "donor_beats_oracle_constant": true
+        }
+      }
+    },
+    "graph_reading_robustness_nominal": {
+      "fasting": {
+        "0.25": {
+          "target_D_bounds": {
+            "60": [
+              1.1736062120237007,
+              1.3109477255314574
+            ],
+            "120": [
+              0.9267689532751276,
+              1.0235996266590082
+            ],
+            "180": [
+              0.721186261856215,
+              0.8123892465182156
+            ]
+          },
+          "donor_time_specific_worst_case": 0.11858373267963529,
+          "oracle_constant_best_case": 0.12261897567172318,
+          "common_D1_best_case": 0.12261897567172318,
+          "donor_still_beats_oracle": true,
+          "donor_still_beats_D1": true
+        },
+        "0.5": {
+          "target_D_bounds": {
+            "60": [
+              1.110689665288573,
+              1.3859402471051971
+            ],
+            "120": [
+              0.8819489991072499,
+              1.0759146438871838
+            ],
+            "180": [
+              0.6794827576928922,
+              0.862262125990559
+            ]
+          },
+          "donor_time_specific_worst_case": 0.1736016828766034,
+          "oracle_constant_best_case": 0.0843923688443089,
+          "common_D1_best_case": 0.0843923688443089,
+          "donor_still_beats_oracle": false,
+          "donor_still_beats_D1": false
+        },
+        "1.0": {
+          "target_D_bounds": {
+            "60": [
+              0.9951181405071577,
+              1.5501918966996533
+            ],
+            "120": [
+              0.7988192834874747,
+              1.189197641691196
+            ],
+            "180": [
+              0.6030471295604435,
+              0.9716123502109881
+            ]
+          },
+          "donor_time_specific_worst_case": 0.28410342638839653,
+          "oracle_constant_best_case": 0.007968185343910755,
+          "common_D1_best_case": 0.009599456908524354,
+          "donor_still_beats_oracle": false,
+          "donor_still_beats_D1": false
+        }
+      },
+      "lunch": {
+        "0.25": {
+          "target_D_bounds": {
+            "60": [
+              1.3127988796846835,
+              1.37894455967324
+            ],
+            "120": [
+              1.251635679947393,
+              1.32015557489161
+            ],
+            "180": [
+              1.2037529719516804,
+              1.2801648976046243
+            ]
+          },
+          "donor_time_specific_worst_case": 0.38487829974133536,
+          "oracle_constant_best_case": 0.008390837175704694,
+          "common_D1_best_case": 0.22735226677589404,
+          "donor_still_beats_oracle": false,
+          "donor_still_beats_D1": false
+        },
+        "0.5": {
+          "target_D_bounds": {
+            "60": [
+              1.2809688865004771,
+              1.4133102123631114
+            ],
+            "120": [
+              1.2187686592390985,
+              1.3558694733811034
+            ],
+            "180": [
+              1.1673308426707263,
+              1.3202450027595494
+            ]
+          },
+          "donor_time_specific_worst_case": 0.4122576314346684,
+          "oracle_constant_best_case": 0.0,
+          "common_D1_best_case": 0.20005919969664243,
+          "donor_still_beats_oracle": false,
+          "donor_still_beats_D1": false
+        },
+        "1.0": {
+          "target_D_bounds": {
+            "60": [
+              1.2196760998806913,
+              1.484758922987362
+            ],
+            "120": [
+              1.1556764634420298,
+              1.4303669394370113
+            ],
+            "180": [
+              1.0978429985665845,
+              1.4043950788035897
+            ]
+          },
+          "donor_time_specific_worst_case": 0.4671227034627927,
+          "oracle_constant_best_case": 0.0,
+          "common_D1_best_case": 0.14553951035525656,
+          "donor_still_beats_oracle": false,
+          "donor_still_beats_D1": false
+        }
+      },
+      "note": "Target readings only (donor readings held fixed); independent per-point errors of the stated size in PDF points. A deterministic reading bound, not a sampling interval."
+    }
+  },
+  "descriptive_timing": {
+    "target": {
+      "fasting": {
+        "peak_time_min": {
+          "T": 90,
+          "G": 90,
+          "I": 90,
+          "S": 60
+        },
+        "T_minus_G_crossings_after_dose_min": [
+          174.2307692307692
+        ],
+        "I_minus_S_crossings_after_dose_min": [
+          106.3157894736842
+        ]
+      },
+      "lunch": {
+        "peak_time_min": {
+          "T": 30,
+          "G": 60,
+          "I": 60,
+          "S": 30
+        },
+        "T_minus_G_crossings_after_dose_min": [],
+        "I_minus_S_crossings_after_dose_min": []
+      },
+      "caution": "Group means only; not participant-positive crossings and no population inference."
+    },
+    "donor": {
+      "fasting": {
+        "peak_time_min": {
+          "T": 30,
+          "G": 30,
+          "I": 60,
+          "S": 30
+        },
+        "T_minus_G_crossings_after_dose_min": [
+          175.86069720527146
+        ],
+        "I_minus_S_crossings_after_dose_min": [
+          85.17762740924461
+        ]
+      },
+      "lunch": {
+        "peak_time_min": {
+          "T": 30,
+          "G": 30,
+          "I": 30,
+          "S": 30
+        },
+        "T_minus_G_crossings_after_dose_min": [],
+        "I_minus_S_crossings_after_dose_min": [
+          129.5476672293044,
+          159.9627956417752
+        ]
+      },
+      "caution": "Group means only; not participant-positive crossings and no population inference."
+    }
+  },
+  "direct_T_over_I_separate_question": {
+    "w": 0.5740740740740741,
+    "one_over_w": 1.7419354838709677,
+    "fasting_60": {
+      "observed_T_over_I": 1.5753817490494864,
+      "observed_G_over_S": 1.2701941591362191,
+      "predictions": {
+        "equality": 1.0,
+        "constituents_1_over_w": 1.7419354838709677,
+        "constituents_times_frozen_pair_D": 0.9184432951306387,
+        "donor_G_over_S_only": 1.3958307129670395,
+        "donor_T_over_I_levels": 1.6193071290321397
+      },
+      "abs_log_error": {
+        "equality": 0.4544976232571054,
+        "constituents_1_over_w": 0.10049921882202272,
+        "constituents_times_frozen_pair_D": 0.5395727358745468,
+        "donor_G_over_S_only": 0.12100789205313721,
+        "donor_T_over_I_levels": 0.027500736369946634
+      },
+      "order": [
+        "donor_T_over_I_levels",
+        "constituents_1_over_w",
+        "donor_G_over_S_only",
+        "equality",
+        "constituents_times_frozen_pair_D"
+      ]
+    },
+    "fasting_120": {
+      "observed_T_over_I": 1.6312296418069587,
+      "observed_G_over_S": 1.6748820505994286,
+      "predictions": {
+        "equality": 1.0,
+        "constituents_1_over_w": 1.7419354838709677,
+        "constituents_times_frozen_pair_D": 0.9184432951306387,
+        "donor_G_over_S_only": 1.7632516696375544,
+        "donor_T_over_I_levels": 1.523585438180118
+      },
+      "abs_log_error": {
+        "equality": 0.4893341118926497,
+        "constituents_1_over_w": 0.06566273018647842,
+        "constituents_times_frozen_pair_D": 0.5744092245100911,
+        "donor_G_over_S_only": 0.07782553212220111,
+        "donor_T_over_I_levels": 0.06826771382446607
+      },
+      "order": [
+        "constituents_1_over_w",
+        "donor_T_over_I_levels",
+        "donor_G_over_S_only",
+        "equality",
+        "constituents_times_frozen_pair_D"
+      ]
+    },
+    "fasting_180": {
+      "observed_T_over_I": 1.6140821180877316,
+      "observed_G_over_S": 2.108729250164632,
+      "predictions": {
+        "equality": 1.0,
+        "constituents_1_over_w": 1.7419354838709677,
+        "constituents_times_frozen_pair_D": 0.9184432951306387,
+        "donor_G_over_S_only": 1.9952044925955272,
+        "donor_T_over_I_levels": 1.5202580222019861
+      },
+      "abs_log_error": {
+        "equality": 0.47876644717041816,
+        "constituents_1_over_w": 0.07623039490871003,
+        "constituents_times_frozen_pair_D": 0.5638415597878597,
+        "donor_G_over_S_only": 0.21198010047252977,
+        "donor_T_over_I_levels": 0.059886375269704924
+      },
+      "order": [
+        "donor_T_over_I_levels",
+        "constituents_1_over_w",
+        "donor_G_over_S_only",
+        "equality",
+        "constituents_times_frozen_pair_D"
+      ]
+    },
+    "lunch_60": {
+      "observed_T_over_I": 1.445099075925318,
+      "observed_G_over_S": 1.0740643455458,
+      "predictions": {
+        "equality": 1.0,
+        "constituents_1_over_w": 1.7419354838709677,
+        "constituents_times_frozen_pair_D": 0.9184432951306387,
+        "donor_G_over_S_only": 1.549054780778368,
+        "donor_T_over_I_levels": 1.5332071340499231
+      },
+      "abs_log_error": {
+        "equality": 0.36817788386814626,
+        "constituents_1_over_w": 0.18681895821098185,
+        "constituents_times_frozen_pair_D": 0.4532529964855877,
+        "donor_G_over_S_only": 0.06946704219519897,
+        "donor_T_over_I_levels": 0.059183823691158315
+      },
+      "order": [
+        "donor_T_over_I_levels",
+        "donor_G_over_S_only",
+        "constituents_1_over_w",
+        "equality",
+        "constituents_times_frozen_pair_D"
+      ]
+    },
+    "lunch_120": {
+      "observed_T_over_I": 1.4945747072543778,
+      "observed_G_over_S": 1.1627119101751293,
+      "predictions": {
+        "equality": 1.0,
+        "constituents_1_over_w": 1.7419354838709677,
+        "constituents_times_frozen_pair_D": 0.9184432951306387,
+        "donor_G_over_S_only": 1.6111866897820752,
+        "donor_T_over_I_levels": 1.3888312380818444
+      },
+      "abs_log_error": {
+        "equality": 0.4018416896185382,
+        "constituents_1_over_w": 0.15315515246059003,
+        "constituents_times_frozen_pair_D": 0.48691680223597955,
+        "donor_G_over_S_only": 0.07512929227070851,
+        "donor_T_over_I_levels": 0.07337913208907906
+      },
+      "order": [
+        "donor_T_over_I_levels",
+        "donor_G_over_S_only",
+        "constituents_1_over_w",
+        "equality",
+        "constituents_times_frozen_pair_D"
+      ]
+    },
+    "lunch_180": {
+      "observed_T_over_I": 1.4993395025741292,
+      "observed_G_over_S": 1.2078301650723382,
+      "predictions": {
+        "equality": 1.0,
+        "constituents_1_over_w": 1.7419354838709677,
+        "constituents_times_frozen_pair_D": 0.9184432951306387,
+        "donor_G_over_S_only": 1.5820713084805569,
+        "donor_T_over_I_levels": 1.3619923172014696
+      },
+      "abs_log_error": {
+        "equality": 0.4050246795164823,
+        "constituents_1_over_w": 0.14997216256264592,
+        "constituents_times_frozen_pair_D": 0.4900997921339237,
+        "donor_G_over_S_only": 0.05371026370603059,
+        "donor_T_over_I_levels": 0.09607611262631227
+      },
+      "order": [
+        "donor_G_over_S_only",
+        "donor_T_over_I_levels",
+        "constituents_1_over_w",
+        "equality",
+        "constituents_times_frozen_pair_D"
+      ]
+    },
+    "note": "T/I = D x (G/S), so this question rewards getting the control ratio G/S right, which D deliberately cancels. Coordinator results already exposed these values; scored here only as a separate question."
+  },
+  "native_levels_signed120": {
+    "fasting": {
+      "observed": {
+        "T": 6547.922634653583,
+        "G": 11177.647318468316,
+        "I": 4014.1022862975115,
+        "S": 6673.692224755716
+      },
+      "donor_levels_as_given": {
+        "T": {
+          "pred": 3936.0295692060718,
+          "signed_log_error": -0.5089753526648213
+        },
+        "G": {
+          "pred": 7855.059764742524,
+          "signed_log_error": -0.35275812877585716
+        },
+        "I": {
+          "pred": 2583.3993096623144,
+          "signed_log_error": -0.4407076388403555
+        },
+        "S": {
+          "pred": 4454.871587535302,
+          "signed_log_error": -0.4041750275456905
+        }
+      },
+      "donor_ratio_x_measured_target_control": {
+        "T": {
+          "pred": 5600.918602443039,
+          "signed_log_error": -0.1562172238889643
+        },
+        "I": {
+          "pred": 3870.1029979342925,
+          "signed_log_error": -0.03653261129466501
+        },
+        "note": "separate benchmark using the measured target control arm"
+      },
+      "donor_levels_mean_abs_log_error": 0.42665403695668114
+    },
+    "lunch": {
+      "observed": {
+        "T": 12693.260514192829,
+        "G": 14990.3617639628,
+        "I": 8492.891290466905,
+        "S": 12892.584683083645
+      },
+      "donor_levels_as_given": {
+        "T": {
+          "pred": 7826.557152360876,
+          "signed_log_error": -0.4835484707008236
+        },
+        "G": {
+          "pred": 11390.401343804999,
+          "signed_log_error": -0.2746364321654926
+        },
+        "I": {
+          "pred": 5635.355065292428,
+          "signed_log_error": -0.4101693386117446
+        },
+        "S": {
+          "pred": 7069.572642351975,
+          "signed_log_error": -0.6008522838651706
+        }
+      },
+      "donor_ratio_x_measured_target_control": {
+        "T": {
+          "pred": 10300.15708305393,
+          "signed_log_error": -0.20891203853533083
+        },
+        "I": {
+          "pred": 10277.0416366152,
+          "signed_log_error": 0.1906829452534261
+        },
+        "note": "separate benchmark using the measured target control arm"
+      },
+      "donor_levels_mean_abs_log_error": 0.44230163133580785
+    },
+    "yoshizane_25g_diagnostic_only": {
+      "proportional": {
+        "G": {
+          "pred": 5127.0,
+          "signed_log_error_vs_target_signed120": -0.7793953161497541
+        },
+        "T": {
+          "pred": 1770.0,
+          "signed_log_error_vs_target_signed120": -1.3081682977424145
+        }
+      },
+      "frozen_exponent": {
+        "G": {
+          "pred": 4017.8940644024533,
+          "signed_log_error_vs_target_signed120": -1.0231581081618801
+        },
+        "T": {
+          "pred": 1387.1021053232578,
+          "signed_log_error_vs_target_signed120": -1.5519310897545406
+        }
+      },
+      "limits": "DIAGNOSTIC ONLY: one fasting 25 g study scaled to 75 g; participant-positive serum CLEIA in lean healthy adults vs signed group-curve plasma RIA in IGT. The matched signed 2 h donor levels above are the stronger comparison."
+    }
+  },
+  "archive_reported_3h_v1": {
+    "fasting": {
+      "observed": {
+        "TG": 0.6194137749737119,
+        "IS": 0.7888342888342889,
+        "D": 0.7852267374039476
+      },
+      "comparators": {
+        "frozen_pair": {
+          "forecast_TG": 0.34523112931538913,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 0.527254484241663,
+          "abs_log_error_D": 0.398289189248591,
+          "abs_log_error_TG": 0.5845593737468656,
+          "abs_log_error_IS": 0.1862701844982747,
+          "magnitude_mean": 0.38541477912257016
+        },
+        "frozen_common_geomean": {
+          "forecast_TG": 0.4754444782171656,
+          "forecast_IS": 0.4754444782171656,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.264523396398581,
+          "abs_log_error_IS": 0.5063061618465593,
+          "magnitude_mean": 0.38541477912257016
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.47898177246896,
+          "abs_log_error_IS": 0.2371990070209817,
+          "magnitude_mean": 0.35809038974497087
+        },
+        "johansen_0420": {
+          "forecast_TG": 0.42,
+          "forecast_IS": 0.42,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.38851879523576305,
+          "abs_log_error_IS": 0.6303015606837414,
+          "magnitude_mean": 0.5094101779597522
+        },
+        "holub_scalar": {
+          "forecast_TG": 0.520757979630314,
+          "forecast_IS": 0.520757979630314,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.17348810314755916,
+          "abs_log_error_IS": 0.41527086859553763,
+          "magnitude_mean": 0.2943794858715484
+        },
+        "holub_120": {
+          "forecast_TG": 0.654771347866157,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.05551258094970375,
+          "abs_log_error_IS": 0.1862701844982747,
+          "magnitude_mean": 0.12089138272398922
+        },
+        "matched_donor_pair": {
+          "forecast_TG": 0.5254749568221071,
+          "forecast_IS": 0.6720270842149809,
+          "forecast_D": 0.7819252663543068,
+          "abs_log_error_D": 0.004213344877553321,
+          "abs_log_error_TG": 0.16447097323639862,
+          "abs_log_error_IS": 0.16025762835884513,
+          "magnitude_mean": 0.16236430079762187
+        },
+        "matched_donor_common_geomean": {
+          "forecast_TG": 0.5942502865469681,
+          "forecast_IS": 0.5942502865469681,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.24178276544797833,
+          "abs_log_error_TG": 0.04147291807363255,
+          "abs_log_error_IS": 0.28325568352161107,
+          "magnitude_mean": 0.16236430079762182
+        }
+      },
+      "order_on_D": [
+        "matched_donor_pair",
+        "frozen_common_geomean",
+        "equality",
+        "johansen_0420",
+        "holub_scalar",
+        "holub_120",
+        "matched_donor_common_geomean",
+        "frozen_pair"
+      ],
+      "order_on_magnitude": [
+        "holub_120",
+        "matched_donor_common_geomean",
+        "matched_donor_pair",
+        "holub_scalar",
+        "equality",
+        "frozen_pair",
+        "frozen_common_geomean",
+        "johansen_0420"
+      ],
+      "frozen_pair_vs_common": {
+        "pair_forecast_D": 0.527254484241663,
+        "geometric_midpoint": 0.7261229126268245,
+        "observed_D": 0.7852267374039476,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.0782532119003064,
+        "observed_direction_matches_pair": true
+      },
+      "matched_donor_pair_vs_common": {
+        "pair_forecast_D": 0.7819252663543068,
+        "geometric_midpoint": 0.884265382311389,
+        "observed_D": 0.7852267374039476,
+        "pair_beats_common": true,
+        "log_distance_obs_to_midpoint": 0.11878471028521258,
+        "observed_direction_matches_pair": true
+      },
+      "heuristic_paired_scale": {
+        "SE_of_paired_difference_from_reported_p": {
+          "TG": [
+            1746.4741380370413,
+            1746.4741380370413
+          ],
+          "IS": [
+            476.02408805034787,
+            683.860531638049
+          ]
+        },
+        "status": "HEURISTIC, not a confidence interval. A reported paired p fixes only the SE of each paired difference; the arm-level variances, their covariance and the cross-pair correlation are unknown, so no exact interval for a ratio or for D follows, and the direction of any approximation error is not determined. A p reported only as \"not significant\" bounds the SE from below only."
+      }
+    },
+    "lunch": {
+      "observed": {
+        "TG": 0.8591137724550898,
+        "IS": 0.6640616151319515,
+        "D": 1.2937259930080143
+      },
+      "comparators": {
+        "frozen_pair": {
+          "forecast_TG": 0.34523112931538913,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 0.527254484241663,
+          "abs_log_error_D": 0.8975983764268733,
+          "abs_log_error_TG": 0.9116872280087623,
+          "abs_log_error_IS": 0.014088851581888875,
+          "magnitude_mean": 0.4628880397953256
+        },
+        "frozen_common_geomean": {
+          "forecast_TG": 0.4754444782171656,
+          "forecast_IS": 0.4754444782171656,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.5916512506604776,
+          "abs_log_error_IS": 0.3341248289301737,
+          "magnitude_mean": 0.46288803979532567
+        },
+        "equality": {
+          "forecast_TG": 1.0,
+          "forecast_IS": 1.0,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.15185391820706343,
+          "abs_log_error_IS": 0.4093803399373674,
+          "magnitude_mean": 0.2806171290722154
+        },
+        "johansen_0420": {
+          "forecast_TG": 0.42,
+          "forecast_IS": 0.42,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.7156466494976598,
+          "abs_log_error_IS": 0.45812022776735567,
+          "magnitude_mean": 0.5868834386325077
+        },
+        "holub_scalar": {
+          "forecast_TG": 0.520757979630314,
+          "forecast_IS": 0.520757979630314,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.5006159574094559,
+          "abs_log_error_IS": 0.24308953567915187,
+          "magnitude_mean": 0.3718527465443039
+        },
+        "holub_120": {
+          "forecast_TG": 0.654771347866157,
+          "forecast_IS": 0.654771347866157,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.271615273312193,
+          "abs_log_error_IS": 0.014088851581888875,
+          "magnitude_mean": 0.14285206244704093
+        },
+        "matched_donor_pair": {
+          "forecast_TG": 0.7306956402897362,
+          "forecast_IS": 0.7306956402897362,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.1619043484802553,
+          "abs_log_error_IS": 0.09562207325004875,
+          "magnitude_mean": 0.12876321086515202
+        },
+        "matched_donor_common_geomean": {
+          "forecast_TG": 0.7306956402897362,
+          "forecast_IS": 0.7306956402897362,
+          "forecast_D": 1.0,
+          "abs_log_error_D": 0.25752642173030404,
+          "abs_log_error_TG": 0.1619043484802553,
+          "abs_log_error_IS": 0.09562207325004875,
+          "magnitude_mean": 0.12876321086515202
+        }
+      },
+      "order_on_D": [
+        "frozen_common_geomean",
+        "equality",
+        "johansen_0420",
+        "holub_scalar",
+        "holub_120",
+        "matched_donor_pair",
+        "matched_donor_common_geomean",
+        "frozen_pair"
+      ],
+      "order_on_magnitude": [
+        "matched_donor_pair",
+        "matched_donor_common_geomean",
+        "holub_120",
+        "equality",
+        "holub_scalar",
+        "frozen_pair",
+        "frozen_common_geomean",
+        "johansen_0420"
+      ],
+      "frozen_pair_vs_common": {
+        "pair_forecast_D": 0.527254484241663,
+        "geometric_midpoint": 0.7261229126268245,
+        "observed_D": 1.2937259930080143,
+        "pair_beats_common": false,
+        "log_distance_obs_to_midpoint": 0.5775623990785888,
+        "observed_direction_matches_pair": false
+      },
+      "matched_donor_pair_vs_common": {
+        "pair_forecast_D": 1.0,
+        "geometric_midpoint": 1.0,
+        "observed_D": 1.2937259930080143,
+        "pair_beats_common": true,
+        "log_distance_obs_to_midpoint": 0.257526421730304,
+        "observed_direction_matches_pair": true
+      },
+      "heuristic_paired_scale": {
+        "SE_of_paired_difference_from_reported_p": {
+          "TG": [
+            1300.0865052020051,
+            null
+          ],
+          "IS": [
+            1240.7672998364758,
+            1240.7672998364758
+          ]
+        },
+        "status": "HEURISTIC, not a confidence interval. A reported paired p fixes only the SE of each paired difference; the arm-level variances, their covariance and the cross-pair correlation are unknown, so no exact interval for a ratio or for D follows, and the direction of any approximation error is not determined. A p reported only as \"not significant\" bounds the SE from below only."
+      },
+      "donor_status": "INADMISSIBLE at face value: duplicated afternoon table cells across the two 2009 papers"
+    },
+    "note": "Version-1 analysis of the author-reported 3 h iAUC (target Tables 2-3; donor Tables 1). Kept unchanged in substance, including its failures; it is not the plan primary."
+  },
+  "source_integrity": {
+    "duplicated_afternoon_table_cells": true,
+    "figure_signed180_over_table_3h_by_arm": {
+      "fasting": {
+        "T": 0.9721332809114308,
+        "G": 0.9733798546292476,
+        "I": 0.9801184926072729,
+        "S": 0.9563123596563142
+      },
+      "lunch": {
+        "T": 0.9509358650763279,
+        "G": 0.9849557441163822,
+        "I": 0.6981947350703469,
+        "S": 0.6225735457286987
+      }
+    },
+    "figure_lunch_TG_vs_IS_signed180": {
+      "TG": 0.7054577781357848,
+      "IS": 0.8194499308383201
+    },
+    "reading": "The two donor papers print identical afternoon table cells for different pairs, yet their figure trajectories for those arms are distinguishable. Figure/table area ratios are 0.95-0.98 for all fasting arms and the afternoon trehalose and glucose arms, but about 0.70 and 0.62 for afternoon isomaltulose and sucrose. That pattern is consistent with the shared cells belonging to the trehalose/glucose pair, but this is an inference from group-curve areas and the table discrepancy remains UNRESOLVED.",
+    "shared_donor_cohort": "Coordinator-supplied: the 2008 investigators' joint meeting report (Int J Obes 2008 suppl., p. S134, T3:PS.12) links both companion reports to one 10-person four-drink donor. Not independently verified here (the PDF redirected to a publisher sign-in). Consistent with the identical subject descriptions.",
+    "overlap_with_2012_IGT_cohort": "Open. The printed characteristics differ (age 31 vs 56; healthy vs IGT), but participant lists are not available."
+  }
+}

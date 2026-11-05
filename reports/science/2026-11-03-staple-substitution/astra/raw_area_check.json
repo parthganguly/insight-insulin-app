@@ -1,0 +1,43 @@
+{
+  "panel": "Supplementary Figure 5, referenced in article as Supplementary Figure 3",
+  "sha256": "50160e74e3d6cf04f4fbcc47fed20230ab1d2b9736fe88f590bca7c185097d01",
+  "note": "The panel lists AUC, without an inscribed time window. Main Methods refer to 0\u2013300 min. Window comparisons use aggregate means.",
+  "rows": [
+    {
+      "arm": "Egg whites",
+      "supp5_auc": 3635,
+      "curve_0_300": 3252,
+      "curve_minus30_300": 3638
+    },
+    {
+      "arm": "Whole egg",
+      "supp5_auc": 3847,
+      "curve_0_300": 3493,
+      "curve_minus30_300": 3858
+    },
+    {
+      "arm": "Pork",
+      "supp5_auc": 3553,
+      "curve_0_300": 3180,
+      "curve_minus30_300": 3561
+    },
+    {
+      "arm": "Salmon",
+      "supp5_auc": 3547,
+      "curve_0_300": 3188,
+      "curve_minus30_300": 3555
+    },
+    {
+      "arm": "Lentils",
+      "supp5_auc": 4148,
+      "curve_0_300": 3865,
+      "curve_minus30_300": 4162
+    },
+    {
+      "arm": "Mycoprotein",
+      "supp5_auc": 3971,
+      "curve_0_300": 3603,
+      "curve_minus30_300": 3983
+    }
+  ]
+}

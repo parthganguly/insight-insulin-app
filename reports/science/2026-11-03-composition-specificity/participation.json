@@ -1,0 +1,46 @@
+{
+  "claude_code_turns": {
+    "fraction": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "subtype": "success",
+      "process_exited": true,
+      "tool_calls": 17
+    },
+    "score": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "subtype": "success",
+      "process_exited": true,
+      "tool_calls": 26
+    },
+    "challenge": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "subtype": "success",
+      "process_exited": true,
+      "tool_calls": 5
+    }
+  },
+  "scope": "Assistant response identity for each co-lead turn. Provider-internal helper calls are not independent reviews. Full connection material remains local.",
+  "Astra": {
+    "dispatch_model": "gpt-6-astra",
+    "contribution": "Recovered original reprint and independently traced marker centres, constructed both baseline readings and reading sensitivity."
+  },
+  "Sol": {
+    "dispatch_model": "gpt-6.1-sol",
+    "contribution": "Independent source and computation checks on curve assignments, positive-area witnesses, hydrolysis and early-time comparisons."
+  }
+}

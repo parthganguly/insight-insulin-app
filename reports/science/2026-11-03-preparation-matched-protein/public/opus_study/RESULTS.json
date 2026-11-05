@@ -1,0 +1,425 @@
+{
+  "status": "Exposed development test (abstract-level directions known); no fitting; graph-reading ranges only, no paired CI",
+  "units": "As printed on axis: Total AUC for plasma insulin (mU*2h*mL-1); net area (above minus below baseline) 0-120 min; no conversion. Magnitude suggests a microunit/minute-type scale; label ambiguity flagged, ratios unaffected.",
+  "readings": {
+    "soy": {
+      "intact": {
+        "0.3": 936.9991087811286,
+        "0.4": 1023.368283093052,
+        "0.6": 1446.9885190039313
+      },
+      "hydro": {
+        "0.3": 731.3582175622541,
+        "0.4": 756.0351245085221,
+        "0.6": 1288.6450327653984
+      }
+    },
+    "whey": {
+      "intact": {
+        "0.3": 575.3267167807026,
+        "0.4": 928.4361812795687,
+        "0.6": 1574.7710490464924
+      },
+      "hydro": {
+        "0.3": 781.8234796455363,
+        "0.4": 744.6540623298642,
+        "0.6": 1452.9379589562413
+      }
+    }
+  },
+  "reading_half_width": 10.0,
+  "observed_dose_shape_vs_0p3": {
+    "soy": {
+      "intact": {
+        "0.3": 1.0,
+        "0.4": 1.0921763676213894,
+        "0.6": 1.544279504050126
+      },
+      "hydro": {
+        "0.3": 1.0,
+        "0.4": 1.0337412041783307,
+        "0.6": 1.7619888610271988
+      }
+    },
+    "whey": {
+      "intact": {
+        "0.3": 1.0,
+        "0.4": 1.613754679210319,
+        "0.6": 2.7371769867707156
+      },
+      "hydro": {
+        "0.3": 1.0,
+        "0.4": 0.9524580441962117,
+        "0.6": 1.8583964242350146
+      }
+    }
+  },
+  "results": {
+    "primary_calibrate_0.3": {
+      "O1_cell_errors": {
+        "soy_intact_0.4": {
+          "bridge_same_source": 0.054987914427377604,
+          "no_change": 0.08817237309236547,
+          "proportional_dose": 0.1995096993594155,
+          "no_form_adjustment": 0.3027668680992342,
+          "bridge_cross_source": 0.39039118967026
+        },
+        "soy_intact_0.6": {
+          "bridge_same_source": 0.13188574455745777,
+          "no_change": 0.4345574611585669,
+          "proportional_dose": 0.25858971940137837,
+          "no_form_adjustment": 0.11589320911439861,
+          "bridge_cross_source": 0.5723696313218168
+        },
+        "soy_hydro_0.4": {
+          "bridge_same_source": 0.054987914427377646,
+          "no_change": 0.03318445866498782,
+          "proportional_dose": 0.25449761378679303,
+          "no_form_adjustment": 0.30276686809923414,
+          "bridge_cross_source": 0.08189367970438094
+        },
+        "soy_hydro_0.6": {
+          "bridge_same_source": 0.13188574455745802,
+          "no_change": 0.5664432057160249,
+          "proportional_dose": 0.1267039748439204,
+          "no_form_adjustment": 0.11589320911439857,
+          "bridge_cross_source": 0.053270772646745096
+        },
+        "whey_intact_0.4": {
+          "bridge_same_source": 0.5272727838020186,
+          "no_change": 0.4785635627626254,
+          "proportional_dose": 0.19088149031084437,
+          "no_form_adjustment": 0.22058188061891454,
+          "bridge_cross_source": 0.39039118967025993
+        },
+        "whey_intact_0.6": {
+          "bridge_same_source": 0.3872131141176138,
+          "no_change": 1.0069270924803837,
+          "proportional_dose": 0.3137799119204384,
+          "no_form_adjustment": 0.08052221093450955,
+          "bridge_cross_source": 0.5723696313218167
+        },
+        "whey_hydro_0.4": {
+          "bridge_same_source": 0.5272727838020186,
+          "no_change": 0.048709221039393194,
+          "proportional_dose": 0.33639129349117414,
+          "no_form_adjustment": 0.22058188061891454,
+          "bridge_cross_source": 0.08189367970438101
+        },
+        "whey_hydro_0.6": {
+          "bridge_same_source": 0.38721311411761367,
+          "no_change": 0.6197139783627701,
+          "proportional_dose": 0.07343320219717518,
+          "no_form_adjustment": 0.08052221093450969,
+          "bridge_cross_source": 0.05327077264674507
+        }
+      },
+      "O1_mean": {
+        "bridge_same_source": 0.27533988922611696,
+        "no_change": 0.4095339191596397,
+        "proportional_dose": 0.21922336316389243,
+        "no_form_adjustment": 0.17994104219176424,
+        "bridge_cross_source": 0.2744813183358007
+      },
+      "O1_by_source": {
+        "soy": {
+          "bridge_same_source": 0.09343682949241776,
+          "no_change": 0.2805893746579863,
+          "proportional_dose": 0.20982525184787681,
+          "no_form_adjustment": 0.20933003860681637,
+          "bridge_cross_source": 0.2744813183358007
+        },
+        "whey": {
+          "bridge_same_source": 0.45724294895981615,
+          "no_change": 0.5384784636612931,
+          "proportional_dose": 0.22862147447990802,
+          "no_form_adjustment": 0.15055204577671208,
+          "bridge_cross_source": 0.2744813183358007
+        }
+      },
+      "O2_form_contrast": {
+        "soy_0.4": {
+          "observed": 1.3535988605798122,
+          "predicted": {
+            "bridge_same_source": 1.281176701486054,
+            "proportional_dose": 1.281176701486054,
+            "no_change": 1.2393592287001827,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.054987914427377604,
+            "proportional_dose": 0.054987914427377604,
+            "no_change": 0.08817237309236547,
+            "no_form_adjustment": 0.3027668680992342
+          }
+        },
+        "soy_0.6": {
+          "observed": 1.122875952812802,
+          "predicted": {
+            "bridge_same_source": 1.281176701486054,
+            "proportional_dose": 1.281176701486054,
+            "no_change": 0.7271196372598846,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.13188574455745797,
+            "proportional_dose": 0.13188574455745797,
+            "no_change": 0.4345574611585669,
+            "no_form_adjustment": 0.11589320911439861
+          }
+        },
+        "whey_0.4": {
+          "observed": 1.2468020094789911,
+          "predicted": {
+            "bridge_same_source": 0.7358780233123015,
+            "proportional_dose": 0.7358780233123015,
+            "no_change": 0.7726093845249801,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.5272727838020185,
+            "proportional_dose": 0.5272727838020185,
+            "no_change": 0.4785635627626254,
+            "no_form_adjustment": 0.22058188061891454
+          }
+        },
+        "whey_0.6": {
+          "observed": 1.0838529197611255,
+          "predicted": {
+            "bridge_same_source": 0.7358780233123015,
+            "proportional_dose": 0.7358780233123015,
+            "no_change": 0.39597473053426496,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.3872131141176136,
+            "proportional_dose": 0.3872131141176136,
+            "no_change": 1.0069270924803837,
+            "no_form_adjustment": 0.08052221093450967
+          }
+        }
+      },
+      "reading_scenario_ranges": {
+        "bridge_same_source": [
+          0.24152835704793166,
+          0.3092552953661714
+        ],
+        "no_change": [
+          0.38976357530381833,
+          0.4294047983389408
+        ],
+        "proportional_dose": [
+          0.19621274686705162,
+          0.24224962419392204
+        ],
+        "no_form_adjustment": [
+          0.1611852318601245,
+          0.19873768271980422
+        ],
+        "bridge_cross_source": [
+          0.24172482351433272,
+          0.30733322721126904
+        ],
+        "bridge_minus_no_change": [
+          -0.16716397643235573,
+          -0.10122074479630033
+        ],
+        "bridge_minus_proportional_dose": [
+          0.02875914977886318,
+          0.08356213157426634
+        ],
+        "bridge_minus_no_form_adjustment": [
+          0.07300749540952733,
+          0.11785324242464701
+        ],
+        "bridge_minus_bridge_cross_source": [
+          -0.02969053746745992,
+          0.031416139155961254
+        ]
+      }
+    },
+    "S1_calibrate_0.6": {
+      "O1_cell_errors": {
+        "soy_intact_0.3": {
+          "bridge_same_source": 0.13188574455745802,
+          "no_change": 0.4345574611585671,
+          "proportional_dose": 0.25858971940137826,
+          "no_form_adjustment": 0.24777895367185654,
+          "bridge_cross_source": 0.5723696313218167
+        },
+        "soy_intact_0.4": {
+          "bridge_same_source": 0.18687365898483552,
+          "no_change": 0.34638508806620155,
+          "proportional_dose": 0.05908002004196281,
+          "no_form_adjustment": 0.3027668680992342,
+          "bridge_cross_source": 0.1819784416515569
+        },
+        "soy_hydro_0.3": {
+          "bridge_same_source": 0.13188574455745777,
+          "no_change": 0.566443205716025,
+          "proportional_dose": 0.12670397484392035,
+          "no_form_adjustment": 0.24777895367185657,
+          "bridge_cross_source": 0.05327077264674507
+        },
+        "soy_hydro_0.4": {
+          "bridge_same_source": 0.18687365898483557,
+          "no_change": 0.533258747051037,
+          "proportional_dose": 0.12779363894287266,
+          "no_form_adjustment": 0.30276686809923414,
+          "bridge_cross_source": 0.1351644523511263
+        },
+        "whey_intact_0.3": {
+          "bridge_same_source": 0.3872131141176135,
+          "no_change": 1.0069270924803837,
+          "proportional_dose": 0.3137799119204384,
+          "no_form_adjustment": 0.30669090318310405,
+          "bridge_cross_source": 0.5723696313218168
+        },
+        "whey_intact_0.4": {
+          "bridge_same_source": 0.14005966968440492,
+          "no_change": 0.5283635297177584,
+          "proportional_dose": 0.12289842160959412,
+          "no_form_adjustment": 0.22058188061891454,
+          "bridge_cross_source": 0.18197844165155672
+        },
+        "whey_hydro_0.3": {
+          "bridge_same_source": 0.3872131141176138,
+          "no_change": 0.6197139783627701,
+          "proportional_dose": 0.07343320219717521,
+          "no_form_adjustment": 0.306690903183104,
+          "bridge_cross_source": 0.053270772646745304
+        },
+        "whey_hydro_0.4": {
+          "bridge_same_source": 0.14005966968440509,
+          "no_change": 0.6684231994021633,
+          "proportional_dose": 0.26295809129399894,
+          "no_form_adjustment": 0.22058188061891454,
+          "bridge_cross_source": 0.13516445235112626
+        }
+      },
+      "O1_mean": {
+        "bridge_same_source": 0.21150804683607802,
+        "no_change": 0.5880090377443633,
+        "proportional_dose": 0.1681546225314176,
+        "no_form_adjustment": 0.26945465139327734,
+        "bridge_cross_source": 0.23569582449281126
+      },
+      "O1_by_source": {
+        "soy": {
+          "bridge_same_source": 0.15937970177114671,
+          "no_change": 0.4701611254979577,
+          "proportional_dose": 0.14304183830753353,
+          "no_form_adjustment": 0.27527291088554534,
+          "bridge_cross_source": 0.23569582449281126
+        },
+        "whey": {
+          "bridge_same_source": 0.2636363919010093,
+          "no_change": 0.7058569499907689,
+          "proportional_dose": 0.19326740675530169,
+          "no_form_adjustment": 0.2636363919010093,
+          "bridge_cross_source": 0.2356958244928113
+        }
+      },
+      "O2_form_contrast": {
+        "soy_0.3": {
+          "observed": 1.281176701486054,
+          "predicted": {
+            "bridge_same_source": 1.122875952812802,
+            "proportional_dose": 1.122875952812802,
+            "no_change": 1.9784949211714598,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.13188574455745802,
+            "proportional_dose": 0.13188574455745802,
+            "no_change": 0.4345574611585671,
+            "no_form_adjustment": 0.24777895367185654
+          }
+        },
+        "soy_0.4": {
+          "observed": 1.3535988605798122,
+          "predicted": {
+            "bridge_same_source": 1.122875952812802,
+            "proportional_dose": 1.122875952812802,
+            "no_change": 1.9139170550370648,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.18687365898483566,
+            "proportional_dose": 0.18687365898483566,
+            "no_change": 0.34638508806620155,
+            "no_form_adjustment": 0.3027668680992342
+          }
+        },
+        "whey_0.3": {
+          "observed": 0.7358780233123015,
+          "predicted": {
+            "bridge_same_source": 1.0838529197611255,
+            "proportional_dose": 1.0838529197611255,
+            "no_change": 2.014228390480756,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.38721311411761367,
+            "proportional_dose": 0.38721311411761367,
+            "no_change": 1.0069270924803837,
+            "no_form_adjustment": 0.30669090318310405
+          }
+        },
+        "whey_0.4": {
+          "observed": 1.2468020094789911,
+          "predicted": {
+            "bridge_same_source": 1.0838529197611255,
+            "proportional_dose": 1.0838529197611255,
+            "no_change": 2.114768627084862,
+            "no_form_adjustment": 1.0
+          },
+          "abs_log_error": {
+            "bridge_same_source": 0.1400596696844048,
+            "proportional_dose": 0.1400596696844048,
+            "no_change": 0.5283635297177584,
+            "no_form_adjustment": 0.22058188061891454
+          }
+        }
+      },
+      "reading_scenario_ranges": {
+        "bridge_same_source": [
+          0.1787832269533947,
+          0.24431549458273713
+        ],
+        "no_change": [
+          0.5683766210791558,
+          0.6077592197994747
+        ],
+        "proportional_dose": [
+          0.15213833744151148,
+          0.18419945632335494
+        ],
+        "no_form_adjustment": [
+          0.24406857605040477,
+          0.2949295841231876
+        ],
+        "bridge_cross_source": [
+          0.19634214856447507,
+          0.2751073460051128
+        ],
+        "bridge_minus_no_change": [
+          -0.41066718220422543,
+          -0.3423699371382731
+        ],
+        "bridge_minus_proportional_dose": [
+          0.017358467499594632,
+          0.0694024602716708
+        ],
+        "bridge_minus_no_form_adjustment": [
+          -0.06528534909701017,
+          -0.05061408954045041
+        ],
+        "bridge_minus_bridge_cross_source": [
+          -0.06378421466739076,
+          0.01543344163393473
+        ]
+      }
+    }
+  }
+}

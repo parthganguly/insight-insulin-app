@@ -1,0 +1,276 @@
+{
+  "plan": "../TREHALOSE_PLAN.md",
+  "plan_matches_freeze_receipt": true,
+  "fitted_parameters": null,
+  "exposure": "The coordinator had seen design, exclusions and direction only. This implementer read Table 1, Fig. 1 and the Discussion before writing code; no forecast depends on them.",
+  "forecasts": {
+    "equality_nominal_grams": 1.0,
+    "complete_hydrolysis_stated_25g_anhydrous": 1.0526438796377446,
+    "holub_whole_120_ratio": 0.65477135,
+    "holub_whole_trajectory_scalar": 0.52075798,
+    "johansen_33g_polymer_reference": 0.42
+  },
+  "serving_mass_sensitivity": {
+    "basis": "28 g TREHA served, of which 98-100% trehalose dihydrate; remainder unspecified and not counted",
+    "anhydrous_trehalose_g_range": [
+      24.82677027991436,
+      25.333439061137103
+    ],
+    "conditional_glucose_yield_g_range_complete_hydrolysis": [
+      26.133747786324108,
+      26.667089577881743
+    ],
+    "stated_25g_anhydrous_glucose_yield_g": 26.316096990943617,
+    "hydrolysis_ratio_range_vs_25g_glucose": [
+      1.0453499114529643,
+      1.0666835831152697
+    ],
+    "portion_scaling": "proportional in glucose grams; the plan declares no exponent",
+    "note": "Sensitivity on the actual serving only. The forecast assumes complete hydrolysis and absorption, which the two withdrawn participants contradict for at least some people.",
+    "abs_log_error_range": {
+      "ratio_of_means": [
+        1.1078928190806874,
+        1.1280955263982069
+      ],
+      "mean_individual_ratio": [
+        1.0660029203968433,
+        1.0862056277143626
+      ]
+    }
+  },
+  "primary_ratio_of_means": {
+    "observed": 0.34523112931538913,
+    "abs_log_error": {
+      "equality_nominal_grams": 1.0635411462158257,
+      "complete_hydrolysis_stated_25g_anhydrous": 1.114846126190957,
+      "holub_whole_120_ratio": 0.6400719579554826,
+      "holub_whole_trajectory_scalar": 0.4110712713092062,
+      "johansen_33g_polymer_reference": 0.19604057851110257
+    },
+    "central_order_best_to_worst": [
+      "johansen_33g_polymer_reference",
+      "holub_whole_trajectory_scalar",
+      "holub_whole_120_ratio",
+      "equality_nominal_grams",
+      "complete_hydrolysis_stated_25g_anhydrous"
+    ],
+    "definition": "ratio of arithmetic mean IAUC 0-2 h, Table 1 (590/1709)",
+    "fieller_95_intervals_by_assumed_rho": {
+      "rho_plus1": [
+        0.2681733216828132,
+        0.39945751585702394
+      ],
+      "rho_0": [
+        0.21595973106820315,
+        0.496036221052303
+      ],
+      "rho_minus1": [
+        0.18871637603635624,
+        0.567644690664819
+      ]
+    },
+    "interval_assumptions": "Conditional on approximately normal paired data, SEs as printed SEMs of n = 20, and t(0.975, 19). The paired covariance is not reported, so rho is unknown; the rho = -1 interval contains the others.",
+    "forecast_inside_interval": {
+      "rho_plus1": {
+        "equality_nominal_grams": false,
+        "complete_hydrolysis_stated_25g_anhydrous": false,
+        "holub_whole_120_ratio": false,
+        "holub_whole_trajectory_scalar": false,
+        "johansen_33g_polymer_reference": false
+      },
+      "rho_0": {
+        "equality_nominal_grams": false,
+        "complete_hydrolysis_stated_25g_anhydrous": false,
+        "holub_whole_120_ratio": false,
+        "holub_whole_trajectory_scalar": false,
+        "johansen_33g_polymer_reference": true
+      },
+      "rho_minus1": {
+        "equality_nominal_grams": false,
+        "complete_hydrolysis_stated_25g_anhydrous": false,
+        "holub_whole_120_ratio": false,
+        "holub_whole_trajectory_scalar": true,
+        "johansen_33g_polymer_reference": true
+      }
+    },
+    "decision_boundaries": {
+      "johansen_vs_equality_tie": 0.648074069840786,
+      "johansen_closer_than_equality_across_rho_minus1_interval": true,
+      "johansen_vs_holub_scalar_tie": 0.46767333856015353,
+      "that_tie_inside_interval": {
+        "rho_plus1": false,
+        "rho_0": true,
+        "rho_minus1": true
+      },
+      "reading": "Johansen beats equality for every ratio in the widest interval. Johansen versus the Holub scalar is not resolved: their midpoint lies inside the rho = 0 and rho = -1 intervals and only drops out if the arms are strongly positively correlated; the paired correlation is unreported."
+    },
+    "does_the_paired_test_constrain_rho": {
+      "max_SE_of_difference_for_p_below_0_01": 391.13092623648225,
+      "SE_of_difference_at_rho_minus1": 243,
+      "constrains": false,
+      "reading": "Even the largest possible SE of the paired difference (rho = -1) is small enough for p < 0.01, so the reported test carries no information about the covariance."
+    }
+  },
+  "primary_mean_individual_ratio": {
+    "observed": 0.36,
+    "abs_log_error": {
+      "equality_nominal_grams": 1.0216512475319812,
+      "complete_hydrolysis_stated_25g_anhydrous": 1.0729562275071125,
+      "holub_whole_120_ratio": 0.5981820592716383,
+      "holub_whole_trajectory_scalar": 0.36918137262536177,
+      "johansen_33g_polymer_reference": 0.15415067982725836
+    },
+    "central_order_best_to_worst": [
+      "johansen_33g_polymer_reference",
+      "holub_whole_trajectory_scalar",
+      "holub_whole_120_ratio",
+      "equality_nominal_grams",
+      "complete_hydrolysis_stated_25g_anhydrous"
+    ],
+    "definition": "mean of individual trehalose/glucose IAUC ratios, Discussion (36%)",
+    "rounding_range": [
+      0.355,
+      0.365
+    ],
+    "abs_log_error_range_over_rounding": {
+      "equality_nominal_grams": [
+        1.0078579253996456,
+        1.0356374895067213
+      ],
+      "complete_hydrolysis_stated_25g_anhydrous": [
+        1.0591629053747766,
+        1.0869424694818526
+      ],
+      "holub_whole_120_ratio": [
+        0.5843887371393024,
+        0.6121683012463782
+      ],
+      "holub_whole_trajectory_scalar": [
+        0.355388050493026,
+        0.3831676146001018
+      ],
+      "johansen_33g_polymer_reference": [
+        0.14035735769492244,
+        0.16813692180199818
+      ]
+    },
+    "uncertainty": "no dispersion reported; no interval can be formed",
+    "relation_to_ratio_of_means": "A different estimand from 590/1709. Both are reported and scored separately; neither replaces the other."
+  },
+  "secondary": {
+    "figure_vs_table_descriptive": {
+      "status": "APPROXIMATE visual reading; group-mean curve area, a different operator from the tabled mean of individual areas",
+      "group_mean_curve_positive_area_0_120": {
+        "glucose": 1680.0,
+        "trehalose": 558.75,
+        "ratio": 0.3325892857142857
+      },
+      "abs_log_gap_figure_120_vs_table": 0.03730578025370032,
+      "descriptive_sensitivity_0_180": {
+        "glucose": 1689.8,
+        "trehalose": 577.95,
+        "ratio": 0.34202272458279087
+      },
+      "reading": "The plotted means reproduce the tabled 0-120 areas within reading error. The 0-180 group-curve figure is a descriptive sensitivity only, not an alternative outcome."
+    },
+    "unit_reading": {
+      "printed": "uIU/mL.2 h",
+      "implied_mean_increment_if_minutes": 14.241666666666667,
+      "implied_mean_increment_if_hours": 854.5,
+      "glucose_Cmax_minus_fasting": 34.33,
+      "reading": "A literal hour unit is incompatible with the peak (an 854 uIU/mL mean increment against a 34 uIU/mL peak increment). The minute reading (uIU*min/mL) is therefore used for levels, CONDITIONALLY; it is not printed. Ratios do not depend on it."
+    },
+    "native_levels_conditional": {
+      "uIU_min_per_mL_minute_reading": {
+        "glucose": 1709,
+        "trehalose": 590
+      },
+      "pmol_min_per_L_by_convention": {
+        "6.0": {
+          "glucose": 10254.0,
+          "trehalose": 3540.0
+        },
+        "6.945": {
+          "glucose": 11869.005000000001,
+          "trehalose": 4097.55
+        }
+      }
+    },
+    "lee_cross_cohort_level_challenge": {
+      "status": "challenge only; conditional on the minute reading and on a uIU-to-pmol convention",
+      "anchor": {
+        "status": "cross-cohort challenge only; not a frozen comparator",
+        "source": "Lee BM, MSc thesis, University of Toronto 1997, Table 3-1 (printed p. 34); values visually confirmed by the coordinator and Sol",
+        "glucose_25g_mean_nmol_min_L": 8.1,
+        "operator": "mean participant-positive incremental plasma insulin area 0-120 min",
+        "n": 8,
+        "differences": "plasma vs serum; different assay, laboratory and cohort (Toronto vs lean Japanese adults); same 0-120 positive-area operator family"
+      },
+      "by_conversion_factor": {
+        "6.0": {
+          "lee_glucose_25g_in_uIU_min_per_mL": 1350.0,
+          "glucose_level_signed_log_error": -0.23580381168311568,
+          "trehalose_predicted_level": {
+            "equality_nominal_grams": 1350.0,
+            "complete_hydrolysis_stated_25g_anhydrous": 1421.0692375109552,
+            "holub_whole_120_ratio": 883.9413225,
+            "holub_whole_trajectory_scalar": 703.0232729999999,
+            "johansen_33g_polymer_reference": 567.0
+          },
+          "trehalose_level_signed_log_error": {
+            "equality_nominal_grams": 0.82773733453271,
+            "complete_hydrolysis_stated_25g_anhydrous": 0.8790423145078412,
+            "holub_whole_120_ratio": 0.4042681462723669,
+            "holub_whole_trajectory_scalar": 0.17526745962609042,
+            "johansen_33g_polymer_reference": -0.03976323317201312
+          },
+          "decomposition_for_johansen": {
+            "ratio_part": 0.19604057851110257,
+            "anchor_part": -0.23580381168311568,
+            "sum_equals_level_error": -0.03976323317201312
+          }
+        },
+        "6.945": {
+          "lee_glucose_25g_in_uIU_min_per_mL": 1166.3066954643627,
+          "glucose_level_signed_log_error": -0.382066318661368,
+          "trehalose_predicted_level": {
+            "equality_nominal_grams": 1166.3066954643627,
+            "complete_hydrolysis_stated_25g_anhydrous": 1227.7056047610843,
+            "holub_whole_120_ratio": 763.6642095032396,
+            "holub_whole_trajectory_scalar": 607.3635187904966,
+            "johansen_33g_polymer_reference": 489.8488120950323
+          },
+          "trehalose_level_signed_log_error": {
+            "equality_nominal_grams": 0.6814748275544579,
+            "complete_hydrolysis_stated_25g_anhydrous": 0.732779807529589,
+            "holub_whole_120_ratio": 0.2580056392941146,
+            "holub_whole_trajectory_scalar": 0.029004952647838145,
+            "johansen_33g_polymer_reference": -0.18602574015026532
+          },
+          "decomposition_for_johansen": {
+            "ratio_part": 0.19604057851110257,
+            "anchor_part": -0.382066318661368,
+            "sum_equals_level_error": -0.18602574015026532
+          }
+        }
+      },
+      "reading": "With factor 6.0, Lee glucose-25 becomes 1,350 against the observed 1,709 (-0.236 log), while the Johansen ratio over-predicts (+0.196 log). Their sum gives a trehalose level of 567 against 590 (-0.040 log): a near-hit made of two opposite misses. With factor 6.945 the anchor miss grows to -0.382, Johansen's level miss becomes -0.186 and the Holub scalar instead lands closest (+0.029). Which forecast appears to hit the level is decided by an unstated unit convention, so level agreement cannot discriminate between the hypotheses. No absolute-level claim follows."
+    },
+    "other_operators_not_scored": {
+      "Cmax_ratio": 0.4068241469816273,
+      "incremental_Cmax_ratio": 0.32770171861345765,
+      "Tmax_min": {
+        "glucose": 36,
+        "trehalose": 39
+      }
+    },
+    "unavailable": {
+      "paired_covariance_or_ratio_CI": "not reported",
+      "dispersion_of_mean_individual_ratio": "not reported",
+      "excluded_participants_outcomes": "not reported; direction of any effect on either ratio unknown",
+      "tabled_insulin_IAUC_0_3h": "not reported",
+      "dose_series": "single matched portion; no dose response inferred"
+    },
+    "insulin_index_comparison": "Not an insulin index in the Holt sense (isoenergetic portions, reference food, mean of individual ratios). The Discussion 36% is a mean of individual ratios at equal stated mass, the closest available analogue, but at 25 g rather than an isoenergetic portion."
+  }
+}

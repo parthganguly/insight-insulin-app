@@ -1,0 +1,261 @@
+{
+  "strict_served_leucine_g": {
+    "rice": null,
+    "fish": null,
+    "egg_white": null,
+    "soy_taukwa": null,
+    "chicken": null
+  },
+  "vector_read_areas": {
+    "rice": 2606.482321690782,
+    "fish": 3935.5232548547297,
+    "egg_white": 3090.515747966541,
+    "soy_taukwa": 2860.879213344112,
+    "chicken": 2970.9087459372063
+  },
+  "figure_ratios_vs_rice": {
+    "rice": 1.0,
+    "fish": 1.5098983108781727,
+    "egg_white": 1.1857037058136555,
+    "soy_taukwa": 1.0976016179109578,
+    "chicken": 1.1398154214259266
+  },
+  "scenarios": {
+    "source_AA_share": {
+      "conditional_added_leucine_g": {
+        "fish": 2.0454545454545454,
+        "egg_white": 2.0547945205479454,
+        "soy_taukwa": 1.984732824427481,
+        "chicken": 2.0495495495495497
+      },
+      "pairs": [
+        {
+          "a": "fish",
+          "b": "egg_white",
+          "observed": 1.2734195764717189,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 0.9990457190882656,
+            "whey_training": 0.9995076098876413,
+            "soy_training": 0.998681433687696
+          },
+          "errors": {
+            "matched_tie": 0.24170586187017856,
+            "pooled": 0.24266059839782234,
+            "whey_training": 0.24219837324635635,
+            "soy_training": 0.24302529825595967
+          }
+        },
+        {
+          "a": "fish",
+          "b": "soy_taukwa",
+          "observed": 1.3756341884334413,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.0062263054627694,
+            "whey_training": 1.0032070822693304,
+            "soy_training": 1.0086149117764336
+          },
+          "errors": {
+            "matched_tie": 0.31891485273721115,
+            "pooled": 0.31270785063001066,
+            "whey_training": 0.3157129021872517,
+            "soy_training": 0.3103368375573875
+          }
+        },
+        {
+          "a": "fish",
+          "b": "chicken",
+          "observed": 1.324686683909985,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 0.999581494405607,
+            "whey_training": 0.9997840873937979,
+            "soy_training": 0.9994216756654205
+          },
+          "errors": {
+            "matched_tie": 0.28117596650233917,
+            "pooled": 0.28159455969463953,
+            "whey_training": 0.28139190242102385,
+            "soy_training": 0.28175445813093997
+          }
+        },
+        {
+          "a": "egg_white",
+          "b": "soy_taukwa",
+          "observed": 1.0802678189108181,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.007187445216278,
+            "whey_training": 1.0037012948626824,
+            "soy_training": 1.0099465933316267
+          },
+          "errors": {
+            "matched_tie": 0.07720899086703277,
+            "pooled": 0.07004725223218841,
+            "whey_training": 0.07351452894089558,
+            "soy_training": 0.06731153930142804
+          }
+        },
+        {
+          "a": "egg_white",
+          "b": "chicken",
+          "observed": 1.0402593994827005,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.0005362870858707,
+            "whey_training": 1.0002766137080112,
+            "soy_training": 1.000741219324556
+          },
+          "errors": {
+            "matched_tie": 0.039470104632160795,
+            "pooled": 0.03893396129681721,
+            "whey_training": 0.039193529174667674,
+            "soy_training": 0.0387291598749803
+          }
+        },
+        {
+          "a": "soy_taukwa",
+          "b": "chicken",
+          "observed": 0.9629643513138657,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 0.993396305561594,
+            "whey_training": 0.9965879478563993,
+            "soy_training": 0.9908852863430094
+          },
+          "errors": {
+            "matched_tie": 0.03773888623487203,
+            "pooled": 0.031113290935371084,
+            "whey_training": 0.03432099976622798,
+            "soy_training": 0.028582379426447545
+          }
+        }
+      ],
+      "mean_abs_log_error": {
+        "matched_tie": 0.16603577714063242,
+        "pooled": 0.16284291886447486,
+        "whey_training": 0.16438870595607052,
+        "soy_training": 0.16162327875785718
+      }
+    },
+    "whole_meal_mass_difference": {
+      "conditional_added_leucine_g": {
+        "fish": 2.17854,
+        "egg_white": 2.7239999999999993,
+        "soy_taukwa": 1.3727999999999998,
+        "chicken": 1.9837999999999993
+      },
+      "pairs": [
+        {
+          "a": "fish",
+          "b": "egg_white",
+          "observed": 1.2734195764717189,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 0.9457687683003461,
+            "whey_training": 0.971646764096076,
+            "soy_training": 0.9258381390281493
+          },
+          "errors": {
+            "matched_tie": 0.24170586187017856,
+            "pooled": 0.29746303265070634,
+            "whey_training": 0.27046881386560084,
+            "soy_training": 0.31876171735064357
+          }
+        },
+        {
+          "a": "fish",
+          "b": "soy_taukwa",
+          "observed": 1.3756341884334413,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.0858500228561112,
+            "whey_training": 1.0434034521705295,
+            "soy_training": 1.1205560114393593
+          },
+          "errors": {
+            "matched_tie": 0.31891485273721115,
+            "pooled": 0.23655174126303807,
+            "whey_training": 0.276426932558295,
+            "soy_training": 0.20508985183003198
+          }
+        },
+        {
+          "a": "fish",
+          "b": "chicken",
+          "observed": 1.324686683909985,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.0201058657947064,
+            "whey_training": 1.0103218488395154,
+            "soy_training": 1.0278923701682923
+          },
+          "errors": {
+            "matched_tie": 0.28117596650233917,
+            "pooled": 0.2612695545971582,
+            "whey_training": 0.2709070241938498,
+            "soy_training": 0.25366550323048465
+          }
+        },
+        {
+          "a": "egg_white",
+          "b": "soy_taukwa",
+          "observed": 1.0802678189108181,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.1481136396663925,
+            "whey_training": 1.0738505913115544,
+            "soy_training": 1.2103152421605845
+          },
+          "errors": {
+            "matched_tie": 0.07720899086703277,
+            "pooled": 0.0609112913876682,
+            "whey_training": 0.005958118692694364,
+            "soy_training": 0.11367186552061159
+          }
+        },
+        {
+          "a": "egg_white",
+          "b": "chicken",
+          "observed": 1.0402593994827005,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 1.0785996535156817,
+            "whey_training": 1.0398036469348189,
+            "soy_training": 1.1102290204282028
+          },
+          "errors": {
+            "matched_tie": 0.039470104632160795,
+            "pooled": 0.03619347805354783,
+            "whey_training": 0.0004382103282492026,
+            "soy_training": 0.06509621412015881
+          }
+        },
+        {
+          "a": "soy_taukwa",
+          "b": "chicken",
+          "observed": 0.9629643513138657,
+          "predictions": {
+            "matched_tie": 1.0,
+            "pooled": 0.9394537406846684,
+            "whey_training": 0.9682945237892432,
+            "soy_training": 0.9173056586863159
+          },
+          "errors": {
+            "matched_tie": 0.03773888623487203,
+            "pooled": 0.024717813334120115,
+            "whey_training": 0.0055199083644451065,
+            "soy_training": 0.04857565140045259
+          }
+        }
+      ],
+      "mean_abs_log_error": {
+        "matched_tie": 0.16603577714063242,
+        "pooled": 0.1528511518810398,
+        "whey_training": 0.13828650133385573,
+        "soy_training": 0.16747680057539718
+      }
+    }
+  }
+}

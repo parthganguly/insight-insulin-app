@@ -1,0 +1,48 @@
+{
+  "source": "Gourineni et al. Foods 2020;9:1679, Table 4 and Results prose (identical values)",
+  "read_after": "FREEZE_RECEIPT.json",
+  "endpoints": {
+    "venous_insulin_iAUC_0_120": {
+      "definition": "participant-positive venous insulin iAUC 0-120 min (area above pre-consumption value, no below-baseline subtraction), min*pmol/L, mean +/- SEM",
+      "locator": "Table 4",
+      "primary": true,
+      "n": "38 evaluable (Table 3); Figure 2 curves n=37/36/37; per-arm iAUC n not printed",
+      "arms": {
+        "control": [
+          11871.6,
+          1123.9
+        ],
+        "medium": [
+          8096.3,
+          894.5
+        ],
+        "high": [
+          7533.8,
+          932.9
+        ]
+      },
+      "paired_evidence": "Repeated-measures ANOVA p<0.001 (methods describe RM ANCOVA with treatment, sequence, period); letters control a, medium b, high b; no paired ratio CI or covariance reported"
+    },
+    "venous_insulin_peak": {
+      "definition": "peak venous insulin, pmol/L (NOT an area; separate operator)",
+      "locator": "Table 4",
+      "primary": false,
+      "n": null,
+      "arms": {
+        "control": [
+          292.1,
+          29.5
+        ],
+        "medium": [
+          204.6,
+          19.6
+        ],
+        "high": [
+          206.1,
+          22.32
+        ]
+      },
+      "paired_evidence": "p<0.001; letters a,b,b"
+    }
+  }
+}

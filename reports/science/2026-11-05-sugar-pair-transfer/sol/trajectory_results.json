@@ -1,0 +1,226 @@
+{
+  "fasting": {
+    "signed_nominal__actual_minus5_interpolate_zero": {
+      "donor_D": [
+        1.1601028075890871,
+        0.8640771277382648,
+        0.7619559939063231
+      ],
+      "target_D": [
+        1.260565429629808,
+        0.9910953482575099,
+        0.7826011796298534
+      ],
+      "component_ALE": [
+        0.0830517455549367,
+        0.1371487108514067,
+        0.026734413856834616
+      ],
+      "mean_ALE": 0.08231162342105934,
+      "fixed_oracle_D": 0.9910953482575099,
+      "fixed_oracle_minimum_ALE": 0.15889747862114026,
+      "equality_mean_ALE": 0.1618789903195604,
+      "beats_best_constant": true
+    },
+    "signed_nominal__relocated_baseline_zero": {
+      "donor_D": [
+        1.1601028075890871,
+        0.8640771277382648,
+        0.7619559939063231
+      ],
+      "target_D": [
+        1.2579923196053966,
+        0.9855848793659088,
+        0.7759597970497558
+      ],
+      "component_ALE": [
+        0.0810084245943948,
+        0.13157321807365613,
+        0.018211907675667174
+      ],
+      "mean_ALE": 0.07693118344790605,
+      "fixed_oracle_D": 0.9855848793659088,
+      "fixed_oracle_minimum_ALE": 0.1610572070280154,
+      "equality_mean_ALE": 0.16589721631901908,
+      "beats_best_constant": true
+    },
+    "signed_linearly_interpolate_zero__actual_minus5_interpolate_zero": {
+      "donor_D": [
+        1.1764963918130067,
+        0.8787596569134526,
+        0.7764740710510082
+      ],
+      "target_D": [
+        1.260565429629808,
+        0.9910953482575099,
+        0.7826011796298534
+      ],
+      "component_ALE": [
+        0.06901951167971551,
+        0.12029931144718968,
+        0.007859967144069967
+      ],
+      "mean_ALE": 0.06572626342365838,
+      "fixed_oracle_D": 0.9910953482575099,
+      "fixed_oracle_minimum_ALE": 0.15889747862114026,
+      "equality_mean_ALE": 0.1618789903195604,
+      "beats_best_constant": true
+    },
+    "signed_linearly_interpolate_zero__relocated_baseline_zero": {
+      "donor_D": [
+        1.1764963918130067,
+        0.8787596569134526,
+        0.7764740710510082
+      ],
+      "target_D": [
+        1.2579923196053966,
+        0.9855848793659088,
+        0.7759597970497558
+      ],
+      "component_ALE": [
+        0.06697619071917368,
+        0.11472381866943919,
+        0.0006625390370974353
+      ],
+      "mean_ALE": 0.06078751614190344,
+      "fixed_oracle_D": 0.9855848793659088,
+      "fixed_oracle_minimum_ALE": 0.1610572070280154,
+      "equality_mean_ALE": 0.16589721631901908,
+      "beats_best_constant": true
+    },
+    "signed_stated_0840_clock__actual_minus5_interpolate_zero": {
+      "donor_D": [
+        1.2575450154253744,
+        0.8909194093992966,
+        0.786614180737758
+      ],
+      "target_D": [
+        1.260565429629808,
+        0.9910953482575099,
+        0.7826011796298534
+      ],
+      "component_ALE": [
+        0.002398954072010766,
+        0.1065567701148522,
+        0.005114670627815888
+      ],
+      "mean_ALE": 0.03802346493822629,
+      "fixed_oracle_D": 0.9910953482575099,
+      "fixed_oracle_minimum_ALE": 0.15889747862114026,
+      "equality_mean_ALE": 0.1618789903195604,
+      "beats_best_constant": true
+    },
+    "signed_stated_0840_clock__relocated_baseline_zero": {
+      "donor_D": [
+        1.2575450154253744,
+        0.8909194093992966,
+        0.786614180737758
+      ],
+      "target_D": [
+        1.2579923196053966,
+        0.9855848793659088,
+        0.7759597970497558
+      ],
+      "component_ALE": [
+        0.00035563311146885173,
+        0.10098127733710156,
+        0.01363717680898332
+      ],
+      "mean_ALE": 0.03832469575251791,
+      "fixed_oracle_D": 0.9855848793659088,
+      "fixed_oracle_minimum_ALE": 0.1610572070280154,
+      "equality_mean_ALE": 0.16589721631901908,
+      "beats_best_constant": true
+    }
+  },
+  "mixed": {
+    "signed_nominal__actual_minus5_interpolate_zero": {
+      "donor_D": [
+        0.9897694730198751,
+        0.8619927454028894,
+        0.860891863660397
+      ],
+      "target_D": [
+        1.331665099154681,
+        1.270783894635628,
+        1.2287197228439326
+      ],
+      "component_ALE": [
+        0.2967133319481053,
+        0.38814237428668186,
+        0.3557591278926828
+      ],
+      "mean_ALE": 0.3468716113758233,
+      "fixed_oracle_D": 1.270783894635628,
+      "fixed_oracle_minimum_ALE": 0.02681912062790816,
+      "equality_mean_ALE": 0.24401227164376635,
+      "beats_best_constant": false
+    },
+    "signed_nominal__relocated_baseline_zero": {
+      "donor_D": [
+        0.9897694730198751,
+        0.8619927454028894,
+        0.860891863660397
+      ],
+      "target_D": [
+        1.3269539287831755,
+        1.2675973259929216,
+        1.225868846652151
+      ],
+      "component_ALE": [
+        0.29316925492675566,
+        0.3856316636883427,
+        0.35343623149438785
+      ],
+      "mean_ALE": 0.3440790500364954,
+      "fixed_oracle_D": 1.2675973259929216,
+      "fixed_oracle_minimum_ALE": 0.026412060420223316,
+      "equality_mean_ALE": 0.24121971030443837,
+      "beats_best_constant": false
+    },
+    "signed_linearly_interpolate_zero__actual_minus5_interpolate_zero": {
+      "donor_D": [
+        0.994211932155843,
+        0.8678719066533429,
+        0.8654567722220183
+      ],
+      "target_D": [
+        1.331665099154681,
+        1.270783894635628,
+        1.2287197228439326
+      ],
+      "component_ALE": [
+        0.29223499707156375,
+        0.38134509811866457,
+        0.3504706026131372
+      ],
+      "mean_ALE": 0.3413502326011219,
+      "fixed_oracle_D": 1.270783894635628,
+      "fixed_oracle_minimum_ALE": 0.02681912062790816,
+      "equality_mean_ALE": 0.24401227164376635,
+      "beats_best_constant": false
+    },
+    "signed_linearly_interpolate_zero__relocated_baseline_zero": {
+      "donor_D": [
+        0.994211932155843,
+        0.8678719066533429,
+        0.8654567722220183
+      ],
+      "target_D": [
+        1.3269539287831755,
+        1.2675973259929216,
+        1.225868846652151
+      ],
+      "component_ALE": [
+        0.28869092005021413,
+        0.3788343875203253,
+        0.3481477062148422
+      ],
+      "mean_ALE": 0.33855767126179387,
+      "fixed_oracle_D": 1.2675973259929216,
+      "fixed_oracle_minimum_ALE": 0.026412060420223316,
+      "equality_mean_ALE": 0.24121971030443837,
+      "beats_best_constant": false
+    }
+  }
+}

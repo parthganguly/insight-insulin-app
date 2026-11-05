@@ -1,0 +1,21 @@
+{
+  "source": "PubMed abstract PMID 18679613 (only accessible text); full-text table/figures unavailable",
+  "endpoints": {
+    "T2_abstract_insulin_AUC": {
+      "group": "power2009_16_healthy_males",
+      "definition": "Insulin AUC as stated in the abstract: WPH 10.8 (2.6) vs WPI 7.6 (0.9), unit printed 'nM'; window (3 h per task brief, not in abstract), total vs incremental, dispersion label (SD or SEM) and pairing NOT available from accessible text",
+      "values": {"WPH": 10.8, "WPI": 7.6},
+      "dispersion_in_parentheses": {"WPH": 2.6, "WPI": 0.9},
+      "ratio_hydro_over_intact": 1.4210526315789473,
+      "ratio_range": [1.40522875816993, 1.4370860927152318],
+      "ratio_range_basis": "printed one-decimal rounding of both means (+/-0.05)",
+      "source_statistics": "abstract: 43% higher, P = 0.21 (not significant)"
+    }
+  },
+  "recorded_not_scored": {
+    "T1_two_hour_signed_area_group_curves": "UNAVAILABLE: no accessible original figure (closed full text; no repository copy found)",
+    "T3_Cmax": {"WPH": 299, "WPI": 234, "ratio": 1.2777777777777777, "unit_printed": "mM (apparent typographical unit)",
+                "timing": "WPH 60 min vs WPI 40 min", "source_statistics": "28% higher, P = 0.018"},
+    "gastric_emptying": "18 (3) vs 23 (3) min WPH vs WPI, P = 0.15"
+  }
+}

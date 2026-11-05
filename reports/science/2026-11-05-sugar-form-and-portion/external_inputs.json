@@ -1,0 +1,22 @@
+{
+  "source": "Grüneis et al., DOI 10.1002/mnfr.202000472, Results insulin prose and Figure 4A–B. NRC PMC7900990.",
+  "operator": "positive baseline-subtracted trapezoidal insulin area 0–120 min; arithmetic mean ± SEM",
+  "unit": "Figure 4A concentrations in μIU/mL imply μIU·min/mL for integrated area; Figure 4B caption prints mg/dL × min (glucose units). Native numerical unit bridge conditional.",
+  "design": "Randomized balanced crossover, all 27 healthy men received both 30 g untreated sugars and both lactisole conditions; 12 h fast.",
+  "rows": [
+    {
+      "arm": "glucose_30_untreated",
+      "mean": 2577,
+      "dispersion": 278,
+      "n_arm": 27
+    },
+    {
+      "arm": "sucrose_30_untreated",
+      "mean": 2024,
+      "dispersion": 219,
+      "n_arm": 27
+    }
+  ],
+  "exposure": "Acquisition investigator saw exact target before freeze; coordinator learned qualitative direction before and means after freezing EXTERNAL_PLAN. No blinding claim.",
+  "kept_separate": "Lactisole arms, other endpoints and incomplete unit label."
+}

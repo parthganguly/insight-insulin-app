@@ -1,0 +1,14 @@
+{
+  "_instructions": "Copy to outcomes.json with values transcribed from the source (keep locators). Use null for unavailable SEM/n. One endpoint block per estimand (E1 reported AUC; E2 signed group-curve area; E3 positive-clipped group-curve area). Means are native source units; do not convert.",
+  "source_reader": "name/identity of transcriber and date",
+  "endpoints": {
+    "E1_reported_insulin_AUC": {
+      "definition": "as printed: incremental/total, window, baseline definition, units",
+      "locator": "Table/Figure number",
+      "groups": {
+        "young": {"low": {"mean": null, "sem": null, "n": null}, "high": {"mean": null, "sem": null, "n": null}},
+        "old":   {"low": {"mean": null, "sem": null, "n": null}, "high": {"mean": null, "sem": null, "n": null}}
+      }
+    }
+  }
+}

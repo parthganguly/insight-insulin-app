@@ -1,0 +1,36 @@
+{
+  "local_assets": {
+    "belobrajdic_figure2.jpg": {
+      "sha256": "00938781a5fa898dffe960b334506d4ba54996413044db16365258a47e5bdfce",
+      "source": "https://ars.els-cdn.com/content/image/1-s2.0-S002231662216685X-gr2_lrg.jpg"
+    },
+    "belobrajdic_primary.md": {
+      "sha256": "b874c34b0b4b79f84e12f76712f523c5c4f48f98c4eaae7954e2b42aa8fb3647",
+      "source": "https://jn.nutrition.org/article/S0022-3166(22)16685-X/pdf"
+    },
+    "hoebler_insulin.png": {
+      "sha256": "eee1cf47f699da4616857848bede5120640fb9dcce1034db22e8770ae6298d16",
+      "source": "https://www.researchgate.net/figure/ncremental-plasma-glucose-a-and-insulin-b-variations-after-intake-of-starchy_fig1_12928556"
+    },
+    "hoebler_digest.png": {
+      "sha256": "ff283bcec0ad56ca1d578918bcb887f3fc3175d5b6f37ca1daa92ec91bf3a75a",
+      "source": "https://www.researchgate.net/figure/n-vitro-starch-hydrolysis-by-porcine-pancreatic-a-amylase-166-IUag-of-starch-The_fig2_12928556"
+    },
+    "ito.pdf": {
+      "sha256": "f496b884ce4b0ffb05a95be546b1d1e09042df8cd945c692c661117591e5729b",
+      "source": "https://doi.org/10.2152/jmi.52.159"
+    },
+    "flake_pdf_text.json": {
+      "sha256": "2ee73e606a0d39a1b8913574d332569779560e2154c06473b5a15e65ecd2236d",
+      "source": "https://jn.nutrition.org/article/S0022-3166(22)14165-9/pdf"
+    },
+    "Costabile_first_meal.jpg": {
+      "sha256": "2c51d914bd4e6c51a98197fe315afd5cefe8a6d69cd1ecf01b69f738affeb983",
+      "source": "https://doi.org/10.1016/j.tjnut.2022.10.007"
+    }
+  },
+  "coordinate_note": "Screenshot and parsed-text SHA values identify local captures only; original source pages are linked separately. The ZIP contains public factual inputs and coordinates rather than full papers or images.",
+  "accepted_review_zip_sha256": "2c758669115609df1e916f4ed3eb39e5451715d0eaba4079404147f42b8be7c0",
+  "review": "https://github.com/parthganguly/insight-insulin-app/pull/143#pullrequestreview-5766356384",
+  "parent_commit": "012d7cee116b231f9a88bcae8251bb31cc28233d"
+}

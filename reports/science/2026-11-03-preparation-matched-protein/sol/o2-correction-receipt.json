@@ -1,0 +1,2634 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 observed",
+      "independent": 1.3535988605798122,
+      "reported": 1.3535988605798122,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source intact",
+      "independent": 968.6145870254265,
+      "reported": 968.6145870254265,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source hydro",
+      "independent": 798.7721614871964,
+      "reported": 798.7721614871964,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source reciprocal_ratio",
+      "independent": 1.2126293750924024,
+      "reported": 1.2126293750924024,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source reciprocal_error",
+      "independent": 0.10997582885475515,
+      "reported": 0.10997582885475515,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source anchored_A_error",
+      "independent": 0.054987914427377604,
+      "reported": 0.054987914427377604,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source anchored_B_error",
+      "independent": 0.054987914427377604,
+      "reported": 0.054987914427377604,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source O1 identity intact",
+      "independent": 0.054987914427377604,
+      "reported": 0.054987914427377604,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_same_source O1 identity hydro",
+      "independent": 0.054987914427377604,
+      "reported": 0.054987914427377646,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change intact",
+      "independent": 936.9991087811286,
+      "reported": 936.9991087811286,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change hydro",
+      "independent": 731.3582175622541,
+      "reported": 731.3582175622541,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change reciprocal_ratio",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change reciprocal_error",
+      "independent": 0.054987914427377604,
+      "reported": 0.054987914427377604,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 1.2393592287001827,
+      "reported": 1.2393592287001827,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change anchored_A_error",
+      "independent": 0.08817237309236547,
+      "reported": 0.08817237309236547,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 1.3992709161101915,
+      "reported": 1.3992709161101915,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change anchored_B_error",
+      "independent": 0.033184458664987905,
+      "reported": 0.033184458664987905,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change O1 identity intact",
+      "independent": 0.08817237309236547,
+      "reported": 0.08817237309236547,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_change O1 identity hydro",
+      "independent": 0.033184458664987905,
+      "reported": 0.03318445866498782,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose intact",
+      "independent": 1249.3321450415049,
+      "reported": 1249.3321450415049,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose hydro",
+      "independent": 975.1442900830056,
+      "reported": 975.1442900830056,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose reciprocal_ratio",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose reciprocal_error",
+      "independent": 0.054987914427377604,
+      "reported": 0.054987914427377604,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 1.6524789716002437,
+      "reported": 1.6524789716002437,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose anchored_A_error",
+      "independent": 0.1995096993594155,
+      "reported": 0.1995096993594155,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0494531870826436,
+      "reported": 1.0494531870826436,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose anchored_B_error",
+      "independent": 0.25449761378679303,
+      "reported": 0.25449761378679303,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose O1 identity intact",
+      "independent": 0.1995096993594155,
+      "reported": 0.1995096993594155,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 proportional_dose O1 identity hydro",
+      "independent": 0.25449761378679303,
+      "reported": 0.25449761378679303,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment intact",
+      "independent": 756.0351245085221,
+      "reported": 756.0351245085221,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment hydro",
+      "independent": 1023.368283093052,
+      "reported": 1023.368283093052,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment reciprocal_ratio",
+      "independent": 0.7387713074548921,
+      "reported": 0.7387713074548921,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment reciprocal_error",
+      "independent": 0.6055337361984684,
+      "reported": 0.6055337361984684,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment anchored_A_error",
+      "independent": 0.3027668680992342,
+      "reported": 0.3027668680992342,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment anchored_B_error",
+      "independent": 0.3027668680992342,
+      "reported": 0.3027668680992342,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment O1 identity intact",
+      "independent": 0.3027668680992342,
+      "reported": 0.3027668680992342,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 no_form_adjustment O1 identity hydro",
+      "independent": 0.3027668680992342,
+      "reported": 0.30276686809923414,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source intact",
+      "independent": 1512.086696211445,
+      "reported": 1512.086696211445,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source hydro",
+      "independent": 696.5880175061722,
+      "reported": 696.5880175061722,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source reciprocal_ratio",
+      "independent": 2.1707044310420502,
+      "reported": 2.1707044310420502,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source reciprocal_error",
+      "independent": 0.4722848693746411,
+      "reported": 0.4722848693746411,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 2.000021754537412,
+      "reported": 2.000021754537412,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source anchored_A_error",
+      "independent": 0.39039118967026,
+      "reported": 0.39039118967026,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.4691155422925206,
+      "reported": 1.4691155422925206,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source anchored_B_error",
+      "independent": 0.08189367970438101,
+      "reported": 0.08189367970438101,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source O1 identity intact",
+      "independent": 0.39039118967026,
+      "reported": 0.39039118967026,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.4 bridge_cross_source O1 identity hydro",
+      "independent": 0.08189367970438101,
+      "reported": 0.08189367970438094,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 observed",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source intact",
+      "independent": 1650.9819924647609,
+      "reported": 1650.9819924647609,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source hydro",
+      "independent": 1129.4215055000218,
+      "reported": 1129.4215055000218,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source reciprocal_ratio",
+      "independent": 1.4617943650132923,
+      "reported": 1.4617943650132923,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source reciprocal_error",
+      "independent": 0.26377148911491594,
+      "reported": 0.26377148911491594,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.2811767014860538,
+      "reported": 1.2811767014860538,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source anchored_A_error",
+      "independent": 0.13188574455745777,
+      "reported": 0.13188574455745777,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.2811767014860542,
+      "reported": 1.2811767014860542,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source anchored_B_error",
+      "independent": 0.13188574455745816,
+      "reported": 0.13188574455745816,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source O1 identity intact",
+      "independent": 0.13188574455745777,
+      "reported": 0.13188574455745777,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_same_source O1 identity hydro",
+      "independent": 0.13188574455745816,
+      "reported": 0.13188574455745802,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change intact",
+      "independent": 936.9991087811286,
+      "reported": 936.9991087811286,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change hydro",
+      "independent": 731.3582175622541,
+      "reported": 731.3582175622541,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change reciprocal_ratio",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change reciprocal_error",
+      "independent": 0.13188574455745797,
+      "reported": 0.13188574455745797,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 0.7271196372598846,
+      "reported": 0.7271196372598846,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change anchored_A_error",
+      "independent": 0.4345574611585669,
+      "reported": 0.4345574611585669,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 1.9784949211714598,
+      "reported": 1.9784949211714598,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change anchored_B_error",
+      "independent": 0.566443205716025,
+      "reported": 0.566443205716025,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change O1 identity intact",
+      "independent": 0.4345574611585669,
+      "reported": 0.4345574611585669,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_change O1 identity hydro",
+      "independent": 0.566443205716025,
+      "reported": 0.5664432057160249,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose intact",
+      "independent": 1873.9982175622572,
+      "reported": 1873.9982175622572,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose hydro",
+      "independent": 1462.7164351245083,
+      "reported": 1462.7164351245083,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose reciprocal_ratio",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose reciprocal_error",
+      "independent": 0.13188574455745797,
+      "reported": 0.13188574455745797,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 1.4542392745197692,
+      "reported": 1.4542392745197692,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose anchored_A_error",
+      "independent": 0.25858971940137837,
+      "reported": 0.25858971940137837,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 0.9892474605857299,
+      "reported": 0.9892474605857299,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose anchored_B_error",
+      "independent": 0.12670397484392035,
+      "reported": 0.12670397484392035,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose O1 identity intact",
+      "independent": 0.25858971940137837,
+      "reported": 0.25858971940137837,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 proportional_dose O1 identity hydro",
+      "independent": 0.12670397484392035,
+      "reported": 0.1267039748439204,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment intact",
+      "independent": 1288.6450327653984,
+      "reported": 1288.6450327653984,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment hydro",
+      "independent": 1446.9885190039313,
+      "reported": 1446.9885190039313,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment reciprocal_ratio",
+      "independent": 0.8905703230129757,
+      "reported": 0.8905703230129757,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment reciprocal_error",
+      "independent": 0.2317864182287972,
+      "reported": 0.2317864182287972,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment anchored_A_error",
+      "independent": 0.11589320911439861,
+      "reported": 0.11589320911439861,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment anchored_B_error",
+      "independent": 0.11589320911439861,
+      "reported": 0.11589320911439861,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment O1 identity intact",
+      "independent": 0.11589320911439861,
+      "reported": 0.11589320911439861,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 no_form_adjustment O1 identity hydro",
+      "independent": 0.11589320911439861,
+      "reported": 0.11589320911439857,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source intact",
+      "independent": 2564.7323971803758,
+      "reported": 2564.7323971803758,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source hydro",
+      "independent": 1359.153496352587,
+      "reported": 1359.153496352587,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source reciprocal_ratio",
+      "independent": 1.887007173261203,
+      "reported": 1.887007173261203,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source reciprocal_error",
+      "independent": 0.5190988586750718,
+      "reported": 0.5190988586750718,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.990255137736827,
+      "reported": 1.990255137736827,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source anchored_A_error",
+      "independent": 0.5723696313218168,
+      "reported": 0.5723696313218168,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0646247998383243,
+      "reported": 1.0646247998383243,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source anchored_B_error",
+      "independent": 0.05327077264674495,
+      "reported": 0.05327077264674495,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source O1 identity intact",
+      "independent": 0.5723696313218168,
+      "reported": 0.5723696313218168,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 soy_0.6 bridge_cross_source O1 identity hydro",
+      "independent": 0.05327077264674495,
+      "reported": 0.053270772646745096,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 observed",
+      "independent": 1.2468020094789911,
+      "reported": 1.2468020094789911,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source intact",
+      "independent": 547.9745594387758,
+      "reported": 547.9745594387758,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source hydro",
+      "independent": 1261.6712985944778,
+      "reported": 1261.6712985944778,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source reciprocal_ratio",
+      "independent": 0.4343243442640158,
+      "reported": 0.4343243442640158,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source reciprocal_error",
+      "independent": 1.0545455676040372,
+      "reported": 1.0545455676040372,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source anchored_A_error",
+      "independent": 0.5272727838020185,
+      "reported": 0.5272727838020185,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source anchored_B_error",
+      "independent": 0.5272727838020185,
+      "reported": 0.5272727838020185,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source O1 identity intact",
+      "independent": 0.5272727838020185,
+      "reported": 0.5272727838020186,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_same_source O1 identity hydro",
+      "independent": 0.5272727838020185,
+      "reported": 0.5272727838020186,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change intact",
+      "independent": 575.3267167807026,
+      "reported": 575.3267167807026,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change hydro",
+      "independent": 781.8234796455363,
+      "reported": 781.8234796455363,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change reciprocal_ratio",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change reciprocal_error",
+      "independent": 0.5272727838020185,
+      "reported": 0.5272727838020185,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 0.7726093845249801,
+      "reported": 0.7726093845249801,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change anchored_A_error",
+      "independent": 0.4785635627626254,
+      "reported": 0.4785635627626254,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 1.1875266034482665,
+      "reported": 1.1875266034482665,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change anchored_B_error",
+      "independent": 0.04870922103939324,
+      "reported": 0.04870922103939324,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change O1 identity intact",
+      "independent": 0.4785635627626254,
+      "reported": 0.4785635627626254,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_change O1 identity hydro",
+      "independent": 0.04870922103939324,
+      "reported": 0.048709221039393194,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose intact",
+      "independent": 767.1022890409369,
+      "reported": 767.1022890409369,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose hydro",
+      "independent": 1042.4313061940484,
+      "reported": 1042.4313061940484,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose reciprocal_ratio",
+      "independent": 0.7358780233123016,
+      "reported": 0.7358780233123016,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose reciprocal_error",
+      "independent": 0.5272727838020185,
+      "reported": 0.5272727838020185,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0301458460333068,
+      "reported": 1.0301458460333068,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose anchored_A_error",
+      "independent": 0.19088149031084437,
+      "reported": 0.19088149031084437,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 0.8906449525861999,
+      "reported": 0.8906449525861999,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose anchored_B_error",
+      "independent": 0.33639129349117414,
+      "reported": 0.33639129349117414,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose O1 identity intact",
+      "independent": 0.19088149031084437,
+      "reported": 0.19088149031084437,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 proportional_dose O1 identity hydro",
+      "independent": 0.33639129349117414,
+      "reported": 0.33639129349117414,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment intact",
+      "independent": 744.6540623298642,
+      "reported": 744.6540623298642,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment hydro",
+      "independent": 928.4361812795687,
+      "reported": 928.4361812795687,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment reciprocal_ratio",
+      "independent": 0.8020519636617174,
+      "reported": 0.8020519636617174,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment reciprocal_error",
+      "independent": 0.44116376123782913,
+      "reported": 0.44116376123782913,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment anchored_A_error",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment anchored_B_error",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment O1 identity intact",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 no_form_adjustment O1 identity hydro",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source intact",
+      "independent": 628.3582437290875,
+      "reported": 628.3582437290875,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source hydro",
+      "independent": 808.2031453036692,
+      "reported": 808.2031453036692,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source reciprocal_ratio",
+      "independent": 0.7774756227816857,
+      "reported": 0.7774756227816857,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source reciprocal_error",
+      "independent": 0.472284869374641,
+      "reported": 0.472284869374641,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 0.8438257111806898,
+      "reported": 0.8438257111806898,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source anchored_A_error",
+      "independent": 0.39039118967025993,
+      "reported": 0.39039118967025993,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.1487658600124897,
+      "reported": 1.1487658600124897,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source anchored_B_error",
+      "independent": 0.08189367970438094,
+      "reported": 0.08189367970438094,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source O1 identity intact",
+      "independent": 0.39039118967025993,
+      "reported": 0.39039118967025993,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.4 bridge_cross_source O1 identity hydro",
+      "independent": 0.08189367970438094,
+      "reported": 0.08189367970438101,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 observed",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source intact",
+      "independent": 1069.1851132321285,
+      "reported": 1069.1851132321285,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source hydro",
+      "independent": 2139.989236202765,
+      "reported": 2139.989236202765,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source reciprocal_ratio",
+      "independent": 0.4996217247939572,
+      "reported": 0.4996217247939572,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source reciprocal_error",
+      "independent": 0.7744262282352274,
+      "reported": 0.7744262282352274,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 0.7358780233123013,
+      "reported": 0.7358780233123013,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source anchored_A_error",
+      "independent": 0.3872131141176138,
+      "reported": 0.3872131141176138,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source anchored_B_error",
+      "independent": 0.3872131141176136,
+      "reported": 0.3872131141176136,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source O1 identity intact",
+      "independent": 0.3872131141176138,
+      "reported": 0.3872131141176138,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_same_source O1 identity hydro",
+      "independent": 0.3872131141176136,
+      "reported": 0.38721311411761367,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change intact",
+      "independent": 575.3267167807026,
+      "reported": 575.3267167807026,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change hydro",
+      "independent": 781.8234796455363,
+      "reported": 781.8234796455363,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change reciprocal_ratio",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change reciprocal_error",
+      "independent": 0.3872131141176136,
+      "reported": 0.3872131141176136,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 0.39597473053426496,
+      "reported": 0.39597473053426496,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change anchored_A_error",
+      "independent": 1.0069270924803837,
+      "reported": 1.0069270924803837,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 2.014228390480756,
+      "reported": 2.014228390480756,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change anchored_B_error",
+      "independent": 0.6197139783627701,
+      "reported": 0.6197139783627701,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change O1 identity intact",
+      "independent": 1.0069270924803837,
+      "reported": 1.0069270924803837,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_change O1 identity hydro",
+      "independent": 0.6197139783627701,
+      "reported": 0.6197139783627701,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose intact",
+      "independent": 1150.653433561405,
+      "reported": 1150.653433561405,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose hydro",
+      "independent": 1563.6469592910726,
+      "reported": 1563.6469592910726,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose reciprocal_ratio",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose reciprocal_error",
+      "independent": 0.3872131141176136,
+      "reported": 0.3872131141176136,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 0.7919494610685299,
+      "reported": 0.7919494610685299,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose anchored_A_error",
+      "independent": 0.3137799119204384,
+      "reported": 0.3137799119204384,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 1.007114195240378,
+      "reported": 1.007114195240378,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose anchored_B_error",
+      "independent": 0.07343320219717521,
+      "reported": 0.07343320219717521,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose O1 identity intact",
+      "independent": 0.3137799119204384,
+      "reported": 0.3137799119204384,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 proportional_dose O1 identity hydro",
+      "independent": 0.07343320219717521,
+      "reported": 0.07343320219717518,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment intact",
+      "independent": 1452.9379589562413,
+      "reported": 1452.9379589562413,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment hydro",
+      "independent": 1574.7710490464924,
+      "reported": 1574.7710490464924,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment reciprocal_ratio",
+      "independent": 0.9226344107837011,
+      "reported": 0.9226344107837011,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment reciprocal_error",
+      "independent": 0.1610444218690193,
+      "reported": 0.1610444218690193,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment anchored_A_error",
+      "independent": 0.08052221093450967,
+      "reported": 0.08052221093450967,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment anchored_B_error",
+      "independent": 0.08052221093450967,
+      "reported": 0.08052221093450967,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment O1 identity intact",
+      "independent": 0.08052221093450967,
+      "reported": 0.08052221093450955,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 no_form_adjustment O1 identity hydro",
+      "independent": 0.08052221093450967,
+      "reported": 0.08052221093450969,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source intact",
+      "independent": 888.4652568568906,
+      "reported": 888.4652568568906,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source hydro",
+      "independent": 1377.56426242496,
+      "reported": 1377.56426242496,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source reciprocal_ratio",
+      "independent": 0.644953764474772,
+      "reported": 0.644953764474772,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source reciprocal_error",
+      "independent": 0.5190988586750717,
+      "reported": 0.5190988586750717,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 0.6114956604858369,
+      "reported": 0.6114956604858369,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source anchored_A_error",
+      "independent": 0.5723696313218167,
+      "reported": 0.5723696313218167,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.14315614305672,
+      "reported": 1.14315614305672,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source anchored_B_error",
+      "independent": 0.053270772646745096,
+      "reported": 0.053270772646745096,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source O1 identity intact",
+      "independent": 0.5723696313218167,
+      "reported": 0.5723696313218167,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 whey_0.6 bridge_cross_source O1 identity hydro",
+      "independent": 0.053270772646745096,
+      "reported": 0.05327077264674507,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean reciprocal bridge_same_source",
+      "independent": 0.5506797784522339,
+      "reported": 0.5506797784522339,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean reciprocal no_change",
+      "independent": 0.2753398892261169,
+      "reported": 0.2753398892261169,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean reciprocal proportional_dose",
+      "independent": 0.2753398892261169,
+      "reported": 0.2753398892261169,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean reciprocal no_form_adjustment",
+      "independent": 0.35988208438352853,
+      "reported": 0.35988208438352853,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean reciprocal bridge_cross_source",
+      "independent": 0.4956918640248564,
+      "reported": 0.4956918640248564,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_pred_intact_vs_measured_hydro bridge_same_source",
+      "independent": 0.2753398892261169,
+      "reported": 0.2753398892261169,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_pred_intact_vs_measured_hydro no_change",
+      "independent": 0.5020551223734854,
+      "reported": 0.5020551223734854,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_pred_intact_vs_measured_hydro proportional_dose",
+      "independent": 0.24069020524801915,
+      "reported": 0.24069020524801915,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_pred_intact_vs_measured_hydro no_form_adjustment",
+      "independent": 0.17994104219176427,
+      "reported": 0.17994104219176427,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_pred_intact_vs_measured_hydro bridge_cross_source",
+      "independent": 0.48138041049603836,
+      "reported": 0.48138041049603836,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_measured_intact_vs_pred_hydro bridge_same_source",
+      "independent": 0.27533988922611696,
+      "reported": 0.27533988922611696,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_measured_intact_vs_pred_hydro no_change",
+      "independent": 0.31701271594579405,
+      "reported": 0.31701271594579405,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_measured_intact_vs_pred_hydro proportional_dose",
+      "independent": 0.19775652107976568,
+      "reported": 0.19775652107976568,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_measured_intact_vs_pred_hydro no_form_adjustment",
+      "independent": 0.17994104219176427,
+      "reported": 0.17994104219176427,
+      "status": "PASS"
+    },
+    {
+      "label": "primary_calibrate_0.3 mean anchored_measured_intact_vs_pred_hydro bridge_cross_source",
+      "independent": 0.067582226175563,
+      "reported": 0.067582226175563,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 observed",
+      "independent": 1.281176701486054,
+      "reported": 1.281176701486054,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source intact",
+      "independent": 821.2245553926887,
+      "reported": 821.2245553926887,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source hydro",
+      "independent": 834.4635989700799,
+      "reported": 834.4635989700799,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source reciprocal_ratio",
+      "independent": 0.9841346661571202,
+      "reported": 0.9841346661571202,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source reciprocal_error",
+      "independent": 0.2637714891149158,
+      "reported": 0.2637714891149158,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source anchored_A_error",
+      "independent": 0.13188574455745802,
+      "reported": 0.13188574455745802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.1228759528128023,
+      "reported": 1.1228759528128023,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source anchored_B_error",
+      "independent": 0.13188574455745777,
+      "reported": 0.13188574455745777,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source O1 identity intact",
+      "independent": 0.13188574455745802,
+      "reported": 0.13188574455745802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_same_source O1 identity hydro",
+      "independent": 0.13188574455745777,
+      "reported": 0.13188574455745777,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change intact",
+      "independent": 1446.9885190039313,
+      "reported": 1446.9885190039313,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change hydro",
+      "independent": 1288.6450327653984,
+      "reported": 1288.6450327653984,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change reciprocal_ratio",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change reciprocal_error",
+      "independent": 0.13188574455745802,
+      "reported": 0.13188574455745802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 1.9784949211714598,
+      "reported": 1.9784949211714598,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change anchored_A_error",
+      "independent": 0.4345574611585671,
+      "reported": 0.4345574611585671,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 0.7271196372598846,
+      "reported": 0.7271196372598846,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change anchored_B_error",
+      "independent": 0.5664432057160249,
+      "reported": 0.5664432057160249,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change O1 identity intact",
+      "independent": 0.4345574611585671,
+      "reported": 0.4345574611585671,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_change O1 identity hydro",
+      "independent": 0.5664432057160249,
+      "reported": 0.566443205716025,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose intact",
+      "independent": 723.4942595019656,
+      "reported": 723.4942595019656,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose hydro",
+      "independent": 644.3225163826992,
+      "reported": 644.3225163826992,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose reciprocal_ratio",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose reciprocal_error",
+      "independent": 0.13188574455745802,
+      "reported": 0.13188574455745802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 0.9892474605857299,
+      "reported": 0.9892474605857299,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose anchored_A_error",
+      "independent": 0.25858971940137826,
+      "reported": 0.25858971940137826,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 1.4542392745197692,
+      "reported": 1.4542392745197692,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose anchored_B_error",
+      "independent": 0.1267039748439204,
+      "reported": 0.1267039748439204,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose O1 identity intact",
+      "independent": 0.25858971940137826,
+      "reported": 0.25858971940137826,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 proportional_dose O1 identity hydro",
+      "independent": 0.1267039748439204,
+      "reported": 0.12670397484392035,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment intact",
+      "independent": 731.3582175622541,
+      "reported": 731.3582175622541,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment hydro",
+      "independent": 936.9991087811286,
+      "reported": 936.9991087811286,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment reciprocal_ratio",
+      "independent": 0.7805324580443015,
+      "reported": 0.7805324580443015,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment reciprocal_error",
+      "independent": 0.495557907343713,
+      "reported": 0.495557907343713,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment anchored_A_error",
+      "independent": 0.24777895367185654,
+      "reported": 0.24777895367185654,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment anchored_B_error",
+      "independent": 0.24777895367185654,
+      "reported": 0.24777895367185654,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment O1 identity intact",
+      "independent": 0.24777895367185654,
+      "reported": 0.24777895367185654,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 no_form_adjustment O1 identity hydro",
+      "independent": 0.24777895367185654,
+      "reported": 0.24777895367185657,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source intact",
+      "independent": 528.642658475318,
+      "reported": 528.642658475318,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source hydro",
+      "independent": 693.4177315240223,
+      "reported": 693.4177315240223,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source reciprocal_ratio",
+      "independent": 0.7623725705909555,
+      "reported": 0.7623725705909555,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source reciprocal_error",
+      "independent": 0.5190988586750717,
+      "reported": 0.5190988586750717,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 0.7228231607725378,
+      "reported": 0.7228231607725378,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source anchored_A_error",
+      "independent": 0.5723696313218167,
+      "reported": 0.5723696313218167,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.3512765338748305,
+      "reported": 1.3512765338748305,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source anchored_B_error",
+      "independent": 0.053270772646745096,
+      "reported": 0.053270772646745096,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source O1 identity intact",
+      "independent": 0.5723696313218167,
+      "reported": 0.5723696313218167,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.3 bridge_cross_source O1 identity hydro",
+      "independent": 0.053270772646745096,
+      "reported": 0.05327077264674507,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 observed",
+      "independent": 1.3535988605798122,
+      "reported": 1.3535988605798122,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source intact",
+      "independent": 848.9336607924523,
+      "reported": 848.9336607924523,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source hydro",
+      "independent": 911.3814224354137,
+      "reported": 911.3814224354137,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source reciprocal_ratio",
+      "independent": 0.9314801025062733,
+      "reported": 0.9314801025062733,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source reciprocal_error",
+      "independent": 0.3737473179696711,
+      "reported": 0.3737473179696711,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.1228759528128023,
+      "reported": 1.1228759528128023,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source anchored_A_error",
+      "independent": 0.18687365898483538,
+      "reported": 0.18687365898483538,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source anchored_B_error",
+      "independent": 0.18687365898483566,
+      "reported": 0.18687365898483566,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source O1 identity intact",
+      "independent": 0.18687365898483538,
+      "reported": 0.18687365898483552,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_same_source O1 identity hydro",
+      "independent": 0.18687365898483566,
+      "reported": 0.18687365898483557,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change intact",
+      "independent": 1446.9885190039313,
+      "reported": 1446.9885190039313,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change hydro",
+      "independent": 1288.6450327653984,
+      "reported": 1288.6450327653984,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change reciprocal_ratio",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change reciprocal_error",
+      "independent": 0.18687365898483566,
+      "reported": 0.18687365898483566,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 1.9139170550370648,
+      "reported": 1.9139170550370648,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change anchored_A_error",
+      "independent": 0.34638508806620155,
+      "reported": 0.34638508806620155,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 0.794142884248683,
+      "reported": 0.794142884248683,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change anchored_B_error",
+      "independent": 0.533258747051037,
+      "reported": 0.533258747051037,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change O1 identity intact",
+      "independent": 0.34638508806620155,
+      "reported": 0.34638508806620155,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_change O1 identity hydro",
+      "independent": 0.533258747051037,
+      "reported": 0.533258747051037,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose intact",
+      "independent": 964.6590126692876,
+      "reported": 964.6590126692876,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose hydro",
+      "independent": 859.0966885102656,
+      "reported": 859.0966885102656,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose reciprocal_ratio",
+      "independent": 1.122875952812802,
+      "reported": 1.122875952812802,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose reciprocal_error",
+      "independent": 0.18687365898483566,
+      "reported": 0.18687365898483566,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 1.2759447033580433,
+      "reported": 1.2759447033580433,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose anchored_A_error",
+      "independent": 0.059080020041962694,
+      "reported": 0.059080020041962694,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 1.1912143263730244,
+      "reported": 1.1912143263730244,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose anchored_B_error",
+      "independent": 0.12779363894287277,
+      "reported": 0.12779363894287277,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose O1 identity intact",
+      "independent": 0.059080020041962694,
+      "reported": 0.05908002004196281,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 proportional_dose O1 identity hydro",
+      "independent": 0.12779363894287277,
+      "reported": 0.12779363894287266,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment intact",
+      "independent": 756.0351245085221,
+      "reported": 756.0351245085221,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment hydro",
+      "independent": 1023.368283093052,
+      "reported": 1023.368283093052,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment reciprocal_ratio",
+      "independent": 0.7387713074548921,
+      "reported": 0.7387713074548921,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment reciprocal_error",
+      "independent": 0.6055337361984684,
+      "reported": 0.6055337361984684,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment anchored_A_error",
+      "independent": 0.3027668680992342,
+      "reported": 0.3027668680992342,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment anchored_B_error",
+      "independent": 0.3027668680992342,
+      "reported": 0.3027668680992342,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment O1 identity intact",
+      "independent": 0.3027668680992342,
+      "reported": 0.3027668680992342,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 no_form_adjustment O1 identity hydro",
+      "independent": 0.3027668680992342,
+      "reported": 0.30276686809923414,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source intact",
+      "independent": 853.0995637447268,
+      "reported": 853.0995637447268,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source hydro",
+      "independent": 660.4512963783441,
+      "reported": 660.4512963783441,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source reciprocal_ratio",
+      "independent": 1.291691860433601,
+      "reported": 1.291691860433601,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source reciprocal_error",
+      "independent": 0.04681398930043057,
+      "reported": 0.04681398930043057,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.1283861504441393,
+      "reported": 1.1283861504441393,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source anchored_A_error",
+      "independent": 0.1819784416515569,
+      "reported": 0.1819784416515569,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.549498484906915,
+      "reported": 1.549498484906915,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source anchored_B_error",
+      "independent": 0.13516445235112645,
+      "reported": 0.13516445235112645,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source O1 identity intact",
+      "independent": 0.1819784416515569,
+      "reported": 0.1819784416515569,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 soy_0.4 bridge_cross_source O1 identity hydro",
+      "independent": 0.13516445235112645,
+      "reported": 0.1351644523511263,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 observed",
+      "independent": 0.7358780233123015,
+      "reported": 0.7358780233123015,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source intact",
+      "independent": 847.3816611516172,
+      "reported": 847.3816611516172,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source hydro",
+      "independent": 530.8162263450847,
+      "reported": 530.8162263450847,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source reciprocal_ratio",
+      "independent": 1.5963748263428794,
+      "reported": 1.5963748263428794,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source reciprocal_error",
+      "independent": 0.7744262282352272,
+      "reported": 0.7744262282352272,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0838529197611253,
+      "reported": 1.0838529197611253,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source anchored_A_error",
+      "independent": 0.3872131141176135,
+      "reported": 0.3872131141176135,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source anchored_B_error",
+      "independent": 0.38721311411761367,
+      "reported": 0.38721311411761367,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source O1 identity intact",
+      "independent": 0.3872131141176135,
+      "reported": 0.3872131141176135,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_same_source O1 identity hydro",
+      "independent": 0.38721311411761367,
+      "reported": 0.3872131141176138,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change intact",
+      "independent": 1574.7710490464924,
+      "reported": 1574.7710490464924,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change hydro",
+      "independent": 1452.9379589562413,
+      "reported": 1452.9379589562413,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change reciprocal_ratio",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change reciprocal_error",
+      "independent": 0.38721311411761367,
+      "reported": 0.38721311411761367,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 2.014228390480756,
+      "reported": 2.014228390480756,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change anchored_A_error",
+      "independent": 1.0069270924803837,
+      "reported": 1.0069270924803837,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 0.39597473053426496,
+      "reported": 0.39597473053426496,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change anchored_B_error",
+      "independent": 0.6197139783627701,
+      "reported": 0.6197139783627701,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change O1 identity intact",
+      "independent": 1.0069270924803837,
+      "reported": 1.0069270924803837,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_change O1 identity hydro",
+      "independent": 0.6197139783627701,
+      "reported": 0.6197139783627701,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose intact",
+      "independent": 787.3855245232462,
+      "reported": 787.3855245232462,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose hydro",
+      "independent": 726.4689794781207,
+      "reported": 726.4689794781207,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose reciprocal_ratio",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose reciprocal_error",
+      "independent": 0.38721311411761367,
+      "reported": 0.38721311411761367,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 1.007114195240378,
+      "reported": 1.007114195240378,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose anchored_A_error",
+      "independent": 0.3137799119204384,
+      "reported": 0.3137799119204384,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 0.7919494610685299,
+      "reported": 0.7919494610685299,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose anchored_B_error",
+      "independent": 0.07343320219717518,
+      "reported": 0.07343320219717518,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose O1 identity intact",
+      "independent": 0.3137799119204384,
+      "reported": 0.3137799119204384,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 proportional_dose O1 identity hydro",
+      "independent": 0.07343320219717518,
+      "reported": 0.07343320219717521,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment intact",
+      "independent": 781.8234796455363,
+      "reported": 781.8234796455363,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment hydro",
+      "independent": 575.3267167807026,
+      "reported": 575.3267167807026,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment reciprocal_ratio",
+      "independent": 1.3589208650352738,
+      "reported": 1.3589208650352738,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment reciprocal_error",
+      "independent": 0.6133818063662081,
+      "reported": 0.6133818063662081,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment anchored_A_error",
+      "independent": 0.30669090318310405,
+      "reported": 0.30669090318310405,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment anchored_B_error",
+      "independent": 0.30669090318310405,
+      "reported": 0.30669090318310405,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment O1 identity intact",
+      "independent": 0.30669090318310405,
+      "reported": 0.30669090318310405,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 no_form_adjustment O1 identity hydro",
+      "independent": 0.30669090318310405,
+      "reported": 0.306690903183104,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source intact",
+      "independent": 1019.7448356443231,
+      "reported": 1019.7448356443231,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source hydro",
+      "independent": 824.6011033856436,
+      "reported": 824.6011033856436,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source reciprocal_ratio",
+      "independent": 1.2366522812757093,
+      "reported": 1.2366522812757093,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source reciprocal_error",
+      "independent": 0.5190988586750716,
+      "reported": 0.5190988586750716,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.3043159513534381,
+      "reported": 1.3043159513534381,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source anchored_A_error",
+      "independent": 0.5723696313218167,
+      "reported": 0.5723696313218167,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 0.6977030644496214,
+      "reported": 0.6977030644496214,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source anchored_B_error",
+      "independent": 0.053270772646745304,
+      "reported": 0.053270772646745304,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source O1 identity intact",
+      "independent": 0.5723696313218167,
+      "reported": 0.5723696313218168,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.3 bridge_cross_source O1 identity hydro",
+      "independent": 0.053270772646745304,
+      "reported": 0.053270772646745304,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 observed",
+      "independent": 1.2468020094789911,
+      "reported": 1.2468020094789911,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source intact",
+      "independent": 807.0954796682065,
+      "reported": 807.0954796682065,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source hydro",
+      "independent": 856.6071690651444,
+      "reported": 856.6071690651444,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source reciprocal_ratio",
+      "independent": 0.9422002392870792,
+      "reported": 0.9422002392870792,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source reciprocal_error",
+      "independent": 0.2801193393688098,
+      "reported": 0.2801193393688098,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source anchored_A_error",
+      "independent": 0.1400596696844048,
+      "reported": 0.1400596696844048,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0838529197611253,
+      "reported": 1.0838529197611253,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source anchored_B_error",
+      "independent": 0.14005966968440506,
+      "reported": 0.14005966968440506,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source O1 identity intact",
+      "independent": 0.1400596696844048,
+      "reported": 0.14005966968440492,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_same_source O1 identity hydro",
+      "independent": 0.14005966968440506,
+      "reported": 0.14005966968440509,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change intact",
+      "independent": 1574.7710490464924,
+      "reported": 1574.7710490464924,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change hydro",
+      "independent": 1452.9379589562413,
+      "reported": 1452.9379589562413,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change reciprocal_ratio",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change reciprocal_error",
+      "independent": 0.1400596696844048,
+      "reported": 0.1400596696844048,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change anchored_pred_intact_over_measured_hydro",
+      "independent": 2.114768627084862,
+      "reported": 2.114768627084862,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change anchored_A_error",
+      "independent": 0.5283635297177584,
+      "reported": 0.5283635297177584,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change anchored_measured_intact_over_pred_hydro",
+      "independent": 0.6390060742487153,
+      "reported": 0.6390060742487153,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change anchored_B_error",
+      "independent": 0.6684231994021631,
+      "reported": 0.6684231994021631,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change O1 identity intact",
+      "independent": 0.5283635297177584,
+      "reported": 0.5283635297177584,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_change O1 identity hydro",
+      "independent": 0.6684231994021631,
+      "reported": 0.6684231994021633,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose intact",
+      "independent": 1049.847366030995,
+      "reported": 1049.847366030995,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose hydro",
+      "independent": 968.6253059708275,
+      "reported": 968.6253059708275,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose reciprocal_ratio",
+      "independent": 1.0838529197611255,
+      "reported": 1.0838529197611255,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose reciprocal_error",
+      "independent": 0.1400596696844048,
+      "reported": 0.1400596696844048,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose anchored_pred_intact_over_measured_hydro",
+      "independent": 1.4098457513899083,
+      "reported": 1.4098457513899083,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose anchored_A_error",
+      "independent": 0.12289842160959412,
+      "reported": 0.12289842160959412,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose anchored_measured_intact_over_pred_hydro",
+      "independent": 0.9585091113730728,
+      "reported": 0.9585091113730728,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose anchored_B_error",
+      "independent": 0.2629580912939989,
+      "reported": 0.2629580912939989,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose O1 identity intact",
+      "independent": 0.12289842160959412,
+      "reported": 0.12289842160959412,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 proportional_dose O1 identity hydro",
+      "independent": 0.2629580912939989,
+      "reported": 0.26295809129399894,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment intact",
+      "independent": 744.6540623298642,
+      "reported": 744.6540623298642,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment hydro",
+      "independent": 928.4361812795687,
+      "reported": 928.4361812795687,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment reciprocal_ratio",
+      "independent": 0.8020519636617174,
+      "reported": 0.8020519636617174,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment reciprocal_error",
+      "independent": 0.44116376123782913,
+      "reported": 0.44116376123782913,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment anchored_pred_intact_over_measured_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment anchored_A_error",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment anchored_measured_intact_over_pred_hydro",
+      "independent": 1.0,
+      "reported": 1.0,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment anchored_B_error",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment O1 identity intact",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 no_form_adjustment O1 identity hydro",
+      "independent": 0.22058188061891454,
+      "reported": 0.22058188061891454,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source intact",
+      "independent": 1113.7412104946873,
+      "reported": 1113.7412104946873,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source hydro",
+      "independent": 852.4241375806553,
+      "reported": 852.4241375806553,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source reciprocal_ratio",
+      "independent": 1.3065575708070638,
+      "reported": 1.3065575708070638,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source reciprocal_error",
+      "independent": 0.046813989300430646,
+      "reported": 0.046813989300430646,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source anchored_pred_intact_over_measured_hydro",
+      "independent": 1.4956491434559933,
+      "reported": 1.4956491434559933,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source anchored_A_error",
+      "independent": 0.18197844165155688,
+      "reported": 0.18197844165155688,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source anchored_measured_intact_over_pred_hydro",
+      "independent": 1.089171622843354,
+      "reported": 1.089171622843354,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source anchored_B_error",
+      "independent": 0.1351644523511262,
+      "reported": 0.1351644523511262,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source O1 identity intact",
+      "independent": 0.18197844165155688,
+      "reported": 0.18197844165155672,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 whey_0.4 bridge_cross_source O1 identity hydro",
+      "independent": 0.1351644523511262,
+      "reported": 0.13516445235112626,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean reciprocal bridge_same_source",
+      "independent": 0.423016093672156,
+      "reported": 0.423016093672156,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean reciprocal no_change",
+      "independent": 0.21150804683607805,
+      "reported": 0.21150804683607805,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean reciprocal proportional_dose",
+      "independent": 0.21150804683607805,
+      "reported": 0.21150804683607805,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean reciprocal no_form_adjustment",
+      "independent": 0.5389093027865547,
+      "reported": 0.5389093027865547,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean reciprocal bridge_cross_source",
+      "independent": 0.2829564239877511,
+      "reported": 0.2829564239877511,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_pred_intact_vs_measured_hydro bridge_same_source",
+      "independent": 0.21150804683607793,
+      "reported": 0.21150804683607793,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_pred_intact_vs_measured_hydro no_change",
+      "independent": 0.5790582928557276,
+      "reported": 0.5790582928557276,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_pred_intact_vs_measured_hydro proportional_dose",
+      "independent": 0.18858701824334337,
+      "reported": 0.18858701824334337,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_pred_intact_vs_measured_hydro no_form_adjustment",
+      "independent": 0.26945465139327734,
+      "reported": 0.26945465139327734,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_pred_intact_vs_measured_hydro bridge_cross_source",
+      "independent": 0.3771740364866868,
+      "reported": 0.3771740364866868,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_measured_intact_vs_pred_hydro bridge_same_source",
+      "independent": 0.21150804683607805,
+      "reported": 0.21150804683607805,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_measured_intact_vs_pred_hydro no_change",
+      "independent": 0.5969597826329988,
+      "reported": 0.5969597826329988,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_measured_intact_vs_pred_hydro proportional_dose",
+      "independent": 0.14772222681949182,
+      "reported": 0.14772222681949182,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_measured_intact_vs_pred_hydro no_form_adjustment",
+      "independent": 0.26945465139327734,
+      "reported": 0.26945465139327734,
+      "status": "PASS"
+    },
+    {
+      "label": "S1_calibrate_0.6 mean anchored_measured_intact_vs_pred_hydro bridge_cross_source",
+      "independent": 0.09421761249893576,
+      "reported": 0.09421761249893576,
+      "status": "PASS"
+    }
+  ],
+  "original_failure_preserved": "Original mixed-estimand O2 remains RED as historical output; correction independently verified, not retroactive validation."
+}

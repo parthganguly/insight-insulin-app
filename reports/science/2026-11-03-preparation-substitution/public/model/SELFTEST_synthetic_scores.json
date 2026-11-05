@@ -1,0 +1,288 @@
+{
+  "status": "Scored with frozen donor and rules; panels by operator never pooled",
+  "panels": {
+    "GM_ratio_0_120": [
+      {
+        "id": "synth_potato_f1_GM",
+        "source": null,
+        "locator": null,
+        "displaced_starch": "potato",
+        "pulse": "lentil",
+        "colour": "split_red",
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.5,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": 1.0,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": 0.6305281262857537,
+          "scaled_starch": 0.3975657180374234,
+          "linear_starch": 0.26105625257150744,
+          "fixed_colour": 0.6180904522613067,
+          "scaled_colour": 0.3820358071765866
+        },
+        "abs_log_error": {
+          "equality": 0.6931471805599453,
+          "carbohydrate": 0.6931471805599453,
+          "fixed_pooled": 0.4118447730290044,
+          "scaled_pooled": 0.13054236549806364,
+          "fixed_starch": 0.23194966548147036,
+          "scaled_starch": 0.22924784959700453,
+          "linear_starch": 0.6498721872282275,
+          "fixed_colour": 0.21202671120787062,
+          "scaled_colour": 0.26909375814420416
+        },
+        "zero_correlation_log_se_scenario": 0.14142135623730953,
+        "prediction_inside_paired_ci": {
+          "equality": false,
+          "carbohydrate": false,
+          "fixed_pooled": false,
+          "scaled_pooled": true,
+          "fixed_starch": false,
+          "scaled_starch": false,
+          "linear_starch": false,
+          "fixed_colour": true,
+          "scaled_colour": false
+        },
+        "fixed_vs_scaled": {
+          "midpoint": 0.5006759104146982,
+          "scaled_closer": true,
+          "margin_log": 0.0013509079422328691
+        },
+        "notes": null
+      },
+      {
+        "id": "synth_potato_nof",
+        "source": null,
+        "locator": null,
+        "displaced_starch": "potato",
+        "pulse": "lentil",
+        "colour": null,
+        "exchange_fraction": null,
+        "extrapolation": false,
+        "observed_ratio": 0.6,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": null,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": null,
+          "fixed_starch": 0.6305281262857537,
+          "scaled_starch": null,
+          "linear_starch": null
+        },
+        "abs_log_error": {
+          "equality": 0.5108256237659907,
+          "carbohydrate": null,
+          "fixed_pooled": 0.22952321623504987,
+          "scaled_pooled": null,
+          "fixed_starch": 0.04962810868751577,
+          "scaled_starch": null,
+          "linear_starch": null
+        },
+        "zero_correlation_log_se_scenario": null,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": null,
+        "notes": null
+      }
+    ],
+    "AM_ratio_0_120": [
+      {
+        "id": "synth_rice_f1_AM",
+        "source": null,
+        "locator": null,
+        "displaced_starch": "rice",
+        "pulse": "lentil",
+        "colour": null,
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.85,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": null,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": 0.9035649359445966,
+          "scaled_starch": 0.816429593468563,
+          "linear_starch": 0.8071298718891933
+        },
+        "abs_log_error": {
+          "equality": 0.16251892949777494,
+          "carbohydrate": null,
+          "fixed_pooled": 0.11878347803316588,
+          "scaled_pooled": 0.40008588556410674,
+          "fixed_starch": 0.06111162951436809,
+          "scaled_starch": 0.04029567046903853,
+          "linear_starch": 0.05175176245349413
+        },
+        "zero_correlation_log_se_scenario": null,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": {
+          "midpoint": 0.8588929812995885,
+          "scaled_closer": true,
+          "margin_log": 0.010407979522664784
+        },
+        "notes": null
+      }
+    ],
+    "pulse_extension:GM_ratio_0_120": [
+      {
+        "id": "synth_bread_bean",
+        "source": null,
+        "locator": null,
+        "displaced_starch": "bread",
+        "pulse": "bean",
+        "colour": null,
+        "exchange_fraction": 1.0,
+        "extrapolation": false,
+        "observed_ratio": 0.7,
+        "predicted": {
+          "equality": 1.0,
+          "carbohydrate": null,
+          "fixed_pooled": 0.7548000437457947,
+          "scaled_pooled": 0.5697231060386536,
+          "fixed_starch": null,
+          "scaled_starch": null,
+          "linear_starch": null
+        },
+        "abs_log_error": {
+          "equality": 0.3566749439387324,
+          "carbohydrate": null,
+          "fixed_pooled": 0.07537253640779153,
+          "scaled_pooled": 0.2059298711231492,
+          "fixed_starch": null,
+          "scaled_starch": null,
+          "linear_starch": null
+        },
+        "zero_correlation_log_se_scenario": null,
+        "prediction_inside_paired_ci": null,
+        "fixed_vs_scaled": null,
+        "notes": null
+      }
+    ]
+  },
+  "summary": {
+    "GM_ratio_0_120": {
+      "carbohydrate": {
+        "coverage": 1,
+        "n": 2,
+        "mean_abs_log_error": null
+      },
+      "equality": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.601986402162968
+      },
+      "fixed_colour": {
+        "coverage": 1,
+        "n": 2,
+        "mean_abs_log_error": null
+      },
+      "fixed_pooled": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.3206839946320271
+      },
+      "fixed_starch": {
+        "coverage": 2,
+        "n": 2,
+        "mean_abs_log_error": 0.14078888708449305
+      },
+      "linear_starch": {
+        "coverage": 1,
+        "n": 2,
+        "mean_abs_log_error": null
+      },
+      "scaled_colour": {
+        "coverage": 1,
+        "n": 2,
+        "mean_abs_log_error": null
+      },
+      "scaled_pooled": {
+        "coverage": 1,
+        "n": 2,
+        "mean_abs_log_error": null
+      },
+      "scaled_starch": {
+        "coverage": 1,
+        "n": 2,
+        "mean_abs_log_error": null
+      }
+    },
+    "AM_ratio_0_120": {
+      "carbohydrate": {
+        "coverage": 0,
+        "n": 1,
+        "mean_abs_log_error": null
+      },
+      "equality": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.16251892949777494
+      },
+      "fixed_pooled": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.11878347803316588
+      },
+      "fixed_starch": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.06111162951436809
+      },
+      "linear_starch": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.05175176245349413
+      },
+      "scaled_pooled": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.40008588556410674
+      },
+      "scaled_starch": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.04029567046903853
+      }
+    },
+    "pulse_extension:GM_ratio_0_120": {
+      "carbohydrate": {
+        "coverage": 0,
+        "n": 1,
+        "mean_abs_log_error": null
+      },
+      "equality": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.3566749439387324
+      },
+      "fixed_pooled": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.07537253640779153
+      },
+      "fixed_starch": {
+        "coverage": 0,
+        "n": 1,
+        "mean_abs_log_error": null
+      },
+      "linear_starch": {
+        "coverage": 0,
+        "n": 1,
+        "mean_abs_log_error": null
+      },
+      "scaled_pooled": {
+        "coverage": 1,
+        "n": 1,
+        "mean_abs_log_error": 0.2059298711231492
+      },
+      "scaled_starch": {
+        "coverage": 0,
+        "n": 1,
+        "mean_abs_log_error": null
+      }
+    }
+  }
+}

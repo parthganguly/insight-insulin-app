@@ -1,0 +1,37 @@
+{
+  "glucose": {
+    "no_change": 1,
+    "energy_macro": 1.0,
+    "AA_or_protein_grams": 1.0,
+    "conditional_leucine": 1.0,
+    "conditional_five_AA": 1.0
+  },
+  "AA2": {
+    "no_change": 1,
+    "energy_macro": 1.12,
+    "AA_or_protein_grams": 1.1,
+    "conditional_leucine": 1.0,
+    "conditional_five_AA": 1.2281854516386892
+  },
+  "AA3": {
+    "no_change": 1,
+    "energy_macro": 1.176,
+    "AA_or_protein_grams": 1.1466666666666667,
+    "conditional_leucine": 1.5143952473777036,
+    "conditional_five_AA": 1.292844835242917
+  },
+  "AA5": {
+    "no_change": 1,
+    "energy_macro": 1.296,
+    "AA_or_protein_grams": 1.2036444444444445,
+    "conditional_leucine": 1.5143952473777036,
+    "conditional_five_AA": 1.4314006572519764
+  },
+  "whey": {
+    "no_change": 1,
+    "energy_macro": 1.72,
+    "AA_or_protein_grams": 1.366962962962963,
+    "conditional_leucine": 1.366962962962963,
+    "conditional_five_AA": 1.366962962962963
+  }
+}

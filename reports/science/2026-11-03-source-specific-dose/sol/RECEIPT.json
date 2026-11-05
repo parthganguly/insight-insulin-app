@@ -1,0 +1,141 @@
+{
+  "input_sha256": "833c1f198c30382e73451e5549e091702e86729bd0c6ba3d12cb902ac40b664a",
+  "method": "signed baseline-subtracted trapezoid of approximate group means; no below-baseline segment occurs",
+  "units": "pmol min/L",
+  "windows": {
+    "120": {
+      "control": {
+        "auc": 21885.0,
+        "ratio_of_group_auc": 1.0,
+        "ratio_digitization_envelope": [
+          1.0,
+          1.0
+        ]
+      },
+      "wheat_low": {
+        "auc": 22785.0,
+        "ratio_of_group_auc": 1.0411240575736807,
+        "ratio_digitization_envelope": [
+          0.8394070413835701,
+          1.2925327174749808
+        ]
+      },
+      "wheat_high": {
+        "auc": 22485.0,
+        "ratio_of_group_auc": 1.0274160383824538,
+        "ratio_digitization_envelope": [
+          0.8270537368746139,
+          1.2771362586605082
+        ]
+      },
+      "mixture_low": {
+        "auc": 33585.0,
+        "ratio_of_group_auc": 1.5346127484578478,
+        "ratio_digitization_envelope": [
+          1.2841260037059914,
+          1.846805234795997
+        ]
+      },
+      "mixture_high": {
+        "auc": 42735.0,
+        "ratio_of_group_auc": 1.9527073337902674,
+        "ratio_digitization_envelope": [
+          1.6609017912291537,
+          2.3163972286374133
+        ]
+      },
+      "dose_comparisons": {
+        "wheat": {
+          "high_low_ratio": 0.9868334430546412,
+          "high_low_digitization_envelope": [
+            0.7974985110184634,
+            1.2207505518763797
+          ]
+        },
+        "mixture": {
+          "high_low_ratio": 1.272443054935239,
+          "high_low_digitization_envelope": [
+            1.1208837015423092,
+            1.4473304473304474
+          ]
+        }
+      }
+    },
+    "180": {
+      "control": {
+        "auc": 43680.0,
+        "ratio_of_group_auc": 1.0,
+        "ratio_digitization_envelope": [
+          1.0,
+          1.0
+        ]
+      },
+      "wheat_low": {
+        "auc": 42405.0,
+        "ratio_of_group_auc": 0.9708104395604396,
+        "ratio_digitization_envelope": [
+          0.820748730964467,
+          1.1478293413173652
+        ]
+      },
+      "wheat_high": {
+        "auc": 43305.0,
+        "ratio_of_group_auc": 0.9914148351648352,
+        "ratio_digitization_envelope": [
+          0.8397842639593909,
+          1.1702844311377245
+        ]
+      },
+      "mixture_low": {
+        "auc": 60705.0,
+        "ratio_of_group_auc": 1.3897664835164836,
+        "ratio_digitization_envelope": [
+          1.2078045685279188,
+          1.6044161676646707
+        ]
+      },
+      "mixture_high": {
+        "auc": 82680.0,
+        "ratio_of_group_auc": 1.8928571428571428,
+        "ratio_digitization_envelope": [
+          1.6725888324873097,
+          2.1526946107784433
+        ]
+      },
+      "dose_comparisons": {
+        "wheat": {
+          "high_low_ratio": 1.021223912274496,
+          "high_low_digitization_envelope": [
+            0.863058363221389,
+            1.20873598763046
+          ]
+        },
+        "mixture": {
+          "high_low_ratio": 1.361996540647393,
+          "high_low_digitization_envelope": [
+            1.2297644040121296,
+            1.5109009718938797
+          ]
+        }
+      }
+    }
+  },
+  "published_native": {
+    "window_min": 180,
+    "baseline": "t=0",
+    "endpoint": "area above baseline",
+    "mixture_low_increase_pct": 52,
+    "mixture_low_SEM_pct": 10,
+    "mixture_high_increase_pct": 107,
+    "mixture_high_SEM_pct": 17,
+    "high_vs_low_increase_pct": 36,
+    "high_vs_low_SEM_pct": 6
+  },
+  "limitations": [
+    "Reading envelope is deterministic digitization sensitivity, not sampling uncertainty or a confidence interval.",
+    "No participant covariance, individual ratios, or individual AUC available.",
+    "120-min group-curve endpoint and 180-min published endpoint are distinct.",
+    "Source figure 3 bars are not replaced by curve trapezoids. Native reported percentages are retained separately.",
+    "Dose variation also changes total protein/amino-acid exposure and energy; exercise state and carbohydrate rate differ from resting study."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "inputs": {
+    "source": "Thondre et al. 2026 PLoS ONE doi 10.1371/journal.pone.0340386, Table 4 (group means; SD large; n=30 crossover)",
+    "glucose": 3373.4,
+    "pea10": 4069.7,
+    "pea20": 4104.9,
+    "whey10": 4183.3,
+    "whey20": 6043.07,
+    "protein_g": {
+      "pea10": 8.0,
+      "pea20": 16.0,
+      "whey10": 8.1,
+      "whey20": 16.2
+    }
+  },
+  "model_predictions": {
+    "low_whey_over_pea": 1.026,
+    "high_whey_over_pea": 1.043,
+    "provenance": "team-supplied frozen predictions (independent of Thondre fit)"
+  },
+  "observed_level_vs_glucose": {
+    "pea10": 1.2064089642497182,
+    "pea20": 1.2168435406414893,
+    "whey10": 1.2400841880595246,
+    "whey20": 1.7913885101084956
+  },
+  "doubling_check": {
+    "whey": {
+      "log_Q_low": 0.2151792709086704,
+      "log_Q_high": 0.582991023121059,
+      "ratio_high_over_low_log": 2.70932706788704,
+      "family_max_log_Q_high": 0.4303585418173408,
+      "observed_violates_family_bound": true,
+      "dose_exactly_doubled": true
+    },
+    "pea": {
+      "log_Q_low": 0.1876481488222953,
+      "log_Q_high": 0.1962602442299599,
+      "ratio_high_over_low_log": 1.0458949126954635,
+      "family_max_log_Q_high": 0.3752962976445906,
+      "observed_violates_family_bound": false,
+      "dose_exactly_doubled": true
+    }
+  },
+  "observed_contrast": {
+    "low": 1.0279136054254616,
+    "high": 1.472160101342298,
+    "log_change": 0.3591996568047239
+  },
+  "model_errors": {
+    "low": 0.0018633753377973383,
+    "high": 0.34462960287246364,
+    "flat_low": 0.027531122086375176,
+    "flat_high": 0.386730778891099
+  },
+  "family_contrast_cap_if_low_levels_exact": 1.274699408779372,
+  "general_inequality": "log C(2d) <= log C(d) + log Q_whey(d) for every family member",
+  "whey_low_level_needed_to_reach_observed_high_with_model_low_contrast": 1.4348538999437603,
+  "caveats": [
+    "Point means only: Thondre SDs are large (whey20 SD about half the mean); superadditivity in means is not a population interaction.",
+    "Bound concerns the functional family, not the fitted parameters; no target mean was fitted."
+  ]
+}

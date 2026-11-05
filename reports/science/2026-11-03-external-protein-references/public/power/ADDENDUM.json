@@ -1,0 +1,214 @@
+{
+  "status": "Addendum A: post-exposure, spec-faithful dose-free scoring + body-mass-conditional table; frozen PREDICTIONS/RESULTS unchanged",
+  "code_spec_mismatch": "transfer.py abstains all rules when body mass is missing; SPEC.md abstains only R1/R2",
+  "training_whey_ratios": [
+    1.3589208650352738,
+    0.8020519636617174,
+    0.9226344107837011
+  ],
+  "training_soy_ratios": [
+    0.7805324580443015,
+    0.7387713074548921,
+    0.8905703230129757
+  ],
+  "observed_T2_ratio": 1.4210526315789473,
+  "observed_T2_rounding_range": [
+    1.40522875816993,
+    1.4370860927152318
+  ],
+  "dose_free_scored": {
+    "R3_flat": {
+      "pred": 1.0,
+      "abs_log_error": 0.3513978868378886,
+      "error_over_rounding_range": [
+        0.3402001067352241,
+        0.36261751672553527
+      ]
+    },
+    "R4_log_mean_three": {
+      "pred": 1.0018640056459245,
+      "abs_log_error": 0.34953561629466184,
+      "error_over_rounding_range": [
+        0.33833783619199737,
+        0.36075524618230853
+      ]
+    }
+  },
+  "body_mass_conditional_not_imputed": [
+    {
+      "body_mass_kg": 60,
+      "dose_g_per_kg": 0.75,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": false,
+      "R1_status": "extrapolation_hold",
+      "whey": {
+        "R1_nearest_dose": 0.9226344107837011,
+        "R2_log_interpolation": null,
+        "R2x_boundary_hold": 0.9226344107837011
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.4319200977723981,
+        "R2_log_interpolation": null,
+        "R2x_boundary_hold": 0.4319200977723981
+      },
+      "soy_R1": 0.8905703230129757
+    },
+    {
+      "body_mass_kg": 64.3,
+      "dose_g_per_kg": 0.6998444790046656,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": false,
+      "R1_status": "extrapolation_hold",
+      "whey": {
+        "R1_nearest_dose": 0.9226344107837011,
+        "R2_log_interpolation": null,
+        "R2x_boundary_hold": 0.9226344107837011
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.4319200977723981,
+        "R2_log_interpolation": null,
+        "R2x_boundary_hold": 0.4319200977723981
+      },
+      "soy_R1": 0.8905703230129757
+    },
+    {
+      "body_mass_kg": 70,
+      "dose_g_per_kg": 0.6428571428571429,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": false,
+      "R1_status": "extrapolation_hold",
+      "whey": {
+        "R1_nearest_dose": 0.9226344107837011,
+        "R2_log_interpolation": null,
+        "R2x_boundary_hold": 0.9226344107837011
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.4319200977723981,
+        "R2_log_interpolation": null,
+        "R2x_boundary_hold": 0.4319200977723981
+      },
+      "soy_R1": 0.8905703230129757
+    },
+    {
+      "body_mass_kg": 75,
+      "dose_g_per_kg": 0.6,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "whey": {
+        "R1_nearest_dose": 0.9226344107837011,
+        "R2_log_interpolation": 0.9226344107837011,
+        "R2x_boundary_hold": null
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.4319200977723981,
+        "R2_log_interpolation": 0.4319200977723981,
+        "R2x_boundary_hold": null
+      },
+      "soy_R1": 0.8905703230129757
+    },
+    {
+      "body_mass_kg": 80,
+      "dose_g_per_kg": 0.5625,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "whey": {
+        "R1_nearest_dose": 0.9226344107837011,
+        "R2_log_interpolation": 0.8987203156284335,
+        "R2x_boundary_hold": null
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.4319200977723981,
+        "R2_log_interpolation": 0.45818128583822404,
+        "R2x_boundary_hold": null
+      },
+      "soy_R1": 0.8905703230129757
+    },
+    {
+      "body_mass_kg": 85,
+      "dose_g_per_kg": 0.5294117647058824,
+      "nearest_training_dose": 0.6,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "whey": {
+        "R1_nearest_dose": 0.9226344107837011,
+        "R2_log_interpolation": 0.878134914904777,
+        "R2x_boundary_hold": null
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.4319200977723981,
+        "R2_log_interpolation": 0.4813529223668939,
+        "R2x_boundary_hold": null
+      },
+      "soy_R1": 0.8905703230129757
+    },
+    {
+      "body_mass_kg": 90,
+      "dose_g_per_kg": 0.5,
+      "nearest_training_dose": 0.4,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "whey": {
+        "R1_nearest_dose": 0.8020519636617174,
+        "R2_log_interpolation": 0.8602329573498908,
+        "R2x_boundary_hold": null
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.5719797674568032,
+        "R2_log_interpolation": 0.5019499326146006,
+        "R2x_boundary_hold": null
+      },
+      "soy_R1": 0.7387713074548921
+    },
+    {
+      "body_mass_kg": 100,
+      "dose_g_per_kg": 0.45,
+      "nearest_training_dose": 0.4,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "whey": {
+        "R1_nearest_dose": 0.8020519636617174,
+        "R2_log_interpolation": 0.8306332118624961,
+        "R2x_boundary_hold": null
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.5719797674568032,
+        "R2_log_interpolation": 0.536964850035702,
+        "R2x_boundary_hold": null
+      },
+      "soy_R1": 0.7387713074548921
+    },
+    {
+      "body_mass_kg": 112.5,
+      "dose_g_per_kg": 0.4,
+      "nearest_training_dose": 0.4,
+      "inside_training_range": true,
+      "R1_status": "interpolation_nearest",
+      "whey": {
+        "R1_nearest_dose": 0.8020519636617174,
+        "R2_log_interpolation": 0.8020519636617174,
+        "R2x_boundary_hold": null
+      },
+      "whey_abs_log_error": {
+        "R1_nearest_dose": 0.5719797674568032,
+        "R2_log_interpolation": 0.5719797674568032,
+        "R2x_boundary_hold": null
+      },
+      "soy_R1": 0.7387713074548921
+    }
+  ],
+  "note_nearest": "For 45 g, nearest training dose is 0.6 g/kg for every body mass < 90 kg (R1 = 0.9226); interpolation between 0.4 and 0.6 needs 75-112.5 kg; below 75 kg is extrapolation beyond 0.6.",
+  "recorded_not_scored": {
+    "T1_two_hour_signed_area_group_curves": "UNAVAILABLE: no accessible original figure (closed full text; no repository copy found)",
+    "T3_Cmax": {
+      "WPH": 299,
+      "WPI": 234,
+      "ratio": 1.2777777777777777,
+      "unit_printed": "mM (apparent typographical unit)",
+      "timing": "WPH 60 min vs WPI 40 min",
+      "source_statistics": "28% higher, P = 0.018"
+    },
+    "gastric_emptying": "18 (3) vs 23 (3) min WPH vs WPI, P = 0.15"
+  }
+}

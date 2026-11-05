@@ -1,0 +1,19 @@
+{
+  "status": "v2 predictions: same frozen rules, Delta-leucine from source Table 2; made before reading Figure 4 or Results insulin text",
+  "delta_leucine_g": 1.069,
+  "predicted_ratio_high_over_low": {
+    "P0_equal_response": 1.0,
+    "P1_generic_AA_flag": 1.0,
+    "P2_fixed_enrichment_multiplier": 1.2670685255785012,
+    "P3_quantitative_slope": 1.1154675776169127,
+    "P3w_whey_slope": 1.0579890973125399,
+    "P3s_soy_slope": 1.1630142473156848
+  },
+  "thresholds": {
+    "P3_beats_P0_if_obs_above": 1.056156985308961,
+    "P3_beats_P2_if_obs_below": 1.1888540107606502,
+    "P2_beats_P0_if_obs_above": 1.1256413840910884,
+    "separation_ln_P2_minus_ln_P3": 0.12743231565317112
+  },
+  "v1_delta_leucine_g": 1.005
+}

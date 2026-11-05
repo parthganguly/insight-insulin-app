@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-11-04T09:11:20.044209+00:00",
+  "source_sha256": "8801cf69c4aaeb7127c22e77776d6c9f5bfcbf1dace14fbd85dae2671bd39880",
+  "expected_source_sha256": "8801cf69c4aaeb7127c22e77776d6c9f5bfcbf1dace14fbd85dae2671bd39880",
+  "source_check": "verified",
+  "artifacts_sha256": {
+    "Bornet_verify.py": "a31f7a21b46163c4debf83aa6697c4ca3fae586e71e1d4d71ec23bf9f330ab39",
+    "Bornet_results.json": "ef952aaff9b11eaa82bdb9d3c66d65d1ea159bfe3fceb970e6cc23377eb9a1ab"
+  },
+  "independent_numeric_H30": true,
+  "H20_independently_secured": "Coarse intervals only; three individual centers unresolved.",
+  "table5_visual_checked": true,
+  "fig2_visual_checked": true,
+  "table2_individual_records_used": false,
+  "native180_clipping_convention": "not specified by source; retain tabulated incremental areas",
+  "graph_auc120": "signed integration of group mean graph; not participant-positive iAUC"
+}

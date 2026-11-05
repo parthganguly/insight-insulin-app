@@ -1,0 +1,10 @@
+{
+  "PLAN.md": "6afef89b5121676d41f11b7f55308e6a2e5faed05db89563326b7335d799bded",
+  "evaluate.py": "cf271490d82b0c19a7a02e5f44726c3fd956fd73dd5bf30ab3d04bbff927fd9c",
+  "FORECASTS.json": "36f575bb5d57cacdaf2758b285860ae0cdc35e07d1ceb3dc975169d582f19430",
+  "targets_TEMPLATE.json": "575fe5fe1fa9ad53b5bf6dddaeaefc065560cfab41240cb1073f189a3305e371",
+  "../donor.json": "f592b65c86c613fe1a79be3b9ff115756e2311855eecd94fcb97bd489c303022",
+  "utc": "2026-11-03T18:05:44.104068+00:00",
+  "actor": "Opus 5.5 (claude-opus-5-5); identity attestation via coordinator receipts",
+  "state": "frozen before inspecting any new target insulin outcome; inputs read: previous.md, donor.json"
+}

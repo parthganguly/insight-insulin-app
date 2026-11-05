@@ -1,0 +1,113 @@
+{
+  "status": "Frozen before any new target insulin outcome",
+  "donor": {
+    "source": "10.1093/jn/nxy018",
+    "table": "Tables 3 and 4, rice then potato, control/large green/small green/split red",
+    "units": "nmol min/L, geometric mean plasma insulin iAUC, 0\u2013120 min",
+    "ratios_starch": {
+      "rice": 0.9035649359445966,
+      "potato": 0.6305281262857537
+    },
+    "ratios_colour": {
+      "rice": {
+        "small_green": 0.8899082568807338,
+        "split_red": 0.9174311926605504,
+        "large_green": 0.9541284403669725
+      },
+      "potato": {
+        "small_green": 0.6432160804020102,
+        "split_red": 0.6180904522613067,
+        "large_green": 0.6582914572864322
+      }
+    },
+    "ratio_pooled": 0.7548000437457947,
+    "donor_exchange_fraction": 0.5,
+    "donor_uncertainty": "unavailable (GM point values only)"
+  },
+  "forecasts_by_starch_and_f": {
+    "rice_f0.5": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.7548000437457947,
+      "fixed_starch": 0.9035649359445966,
+      "scaled_starch": 0.9035649359445966,
+      "linear_starch": 0.9035649359445966
+    },
+    "rice_f0.75": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.65576445875098,
+      "fixed_starch": 0.9035649359445966,
+      "scaled_starch": 0.8588929812995885,
+      "linear_starch": 0.8553474039168949
+    },
+    "rice_f0.9": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.6026948077241641,
+      "fixed_starch": 0.9035649359445966,
+      "scaled_starch": 0.8331570326716368,
+      "linear_starch": 0.826416884700274
+    },
+    "rice_f1.0": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.5697231060386536,
+      "fixed_starch": 0.9035649359445966,
+      "scaled_starch": 0.816429593468563,
+      "linear_starch": 0.8071298718891933
+    },
+    "potato_f0.5": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.7548000437457947,
+      "fixed_starch": 0.6305281262857537,
+      "scaled_starch": 0.6305281262857537,
+      "linear_starch": 0.6305281262857537
+    },
+    "potato_f0.75": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.65576445875098,
+      "fixed_starch": 0.6305281262857537,
+      "scaled_starch": 0.5006759104146982,
+      "linear_starch": 0.4457921894286305
+    },
+    "potato_f0.9": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.6026948077241641,
+      "fixed_starch": 0.6305281262857537,
+      "scaled_starch": 0.4359814740960452,
+      "linear_starch": 0.33495062731435665
+    },
+    "potato_f1.0": {
+      "equality": 1.0,
+      "carbohydrate": null,
+      "fixed_pooled": 0.7548000437457947,
+      "scaled_pooled": 0.5697231060386536,
+      "fixed_starch": 0.6305281262857537,
+      "scaled_starch": 0.3975657180374234,
+      "linear_starch": 0.26105625257150744
+    }
+  },
+  "f1_thresholds": {
+    "rice": {
+      "fixed_vs_scaled_geometric_midpoint": 0.8588929812995885,
+      "fixed_vs_scaled_log_separation": 0.10140729998340672,
+      "scaled_vs_linear_geometric_midpoint": 0.81176641540706
+    },
+    "potato": {
+      "fixed_vs_scaled_geometric_midpoint": 0.5006759104146982,
+      "fixed_vs_scaled_log_separation": 0.46119751507847495,
+      "scaled_vs_linear_geometric_midpoint": 0.322159923798337
+    }
+  }
+}

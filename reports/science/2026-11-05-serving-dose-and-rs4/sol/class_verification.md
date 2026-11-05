@@ -1,0 +1,20 @@
+# Post hoc common-monotone-class audit
+
+Independent executable: class_audit.py; numeric output class_results.json. Wolever inputs were read from the supplied already-exposed WB1996_OUTCOMES.json, not independently re-extracted or visually verified here. Its provenance explicitly says original-labelled publisher Table2 extraction was not independently visually verified. This audit introduces no new fit or validation.
+
+Let r_j=Ytest/Ycontrol, d_j=Dtest/Dcontrol, h_j=r_j/d_j^a, x=F/D. The class has positive common nonincreasing g(x), study-specific positive multiplicative C, and common exponent a. C cancels only within each study. Cookie endpoints x=.01515987,1.89850511 contain the entire bar endpoints x=.05646067,.59778598,.85169248. Therefore g(cookieHigh)/g(cookieLow) <= g(barJ)/g(barControl), or h_cookie<=h_barJ, for J medium/high. Hence log(r_cookie/r_barJ) <= a*log(d_cookie/d_barJ). The coefficient on a is NEGATIVE; dividing reverses the inequality, giving a <= log(r_cookie/r_barJ)/log(d_cookie/d_barJ). The two bounds are .22216098864405 (medium) and .15438791631611 (high), so sharpest upper bound is a<=.15438791631611. This is stronger than the cookie-alone .5848542 bound. Study constants cannot fix these within-study constraints.
+
+Sharpness: at the high-derived bound, h_cookie=h_high; choose g flat from cookie-control to bar-control, choose g at medium/control=h_medium and at high/control=h_high, and choose g flat from bar-high to cookie-high. At this a, 1>=h_medium>=h_high>0. This constructs a positive nonincreasing g through all five observed densities; arbitrary monotone extension outside is possible. Thus the high bound is attainable and not merely a loose necessary condition for these printed means. No nonnegative-exponent assumption is needed for this upper bound. If physiological monotonic dose response is also imposed, the admissible interval is0<=a<=.1543879.
+
+At fixed within-food F/D, the g ratio is1, and doubling25->50g D predicts2^a<=1.11294933362423. Wolever reported within-food ratios and effective log2 slopes:
+
+| Food | 25->50 ratio | log2 ratio | 50->100 ratio | log2 ratio |
+|---|---:|---:|---:|---:|
+|barley|2.142857|1.099536|1.133333|.180572|
+|spaghetti|1.960784|.971431|1.450000|.536053|
+|bread|1.531250|.614710|2.326531|1.218180|
+|potato|2.265306|1.179706|1.342342|.424753|
+
+All eight printed ratios exceed1.112949. Even allowing nearest-.1 rounding of Wolever mean cells, all four25->50 minimum ratios exceed1.518, well beyond the cap. Allowing independently adverse half-last-digit rounding of cookie insulin integer means, bar insulin .1 means and carbohydrate .01g cells conservatively raises the cap to approximately1.117736, still far below all25->50 pairs. The barley50->100 minimum ratio under its own rounding1.115702 is below this conservatively raised cap, so do not claim joint-rounding-robust incompatibility for that small secondary contrast. Remaining50->100 contrasts remain separated. Rounding checks are not sampling-uncertainty analyses.
+
+Scope: class fails simultaneous EXACT reproduction of these printed means under common g, common a, common comparable endpoints and fixed within-food density. It does not establish a statistical rejection: Wolever n7 marginal SEMs are large, crossover covariances unavailable, target contrasts share controls, and means themselves are uncertain. Different observed means need not equal true population expectations. A within-food doubling presumes all recipe constituents including fibre scale proportionally with nominal available-carbohydrate dose; separately reported fibre density or protocol changes require checking. Dose range25/50g overlaps cookie D12.71/36.28 and bar D~35g only partly, and50/100 mostly extends beyond them; this is a cross-food/domain post hoc structural stress. Endpoint-operator uncertainty in donor/scone does not enter this exact cookie/bar derivation, but Wolever endpoint linkage rests on supplied provenance, not a fresh source audit. Common total-TDF g across these food matrices is a substantive modeling restriction, not a biological fact.

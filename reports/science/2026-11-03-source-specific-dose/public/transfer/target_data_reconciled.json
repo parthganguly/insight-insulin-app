@@ -1,0 +1,87 @@
+{
+  "provenance": "Astra/Sol reconciled reading of J Nutr 2000 Fig. 2/3 (figure_facts/*.csv); old independent readings preserved separately",
+  "times_min": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180
+  ],
+  "curves": {
+    "1": [
+      23.192,
+      166.439,
+      201.91,
+      267.394,
+      328.786,
+      405.184,
+      406.548
+    ],
+    "2": [
+      24.557,
+      188.267,
+      236.016,
+      257.844,
+      309.686,
+      383.356,
+      308.322
+    ],
+    "3": [
+      25.921,
+      169.168,
+      238.745,
+      276.944,
+      290.587,
+      399.727,
+      399.727
+    ],
+    "4": [
+      25.921,
+      255.116,
+      290.587,
+      428.377,
+      447.476,
+      497.954,
+      452.933
+    ],
+    "5": [
+      25.921,
+      225.102,
+      451.569,
+      529.332,
+      592.087,
+      735.334,
+      693.042
+    ]
+  },
+  "curve_reading_half_width": 8.185538881309686,
+  "curve_reading_note": "+/-6 px on a 733 px per 1000 pmol/L axis",
+  "published_auc": {
+    "window": "0-180 (Fig. 3 bars, plotted group means; axis printed pmol L-1 3h)",
+    "values": {
+      "1": 42.196,
+      "2": 41.852,
+      "3": 41.852,
+      "4": 60.72,
+      "5": 81.99
+    },
+    "half_width": 1.0291595197255574
+  },
+  "source_statistics": {
+    "text_3h_vs_control_percent": {
+      "4": "52 +/- 10",
+      "5": "107 +/- 17"
+    },
+    "text_5_vs_4_percent": "36 +/- 6",
+    "fig3_letters": {
+      "1": "c",
+      "2": "c",
+      "3": "c",
+      "4": "b",
+      "5": "a"
+    },
+    "n": 8
+  }
+}

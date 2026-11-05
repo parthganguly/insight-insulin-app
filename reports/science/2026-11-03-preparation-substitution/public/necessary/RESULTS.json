@@ -1,0 +1,44 @@
+{
+  "status": "Necessary-condition check; exposed target; operators kept separate; donor operator is GM of participant iAUC",
+  "predictions_rice_over_potato": {
+    "tie_equal_AC": 1.0,
+    "pooled_chain_cancels": 1.0,
+    "direct_donor_controls_GM_rice_over_potato": 0.5477386934673367,
+    "lentil_chain_fixed": 0.6978227033861077,
+    "lentil_chain_scaled": 0.48695652536109574
+  },
+  "panels": {
+    "medians_positive_iAUC_0_120": {
+      "observed_rice_over_potato": 0.45,
+      "operator": "ratio of medians of individual positive areas",
+      "unit": "nmol*min/L",
+      "abs_log_error": {
+        "tie_equal_AC": 0.7985076962177716,
+        "pooled_chain_cancels": 0.7985076962177716,
+        "direct_donor_controls_GM_rice_over_potato": 0.1965507537224229,
+        "lentil_chain_fixed": 0.4387174811227033,
+        "lentil_chain_scaled": 0.0789272660276352
+      },
+      "best": "lentil_chain_scaled"
+    },
+    "mean_individual_insulin_index": {
+      "observed_rice_over_potato": 0.46875,
+      "operator": "ratio of mean individual indices",
+      "unit": "index (normalized per participant)",
+      "abs_log_error": {
+        "tie_equal_AC": 0.7576857016975165,
+        "pooled_chain_cancels": 0.7576857016975165,
+        "direct_donor_controls_GM_rice_over_potato": 0.1557287592021678,
+        "lentil_chain_fixed": 0.3978954866024483,
+        "lentil_chain_scaled": 0.03810527150737998
+      },
+      "best": "lentil_chain_scaled"
+    }
+  },
+  "limits": [
+    "Does not test lentil arms individually (they cancel by construction).",
+    "Ratio of medians and ratio of mean indices are not geometric-mean ratios; no conversion.",
+    "n = 9; no dispersion or paired uncertainty admitted here.",
+    "Donor potato was instant potato; target preparation as reported in the thesis."
+  ]
+}

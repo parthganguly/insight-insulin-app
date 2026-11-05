@@ -1,0 +1,141 @@
+{
+  "W1_0_120_signed_group": {
+    "C_low": 1.474120213762474,
+    "C_high": 1.908671173760222,
+    "ratio_of_ratios": 1.2947866503292977,
+    "difference_of_differences": 9474.659999999996,
+    "blend_dose_gain": 1.2747990347707447,
+    "wheat_dose_gain": 0.9845630046050678,
+    "identity_Delta_equals_Dmix_over_Dwheat": true,
+    "ratio_of_ratios_bounds": [
+      1.012518994639045,
+      1.6577615897636497
+    ]
+  },
+  "W2_60_120_signed_group": {
+    "C_low": 1.5481642755839624,
+    "C_high": 2.040390552261479,
+    "ratio_of_ratios": 1.3179418905605806,
+    "difference_of_differences": 7366.934999999996,
+    "blend_dose_gain": 1.340347239313998,
+    "wheat_dose_gain": 1.0170002554087476,
+    "identity_Delta_equals_Dmix_over_Dwheat": true,
+    "ratio_of_ratios_bounds": [
+      1.0667920660962908,
+      1.6293628341386086
+    ]
+  },
+  "W3c_0_180_signed_group": {
+    "C_low": 1.4368924448805163,
+    "C_high": 1.910951999659329,
+    "ratio_of_ratios": 1.3299199995572617,
+    "difference_of_differences": 20872.97999999998,
+    "blend_dose_gain": 1.366359424002364,
+    "wheat_dose_gain": 1.0273997116046327,
+    "identity_Delta_equals_Dmix_over_Dwheat": true,
+    "ratio_of_ratios_bounds": [
+      1.0832758791582933,
+      1.6338953997800982
+    ]
+  },
+  "W3_published": {
+    "C_low": 1.4508267227372649,
+    "C_high": 1.9590461626684508,
+    "ratio_of_ratios": 1.3502964426877468,
+    "difference_of_differences": 21.269999999999996,
+    "blend_dose_gain": 1.350296442687747,
+    "wheat_dose_gain": 1.0,
+    "identity_Delta_equals_Dmix_over_Dwheat": true,
+    "ratio_of_ratios_bounds": [
+      1.2481898796658344,
+      1.4609452429071217
+    ]
+  },
+  "fig3_vs_text": {
+    "plotted_ratio_4": 1.4389989572471324,
+    "plotted_ratio_5": 1.9430751730021802,
+    "plotted_5_over_4": 1.350296442687747,
+    "text_ratio_4": 1.52,
+    "text_ratio_5": 2.07,
+    "text_5_over_4": 1.36,
+    "note": "Both from the same source window (entire 3 h, Fig. 3). Text percentages carry +/- SEM; the paper does not state how they were computed. No calculation is asserted."
+  },
+  "leucine_slope_conventions": {
+    "results": {
+      "per_bolus_70kg_0.245L": {
+        "C_low": 1.170881918119682,
+        "C_high": 1.3711567525868775,
+        "ratio_of_ratios": 1.1710461416884947,
+        "err_W1": {
+          "C_low": 0.23030410555608705,
+          "C_high": 0.33075255085302546,
+          "ratio_of_ratios": 0.10044844529693858
+        }
+      },
+      "per_50g_carbohydrate": {
+        "C_low": 1.2067697958911685,
+        "C_high": 1.4565366859519986,
+        "ratio_of_ratios": 1.2069714463448131,
+        "err_W1": {
+          "C_low": 0.2001141468641491,
+          "C_high": 0.27034579454219465,
+          "ratio_of_ratios": 0.07023164767804568
+        }
+      },
+      "cumulative_6_bolus_to_150": {
+        "C_low": 2.576787443716256,
+        "C_high": 6.645423160736929,
+        "ratio_of_ratios": 2.5789566682895915,
+        "err_W1": {
+          "C_low": 0.558482099612685,
+          "C_high": 1.2475210918233788,
+          "ratio_of_ratios": 0.6890389922106935
+        }
+      },
+      "cumulative_4_bolus_to_90": {
+        "C_low": 1.8795435675271852,
+        "C_high": 3.5346663640371934,
+        "ratio_of_ratios": 1.8805982607189917,
+        "err_W1": {
+          "C_low": 0.2429676175451762,
+          "C_high": 0.6162116347528169,
+          "ratio_of_ratios": 0.37324401720764055
+        }
+      }
+    },
+    "tie_err_W1": {
+      "C_low": 0.3880613465898415,
+      "C_high": 0.6464072793883063,
+      "ratio_of_ratios": 0.25834593279846496
+    },
+    "structural": "Log-linear slope with doubled leucine difference forces C_high = C_low^2, i.e. ratio_of_ratios = C_low",
+    "observed_ratio_of_ratios_over_C_low": 0.8783453603316015,
+    "confounds": "blend also adds Phe and halves wheat hydrolysate (free vs bound, AA profile); slope fit on Gunnerud half-replacements"
+  },
+  "positive_bound_check": {
+    "low": {
+      "interval": [
+        1.213,
+        1.768
+      ],
+      "prediction": 1.170881918119682,
+      "beats_tie_iff_true_ratio_above": 1.0820729726407927,
+      "beats_tie_throughout": true
+    },
+    "high": {
+      "interval": [
+        1.577,
+        2.244
+      ],
+      "prediction": 1.3711567525868775,
+      "beats_tie_iff_true_ratio_above": 1.1709640270251165,
+      "beats_tie_throughout": true
+    },
+    "quotient_interval": [
+      0.892,
+      1.85
+    ],
+    "change_in_contrast_certified": false
+  },
+  "M7": "Literal Claessens model has no blend lookup (coverage absent); any transplanted beta would be a new, optional sensitivity, not run"
+}

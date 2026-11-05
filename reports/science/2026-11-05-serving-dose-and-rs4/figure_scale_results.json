@@ -1,0 +1,38 @@
+{
+  "control": {
+    "source_y_markers": [
+      1594,
+      1425,
+      1371,
+      1375,
+      1458,
+      1497,
+      1530
+    ],
+    "signed_group_pmol_min_per_L": 13563.202247191011,
+    "marker_reading_range": [
+      12709.971910112357,
+      14416.432584269663
+    ],
+    "table_if_hours": 13740.0,
+    "table_if_minutes": 229.0
+  },
+  "fibre": {
+    "source_y_markers": [
+      1584,
+      1440,
+      1426,
+      1488,
+      1519,
+      1567,
+      1581
+    ],
+    "signed_group_pmol_min_per_L": 6731.039325842696,
+    "marker_reading_range": [
+      5877.808988764045,
+      7584.269662921348
+    ],
+    "table_if_hours": 7440.0,
+    "table_if_minutes": 124.0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "source": "Katsanos CS et al. Am J Physiol Endocrinol Metab 2006;291:E381-E387, doi 10.1152/ajpendo.00488.2005, PMID 16507602",
+  "access": "Publisher full text and PDF returned HTTP 403; not in PMC/Europe PMC. Composition not yet read from the source.",
+  "total_EAA_g": 6.7,
+  "leucine_fraction": {"low": 0.26, "high": 0.41},
+  "leucine_g": {"low": 1.742, "high": 2.747, "basis": "STATED PERCENTAGES x 6.7 g from the task brief (~26% / ~41%); to be verified against the source composition table"},
+  "form": "free essential amino acids, oral, matched total; no carbohydrate stated",
+  "groups": "young and older, each receiving one mixture: four independent groups (not crossover)"
+}

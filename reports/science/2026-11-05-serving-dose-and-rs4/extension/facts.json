@@ -1,0 +1,60 @@
+{
+  "note": "Numbers transcribed from local open-access JATS copies in ../opus_raw_local (not for curated upload). Gourineni and Al-Tamimi inputs are read at run time from ../opus/inputs.json, ../opus/outcomes.json and ../opus/FORECASTS.json (frozen; not edited).",
+  "cookie": {
+    "citation": "Stewart ML, Zimmer JP. A high fiber cookie made with resistant starch type 4 reduces post-prandial glucose and insulin responses in healthy adults. Nutrients 2017;9:237. PMC5372900",
+    "design": "double-blind randomized controlled crossover; 51 screened, 28 enrolled; 3 randomized to control-fiber sequence did not complete second treatment; up to 2 per arm unanalysable samples; 12 h fast; cookie with 250 mL water; 7-day washout",
+    "ingredient": "VERSAFIBE 1490: potato distarch phosphate RS4, 90% TDF (AOAC 991.43); fibre cookie contained 25 g ingredient; control cookie amount 0",
+    "composition_method": "calculated with Genesis R&D Food Labeling Software (ESHA); kcal method not stated; arms 'matched for fat, protein, and total carbohydrate'",
+    "table1_per_serving_as_eaten": {
+      "control": {"weight_g": 47.02, "kcal": 214.7, "fat_g": 3.99, "protein_g": 5.36, "total_cho_g": 36.84, "available_cho_g": 36.28, "fiber_g": 0.55, "sugars_g": 11.51},
+      "fiber": {"weight_g": 48.00, "kcal": 129.7, "fat_g": 3.92, "protein_g": 4.92, "total_cho_g": 36.84, "available_cho_g": 12.71, "fiber_g": 24.13, "sugars_g": 11.72}
+    },
+    "insulin_iAUC_0_120": {
+      "locator": "Table 3, 'Intravenous serum insulin iAUC0-120min'",
+      "unit_printed": "pmol/L*h ('*' is a footnote marker; the Cmax row is also printed 'pmol/L*h', and glucose Cmax 'mmol/L*h', so the time unit in this table is not reliable)",
+      "stat": "mean +/- SD",
+      "n": {"control": 27, "fiber": 25},
+      "control": [229, 124],
+      "fiber": [124, 94],
+      "Cmax_0_120": {"control": [280, 129], "fiber": [215, 94], "unit": "pmol/L (printed with '*h')"},
+      "operator": "trapezoidal approximation including only positive area components above baseline (explicit; cites Wolever 2004); fasting sample as baseline; post-meal samples 15,30,45,60,90,120 min after consumption",
+      "matrix_assay": "intravenous serum; Life Labs (Hamilton, ON, Canada); assay platform not stated",
+      "analysis": "iAUC square-root transformed before analysis; p<0.001; abstract states 46% reduction"
+    }
+  },
+  "scone": {
+    "citation": "Stewart ML, Wilcox ML, Bell M, Buggia MA, Maki KC. Type-4 resistant starch in substitution for available carbohydrate reduces postprandial glycemic response and hunger in acute, randomized, double-blind, controlled study. Nutrients 2018;10:129. doi 10.3390/nu10020129. PMC5852705",
+    "design": "double-blind randomized controlled crossover; 43 screened, 36 randomized, 1 terminated for compliance; 35 in satiety/GI/palatability; 32 in glucose/insulin analyses because of missing samples from at least one visit; missing data not imputed; scone with 240 mL water within 10 min, further 178 mL offered",
+    "ingredient": "VERSAFIBE 2470: high-amylose maize RS4 (acid hydrolysis + heat treatment), 70% dietary fibre (AOAC 2009.01); provided 16.5 g dietary fibre in the fibre scone; replaced refined wheat flour",
+    "composition_method": "analysed by Medallion Labs (fat AOAC 996.06, protein AOAC 992.15, sugar AOAC 977.20, fibre AOAC 2009.01); total CHO by difference; energy by Atwater factors 9 fat, 4 protein, 4 available CHO (printed '4 kcal/d protein')",
+    "table1_per_serving_as_eaten": {
+      "control": {"weight_g": 83.9, "kcal": 328, "fat_g": 16.0, "protein_g": 7.1, "total_cho_g": 42.8, "available_cho_g": 38.8, "fiber_g": 4.0, "sugars_g": 14.8},
+      "fiber": {"weight_g": 84.1, "kcal": 270, "fat_g": 14.4, "protein_g": 6.1, "total_cho_g": 46.4, "available_cho_g": 28.9, "fiber_g": 17.5, "sugars_g": 14.9}
+    },
+    "insulin_iAUC_0_120": {
+      "locator": "Table 3 (n = 32), 'Venous insulin iAUC 0-120 min (min x pmol/L)'",
+      "unit_printed": "min x pmol/L",
+      "stat": "mean +/- SEM",
+      "n": {"control": 32, "fiber": 32},
+      "control": [19229, 1865],
+      "fiber": [12592, 1686],
+      "iAUC_0_180_separate_operator": {"control": [23850, 2138], "fiber": [14192, 1901]},
+      "Cmax_pmol_L": {"control": [392, 28], "fiber": [305, 26]},
+      "operator": "t = -15 min pre-consumption sample counted as t = 0; samples 15,30,45,60,90,120,180 min from start of consumption; 'Areas under the curve were calculated using the trapezoidal rule [24]' (ref 24 = Brouns ... Wolever, Glycaemic index methodology, 2005); positive-only / below-baseline handling NOT stated",
+      "matrix_assay": "venous plasma; Cleveland Heart Lab; electrochemiluminescence immunoassay (Roche Cobas e411)",
+      "analysis": "repeated-measures ANOVA with subject random; p = 0.0005; iAUC values not ranked (Cmax ranked)"
+    }
+  },
+  "gourineni_anchor_notes": {
+    "matrix_assay": "venous plasma; Cleveland Heart Lab; electrochemiluminescence immunoassay (platform not named)",
+    "operator": "t = -5 min (-15 to -2 acceptable) as 0; 15,30,45,60,90,120 min; area above pre-consumption value without below-baseline subtraction",
+    "unit_printed": "min*pmol/L",
+    "stat": "mean +/- SEM; per-arm iAUC n not printed; Figure 2 n = 37/36/37 (unequal); 38 evaluable",
+    "printed_kcal": null,
+    "composition_method": "ESHA Genesis labeling software, calculated"
+  },
+  "du": {
+    "status": "UNAVAILABLE",
+    "reason": "no numeric arm insulin data admitted; only an abstract statement of no significant difference. No verdict is computed."
+  }
+}

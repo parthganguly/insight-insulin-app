@@ -1,0 +1,3 @@
+* -text whitespace=trailing-space,cr-at-eol
+# Keep the exact byte-hashed initial plan.
+PLAN.md -text whitespace=-blank-at-eol,cr-at-eol

@@ -1,0 +1,45 @@
+{
+  "transcriber": "Opus 5.5 from coordinator-supplied p52 facts (75 g carbohydrate as potato or lentils, +/- 37.5 g butter; n=7; IV arms excluded)",
+  "targets": [
+    {
+      "source": "Collier G, et al. doi 10.1007/BF00252263 (healthy subjects, oral meals)",
+      "locator": "p52 text (incremental areas, mean +/- SEM)",
+      "displaced_starch": "potato",
+      "pulse_family": "lentil",
+      "pulse_colour": null,
+      "control_avcho_g": 75,
+      "test_avcho_g": 75,
+      "pulse_avcho_g": 75,
+      "operator": "AM_ratio_window_unspecified",
+      "assay": "plasma insulin (as printed, mU/L)",
+      "clipping": "unspecified",
+      "id": "collier_no_fat",
+      "observed_ratio": 0.5388538853885388,
+      "arm_log_se": {
+        "test": 0.18541202672605792,
+        "control": 0.177017701770177
+      },
+      "notes": "75 g carbohydrate gram basis (not declared analytical available carbohydrate); 4 h sampled, area window not stated in the numerical paragraph"
+    },
+    {
+      "source": "Collier G, et al. doi 10.1007/BF00252263 (healthy subjects, oral meals)",
+      "locator": "p52 text (incremental areas, mean +/- SEM)",
+      "displaced_starch": "potato",
+      "pulse_family": "lentil",
+      "pulse_colour": null,
+      "control_avcho_g": 75,
+      "test_avcho_g": 75,
+      "pulse_avcho_g": 75,
+      "operator": "AM_ratio_window_unspecified",
+      "assay": "plasma insulin (as printed, mU/L)",
+      "clipping": "unspecified",
+      "id": "collier_with_butter",
+      "observed_ratio": 0.43783068783068785,
+      "arm_log_se": {
+        "test": 0.1933534743202417,
+        "control": 0.14947089947089948
+      },
+      "notes": "both arms +37.5 g butter: fat-containing control is outside the donor (plain meals)"
+    }
+  ]
+}

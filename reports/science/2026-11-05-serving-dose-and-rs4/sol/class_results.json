@@ -1,0 +1,115 @@
+{
+  "density_order": [
+    0.01515986769570011,
+    0.05646067415730336,
+    0.5977859778597786,
+    0.8516924842226048,
+    1.8985051140833986
+  ],
+  "bounds": [
+    {
+      "bar_index": 1,
+      "bound": 0.22216098864405243,
+      "bar_ratio": 0.681988948414704,
+      "D_ratio": 0.9896067415730336
+    },
+    {
+      "bar_index": 2,
+      "bound": 0.15438791631610851,
+      "bar_ratio": 0.6346069611509821,
+      "D_ratio": 0.9792134831460674
+    }
+  ],
+  "sharp_upper_a": 0.15438791631610851,
+  "doubling_cap": 1.1129493336242289,
+  "comparisons": [
+    {
+      "food": "barley",
+      "dose": [
+        25,
+        50
+      ],
+      "ratio": 2.142857142857143,
+      "implied_a": 1.0995356735509143,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 2.0877192982456143
+    },
+    {
+      "food": "barley",
+      "dose": [
+        50,
+        100
+      ],
+      "ratio": 1.1333333333333333,
+      "implied_a": 0.18057224564182084,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 1.115702479338843
+    },
+    {
+      "food": "spaghetti",
+      "dose": [
+        25,
+        50
+      ],
+      "ratio": 1.9607843137254903,
+      "implied_a": 0.9714308478032292,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 1.9320388349514563
+    },
+    {
+      "food": "spaghetti",
+      "dose": [
+        50,
+        100
+      ],
+      "ratio": 1.45,
+      "implied_a": 0.5360529002402097,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 1.4378109452736316
+    },
+    {
+      "food": "bread",
+      "dose": [
+        25,
+        50
+      ],
+      "ratio": 1.53125,
+      "implied_a": 0.6147098441152082,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 1.5181347150259066
+    },
+    {
+      "food": "bread",
+      "dose": [
+        50,
+        100
+      ],
+      "ratio": 2.3265306122448983,
+      "implied_a": 1.2181801700495336,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 2.315254237288136
+    },
+    {
+      "food": "potato",
+      "dose": [
+        25,
+        50
+      ],
+      "ratio": 2.265306122448979,
+      "implied_a": 1.1797060222348974,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 2.2487309644670046
+    },
+    {
+      "food": "potato",
+      "dose": [
+        50,
+        100
+      ],
+      "ratio": 1.3423423423423424,
+      "implied_a": 0.42475265411205565,
+      "above_cap": true,
+      "ratio_min_from_0.1_rounding": 1.3370786516853932
+    }
+  ]
+}

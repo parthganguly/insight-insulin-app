@@ -1,0 +1,70 @@
+{
+  "healthy2024": {
+    "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11572438/",
+    "n": 18,
+    "window": 120,
+    "means": {
+      "last": 2184,
+      "mixed": 3196.94
+    },
+    "area": "serum insulin incremental area, below-baseline handling unspecified",
+    "reported_p_last_mixed": 0.023
+  },
+  "shukla2015": {
+    "source": "https://doi.org/10.2337/dc15-0429",
+    "location": "Table 1, insulin iAUC row 0-120, mean and SEM",
+    "n": 11,
+    "window": 120,
+    "means": {
+      "last": 5202.8,
+      "first": 10097.9
+    },
+    "sem": {
+      "last": 1061.6,
+      "first": 1646.9
+    },
+    "unit": "microIU min/mL",
+    "reported_p_last_first": 0.002,
+    "design": "Metformin-treated T2D, 628 kcal, 55 g protein, 68 g carbohydrate, 16 g fat; fixed first visit carbohydrate first, rest of meal 15 min later; reverse order one week later. First-bite samples 0,30,60,120. Below-baseline convention unspecified. Wilcoxon matched-pairs signed rank test."
+  },
+  "shukla2017": {
+    "source": "https://doi.org/10.1136/bmjdrc-2017-000440",
+    "location": "Table 2 insulin row in SI units, mean and SEM",
+    "epmc_xml_sha256": "1641ce8d997d12b9236501cfc10786c0d8599d84b40f620e8dac547df71875af",
+    "n": 16,
+    "window": 180,
+    "means": {
+      "last": 51074.2,
+      "first": 67850.6,
+      "mixed": 61541.0
+    },
+    "sem": {
+      "last": 6231.7,
+      "first": 6959.6,
+      "mixed": 7295.7
+    },
+    "unit": "pmol min/L",
+    "design": "Random order in T2D. Three 30-min meals; 10 min eating, 10 min rest, 10 min eating. Sandwich and juice in two halves in mixed schedule. Table 2 marks last vs first insulin significance, not last vs sandwich. Related investigative group to 2015, cohort overlap unestablished.",
+    "missingness": "One of 16 lacked sandwich data. The printed sandwich mean is used without imputation.",
+    "sampling_note": "Methods state every 30 minutes to 180; Table 2 footnote omits 120 and 150. The published insulin iAUC is used directly; clipping unspecified."
+  },
+  "imai2023": {
+    "source": "https://doi.org/10.3390/nu15051174",
+    "location": "Table 2 insulin IAUC 120 min row, mean and SEM",
+    "epmc_xml_sha256": "e284a554134c6d6989a955074b41ed1f0a10779199bf0c686524139af9241c27",
+    "n": 18,
+    "window": 120,
+    "means": {
+      "last": 4222,
+      "first": 5702,
+      "fast_last": 4113
+    },
+    "sem": {
+      "last": 458,
+      "first": 486,
+      "fast_last": 402
+    },
+    "unit": "microU min/mL",
+    "design": "Healthy young women, randomized crossover. Both slow conditions 20 min. Rice 6 min, fish 7 min, vegetables with oil 7 min in forward or reverse order. First-bite samples 0,30,60,120. Explicit above-baseline trapezoid; paired treatment contrast p<0.01 according to Table 2. Fast last context only. Total 671 kcal, C105.4g, P24.5g, F16.3g."
+  }
+}

@@ -1,0 +1,752 @@
+{
+  "status": "v2 execution on Opus vector reading of Fig. 4; group-mean curve areas (not participant areas); no printed AUC or AUC SEM in source",
+  "coverage": "Point scoring is unconditional on SEM. Source-derived uncertainty for areas is UNAVAILABLE (no printed AUC SEM); the interval shown uses an upper bound on SE valid for any within-group time correlation (illustrative, conservative). SEM=0 is never assumed.",
+  "predictions_v2": {
+    "P0_equal_response": 1.0,
+    "P1_generic_AA_flag": 1.0,
+    "P2_fixed_enrichment_multiplier": 1.2670685255785012,
+    "P3_quantitative_slope": 1.1154675776169127,
+    "P3w_whey_slope": 1.0579890973125399,
+    "P3s_soy_slope": 1.1630142473156848
+  },
+  "results": {
+    "B_mean_of_minus30_and_0:0_120": {
+      "arms": {
+        "old_low": {
+          "baseline": 5.100047143081955,
+          "E2_signed": 405.14049256019206,
+          "E3_positive_group": 437.36117234981276,
+          "participant_positive_lower": 437.36117234981276,
+          "participant_positive_upper": 998.4940442496874,
+          "signed_area_se_upper_any_correlation": 255.15515472202446,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "90": -0.5251,
+            "120": -1.4694
+          }
+        },
+        "old_high": {
+          "baseline": 6.528841646517309,
+          "E2_signed": 362.1017579954913,
+          "E3_positive_group": 371.6115060617346,
+          "participant_positive_lower": 371.6115060617346,
+          "participant_positive_upper": 1122.041407054398,
+          "signed_area_se_upper_any_correlation": 378.1460172902192,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "90": -0.4192,
+            "120": -0.122
+          }
+        },
+        "young_low": {
+          "baseline": 5.521421319317023,
+          "E2_signed": 390.23552441284284,
+          "E3_positive_group": 396.72410960129974,
+          "participant_positive_lower": 396.72410960129974,
+          "participant_positive_upper": 1032.2303833922763,
+          "signed_area_se_upper_any_correlation": 248.48624425407962,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "120": -0.7917
+          }
+        },
+        "young_high": {
+          "baseline": 6.0200463318214155,
+          "E2_signed": 347.6815590033452,
+          "E3_positive_group": 377.27748961131164,
+          "participant_positive_lower": 377.27748961131164,
+          "participant_positive_upper": 1046.9624463950445,
+          "signed_area_se_upper_any_correlation": 260.55353511355224,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "90": -0.9445,
+            "120": -0.7652
+          }
+        }
+      },
+      "ages": {
+        "young": {
+          "E2_signed": {
+            "observed_ratio": 0.8909531225443269,
+            "native_high": 347.6815590033452,
+            "native_low": 390.23552441284284,
+            "native_difference": -42.55396540949761,
+            "abs_log_error": {
+              "P0_equal_response": 0.11546346507909311,
+              "P1_generic_AA_flag": 0.11546346507909311,
+              "P2_fixed_enrichment_multiplier": 0.3521694498636109,
+              "P3_quantitative_slope": 0.22473713421043967,
+              "P3w_whey_slope": 0.17183349346450458,
+              "P3s_soy_slope": 0.26647858902698535
+            },
+            "best_rule": "P0_equal_response",
+            "illustrative_log_se_upper": 0.9833958720640498,
+            "illustrative_95_interval_conservative": [
+              0.12964966196047348,
+              6.12263429436085
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.9509820060859634,
+            "native_high": 377.27748961131164,
+            "native_low": 396.72410960129974,
+            "native_difference": -19.446619989988108,
+            "abs_log_error": {
+              "P0_equal_response": 0.05026013766100595,
+              "P1_generic_AA_flag": 0.05026013766100595,
+              "P2_fixed_enrichment_multiplier": 0.2869661224455237,
+              "P3_quantitative_slope": 0.15953380679235257,
+              "P3w_whey_slope": 0.10663016604641737,
+              "P3s_soy_slope": 0.20127526160889828
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.365497369270844,
+            2.639018958155132
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        },
+        "old": {
+          "E2_signed": {
+            "observed_ratio": 0.893768370836676,
+            "native_high": 362.1017579954913,
+            "native_low": 405.14049256019206,
+            "native_difference": -43.038734564700746,
+            "abs_log_error": {
+              "P0_equal_response": 0.11230863040287135,
+              "P1_generic_AA_flag": 0.11230863040287135,
+              "P2_fixed_enrichment_multiplier": 0.349014615187389,
+              "P3_quantitative_slope": 0.2215822995342179,
+              "P3w_whey_slope": 0.1686786587882828,
+              "P3s_soy_slope": 0.26332375435076366
+            },
+            "best_rule": "P0_equal_response",
+            "illustrative_log_se_upper": 1.2195169007313893,
+            "illustrative_95_interval_conservative": [
+              0.08187498601495918,
+              9.756605033948894
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.8496673448746614,
+            "native_high": 371.6115060617346,
+            "native_low": 437.36117234981276,
+            "native_difference": -65.74966628807817,
+            "abs_log_error": {
+              "P0_equal_response": 0.16291036506966985,
+              "P1_generic_AA_flag": 0.16291036506966985,
+              "P2_fixed_enrichment_multiplier": 0.39961634985418737,
+              "P3_quantitative_slope": 0.2721840342010162,
+              "P3w_whey_slope": 0.21928039345508116,
+              "P3s_soy_slope": 0.31392548901756206
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.3721719805960184,
+            2.5654801523098176
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        }
+      },
+      "age_interaction_old_over_young": {
+        "E2_signed": 1.0031598164046045,
+        "E3_positive_group": 0.8934631143776408
+      },
+      "n": {
+        "young": {
+          "low": 8,
+          "high": 8
+        },
+        "old": {
+          "low": 10,
+          "high": 10
+        }
+      }
+    },
+    "B_mean_of_minus30_and_0:0_210": {
+      "arms": {
+        "old_low": {
+          "baseline": 5.100047143081955,
+          "E2_signed": 253.10165147942215,
+          "E3_positive_group": 437.36117234981276,
+          "participant_positive_lower": 437.36117234981276,
+          "participant_positive_upper": 1305.4594460462934,
+          "signed_area_se_upper_any_correlation": 383.8593711114394,
+          "negative_tail_after_120": {
+            "150": -1.648644013080205,
+            "180": -1.8602903748511688,
+            "210": -1.648644013080205
+          },
+          "below_baseline_points": {
+            "90": -0.5251,
+            "120": -1.4694,
+            "150": -1.6486,
+            "180": -1.8603,
+            "210": -1.6486
+          }
+        },
+        "old_high": {
+          "baseline": 6.528841646517309,
+          "E2_signed": 284.18795069182846,
+          "E3_positive_group": 371.6115060617346,
+          "participant_positive_lower": 371.6115060617346,
+          "participant_positive_upper": 1631.723347937293,
+          "signed_area_se_upper_any_correlation": 551.1763964050791,
+          "negative_tail_after_120": {
+            "150": -0.8264021006768241,
+            "180": -1.2659124103953596,
+            "210": -0.8875897495095844
+          },
+          "below_baseline_points": {
+            "90": -0.4192,
+            "120": -0.122,
+            "150": -0.8264,
+            "180": -1.2659,
+            "210": -0.8876
+          }
+        },
+        "young_low": {
+          "baseline": 5.521421319317023,
+          "E2_signed": 281.6107783892394,
+          "E3_positive_group": 396.72410960129974,
+          "participant_positive_lower": 396.72410960129974,
+          "participant_positive_upper": 1420.533556107205,
+          "signed_area_se_upper_any_correlation": 380.5265027534063,
+          "negative_tail_after_120": {
+            "150": -1.2639824261447927,
+            "180": -1.1743225059533104,
+            "210": -1.5733517534207144
+          },
+          "below_baseline_points": {
+            "120": -0.7917,
+            "150": -1.264,
+            "180": -1.1743,
+            "210": -1.5734
+          }
+        },
+        "young_high": {
+          "baseline": 6.0200463318214155,
+          "E2_signed": 229.2301051695596,
+          "E3_positive_group": 377.27748961131164,
+          "participant_positive_lower": 377.27748961131164,
+          "participant_positive_upper": 1470.3151624251864,
+          "signed_area_se_upper_any_correlation": 380.9747737620044,
+          "negative_tail_after_120": {
+            "150": -1.1804155377132464,
+            "180": -1.5956566528854053,
+            "210": -1.57944478518065
+          },
+          "below_baseline_points": {
+            "90": -0.9445,
+            "120": -0.7652,
+            "150": -1.1804,
+            "180": -1.5957,
+            "210": -1.5794
+          }
+        }
+      },
+      "ages": {
+        "young": {
+          "E2_signed": {
+            "observed_ratio": 0.8139962059716345,
+            "native_high": 229.2301051695596,
+            "native_low": 281.6107783892394,
+            "native_difference": -52.38067321967978,
+            "abs_log_error": {
+              "P0_equal_response": 0.20579957395896714,
+              "P1_generic_AA_flag": 0.20579957395896714,
+              "P2_fixed_enrichment_multiplier": 0.4425055587434848,
+              "P3_quantitative_slope": 0.3150732430903136,
+              "P3w_whey_slope": 0.2621696023443785,
+              "P3s_soy_slope": 0.3568146979068593
+            },
+            "best_rule": "P0_equal_response",
+            "illustrative_log_se_upper": 2.14197056084314,
+            "illustrative_95_interval_conservative": [
+              0.012227572048790323,
+              54.18817576313245
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.9509820060859634,
+            "native_high": 377.27748961131164,
+            "native_low": 396.72410960129974,
+            "native_difference": -19.446619989988108,
+            "abs_log_error": {
+              "P0_equal_response": 0.05026013766100595,
+              "P1_generic_AA_flag": 0.05026013766100595,
+              "P2_fixed_enrichment_multiplier": 0.2869661224455237,
+              "P3_quantitative_slope": 0.15953380679235257,
+              "P3w_whey_slope": 0.10663016604641737,
+              "P3s_soy_slope": 0.20127526160889828
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.2655885797201395,
+            3.7061401786315065
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        },
+        "old": {
+          "E2_signed": {
+            "observed_ratio": 1.1228214001398316,
+            "native_high": 284.18795069182846,
+            "native_low": 253.10165147942215,
+            "native_difference": 31.086299212406317,
+            "abs_log_error": {
+              "P0_equal_response": 0.1158446249426182,
+              "P1_generic_AA_flag": 0.1158446249426182,
+              "P2_fixed_enrichment_multiplier": 0.12086135984189932,
+              "P3_quantitative_slope": 0.006570955811271805,
+              "P3w_whey_slope": 0.05947459655720679,
+              "P3s_soy_slope": 0.03517049900527399
+            },
+            "best_rule": "P3_quantitative_slope",
+            "illustrative_log_se_upper": 2.462055417285218,
+            "illustrative_95_interval_conservative": [
+              0.00900672288809275,
+              139.9763168331408
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.8496673448746614,
+            "native_high": 371.6115060617346,
+            "native_low": 437.36117234981276,
+            "native_difference": -65.74966628807817,
+            "abs_log_error": {
+              "P0_equal_response": 0.16291036506966985,
+              "P1_generic_AA_flag": 0.16291036506966985,
+              "P2_fixed_enrichment_multiplier": 0.39961634985418737,
+              "P3_quantitative_slope": 0.2721840342010162,
+              "P3w_whey_slope": 0.21928039345508116,
+              "P3s_soy_slope": 0.31392548901756206
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.284659555827027,
+            3.730837237266683
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        }
+      },
+      "age_interaction_old_over_young": {
+        "E2_signed": 1.3793938987707748,
+        "E3_positive_group": 0.8934631143776408
+      },
+      "n": {
+        "young": {
+          "low": 8,
+          "high": 8
+        },
+        "old": {
+          "low": 10,
+          "high": 10
+        }
+      }
+    },
+    "B_time0_only:0_120": {
+      "arms": {
+        "old_low": {
+          "baseline": 4.973894794757177,
+          "E2_signed": 420.2787743591654,
+          "E3_positive_group": 447.73272391529804,
+          "participant_positive_lower": 447.73272391529804,
+          "participant_positive_upper": 979.841938769348,
+          "signed_area_se_upper_any_correlation": 253.6598887017637,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "90": -0.3989,
+            "120": -1.3433
+          }
+        },
+        "old_high": {
+          "baseline": 6.2723596061787505,
+          "E2_signed": 392.8796028361183,
+          "E3_positive_group": 394.41465889645855,
+          "participant_positive_lower": 394.41465889645855,
+          "participant_positive_upper": 1098.5200585312277,
+          "signed_area_se_upper_any_correlation": 365.9354787108157,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "90": -0.1627
+          }
+        },
+        "young_low": {
+          "baseline": 5.48685315696244,
+          "E2_signed": 394.3837038953927,
+          "E3_positive_group": 400.3172619244537,
+          "participant_positive_lower": 400.3172619244537,
+          "participant_positive_upper": 1011.6546840536672,
+          "signed_area_se_upper_any_correlation": 254.35476880904528,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "120": -0.7571
+          }
+        },
+        "young_high": {
+          "baseline": 6.1665793138321705,
+          "E2_signed": 330.0976011620546,
+          "E3_positive_group": 365.4105012857251,
+          "participant_positive_lower": 365.4105012857251,
+          "participant_positive_upper": 1023.8377739681739,
+          "signed_area_se_upper_any_correlation": 277.1592911595782,
+          "negative_tail_after_120": null,
+          "below_baseline_points": {
+            "90": -1.091,
+            "120": -0.9117
+          }
+        }
+      },
+      "ages": {
+        "young": {
+          "E2_signed": {
+            "observed_ratio": 0.836996047000995,
+            "native_high": 330.0976011620546,
+            "native_low": 394.3837038953927,
+            "native_difference": -64.28610273333811,
+            "abs_log_error": {
+              "P0_equal_response": 0.17793593132221938,
+              "P1_generic_AA_flag": 0.17793593132221938,
+              "P2_fixed_enrichment_multiplier": 0.4146419161067369,
+              "P3_quantitative_slope": 0.2872096004535659,
+              "P3w_whey_slope": 0.23430595970763074,
+              "P3s_soy_slope": 0.32895105527011154
+            },
+            "best_rule": "P0_equal_response",
+            "illustrative_log_se_upper": 1.058738110668088,
+            "illustrative_95_interval_conservative": [
+              0.10507691972300083,
+              6.667138554709098
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.9128022597104092,
+            "native_high": 365.4105012857251,
+            "native_low": 400.3172619244537,
+            "native_difference": -34.9067606387286,
+            "abs_log_error": {
+              "P0_equal_response": 0.09123600485625617,
+              "P1_generic_AA_flag": 0.09123600485625617,
+              "P2_fixed_enrichment_multiplier": 0.3279419896407737,
+              "P3_quantitative_slope": 0.2005096739876026,
+              "P3w_whey_slope": 0.14760603324166754,
+              "P3s_soy_slope": 0.24225112880414823
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.3612008198504426,
+            2.557565889230599
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        },
+        "old": {
+          "E2_signed": {
+            "observed_ratio": 0.9348071489814708,
+            "native_high": 392.8796028361183,
+            "native_low": 420.2787743591654,
+            "native_difference": -27.39917152304713,
+            "abs_log_error": {
+              "P0_equal_response": 0.06741502874133812,
+              "P1_generic_AA_flag": 0.06741502874133812,
+              "P2_fixed_enrichment_multiplier": 0.30412101352585574,
+              "P3_quantitative_slope": 0.17668869787268454,
+              "P3w_whey_slope": 0.12378505712674945,
+              "P3s_soy_slope": 0.21843015268923022
+            },
+            "best_rule": "P0_equal_response",
+            "illustrative_log_se_upper": 1.1098718620950743,
+            "illustrative_95_interval_conservative": [
+              0.10616467225860833,
+              8.231216535555298
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.8809154163390429,
+            "native_high": 394.41465889645855,
+            "native_low": 447.73272391529804,
+            "native_difference": -53.31806501883949,
+            "abs_log_error": {
+              "P0_equal_response": 0.12679366635083897,
+              "P1_generic_AA_flag": 0.12679366635083897,
+              "P2_fixed_enrichment_multiplier": 0.3634996511353565,
+              "P3_quantitative_slope": 0.2360673354821853,
+              "P3w_whey_slope": 0.18316369473625027,
+              "P3s_soy_slope": 0.2778087902987311
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.40252886030968577,
+            2.4535174666818533
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        }
+      },
+      "age_interaction_old_over_young": {
+        "E2_signed": 1.11685969405822,
+        "E3_positive_group": 0.9650670854151012
+      },
+      "n": {
+        "young": {
+          "low": 8,
+          "high": 8
+        },
+        "old": {
+          "low": 10,
+          "high": 10
+        }
+      }
+    },
+    "B_time0_only:0_210": {
+      "arms": {
+        "old_low": {
+          "baseline": 4.973894794757177,
+          "E2_signed": 279.5936446276255,
+          "E3_positive_group": 447.73272391529804,
+          "participant_positive_lower": 447.73272391529804,
+          "participant_positive_upper": 1286.8073405659538,
+          "signed_area_se_upper_any_correlation": 381.242655575983,
+          "negative_tail_after_120": {
+            "150": -1.5224916647554267,
+            "180": -1.7341380265263906,
+            "210": -1.5224916647554267
+          },
+          "below_baseline_points": {
+            "90": -0.3989,
+            "120": -1.3433,
+            "150": -1.5225,
+            "180": -1.7341,
+            "210": -1.5225
+          }
+        },
+        "old_high": {
+          "baseline": 6.2723596061787505,
+          "E2_signed": 338.0491791629257,
+          "E3_positive_group": 394.7996001043833,
+          "participant_positive_lower": 394.7996001043833,
+          "participant_positive_upper": 1608.2019994141226,
+          "signed_area_se_upper_any_correlation": 529.807953891123,
+          "negative_tail_after_120": {
+            "150": -0.5699200603382657,
+            "180": -1.0094303700568013,
+            "210": -0.631107709171026
+          },
+          "below_baseline_points": {
+            "90": -0.1627,
+            "150": -0.5699,
+            "180": -1.0094,
+            "210": -0.6311
+          }
+        },
+        "young_low": {
+          "baseline": 5.48685315696244,
+          "E2_signed": 288.8700924837017,
+          "E3_positive_group": 400.3172619244537,
+          "participant_positive_lower": 400.3172619244537,
+          "participant_positive_upper": 1399.9578567685958,
+          "signed_area_se_upper_any_correlation": 390.79642072459615,
+          "negative_tail_after_120": {
+            "150": -1.2294142637902103,
+            "180": -1.139754343598728,
+            "210": -1.538783591066132
+          },
+          "below_baseline_points": {
+            "120": -0.7571,
+            "150": -1.2294,
+            "180": -1.1398,
+            "210": -1.5388
+          }
+        },
+        "young_high": {
+          "baseline": 6.1665793138321705,
+          "E2_signed": 198.45817894730104,
+          "E3_positive_group": 365.4105012857251,
+          "participant_positive_lower": 365.4105012857251,
+          "participant_positive_upper": 1447.1904899983156,
+          "signed_area_se_upper_any_correlation": 410.0348468425498,
+          "negative_tail_after_120": {
+            "150": -1.3269485197240014,
+            "180": -1.7421896348961603,
+            "210": -1.725977767191405
+          },
+          "below_baseline_points": {
+            "90": -1.091,
+            "120": -0.9117,
+            "150": -1.3269,
+            "180": -1.7422,
+            "210": -1.726
+          }
+        }
+      },
+      "ages": {
+        "young": {
+          "E2_signed": {
+            "observed_ratio": 0.6870153197271477,
+            "native_high": 198.45817894730104,
+            "native_low": 288.8700924837017,
+            "native_difference": -90.41191353640065,
+            "abs_log_error": {
+              "P0_equal_response": 0.3753986875511422,
+              "P1_generic_AA_flag": 0.3753986875511422,
+              "P2_fixed_enrichment_multiplier": 0.6121046723356599,
+              "P3_quantitative_slope": 0.4846723566824888,
+              "P3w_whey_slope": 0.43176871593655375,
+              "P3s_soy_slope": 0.5264138114990344
+            },
+            "best_rule": "P0_equal_response",
+            "illustrative_log_se_upper": 2.469608639316947,
+            "illustrative_95_interval_conservative": [
+              0.0054299159682721886,
+              86.9240062457142
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.9128022597104092,
+            "native_high": 365.4105012857251,
+            "native_low": 400.3172619244537,
+            "native_difference": -34.9067606387286,
+            "abs_log_error": {
+              "P0_equal_response": 0.09123600485625617,
+              "P1_generic_AA_flag": 0.09123600485625617,
+              "P2_fixed_enrichment_multiplier": 0.3279419896407737,
+              "P3_quantitative_slope": 0.2005096739876026,
+              "P3w_whey_slope": 0.14760603324166754,
+              "P3s_soy_slope": 0.24225112880414823
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.2610153580831149,
+            3.6151088839916765
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        },
+        "old": {
+          "E2_signed": {
+            "observed_ratio": 1.2090731876726086,
+            "native_high": 338.0491791629257,
+            "native_low": 279.5936446276255,
+            "native_difference": 58.45553453530022,
+            "abs_log_error": {
+              "P0_equal_response": 0.18985410550979728,
+              "P1_generic_AA_flag": 0.18985410550979728,
+              "P2_fixed_enrichment_multiplier": 0.04685187927472036,
+              "P3_quantitative_slope": 0.08058043637845079,
+              "P3w_whey_slope": 0.13348407712438584,
+              "P3s_soy_slope": 0.03883898156190508
+            },
+            "best_rule": "P2_fixed_enrichment_multiplier",
+            "illustrative_log_se_upper": 2.0773953422775717,
+            "illustrative_95_interval_conservative": [
+              0.02061284682352839,
+              70.91975143773811
+            ],
+            "P2_vs_P3_separation": 0.12743231565317112
+          },
+          "E3_positive_group": {
+            "observed_ratio": 0.8817751730362049,
+            "native_high": 394.7996001043833,
+            "native_low": 447.73272391529804,
+            "native_difference": -52.933123810914765,
+            "abs_log_error": {
+              "P0_equal_response": 0.12581816132400817,
+              "P1_generic_AA_flag": 0.12581816132400817,
+              "P2_fixed_enrichment_multiplier": 0.3625241461085257,
+              "P3_quantitative_slope": 0.23509183045535464,
+              "P3w_whey_slope": 0.1821881897094195,
+              "P3s_soy_slope": 0.2768332852719004
+            },
+            "best_rule": "P0_equal_response"
+          },
+          "participant_positive_ratio_bounds": [
+            0.30680552376297876,
+            3.591879515419029
+          ],
+          "participant_positive_rule_beats_tie_throughout": {
+            "P0_equal_response": null,
+            "P1_generic_AA_flag": null,
+            "P2_fixed_enrichment_multiplier": false,
+            "P3_quantitative_slope": false,
+            "P3w_whey_slope": false,
+            "P3s_soy_slope": false
+          }
+        }
+      },
+      "age_interaction_old_over_young": {
+        "E2_signed": 1.7598926151352774,
+        "E3_positive_group": 0.9660089725412733
+      },
+      "n": {
+        "young": {
+          "low": 8,
+          "high": 8
+        },
+        "old": {
+          "low": 10,
+          "high": 10
+        }
+      }
+    }
+  }
+}

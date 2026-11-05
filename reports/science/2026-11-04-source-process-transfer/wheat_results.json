@@ -1,0 +1,390 @@
+{
+  "scores_relative_inputs": {
+    "LAW-R": {
+      "equal_serving": 1,
+      "starch": 42.592000000000006,
+      "stated_carbohydrate": 49.973000000000006,
+      "starch_less_RS": 42.108000000000004,
+      "starch_less_RS_plus_sugar": 49.489000000000004,
+      "amylopectin_dose": 32.36992000000001,
+      "heated": 26.505852545890363,
+      "shared": 55.06255715653577,
+      "fixed_dose_heated": 0.6223199790075685,
+      "fixed_dose_unit": 0.76
+    },
+    "LAW-W": {
+      "equal_serving": 1,
+      "starch": 32.549,
+      "stated_carbohydrate": 39.809,
+      "starch_less_RS": 32.186,
+      "starch_less_RS_plus_sugar": 39.446,
+      "amylopectin_dose": 24.73724,
+      "heated": 20.255892996717346,
+      "shared": 42.07905646337534,
+      "fixed_dose_heated": 0.6223199790075685,
+      "fixed_dose_unit": 0.76
+    },
+    "HAW-R": {
+      "equal_serving": 1,
+      "starch": 34.485,
+      "stated_carbohydrate": 40.535,
+      "starch_less_RS": 28.798,
+      "starch_less_RS_plus_sugar": 34.848,
+      "amylopectin_dose": 8.862645,
+      "heated": 3.294849113970647,
+      "shared": 122.96560065878815,
+      "fixed_dose_heated": 0.09554441391824407,
+      "fixed_dose_unit": 0.257
+    },
+    "HAW-W": {
+      "equal_serving": 1,
+      "starch": 24.078999999999997,
+      "stated_carbohydrate": 30.370999999999995,
+      "starch_less_RS": 20.206999999999997,
+      "starch_less_RS_plus_sugar": 26.498999999999995,
+      "amylopectin_dose": 6.188302999999999,
+      "heated": 2.3006139427373986,
+      "shared": 85.86019133718891,
+      "fixed_dose_heated": 0.09554441391824407,
+      "fixed_dose_unit": 0.257
+    }
+  },
+  "signed_arm_areas_pg_min_per_mL": {
+    "LAW-R": {
+      "120": 83199.77678571429,
+      "180": 100677.45535714287
+    },
+    "LAW-W": {
+      "120": 71357.14285714287,
+      "180": 81843.75000000001
+    },
+    "HAW-R": {
+      "120": 50444.196428571435,
+      "180": 57796.875
+    },
+    "HAW-W": {
+      "120": 45652.90178571429,
+      "180": 52643.973214285725
+    }
+  },
+  "area_reading_shift_pg_min_per_mL": {
+    "120": 3616.071428571429,
+    "180": 5544.642857142858
+  },
+  "pairs": {
+    "HAW-R/LAW-R": {
+      "pred": {
+        "equal_serving": 1.0,
+        "starch": 0.8096590909090908,
+        "stated_carbohydrate": 0.8111380145278448,
+        "starch_less_RS": 0.6839080459770114,
+        "starch_less_RS_plus_sugar": 0.7041564792176038,
+        "amylopectin_dose": 0.2737926136363636,
+        "heated": 0.12430647564594187,
+        "shared": 2.2331981478668483,
+        "fixed_dose_heated": 0.1535294014995493,
+        "fixed_dose_unit": 0.3381578947368421
+      },
+      "observed": {
+        "120": 0.6063020644693952,
+        "180": 0.5740796168811733
+      },
+      "abs_log_error": {
+        "120": {
+          "equal_serving": 0.5003769608807338,
+          "starch": 0.28923496555128714,
+          "stated_carbohydrate": 0.2910598997447672,
+          "starch_less_RS": 0.12044515477773389,
+          "starch_less_RS_plus_sugar": 0.14962228497387792,
+          "amylopectin_dose": 0.79500738283387,
+          "heated": 1.5846282240315024,
+          "shared": 1.3038116659715926,
+          "fixed_dose_heated": 1.3734862287020557,
+          "fixed_dose_unit": 0.5838653875044232
+        },
+        "180": {
+          "equal_serving": 0.5549871869133731,
+          "starch": 0.34384519158392646,
+          "stated_carbohydrate": 0.3456701257774065,
+          "starch_less_RS": 0.17505538081037328,
+          "starch_less_RS_plus_sugar": 0.20423251100651718,
+          "amylopectin_dose": 0.7403971568012306,
+          "heated": 1.530017997998863,
+          "shared": 1.358421892004232,
+          "fixed_dose_heated": 1.3188760026694162,
+          "fixed_dose_unit": 0.529255161471784
+        }
+      },
+      "graph_reading_bounds": {
+        "120": [
+          0.539396043040611,
+          0.6792881484286256
+        ],
+        "180": [
+          0.49191489361702123,
+          0.6658219828951535
+        ]
+      }
+    },
+    "HAW-W/LAW-W": {
+      "pred": {
+        "equal_serving": 1.0,
+        "starch": 0.7397769516728624,
+        "stated_carbohydrate": 0.762917933130699,
+        "starch_less_RS": 0.6278195488721804,
+        "starch_less_RS_plus_sugar": 0.6717791411042944,
+        "amylopectin_dose": 0.2501614165525337,
+        "heated": 0.11357751263349555,
+        "shared": 2.040449538404448,
+        "fixed_dose_heated": 0.1535294014995493,
+        "fixed_dose_unit": 0.3381578947368421
+      },
+      "observed": {
+        "120": 0.6397804054054054,
+        "180": 0.6432253313696613
+      },
+      "abs_log_error": {
+        "120": {
+          "equal_serving": 0.4466302780604269,
+          "starch": 0.14522372318308,
+          "stated_carbohydrate": 0.17602546642683864,
+          "starch_less_RS": 0.018872218304517206,
+          "starch_less_RS_plus_sugar": 0.04880462651021995,
+          "amylopectin_dose": 0.939018625202077,
+          "heated": 1.7286394663997096,
+          "shared": 1.1598004236033854,
+          "fixed_dose_heated": 1.4272329115223625,
+          "fixed_dose_unit": 0.6376120703247302
+        },
+        "180": {
+          "equal_serving": 0.44126017854453004,
+          "starch": 0.13985362366718335,
+          "stated_carbohydrate": 0.17065536691094202,
+          "starch_less_RS": 0.024242317820413927,
+          "starch_less_RS_plus_sugar": 0.043434526994323076,
+          "amylopectin_dose": 0.9443887247179737,
+          "heated": 1.7340095659156063,
+          "shared": 1.1544303240874887,
+          "fixed_dose_heated": 1.4326030110382593,
+          "fixed_dose_unit": 0.642982169840627
+        }
+      },
+      "graph_reading_bounds": {
+        "120": [
+          0.5606913183279743,
+          0.7273131672597865
+        ],
+        "180": [
+          0.5389655172413794,
+          0.7626382306477093
+        ]
+      }
+    },
+    "LAW-W/LAW-R": {
+      "pred": {
+        "equal_serving": 1.0,
+        "starch": 0.7642045454545453,
+        "stated_carbohydrate": 0.7966101694915253,
+        "starch_less_RS": 0.7643678160919539,
+        "starch_less_RS_plus_sugar": 0.7970660146699265,
+        "amylopectin_dose": 0.7642045454545453,
+        "heated": 0.7642045454545453,
+        "shared": 0.7642045454545453,
+        "fixed_dose_heated": 1.0,
+        "fixed_dose_unit": 1.0
+      },
+      "observed": {
+        "120": 0.8576602680188339,
+        "180": 0.8129302604010775
+      },
+      "abs_log_error": {
+        "120": {
+          "equal_serving": 0.15354721592625803,
+          "starch": 0.11537258007000019,
+          "stated_carbohydrate": 0.07384262626940301,
+          "starch_less_RS": 0.1151589550665174,
+          "starch_less_RS_plus_sugar": 0.07327055874983622,
+          "amylopectin_dose": 0.11537258007000019,
+          "heated": 0.11537258007000019,
+          "shared": 0.11537258007000019,
+          "fixed_dose_heated": 0.15354721592625803,
+          "fixed_dose_unit": 0.15354721592625803
+        },
+        "180": {
+          "equal_serving": 0.20710995367816984,
+          "starch": 0.06180984231808838,
+          "stated_carbohydrate": 0.02027988851749124,
+          "starch_less_RS": 0.06159621731460559,
+          "starch_less_RS_plus_sugar": 0.019707820997924414,
+          "amylopectin_dose": 0.06180984231808838,
+          "heated": 0.06180984231808838,
+          "shared": 0.06180984231808838,
+          "fixed_dose_heated": 0.20710995367816984,
+          "fixed_dose_unit": 0.20710995367816984
+        }
+      },
+      "graph_reading_bounds": {
+        "120": [
+          0.7802846233946547,
+          0.9420673987126091
+        ],
+        "180": [
+          0.7182978723404256,
+          0.9185936015204308
+        ]
+      }
+    },
+    "HAW-W/HAW-R": {
+      "pred": {
+        "equal_serving": 1.0,
+        "starch": 0.6982456140350877,
+        "stated_carbohydrate": 0.7492537313432835,
+        "starch_less_RS": 0.7016806722689075,
+        "starch_less_RS_plus_sugar": 0.7604166666666665,
+        "amylopectin_dose": 0.6982456140350876,
+        "heated": 0.6982456140350876,
+        "shared": 0.6982456140350877,
+        "fixed_dose_heated": 1.0,
+        "fixed_dose_unit": 1.0
+      },
+      "observed": {
+        "120": 0.9050179211469533,
+        "180": 0.9108446298227322
+      },
+      "abs_log_error": {
+        "120": {
+          "equal_serving": 0.0998005331059512,
+          "starch": 0.259383822438207,
+          "stated_carbohydrate": 0.1888770595873314,
+          "starch_less_RS": 0.2544763281487684,
+          "starch_less_RS_plus_sugar": 0.1740882172134941,
+          "amylopectin_dose": 0.2593838224382071,
+          "heated": 0.2593838224382071,
+          "shared": 0.259383822438207,
+          "fixed_dose_heated": 0.0998005331059512,
+          "fixed_dose_unit": 0.0998005331059512
+        },
+        "180": {
+          "equal_serving": 0.0933829453093268,
+          "starch": 0.26580141023483145,
+          "stated_carbohydrate": 0.19529464738395583,
+          "starch_less_RS": 0.2608939159453929,
+          "starch_less_RS_plus_sugar": 0.18050580501011845,
+          "amylopectin_dose": 0.26580141023483156,
+          "heated": 0.26580141023483156,
+          "shared": 0.26580141023483145,
+          "fixed_dose_heated": 0.0933829453093268,
+          "fixed_dose_unit": 0.0933829453093268
+        }
+      },
+      "graph_reading_bounds": {
+        "120": [
+          0.7775919732441472,
+          1.0521235521235521
+        ],
+        "180": [
+          0.7435775451950526,
+          1.11361014994233
+        ]
+      }
+    }
+  },
+  "printed_marginals": {
+    "source": {
+      "printed_ratio": 0.6583143507972665,
+      "pred": {
+        "equal_serving": 1.0,
+        "starch": 0.7793880837359096,
+        "stated_carbohydrate": 0.7897574123989216,
+        "starch_less_RS": 0.6596091205211725,
+        "starch_less_RS_plus_sugar": 0.6897959183673469,
+        "amylopectin_dose": 0.26355623357911684,
+        "heated": 0.1196589860318548,
+        "shared": 2.1497047888565652,
+        "fixed_dose_heated": 0.1535294014995493,
+        "fixed_dose_unit": 0.3381578947368421
+      },
+      "error": {
+        "equal_serving": 0.4180727249627392,
+        "starch": 0.16882654974589179,
+        "stated_carbohydrate": 0.18204327137237103,
+        "starch_less_RS": 0.001964863922135584,
+        "starch_less_RS_plus_sugar": 0.046713229341085544,
+        "amylopectin_dose": 0.9154157986392649,
+        "heated": 1.7050366398368977,
+        "shared": 1.1834032501661973,
+        "fixed_dose_heated": 1.4557904646200504,
+        "fixed_dose_unit": 0.6661696234224177
+      },
+      "signed_group_curve_180_ratio": 0.6050850255902261
+    },
+    "milling": {
+      "printed_ratio": 0.801980198019802,
+      "pred": {
+        "equal_serving": 1.0,
+        "starch": 0.7346938775510204,
+        "stated_carbohydrate": 0.7754010695187165,
+        "starch_less_RS": 0.7389078498293515,
+        "starch_less_RS_plus_sugar": 0.781922525107604,
+        "amylopectin_dose": 0.750027144806538,
+        "heated": 0.7569119410982336,
+        "shared": 0.718646136490841,
+        "fixed_dose_heated": 1.0,
+        "fixed_dose_unit": 1.0
+      },
+      "error": {
+        "equal_serving": 0.22067136216882066,
+        "starch": 0.08762999748569594,
+        "stated_carbohydrate": 0.03370351226519171,
+        "starch_less_RS": 0.08191069940570216,
+        "starch_less_RS_plus_sugar": 0.025328253928459204,
+        "amylopectin_dose": 0.06697451786252982,
+        "heated": 0.057836996300491834,
+        "shared": 0.1097148408955918,
+        "fixed_dose_heated": 0.22067136216882066,
+        "fixed_dose_unit": 0.22067136216882066
+      },
+      "signed_group_curve_180_ratio": 0.8486404259364899
+    }
+  },
+  "interaction_high_low_whole_vs_refined": {
+    "pred": {
+      "equal_serving": 1.0,
+      "starch": 0.9136894280310441,
+      "stated_carbohydrate": 0.9405525563671008,
+      "starch_less_RS": 0.9179882479307513,
+      "starch_less_RS_plus_sugar": 0.9540196830265848,
+      "amylopectin_dose": 0.9136894280310441,
+      "heated": 0.9136894280310442,
+      "shared": 0.9136894280310441,
+      "fixed_dose_heated": 1.0,
+      "fixed_dose_unit": 1.0
+    },
+    "signed_obs": {
+      "120": 1.0552172636346022,
+      "180": 1.1204462106913653
+    }
+  },
+  "heated_source_marginal_envelope_under_any_shared_positive_process_weight": [
+    0.11357751263349555,
+    0.12430647564594187
+  ],
+  "reported_180_reduction_disagreement": {
+    "table": 0.3416856492027335,
+    "prose": 0.24
+  },
+  "primary_120_mean_error_high_low": {
+    "equal_serving": 0.47350361947058034,
+    "starch": 0.21722934436718355,
+    "stated_carbohydrate": 0.23354268308580292,
+    "starch_less_RS": 0.06965868654112554,
+    "starch_less_RS_plus_sugar": 0.09921345574204893,
+    "amylopectin_dose": 0.8670130040179735,
+    "heated": 1.656633845215606,
+    "shared": 1.231806044787489,
+    "fixed_dose_heated": 1.4003595701122091,
+    "fixed_dose_unit": 0.6107387289145767
+  },
+  "sugar_and_RS_semantics": "Table 1 starch + sugars is the authors\u2019 stated carbohydrate. Minus RS is a separate sensitivity only; no subtraction from already available carbohydrate.",
+  "clipping": "Figure 2 shows concentrations of group means, not subject-positive areas. Marginal Table 3 author-positive three-hour IAUC, with a participant exclusion rule."
+}

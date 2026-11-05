@@ -1,0 +1,50 @@
+{
+  "younger_60": {
+    "inputs": {
+      "C": "1.8 ± 0.5",
+      "P": "16.5 ± 3.8",
+      "G": "27.1 ± 4.4"
+    },
+    "predictions": {
+      "additive_control": 41.800000000000004,
+      "glucose_only": 27.1,
+      "additive_raw": 43.6
+    }
+  },
+  "older_60": {
+    "inputs": {
+      "C": "2.3 ± 0.5",
+      "P": "15.5 ± 3.8",
+      "G": "20.9 ± 4.4"
+    },
+    "predictions": {
+      "additive_control": 34.1,
+      "glucose_only": 20.9,
+      "additive_raw": 36.4
+    }
+  },
+  "younger_180": {
+    "inputs": {
+      "C": "0.2 ± 0.6",
+      "P": "8.3 ± 1.9",
+      "G": "10.7 ± 2.4"
+    },
+    "predictions": {
+      "additive_control": 18.8,
+      "glucose_only": 10.7,
+      "additive_raw": 19.0
+    }
+  },
+  "older_180": {
+    "inputs": {
+      "C": "1.5 ± 0.6",
+      "P": "9.6 ± 1.9",
+      "G": "11.6 ± 2.4"
+    },
+    "predictions": {
+      "additive_control": 19.7,
+      "glucose_only": 11.6,
+      "additive_raw": 21.2
+    }
+  }
+}

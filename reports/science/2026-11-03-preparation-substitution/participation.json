@@ -1,0 +1,37 @@
+{
+  "Astra_dispatch": "gpt-6-astra",
+  "Sol_dispatch": "gpt-6.1-sol",
+  "Claude_Code": {
+    "next": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "tool_calls": 7,
+      "process_exited": true
+    },
+    "test": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "tool_calls": 12,
+      "process_exited": true
+    },
+    "reconcile": {
+      "route": "installed Claude Code",
+      "requested_alias": "claude-opus-5-5",
+      "assistant_returned_models": [
+        "claude-opus-5-5"
+      ],
+      "exit_code": 0,
+      "tool_calls": 14,
+      "process_exited": true
+    }
+  },
+  "published": "Assistant-response identities only. Private session, prompts, requests and provider logs remain local."
+}

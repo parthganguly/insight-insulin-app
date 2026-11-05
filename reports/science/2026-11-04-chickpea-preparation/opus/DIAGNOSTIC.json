@@ -1,0 +1,484 @@
+{
+  "status": "v2 post-result diagnostic on public aggregates; no coefficient selected; not a validation",
+  "target": {
+    "endpoint": "Cai 2025: ratio of arm arithmetic means of participant-positive insulin area from the PUBLISHED time-zero sample to 120 min (actual first-bite offset not established); n = 10 complete crossover triplets",
+    "observed": {
+      "C_B": 0.28464849503830014,
+      "S_B": 0.7284656622643167,
+      "C_S": 0.39075073786390524
+    },
+    "observed_paired_delta_log_SE": {
+      "C_B": 0.18600469729814378,
+      "S_B": 0.1515213744862591,
+      "C_S": 0.1668182650352029
+    },
+    "clinical_fieller_95_normal_theory": {
+      "C_B": [
+        0.1736817352979178,
+        0.42673130736640985
+      ],
+      "S_B": [
+        0.4976881950078855,
+        1.0253870023311715
+      ],
+      "C_S": [
+        0.2538077859070686,
+        0.5722141165959539
+      ]
+    },
+    "note": "Clinical sampling intervals for the response ratio; they are NOT assay-precision intervals."
+  },
+  "rule_compatibility_with_clinical_interval": {
+    "same_starch": {
+      "C_B": {
+        "pred": 1.0,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 6.755206878701825
+      },
+      "S_B": {
+        "pred": 1.0,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": 2.0908917331198116
+      },
+      "C_S": {
+        "pred": 1.0,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 5.632988816642493
+      }
+    },
+    "hummus_process": {
+      "C_B": {
+        "pred": 0.706272310045895,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 4.885606741574655
+      },
+      "S_B": {
+        "pred": 0.706272310045895,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": -0.20419309404722238
+      },
+      "C_S": {
+        "pred": 1.0,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 5.632988816642493
+      }
+    },
+    "prior_ingredient_H120": {
+      "C_B": {
+        "pred": 0.34444444444444444,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": 1.0251232769058447
+      },
+      "S_B": {
+        "pred": 0.34444444444444444,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": -4.943247638033888
+      },
+      "C_S": {
+        "pred": 1.0,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 5.632988816642493
+      }
+    },
+    "local_H20": {
+      "C_B": {
+        "pred": 0.451505016722408,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.480213792491242
+      },
+      "S_B": {
+        "pred": 0.7324414715719064,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": 0.03592196644558782
+      },
+      "C_S": {
+        "pred": 0.6164383561643835,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.732845050754639
+      }
+    },
+    "local_H60": {
+      "C_B": {
+        "pred": 0.6736596736596735,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 4.631442067631502
+      },
+      "S_B": {
+        "pred": 0.7668997668997669,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": 0.33932916273992636
+      },
+      "C_S": {
+        "pred": 0.8784194528875378,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 4.855909264678656
+      }
+    },
+    "local_H90": {
+      "C_B": {
+        "pred": 0.5356415478615071,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 3.3988932764915964
+      },
+      "S_B": {
+        "pred": 0.64969450101833,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": -0.7552613358571629
+      },
+      "C_S": {
+        "pred": 0.824451410658307,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 4.475818943389438
+      }
+    },
+    "local_H120": {
+      "C_B": {
+        "pred": 0.5970425138632162,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 3.982336283949526
+      },
+      "S_B": {
+        "pred": 0.7597042513863215,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": 0.27711420317026625
+      },
+      "C_S": {
+        "pred": 0.7858880778588808,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 4.188657218884098
+      }
+    },
+    "S_anchor_H20": {
+      "C_B": {
+        "pred": 0.43537334180911325,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.2846135494371382
+      },
+      "S_B": {
+        "pred": 0.706272310045895,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": -0.20419309404722238
+      },
+      "C_S": {
+        "pred": 0.6164383561643835,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.732845050754639
+      }
+    },
+    "external_beta_H20": {
+      "C_B": {
+        "pred": 0.8156201311382902,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 5.659500367334322
+      },
+      "S_B": {
+        "pred": 0.9232950038038015,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": 1.5641905879714821
+      },
+      "C_S": {
+        "pred": 0.8833797732881571,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 4.8896644780756775
+      }
+    },
+    "posthoc_S_anchor_time": {
+      "C_B": {
+        "pred": 0.4414201937786844,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.358769322558432
+      },
+      "S_B": {
+        "pred": 0.706272310045895,
+        "inside_clinical_95": true,
+        "z_vs_paired_SE": -0.20419309404722238
+      },
+      "C_S": {
+        "pred": 0.6250000000000001,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.815529774333471
+      }
+    },
+    "posthoc_time_only": {
+      "C_B": {
+        "pred": 1.7857142857142858,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 9.872431893312939
+      },
+      "S_B": {
+        "pred": 2.857142857142857,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 9.019433188463342
+      },
+      "C_S": {
+        "pred": 0.625,
+        "inside_clinical_95": false,
+        "z_vs_paired_SE": 2.81552977433347
+      }
+    }
+  },
+  "anchored_vs_standalone": {
+    "pairs": {
+      "D20_anchored_vs_posthoc_5080_anchored": {
+        "C_B": {
+          "delta_log": 0.013793322132336099,
+          "in_observed_paired_SE_units": 0.0741557731212939
+        },
+        "S_B": {
+          "delta_log": 0.0,
+          "in_observed_paired_SE_units": 0.0
+        },
+        "C_S": {
+          "delta_log": 0.013793322132336099,
+          "in_observed_paired_SE_units": 0.08268472357883208
+        },
+        "identical_inputs": [
+          "S_B"
+        ],
+        "observed_primary_error": {
+          "S_anchor_H20": 0.22794423498846492,
+          "posthoc_S_anchor_time": 0.23484089605463299
+        }
+      },
+      "D20_standalone_vs_D20_anchored": {
+        "C_B": {
+          "delta_log": 0.036382564000721984,
+          "in_observed_paired_SE_units": 0.1956002430541041
+        },
+        "S_B": {
+          "delta_log": 0.036382564000721776,
+          "in_observed_paired_SE_units": 0.2401150604928097
+        },
+        "C_S": {
+          "delta_log": 0.0,
+          "in_observed_paired_SE_units": 0.0
+        },
+        "identical_inputs": [
+          "C_S"
+        ],
+        "observed_primary_error": {
+          "local_H20": 0.2333871807185497,
+          "S_anchor_H20": 0.22794423498846492
+        }
+      },
+      "D20_standalone_vs_hummus_shared_factor": {
+        "C_B": {
+          "delta_log": 0.44741438737734973,
+          "in_observed_paired_SE_units": 2.4053929490834136
+        },
+        "S_B": {
+          "delta_log": 0.036382564000721776,
+          "in_observed_paired_SE_units": 0.2401150604928097
+        },
+        "C_S": {
+          "delta_log": 0.4837969513780715,
+          "in_observed_paired_SE_units": 2.9001437658878544
+        },
+        "identical_inputs": [],
+        "observed_primary_error": {
+          "local_H20": 0.2333871807185497,
+          "hummus_process": 0.46984271067750066
+        }
+      },
+      "D20_anchored_vs_hummus_shared_factor": {
+        "C_B": {
+          "delta_log": 0.4837969513780715,
+          "in_observed_paired_SE_units": 2.6009931921375165
+        },
+        "S_B": {
+          "delta_log": 0.0,
+          "in_observed_paired_SE_units": 0.0
+        },
+        "C_S": {
+          "delta_log": 0.4837969513780715,
+          "in_observed_paired_SE_units": 2.9001437658878544
+        },
+        "identical_inputs": [
+          "S_B"
+        ],
+        "observed_primary_error": {
+          "S_anchor_H20": 0.22794423498846492,
+          "hummus_process": 0.46984271067750066
+        }
+      }
+    },
+    "note": "Anchoring replaces S/B by the hummus ratio and therefore changes both S/B and C/B; C/S is unchanged. Conditional on the observed paired SEs, anchored D20 and anchored 50/80 predictions are close (0.08 SE on C/S), but their point rankings on an observed outcome can still differ."
+  },
+  "assay": {
+    "source_note": "Cai Fig. 1d: plotted points are means of n = 3 with a nonlinear fit and SEM bands; no Figure 1 source file in the listed supplement. Values here are figure readings.",
+    "percent_hydrolysed": {
+      "Broken": [
+        40.0,
+        57.391304347826086,
+        65.68561872909699,
+        72.37458193979933
+      ],
+      "Intact-S": [
+        29.297658862876254,
+        44.013377926421406,
+        42.675585284280935,
+        54.98327759197324
+      ],
+      "Intact-C": [
+        18.06020066889632,
+        38.66220735785953,
+        35.18394648829432,
+        43.21070234113712
+      ]
+    },
+    "observed_60_90_mean_decrements_pp": {
+      "Broken": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Intact-S": [
+        0.0,
+        1.337792642140471,
+        0.0
+      ],
+      "Intact-C": [
+        0.0,
+        3.4782608695652115,
+        0.0
+      ]
+    },
+    "assay_C_S_by_time": {
+      "20": 0.6164383561643836,
+      "60": 0.8784194528875379,
+      "90": 0.8244514106583073,
+      "120": 0.7858880778588808
+    },
+    "perturbation_label": "ILLUSTRATIVE sensitivity magnitudes only (the two observed downward mean deviations). They do not estimate the 20-min assay error, a minimum uncertainty for every marker, or a probability distribution.",
+    "shift_to_reach_clinical_CS_upper_pp": 1.2956666843459672,
+    "central_observed": {
+      "primary_standalone": 0.2333871807185497,
+      "primary_anchored": 0.22794423498846492,
+      "C_S_error": 0.45588846997692983,
+      "hummus_primary": 0.46984271067750066,
+      "posthoc_5080_anchored_primary": 0.23484089605463299
+    },
+    "perturbation_boxes": {
+      "pm_1.34_pp": {
+        "half_width_pp": 1.337792642140471,
+        "extrema": {
+          "primary_standalone": [
+            0.1757363355319137,
+            0.325458684856746
+          ],
+          "primary_anchored": [
+            0.16713857755153128,
+            0.28704245590538263
+          ],
+          "C_S_error": [
+            0.33427715510306244,
+            0.574084911810765
+          ]
+        },
+        "standalone_below_hummus_throughout": true,
+        "anchored_below_hummus_throughout": true,
+        "anchored_minus_5080": [
+          -0.06770231850310171,
+          0.052201559850749646
+        ],
+        "D20_ratio_ranges": {
+          "C_B": [
+            0.4045307443365695,
+            0.5017301038062285
+          ],
+          "S_B": [
+            0.6763754045307442,
+            0.7923875432525953
+          ],
+          "C_S": [
+            0.5458515283842793,
+            0.6937799043062203
+          ]
+        }
+      },
+      "pm_3.48_pp": {
+        "half_width_pp": 3.4782608695652115,
+        "extrema": {
+          "primary_standalone": [
+            0.0820114552793394,
+            0.4685169925614061
+          ],
+          "primary_anchored": [
+            0.0648875465197094,
+            0.3791997987172893
+          ],
+          "C_S_error": [
+            0.1297750930394187,
+            0.7583995974345784
+          ]
+        },
+        "standalone_below_hummus_throughout": true,
+        "anchored_below_hummus_throughout": true,
+        "anchored_minus_5080": [
+          -0.16995334953492358,
+          0.14435890266265633
+        ],
+        "D20_ratio_ranges": {
+          "C_B": [
+            0.33538461538461556,
+            0.5897435897435895
+          ],
+          "S_B": [
+            0.593846153846154,
+            0.8974358974358971
+          ],
+          "C_S": [
+            0.44489795918367375,
+            0.8341968911917095
+          ]
+        }
+      }
+    },
+    "breakeven_half_width_pp_where_box_max_primary_reaches_hummus": {
+      "standalone": 3.4983955983058657,
+      "anchored": 5.618729096989965
+    },
+    "extrema_method": "log-coordinate convexity: maxima at the 8 box vertices; minima exact by piecewise-linear 1-D minimisation"
+  },
+  "bread_assay_vs_label": {
+    "bajka_rolls_development": {
+      "equality": {
+        "mean_error_vs_control": 0.3268624289980345,
+        "separation_error": 0.5002979609344526
+      },
+      "total_starch": {
+        "mean_error_vs_control": 0.29052633184833626,
+        "separation_error": 0.44536424211661524
+      },
+      "wheat_flour_recipe": {
+        "mean_error_vs_control": 0.3177419009174953,
+        "separation_error": 0.17414632947194267
+      },
+      "partly_accessible_hummus_reference": {
+        "mean_error_vs_control": 0.16565969754427218,
+        "separation_error": 0.33131939508854436
+      },
+      "figure_H20": {
+        "mean_error_vs_control": 0.11111034540120272,
+        "separation_error": 0.22222069080240536
+      },
+      "figure_H120": {
+        "mean_error_vs_control": 0.1546160338960176,
+        "separation_error": 0.30923206779203516
+      }
+    },
+    "kanata_120_signed_group": {
+      "same_bake_equal": 0.02539819060561046,
+      "measured_total_starch": 0.07694334244317615,
+      "same_starch_nominal30_measured_porridge_response": 0.26696726850244473,
+      "measured_total_nominal30_measured_porridge_response": 0.31851242034001054,
+      "same_starch_nominal30_measured_porridge_H20": 0.20518116630481958,
+      "measured_total_nominal30_measured_porridge_H20": 0.2567263181423853,
+      "same_starch_nominal30_hummus_reference": 0.11764321050073903,
+      "measured_total_nominal30_hummus_reference": 0.16918836233830487,
+      "same_starch_nominal30_zero_limit": 0.38207313454434294,
+      "measured_total_nominal30_zero_limit": 0.43361828638190864
+    },
+    "kanata_bread_assay_coverage": 0
+  }
+}

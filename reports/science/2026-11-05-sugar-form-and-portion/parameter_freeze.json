@@ -1,0 +1,9 @@
+{
+  "frozen_utc": "2026-11-05T05:01:51Z",
+  "PARAMS.json_sha256": "e273a7086f86bfb394c3895d5d3107659c4ab0f0ca642e33eb51de909d5981b0",
+  "wb_portions.json_sha256": "5b74f461c57f11efb145a6a11aa8d321b5231e380824704420c5c408f931760e",
+  "fitted_on": "WB1996 portion ratios only (already exposed)",
+  "not_fitted_on": "any Lee & Wolever arm mean, any PMC7900990 arm mean",
+  "lee_inputs_present_at_freeze": true,
+  "external_inputs_present_at_freeze": false
+}

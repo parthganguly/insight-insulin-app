@@ -1,0 +1,217 @@
+{
+  "pairwise": {
+    "whey/AA2": {
+      "observed": 1.8085106382978722,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.5357142857142856,
+        "AA_or_protein_grams": 1.2426936026936026,
+        "conditional_leucine": 1.366962962962963,
+        "conditional_five_AA": 1.1129939384472531
+      },
+      "errors": {
+        "no_change": 0.5925036547802578,
+        "energy_macro": 0.16350804926189938,
+        "AA_or_protein_grams": 0.37522237087260235,
+        "conditional_leucine": 0.2799121910682774,
+        "conditional_five_AA": 0.4854500286407162
+      },
+      "source_Tukey_distinguished": true
+    },
+    "whey/AA3": {
+      "observed": 1.1486486486486487,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.4625850340136055,
+        "AA_or_protein_grams": 1.1921188630490955,
+        "conditional_leucine": 0.9026460993785926,
+        "conditional_five_AA": 1.0573294843275758
+      },
+      "errors": {
+        "no_change": 0.13858616328614667,
+        "energy_macro": 0.24161927806277989,
+        "AA_or_protein_grams": 0.037146117708636274,
+        "conditional_leucine": 0.24101088219491182,
+        "conditional_five_AA": 0.08283978848376392
+      },
+      "source_Tukey_distinguished": false
+    },
+    "whey/AA5": {
+      "observed": 1.223021582733813,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.3271604938271604,
+        "AA_or_protein_grams": 1.1356866799596288,
+        "conditional_leucine": 0.9026460993785926,
+        "conditional_five_AA": 0.9549827688267785
+      },
+      "errors": {
+        "no_change": 0.20132450391957002,
+        "energy_macro": 0.08171718897570862,
+        "AA_or_protein_grams": 0.0740870315578475,
+        "conditional_leucine": 0.303749222828335,
+        "conditional_five_AA": 0.24738648569707675
+      },
+      "source_Tukey_distinguished": false
+    },
+    "whey/glucose": {
+      "observed": 1.6037735849056605,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.72,
+        "AA_or_protein_grams": 1.366962962962963,
+        "conditional_leucine": 1.366962962962963,
+        "conditional_five_AA": 1.366962962962963
+      },
+      "errors": {
+        "no_change": 0.4723593429381946,
+        "energy_macro": 0.069964947887167,
+        "AA_or_protein_grams": 0.15976787922621433,
+        "conditional_leucine": 0.15976787922621433,
+        "conditional_five_AA": 0.15976787922621433
+      },
+      "source_Tukey_distinguished": true
+    },
+    "AA2/AA3": {
+      "observed": 0.6351351351351351,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 0.9523809523809526,
+        "AA_or_protein_grams": 0.9593023255813954,
+        "conditional_leucine": 0.6603295947551209,
+        "conditional_five_AA": 0.9499867409903999
+      },
+      "errors": {
+        "no_change": 0.4539174914941112,
+        "energy_macro": 0.4051273273246794,
+        "AA_or_protein_grams": 0.4123684885812389,
+        "conditional_leucine": 0.03890130887336587,
+        "conditional_five_AA": 0.4026102401569524
+      },
+      "source_Tukey_distinguished": true
+    },
+    "AA2/AA5": {
+      "observed": 0.6762589928057554,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 0.8641975308641976,
+        "AA_or_protein_grams": 0.9138911454102356,
+        "conditional_leucine": 0.6603295947551209,
+        "conditional_five_AA": 0.8580305209560105
+      },
+      "errors": {
+        "no_change": 0.3911791508606878,
+        "energy_macro": 0.24522523823760817,
+        "AA_or_protein_grams": 0.30113533931475495,
+        "conditional_leucine": 0.023837031760057643,
+        "conditional_five_AA": 0.23806354294363952
+      },
+      "source_Tukey_distinguished": true
+    },
+    "AA2/glucose": {
+      "observed": 0.8867924528301887,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.12,
+        "AA_or_protein_grams": 1.1,
+        "conditional_leucine": 1.0,
+        "conditional_five_AA": 1.2281854516386892
+      },
+      "errors": {
+        "no_change": 0.12014431184206321,
+        "energy_macro": 0.2334729971490664,
+        "AA_or_protein_grams": 0.21545449164638808,
+        "conditional_leucine": 0.12014431184206321,
+        "conditional_five_AA": 0.32568214941450196
+      },
+      "source_Tukey_distinguished": false
+    },
+    "AA3/AA5": {
+      "observed": 1.064748201438849,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 0.9074074074074073,
+        "AA_or_protein_grams": 0.9526622849124879,
+        "conditional_leucine": 1.0,
+        "conditional_five_AA": 0.9032026279245526
+      },
+      "errors": {
+        "no_change": 0.06273834063342336,
+        "energy_macro": 0.15990208908707124,
+        "AA_or_protein_grams": 0.11123314926648398,
+        "conditional_leucine": 0.06273834063342336,
+        "conditional_five_AA": 0.1645466972133128
+      },
+      "source_Tukey_distinguished": false
+    },
+    "AA3/glucose": {
+      "observed": 1.3962264150943398,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.176,
+        "AA_or_protein_grams": 1.1466666666666667,
+        "conditional_leucine": 1.5143952473777036,
+        "conditional_five_AA": 1.292844835242917
+      },
+      "errors": {
+        "no_change": 0.33377317965204806,
+        "energy_macro": 0.1716543301756129,
+        "AA_or_protein_grams": 0.1969139969348507,
+        "conditional_leucine": 0.08124300296869741,
+        "conditional_five_AA": 0.07692809074245043
+      },
+      "source_Tukey_distinguished": true
+    },
+    "AA5/glucose": {
+      "observed": 1.3113207547169812,
+      "prediction": {
+        "no_change": 1.0,
+        "energy_macro": 1.296,
+        "AA_or_protein_grams": 1.2036444444444445,
+        "conditional_leucine": 1.5143952473777036,
+        "conditional_five_AA": 1.4314006572519764
+      },
+      "errors": {
+        "no_change": 0.27103483901862474,
+        "energy_macro": 0.011752241088541636,
+        "AA_or_protein_grams": 0.08568084766836673,
+        "conditional_leucine": 0.1439813436021208,
+        "conditional_five_AA": 0.08761860647086228
+      },
+      "source_Tukey_distinguished": false
+    }
+  },
+  "mean_absolute_log_error": {
+    "no_change": 0.29932791836273265,
+    "energy_macro": 0.12171112907509699,
+    "AA_or_protein_grams": 0.16445430386895496,
+    "conditional_leucine": 0.12628413440977393,
+    "conditional_five_AA": 0.16249918146350725
+  },
+  "mixture_calibrated": {
+    "AA3_plus_AA2_minus_G": {
+      "predicted": 13.600000000000003,
+      "observed": 13.9,
+      "abs_error": 0.29999999999999716,
+      "signed_observed_minus_predicted": 0.29999999999999716
+    },
+    "AA3_only": {
+      "predicted": 14.8,
+      "observed": 13.9,
+      "abs_error": 0.9000000000000004,
+      "signed_observed_minus_predicted": -0.9000000000000004
+    },
+    "AA2_only": {
+      "predicted": 9.4,
+      "observed": 13.9,
+      "abs_error": 4.5,
+      "signed_observed_minus_predicted": 4.5
+    },
+    "glucose_only": {
+      "predicted": 10.6,
+      "observed": 13.9,
+      "abs_error": 3.3000000000000007,
+      "signed_observed_minus_predicted": 3.3000000000000007
+    }
+  }
+}

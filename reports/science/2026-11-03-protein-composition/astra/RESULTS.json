@@ -1,0 +1,184 @@
+{
+  "healthy": {
+    "observed_HL_over_H": 1.5629139072847682,
+    "forecasts": {
+      "no_change": 1,
+      "macro_energy": 1.1,
+      "protein_or_AA_mass": 1.3333333333333333,
+      "external_free_leucine_multiplier": 1.66,
+      "conditional_mass_increment": 1.1136865342163356,
+      "conditional_external_increment": 1.4349006622516556
+    },
+    "abs_log_errors": {
+      "no_change": 0.4465519682106858,
+      "macro_energy": 0.35124178840636083,
+      "protein_or_AA_mass": 0.15886989575890492,
+      "external_free_leucine_multiplier": 0.06026563415776606,
+      "conditional_mass_increment": 0.3388762539000561,
+      "conditional_external_increment": 0.08545634630699439
+    },
+    "reading_corner_error_ranges": {
+      "no_change": [
+        0.42263291173052986,
+        0.47084786737101625
+      ],
+      "macro_energy": [
+        0.3273227319262049,
+        0.3755376875666913
+      ],
+      "protein_or_AA_mass": [
+        0.13495083927874896,
+        0.18316579491923532
+      ],
+      "external_free_leucine_multiplier": [
+        0.03596973499743547,
+        0.08418469063792207
+      ],
+      "conditional_mass_increment": [
+        0.3091882776727445,
+        0.36921049021601987
+      ],
+      "conditional_external_increment": [
+        0.058485952953096394,
+        0.11293720076564252
+      ]
+    },
+    "corner_observed_ratio_range": [
+      1.525974025974026,
+      1.6013513513513515
+    ],
+    "area_means_G_H_HL": [
+      41.24352331606217,
+      62.590673575129536,
+      97.8238341968912
+    ],
+    "published_percent_compound_diagnostic": 1.9337349397590362,
+    "additional_panels": {
+      "H/G": {
+        "observed": 1.5175879396984926,
+        "forecasts": {
+          "no_change": 1,
+          "macro_energy": 1.4285714285714286
+        },
+        "abs_log_errors": {
+          "no_change": 0.41712219265037737,
+          "macro_energy": 0.06044724871164498
+        }
+      },
+      "HL/G": {
+        "observed": 2.3718592964824126,
+        "forecasts": {
+          "no_change": 1,
+          "macro_energy": 1.5714285714285716,
+          "no_change_conditional_on_H": 1.5175879396984926,
+          "macro_energy_conditional_on_H": 1.669346733668342,
+          "protein_or_AA_mass_conditional_on_H": 2.023450586264657,
+          "external_free_leucine_multiplier_conditional_on_H": 2.5191959798994974,
+          "conditional_mass_increment_conditional_on_H": 1.6901172529313235,
+          "conditional_external_increment_conditional_on_H": 2.1775879396984927
+        },
+        "abs_log_errors": {
+          "no_change": 0.8636741608610632,
+          "macro_energy": 0.4116890371180058,
+          "no_change_conditional_on_H": 0.4465519682106858,
+          "macro_energy_conditional_on_H": 0.35124178840636083,
+          "protein_or_AA_mass_conditional_on_H": 0.15886989575890492,
+          "external_free_leucine_multiplier_conditional_on_H": 0.060265634157765854,
+          "conditional_mass_increment_conditional_on_H": 0.3388762539000562,
+          "conditional_external_increment_conditional_on_H": 0.08545634630699439
+        }
+      }
+    }
+  },
+  "T2D": {
+    "observed_HL_over_H": 1.2588235294117645,
+    "forecasts": {
+      "no_change": 1,
+      "macro_energy": 1.1,
+      "protein_or_AA_mass": 1.3333333333333333,
+      "external_free_leucine_multiplier": 1.66,
+      "conditional_mass_increment": 1.1830065359477124,
+      "conditional_external_increment": 1.2976470588235294
+    },
+    "abs_log_errors": {
+      "no_change": 0.23017757797158947,
+      "macro_energy": 0.13486739816726456,
+      "protein_or_AA_mass": 0.05750449448019132,
+      "external_free_leucine_multiplier": 0.27664002439686236,
+      "conditional_mass_increment": 0.06211846809819917,
+      "conditional_external_increment": 0.030375091797550758
+    },
+    "reading_corner_error_ranges": {
+      "no_change": [
+        0.2006706954621511,
+        0.26019942675794905
+      ],
+      "macro_energy": [
+        0.10536051565782616,
+        0.16488924695362414
+      ],
+      "protein_or_AA_mass": [
+        0.027482645693831884,
+        0.0870113769896299
+      ],
+      "external_free_leucine_multiplier": [
+        0.24661817561050273,
+        0.3061469069063007
+      ],
+      "conditional_mass_increment": [
+        0.027544114175887147,
+        0.09747971420558932
+      ],
+      "conditional_external_increment": [
+        0.0017721291569799365,
+        0.066280733012246
+      ]
+    },
+    "corner_observed_ratio_range": [
+      1.222222222222222,
+      1.2971887550200805
+    ],
+    "area_means_G_H_HL": [
+      23.83419689119171,
+      52.84974093264249,
+      66.52849740932642
+    ],
+    "published_percent_compound_diagnostic": 1.2614107883817427,
+    "additional_panels": {
+      "H/G": {
+        "observed": 2.217391304347826,
+        "forecasts": {
+          "no_change": 1,
+          "macro_energy": 1.4285714285714286
+        },
+        "abs_log_errors": {
+          "no_change": 0.796331416795176,
+          "macro_energy": 0.43965647285644366
+        }
+      },
+      "HL/G": {
+        "observed": 2.791304347826087,
+        "forecasts": {
+          "no_change": 1,
+          "macro_energy": 1.5714285714285716,
+          "no_change_conditional_on_H": 2.217391304347826,
+          "macro_energy_conditional_on_H": 2.439130434782609,
+          "protein_or_AA_mass_conditional_on_H": 2.9565217391304346,
+          "external_free_leucine_multiplier_conditional_on_H": 3.680869565217391,
+          "conditional_mass_increment_conditional_on_H": 2.6231884057971016,
+          "conditional_external_increment_conditional_on_H": 2.8773913043478263
+        },
+        "abs_log_errors": {
+          "no_change": 1.0265089947667656,
+          "macro_energy": 0.5745238710237084,
+          "no_change_conditional_on_H": 0.2301775779715896,
+          "macro_energy_conditional_on_H": 0.13486739816726467,
+          "protein_or_AA_mass_conditional_on_H": 0.05750449448019111,
+          "external_free_leucine_multiplier_conditional_on_H": 0.2766400243968622,
+          "conditional_mass_increment_conditional_on_H": 0.0621184680981994,
+          "conditional_external_increment_conditional_on_H": 0.030375091797550758
+        }
+      }
+    }
+  }
+}

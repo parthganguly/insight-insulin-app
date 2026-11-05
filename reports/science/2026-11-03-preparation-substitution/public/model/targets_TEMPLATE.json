@@ -1,0 +1,25 @@
+{
+  "_instructions": "One entry per pulse-for-starch substitution. operator one of: GM_ratio_0_120 (primary), AM_ratio_0_120, within_participant_ratio_or_index, other_window. Use null where not printed. Do not convert operators. exchange_fraction may be given directly or computed from pulse_avcho_g / control_avcho_g.",
+  "transcriber": "identity and date",
+  "targets": [
+    {
+      "id": "example",
+      "source": "doi",
+      "locator": "Table/Figure",
+      "displaced_starch": "rice | potato | bread | pasta | other",
+      "pulse_family": "lentil | bean | chickpea | pea | other",
+      "pulse_colour": "small_green | split_red | large_green | null",
+      "control_avcho_g": null,
+      "test_avcho_g": null,
+      "pulse_avcho_g": null,
+      "exchange_fraction": null,
+      "operator": "GM_ratio_0_120",
+      "observed_ratio": null,
+      "arm_log_se": {"test": null, "control": null},
+      "paired_ratio_ci": null,
+      "assay": null,
+      "clipping": "unspecified",
+      "notes": ""
+    }
+  ]
+}

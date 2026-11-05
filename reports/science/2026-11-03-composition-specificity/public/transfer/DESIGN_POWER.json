@@ -1,0 +1,83 @@
+{
+  "criterion": "2*SE(ln ratio) < |ln pred_a - ln pred_b|, SE = sqrt(2/n)*CV (independent groups, equal n and CV)",
+  "note": "Outcome-free; any additional between-person baseline difference or a near-zero protein-only insulin increment inflates CV further",
+  "pairs": {
+    "P2_fixed_vs_P3_quantitative": {
+      "log_separation": 0.13397442493699363,
+      "n_per_group_required": {
+        "CV_0.2": 18,
+        "CV_0.3": 41,
+        "CV_0.4": 72,
+        "CV_0.5": 112,
+        "CV_0.6": 161,
+        "CV_0.8": 286
+      },
+      "log_se_at_n8": {
+        "CV_0.2": 0.1,
+        "CV_0.3": 0.15,
+        "CV_0.4": 0.2,
+        "CV_0.5": 0.25,
+        "CV_0.6": 0.3,
+        "CV_0.8": 0.4
+      }
+    },
+    "P3_quantitative_vs_P0_equal": {
+      "log_separation": 0.10273155984752395,
+      "n_per_group_required": {
+        "CV_0.2": 31,
+        "CV_0.3": 69,
+        "CV_0.4": 122,
+        "CV_0.5": 190,
+        "CV_0.6": 273,
+        "CV_0.8": 486
+      },
+      "log_se_at_n8": {
+        "CV_0.2": 0.1,
+        "CV_0.3": 0.15,
+        "CV_0.4": 0.2,
+        "CV_0.5": 0.25,
+        "CV_0.6": 0.3,
+        "CV_0.8": 0.4
+      }
+    },
+    "P2_fixed_vs_P0_equal": {
+      "log_separation": 0.2367059847845176,
+      "n_per_group_required": {
+        "CV_0.2": 6,
+        "CV_0.3": 13,
+        "CV_0.4": 23,
+        "CV_0.5": 36,
+        "CV_0.6": 52,
+        "CV_0.8": 92
+      },
+      "log_se_at_n8": {
+        "CV_0.2": 0.1,
+        "CV_0.3": 0.15,
+        "CV_0.4": 0.2,
+        "CV_0.5": 0.25,
+        "CV_0.6": 0.3,
+        "CV_0.8": 0.4
+      }
+    },
+    "P3s_soy_vs_P3w_whey_slope": {
+      "log_separation": 0.08897878488334235,
+      "n_per_group_required": {
+        "CV_0.2": 41,
+        "CV_0.3": 91,
+        "CV_0.4": 162,
+        "CV_0.5": 253,
+        "CV_0.6": 364,
+        "CV_0.8": 647
+      },
+      "log_se_at_n8": {
+        "CV_0.2": 0.1,
+        "CV_0.3": 0.15,
+        "CV_0.4": 0.2,
+        "CV_0.5": 0.25,
+        "CV_0.6": 0.3,
+        "CV_0.8": 0.4
+      }
+    }
+  },
+  "identification": "Two leucine levels per age: any one-parameter rule (free multiplier or free slope) can be tuned to fit each age exactly; only pre-existing coefficients are scored, so the test can rank P2 vs P3 but cannot show that a quantitative dose law is required."
+}

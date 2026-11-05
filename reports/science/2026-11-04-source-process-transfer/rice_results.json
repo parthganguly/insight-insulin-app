@@ -1,0 +1,53 @@
+{
+  "ito": {
+    "60": {
+      "study_arm_means": {
+        "WR": 1852.2599210464118,
+        "BR": 1828.651939627864,
+        "PGBR": 1573.033362106105
+      },
+      "observed_brown_white": 0.9872544985990893,
+      "pred": {
+        "same_response": 1,
+        "previous_brown_polished_insulin_index_ratio": 0.6190476190476191,
+        "external_whole_rice_H30_share_ratio": 0.5714285714285715,
+        "external_release_power": 0.866378930871006,
+        "external_oriented_affine": 0.8304636259596698
+      },
+      "absolute_log_errors": {
+        "same_response": 0.012827422128784308,
+        "previous_brown_polished_insulin_index_ratio": 0.46674565813310204,
+        "external_whole_rice_H30_share_ratio": 0.5467883658066384,
+        "external_release_power": 0.13060547947818077,
+        "external_oriented_affine": 0.17294372651993606
+      }
+    },
+    "120": {
+      "study_arm_means": {
+        "WR": 2725.286404581025,
+        "BR": 2320.2254309580194,
+        "PGBR": 2304.506084949841
+      },
+      "observed_brown_white": 0.8513693926105802,
+      "pred": {
+        "same_response": 1,
+        "previous_brown_polished_insulin_index_ratio": 0.6190476190476191,
+        "external_whole_rice_H30_share_ratio": 0.5714285714285715,
+        "external_release_power": 0.866378930871006,
+        "external_oriented_affine": 0.8304636259596698
+      },
+      "absolute_log_errors": {
+        "same_response": 0.1609091757168059,
+        "previous_brown_polished_insulin_index_ratio": 0.31866390454508026,
+        "external_whole_rice_H30_share_ratio": 0.39870661221861664,
+        "external_release_power": 0.017476274109841004,
+        "external_oriented_affine": 0.024861972931914396
+      }
+    }
+  },
+  "parboil_180": {
+    "traditional_vs_unprocessed": 1.0163265306122449,
+    "pressure_vs_unprocessed": 0.9993416721527321
+  },
+  "scope": "Original Japanese serum iAUC arm summaries at different windows. Brown and white rice preparation/water differ. No native absolute forecast. Malaysian donor is normalized 180min, rice assay was from another 75g test."
+}

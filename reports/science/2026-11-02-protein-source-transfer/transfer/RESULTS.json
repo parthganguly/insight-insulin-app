@@ -1,0 +1,1354 @@
+{
+  "Reported": {
+    "n_authors": 11,
+    "n_rows": 26,
+    "losses": {
+      "no_change": 0.22217384498550305,
+      "mean": 0.12758756212675323,
+      "dose": 0.135758989204961,
+      "dose_source": 0.14096970013176746
+    },
+    "criterion": false,
+    "label_available_rows": 23,
+    "changed_rows": 23,
+    "dose_extrapolated_rows": 6,
+    "changes_in_author_loss": {
+      "Acheson": 0.013360090692409066,
+      "Camps": -0.09119333385063008,
+      "Fahmi": 0.05343933804268634,
+      "Gunnerud": -0.016667935480102702,
+      "Hatonen": -0.009863082048170158,
+      "Meng": 0.09435362698105233,
+      "Quek": -0.013524137948219883,
+      "Roberts": -0.08660162916713593,
+      "Sun": 0.060965368769086856,
+      "Thondre": 0.04457802485734669,
+      "Wolever": 0.008471489346548677
+    },
+    "changed_rows_loss": {
+      "no_change": 0.23286165212724608,
+      "mean": 0.12908500496812716,
+      "dose": 0.1325117922195425,
+      "dose_source": 0.14069111075980426
+    },
+    "author_wins": 5,
+    "author_ties": 0,
+    "author_losses": 6,
+    "omit_author_delta": {
+      "Acheson": 0.004395772950246214,
+      "Camps": 0.014851115404550131,
+      "Fahmi": 0.00038784821521848647,
+      "Gunnerud": 0.007398575567497391,
+      "Hatonen": 0.006718090224304136,
+      "Meng": -0.0037035806786181124,
+      "Quek": 0.0070841958143091095,
+      "Roberts": 0.014391944936200713,
+      "Sun": -0.00036475485742156475,
+      "Thondre": 0.0012739795337524521,
+      "Wolever": 0.004884633084832253
+    },
+    "forecasts": [
+      {
+        "row": 7,
+        "author": "Quek",
+        "label": "Egg",
+        "rr": 1.19,
+        "dose": 0.5,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2456497656772427,
+          "dose": 1.2508230802551559,
+          "dose_source": 1.2508230802551559
+        },
+        "abs_log_error": {
+          "no_change": 0.17395330712343798,
+          "mean": 0.04570398679308382,
+          "dose": 0.04984849170246,
+          "dose_source": 0.04984849170246
+        }
+      },
+      {
+        "row": 9,
+        "author": "Meng",
+        "label": "Fish",
+        "rr": 1.19,
+        "dose": 0.25,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2516651266113044,
+          "dose": 1.2213513284440367,
+          "dose_source": 1.3422019599654926
+        },
+        "abs_log_error": {
+          "no_change": 0.17395330712343798,
+          "mean": 0.05052145902004185,
+          "dose": 0.02600458489981336,
+          "dose_source": 0.1203582118808657
+        }
+      },
+      {
+        "row": 10,
+        "author": "Quek",
+        "label": "Fish",
+        "rr": 1.52,
+        "dose": 0.5,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2456497656772427,
+          "dose": 1.2508230802551559,
+          "dose_source": 1.2052606847937102
+        },
+        "abs_log_error": {
+          "no_change": 0.41871033485818504,
+          "mean": 0.19905304094166323,
+          "dose": 0.19490853603228706,
+          "dose_source": 0.23201445538441903
+        }
+      },
+      {
+        "row": 11,
+        "author": "Meng",
+        "label": "Fish",
+        "rr": 1.1,
+        "dose": 0.5,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2516651266113044,
+          "dose": 1.2586038875512884,
+          "dose_source": 1.3831405962800596
+        },
+        "abs_log_error": {
+          "no_change": 0.09531017980432493,
+          "mean": 0.1291645863391549,
+          "dose": 0.13469290109175544,
+          "dose_source": 0.2290465280728078
+        }
+      },
+      {
+        "row": 12,
+        "author": "Meng",
+        "label": "Fish",
+        "rr": 1.23,
+        "dose": 1.0,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2516651266113044,
+          "dose": 1.3365523945599915,
+          "dose_source": 1.4688019751535333
+        },
+        "abs_log_error": {
+          "no_change": 0.20701416938432612,
+          "mean": 0.017460596759153707,
+          "dose": 0.08307928925741229,
+          "dose_source": 0.1774329162384646
+        }
+      },
+      {
+        "row": 16,
+        "author": "Sun",
+        "label": "Poultry",
+        "rr": 1.3,
+        "dose": 0.44,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2453633092068659,
+          "dose": 1.2390546644614897,
+          "dose_source": 1.2024727128112747
+        },
+        "abs_log_error": {
+          "no_change": 0.26236426446749106,
+          "mean": 0.04293696249643747,
+          "dose": 0.048015542970096664,
+          "dose_source": 0.07798423377601632
+        }
+      },
+      {
+        "row": 17,
+        "author": "Quek",
+        "label": "Poultry",
+        "rr": 1.15,
+        "dose": 0.5,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2456497656772427,
+          "dose": 1.2508230802551559,
+          "dose_source": 1.2648701349850207
+        },
+        "abs_log_error": {
+          "no_change": 0.13976194237515863,
+          "mean": 0.07989535154136318,
+          "dose": 0.08403985645073936,
+          "dose_source": 0.09520751444352435
+        }
+      },
+      {
+        "row": 18,
+        "author": "Hatonen",
+        "label": "Poultry",
+        "rr": 1.25,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.243632251550938,
+          "dose": 1.2641308440299128,
+          "dose_source": 1.2482784704909244
+        },
+        "abs_log_error": {
+          "no_change": 0.22314355131420976,
+          "mean": 0.0051072184250812724,
+          "dose": 0.0112412548995105,
+          "dose_source": 0.0013781728513403424
+        }
+      },
+      {
+        "row": 21,
+        "author": "Acheson",
+        "label": "Casein",
+        "rr": 1.08,
+        "dose": 1.25,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2494862729423097,
+          "dose": 1.5767349642156057,
+          "dose_source": 1.5767349642156057
+        },
+        "abs_log_error": {
+          "no_change": 0.0769610411361284,
+          "mean": 0.1457714440558262,
+          "dose": 0.3783951894457362,
+          "dose_source": 0.3783951894457362
+        }
+      },
+      {
+        "row": 22,
+        "author": "Sun",
+        "label": "Liquid Milk",
+        "rr": 1.1,
+        "dose": 0.17,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2453633092068659,
+          "dose": 1.2029226241654574,
+          "dose_source": 1.2029226241654574
+        },
+        "abs_log_error": {
+          "no_change": 0.09531017980432493,
+          "mean": 0.12411712216672866,
+          "dose": 0.08944393605519937,
+          "dose_source": 0.08944393605519937
+        }
+      },
+      {
+        "row": 33,
+        "author": "Wolever",
+        "label": "Whey",
+        "rr": 1.26,
+        "dose": 0.15,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.242641698971743,
+          "dose": 1.1908190440904276,
+          "dose_source": 1.3445422069765487
+        },
+        "abs_log_error": {
+          "no_change": 0.23111172096338664,
+          "mean": 0.013872205039175828,
+          "dose": 0.05647037824583548,
+          "dose_source": 0.06494186759238416
+        }
+      },
+      {
+        "row": 34,
+        "author": "Gunnerud",
+        "label": "Whey",
+        "rr": 1.3,
+        "dose": 0.18,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2321508808356632,
+          "dose": 1.1972487496370174,
+          "dose_source": 1.342721476014552
+        },
+        "abs_log_error": {
+          "no_change": 0.26236426446749106,
+          "mean": 0.05360293864401652,
+          "dose": 0.0823380485899376,
+          "dose_source": 0.03233424214962949
+        }
+      },
+      {
+        "row": 39,
+        "author": "Gunnerud",
+        "label": "Whey",
+        "rr": 1.21,
+        "dose": 0.36,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2321508808356632,
+          "dose": 1.218768989364054,
+          "dose_source": 1.3668565507508876
+        },
+        "abs_log_error": {
+          "no_change": 0.1906203596086497,
+          "mean": 0.018140966214824833,
+          "dose": 0.007220964616547143,
+          "dose_source": 0.12189325535611423
+        }
+      },
+      {
+        "row": 40,
+        "author": "Roberts",
+        "label": "Whey",
+        "rr": 1.59,
+        "dose": 0.4,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2144517554278,
+          "dose": 1.2037089593527968,
+          "dose_source": 1.3125991017396077
+        },
+        "abs_log_error": {
+          "no_change": 0.4637340162321402,
+          "mean": 0.2694412713751415,
+          "dose": 0.2783264266787553,
+          "dose_source": 0.19172479751161936
+        }
+      },
+      {
+        "row": 41,
+        "author": "Roberts",
+        "label": "Whey",
+        "rr": 1.58,
+        "dose": 0.4,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2144517554278,
+          "dose": 1.2037089593527968,
+          "dose_source": 1.3125991017396077
+        },
+        "abs_log_error": {
+          "no_change": 0.4574248470388755,
+          "mean": 0.26313210218187677,
+          "dose": 0.27201725748549055,
+          "dose_source": 0.18541562831835462
+        }
+      },
+      {
+        "row": 51,
+        "author": "Gunnerud",
+        "label": "Whey",
+        "rr": 1.64,
+        "dose": 0.72,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2321508808356632,
+          "dose": 1.2629768842198779,
+          "dose_source": 1.4164359634254085
+        },
+        "abs_log_error": {
+          "no_change": 0.494696241836107,
+          "mean": 0.28593491601263243,
+          "dose": 0.26122470091562344,
+          "dose_source": 0.14655241017605636
+        }
+      },
+      {
+        "row": 57,
+        "author": "Acheson",
+        "label": "Whey",
+        "rr": 1.54,
+        "dose": 1.25,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2494862729423097,
+          "dose": 1.5767349642156057,
+          "dose_source": 1.7387154201656358
+        },
+        "abs_log_error": {
+          "no_change": 0.43178241642553783,
+          "mean": 0.20904993123358323,
+          "dose": 0.023573814156326756,
+          "dose_source": 0.12136415987700788
+        }
+      },
+      {
+        "row": 63,
+        "author": "Fahmi",
+        "label": "Pea",
+        "rr": 1.02,
+        "dose": 0.06,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2609832504117948,
+          "dose": 1.2189398551482957,
+          "dose_source": 1.285851118121298
+        },
+        "abs_log_error": {
+          "no_change": 0.01980262729617973,
+          "mean": 0.21208914681630398,
+          "dose": 0.1781788824847336,
+          "dose_source": 0.23161822052741995
+        }
+      },
+      {
+        "row": 64,
+        "author": "Fahmi",
+        "label": "Pea",
+        "rr": 1.08,
+        "dose": 0.06,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2609832504117948,
+          "dose": 1.2189398551482957,
+          "dose_source": 1.285851118121298
+        },
+        "abs_log_error": {
+          "no_change": 0.0769610411361284,
+          "mean": 0.15493073297635532,
+          "dose": 0.12102046864478494,
+          "dose_source": 0.1744598066874713
+        }
+      },
+      {
+        "row": 65,
+        "author": "Fahmi",
+        "label": "Pea",
+        "rr": 1.17,
+        "dose": 0.06,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2609832504117948,
+          "dose": 1.2189398551482957,
+          "dose_source": 1.285851118121298
+        },
+        "abs_log_error": {
+          "no_change": 0.1570037488096647,
+          "mean": 0.07488802530281902,
+          "dose": 0.04097776097124864,
+          "dose_source": 0.094417099013935
+        }
+      },
+      {
+        "row": 67,
+        "author": "Thondre",
+        "label": "Pea",
+        "rr": 1.39,
+        "dose": 0.5,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2270616152232914,
+          "dose": 1.2333701659433005,
+          "dose_source": 1.1795964281744389
+        },
+        "abs_log_error": {
+          "no_change": 0.3293037471426003,
+          "mean": 0.12468136651871309,
+          "dose": 0.11955335232810815,
+          "dose_source": 0.16413137718545484
+        }
+      },
+      {
+        "row": 69,
+        "author": "Thondre",
+        "label": "Pea",
+        "rr": 1.47,
+        "dose": 1.0,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2270616152232914,
+          "dose": 1.2848800936445255,
+          "dose_source": 1.2288605732053977
+        },
+        "abs_log_error": {
+          "no_change": 0.3852624007906449,
+          "mean": 0.18064002016675768,
+          "dose": 0.13459699913621959,
+          "dose_source": 0.17917502399356627
+        }
+      },
+      {
+        "row": 72,
+        "author": "Camps",
+        "label": "Soy",
+        "rr": 0.98,
+        "dose": 0.15,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2742668055751507,
+          "dose": 1.2509056732917072,
+          "dose_source": 1.1418782493188826
+        },
+        "abs_log_error": {
+          "no_change": 0.020202707317519466,
+          "mean": 0.26257366606982085,
+          "dose": 0.2440705349136943,
+          "dose_source": 0.1528772010630642
+        }
+      },
+      {
+        "row": 73,
+        "author": "Sun",
+        "label": "Soy",
+        "rr": 1.31,
+        "dose": 0.17,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2453633092068659,
+          "dose": 1.2029226241654574,
+          "dose_source": 1.0323385858950624
+        },
+        "abs_log_error": {
+          "no_change": 0.2700271372130602,
+          "mean": 0.05059983524200662,
+          "dose": 0.0852730213535359,
+          "dose_source": 0.23820043685487674
+        }
+      },
+      {
+        "row": 74,
+        "author": "Quek",
+        "label": "Soy",
+        "rr": 1.1,
+        "dose": 0.5,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2456497656772427,
+          "dose": 1.2508230802551559,
+          "dose_source": 1.1291122106996418
+        },
+        "abs_log_error": {
+          "no_change": 0.09531017980432493,
+          "mean": 0.12434711411219687,
+          "dose": 0.12849161902157305,
+          "dose_source": 0.02612148988377659
+        }
+      },
+      {
+        "row": 78,
+        "author": "Acheson",
+        "label": "Soy",
+        "rr": 1.02,
+        "dose": 1.25,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.2494862729423097,
+          "dose": 1.5767349642156057,
+          "dose_source": 1.488317305971807
+        },
+        "abs_log_error": {
+          "no_change": 0.01980262729617973,
+          "mean": 0.20292985789577486,
+          "dose": 0.4355536032856849,
+          "dose_source": 0.3778435296422309
+        }
+      }
+    ]
+  },
+  "Calculated": {
+    "n_authors": 9,
+    "n_rows": 31,
+    "losses": {
+      "no_change": 0.4859984748549206,
+      "mean": 0.2506794776348277,
+      "dose": 0.2057958792354471,
+      "dose_source": 0.26250735713372736
+    },
+    "criterion": false,
+    "label_available_rows": 25,
+    "changed_rows": 25,
+    "dose_extrapolated_rows": 2,
+    "changes_in_author_loss": {
+      "Allerton": -0.019436658380547422,
+      "Berry": 0.14596476276063242,
+      "Claessens": 0.005547436603044409,
+      "Fujimoto": 0.0,
+      "Karamanlis": 0.11816220712073056,
+      "Lan-Pidhainy": 0.032151282338686124,
+      "Nilsson": 0.03986061912126815,
+      "Rabinowitz": 0.04804553125853889,
+      "Simpson": 0.14010812026216918
+    },
+    "changed_rows_loss": {
+      "no_change": 0.5441203194924616,
+      "mean": 0.259472075616778,
+      "dose": 0.23404643386107932,
+      "dose_source": 0.30131399437354733
+    },
+    "author_wins": 1,
+    "author_ties": 1,
+    "author_losses": 7,
+    "omit_author_delta": {
+      "Allerton": 0.06622999493313371,
+      "Berry": 0.04555481729048624,
+      "Claessens": 0.06310698306018474,
+      "Fujimoto": 0.06380041263556528,
+      "Karamanlis": 0.04903013674547397,
+      "Lan-Pidhainy": 0.05978150234322952,
+      "Nilsson": 0.05881783524540677,
+      "Rabinowitz": 0.05779472122824793,
+      "Simpson": 0.04628689760279414
+    },
+    "forecasts": [
+      {
+        "row": 3,
+        "author": "Rabinowitz",
+        "label": "Beef",
+        "rr": 2.36,
+        "dose": 0.64,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.551800053311134,
+          "dose": 1.6198829568913615,
+          "dose_source": 1.5438948802468753
+        },
+        "abs_log_error": {
+          "no_change": 0.8586616190375187,
+          "mean": 0.41924603720542286,
+          "dose": 0.37630772123579154,
+          "dose_source": 0.4243532524943304
+        }
+      },
+      {
+        "row": 6,
+        "author": "Berry",
+        "label": "Beef",
+        "rr": 1.8,
+        "dose": 1.08,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6052426855457513,
+          "dose": 2.323737196230025,
+          "dose_source": 2.688925073543383
+        },
+        "abs_log_error": {
+          "no_change": 0.5877866649021191,
+          "mean": 0.11451171380309827,
+          "dose": 0.2553900851760349,
+          "dose_source": 0.4013548479366673
+        }
+      },
+      {
+        "row": 8,
+        "author": "Claessens",
+        "label": "Egg",
+        "rr": 2.42,
+        "dose": 1.0,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5643518478270828,
+          "dose": 1.9383548399594348,
+          "dose_source": 1.9383548399594348
+        },
+        "abs_log_error": {
+          "no_change": 0.883767540168595,
+          "mean": 0.4362959567053187,
+          "dose": 0.2219279475057383,
+          "dose_source": 0.2219279475057383
+        }
+      },
+      {
+        "row": 13,
+        "author": "Simpson",
+        "label": "Gelatin",
+        "rr": 2.01,
+        "dose": 0.42,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5832527667927634,
+          "dose": 1.458089748890816,
+          "dose_source": 1.2674652850613004
+        },
+        "abs_log_error": {
+          "no_change": 0.6981347220709843,
+          "mean": 0.23865327811807163,
+          "dose": 0.3210075342124805,
+          "dose_source": 0.4611156544746497
+        }
+      },
+      {
+        "row": 14,
+        "author": "Karamanlis",
+        "label": "Gelatin",
+        "rr": 1.15,
+        "dose": 0.5,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.697706192508607,
+          "dose": 1.6476624199808976,
+          "dose_source": 1.8543231956378692
+        },
+        "abs_log_error": {
+          "no_change": 0.13976194237515863,
+          "mean": 0.3895160990397323,
+          "dose": 0.35959562588448224,
+          "dose_source": 0.4777578330052128
+        }
+      },
+      {
+        "row": 15,
+        "author": "Fujimoto",
+        "label": "Poultry",
+        "rr": 1.2,
+        "dose": 0.09,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": true,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.688698458988643,
+          "dose": 1.3431291729115542,
+          "dose_source": 1.3431291729115542
+        },
+        "abs_log_error": {
+          "no_change": 0.1823215567939546,
+          "mean": 0.34163653281858675,
+          "dose": 0.11268053848346368,
+          "dose_source": 0.11268053848346368
+        }
+      },
+      {
+        "row": 24,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.17,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.1570037488096647,
+          "mean": 0.352305431790788,
+          "dose": 0.1301779516973742,
+          "dose_source": 0.1694679784687805
+        }
+      },
+      {
+        "row": 25,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.14,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.131028262406404,
+          "mean": 0.37828091819404874,
+          "dose": 0.1561534381006349,
+          "dose_source": 0.1954434648720412
+        }
+      },
+      {
+        "row": 26,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.08,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.0769610411361284,
+          "mean": 0.4323481394643243,
+          "dose": 0.2102206593709105,
+          "dose_source": 0.2495106861423168
+        }
+      },
+      {
+        "row": 27,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.15,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.13976194237515863,
+          "mean": 0.3695472382252941,
+          "dose": 0.14741975813188027,
+          "dose_source": 0.18670978490328657
+        }
+      },
+      {
+        "row": 28,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.2,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.1823215567939546,
+          "mean": 0.32698762380649815,
+          "dose": 0.1048601437130843,
+          "dose_source": 0.1441501704844906
+        }
+      },
+      {
+        "row": 29,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.22,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.19885085874516517,
+          "mean": 0.31045832185528754,
+          "dose": 0.08833084176187372,
+          "dose_source": 0.12762086853328003
+        }
+      },
+      {
+        "row": 30,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.03,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.02955880224154443,
+          "mean": 0.47975037835890827,
+          "dose": 0.25762289826549445,
+          "dose_source": 0.29691292503690075
+        }
+      },
+      {
+        "row": 31,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.26,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.23111172096338664,
+          "mean": 0.2781974596370661,
+          "dose": 0.056069979543652254,
+          "dose_source": 0.09536000631505856
+        }
+      },
+      {
+        "row": 32,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.26,
+        "dose": 0.1,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.3326663376272296,
+          "dose_source": 1.3860690612644035
+        },
+        "abs_log_error": {
+          "no_change": 0.23111172096338664,
+          "mean": 0.2781974596370661,
+          "dose": 0.056069979543652254,
+          "dose_source": 0.09536000631505856
+        }
+      },
+      {
+        "row": 35,
+        "author": "Allerton",
+        "label": "Whey",
+        "rr": 1.41,
+        "dose": 0.21,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.65499762066448,
+          "dose": 1.3600544936853889,
+          "dose_source": 1.3867479840259676
+        },
+        "abs_log_error": {
+          "no_change": 0.34358970439007686,
+          "mean": 0.16020986677294924,
+          "dose": 0.03606493655853721,
+          "dose_source": 0.016628278177989786
+        }
+      },
+      {
+        "row": 42,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.57,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.45107561936021673,
+          "mean": 0.05823356124023599,
+          "dose": 0.06628999834206956,
+          "dose_source": 0.10558002511347592
+        }
+      },
+      {
+        "row": 43,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.64,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.494696241836107,
+          "mean": 0.014612938764345718,
+          "dose": 0.022669375866179287,
+          "dose_source": 0.06195940263758565
+        }
+      },
+      {
+        "row": 44,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.41,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.34358970439007686,
+          "mean": 0.16571947621037586,
+          "dose": 0.17377591331220943,
+          "dose_source": 0.2130659400836158
+        }
+      },
+      {
+        "row": 45,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.55,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.4382549309311553,
+          "mean": 0.07105424966929741,
+          "dose": 0.07911068677113098,
+          "dose_source": 0.11840071354253734
+        }
+      },
+      {
+        "row": 46,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.63,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.4885800148186709,
+          "mean": 0.0207291657817818,
+          "dose": 0.02878560288361537,
+          "dose_source": 0.06807562965502173
+        }
+      },
+      {
+        "row": 47,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.28,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.2468600779315258,
+          "mean": 0.2624491026689269,
+          "dose": 0.2705055397707605,
+          "dose_source": 0.30979556654216683
+        }
+      },
+      {
+        "row": 48,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.45,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.371563556432483,
+          "mean": 0.1377456241679697,
+          "dose": 0.14580206126980327,
+          "dose_source": 0.18509208804120963
+        }
+      },
+      {
+        "row": 49,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.72,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.5423242908253617,
+          "mean": 0.033015110224908994,
+          "dose": 0.024958673123075426,
+          "dose_source": 0.014331353648330936
+        }
+      },
+      {
+        "row": 50,
+        "author": "Lan-Pidhainy",
+        "label": "Whey",
+        "rr": 1.89,
+        "dose": 0.6,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6641411767556957,
+          "dose": 1.6776023773231303,
+          "dose_source": 1.7448274085254363
+        },
+        "abs_log_error": {
+          "no_change": 0.636576829071551,
+          "mean": 0.12726764847109828,
+          "dose": 0.11921121136926471,
+          "dose_source": 0.07992118459785835
+        }
+      },
+      {
+        "row": 52,
+        "author": "Nilsson",
+        "label": "Whey",
+        "rr": 1.6,
+        "dose": 0.72,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.6290513158332498,
+          "dose": 1.7888226006560877,
+          "dose_source": 1.8615663510446854
+        },
+        "abs_log_error": {
+          "no_change": 0.47000362924573563,
+          "mean": 0.01799420131033308,
+          "dose": 0.111554009188025,
+          "dose_source": 0.15141462830929314
+        }
+      },
+      {
+        "row": 54,
+        "author": "Claessens",
+        "label": "Whey",
+        "rr": 2.6,
+        "dose": 1.0,
+        "source_seen": true,
+        "source_changed_forecast": true,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5643518478270828,
+          "dose": 1.9383548399594348,
+          "dose_source": 1.8748993407436951
+        },
+        "abs_log_error": {
+          "no_change": 0.9555114450274363,
+          "mean": 0.5080398615641599,
+          "dose": 0.2936718523645796,
+          "dose_source": 0.32695647198284594
+        }
+      },
+      {
+        "row": 61,
+        "author": "Claessens",
+        "label": "Gluten",
+        "rr": 2.07,
+        "dose": 1.0,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5643518478270828,
+          "dose": 1.9383548399594348,
+          "dose_source": 1.9383548399594348
+        },
+        "abs_log_error": {
+          "no_change": 0.7275486072772777,
+          "mean": 0.2800770238140013,
+          "dose": 0.06570901461442091,
+          "dose_source": 0.06570901461442091
+        }
+      },
+      {
+        "row": 68,
+        "author": "Claessens",
+        "label": "Pea",
+        "rr": 2.24,
+        "dose": 1.0,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5643518478270828,
+          "dose": 1.9383548399594348,
+          "dose_source": 1.9383548399594348
+        },
+        "abs_log_error": {
+          "no_change": 0.8064758658669485,
+          "mean": 0.35900428240367216,
+          "dose": 0.14463627320409178,
+          "dose_source": 0.14463627320409178
+        }
+      },
+      {
+        "row": 71,
+        "author": "Claessens",
+        "label": "Rice",
+        "rr": 2.26,
+        "dose": 1.0,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5643518478270828,
+          "dose": 1.9383548399594348,
+          "dose_source": 1.9383548399594348
+        },
+        "abs_log_error": {
+          "no_change": 0.8153648132841944,
+          "mean": 0.36789322982091804,
+          "dose": 0.15352522062133767,
+          "dose_source": 0.15352522062133767
+        }
+      },
+      {
+        "row": 77,
+        "author": "Claessens",
+        "label": "Soy",
+        "rr": 1.78,
+        "dose": 1.0,
+        "source_seen": false,
+        "source_changed_forecast": false,
+        "outside_dose_range": false,
+        "forecast": {
+          "no_change": 1.0,
+          "mean": 1.5643518478270828,
+          "dose": 1.9383548399594348,
+          "dose_source": 1.9383548399594348
+        },
+        "abs_log_error": {
+          "no_change": 0.5766133643039938,
+          "mean": 0.12914178084071742,
+          "dose": 0.08522622835886295,
+          "dose_source": 0.08522622835886295
+        }
+      }
+    ]
+  }
+}

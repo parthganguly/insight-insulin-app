@@ -1,0 +1,10 @@
+{
+  "glucose_g":25,
+  "mmol_per_kg_FFM_each":1,
+  "molar_mass_g_mol":{"leucine":131.17,"phenylalanine":165.19,"glycine":75.07},
+  "studies":{
+    "phenylalanine":{"doi":"10.1155/2013/964637","pmc":"PMC3745835","n":8,"ffm_mean_kg":53.2,"ffm_range_kg":[36.4,68.9],"printed_ratio":1.77,"basis":"fasting net; water subtraction not stated","leucine_alone_with_glucose":1.66,"partner_alone_with_glucose":1.07,"pair_without_glucose_relative":0.39,"p_combination_vs_glucose":0.005,"figure_page":3,"figure":"2b","pdf_sha256":"48d5a76efdab889de2d9c036856efb62a1e3dc658a3e81b18b63ec219cfa1212","y_pixels":{"zero":506,"3000":308,"water":508,"pair":475,"glucose":426,"mixture":365}},
+    "glycine":{"doi":"10.1155/2014/521941","pmc":"PMC4121211","n":9,"ffm_mean_kg":52.5,"ffm_range_kg":[40.9,66.8],"printed_ratio":1.24,"basis":"water-corrected net, Table 1","leucine_alone_with_glucose":1.59,"partner_alone_with_glucose":1.01,"pair_without_glucose_relative":0.10,"p_combination_vs_glucose":0.046,"figure_page":3,"figure":"2 right","pdf_sha256":"b11f6c086e1d9198c425f2919ad3407add31ae2927c2c6126ce7ed0c27bf1c30","y_pixels":{"zero":344,"3000":176,"water":345,"pair":335,"glucose":248,"mixture":225}}
+  },
+  "graph":"PDF page 3, pdftoppm at 144 DPI (1201x1584). Upper ends of positive mean bars and lower end of negative water bar; left axis microU min/mL; shared zero, 3000 tick. Independent ±1-pixel reading perturbations per coordinate are technical bounds, not sampling uncertainty."
+}

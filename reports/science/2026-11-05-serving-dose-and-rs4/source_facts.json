@@ -1,0 +1,152 @@
+{
+  "wheat": {
+    "pmc": "PMC2925102",
+    "doi": "10.1155/2010/651063",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC2925102/fullTextXML",
+    "xml_sha256": "3be5dd335a35d2ccdf2aaa2e91864567a57cf8c6be8fb637f152a9b915c15027",
+    "table_ids": [
+      "tab2",
+      "tab3"
+    ],
+    "available": [
+      51.0,
+      51.0
+    ],
+    "fibre": [
+      5.0,
+      20.0
+    ],
+    "protein": [
+      7.0,
+      6.0
+    ],
+    "fat": [
+      1.0,
+      2.0
+    ],
+    "insulin_mean": [
+      8758.0,
+      3659.0
+    ],
+    "insulin_dispersion": [
+      1132.0,
+      974.0
+    ]
+  },
+  "potato": {
+    "pmc": "PMC7698388",
+    "doi": "10.3390/foods9111679",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7698388/fullTextXML",
+    "xml_sha256": "b58dc228ce9e93f7401d2cb6686b76bf3c94ead1ef1e5e7853b2c601b9401001",
+    "table_ids": [
+      "foods-09-01679-t001",
+      "foods-09-01679-t004"
+    ],
+    "available": [
+      35.6,
+      35.23,
+      34.86
+    ],
+    "fibre": [
+      2.01,
+      21.06,
+      29.69
+    ],
+    "protein": [
+      6.16,
+      4.13,
+      4.07
+    ],
+    "fat": [
+      2.18,
+      2.23,
+      2.12
+    ],
+    "insulin_mean": [
+      11871.6,
+      8096.3,
+      7533.8
+    ],
+    "insulin_dispersion": [
+      1123.9,
+      894.5,
+      932.9
+    ]
+  },
+  "cookie": {
+    "pmc": "PMC5372900",
+    "doi": "10.3390/nu9030237",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5372900/fullTextXML",
+    "xml_sha256": "c823c77eaa9d56183776b8156e7de1b6375c9430bdf53f312270d933ff180c3b",
+    "table_ids": [
+      "nutrients-09-00237-t001",
+      "nutrients-09-00237-t003"
+    ],
+    "available": [
+      36.28,
+      12.71
+    ],
+    "fibre": [
+      0.55,
+      24.13
+    ],
+    "protein": [
+      5.36,
+      4.92
+    ],
+    "fat": [
+      3.99,
+      3.92
+    ],
+    "insulin_mean": [
+      229.0,
+      124.0
+    ],
+    "insulin_dispersion": [
+      124.0,
+      94.0
+    ],
+    "label_kcal": [
+      214.7,
+      129.7
+    ]
+  },
+  "scone": {
+    "pmc": "PMC5852705",
+    "doi": "10.3390/nu10020129",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5852705/fullTextXML",
+    "xml_sha256": "ced2356cfdf772195785e368f0c140b4c6ab2c8e65538a29011faa1210be13e5",
+    "table_ids": [
+      "nutrients-10-00129-t001",
+      "nutrients-10-00129-t003"
+    ],
+    "available": [
+      38.8,
+      28.9
+    ],
+    "fibre": [
+      4.0,
+      17.5
+    ],
+    "protein": [
+      7.1,
+      6.1
+    ],
+    "fat": [
+      16.0,
+      14.4
+    ],
+    "insulin_mean": [
+      19229.0,
+      12592.0
+    ],
+    "insulin_dispersion": [
+      1865.0,
+      1686.0
+    ],
+    "label_kcal": [
+      328.0,
+      270.0
+    ]
+  }
+}

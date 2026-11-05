@@ -1,0 +1,71 @@
+{
+  "doi": "10.1093/ajcn/59.5.1075",
+  "operator": "printed mean positive incremental two-hour area, serum ELISA (Table 2 calls it plasma); exact interpolation at a baseline crossing unspecified",
+  "units": "nmol min/L",
+  "assay": "chewed food; dialysis hydrolysis area over 180 min, relative to white bread, n=6; cheese, butter and salt excluded",
+  "arms": {
+    "reference": {
+      "n": 10,
+      "mean_120": 18.0,
+      "sem_120": 4,
+      "mean_90": 18.0,
+      "II_120": 100,
+      "HI_180": 100,
+      "amylose_pct": null
+    },
+    "waxy_kernel": {
+      "n": 10,
+      "mean_120": 5.4,
+      "sem_120": 1,
+      "mean_90": 4.8,
+      "II_120": 27.0,
+      "HI_180": 44.0,
+      "amylose_pct": 7
+    },
+    "normal_kernel": {
+      "n": 10,
+      "mean_120": 5.8,
+      "sem_120": 1,
+      "mean_90": 5.3,
+      "II_120": 28.0,
+      "HI_180": 47.0,
+      "amylose_pct": 33
+    },
+    "high_kernel": {
+      "n": 10,
+      "mean_120": 5.2,
+      "sem_120": 2,
+      "mean_90": 4.4,
+      "II_120": 24.0,
+      "HI_180": 34.0,
+      "amylose_pct": 42
+    },
+    "high_hullless_kernel": {
+      "n": 10,
+      "mean_120": 3.7,
+      "sem_120": 1,
+      "mean_90": 3.4,
+      "II_120": 19.0,
+      "HI_180": 34.0,
+      "amylose_pct": 44
+    },
+    "normal_flour": {
+      "n": 9,
+      "mean_120": 11.0,
+      "sem_120": 3,
+      "mean_90": 9.8,
+      "II_120": 56.0,
+      "HI_180": 75.0,
+      "amylose_pct": 33
+    },
+    "high_flour": {
+      "n": 9,
+      "mean_120": 10.2,
+      "sem_120": 3,
+      "mean_90": 9.0,
+      "II_120": 47.0,
+      "HI_180": 56.0,
+      "amylose_pct": 42
+    }
+  }
+}

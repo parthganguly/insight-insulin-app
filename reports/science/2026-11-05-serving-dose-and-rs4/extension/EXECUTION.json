@@ -1,0 +1,34 @@
+{
+  "runs": [
+    {
+      "utc": "2026-11-05T04:22:51Z",
+      "command": "python -I -X utf8 extension.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "RESULTS.json_sha256": "681d6b7c13bd0e226530ce70eccca241294ef5a4440dbd2bc94311e514899eed",
+      "PARAMS.json_sha256": "d3a4d2523b721a88599dd4974cbb9695f38ab3f74ed6db5bf5bf16255246f4f8"
+    },
+    {
+      "utc": "2026-11-05T04:23:34Z",
+      "command": "python -I -X utf8 extension.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "RESULTS.json_sha256": "35dee878cf24c0b2cb5c0e4b02cf0c2ee8b319fc204b68b3359473a230393a62",
+      "PARAMS.json_sha256": "d3a4d2523b721a88599dd4974cbb9695f38ab3f74ed6db5bf5bf16255246f4f8"
+    }
+  ],
+  "checks": [
+    {
+      "utc": "2026-11-05T04:23:35Z",
+      "command": "python -I -X utf8 extension.py --check",
+      "python": "3.13.12",
+      "result": "PASS"
+    },
+    {
+      "utc": "2026-11-05T04:24:38Z",
+      "command": "python -I -X utf8 extension.py --check",
+      "python": "3.13.12",
+      "result": "PASS"
+    }
+  ]
+}

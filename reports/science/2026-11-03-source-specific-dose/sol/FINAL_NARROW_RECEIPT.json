@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": [
+    "canonical reconciled source curves and all scored point quantities/errors for all candidates and available windows",
+    "anchor one-SE native-MAE exact piecewise-linear extrema",
+    "fixed enrichment constant and positive-area stress extrema",
+    "exclusive slope ranges"
+  ],
+  "limitations": [
+    "No sampling inference.",
+    "Unusual native Fig3 label retained verbatim without conversion."
+  ]
+}

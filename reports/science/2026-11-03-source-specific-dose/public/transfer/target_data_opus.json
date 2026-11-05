@@ -1,0 +1,121 @@
+{
+  "provenance": "van Loon et al. J Nutr 2000;130:2508-13 (PMID 11015482) Fig. 2 (plasma insulin, pmol/L) and Fig. 3 (insulin response, axis printed \"pmol L-1 3h\"); Opus single-reader pixel digitization of embedded scans",
+  "times_min": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180
+  ],
+  "curves": {
+    "1": [
+      23.36021049244914,
+      165.53582800968718,
+      203.63073031095666,
+      274.37840601331436,
+      332.20102557774135,
+      406.3500318427124,
+      410.43162851784837
+    ],
+    "2": [
+      23.36021049244914,
+      191.3859402855486,
+      238.32430204961292,
+      261.45334987538365,
+      311.11277608953856,
+      385.2617823545096,
+      309.75224386449327
+    ],
+    "3": [
+      23.36021049244914,
+      176.14797936504078,
+      238.32430204961292,
+      279.00421557846846,
+      292.337431383913,
+      398.1868384924403,
+      395.4657740423497
+    ],
+    "4": [
+      23.36021049244914,
+      257.37175320024767,
+      292.74559105142646,
+      428.79881355596046,
+      449.2067969316406,
+      498.8662231457955,
+      453.96865971929924
+    ],
+    "5": [
+      23.36021049244914,
+      226.07951202420486,
+      451.9278613817313,
+      530.838730434361,
+      593.4232127864466,
+      736.95936252873,
+      694.1025974398019
+    ]
+  },
+  "curve_flags": {
+    "1": {
+      "0": "overlap_all",
+      "90": "cluster",
+      "120": "cluster",
+      "150": "cluster",
+      "180": "cluster"
+    },
+    "2": {
+      "0": "overlap_all",
+      "90": "cluster",
+      "120": "cluster",
+      "150": "cluster"
+    },
+    "3": {
+      "0": "overlap_all",
+      "60": "hidden_under_drink2",
+      "150": "hidden_between_1_and_2"
+    },
+    "4": {
+      "0": "overlap_all"
+    },
+    "5": {
+      "0": "overlap_all"
+    }
+  },
+  "curve_reading_half_width": 10.0,
+  "curve_reading_note": "Declared before scoring: +/-10 pmol/L (~7 px) for all points; distinct drink 4/5 markers are tighter (~+/-5); hidden drink-3 points warrant +/-15 (run as separate sensitivity).",
+  "fig2_calibration": {
+    "units_per_px": -1.3605322250453402,
+    "intercept": 1022.6711297882515,
+    "max_residual": 1.8113985892246092
+  },
+  "published_auc": {
+    "window": "0-180 min, area above t0 baseline (Fig. 3, axis as printed pmol L-1 3h)",
+    "values": {
+      "1": 42.53178271938303,
+      "2": 42.017914557872686,
+      "3": 42.017914557872686,
+      "4": 60.85974714658522,
+      "5": 82.09963115567935
+    },
+    "half_width": 0.5,
+    "fig3_calibration": {
+      "units_per_px": -0.1712893871701139,
+      "intercept": 103.16822577760335,
+      "max_residual": 0.19666885272376078
+    }
+  },
+  "source_statistics": {
+    "text_3h_vs_control": "drink 4 +52 +/- 10%, drink 5 +107 +/- 17% (P<0.05); drink 5 vs 4 +36 +/- 6% (P<0.05); mean +/- SEM of percentages (likely mean of individual ratios; differs from ratio of means)",
+    "fig3_letters": {
+      "1": "c",
+      "2": "c",
+      "3": "c",
+      "4": "b",
+      "5": "a"
+    },
+    "fig2": "drink 5 higher than 1, 2, 3 at 60, 90, 120, 150 min",
+    "n": 8,
+    "dispersion": "SEM"
+  }
+}

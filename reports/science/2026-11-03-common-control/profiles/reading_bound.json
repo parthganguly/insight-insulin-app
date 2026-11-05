@@ -1,0 +1,23 @@
+{
+  "corner_count": 1024,
+  "corner_min": 0.0029872434682158538,
+  "corner_max": 0.10009919638944625,
+  "continuous_lower_bound": 0.0008504232333466237,
+  "subdivisions": 64,
+  "sign_support_forecast": [
+    -5,
+    -1.5,
+    3,
+    5,
+    1,
+    -2.5
+  ],
+  "sign_support_observed": [
+    6,
+    0.5,
+    2,
+    -2,
+    -6,
+    -0.5
+  ]
+}

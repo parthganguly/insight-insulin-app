@@ -1,0 +1,54 @@
+{
+  "pea_low": {
+    "no_change": 1.0,
+    "ref": 2.5833333333333335,
+    "ref_dose": 1.2533333333333334,
+    "blind_dose": 1.2451851851851852,
+    "constant_fit": 1.237140695348689,
+    "cheap_fit": 1.0801749172575639,
+    "reference_fit": 1.0980770519882843,
+    "profile_ref": 1.9722222222222223,
+    "profile_calibrated": 1.0617363624378335,
+    "blind_ref_fit": 1.0892773460616547,
+    "energy": 1.205
+  },
+  "pea_high": {
+    "no_change": 1.0,
+    "ref": 2.5833333333333335,
+    "ref_dose": 1.5066666666666668,
+    "blind_dose": 1.4903703703703703,
+    "constant_fit": 1.237140695348689,
+    "cheap_fit": 1.1551900157186976,
+    "reference_fit": 1.1851121899010113,
+    "profile_ref": 1.9722222222222223,
+    "profile_calibrated": 1.1187746960140639,
+    "blind_ref_fit": 1.1683681411543976,
+    "energy": 1.401
+  },
+  "whey_low": {
+    "no_change": 1.0,
+    "ref": 3.0555555555555554,
+    "ref_dose": 1.333,
+    "blind_dose": 1.24825,
+    "constant_fit": 1.237140695348689,
+    "cheap_fit": 1.081142254191868,
+    "reference_fit": 1.126476153903564,
+    "profile_ref": 3.0555555555555554,
+    "profile_calibrated": 1.126476153903564,
+    "blind_ref_fit": 1.090322103042589,
+    "energy": 1.189
+  },
+  "whey_high": {
+    "no_change": 1.0,
+    "ref": 3.0555555555555554,
+    "ref_dose": 1.666,
+    "blind_dose": 1.4965000000000002,
+    "constant_fit": 1.237140695348689,
+    "cheap_fit": 1.157007686202933,
+    "reference_fit": 1.2355166507613622,
+    "profile_ref": 3.0555555555555554,
+    "profile_calibrated": 1.2355166507613622,
+    "blind_ref_fit": 1.170239719593616,
+    "energy": 1.3780000000000001
+  }
+}

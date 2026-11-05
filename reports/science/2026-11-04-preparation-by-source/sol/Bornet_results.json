@@ -1,0 +1,819 @@
+{
+  "H30_reading_units": "percentage points, ranges are reading bounds not assay/statistical intervals",
+  "power_b": 0.2563060312996448,
+  "groups": {
+    "raw": {
+      "source_values": {
+        "wheat": [
+          8.6,
+          0.4,
+          11.0,
+          2.1,
+          27
+        ],
+        "cassava": [
+          0.7,
+          0.25,
+          3.4,
+          1.4,
+          17
+        ],
+        "legume": [
+          7.3,
+          0.4,
+          8.0,
+          1.2,
+          35
+        ]
+      },
+      "curves": {
+        "wheat": {
+          "pmol_per_l_mean_curve": [
+            0,
+            80.98103896103892,
+            95.04233766233763,
+            79.2457142857143,
+            59.54077922077924
+          ],
+          "signed_auc120": 8.551184415584414,
+          "reading_interval": [
+            7.579308935064933,
+            9.523059896103895
+          ]
+        },
+        "cassava": {
+          "pmol_per_l_mean_curve": [
+            0,
+            23.838181818181784,
+            26.211168831168806,
+            27.297662337662352,
+            17.982337662337684
+          ],
+          "signed_auc120": 2.5901454545454534,
+          "reading_interval": [
+            1.6778803636363624,
+            3.5024105454545444
+          ]
+        },
+        "legume": {
+          "pmol_per_l_mean_curve": [
+            0,
+            109.5524675324675,
+            66.47090909090906,
+            48.07688311688313,
+            27.073246753246774
+          ],
+          "signed_auc120": 7.129106493506494,
+          "reading_interval": [
+            6.171451792207792,
+            8.086761194805195
+          ]
+        }
+      },
+      "comparisons": {
+        "cassava/wheat": {
+          "h": 0.0813953488372093,
+          "h_reading_interval": [
+            0.049999999999999996,
+            0.11585365853658537
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 1.1369863013698631,
+            "direct_H30": 0.0813953488372093,
+            "power_H30": 0.5257509960008575,
+            "affine_H30": 0.6366138958662311
+          },
+          "targets": {
+            "tabulated_auc180": 0.3090909090909091,
+            "reconstructed_signed_auc120": 0.30289902879710434
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 1.1741198411762548,
+              "amylopectin_dose": 1.3025010078244619,
+              "direct_H30": 1.3343173060219398,
+              "power_H30": 0.5311922712132828,
+              "affine_H30": 0.7225279050574607
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 1.1943557673023713,
+              "amylopectin_dose": 1.3227369339505781,
+              "direct_H30": 1.3140813798958233,
+              "power_H30": 0.5514281973393991,
+              "affine_H30": 0.742763831183577
+            }
+          }
+        },
+        "legume/wheat": {
+          "h": 0.8488372093023256,
+          "h_reading_interval": [
+            0.7666666666666666,
+            0.9390243902439025
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 0.8904109589041096,
+            "direct_H30": 0.8488372093023256,
+            "power_H30": 0.9588645588501659,
+            "affine_H30": 0.9402022866615317
+          },
+          "targets": {
+            "tabulated_auc180": 0.7272727272727273,
+            "reconstructed_signed_auc120": 0.833698134320878
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 0.3184537311185346,
+              "amylopectin_dose": 0.20238155986578066,
+              "direct_H30": 0.15456587601341798,
+              "power_H30": 0.27644828539833094,
+              "affine_H30": 0.2567935028246525
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 0.18188389139837421,
+              "amylopectin_dose": 0.0658117201456202,
+              "direct_H30": 0.01799603629325785,
+              "power_H30": 0.1398784456781707,
+              "affine_H30": 0.12022366310449227
+            }
+          }
+        },
+        "legume/cassava": {
+          "h": 10.428571428571429,
+          "h_reading_interval": [
+            7.263157894736842,
+            17.111111111111114
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 0.7831325301204819,
+            "direct_H30": 10.428571428571429,
+            "power_H30": 1.8237997952334872,
+            "affine_H30": 4.729800229770836
+          },
+          "targets": {
+            "tabulated_auc180": 2.3529411764705883,
+            "reconstructed_signed_auc120": 2.752396194968744
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 0.8556661100577202,
+              "amylopectin_dose": 1.100119447958681,
+              "direct_H30": 1.4888831820353576,
+              "power_H30": 0.2547439858149518,
+              "affine_H30": 0.6982168568334569
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 1.0124718759039968,
+              "amylopectin_dose": 1.2569252138049578,
+              "direct_H30": 1.332077416189081,
+              "power_H30": 0.4115497516612284,
+              "affine_H30": 0.5414110909871804
+            }
+          }
+        }
+      },
+      "primary_mean_absolute_log_error": {
+        "tabulated_auc180": {
+          "equal_starch_form": 0.7462867861473947,
+          "amylopectin_dose": 0.7524412838451213,
+          "direct_H30": 0.7444415910176789,
+          "power_H30": 0.4038202783058069,
+          "affine_H30": 0.4896607039410566
+        },
+        "reconstructed_signed_auc120": {
+          "equal_starch_form": 0.6881198293503727,
+          "amylopectin_dose": 0.6942743270480991,
+          "direct_H30": 0.6660387080945406,
+          "power_H30": 0.3456533215087849,
+          "affine_H30": 0.43149374714403466
+        }
+      },
+      "H30_reading_corner_score_range_auc180": {
+        "equal_starch_form": [
+          0.7462867861473947,
+          0.7462867861473947
+        ],
+        "amylopectin_dose": [
+          0.7524412838451213,
+          0.7524412838451213
+        ],
+        "direct_H30": [
+          0.5635742979665219,
+          0.9920309575098448
+        ],
+        "power_H30": [
+          0.3283239992555629,
+          0.4619996621350695
+        ],
+        "affine_H30": [
+          0.4622176486919735,
+          0.5188754645232987
+        ]
+      }
+    },
+    "gel": {
+      "source_values": {
+        "wheat": [
+          32.9,
+          0.4,
+          24.8,
+          4.2,
+          27
+        ],
+        "cassava": [
+          50.3,
+          0.4,
+          29.2,
+          4.8,
+          17
+        ],
+        "legume": [
+          16.2,
+          0.4,
+          19.1,
+          4.1,
+          35
+        ]
+      },
+      "curves": {
+        "wheat": {
+          "pmol_per_l_mean_curve": [
+            0,
+            271.2977893368011,
+            279.1729518855656,
+            162.2106631989597,
+            89.44603381014304
+          ],
+          "signed_auc120": 22.72213263979194,
+          "reading_interval": [
+            21.607395058517557,
+            23.836870221066324
+          ]
+        },
+        "cassava": {
+          "pmol_per_l_mean_curve": [
+            0,
+            355.82314694408325,
+            325.9869960988296,
+            154.40832249674904,
+            94.64759427828348
+          ],
+          "signed_auc120": 26.50626788036411,
+          "reading_interval": [
+            25.353688946684006,
+            27.658846814044214
+          ]
+        },
+        "legume": {
+          "pmol_per_l_mean_curve": [
+            0,
+            197.17555266579978,
+            219.35500650195053,
+            136.20286085825748,
+            42.63198959687905
+          ],
+          "signed_auc120": 17.221482444733418,
+          "reading_interval": [
+            16.16175136540962,
+            18.281213524057215
+          ]
+        }
+      },
+      "comparisons": {
+        "cassava/wheat": {
+          "h": 1.5288753799392096,
+          "h_reading_interval": [
+            1.4984984984984986,
+            1.5599999999999998
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 1.1369863013698631,
+            "direct_H30": 1.5288753799392096,
+            "power_H30": 1.1149507344182006,
+            "affine_H30": 1.2092150999291185
+          },
+          "targets": {
+            "tabulated_auc180": 1.1774193548387095,
+            "reconstructed_signed_auc120": 1.1665396158257273
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 0.1633250561032995,
+              "amylopectin_dose": 0.03494388945509253,
+              "direct_H30": 0.2612073632310678,
+              "power_H30": 0.05451483654567118,
+              "affine_H30": 0.026646415278383514
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 0.1540417731763391,
+              "amylopectin_dose": 0.02566060652813217,
+              "direct_H30": 0.2704906461580282,
+              "power_H30": 0.045231553618710854,
+              "affine_H30": 0.035929698205343856
+            }
+          }
+        },
+        "legume/wheat": {
+          "h": 0.49240121580547114,
+          "h_reading_interval": [
+            0.4744744744744745,
+            0.5107692307692308
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 0.8904109589041096,
+            "direct_H30": 0.49240121580547114,
+            "power_H30": 0.8339490799157869,
+            "affine_H30": 0.7992015994933174
+          },
+          "targets": {
+            "tabulated_auc180": 0.7701612903225806,
+            "reconstructed_signed_auc120": 0.7579166409131176
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 0.26115531811835235,
+              "amylopectin_dose": 0.14508314686559828,
+              "direct_H30": 0.4473060974146355,
+              "power_H30": 0.07957238437416383,
+              "affine_H30": 0.037013267836570954
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 0.2771818717973093,
+              "amylopectin_dose": 0.1611097005445554,
+              "direct_H30": 0.4312795437356784,
+              "power_H30": 0.09559893805312077,
+              "affine_H30": 0.053039821515528045
+            }
+          }
+        },
+        "legume/cassava": {
+          "h": 0.3220675944333996,
+          "h_reading_interval": [
+            0.3116370808678501,
+            0.3326653306613226
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 0.7831325301204819,
+            "direct_H30": 0.3220675944333996,
+            "power_H30": 0.7479694431081343,
+            "affine_H30": 0.7318201955400028
+          },
+          "targets": {
+            "tabulated_auc180": 0.654109589041096,
+            "reconstructed_signed_auc120": 0.6497135893465833
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 0.42448037422165175,
+              "amylopectin_dose": 0.18002703632069098,
+              "direct_H30": 0.7085134606457033,
+              "power_H30": 0.13408722091983494,
+              "affine_H30": 0.11225994451953636
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 0.43122364497364835,
+              "amylopectin_dose": 0.18677030707268752,
+              "direct_H30": 0.7017701898937067,
+              "power_H30": 0.14083049167183145,
+              "affine_H30": 0.11900321527153308
+            }
+          }
+        }
+      },
+      "primary_mean_absolute_log_error": {
+        "tabulated_auc180": {
+          "equal_starch_form": 0.21224018711082593,
+          "amylopectin_dose": 0.0900135181603454,
+          "direct_H30": 0.35425673032285165,
+          "power_H30": 0.06704361045991751,
+          "affine_H30": 0.031829841557477236
+        },
+        "reconstructed_signed_auc120": {
+          "equal_starch_form": 0.2156118224868242,
+          "amylopectin_dose": 0.09338515353634379,
+          "direct_H30": 0.35088509494685327,
+          "power_H30": 0.07041524583591581,
+          "affine_H30": 0.04448475986043595
+        }
+      },
+      "H30_reading_corner_score_range_auc180": {
+        "equal_starch_form": [
+          0.21224018711082593,
+          0.21224018711082593
+        ],
+        "amylopectin_dose": [
+          0.0900135181603454,
+          0.0900135181603454
+        ],
+        "direct_H30": [
+          0.3380689665866618,
+          0.37071779817128225
+        ],
+        "power_H30": [
+          0.06282453948873194,
+          0.07119263193875655
+        ],
+        "affine_H30": [
+          0.02237976722539551,
+          0.0414204944517107
+        ]
+      }
+    },
+    "industrial": {
+      "source_values": {
+        "wheat": [
+          37.1,
+          0.4,
+          22.5,
+          3.7,
+          27
+        ],
+        "cassava": [
+          40.2,
+          0.4,
+          29.5,
+          8.6,
+          17
+        ],
+        "legume": [
+          12.2,
+          0.4,
+          8.0,
+          1.3,
+          32
+        ]
+      },
+      "curves": {
+        "wheat": {
+          "pmol_per_l_mean_curve": [
+            0,
+            302.10064516129023,
+            290.5445161290323,
+            90.63225806451614,
+            31.38064516129024
+          ],
+          "signed_auc120": 20.969032258064512,
+          "reading_interval": [
+            19.878696774193543,
+            22.059367741935482
+          ]
+        },
+        "cassava": {
+          "pmol_per_l_mean_curve": [
+            0,
+            345.9716129032257,
+            315.0606451612903,
+            195.1483870967742,
+            113.96129032258057
+          ],
+          "signed_auc120": 27.394838709677416,
+          "reading_interval": [
+            26.240245161290318,
+            28.549432258064513
+          ]
+        },
+        "legume": {
+          "pmol_per_l_mean_curve": [
+            0,
+            121.45548387096764,
+            64.73806451612906,
+            54.503225806451624,
+            14.606451612903143
+          ],
+          "signed_auc120": 7.439999999999997,
+          "reading_interval": [
+            6.484954838709674,
+            8.39504516129032
+          ]
+        }
+      },
+      "comparisons": {
+        "cassava/wheat": {
+          "h": 1.0835579514824798,
+          "h_reading_interval": [
+            1.0613333333333335,
+            1.106267029972752
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 1.1369863013698631,
+            "direct_H30": 1.0835579514824798,
+            "power_H30": 1.0207815564240166,
+            "affine_H30": 1.0330542616131777
+          },
+          "targets": {
+            "tabulated_auc180": 1.3111111111111111,
+            "reconstructed_signed_auc120": 1.3064426804504339
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 0.27087495413539975,
+              "amylopectin_dose": 0.14249378748719282,
+              "direct_H30": 0.19062492812381382,
+              "power_H30": 0.25030638845667685,
+              "affine_H30": 0.23835523719432064
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 0.2673079324178859,
+              "amylopectin_dose": 0.13892676576967905,
+              "direct_H30": 0.1870579064063,
+              "power_H30": 0.24673936673916297,
+              "affine_H30": 0.2347882154768069
+            }
+          }
+        },
+        "legume/wheat": {
+          "h": 0.32884097035040427,
+          "h_reading_interval": [
+            0.31466666666666665,
+            0.3433242506811989
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 0.9315068493150684,
+            "direct_H30": 0.32884097035040427,
+            "power_H30": 0.7519701102891619,
+            "affine_H30": 0.7344996405909268
+          },
+          "targets": {
+            "tabulated_auc180": 0.35555555555555557,
+            "reconstructed_signed_auc120": 0.3548089348347793
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 1.0340737675305385,
+              "amylopectin_dose": 0.9631220315582539,
+              "direct_H30": 0.07810725034364026,
+              "power_H30": 0.7490150647524084,
+              "affine_H30": 0.7255079948374034
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 1.0361758461276611,
+              "amylopectin_dose": 0.9652241101553768,
+              "direct_H30": 0.07600517174651741,
+              "power_H30": 0.7511171433495312,
+              "affine_H30": 0.7276100734345261
+            }
+          }
+        },
+        "legume/cassava": {
+          "h": 0.30348258706467657,
+          "h_reading_interval": [
+            0.29064039408866993,
+            0.3165829145728643
+          ],
+          "predictions": {
+            "equal_starch_form": 1,
+            "amylopectin_dose": 0.8192771084337349,
+            "direct_H30": 0.30348258706467657,
+            "power_H30": 0.7366611451361347,
+            "affine_H30": 0.7244682477630469
+          },
+          "targets": {
+            "tabulated_auc180": 0.2711864406779661,
+            "reconstructed_signed_auc120": 0.2715840045216899
+          },
+          "absolute_log_errors": {
+            "tabulated_auc180": {
+              "equal_starch_form": 1.3049487216659381,
+              "amylopectin_dose": 1.105615819045447,
+              "direct_H30": 0.11251767778017362,
+              "power_H30": 0.9993214532090852,
+              "affine_H30": 0.9826313770701189
+            },
+            "reconstructed_signed_auc120": {
+              "equal_starch_form": 1.3034837785455473,
+              "amylopectin_dose": 1.104150875925056,
+              "direct_H30": 0.1110527346597826,
+              "power_H30": 0.9978565100886941,
+              "affine_H30": 0.9811664339497278
+            }
+          }
+        }
+      },
+      "primary_mean_absolute_log_error": {
+        "tabulated_auc180": {
+          "equal_starch_form": 0.6524743608329691,
+          "amylopectin_dose": 0.5528079095227234,
+          "direct_H30": 0.13436608923372703,
+          "power_H30": 0.49966072660454264,
+          "affine_H30": 0.481931616015862
+        },
+        "reconstructed_signed_auc120": {
+          "equal_starch_form": 0.6517418892727735,
+          "amylopectin_dose": 0.5520754379625279,
+          "direct_H30": 0.1315315390764087,
+          "power_H30": 0.49892825504434707,
+          "affine_H30": 0.48119914445566647
+        }
+      },
+      "H30_reading_corner_score_range_auc180": {
+        "equal_starch_form": [
+          0.6524743608329691,
+          0.6524743608329691
+        ],
+        "amylopectin_dose": [
+          0.5528079095227234,
+          0.5528079095227234
+        ],
+        "direct_H30": [
+          0.10244490808039569,
+          0.16675830439779016
+        ],
+        "power_H30": [
+          0.4941197117116835,
+          0.5050765942213477
+        ],
+        "affine_H30": [
+          0.47562868663232627,
+          0.4881291733610613
+        ]
+      }
+    }
+  },
+  "cassava_wheat_raw_to_gel_interaction": {
+    "tabulated_auc180": {
+      "observed_interaction": 3.8092979127134723,
+      "predictions": {
+        "equal_starch_form": 1.0,
+        "amylopectin_dose": 1.0,
+        "direct_H30": 18.783326096396006,
+        "power_H30": 2.1206821154864386,
+        "affine_H30": 1.8994481706745616
+      },
+      "absolute_log_errors": {
+        "equal_starch_form": 1.3374448972795543,
+        "amylopectin_dose": 1.3374448972795543,
+        "direct_H30": 1.5955246692530074,
+        "power_H30": 0.5857071077589541,
+        "affine_H30": 0.6958814897790772
+      }
+    },
+    "reconstructed_signed_auc120": {
+      "observed_interaction": 3.851249112479423,
+      "predictions": {
+        "equal_starch_form": 1.0,
+        "amylopectin_dose": 1.0,
+        "direct_H30": 18.783326096396006,
+        "power_H30": 2.1206821154864386,
+        "affine_H30": 1.8994481706745616
+      },
+      "absolute_log_errors": {
+        "equal_starch_form": 1.3483975404787103,
+        "amylopectin_dose": 1.3483975404787103,
+        "direct_H30": 1.5845720260538516,
+        "power_H30": 0.59665975095811,
+        "affine_H30": 0.7068341329782329
+      }
+    }
+  },
+  "source": "Bornet1989 DOI10.1093/ajcn/50.2.315; Table5 p320,Fig2 p319,Fig3 p320,Fig4 p321",
+  "native180_additive_interaction": {
+    "raw_cassava_minus_wheat": -7.6,
+    "gel_cassava_minus_wheat": 4.399999999999999,
+    "difference_in_differences": 11.999999999999998,
+    "raw_difference_se_envelope": [
+      0.7000000000000002,
+      3.5
+    ],
+    "gel_difference_se_envelope": [
+      0.5999999999999996,
+      9.0
+    ],
+    "difference_in_differences_se_envelope": [
+      0.9219544457292886,
+      9.656603957913983
+    ],
+    "log_interaction": 1.3374448972795543,
+    "delta_log_interaction_se_envelope": [
+      0.22091155755388425,
+      0.688910026933515
+    ],
+    "warning": "SE dependence envelope only, no sampling CI; delta method approximate at noisy denominator."
+  },
+  "independent_reading_comparison": {
+    "raw": {
+      "wheat": {
+        "H30_independent_minus_coordinator": 0.2833148353681132,
+        "auc120_relative_difference": 0.028594933172309878
+      },
+      "cassava": {
+        "H30_independent_minus_coordinator": -0.06951535331113246,
+        "auc120_relative_difference": 0.03565985110621739
+      },
+      "legume": {
+        "H30_independent_minus_coordinator": 0.31516833148354007,
+        "auc120_relative_difference": 0.03972384704063292
+      }
+    },
+    "gel": {
+      "wheat": {
+        "H30_independent_minus_coordinator": 0.43237143914169707,
+        "auc120_relative_difference": 0.00041876630698900463
+      },
+      "cassava": {
+        "H30_independent_minus_coordinator": 0.2519052904180583,
+        "auc120_relative_difference": 0.015339206246979487
+      },
+      "legume": {
+        "H30_independent_minus_coordinator": 0.06977432482427304,
+        "auc120_relative_difference": -0.00760171656733688
+      }
+    },
+    "industrial": {
+      "wheat": {
+        "H30_independent_minus_coordinator": 0.19285978542360738,
+        "auc120_relative_difference": -0.0076089397776065715
+      },
+      "cassava": {
+        "H30_independent_minus_coordinator": 0.4515723270440333,
+        "auc120_relative_difference": 0.006025150355385422
+      },
+      "legume": {
+        "H30_independent_minus_coordinator": -0.20103588605253186,
+        "auc120_relative_difference": 0.0055360623781672835
+      }
+    }
+  },
+  "coarse_independent_H20_check": {
+    "raw": {
+      "wheat": {
+        "range": [
+          5.5,
+          7.5
+        ],
+        "approx": 6.5
+      },
+      "cassava": {
+        "range": [
+          0,
+          1.0
+        ],
+        "approx": null,
+        "reason": "Near zero, axis/marker unresolved; no quantitative center forecast."
+      },
+      "legume": {
+        "range": [
+          4.5,
+          6.5
+        ],
+        "approx": 5.5
+      }
+    },
+    "gel": {
+      "wheat": {
+        "range": [
+          24,
+          29
+        ],
+        "approx": null,
+        "reason": "Gel wheat/extruded wheat markers overlap; nominal joint center26.5."
+      },
+      "cassava": {
+        "range": [
+          40,
+          44
+        ],
+        "approx": 42
+      },
+      "legume": {
+        "range": [
+          12,
+          15
+        ],
+        "approx": 13.5
+      }
+    },
+    "industrial": {
+      "wheat": {
+        "range": [
+          24,
+          29
+        ],
+        "approx": null,
+        "reason": "Extruded wheat/gel wheat markers overlap."
+      },
+      "cassava": {
+        "range": [
+          29,
+          33
+        ],
+        "approx": 31
+      },
+      "legume": {
+        "range": [
+          7,
+          10
+        ],
+        "approx": 8.5
+      }
+    },
+    "method": "Independent Figure3 t20 column x about148.5 in stored crop, using curve symbols/labels, not coordinator coordinates.",
+    "uncertainty": "Coarse image-reading intervals, not sample or assay uncertainty. Not scored as nine resolved means."
+  }
+}
