@@ -58,5 +58,6 @@
     "vite": "~5.2.0",
     "vitest": "^0.34.6"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "license": "SEE LICENSE IN LICENSE"
 }
