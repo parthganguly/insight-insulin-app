@@ -2,6 +2,21 @@
 
 Mobile AI meal-tracking app that estimates relative insulin demand using FII-based scoring, chronic DIL/DII trends, and uncertainty labels.
 
+## License
+
+Original INSIGHT software code is available under the **MIT License**, within
+the scope stated in [LICENSE](LICENSE). Research/reference data and their
+embedded copies, datasets/fixtures, research documents/reports, and non-code
+assets are excluded from this grant pending separate rights review. Third-party
+components retain their existing licenses and notices. This is not a claim that
+the entire repository or a binary bundling excluded data is MIT-licensed.
+
+The Rust crate embeds `backend/fii_foods.csv`; licensing its source code does
+not grant redistribution rights for that embedded data. Package metadata points
+to the scoped license file for this reason. npm `private: true` and Cargo
+`publish = false` remain unchanged. No scientific validation, clinical approval,
+or eligibility for a third-party program is implied by the code license.
+
 ## Structure
 
 - `frontend/` — Ionic React + Capacitor mobile app

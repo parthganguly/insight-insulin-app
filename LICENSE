@@ -1,0 +1,59 @@
+INSIGHT code licensing scope
+============================
+
+The MIT License below applies to original INSIGHT software code: Python source
+in backend/, Rust source in crates/insight-core/, TypeScript/JavaScript/CSS/HTML
+source in frontend/, and project-authored build, configuration, and automation
+code. It also applies to project-authored test code, but not to excluded data
+that test code reads or embeds. Paths in this notice are repository-relative.
+
+This is a code-only grant, not a license for every file in this repository.
+The following are excluded from this grant:
+
+- Research and reference data, source-derived tables, transcriptions, study
+  metadata and research outputs, wherever stored or embedded. In particular:
+  backend/reference_data/**, backend/fii_foods.csv,
+  backend/validation/reference_result_v1_goldens.json, and
+  crates/insight-core/fixtures/**. Dataset/fixture exclusions are conservative
+  and do not assert that every excluded value is subject to copyright.
+- docs/** and reports/**, including research prose, evidence, screenshots,
+  and copies or extracts of published material.
+- Images, icons, fonts, animations, branding and other non-code assets,
+  including frontend/assets/**, frontend/icons/**, frontend/public/**,
+  and image/font assets in frontend/android/**.
+- Third-party code, dependencies, generated third-party components and other
+  material with its own copyright or license notices. Those notices and
+  applicable upstream terms remain in effect. In particular,
+  frontend/android/gradlew and frontend/android/gradlew.bat retain Apache-2.0
+  terms; no rights in Gradle or other dependencies are granted by this notice.
+
+No new permission for excluded material is granted here. This notice does not
+claim ownership of third-party material, override rights supplied by its owners
+or applicable law, or certify research-data redistribution rights. Those rights
+must be checked separately. Copying or embedding excluded data into a binary,
+fixture, or another file does not bring it within the MIT grant. Keep this scope
+notice with the MIT License when redistributing covered code.
+
+The full, unmodified MIT License text for the covered code follows.
+
+MIT License
+
+Copyright (c) 2026 Rajarshee (Parth) Ganguly
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
