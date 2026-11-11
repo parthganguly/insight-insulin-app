@@ -1,0 +1,722 @@
+[
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 71316.11893088189,
+    "SE": 14800.08597688655,
+    "Welch_df": 27.00085796848425,
+    "estimate_over_SE": 4.818628691904697
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 16248.80728620924,
+    "SE": 7777.488380659341,
+    "Welch_df": 34.72403350183627,
+    "estimate_over_SE": 2.089210101119012
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 83701.43449456303,
+    "SE": 27828.358684340976,
+    "Welch_df": 23.335519347164453,
+    "estimate_over_SE": 3.007774746760823
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 72973.8958880073,
+    "SE": 28049.82877027198,
+    "Welch_df": 24.98856719295933,
+    "estimate_over_SE": 2.6015807970046203
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 38575.59361888414,
+    "SE": 12786.251383919276,
+    "Welch_df": 27.00085796848424,
+    "estimate_over_SE": 3.016958798995538
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 11930.326343602062,
+    "SE": 6719.212423895761,
+    "Welch_df": 34.72403350183623,
+    "estimate_over_SE": 1.775554274958452
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 58487.66078238765,
+    "SE": 24041.778560985724,
+    "Welch_df": 23.335519347164453,
+    "estimate_over_SE": 2.432750997769344
+  },
+  {
+    "scenario": "group_mean_mass_egg_0",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 52962.594494403864,
+    "SE": 24233.113408442314,
+    "Welch_df": 24.988567192959348,
+    "estimate_over_SE": 2.1855464298678515
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 71317.23839583056,
+    "SE": 14799.784195626931,
+    "Welch_df": 26.998666964270505,
+    "estimate_over_SE": 4.818802588817715
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 16202.74028872821,
+    "SE": 7780.384544496046,
+    "Welch_df": 34.75962757114264,
+    "estimate_over_SE": 2.082511500050503
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 83827.16124562883,
+    "SE": 27806.497024215376,
+    "Welch_df": 23.279004098921455,
+    "estimate_over_SE": 3.0146609683567003
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 72872.50110562934,
+    "SE": 28032.76420306465,
+    "Welch_df": 24.964688090734747,
+    "estimate_over_SE": 2.5995474644509957
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 38580.62327219492,
+    "SE": 12785.990665768417,
+    "Welch_df": 26.99866696427049,
+    "estimate_over_SE": 3.0174136897726482
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 11895.024980272128,
+    "SE": 6721.714509283845,
+    "Welch_df": 34.7596275711426,
+    "estimate_over_SE": 1.7696415049825533
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 58539.44952956982,
+    "SE": 24022.891597594276,
+    "Welch_df": 23.27900409892145,
+    "estimate_over_SE": 2.4368194516363775
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 52896.12015931672,
+    "SE": 24218.370801783716,
+    "Welch_df": 24.964688090734782,
+    "estimate_over_SE": 2.1841320620716917
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 71318.07487227723,
+    "SE": 14799.485682889966,
+    "Welch_df": 26.996499582316112,
+    "estimate_over_SE": 4.8189563070242185
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 16156.437467495562,
+    "SE": 7783.285951841593,
+    "Welch_df": 34.795164297356116,
+    "estimate_over_SE": 2.075786186896141
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 83954.23925167492,
+    "SE": 27784.793501127668,
+    "Welch_df": 23.222710617861196,
+    "estimate_over_SE": 3.0215894621735293
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 72772.23236906836,
+    "SE": 28015.8657745809,
+    "Welch_df": 24.940899752210978,
+    "estimate_over_SE": 2.5975364443348883
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 38585.44170951684,
+    "SE": 12785.73277139523,
+    "Welch_df": 26.996499582316105,
+    "estimate_over_SE": 3.017851412931278
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 11859.547603618157,
+    "SE": 6724.221124701164,
+    "Welch_df": 34.795164297356095,
+    "estimate_over_SE": 1.7637057710747452
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 58592.24682181613,
+    "SE": 24004.14125367401,
+    "Welch_df": 23.222710617861203,
+    "estimate_over_SE": 2.4409224309512907
+  },
+  {
+    "scenario": "group_mean_mass_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 52830.4862784497,
+    "SE": 24203.7717274997,
+    "Welch_df": 24.940899752210985,
+    "estimate_over_SE": 2.182737751506104
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 72556.10427906997,
+    "SE": 14809.491515075031,
+    "Welch_df": 26.58500044484801,
+    "estimate_over_SE": 4.899297467790364
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 17875.95011499566,
+    "SE": 8189.370808330025,
+    "Welch_df": 34.28886421755736,
+    "estimate_over_SE": 2.1828233857493284
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 91172.57226230722,
+    "SE": 28670.11030072258,
+    "Welch_df": 23.206184153525534,
+    "estimate_over_SE": 3.180056557369065
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 77844.94612915584,
+    "SE": 28923.711280076383,
+    "Welch_df": 25.121434521851178,
+    "estimate_over_SE": 2.6913885764991035
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 39843.89372682987,
+    "SE": 12794.377118855322,
+    "Welch_df": 26.585000444848003,
+    "estimate_over_SE": 3.114172214613805
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 13146.344719524088,
+    "SE": 7075.050374367195,
+    "Welch_df": 34.28886421755736,
+    "estimate_over_SE": 1.8581273664358777
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 63448.33185863552,
+    "SE": 24768.99378032188,
+    "Welch_df": 23.206184153525534,
+    "estimate_over_SE": 2.5616031245097672
+  },
+  {
+    "scenario": "80kg_egg_0",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 56566.38278022103,
+    "SE": 24988.087498986075,
+    "Welch_df": 25.121434521851178,
+    "estimate_over_SE": 2.26373398054238
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 72554.17666190543,
+    "SE": 14809.253149733022,
+    "Welch_df": 26.583293838528757,
+    "estimate_over_SE": 4.899246162404443
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 17826.977547948063,
+    "SE": 8192.308472228655,
+    "Welch_df": 34.32481946497866,
+    "estimate_over_SE": 2.176062779908771
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 91300.13983686123,
+    "SE": 28647.679132972513,
+    "Welch_df": 23.14971195428641,
+    "estimate_over_SE": 3.1869995266659434
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 77733.87380417156,
+    "SE": 28905.947003569167,
+    "Welch_df": 25.096296789466543,
+    "estimate_over_SE": 2.689200038821539
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 39846.81251634738,
+    "SE": 12794.17118767432,
+    "Welch_df": 26.58329383852875,
+    "estimate_over_SE": 3.1144504737231515
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 13108.838939514635,
+    "SE": 7077.588312940525,
+    "Welch_df": 34.32481946497867,
+    "estimate_over_SE": 1.8521618325195164
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 63499.85621225729,
+    "SE": 24749.614801704112,
+    "Welch_df": 23.149711954286406,
+    "estimate_over_SE": 2.5656906873510237
+  },
+  {
+    "scenario": "80kg_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 56493.04396527485,
+    "SE": 24972.74039185241,
+    "Welch_df": 25.09629678946655,
+    "estimate_over_SE": 2.262188413399205
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 72551.94357562084,
+    "SE": 14809.01831309575,
+    "Welch_df": 26.581612433312984,
+    "estimate_over_SE": 4.899173060746538
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 17777.750423300455,
+    "SE": 8195.251563420614,
+    "Welch_df": 34.36072740862793,
+    "estimate_over_SE": 2.169274522657875
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 91429.1660101459,
+    "SE": 28625.414097007324,
+    "Welch_df": 23.093477111189248,
+    "estimate_over_SE": 3.1939857952903625
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 77624.0169781295,
+    "SE": 28888.35660467533,
+    "Welch_df": 25.07124715164755,
+    "estimate_over_SE": 2.6870347123022817
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 39849.503310869324,
+    "SE": 12793.968305050326,
+    "Welch_df": 26.581612433312976,
+    "estimate_over_SE": 3.1147101791036187
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 13071.143163675557,
+    "SE": 7080.130940320188,
+    "Welch_df": 34.360727408627916,
+    "estimate_over_SE": 1.8461725176913797
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 63552.469229803915,
+    "SE": 24730.37934946637,
+    "Welch_df": 23.09347711118924,
+    "estimate_over_SE": 2.569813763539185
+  },
+  {
+    "scenario": "80kg_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 56420.61237026605,
+    "SE": 24957.543502959245,
+    "Welch_df": 25.07124715164756,
+    "estimate_over_SE": 2.26066368925997
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 73746.2073473736,
+    "SE": 14564.02003894668,
+    "Welch_df": 26.782473070474076,
+    "estimate_over_SE": 5.0635887035422655
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 17773.882913506237,
+    "SE": 7607.325396050424,
+    "Welch_df": 34.59122947992885,
+    "estimate_over_SE": 2.336416807243988
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 90213.70412032721,
+    "SE": 28346.33323504954,
+    "Welch_df": 25.158606034318293,
+    "estimate_over_SE": 3.182552867500344
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 73541.81574228563,
+    "SE": 28629.14298007632,
+    "Welch_df": 27.550321684129706,
+    "estimate_over_SE": 2.568774615204691
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 40635.33659531125,
+    "SE": 12582.306729111606,
+    "Welch_df": 26.782473070474065,
+    "estimate_over_SE": 3.229561754466971
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 13092.082455270569,
+    "SE": 6572.203365918301,
+    "Welch_df": 34.591229479928856,
+    "estimate_over_SE": 1.9920385487708168
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 61922.51003396476,
+    "SE": 24489.272773260942,
+    "Welch_df": 25.1586060343183,
+    "estimate_over_SE": 2.5285565074670564
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 53285.86833378429,
+    "SE": 24733.600846718204,
+    "Welch_df": 27.55032168412972,
+    "estimate_over_SE": 2.154391860045504
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 73748.2789893236,
+    "SE": 14563.582935564424,
+    "Welch_df": 26.779275804894,
+    "estimate_over_SE": 5.063882927409953
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 17713.14658510716,
+    "SE": 7611.325601543481,
+    "Welch_df": 34.64315422535083,
+    "estimate_over_SE": 2.327209150205735
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 90388.1295767448,
+    "SE": 28316.83877775572,
+    "Welch_df": 25.07865310512308,
+    "estimate_over_SE": 3.192027552445196
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 73394.77986920976,
+    "SE": 28605.30772201773,
+    "Welch_df": 27.51095367124562,
+    "estimate_over_SE": 2.5657748758534495
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 40642.66960399232,
+    "SE": 12581.929101999505,
+    "Welch_df": 26.779275804893977,
+    "estimate_over_SE": 3.2302415054566977
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 13045.483631921983,
+    "SE": 6575.659266992216,
+    "Welch_df": 34.64315422535085,
+    "estimate_over_SE": 1.9839050507690221
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 61994.677989555894,
+    "SE": 24463.79160065289,
+    "Welch_df": 25.078653105123088,
+    "estimate_over_SE": 2.5341402102158757
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.05",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 53188.823822018,
+    "SE": 24713.008831116826,
+    "Welch_df": 27.510953671245623,
+    "estimate_over_SE": 2.1522601390020344
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": false,
+    "difference": 73749.81191082105,
+    "SE": 14563.152154175461,
+    "Welch_df": 26.77612455555262,
+    "estimate_over_SE": 5.064137978512841
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6,
+    "baseline": "C",
+    "centered": true,
+    "difference": 17651.96132299762,
+    "SE": 7615.336004699583,
+    "Welch_df": 34.69496743050209,
+    "estimate_over_SE": 2.317949111123163
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 90565.12739454623,
+    "SE": 28287.64142339956,
+    "Welch_df": 24.999111312215167,
+    "estimate_over_SE": 3.2015793059237057
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 73249.8876306204,
+    "SE": 28581.781996283178,
+    "Welch_df": 27.47162975810085,
+    "estimate_over_SE": 2.5628173792713813
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": false,
+    "difference": 40649.60052434714,
+    "SE": 12581.556936652669,
+    "Welch_df": 26.7761245555526,
+    "estimate_over_SE": 3.2308879361286738
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "C",
+    "centered": true,
+    "difference": 12998.549734968183,
+    "SE": 6579.123978142195,
+    "Welch_df": 34.69496743050208,
+    "estimate_over_SE": 1.9757265219736289
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": false,
+    "difference": 62068.765895426266,
+    "SE": 24438.567104448866,
+    "Welch_df": 24.999111312215174,
+    "estimate_over_SE": 2.5397874445808686
+  },
+  {
+    "scenario": "actual_served_mass_recipe_egg_0.1",
+    "conversion": 6.945,
+    "baseline": "mean",
+    "centered": true,
+    "difference": 53093.37926881774,
+    "SE": 24692.684230050265,
+    "Welch_df": 27.47162975810085,
+    "estimate_over_SE": 2.150166372119426
+  }
+]

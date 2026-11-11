@@ -1,0 +1,34 @@
+{
+  "status": "Frozen before target outcome reading; exposure per SPEC.md",
+  "training_whey_ratios": [
+    1.3589208650352738,
+    0.8020519636617174,
+    0.9226344107837011
+  ],
+  "training_soy_ratios": [
+    0.7805324580443015,
+    0.7387713074548921,
+    0.8905703230129757
+  ],
+  "target_inputs": {
+    "source": "Power O, Hallihan A, Jakeman P. Amino Acids 2009;37(2):333-339. doi 10.1007/s00726-008-0156-0; PMID 18679613",
+    "access": "Full text closed (OpenAlex oa_status closed; no repository full text found at Limerick; Springer PDF route returned non-PDF). Only the PubMed abstract was read.",
+    "protein_g": 45,
+    "groups": [
+      {
+        "name": "power2009_16_healthy_males",
+        "n": 16,
+        "sex": "male",
+        "drink_mL": 500,
+        "products": "whey protein isolate (WPI) vs whey protein hydrolysate (WPH); product names, degree of hydrolysis and vehicle not available",
+        "design": "Listed as Randomized Controlled Trial; crossover vs parallel not confirmed from accessible text",
+        "mean_body_mass_kg": null
+      }
+    ]
+  },
+  "predictions": {
+    "power2009_16_healthy_males": {
+      "status": "ABSTAIN: body mass not printed"
+    }
+  }
+}

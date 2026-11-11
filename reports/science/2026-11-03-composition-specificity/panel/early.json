@@ -1,0 +1,62 @@
+{
+  "t0": {
+    "donor_native_increments_uIU_ml": {
+      "26": 9.671501959620876,
+      "41": 9.370485455084864
+    },
+    "target_native_increments_pmol_L": {
+      "low": 73,
+      "high": 59
+    },
+    "observed_increment_ratio": 0.8082191780821918,
+    "observed_unadjusted_concentration_ratio": 0.8932038834951457,
+    "predictions": {
+      "tracer_inclusive_area_slope_at_30min": 1.1946623535805534,
+      "tracer_inclusive_dose_rescaled_donor": 0.9498364686544326,
+      "equal": 1.0,
+      "same_high_label": 1.2670685255785012,
+      "area_slope_at_30min": 1.1837220513477678,
+      "direct_30min_donor": 0.9688759299442037,
+      "dose_rescaled_30min_donor": 0.9523683073307899
+    },
+    "errors": {
+      "tracer_inclusive_area_slope_at_30min": 0.3907855933965939,
+      "tracer_inclusive_dose_rescaled_donor": 0.16145654977913868,
+      "equal": 0.21292199724267172,
+      "same_high_label": 0.4496279820271892,
+      "area_slope_at_30min": 0.38158575221621865,
+      "direct_30min_donor": 0.18130328268030577,
+      "dose_rescaled_30min_donor": 0.16411855568242498
+    }
+  },
+  "mean_basals": {
+    "donor_native_increments_uIU_ml": {
+      "26": 9.636931436690967,
+      "41": 9.51701200755743
+    },
+    "target_native_increments_pmol_L": {
+      "low": 73,
+      "high": 59
+    },
+    "observed_increment_ratio": 0.8082191780821918,
+    "observed_unadjusted_concentration_ratio": 0.8932038834951457,
+    "predictions": {
+      "tracer_inclusive_area_slope_at_30min": 1.1946623535805534,
+      "tracer_inclusive_dose_rescaled_donor": 0.9798246874742362,
+      "equal": 1.0,
+      "same_high_label": 1.2670685255785012,
+      "area_slope_at_30min": 1.1837220513477678,
+      "direct_30min_donor": 0.9875562641571813,
+      "dose_rescaled_30min_donor": 0.9808581842954474
+    },
+    "errors": {
+      "tracer_inclusive_area_slope_at_30min": 0.3907855933965939,
+      "tracer_inclusive_dose_rescaled_donor": 0.19254038358995612,
+      "equal": 0.21292199724267172,
+      "same_high_label": 0.4496279820271892,
+      "area_slope_at_30min": 0.38158575221621865,
+      "direct_30min_donor": 0.20040018977442295,
+      "dose_rescaled_30min_donor": 0.19359460498578634
+    }
+  }
+}

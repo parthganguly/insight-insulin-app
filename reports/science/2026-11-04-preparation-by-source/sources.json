@@ -1,0 +1,20 @@
+{
+  "Bornet": {
+    "doi": "10.1093/ajcn/50.2.315",
+    "local_original": "bornet.pdf",
+    "sha256": "8801cf69c4aaeb7127c22e77776d6c9f5bfcbf1dace14fbd85dae2671bd39880",
+    "original": "https://hal.inrae.fr/hal-02728571v1/file/1989_Colonna_Am.J.Clin.Nutr_1.pdf",
+    "locations": "Table 1 p316, Fig 2 p319, Fig 3 and Table 5 p320, Fig 4 p321"
+  },
+  "Granfeldt": {
+    "doi": "10.1093/ajcn/59.5.1075",
+    "original": "https://www.researchgate.net/publication/15027355_",
+    "locations": "Tables 1–2, pp1076/1079, protocol pp1076–1078",
+    "local_table_text": "granfeldt_table2_ocr.txt",
+    "table_excerpt_sha256": "695f0637a2b0d6d1bfeeb8e5c9cb1c21e23df016e04d3cb0da96cba126f0041f",
+    "note": "Hash identifies the retained Table 2 text extraction, not an original publication file."
+  },
+  "reviewed_parent": "1256e6a98162e8a74b0c64e0e8916189769513ae",
+  "posted_review": "https://github.com/parthganguly/insight-insulin-app/pull/143#pullrequestreview-5765543221",
+  "independent_review_zip_sha256": "e7da9c871eb795b40d1f69f3a6e1e2895e10033dc37d9a8ec8008d351867d720"
+}

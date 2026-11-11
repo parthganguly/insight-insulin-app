@@ -1,0 +1,15 @@
+{
+  "source": "Lan-Pidhainy2011 thesis chapter5, partial chapter published DOI10.1038/ejcn.2011.28",
+  "url": "https://www.collectionscanada.gc.ca/obj/thesescanada/vol2/OTU/TC-OTU-31822.pdf",
+  "population": "healthy control fasting serum insulin<40pmol/L n9",
+  "endpoint": "venous serum insulin positive incremental trapezoidal area0–120min, fasting baseline; below-baseline area ignored",
+  "time_origin": "starting to eat",
+  "times_min": [0,15,30,45,60,90,120],
+  "available_c_definition": "package total carbohydrate minus dietary fibre",
+  "rice": {"dry_g":62.5,"available_c_g":50,"protein_g":5.6,"fat_g":0,"native_median":9,"native_q1":7,"native_q3":11,"mean_II":60,"II_SEM":6},
+  "potato": {"dry_g":71.8,"available_c_g":50,"protein_g":6.2,"fat_g":0.9,"native_median":20,"native_q1":15,"native_q3":24,"mean_II":128,"II_SEM":10},
+  "native_unit": "nmol*min/L",
+  "native_rice_potato": 0.45,
+  "II_rice_potato": 0.46875,
+  "cautions": ["ratio of medians is not geometric-mean ratio", "ratio of mean individual normalized indexes is not mean paired ratio", "same9participants for both arms", "glucose50g reference repeated3times per subject", "T2D3h and hyperinsulinemic outcomes are not pooled into healthy target", "no paired uncertainty recoverable from marginal IQR/SEM", "Table5.3 superscripts compare populations within foods, not rice versus potato"]
+}

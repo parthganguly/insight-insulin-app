@@ -1,0 +1,14 @@
+{
+  "substitution_slope": 0.1022204575597254,
+  "fixed_enrichment": 1.2670685255785012,
+  "power_native": {
+    "hydro": 10.8,
+    "intact": 7.6
+  },
+  "power_dose_g": 45,
+  "power_dh": 30,
+  "resting_whey": 47.5,
+  "resting_casein": 36,
+  "swiss_whey": 37.5,
+  "swiss_casein": 26.3
+}

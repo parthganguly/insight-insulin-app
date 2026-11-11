@@ -1,0 +1,14 @@
+{
+  "training_doi":"10.1371/journal.pone.0044731",
+  "training":[{"source":"whey","intact_g":9,"remaining_intact_g":4.5,"leucine_per_g":0.114,"extra_free_leucine_g":1.3,"before_index":118,"after_index":123},{"source":"soy","intact_g":9,"remaining_intact_g":4.5,"leucine_per_g":0.092,"extra_free_leucine_g":1.3,"before_index":105,"after_index":119}],
+  "target_doi":"10.3945/ajcn.113.068775",
+  "arms":["W6","low","BCAA","high"],
+  "total_leucine_g":[0.75,3,5,5],
+  "added_alanine_g":[3.18,2.05,0.03,1.05],
+  "added_glycine_g":[3.17,2.05,0.03,1.05],
+  "added_leucine_g":[0,2.25,4.25,4.25],
+  "added_isoleucine_g":[0,0,1.01,0],
+  "added_valine_g":[0,0,1.03,0],
+  "added_carb_g":35,"added_fat_g":5.68,"total_protein_g":12.5,"tabulated_whey_g":6.15,"nominal_whey_g":6.25,
+  "lan_g":[0,5,30],"lan_ratios":[1,1.1666666666666667,1.5518518518518518],"proxy_leucine_per_g":0.114
+}

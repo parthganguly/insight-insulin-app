@@ -1,0 +1,63 @@
+{
+  "uncertainty_180": {
+    "additive_change_by_group_cassava_minus_wheat": {
+      "raw": -7.6,
+      "gel": 4.399999999999999
+    },
+    "difference_in_differences": 11.999999999999998,
+    "possible_SE_difference_in_differences": [
+      0.9219544457292886,
+      9.656603957913983
+    ],
+    "log_double_ratio_delta_SE_range": [
+      0.22091155755388425,
+      0.688910026933515
+    ],
+    "assumptions": "Independent six-person treatment cohorts; within each, paired correlation unknown in [-1,1]. Delta ratio SE approximate; neither range is a confidence interval."
+  },
+  "dry_product_instead_of_equal_starch_sensitivity": {
+    "raw": {
+      "manihot/wheat": {
+        "ratio_if_35g_unadjusted_dry_material": 1.0225641025641026,
+        "amylopectin_if_unadjusted": 1.1626413768879524
+      },
+      "smooth_pea/wheat": {
+        "ratio_if_35g_unadjusted_dry_material": 0.9774358974358974,
+        "amylopectin_if_unadjusted": 0.8703196347031964
+      },
+      "smooth_pea/manihot": {
+        "ratio_if_35g_unadjusted_dry_material": 0.9558676028084252,
+        "amylopectin_if_unadjusted": 0.7485710142475619
+      }
+    },
+    "gel": {
+      "manihot/wheat": {
+        "ratio_if_35g_unadjusted_dry_material": 1.0225641025641026,
+        "amylopectin_if_unadjusted": 1.1626413768879524
+      },
+      "smooth_pea/wheat": {
+        "ratio_if_35g_unadjusted_dry_material": 0.9774358974358974,
+        "amylopectin_if_unadjusted": 0.8703196347031964
+      },
+      "smooth_pea/manihot": {
+        "ratio_if_35g_unadjusted_dry_material": 0.9558676028084252,
+        "amylopectin_if_unadjusted": 0.7485710142475619
+      }
+    },
+    "industrial": {
+      "tapioca/extruded_wheat": {
+        "ratio_if_35g_unadjusted_dry_material": 1.0225641025641026,
+        "amylopectin_if_unadjusted": 1.1626413768879524
+      },
+      "mung_noodle/extruded_wheat": {
+        "ratio_if_35g_unadjusted_dry_material": 1.001025641025641,
+        "amylopectin_if_unadjusted": 0.9324622409553917
+      },
+      "mung_noodle/tapioca": {
+        "ratio_if_35g_unadjusted_dry_material": 0.9789368104312938,
+        "amylopectin_if_unadjusted": 0.8020205193894937
+      }
+    }
+  },
+  "note": "The article specifies 35g starch, dry basis. Alternative native purity scaling only; same cassava/wheat composition factor still cancels in the heat double ratio."
+}

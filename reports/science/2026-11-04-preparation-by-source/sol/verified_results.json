@@ -1,0 +1,500 @@
+{
+  "Heaton_donors": [
+    0.5118343195266272,
+    0.5288338316958565,
+    0.8397581254724111
+  ],
+  "Heaton_median": 0.5288338316958565,
+  "pulse_R": 0.70627231,
+  "power_b": 0.2563060312996448,
+  "barley_milling": [
+    {
+      "numerator": "normal_covered_kernel",
+      "denominator": "normal_covered_flour",
+      "observed": {
+        "native_iAUC120": 0.5272727272727272,
+        "native_iAUC90": 0.5408163265306122,
+        "II120_ratio": 0.5
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 1.0,
+        "Heaton_median": 0.5288338316958565,
+        "pulse_reference": 0.70627231,
+        "direct_HI180": 0.6266666666666667,
+        "power_HI180": 0.8871136362545935,
+        "affine_HI180": 0.8523149808009931
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.640037355245997,
+          "amylopectin_dose": 0.640037355245997,
+          "Heaton_median": 0.002956340999627613,
+          "pulse_reference": 0.29228294760610757,
+          "direct_HI180": 0.17269684341974512,
+          "power_HI180": 0.5202551633942657,
+          "affine_HI180": 0.4802382305483439
+        },
+        "native_iAUC90": {
+          "equality": 0.6146755651184502,
+          "amylopectin_dose": 0.6146755651184502,
+          "Heaton_median": 0.022405449127919065,
+          "pulse_reference": 0.26692115747856093,
+          "direct_HI180": 0.14733505329219834,
+          "power_HI180": 0.4948933732667189,
+          "affine_HI180": 0.45487644042079717
+        },
+        "II120_ratio": {
+          "equality": 0.6931471805599453,
+          "amylopectin_dose": 0.6931471805599453,
+          "Heaton_median": 0.05606616631357604,
+          "pulse_reference": 0.345392772920056,
+          "direct_HI180": 0.2258066687336935,
+          "power_HI180": 0.573364988708214,
+          "affine_HI180": 0.5333480558622922
+        }
+      },
+      "matched9_bounds120": [
+        0.43636363636363634,
+        0.5858585858585859
+      ],
+      "rounding_matched9_bounds120": [
+        0.3846153846153846,
+        0.5936073059360731
+      ],
+      "matched9_bounds90": [
+        0.43877551020408156,
+        0.6009070294784581
+      ],
+      "rounding_matched9_bounds90": [
+        0.3807106598984771,
+        0.6096866096866097
+      ],
+      "R_HI_geometric_midpoint": 0.5756757199408391,
+      "R_HI_midpoint_rounding_range": [
+        0.5705300494592507,
+        0.5808478031974137
+      ]
+    },
+    {
+      "numerator": "high_covered_kernel",
+      "denominator": "high_covered_flour",
+      "observed": {
+        "native_iAUC120": 0.5098039215686275,
+        "native_iAUC90": 0.48888888888888893,
+        "II120_ratio": 0.5106382978723404
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 1.0,
+        "Heaton_median": 0.5288338316958565,
+        "pulse_reference": 0.70627231,
+        "direct_HI180": 0.6071428571428571,
+        "power_HI180": 0.8799462565813215,
+        "affine_HI180": 0.8445916570928818
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.6737290947028436,
+          "amylopectin_dose": 0.6737290947028436,
+          "Heaton_median": 0.03664808045647438,
+          "pulse_reference": 0.3259746870629543,
+          "direct_HI180": 0.17473792858385567,
+          "power_HI180": 0.5458346492613041,
+          "affine_HI180": 0.5048270802329534
+        },
+        "native_iAUC90": {
+          "equality": 0.7156200364120039,
+          "amylopectin_dose": 0.7156200364120039,
+          "Heaton_median": 0.07853902216563449,
+          "pulse_reference": 0.36786562877211443,
+          "direct_HI180": 0.21662887029301583,
+          "power_HI180": 0.5877255909704642,
+          "affine_HI180": 0.5467180219421136
+        },
+        "II120_ratio": {
+          "equality": 0.672093771362113,
+          "amylopectin_dose": 0.672093771362113,
+          "Heaton_median": 0.035012757115743726,
+          "pulse_reference": 0.32433936372222366,
+          "direct_HI180": 0.1731026052431252,
+          "power_HI180": 0.5441993259205735,
+          "affine_HI180": 0.5031917568922228
+        }
+      },
+      "matched9_bounds120": [
+        0.3137254901960785,
+        0.5664488017429194
+      ],
+      "rounding_matched9_bounds120": [
+        0.25853658536585367,
+        0.574712643678161
+      ],
+      "matched9_bounds90": [
+        0.3777777777777778,
+        0.54320987654321
+      ],
+      "rounding_matched9_bounds90": [
+        0.31491712707182323,
+        0.5524518932340162
+      ],
+      "R_HI_geometric_midpoint": 0.5666371709741844,
+      "R_HI_midpoint_rounding_range": [
+        0.5597881520421945,
+        0.5735307909804691
+      ]
+    }
+  ],
+  "within_form": [
+    {
+      "numerator": "high_hullless_kernel",
+      "denominator": "high_covered_kernel",
+      "observed": {
+        "native_iAUC120": 0.7115384615384616,
+        "native_iAUC90": 0.7727272727272726,
+        "II120_ratio": 0.7916666666666666
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.9655172413793104,
+        "direct_HI180": 1.0,
+        "power_HI180": 1.0,
+        "affine_HI180": 1.0
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.3403258059372028,
+          "amylopectin_dose": 0.3052344861259328,
+          "direct_HI180": 0.3403258059372028,
+          "power_HI180": 0.3403258059372028,
+          "affine_HI180": 0.3403258059372028
+        },
+        "native_iAUC90": {
+          "equality": 0.2578291093021,
+          "amylopectin_dose": 0.22273778949082992,
+          "direct_HI180": 0.2578291093021,
+          "power_HI180": 0.2578291093021,
+          "affine_HI180": 0.2578291093021
+        },
+        "II120_ratio": {
+          "equality": 0.23361485118150527,
+          "amylopectin_dose": 0.19852353137023518,
+          "direct_HI180": 0.23361485118150527,
+          "power_HI180": 0.23361485118150527,
+          "affine_HI180": 0.23361485118150527
+        }
+      }
+    },
+    {
+      "numerator": "high_hullless_kernel",
+      "denominator": "normal_covered_kernel",
+      "observed": {
+        "native_iAUC120": 0.6379310344827587,
+        "native_iAUC90": 0.6415094339622641,
+        "II120_ratio": 0.6785714285714286
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.835820895522388,
+        "direct_HI180": 0.723404255319149,
+        "power_HI180": 0.9203616570312166,
+        "affine_HI180": 0.8905829075083346
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.44952509790219486,
+          "amylopectin_dose": 0.2701841692463779,
+          "direct_HI180": 0.1257380208082976,
+          "power_HI180": 0.36653651718614594,
+          "affine_HI180": 0.3336460195151737
+        },
+        "native_iAUC90": {
+          "equality": 0.44393138893596046,
+          "amylopectin_dose": 0.2645904602801437,
+          "direct_HI180": 0.12014431184206341,
+          "power_HI180": 0.36094280821991154,
+          "affine_HI180": 0.3280523105489394
+        },
+        "II120_ratio": {
+          "equality": 0.38776553100876343,
+          "amylopectin_dose": 0.20842460235294646,
+          "direct_HI180": 0.06397845391486634,
+          "power_HI180": 0.30477695029271445,
+          "affine_HI180": 0.2718864526217423
+        }
+      }
+    },
+    {
+      "numerator": "high_hullless_kernel",
+      "denominator": "waxy_hullless_kernel",
+      "observed": {
+        "native_iAUC120": 0.6851851851851851,
+        "native_iAUC90": 0.7083333333333334,
+        "II120_ratio": 0.7037037037037037
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.6021505376344086,
+        "direct_HI180": 0.7727272727272727,
+        "power_HI180": 0.9360530228558421,
+        "affine_HI180": 0.9100943470785267
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.37806613392005006,
+          "amylopectin_dose": 0.1291816684980566,
+          "direct_HI180": 0.12023702461795031,
+          "power_HI180": 0.3119829781613065,
+          "affine_HI180": 0.28385912718287615
+        },
+        "native_iAUC90": {
+          "equality": 0.3448404862917294,
+          "amylopectin_dose": 0.16240731612637715,
+          "direct_HI180": 0.08701137698962969,
+          "power_HI180": 0.2787573305329859,
+          "affine_HI180": 0.2506334795545556
+        },
+        "II120_ratio": {
+          "equality": 0.3513978868378886,
+          "amylopectin_dose": 0.15584991558021813,
+          "direct_HI180": 0.09356877753578875,
+          "power_HI180": 0.285314731079145,
+          "affine_HI180": 0.2571908801007146
+        }
+      }
+    },
+    {
+      "numerator": "high_covered_kernel",
+      "denominator": "normal_covered_kernel",
+      "observed": {
+        "native_iAUC120": 0.896551724137931,
+        "native_iAUC90": 0.8301886792452832,
+        "II120_ratio": 0.8571428571428571
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.8656716417910447,
+        "direct_HI180": 0.723404255319149,
+        "power_HI180": 0.9203616570312166,
+        "affine_HI180": 0.8905829075083346
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.109199291964992,
+          "amylopectin_dose": 0.03505031687955485,
+          "direct_HI180": 0.2145877851289051,
+          "power_HI180": 0.026210711248942944,
+          "affine_HI180": 0.006679786422028992
+        },
+        "native_iAUC90": {
+          "equality": 0.18610227963386053,
+          "amylopectin_dose": 0.041852670789313706,
+          "direct_HI180": 0.1376847974600367,
+          "power_HI180": 0.10311369891781164,
+          "affine_HI180": 0.07022320124683949
+        },
+        "II120_ratio": {
+          "equality": 0.15415067982725836,
+          "amylopectin_dose": 0.009901070982711537,
+          "direct_HI180": 0.16963639726663876,
+          "power_HI180": 0.07116209911120934,
+          "affine_HI180": 0.038271601440237384
+        }
+      }
+    },
+    {
+      "numerator": "high_covered_kernel",
+      "denominator": "waxy_hullless_kernel",
+      "observed": {
+        "native_iAUC120": 0.9629629629629629,
+        "native_iAUC90": 0.9166666666666667,
+        "II120_ratio": 0.8888888888888888
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.6236559139784946,
+        "direct_HI180": 0.7727272727272727,
+        "power_HI180": 0.9360530228558421,
+        "affine_HI180": 0.9100943470785267
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.03774032798284711,
+          "amylopectin_dose": 0.4344161546239896,
+          "direct_HI180": 0.22008878131925266,
+          "power_HI180": 0.028342827775896383,
+          "affine_HI180": 0.056466678754326746
+        },
+        "native_iAUC90": {
+          "equality": 0.08701137698962969,
+          "amylopectin_dose": 0.3851451056172069,
+          "direct_HI180": 0.1708177323124702,
+          "power_HI180": 0.02092822123088615,
+          "affine_HI180": 0.0071956297475442455
+        },
+        "II120_ratio": {
+          "equality": 0.11778303565638346,
+          "amylopectin_dose": 0.3543734469504531,
+          "direct_HI180": 0.14004607364571625,
+          "power_HI180": 0.051699879897640015,
+          "affine_HI180": 0.023576028919209686
+        }
+      }
+    },
+    {
+      "numerator": "normal_covered_kernel",
+      "denominator": "waxy_hullless_kernel",
+      "observed": {
+        "native_iAUC120": 1.074074074074074,
+        "native_iAUC90": 1.1041666666666667,
+        "II120_ratio": 1.037037037037037
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.7204301075268817,
+        "direct_HI180": 1.0681818181818181,
+        "power_HI180": 1.0170491303117088,
+        "affine_HI180": 1.0269716958764419
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.07145896398214487,
+          "amylopectin_dose": 0.3993658377444347,
+          "direct_HI180": 0.005500996190347474,
+          "power_HI180": 0.05455353902483939,
+          "affine_HI180": 0.04484459341897209
+        },
+        "native_iAUC90": {
+          "equality": 0.09909090264423101,
+          "amylopectin_dose": 0.42699777640652076,
+          "direct_HI180": 0.03313293485243361,
+          "power_HI180": 0.0821854776869255,
+          "affine_HI180": 0.0724765320810582
+        },
+        "II120_ratio": {
+          "equality": 0.03636764417087483,
+          "amylopectin_dose": 0.3642745179331647,
+          "direct_HI180": 0.02959032362092251,
+          "power_HI180": 0.01946221921356941,
+          "affine_HI180": 0.009753273607702104
+        }
+      }
+    },
+    {
+      "numerator": "high_covered_flour",
+      "denominator": "normal_covered_flour",
+      "observed": {
+        "native_iAUC120": 0.9272727272727272,
+        "native_iAUC90": 0.9183673469387754,
+        "II120_ratio": 0.8392857142857143
+      },
+      "predictions": {
+        "equality": 1,
+        "amylopectin_dose": 0.8656716417910447,
+        "direct_HI180": 0.7466666666666667,
+        "power_HI180": 0.92785823012682,
+        "affine_HI180": 0.899785165543531
+      },
+      "errors": {
+        "native_iAUC120": {
+          "equality": 0.0755075525081451,
+          "amylopectin_dose": 0.0687420563364016,
+          "direct_HI180": 0.21662887029301603,
+          "power_HI180": 0.0006312253819044756,
+          "affine_HI180": 0.030091696595874934
+        },
+        "native_iAUC90": {
+          "equality": 0.08515780834030696,
+          "amylopectin_dose": 0.0590918005042398,
+          "direct_HI180": 0.20697861446085425,
+          "power_HI180": 0.010281481214066347,
+          "affine_HI180": 0.020441440763713067
+        },
+        "II120_ratio": {
+          "equality": 0.1752040890250906,
+          "amylopectin_dose": 0.03095448018054387,
+          "direct_HI180": 0.11693233377607051,
+          "power_HI180": 0.10032776189884994,
+          "affine_HI180": 0.06960483992107058
+        }
+      }
+    }
+  ],
+  "milling_mean_abs_log_error": {
+    "native_iAUC120": {
+      "equality": 0.6568832249744203,
+      "amylopectin_dose": 0.6568832249744203,
+      "Heaton_median": 0.019802210728050995,
+      "pulse_reference": 0.3091288173345309,
+      "direct_HI180": 0.1737173860018004,
+      "power_HI180": 0.5330449063277849,
+      "affine_HI180": 0.49253265539064867
+    },
+    "native_iAUC90": {
+      "equality": 0.6651478007652271,
+      "amylopectin_dose": 0.6651478007652271,
+      "Heaton_median": 0.050472235646776775,
+      "pulse_reference": 0.31739339312533765,
+      "direct_HI180": 0.1819819617926071,
+      "power_HI180": 0.5413094821185915,
+      "affine_HI180": 0.5007972311814554
+    },
+    "II120_ratio": {
+      "equality": 0.6826204759610291,
+      "amylopectin_dose": 0.6826204759610291,
+      "Heaton_median": 0.04553946171465988,
+      "pulse_reference": 0.33486606832113985,
+      "direct_HI180": 0.19945463698840937,
+      "power_HI180": 0.5587821573143937,
+      "affine_HI180": 0.5182699063772576
+    }
+  },
+  "constraints": [
+    "No H20 or H30 available in article: Figure 1 is glucose only.",
+    "Native iAUC ratios use n10/n9 arm means; not paired n9 ratios.",
+    "Matched-subset bounds are algebraic deletion bounds, not sampling CIs.",
+    "II120 is mean within-person bread-referenced index, not ratio of arm means.",
+    "Heaton donor endpoint 180m differs from target120m.",
+    "HI180 omits cheese/butter/salt included in native clinical meals.",
+    "Within-genotype protein/fat/starch matched, preparation time differs.",
+    "Within-form kernel genotypes differ in fiber and other composition as well as amylose."
+  ],
+  "nonnegative_deletion_witnesses": [
+    {
+      "synthetic_areas": [
+        0,
+        13.283692110816478,
+        5.589538486147941,
+        5.589538486147941,
+        5.589538486147941,
+        5.589538486147941,
+        5.589538486147941,
+        5.589538486147941,
+        5.589538486147941,
+        5.589538486147941
+      ],
+      "mean9": 6.444444444444445,
+      "ratio9": 0.5858585858585859
+    },
+    {
+      "synthetic_areas": [
+        0,
+        22.90360117872682,
+        3.6370498526591475,
+        3.6370498526591475,
+        3.6370498526591475,
+        3.6370498526591475,
+        3.6370498526591475,
+        3.6370498526591475,
+        3.6370498526591475,
+        3.6370498526591475
+      ],
+      "mean9": 5.777777777777778,
+      "ratio9": 0.5664488017429194
+    }
+  ],
+  "upper_bound_witness_mean_log_error": {
+    "Heaton_median": 0.08555830492977533,
+    "direct_HI180": 0.06835687034397411
+  }
+}

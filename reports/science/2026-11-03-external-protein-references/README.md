@@ -1,0 +1,60 @@
+# External protein references: what transfers across preparations and doses?
+
+A measured source reference can predict a contrast while badly missing both response levels. A common calibration improved average normalized levels in a nine-author development panel. A separate two-dose test identified a limit on the entire calibration family: the observed whey–pea separation grew faster than the model permits. Keep preparation-specific references and dose as comparators. Decision D, absolute population-average positive insulin area over 0–120 minutes under a specified protocol, remains open.
+
+## External Swiss breakfasts: one successful source comparison, limited coverage
+
+Acheson et al. tested BiPro whey isolate, Supro soy isolate and micellar casein in 23 healthy adults. Each liquid breakfast provided about 459 kcal, 50% of energy from protein, 40% from carbohydrate and 10% from fat. Glucose alone supplied the same glucose load at 184 kcal. The additional isoenergetic high-carbohydrate meal had a different carbohydrate dose. Glucose was given on a separate earlier visit. The four isocaloric meals were randomized. The authors describe insulin IAUC above baseline, with samples through 120 minutes from the start of consumption. The table below uses ratios of the published mean native areas. The authors also reported participant-normalized indices, which are a different summary. [Swiss trial](https://doi.org/10.3945/ajcn.110.005850) · [Original article, Tables 2–3 and Fig. 4B](https://www.researchgate.net/publication/49748957_Protein_choices_targeting_thermogenesis_and_metabolism)
+
+The external library comes from eight men in Maastricht, who consumed 0.2 g/kg hydrolysate plus 0.2 g/kg maltodextrin together. Its native signed means were approximately 2637 whey, 1702 soy and 863 maltodextrin in the source's printed units. The Swiss trial used intact proteins, glucose, added oil, a higher protein dose and a different measured reference. An exact preparation match is unavailable. [Reference study](https://doi.org/10.1038/sj.ejcn.1602896)
+
+| Two-hour comparison | External prediction | Swiss observation |
+|---|---:|---:|
+| Whey / soy | 1.549 | 37.5 / 24.9 = 1.506 |
+| Whey / matched glucose | 3.056 | 37.5 / 24.3 = 1.543 |
+| Soy / matched glucose | 1.972 | 24.9 / 24.3 = 1.025 |
+| Casein / matched glucose | No casein reference | 26.3 / 24.3 = 1.082 |
+
+Swiss native areas are in the article's nmol·120 min/L convention. The high-carbohydrate native area was 41.4. The whey/soy absolute log error was .028 vs .409 for equality, and stays smaller over the declared graph/decimal reading envelope (.060 worst vs .406 best). The adjusted source comparison gave p=.03. The mean whey and soy errors relative to glucose were .669 for the empirical forecast, .685 for energy and .229 for no change. Similar log overpredictions of .683 and .655 cancel in the whey/soy contrast. The available evidence cannot assign that common offset to one specific protocol difference. Using local glucose/high-carbohydrate measurements to translate the denominator preserves those errors and requires local insulin. No absolute food-only forecast was available.
+
+**Does measuring the full profile expand useful coverage?** Matching on 16 common amino-acid percentages assigns whey to whey, soy to soy and casein to egg. These assignments supply all three source contrasts instead of one. The three absolute-log errors averaged .198 vs .273 for ties. Coverage came at a cost: predicted whey/casein was 1.089 vs 1.426 observed, and casein/soy 1.423 vs 1.056. Including two chemically ambiguous Asp/Asx and Glu/Glx fields changes the casein donor to rice. A simpler leucine-substitution scenario averaged .115 across all three pairs; its absolute gram inputs assume the nominal protein mass can stand in for the isolate basis of Table 3. The 1.66 addition multiplier was never used for substitutions. Neither nearest neighbor provides a measured casein response. The Swiss means and qualitative direction were previously exposed.
+
+## Learn a response calibration, then withhold authors
+
+Let R be a source's two-hour response divided by its own matched carbohydrate control in the six-source library. Let d be added protein grams per matched carbohydrate gram. The dose-adjusted forecast is 1 + d(R−1). A calibration learned on development studies raises this forecast to a common power β. At d=0 the mixed-to-control ratio is one. This imposes no zero intercept on absolute insulin. The cheap alternative uses (1+d) raised to its own trained power. A second comparator uses the same six-source average R for every food and fits one power. Each coefficient minimizes squared log errors with equal total weight per training author. The evaluation author and the Claessens source paper are excluded from both fits. The score is the equal-author average of within-author absolute log errors.
+
+| 120-minute forest panel | Offered rows / all external rows | No change | Literal R | Dose-adjusted, unfitted | One-parameter dose | One-parameter common R | One-parameter named R | One-parameter constant |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Study-reported areas | 17 / 26, 9 of 11 authors | .233 | .700 | .264 | .167 | .162 | **.140** | .147 |
+| Review-calculated areas | 20 / 25, 3 of 8 authors | .371 | .746 | .220 | .140 | .132 | .125 | **.122** |
+
+The first panel contains whey, soy, egg and pea. Actual source assignments ranked third of 24 permutations by error; this is an exposure-aware diagnostic, with no randomization p-value. Repeating the entire fit/evaluation after dropping each author retained a .0178–.0287 advantage over the common-R control. The calculated panel contains only whey among covered rows, including 18 entries from one author. Its result cannot distinguish source identity. The retained broader-panel held-author dose regression scored .149 and .089 on the two corresponding offered subsets. The reporting and calculation panels stay separate. The two eligible same-dose contrasts were Acheson and Quek. Calibrating weakened the successful Acheson contrast (1.287 vs forest 1.510), but improved the Quek egg/soy prediction (1.115 vs 1.082; direct R gave 1.423). [Original meta-analysis](https://doi.org/10.1016/j.tjnut.2024.07.011) · [Publisher's forest supplement](https://ars.els-cdn.com/content/image/1-s2.0-S0022316624003924-mmc5.pdf)
+
+**Evaluation boundaries.** All forest rows were exposed in prior work. Author withholding tests the new fitted rule and avoids training on a target author's outcomes. It does not establish blinded validation or independence between laboratories. Acheson's original and forest entries describe the same experiment. First-author grouping, family labels, preparation detail and eligible panels constrain any interpretation. Eighteen forest rows do not receive 18 independent-author votes.
+
+## Oxford graded whey–pea test
+
+The 2026 Oxford study does not occur in the 2024 forest. We also removed the 2021 Thondre rows from every Oxford fit. Its outcomes were previously used in development of other candidates and known here. Oxford measured a geometric trapezoidal insulin iAUC with a stated ISO protocol in 30 adults. The two-hour group means were 3373.4 for glucose, 4069.7 and 4104.9 for pea, and 4183.3 and 6043.07 µU·min/mL for whey. Each contained 50 g available carbohydrate. Actual protein grams were 8/16 pea and 8.1/16.2 whey. Use Table **1** for composition and Table 4 for outcomes. [Original trial and tables](https://doi.org/10.1371/journal.pone.0340386)
+
+| Ratio of two-hour native means | Calibrated source | Unfitted dose-adjusted | Observed |
+|---|---:|---:|---:|
+| Whey / pea, lower dose | 1.026 | 1.064 | 1.028 |
+| Whey / pea, higher dose | 1.043 | 1.106 | 1.472 |
+| Higher / lower whey | 1.097 | 1.250 | 1.445 |
+| Higher / lower pea | 1.079 | 1.202 | 1.009 |
+
+Across four normalized levels the calibrated source error was .147. It beat calibrated dose alone (.184) and the common-R fit (.174). The unfitted dose-adjusted rule (.099), constant (.104) and energy (.112) each did better here. Both dose-adjusted rules missed the large high-dose source contrast. A tie was already close at the low dose. With the published amino-acid coordinates the nearest nominal donor for Oxford pea was soy at both doses. The high-dose nearest-donor ratio 1.549 was closer than the literal 1.183 there and much worse at the low dose. The paper distinguished high-dose whey from high-dose pea at 120 minutes (paired difference 1938.2, 95% CI 867 to 3009.5). The low and high mean ratios alone do not supply uncertainty for their interaction.
+
+**Why another shared coefficient cannot fit both Oxford contrasts.** For a fixed pair of positive source increments a>b≥0, the model predicts Q(d)=[(1+ad)/(1+bd)]^β, β≥0. The derivative of log Q is β(a−b)/[(1+ad)(1+bd)], positive and decreasing. Because log Q starts at zero, Q(2d) ≤ Q(d)². The actual doses doubled for each source. Matching the lower observed ratio would cap the higher one at **1.057**, below **1.472**. Even allowing arbitrary coefficients in this family, the larger of the two absolute log errors must be at least **.111** at these printed means. This diagnoses the model restriction; the design does not identify its biological cause or a population lower error bound. The next discriminator is a source-by-dose representation with a separately testable change of slope, evaluated on another graded series. Fitting it to these four outcomes would be development.
+
+## Separate protein-only checks
+
+- **Power, Ireland.** Mean body mass was 79.7 kg, so the 45 g dose corresponds to 0.565 g/kg at the cohort mean. Three-hour WPH/intact whey was 10.8/7.6 = 1.421; nearest-dose and interpolated external two-hour references gave .923 and .900, worse than equality. The paired area comparison gave p=.21, versus p=.018 for peak insulin. We recovered design and endpoint from the author-uploaded text; the primary two-hour figure geometry remained unavailable. The two-hour forecast is available at the cohort mean, its target score is unavailable. [Original study](https://doi.org/10.1007/s00726-008-0156-0)
+- **Moro, Texas.** At 0.08 g/kg, outside the training range, a boundary extension of 1.359 was closer to the signed two-hour curve ratio 1.275 than a tie at the central graph reading. The ±2-pixel ratio range 1.005–1.629 crosses the threshold for beating equality. The eight-person positive ordering from the prior pea/soy study does not transfer by assumption. Here the ten-person sample's positive-area outer bounds are **0.518–1.776** under graph stress. Neither ordering nor comparative accuracy is resolved. The brackets are identification bounds under stated sampling and interpolation assumptions, with no population coverage claim. [Original Fig. 4D](https://pmc.ncbi.nlm.nih.gov/articles/PMC7443767/#fig4)
+- **Morifuji, Japan.** The original abstract provides qualitative insulin findings; an eligible numeric two-hour area and the necessary time-course coordinates were unavailable. It contributes no accuracy score. [Original study](https://doi.org/10.1021/jf101912n)
+
+## Replay and lineage
+
+Run `python -B reproduce.py`. Standard-library Python is sufficient. The [independent check](sol/REVIEW.md), [Power correction](public/power/STATUS.md), [Moro positive-area analysis](morifuji/POSITIVE.md) and [participation record](PARTICIPATION.md) document the source, numerical and interpretive challenges. The [source registry](sources.json) lists public locators and original-asset hashes. The optional original-source replay checks the Oxford XML and Wolever PDF. No raw source archive or individual data are required for the portable replay.
+
+The prior result at c5aa425 is closed: unchanged Linux replay and source-linked PDF audit passed in the posted independent review. Its preparation-matched success, participant-average positive ordering within that sample, earlier counterexamples and lack of absolute validation remain in force. [Prior independent review](https://github.com/parthganguly/insight-insulin-app/pull/143#pullrequestreview-5747632290)

@@ -1,0 +1,67 @@
+{
+  "note": "Aggregate published facts transcribed by Opus 5.5 from public Cambridge Core reader pages and their table images on 2026-11-05. No original asset is needed for the default replay; hashes allow an optional audit with --sources DIRECTORY.",
+  "target": {
+    "citation": "van Can JGP, van Loon LJC, Brouns F, Blaak EE. Reduced glycaemic and insulinaemic responses following trehalose and isomaltulose ingestion: implications for postprandial substrate use in impaired glucose-tolerant subjects. Br J Nutr 2012;108:1210-1217.",
+    "doi": "10.1017/S0007114511006714",
+    "design": "randomised single-blind crossover; ten overweight IGT subjects (6 men, 4 women) each 'studied four times' (GLUC, TRE, SUC, IMU), 1-week washout; on each trial day the same sugar drink was taken after an overnight fast (breakfast, 08.45) and again with a standardised mixed lunch (12.30)",
+    "all_four_conditions_verified": "Methods: 'Each subject participated in four trials'; Abstract: 'ten overweight IGT subjects were studied four times'",
+    "dose_text": "'The CHO load consisted of 75 g CHO equivalents and was dissolved in 400 ml of water'; lunch: '25 En% of the total energy content of the meal was provided in the form of a beverage containing either TRE, IMU, GLUC or SUC'",
+    "dose_ambiguity": "Whether the lunch beverage was 75 g or 25 En% of an individualised lunch is not reconciled in the text; the mass basis of 'CHO equivalents' for trehalose and isomaltulose (anhydrous vs hydrate) is not stated",
+    "sampling": "venous, t = -5 (baseline), 30, 60, 90, 120, 150, 180 min after ingestion; no 15 or 45 min samples",
+    "assay": "plasma insulin, double-antibody RIA (Linco Research)",
+    "operator": "'incremental area under the curve (iAUC) ... calculated by the trapezoid method'; handling of area below baseline not stated",
+    "statistics": "paired t-tests only within GLUC v. TRE and SUC v. IMU; 'The four CHO were not compared with each other'",
+    "unit_printed": "uU/ml over 3 h",
+    "conversion_printed": "To convert insulin from uU/ml to pmol/l, multiply by 6",
+    "dispersion": "Tables 2 and 3 print means only (no SE)",
+    "insulin_iAUC_0_180": {
+      "locator": "Table 2 (TRE v. GLUC) and Table 3 (IMU v. SUC), Insulin row",
+      "fasting": {"TRE": 9425, "GLUC": 15216, "IMU": 5779, "SUC": 7326},
+      "lunch": {"TRE": 17934, "GLUC": 20875, "IMU": 11726, "SUC": 17658}
+    },
+    "paired_tests": {
+      "fasting_TRE_v_GLUC": {"p_exact": 0.009, "source": "Results text P = 0.009; Table 2 **"},
+      "lunch_TRE_v_GLUC": {"p_at_least": 0.05, "source": "Results text 'but not when TRE was ingested with a mixed meal'; Table 2 no mark"},
+      "fasting_IMU_v_SUC": {"p_range": [0.01, 0.05], "source": "Results text 'iAUC, P < 0.05'; Table 3 single *"},
+      "lunch_IMU_v_SUC": {"p_exact": 0.001, "source": "Results text 'iAUC, P = 0.001'; Table 3 **"}
+    },
+    "subjects_table1": {"age": [56, 8], "BMI": [30.8, 4.9], "fasting_insulin_uU_ml": [18, 8.9], "stat": "mean, SD"},
+    "assets": {
+      "S0007114511006714_tab2.gif": "0a4407af92e37f07b9d9b4d275585434a624e4532686bff990f2e48bd46e97ad",
+      "S0007114511006714_tab3.gif": "af27cfcab6a2fe183d4dc6ab6698891745d8f88cbe2e4e1481e4201eaa39f204",
+      "S0007114511006714_tab1.gif": "3695ea884a7a4cf39a2ec754b8cb645292e549175c3518505487c8ce71ded1ff",
+      "S0007114511006714_fig1g.gif": "295c3d6bed52f995e2e45ed28b29e8d6c1fb6fd0a000387b3e384e66223cd270"
+    },
+    "figure_status": "Fig. 1 GIF renders with a transparent background so axes and labels are not visible; group-curve values were not read"
+  },
+  "donors_2009": {
+    "common_protocol": "same laboratory; 75 g CHO (equivalents) in 400 ml water after an overnight fast (08.40); repeated the same day with a standardised lunch (12.30) in which '25 % energy of the total energy content of the meal was provided in the form of a beverage'; samples t = -5, 30 ... 180 min; plasma insulin RIA (LINCO); 'incremental area under the curve (minus baseline values, change in area under the curve)' by trapezoid; paired t-tests",
+    "trehalose": {
+      "citation": "van Can JGP, IJzerman TH, van Loon LJC, Brouns F, Blaak EE. Reduced glycaemic and insulinaemic responses following trehalose ingestion: implications for postprandial substrate use. Br J Nutr 2009;102:1395-1399.",
+      "doi": "10.1017/S000711450999050X",
+      "subjects": "ten healthy overweight, 8 men 2 women; age 31 (SE 4); BMI 27.7 (SE 0.8); fasting glucose 5.1 (SE 0.1); fasting insulin 14 (SE 1.9) uU/ml",
+      "insulin_dAUC_0_180": {"locator": "Table 1, Insulin row", "morning": {"TRE": 4868, "GLUC": 9264}, "afternoon": {"TRE": 10693, "GLUC": 14634}},
+      "marks": {"morning": "GLUC ** (P < 0.01)", "afternoon": "GLUC ** (P < 0.01)"},
+      "asset": {"S000711450999050X_tab1.gif": "43e6c3d530b7576647165c27cba7257fa0380a82d1f2dd0726c60904496b52c3"}
+    },
+    "isomaltulose": {
+      "citation": "van Can JGP, IJzerman TH, van Loon LJC, Brouns F, Blaak EE. Reduced glycaemic and insulinaemic responses following isomaltulose ingestion: implications for postprandial substrate use. Br J Nutr 2009;102:1408-1413.",
+      "doi": "10.1017/S0007114509990687",
+      "subjects": "ten healthy overweight, 8 men 2 women; age 31 (SE 4); BMI 27.7 (SE 0.8); fasting glucose 5.1 (SE 0.1); fasting insulin 14 (SE 1.9) uU/ml",
+      "insulin_dAUC_0_180": {"locator": "Table 1, Insulin row", "morning": {"IMU": 3176, "SUC": 4726}, "afternoon": {"IMU": 10693, "SUC": 14634}},
+      "marks": {"morning": "SUC * ; text P = 0.03", "afternoon": "SUC ** ; text P < 0.01"},
+      "asset": {"S0007114509990687_tab1.gif": "69937fb59e3bdb2b68bee82e32700c2623fad2ac7eabd71ff7138145bf2b1199"}
+    }
+  },
+  "frozen_forecasts": {
+    "locator": "../PLAN.md (sha256 in ../FREEZE.json)",
+    "TG_yoshizane_positive120": {"num": 590, "den": 1709, "note": "25 g, healthy lean Japanese, serum CLEIA, mean participant-positive 0-120"},
+    "IS_holub_signed120": 0.654771347866157,
+    "common_factors": {"equality": 1.0, "johansen_0420": 0.420, "holub_scalar": 0.520757979630314, "holub_120": 0.654771347866157},
+    "frozen_dose_exponent": 0.7781175447184837
+  },
+  "yoshizane_levels_conditional": {
+    "note": "25 g, 0-120 min, serum CLEIA, uIU*min/mL under the conditional minute reading; window and assay differ from the target",
+    "GLUC": 1709, "TRE": 590, "dose_g": 25
+  }
+}

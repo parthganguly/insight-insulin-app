@@ -1,0 +1,547 @@
+{
+  "r": 0.14814814814814814,
+  "jameel": {
+    "printed_panel_d": {
+      "observed": {
+        "fructose": 0.17886178861788618,
+        "sucrose": 0.8292682926829268
+      },
+      "scores": {
+        "equal_grams": {
+          "predicted": {
+            "fructose": 1,
+            "sucrose": 1
+          },
+          "log_errors": {
+            "fructose": 1.7211419020141017,
+            "sucrose": 0.18721154208814655
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.9541767220511241
+        },
+        "constituents": {
+          "predicted": {
+            "fructose": 0.14814814814814814,
+            "sucrose": 0.5740740740740741
+          },
+          "log_errors": {
+            "fructose": 0.18840060287033694,
+            "sucrose": 0.36778529999098164
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.27809295143065926
+        },
+        "glucose_grams_only": {
+          "predicted": {
+            "fructose": 0,
+            "sucrose": 0.5
+          },
+          "log_errors": {
+            "fructose": null,
+            "sucrose": 0.5059356384717988
+          },
+          "coverage": [
+            1,
+            2
+          ],
+          "full_mean": null
+        },
+        "same_sugar_25g_reference": {
+          "predicted": {
+            "fructose": 0.14814814814814814,
+            "sucrose": 0.5802469135802469
+          },
+          "log_errors": {
+            "fructose": 0.18840060287033694,
+            "sucrose": 0.35709001087423375
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.2727453068722854
+        }
+      },
+      "operator": "Figure 1D authors\u2019 \u0394AUC (%) ordinate. Definition of the percentage normalization is insufficient to reconstruct it from panel C. Reading width covers axis and rectangle top. Values are supporting evidence only.",
+      "bar_ordinates": {
+        "fructose": 108.64197530864197,
+        "glucose": 607.4074074074074,
+        "sucrose": 503.7037037037037
+      },
+      "reading_ranges": {
+        "fructose": [
+          0.15789473684210525,
+          0.2
+        ],
+        "sucrose": [
+          0.805668016194332,
+          0.8530612244897959
+        ]
+      }
+    },
+    "integrated_panel_c": {
+      "observed": {
+        "fructose": 0.15057915057915058,
+        "sucrose": 0.583011583011583
+      },
+      "scores": {
+        "equal_grams": {
+          "predicted": {
+            "fructose": 1,
+            "sucrose": 1
+          },
+          "log_errors": {
+            "fructose": 1.8932664155698913,
+            "sucrose": 0.5395482248846135
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 1.2164073202272525
+        },
+        "constituents": {
+          "predicted": {
+            "fructose": 0.14814814814814814,
+            "sucrose": 0.5740740740740741
+          },
+          "log_errors": {
+            "fructose": 0.016276089314547163,
+            "sucrose": 0.015448617194514621
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.015862353254530892
+        },
+        "glucose_grams_only": {
+          "predicted": {
+            "fructose": 0,
+            "sucrose": 0.5
+          },
+          "log_errors": {
+            "fructose": null,
+            "sucrose": 0.15359895567533183
+          },
+          "coverage": [
+            1,
+            2
+          ],
+          "full_mean": null
+        },
+        "same_sugar_25g_reference": {
+          "predicted": {
+            "fructose": 0.14814814814814814,
+            "sucrose": 0.5802469135802469
+          },
+          "log_errors": {
+            "fructose": 0.016276089314547163,
+            "sucrose": 0.004753328077766613
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.010514708696156888
+        }
+      },
+      "operator": "Figure 1C authors\u2019 percent change from baseline. Integrate with real sampling times rather than uniform horizontal spacing. The plot is not in native insulin units.",
+      "signed_percent_min": {
+        "fructose": 9100.0,
+        "glucose": 60433.33333333333,
+        "sucrose": 35233.33333333333
+      }
+    }
+  },
+  "eckstein": {
+    "observed": {
+      "fructose": 0.3052431138281578,
+      "free_mix": 0.7351392659793716
+    },
+    "scores": {
+      "equal_grams": {
+        "predicted": {
+          "fructose": 1,
+          "free_mix": 1
+        },
+        "log_errors": {
+          "fructose": 1.186646725367298,
+          "free_mix": 0.3076953201949445
+        },
+        "coverage": [
+          2,
+          2
+        ],
+        "full_mean": 0.7471710227811212
+      },
+      "constituents": {
+        "predicted": {
+          "fructose": 0.14814814814814814,
+          "free_mix": 0.5740740740740741
+        },
+        "log_errors": {
+          "fructose": 0.7228957795171405,
+          "free_mix": 0.2473015218841837
+        },
+        "coverage": [
+          2,
+          2
+        ],
+        "full_mean": 0.48509865070066205
+      },
+      "glucose_grams_only": {
+        "predicted": {
+          "fructose": 0,
+          "free_mix": 0.5
+        },
+        "log_errors": {
+          "fructose": null,
+          "free_mix": 0.3854518603650008
+        },
+        "coverage": [
+          1,
+          2
+        ],
+        "full_mean": null
+      }
+    },
+    "areas": {
+      "glucose": 2330.9622598353158,
+      "fructose": 711.5101784080512,
+      "free_mix": 1713.5818847209514,
+      "sucralose": -162.0082342177493
+    },
+    "whole_dose_component_benchmark_ratio": 0.6526215569140789,
+    "benchmark_log_error": 0.11906254281974543,
+    "excess_over_linear_interpolation_mU_min_L": {
+      "central": 192.34566559926793,
+      "source_coordinate_range": [
+        52.29457720588243,
+        332.4096778567987
+      ]
+    }
+  },
+  "gallagher": {
+    "signed_group_120": {
+      "areas": {
+        "fructose": 3247.540983606558,
+        "sucrose": 4521.311475409836,
+        "sucralose": 4045.081967213115
+      },
+      "observed": {
+        "fructose": 0.718274111675127,
+        "sucralose": 0.8946700507614214
+      },
+      "comparisons": {
+        "equal_response": {
+          "predicted": {
+            "fructose": 1.0,
+            "sucralose": 1.0
+          },
+          "log_errors": {
+            "fructose": 0.33090401165469613,
+            "sucralose": 0.11130028704561033
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.22110214935015324
+        },
+        "total_carb": {
+          "predicted": {
+            "fructose": 0.9159663865546218,
+            "sucralose": 0.6722689075630253
+          },
+          "log_errors": {
+            "fructose": 0.2431284007723103,
+            "sucralose": 0.28579657139203724
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.26446248608217376
+        },
+        "weighted": {
+          "predicted": {
+            "fructose": 0.7085783816670048,
+            "sucralose": 0.8760900425877105
+          },
+          "log_errors": {
+            "fructose": 0.01359058387542801,
+            "sucralose": 0.02098611794035956
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.017288350907893785
+        },
+        "zero_fructose_weight": {
+          "predicted": {
+            "fructose": 0.6589595375722543,
+            "sucralose": 0.9248554913294798
+          },
+          "log_errors": {
+            "fructose": 0.08618913444858742,
+            "sucralose": 0.033182507781658356
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.05968582111512288
+        },
+        "published_energy": {
+          "predicted": {
+            "fructose": 0.976063829787234,
+            "sucralose": 0.8847517730496454
+          },
+          "log_errors": {
+            "fructose": 0.30667671631937177,
+            "sucralose": 0.011147868700929818
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.1589122925101508
+        },
+        "carb_plus_protein": {
+          "predicted": {
+            "fructose": 0.9264705882352942,
+            "sucralose": 0.7279411764705882
+          },
+          "log_errors": {
+            "fructose": 0.2545310328701221,
+            "sucralose": 0.20623474855585167
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.23038289071298687
+        },
+        "macro_energy_proxy": {
+          "predicted": {
+            "fructose": 0.9727592267135325,
+            "sucralose": 0.8778558875219684
+          },
+          "log_errors": {
+            "fructose": 0.3032853296770568,
+            "sucralose": 0.018972548992112207
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.1611289393345845
+        }
+      },
+      "coordinate_reading_sensitivity": {
+        "fructose": {
+          "ratio_range": [
+            0.6593137254901961,
+            0.7815789473684213
+          ],
+          "vs_total_carb_tie": 0.8056264518039661,
+          "vs_equality_tie": 0.8417709793447412
+        },
+        "sucralose": {
+          "ratio_range": [
+            0.8296568627450981,
+            0.9644736842105265
+          ],
+          "vs_total_carb_tie": 0.7674425684422805,
+          "vs_equality_tie": 0.9359968176162302
+        }
+      },
+      "implied_weights_posthoc": {
+        "F_over_S": 0.1790443293033969,
+        "U_over_S": 0.08979814511729386
+      }
+    },
+    "published_incremental_240": {
+      "areas": {
+        "fructose": 91.91489361702128,
+        "sucrose": 145.53191489361703,
+        "sucralose": 127.65957446808511
+      },
+      "observed": {
+        "fructose": 0.631578947368421,
+        "sucralose": 0.8771929824561403
+      },
+      "comparisons": {
+        "equal_response": {
+          "predicted": {
+            "fructose": 1.0,
+            "sucralose": 1.0
+          },
+          "log_errors": {
+            "fructose": 0.45953232937844024,
+            "sucralose": 0.1310282624064042
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.2952802958924222
+        },
+        "total_carb": {
+          "predicted": {
+            "fructose": 0.9159663865546218,
+            "sucralose": 0.6722689075630253
+          },
+          "log_errors": {
+            "fructose": 0.3717567184960544,
+            "sucralose": 0.2660685960312436
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.31891265726364904
+        },
+        "weighted": {
+          "predicted": {
+            "fructose": 0.7085783816670048,
+            "sucralose": 0.8760900425877105
+          },
+          "log_errors": {
+            "fructose": 0.11503773384831613,
+            "sucralose": 0.0012581425795658177
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.05814793821394097
+        },
+        "zero_fructose_weight": {
+          "predicted": {
+            "fructose": 0.6589595375722543,
+            "sucralose": 0.9248554913294798
+          },
+          "log_errors": {
+            "fructose": 0.04243918327515672,
+            "sucralose": 0.0529104831424522
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.04767483320880446
+        },
+        "published_energy": {
+          "predicted": {
+            "fructose": 0.976063829787234,
+            "sucralose": 0.8847517730496454
+          },
+          "log_errors": {
+            "fructose": 0.43530503404311593,
+            "sucralose": 0.00858010665986381
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.22194257035148987
+        },
+        "carb_plus_protein": {
+          "predicted": {
+            "fructose": 0.9264705882352942,
+            "sucralose": 0.7279411764705882
+          },
+          "log_errors": {
+            "fructose": 0.38315935059386624,
+            "sucralose": 0.186506773195058
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.2848330618944621
+        },
+        "macro_energy_proxy": {
+          "predicted": {
+            "fructose": 0.9727592267135325,
+            "sucralose": 0.8778558875219684
+          },
+          "log_errors": {
+            "fructose": 0.4319136474008009,
+            "sucralose": 0.0007554263686815209
+          },
+          "coverage": [
+            2,
+            2
+          ],
+          "full_mean": 0.21633453688474122
+        }
+      },
+      "coordinate_reading_sensitivity": {
+        "fructose": {
+          "ratio_range": [
+            0.6069868995633187,
+            0.6563876651982379
+          ],
+          "vs_total_carb_tie": 0.8056264518039661,
+          "vs_equality_tie": 0.8417709793447412
+        },
+        "sucralose": {
+          "ratio_range": [
+            0.851528384279476,
+            0.9030837004405287
+          ],
+          "vs_total_carb_tie": 0.7674425684422805,
+          "vs_equality_tie": 0.9359968176162302
+        }
+      },
+      "implied_weights_posthoc": {
+        "F_over_S": -0.07525083612040144,
+        "U_over_S": 0.1446153846153847
+      }
+    },
+    "nonnegative_weight_F_over_S_lower_bound": 0.6589595375722543,
+    "comment": "For k>=0 the F/S ratio increases from its k=0 floor. This restricts exact point matching under the declared recipe accounting."
+  },
+  "descriptive_35g_anchors": {
+    "intact": {
+      "observed": 1373,
+      "predictions": {
+        "same_grams_G30_anchor": 3006.5,
+        "constituents_G30_anchor": 1725.9537037037037,
+        "S30_as_reference": 2361.3333333333335
+      },
+      "absolute_errors": {
+        "same_grams_G30_anchor": 1633.5,
+        "constituents_G30_anchor": 352.9537037037037,
+        "S30_as_reference": 988.3333333333335
+      }
+    },
+    "free": {
+      "observed": 1089,
+      "predictions": {
+        "same_grams_G30_anchor": 3006.5,
+        "constituents_G30_anchor": 1725.9537037037037,
+        "S30_as_reference": 2361.3333333333335
+      },
+      "absolute_errors": {
+        "same_grams_G30_anchor": 1917.5,
+        "constituents_G30_anchor": 636.9537037037037,
+        "S30_as_reference": 1272.3333333333335
+      }
+    },
+    "Lee_to_2017_conditional": {
+      "forecast_nmol_min_L": 6.509999999999999,
+      "observed_nmol_min_L_at_authors_conversion": 7.563105
+    }
+  }
+}

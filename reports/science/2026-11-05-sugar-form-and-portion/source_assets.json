@@ -1,0 +1,68 @@
+[
+  {
+    "filename": "lee_thesis.pdf",
+    "url": "https://www.collectionscanada.ca/obj/s4/f2/dsk2/ftp04/mq28791.pdf",
+    "locator": "Lee 1997, printed pages 27–28, 32 and 34; Table 3-1 is file page 47. Original scan visually inspected.",
+    "sha256": "7542242f2ede3d993b2f612e3a5c77b05f1844a8eeb26a5bd5ab4a2a467501ac"
+  },
+  {
+    "filename": "PMC7900990.xml",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7900990/fullTextXML",
+    "locator": "Grüneis, Results, glucose and sucrose untreated conditions.",
+    "sha256": "cd5395b4b030e39259286ada2328ac5df991fa1290d580307e25452dccbb2fdd"
+  },
+  {
+    "filename": "gruneis_figure4.jpg",
+    "url": "https://doi.org/10.1002/mnfr.202000472",
+    "locator": "Figure 4, concentration axis and inconsistent area label.",
+    "sha256": "12ebf085c3800d39bd2a0333f42c130d0b6aec3ad1979b0989b669ac49456cb7"
+  },
+  {
+    "filename": "PMC4290803.1.xml",
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4290803.1/PMC4290803.1.xml",
+    "locator": "Jameel, methods, insulin assay and percent change figure.",
+    "sha256": "ca2700ee4bd93afc5d7094d5aae10f9b06b1da170c2ce32a81a14ea64ef9ca56"
+  },
+  {
+    "filename": "jameel_figure1.jpg",
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4290803.1/12944_2014_1179_Fig1_HTML.jpg",
+    "locator": "Figure 1C (curve) and 1D (author summary).",
+    "sha256": "ee217832656141129f4fc5bc36c4ec6f64f8884bcd77580731157eab47f2d700"
+  },
+  {
+    "filename": "PMC8620063.xml",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8620063/fullTextXML",
+    "locator": "Eckstein, loading and fasting arm levels.",
+    "sha256": "8a620c493e095aef83343e37bb7903790a695db0247d970ad2c8df71088c8008"
+  },
+  {
+    "filename": "eckstein.pdf",
+    "url": "https://doi.org/10.3390/nu13114095",
+    "locator": "Figure 1C source, page 6.",
+    "sha256": "41175d8a48d6a4f4aba55679b26506dcacc53fef5703fdf1032c12cf37ae73b4"
+  },
+  {
+    "filename": "eckstein_panel.png",
+    "url": "https://doi.org/10.3390/nu13114095",
+    "locator": "Local crop of original panel, recipe detailed in RECONCILIATION.md.",
+    "sha256": "ae30fa265c22e0fb9c935dd5537bdc2d726382386e8f6fce46f0bea103725be9"
+  },
+  {
+    "filename": "gallagher_figure3.jpg",
+    "url": "https://doi.org/10.3945/ajcn.115.129866",
+    "locator": "Publisher Figure 3, nine 30-minute serum concentrations.",
+    "sha256": "f8d998fe9911c827956328ce6f43c53ec5034290fe409a07b2d814900f80a183"
+  },
+  {
+    "filename": "gallagher_figure4.jpg",
+    "url": "https://doi.org/10.3945/ajcn.115.129866",
+    "locator": "Publisher Figure 4, four-hour iAUC.",
+    "sha256": "e7a02cd4d80223e46a0e057c2e754aa86008e602bdb20b8fd06f6dc774fb9f90"
+  },
+  {
+    "filename": "PMC5465854.xml",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5465854/fullTextXML",
+    "locator": "Törrönen 2017, 35 g free-mixture reference in Table 3.",
+    "sha256": "60b0628a568474035306e1e719ffd88502047af7cdd371c9aef43a3e2d400436"
+  }
+]

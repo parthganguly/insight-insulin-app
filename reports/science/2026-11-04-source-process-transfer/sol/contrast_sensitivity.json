@@ -1,0 +1,119 @@
+{
+  "target": {
+    "native90": {
+      "ratio_oat": 0.7333333333333334,
+      "ratio_barley": 1.0514705882352942,
+      "double": 1.4338235294117647,
+      "double_rounding": [
+        1.4111767629355567,
+        1.4568527918781728
+      ]
+    },
+    "native120": {
+      "ratio_oat": 0.7248322147651007,
+      "ratio_barley": 1.0408163265306123,
+      "double": 1.4359410430839001,
+      "double_rounding": [
+        1.4150589705537762,
+        1.4571473926502108
+      ]
+    },
+    "II90": {
+      "ratio_oat": 0.7023809523809523,
+      "ratio_barley": 0.9655172413793104,
+      "double": 1.3746347165400352,
+      "double_rounding": [
+        1.3392076830732293,
+        1.4110468850353244
+      ]
+    },
+    "II120": {
+      "ratio_oat": 0.6904761904761905,
+      "ratio_barley": 0.9529411764705882,
+      "double": 1.3801217038539553,
+      "double_rounding": [
+        1.3438796421252561,
+        1.4173913043478261
+      ]
+    }
+  },
+  "oat_factor": 0.8397581254724111,
+  "oat_printed_integer_rounding": [
+    0.8390630902908953,
+    0.8404536862003781
+  ],
+  "barley_donor_bounds": {
+    "normal": {
+      "native120_central": 0.5272727272727272,
+      "kernel_retained9_native120": [
+        0.43636363636363634,
+        0.5858585858585859
+      ],
+      "kernel_retained9_plus_rounding_native120": [
+        0.3846153846153846,
+        0.5936073059360731
+      ],
+      "central_double_barley_to_oat": 0.627886425006137,
+      "deletion_double": [
+        0.5196301448326651,
+        0.6976515833401522
+      ],
+      "deletion_rounding_double": [
+        0.45762829163638874,
+        0.7074644479121052
+      ]
+    },
+    "high": {
+      "native120_central": 0.5098039215686275,
+      "kernel_retained9_native120": [
+        0.3137254901960785,
+        0.5664488017429194
+      ],
+      "kernel_retained9_plus_rounding_native120": [
+        0.25853658536585367,
+        0.574712643678161
+      ],
+      "central_double_barley_to_oat": 0.6070842378355484,
+      "deletion_double": [
+        0.3735903002064913,
+        0.6745380420394982
+      ],
+      "deletion_rounding_double": [
+        0.3076155053048506,
+        0.6849456856443459
+      ]
+    }
+  },
+  "endpoint_sensitivity": {
+    "barley_native90_donor_factors": {
+      "normal": 0.5408163265306122,
+      "high": 0.48888888888888893
+    },
+    "barley_II90_donor_factors": {
+      "normal": 0.5272727272727272,
+      "high": 0.48936170212765956
+    },
+    "barley_II120_donor_factors": {
+      "normal": 0.5,
+      "high": 0.5106382978723404
+    },
+    "caveat": "Heaton oat endpoint is native180; barley native90/native120/II are separate operators, not commensurable windows. Primary transfer uses the stipulated native120 barley and native180 oat ratios; these are endpoint sensitivities, not alternative fitted factors.",
+    "any_positive_power": "For any k>0, (barley_factor/oat_factor)**k<1, including crossed deletion+rounding envelope; all rounded target double ratios>1. For 0<k<=1 the prediction lies between donor contrast and1 (1 excluded).",
+    "linear_attenuation": "If ratio is mapped as1-k*(1-r), and same positive k used for both species with positive mapped factors, barley factor remains below oat factor; same sign mismatch. Restrict k<=1 for attenuation.",
+    "no_covariance": "No paired target covariance/individual data; SEMs do not identify uncertainty of ratios or cross-grain interaction. Arithmetic sign robustness under these deterministic input envelopes is not significance.",
+    "cohort_overlap": "Heaton same ten within oat pair, per coordinator original verification; cross-publication 1994/2000 participant identity unknown. No deletion correction needed for Heaton pair.",
+    "study_reference_pooling": "Do not pool1994 and2000 white bread means: different meals, SEMs and endpoints, no documented shared observations. Same 18.0 native120 mean is insufficient."
+  },
+  "II_predictions_using_primary_native_donor_factors": {
+    "90": {
+      "oat": 70.53968253968253,
+      "barley_normal": 45.87272727272727,
+      "barley_high": 44.352941176470594
+    },
+    "120": {
+      "oat": 70.53968253968253,
+      "barley_normal": 44.81818181818181,
+      "barley_high": 43.33333333333334
+    }
+  }
+}

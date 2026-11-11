@@ -1,0 +1,28 @@
+{
+  "originals": {
+    "postexercise.pdf": {
+      "sha256": "a429c1056b9182631393ab61bb155e7971e9ce08a7f493bb10a9dcff673f8d02",
+      "url": "https://cris.maastrichtuniversity.nl/ws/files/1219768/guid-aea863c5-0aab-42d8-94a7-889f59e38628-ASSET1.0.pdf",
+      "bytes": 314256
+    },
+    "resting.pdf": {
+      "sha256": "5c42b1195d8fc9fbae8d5e47108cd6fbf55abbca5ed265e6beb31a9fc332bff3",
+      "url": "https://doi.org/10.1093/ajcn/72.1.96",
+      "bytes": 153128
+    },
+    "pea2021.pdf": {
+      "sha256": "21e533894997445f92f9ff43ab5c68fc0766430f0e358d858647a636fb0bf255",
+      "url": "https://radar.brookes.ac.uk/radar/file/2ec7483e-d97f-4ad0-aa48-11163645204e/1/NUTRALYS%C2%AE%20pea%20protein%20-%202021%20-%20Thondre%20et%20al.pdf",
+      "bytes": 311253
+    }
+  },
+  "target_figure_pixel_sha256": {
+    "64": "4d090d87d657775fa35935346dc22deef56fed17b0cafbb82d4e3446d3558144",
+    "65": "4c071608e988135178dfcb81cd6c1b62a956109daa1fe2a7cfbb0087e933b844"
+  },
+  "inherited_inputs_commit": "7cfccf182014703debec116f26f5ad474799a1e0",
+  "oxford_table_1_and_4": "https://doi.org/10.1371/journal.pone.0340386",
+  "lund_whey_table_1": "https://doi.org/10.1038/ejcn.2013.88",
+  "slope_provenance": "reports/science/2026-11-03-protein-composition/substitution/frozen.json",
+  "earlier_oxford_comparison": "reports/science/2026-11-03-external-protein-references/mixed/challenge.json"
+}

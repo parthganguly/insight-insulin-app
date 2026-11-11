@@ -1,0 +1,42 @@
+{
+  "primary_public_locators": {
+    "thesis": "https://cris.maastrichtuniversity.nl/ws/files/777184/guid-9f242a19-cd77-461e-b12c-d451b47ab051-ASSET1.0",
+    "prepared_reference_study": "https://doi.org/10.1038/sj.ejcn.1602896",
+    "graded_protein": "https://doi.org/10.1017/S0007114507886314",
+    "staggered_drinks": "https://doi.org/10.1016/j.metabol.2007.04.001"
+  },
+  "assets": [
+    {
+      "name": "Claessens thesis",
+      "sha256": "9f4d968b04719be793a8cda23a3aa509fe15bd45102b8f009794e0cc2a8bbecb",
+      "pages_physical": [
+        24,
+        27,
+        45,
+        60,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "url": "https://cris.maastrichtuniversity.nl/ws/files/777184/guid-9f242a19-cd77-461e-b12c-d451b47ab051-ASSET1.0"
+    },
+    {
+      "name": "publisher figure 2",
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0026049507001229-gr2.jpg",
+      "sha256": "1aea6560eff4298488651252d0aa3c79be675d3a025192c082df99a5c0a5eab8"
+    },
+    {
+      "name": "publisher figure 4",
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0026049507001229-gr4.jpg",
+      "sha256": "d8fa6ba18d3413e7d1408a501204a1dea4af323e7d90e93cedff1781c356194e"
+    }
+  ],
+  "frozen_comparators": {
+    "commit": "6262ab91d1e55720e3f75b4a1ca25a48f1afeb3b",
+    "three_reference": "reports/science/2026-11-03-common-control/profiles/frozen.json",
+    "concurrent_response": "reports/science/2026-11-03-common-control/profiles/reading.json",
+    "substitution_slope": "reports/science/2026-11-03-protein-composition/substitution/frozen.json"
+  }
+}

@@ -1,0 +1,596 @@
+{
+  "predictions": {
+    "source_knots": {
+      "pea": [
+        [
+          0,
+          1.0
+        ],
+        [
+          25,
+          1.3855353751187085
+        ],
+        [
+          50,
+          1.4698480531813867
+        ]
+      ],
+      "whey": [
+        [
+          0,
+          1.0
+        ],
+        [
+          4.5,
+          1.3013698630136987
+        ],
+        [
+          9,
+          1.2054794520547947
+        ],
+        [
+          18,
+          1.6438356164383563
+        ]
+      ]
+    },
+    "external_50g_glucose_native_anchor": 3369.6,
+    "relative": {
+      "pea_low": {
+        "source_curve": 1.1542141500474834,
+        "source_line": 1.1060185185185185,
+        "protein_per_carbohydrate": 1.1542141500474834,
+        "donor_constant": 1.4276917141500476,
+        "earlier_pea_constant": 1.2851278094333651,
+        "no_change": 1.0,
+        "constant_fit": 1.237140695348689,
+        "cheap_fit": 1.0801749172575639,
+        "reference_fit": 1.0980770519882843,
+        "ref": 2.5833333333333335,
+        "ref_dose": 1.2533333333333334,
+        "energy": 1.205,
+        "paired_source_blind": 1.1894358421470295
+      },
+      "pea_high": {
+        "source_curve": 1.3084283000949668,
+        "source_line": 1.212037037037037,
+        "protein_per_carbohydrate": 1.3084283000949668,
+        "donor_constant": 1.4276917141500476,
+        "earlier_pea_constant": 1.2851278094333651,
+        "no_change": 1.0,
+        "constant_fit": 1.237140695348689,
+        "cheap_fit": 1.1551900157186976,
+        "reference_fit": 1.1851121899010113,
+        "ref": 2.5833333333333335,
+        "ref_dose": 1.5066666666666668,
+        "energy": 1.401,
+        "paired_source_blind": 1.4322963418283052
+      },
+      "whey_low": {
+        "source_curve": 1.2246575342465755,
+        "source_line": 1.2818003913894325,
+        "protein_per_carbohydrate": 1.2712328767123289,
+        "donor_constant": 1.3835616438356164,
+        "earlier_pea_constant": 1.2851278094333651,
+        "no_change": 1.0,
+        "constant_fit": 1.237140695348689,
+        "cheap_fit": 1.081142254191868,
+        "reference_fit": 1.126476153903564,
+        "ref": 3.0555555555555554,
+        "ref_dose": 1.333,
+        "energy": 1.189,
+        "paired_source_blind": 1.1894358421470295
+      },
+      "whey_high": {
+        "source_curve": 1.5561643835616439,
+        "source_line": 1.5636007827788652,
+        "protein_per_carbohydrate": 1.2246575342465755,
+        "donor_constant": 1.3835616438356164,
+        "earlier_pea_constant": 1.2851278094333651,
+        "no_change": 1.0,
+        "constant_fit": 1.237140695348689,
+        "cheap_fit": 1.157007686202933,
+        "reference_fit": 1.2355166507613622,
+        "ref": 3.0555555555555554,
+        "ref_dose": 1.666,
+        "energy": 1.3780000000000001,
+        "paired_source_blind": 1.4322963418283052
+      }
+    },
+    "native": {
+      "pea_low": {
+        "source_curve": 3889.24,
+        "source_line": 3726.8399999999997,
+        "protein_per_carbohydrate": 3889.24,
+        "donor_constant": 4810.75,
+        "earlier_pea_constant": 4330.366666666667,
+        "no_change": 3369.6,
+        "constant_fit": 4168.669287046942,
+        "cheap_fit": 3639.757401191087,
+        "reference_fit": 3700.0804343797226,
+        "ref": 8704.800000000001,
+        "ref_dose": 4223.232,
+        "energy": 4060.368,
+        "paired_source_blind": 4007.9230136986303
+      },
+      "pea_high": {
+        "source_curve": 4408.88,
+        "source_line": 4084.08,
+        "protein_per_carbohydrate": 4408.88,
+        "donor_constant": 4810.75,
+        "earlier_pea_constant": 4330.366666666667,
+        "no_change": 3369.6,
+        "constant_fit": 4168.669287046942,
+        "cheap_fit": 3892.5282769657233,
+        "reference_fit": 3993.3540350904477,
+        "ref": 8704.800000000001,
+        "ref_dose": 5076.8640000000005,
+        "energy": 4720.8096,
+        "paired_source_blind": 4826.265753424657
+      },
+      "whey_low": {
+        "source_curve": 4126.606027397261,
+        "source_line": 4319.154598825831,
+        "protein_per_carbohydrate": 4283.546301369864,
+        "donor_constant": 4662.049315068493,
+        "earlier_pea_constant": 4330.366666666667,
+        "no_change": 3369.6,
+        "constant_fit": 4168.669287046942,
+        "cheap_fit": 3643.0169397249183,
+        "reference_fit": 3795.774048193449,
+        "ref": 10295.999999999998,
+        "ref_dose": 4491.6768,
+        "energy": 4006.4544,
+        "paired_source_blind": 4007.9230136986303
+      },
+      "whey_high": {
+        "source_curve": 5243.651506849315,
+        "source_line": 5268.709197651664,
+        "protein_per_carbohydrate": 4126.606027397261,
+        "donor_constant": 4662.049315068493,
+        "earlier_pea_constant": 4330.366666666667,
+        "no_change": 3369.6,
+        "constant_fit": 4168.669287046942,
+        "cheap_fit": 3898.653099429403,
+        "reference_fit": 4163.196906405486,
+        "ref": 10295.999999999998,
+        "ref_dose": 5613.7536,
+        "energy": 4643.308800000001,
+        "paired_source_blind": 4826.265753424657
+      }
+    }
+  },
+  "target_native": {
+    "glucose": 3373.4,
+    "pea_low": 4069.7,
+    "pea_high": 4104.9,
+    "whey_low": 4183.3,
+    "whey_high": 6043.07
+  },
+  "target_contrasts": {
+    "whey_pea_low": 1.0279136054254614,
+    "whey_pea_high": 1.4721601013422982,
+    "whey_dose": 1.4445700762555875,
+    "pea_dose": 1.008649286188171,
+    "dose_change_in_source_contrast": 1.432182718053391
+  },
+  "scores": {
+    "source_curve": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0610314682038806,
+        "whey_pea_high": 1.1893386771355345,
+        "whey_dose": 1.2706935123042504,
+        "pea_dose": 1.1336096512429163,
+        "dose_change_in_source_contrast": 1.120926864826029
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.03171039611025151,
+        "whey_pea_high": 0.213333359744308,
+        "whey_dose": 0.12824892810480623,
+        "pea_dose": 0.11679482774975325,
+        "dose_change_in_source_contrast": 0.24504375585455954
+      },
+      "level_log_errors": {
+        "pea_low": 0.04422842598784435,
+        "pea_high": 0.07256640176190879,
+        "whey_low": 0.01251802987759285,
+        "whey_high": 0.14076695798239908
+      },
+      "ratio_level_mae": 0.06751995390243627,
+      "native_errors": {
+        "pea_low": -180.46000000000004,
+        "pea_high": 303.9800000000005,
+        "whey_low": -56.69397260273945,
+        "whey_high": -799.4184931506843
+      },
+      "native_mae": 335.13811643835606,
+      "source_pair_mae": 0.12252187792727975,
+      "dose_pair_mae": 0.12252187792727974
+    },
+    "source_line": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.1589321244877246,
+        "whey_pea_high": 1.2900602333087658,
+        "whey_dose": 1.219847328244275,
+        "pea_dose": 1.0958560066973628,
+        "dose_change_in_source_contrast": 1.1131456329929614
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.11996787669757367,
+        "whey_pea_high": 0.13204186912016327,
+        "whey_dose": 0.1690860420813657,
+        "pea_dose": 0.08292370373637113,
+        "dose_change_in_source_contrast": 0.25200974581773694
+      },
+      "level_log_errors": {
+        "pea_low": 0.0868815021746965,
+        "pea_high": 0.00395779843832535,
+        "whey_low": 0.03308637452287703,
+        "whey_high": 0.13599966755848858
+      },
+      "ratio_level_mae": 0.06498133567359686,
+      "native_errors": {
+        "pea_low": -342.8600000000001,
+        "pea_high": -20.81999999999971,
+        "whey_low": 135.8545988258311,
+        "whey_high": -774.3608023483357
+      },
+      "native_mae": 318.47385029354166,
+      "source_pair_mae": 0.12600487290886847,
+      "dose_pair_mae": 0.12600487290886841
+    },
+    "protein_per_carbohydrate": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.1013838954062654,
+        "whey_pea_high": 0.9359760364077182,
+        "whey_dose": 0.9633620689655173,
+        "pea_dose": 1.1336096512429163,
+        "dose_change_in_source_contrast": 0.8498181608715701
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.06903635372293791,
+        "whey_pea_high": 0.4528961838518905,
+        "whey_dose": 0.4051377098250749,
+        "pea_dose": 0.11679482774975325,
+        "dose_change_in_source_contrast": 0.5219325375748285
+      },
+      "level_log_errors": {
+        "pea_low": 0.04422842598784435,
+        "pea_high": 0.07256640176190879,
+        "whey_low": 0.024807927735093556,
+        "whey_high": 0.3803297820899814
+      },
+      "ratio_level_mae": 0.13048313439370704,
+      "native_errors": {
+        "pea_low": -180.46000000000004,
+        "pea_high": 303.9800000000005,
+        "whey_low": 100.24630136986343,
+        "whey_high": -1916.463972602739
+      },
+      "native_mae": 625.2875684931507,
+      "source_pair_mae": 0.2609662687874142,
+      "dose_pair_mae": 0.2609662687874141
+    },
+    "donor_constant": {
+      "predicted_contrasts": {
+        "whey_pea_low": 0.9690899163474496,
+        "whey_pea_high": 0.9690899163474496,
+        "whey_dose": 1.0,
+        "pea_dose": 1.0,
+        "dose_change_in_source_contrast": 1.0
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.05892900055451871,
+        "whey_pea_high": 0.418128657359243,
+        "whey_dose": 0.3678117522123886,
+        "pea_dose": 0.008612095407664465,
+        "dose_change_in_source_contrast": 0.35919965680472415
+      },
+      "level_log_errors": {
+        "pea_low": 0.1684108053387168,
+        "pea_high": 0.15979870993105214,
+        "whey_low": 0.10948180478419789,
+        "whey_high": 0.2583299474281906
+      },
+      "ratio_level_mae": 0.17400531687053936,
+      "native_errors": {
+        "pea_low": 741.0500000000002,
+        "pea_high": 705.8500000000004,
+        "whey_low": 478.74931506849316,
+        "whey_high": -1381.0206849315064
+      },
+      "native_mae": 826.6675,
+      "source_pair_mae": 0.23852882895688085,
+      "dose_pair_mae": 0.18821192381002652
+    },
+    "earlier_pea_constant": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0,
+        "whey_pea_high": 1.0,
+        "whey_dose": 1.0,
+        "pea_dose": 1.0,
+        "dose_change_in_source_contrast": 1.0
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.027531122086375013,
+        "whey_pea_high": 0.3867307788910992,
+        "whey_dose": 0.3678117522123886,
+        "pea_dose": 0.008612095407664465,
+        "dose_change_in_source_contrast": 0.35919965680472415
+      },
+      "level_log_errors": {
+        "pea_low": 0.06321002717287035,
+        "pea_high": 0.054597931765205866,
+        "whey_low": 0.03567890508649546,
+        "whey_high": 0.33213284712589325
+      },
+      "ratio_level_mae": 0.12140492778761623,
+      "native_errors": {
+        "pea_low": 260.66666666666697,
+        "pea_high": 225.46666666666715,
+        "whey_low": 147.0666666666666,
+        "whey_high": -1712.703333333333
+      },
+      "native_mae": 586.4758333333334,
+      "source_pair_mae": 0.20713095048873711,
+      "dose_pair_mae": 0.18821192381002652
+    },
+    "no_change": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0,
+        "whey_pea_high": 1.0,
+        "whey_dose": 1.0,
+        "pea_dose": 1.0,
+        "dose_change_in_source_contrast": 1.0
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.027531122086375013,
+        "whey_pea_high": 0.3867307788910992,
+        "whey_dose": 0.3678117522123886,
+        "pea_dose": 0.008612095407664465,
+        "dose_change_in_source_contrast": 0.35919965680472415
+      },
+      "level_log_errors": {
+        "pea_low": 0.18764814882229527,
+        "pea_high": 0.1962602442299599,
+        "whey_low": 0.21517927090867037,
+        "whey_high": 0.582991023121059
+      },
+      "ratio_level_mae": 0.29551967177049615,
+      "native_errors": {
+        "pea_low": -700.0999999999999,
+        "pea_high": -735.2999999999997,
+        "whey_low": -813.7000000000003,
+        "whey_high": -2673.47
+      },
+      "native_mae": 1230.6425,
+      "source_pair_mae": 0.20713095048873711,
+      "dose_pair_mae": 0.18821192381002652
+    },
+    "constant_fit": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0,
+        "whey_pea_high": 1.0,
+        "whey_dose": 1.0,
+        "pea_dose": 1.0,
+        "dose_change_in_source_contrast": 1.0
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.027531122086375013,
+        "whey_pea_high": 0.3867307788910992,
+        "whey_dose": 0.3678117522123886,
+        "pea_dose": 0.008612095407664465,
+        "dose_change_in_source_contrast": 0.35919965680472415
+      },
+      "level_log_errors": {
+        "pea_low": 0.02515467728652746,
+        "pea_high": 0.016542581878862928,
+        "whey_low": 0.002376444799847574,
+        "whey_high": 0.37018819701223626
+      },
+      "ratio_level_mae": 0.10356547524436856,
+      "native_errors": {
+        "pea_low": 98.96928704694255,
+        "pea_high": 63.769287046942736,
+        "whey_low": -14.63071295305781,
+        "whey_high": -1874.4007129530573
+      },
+      "native_mae": 512.9425000000001,
+      "source_pair_mae": 0.20713095048873711,
+      "dose_pair_mae": 0.18821192381002652
+    },
+    "cheap_fit": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0008955373049766,
+        "whey_pea_high": 1.0015734818164133,
+        "whey_dose": 1.0701715539439098,
+        "pea_dose": 1.0694471768068714,
+        "dose_change_in_source_contrast": 1.0006773379300522
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.026635985535688186,
+        "whey_pea_high": 0.38515853370016395,
+        "whey_dose": 0.29999278580148037,
+        "pea_dose": 0.05852976236299549,
+        "dose_change_in_source_contrast": 0.3585225481644757
+      },
+      "level_log_errors": {
+        "pea_low": 0.1105251603766702,
+        "pea_high": 0.051995398013674705,
+        "whey_low": 0.13716114591235853,
+        "whey_high": 0.43715393171383876
+      },
+      "ratio_level_mae": 0.18420890900413556,
+      "native_errors": {
+        "pea_low": -429.94259880891286,
+        "pea_high": -212.37172303427633,
+        "whey_low": -540.2830602750819,
+        "whey_high": -2144.4169005705967
+      },
+      "native_mae": 831.7535706722169,
+      "source_pair_mae": 0.20589725961792607,
+      "dose_pair_mae": 0.17926127408223794
+    },
+    "reference_fit": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0258625766414637,
+        "whey_pea_high": 1.0425313833490828,
+        "whey_dose": 1.0967978740428206,
+        "pea_dose": 1.079261412261674,
+        "dose_change_in_source_contrast": 1.0162485766487266
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.0019973252039394984,
+        "whey_pea_high": 0.34507900072142,
+        "whey_dose": 0.2754168412754143,
+        "pea_dose": 0.06766483424206642,
+        "dose_change_in_source_contrast": 0.3430816755174806
+      },
+      "level_log_errors": {
+        "pea_low": 0.0940876333443782,
+        "pea_high": 0.02642279910231194,
+        "whey_low": 0.09608495854831775,
+        "whey_high": 0.371501799823732
+      },
+      "ratio_level_mae": 0.14702429770468498,
+      "native_errors": {
+        "pea_low": -369.61956562027717,
+        "pea_high": -111.54596490955191,
+        "whey_low": -387.52595180655135,
+        "whey_high": -1879.873093594514
+      },
+      "native_mae": 687.1411439827236,
+      "source_pair_mae": 0.17353816296267977,
+      "dose_pair_mae": 0.17154083775874038
+    },
+    "ref": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.182795698924731,
+        "whey_pea_high": 1.182795698924731,
+        "whey_dose": 1.0,
+        "pea_dose": 1.0,
+        "dose_change_in_source_contrast": 1.0
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.14034975055278529,
+        "whey_pea_high": 0.21884990625193898,
+        "whey_dose": 0.3678117522123886,
+        "pea_dose": 0.008612095407664465,
+        "dose_change_in_source_contrast": 0.35919965680472415
+      },
+      "level_log_errors": {
+        "pea_low": 0.7614324058748507,
+        "pea_high": 0.7528203104671861,
+        "whey_low": 0.9017821564276358,
+        "whey_high": 0.5339704042152472
+      },
+      "ratio_level_mae": 0.73750131924623,
+      "native_errors": {
+        "pea_low": 4635.100000000001,
+        "pea_high": 4599.9000000000015,
+        "whey_low": 6112.699999999998,
+        "whey_high": 4252.9299999999985
+      },
+      "native_mae": 4900.157499999999,
+      "source_pair_mae": 0.17959982840236213,
+      "dose_pair_mae": 0.18821192381002652
+    },
+    "ref_dose": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0635638297872338,
+        "whey_pea_high": 1.1057522123893804,
+        "whey_dose": 1.2498124531132784,
+        "pea_dose": 1.202127659574468,
+        "dose_change_in_source_contrast": 1.0396669963951166
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.034094250376502926,
+        "whey_pea_high": 0.2862049403224784,
+        "whey_dose": 0.1448182496643093,
+        "pea_dose": 0.1754809410346722,
+        "dose_change_in_source_contrast": 0.3202991906989814
+      },
+      "level_log_errors": {
+        "pea_low": 0.0381585199113982,
+        "pea_high": 0.21363946094607025,
+        "whey_low": 0.0722527702879012,
+        "whey_high": 0.07256547937640806
+      },
+      "ratio_level_mae": 0.09915405763044442,
+      "native_errors": {
+        "pea_low": 153.53200000000015,
+        "pea_high": 971.9640000000009,
+        "whey_low": 308.3768,
+        "whey_high": -429.3163999999997
+      },
+      "native_mae": 465.7973000000002,
+      "source_pair_mae": 0.16014959534949066,
+      "dose_pair_mae": 0.16014959534949075
+    },
+    "energy": {
+      "predicted_contrasts": {
+        "whey_pea_low": 0.9867219917012447,
+        "whey_pea_high": 0.9835831548893648,
+        "whey_dose": 1.1589571068124476,
+        "pea_dose": 1.162655601659751,
+        "dose_change_in_source_contrast": 0.9968189248458239
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.04089807132034856,
+        "whey_pea_high": 0.4032838736545022,
+        "whey_dose": 0.22029119732956642,
+        "pea_dose": 0.14209460500458712,
+        "dose_change_in_source_contrast": 0.36238580233415363
+      },
+      "level_log_errors": {
+        "pea_low": 0.0011685818796768868,
+        "pea_high": 0.14092602312490995,
+        "whey_low": 0.042066653200025596,
+        "whey_high": 0.262357850529592
+      },
+      "ratio_level_mae": 0.1116297771835511,
+      "native_errors": {
+        "pea_low": -9.33199999999988,
+        "pea_high": 615.9096,
+        "whey_low": -176.8456000000001,
+        "whey_high": -1399.761199999999
+      },
+      "native_mae": 550.4620999999997,
+      "source_pair_mae": 0.22209097248742538,
+      "dose_pair_mae": 0.18119290116707676
+    },
+    "paired_source_blind": {
+      "predicted_contrasts": {
+        "whey_pea_low": 1.0,
+        "whey_pea_high": 1.0,
+        "whey_dose": 1.204181252216927,
+        "pea_dose": 1.204181252216927,
+        "dose_change_in_source_contrast": 1.0
+      },
+      "contrast_errors": {
+        "whey_pea_low": 0.027531122086375013,
+        "whey_pea_high": 0.3867307788910992,
+        "whey_dose": 0.1820118749476141,
+        "pea_dose": 0.17718778185711018,
+        "dose_change_in_source_contrast": 0.35919965680472415
+      },
+      "level_log_errors": {
+        "pea_low": 0.01416903634075432,
+        "pea_high": 0.16301874551635573,
+        "whey_low": 0.041700158427129416,
+        "whey_high": 0.22371203337474338
+      },
+      "ratio_level_mae": 0.11064999341474571,
+      "native_errors": {
+        "pea_low": -61.77698630136956,
+        "pea_high": 721.3657534246577,
+        "whey_low": -175.37698630136993,
+        "whey_high": -1216.8042465753424
+      },
+      "native_mae": 543.8309931506849,
+      "source_pair_mae": 0.20713095048873711,
+      "dose_pair_mae": 0.17959982840236213
+    }
+  },
+  "primary_joint_improvement_vs_prior_named": true
+}

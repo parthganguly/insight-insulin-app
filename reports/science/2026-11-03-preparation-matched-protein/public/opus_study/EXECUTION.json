@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-03T05:00:32.741087+00:00",
+  "python": "3.13.12",
+  "platform": "Windows",
+  "commands": [
+    "python -I -X utf8 digitize.py <local thesis PDF>",
+    "python -I -X utf8 bridge.py",
+    "python -I -X utf8 bridge.py --check"
+  ],
+  "sha256": {
+    "SPEC.md": "ee20d492d055bba26b2fcb6cf79182a33b2d0d583127d32b02be61813b6c603b",
+    "bridge.py": "2474731c232ea86a0ff0e45710cfffbba2f61e59d9c1946157b3c8f68c7e27b0",
+    "digitize.py": "442a9ed23d9fa2f497aa6d6a9a1aa15867ba79cbe5e4fdc7e29374aaf3ee803b",
+    "readings_vector.json": "0c80987e816a2870692bf912645c1f22440325a9f490f833f00fb70e4225bf04",
+    "readings.json": "38e08d3929c5bf2bf9acbe0a176a154d96bcf2e3656c4572cd8178a95efbc6fe",
+    "RESULTS.json": "af0e20f05ae1ccc4f9d5c4cbdd3410a7c4ef813bfae030b3e8806a8a317ef6db"
+  },
+  "frozen_files_match_receipt": true,
+  "note": "digitize.py was written after the freeze and revised twice before scoring (missing whey gridline handling; SEM whisker selection excluding a significance bracket). Readings were fixed before bridge.py was run."
+}

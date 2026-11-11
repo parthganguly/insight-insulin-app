@@ -1,0 +1,86 @@
+{
+  "HAW-R/LAW-R": {
+    "our_envelope": [
+      0.38209982788296043,
+      1.0980689132904204
+    ],
+    "verifier_envelope": [
+      0.3736559139784946,
+      1.094544095665172
+    ],
+    "checks": {
+      "available": {
+        "prediction": 0.6839080459770114,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      },
+      "empirical_barley_power:joint:available": {
+        "prediction": 0.34160505926205514,
+        "inside_our_envelope": false,
+        "inside_Sol_envelope": false
+      },
+      "empirical_barley_power:joint:total": {
+        "prediction": 0.40441641732251044,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      },
+      "empirical_barley_theta:joint:available": {
+        "prediction": 0.37405151609154413,
+        "inside_our_envelope": false,
+        "inside_Sol_envelope": true
+      },
+      "empirical_barley_theta:joint:total": {
+        "prediction": 0.44282884556387697,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      },
+      "total": {
+        "prediction": 0.8096590909090909,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      }
+    }
+  },
+  "HAW-W/LAW-W": {
+    "our_envelope": [
+      0.3780487804878049,
+      1.2548932384341638
+    ],
+    "verifier_envelope": [
+      0.38033843674456086,
+      1.2678176184152279
+    ],
+    "checks": {
+      "available": {
+        "prediction": 0.6278195488721804,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      },
+      "empirical_barley_power:joint:available": {
+        "prediction": 0.31358942983625443,
+        "inside_our_envelope": false,
+        "inside_Sol_envelope": false
+      },
+      "empirical_barley_power:joint:total": {
+        "prediction": 0.3695110050297685,
+        "inside_our_envelope": false,
+        "inside_Sol_envelope": false
+      },
+      "empirical_barley_theta:joint:available": {
+        "prediction": 0.3433748958927178,
+        "inside_our_envelope": false,
+        "inside_Sol_envelope": false
+      },
+      "empirical_barley_theta:joint:total": {
+        "prediction": 0.40460803461890626,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      },
+      "total": {
+        "prediction": 0.7397769516728624,
+        "inside_our_envelope": true,
+        "inside_Sol_envelope": true
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "originals": {
+    "collier.pdf": {
+      "sha256": "615cd29b4ae7bd2960cb77de36a11a4d92e2519523c3842f7efd6082ea5784a2",
+      "url": "https://link.springer.com/content/pdf/10.1007/BF00252263.pdf"
+    },
+    "wei.xml": {
+      "sha256": "0ab2efea8259c4d5d45e9bbae2d64b5ba1e23395f60e482b146f635d92ca2a3b",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13029171/fullTextXML"
+    },
+    "zhao.xml": {
+      "sha256": "f95825d11b9f92ab63652cc72816fc1d58398110819aae9095ba8d7bbea27368",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7551673/fullTextXML"
+    },
+    "zhao_fig.jpg": {
+      "sha256": "9bf6c606c729b64aa201a29e9d0987cf191558d7879e4cfcb97b836c0daae8a6",
+      "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC7551673.1/nutrients-12-02759-g001.jpg"
+    },
+    "schafer_fig.jpg": {
+      "sha256": "989a8af21b3b1cb48f563a640ee4e697c37a1f257ffa97ecc488eca5b25a3ece",
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916522032634-gr2.jpg"
+    },
+    "bmjcred00240-0009.png": {
+      "sha256": "38d39d7ff8a7c4d2f9e4e3908ba51687f4c070e91456b1982d1e0401599e5f16",
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/88fc/1340630/a82c9dc689f5/bmjcred00240-0009.png"
+    },
+    "bmjcred00240-0010.png": {
+      "sha256": "d79b40d3566c79fb2c6e8c22ef254c43f911e7c1196835b7902a28ce5196fc0a",
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/88fc/1340630/22e04d1f757e/bmjcred00240-0010.png"
+    }
+  },
+  "source_notes": {
+    "Lan-Pidhainy": "Indexed original author thesis, Chapter 5, Tables 5.1, 5.3 and 5.5. No primary PDF-byte replay included. See sol/lan2011.md.",
+    "Collier": "Original publisher PDF recovered through Google's public document viewer. Coordinates were manually read and independently checked; chart replay recalculates areas.",
+    "Schafer": "Scored only as a supporting other-pulse analysis. Table 1 from original journal; archived full-text extraction is retained locally. 120-minute absolute bar heights are approximate.",
+    "Zhao": "Microwave times mapped to analogous cooking intensity; Figure 1 bar ratios normalized within duration. No insulin measured in this source.",
+    "Wei": "NCT study identifier is not used in analysis. Table 9 window linked to the insulin-specific sampling schedule. Table 1 and Table 5 give different biochemical quantities."
+  }
+}

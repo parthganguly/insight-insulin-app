@@ -1,0 +1,120 @@
+{
+  "source": {
+    "pmid": "11015482",
+    "doi": "10.1093/jn/130.10.2508",
+    "url": "https://cris.maastrichtuniversity.nl/ws/files/1219768/guid-aea863c5-0aab-42d8-94a7-889f59e38628-ASSET1.0.pdf",
+    "figure": "2",
+    "page": 2511
+  },
+  "method": "Independent visual marker-centre readings from publisher Figure 2; approximate, not participant data. Error envelope +/-10 pmol/L at each marker including baseline; no sampling CI inferred.",
+  "time_min": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180
+  ],
+  "insulin_pmol_L": {
+    "control": [
+      23,
+      170,
+      200,
+      275,
+      330,
+      405,
+      405
+    ],
+    "wheat_low": [
+      23,
+      190,
+      235,
+      260,
+      310,
+      390,
+      310
+    ],
+    "wheat_high": [
+      23,
+      170,
+      235,
+      280,
+      290,
+      395,
+      400
+    ],
+    "mixture_low": [
+      23,
+      255,
+      290,
+      430,
+      450,
+      500,
+      450
+    ],
+    "mixture_high": [
+      23,
+      230,
+      450,
+      530,
+      590,
+      735,
+      695
+    ]
+  },
+  "reading_error_pmol_L": 10,
+  "prepared_g_L": {
+    "glucose": 68.5,
+    "maltodextrin": 102.8,
+    "wheat_low": {
+      "wheat": 28.6
+    },
+    "wheat_high": {
+      "wheat": 57.1
+    },
+    "mixture_low": {
+      "wheat": 14.3,
+      "free_leucine": 7.1,
+      "free_phenylalanine": 7.1
+    },
+    "mixture_high": {
+      "wheat": 28.6,
+      "free_leucine": 14.2,
+      "free_phenylalanine": 14.2
+    }
+  },
+  "protocol": {
+    "n": 8,
+    "state": "post-glycogen-depletion trained male cyclists",
+    "bolus_ml_kg": 3.5,
+    "bolus_times_min": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150
+    ],
+    "carbohydrate_g_kg_h": 1.2,
+    "nitrogen_source_g_kg_h": [
+      0,
+      0.2,
+      0.4,
+      0.2,
+      0.4
+    ]
+  },
+  "published_native": {
+    "window_min": 180,
+    "baseline": "t=0",
+    "endpoint": "area above baseline",
+    "mixture_low_increase_pct": 52,
+    "mixture_low_SEM_pct": 10,
+    "mixture_high_increase_pct": 107,
+    "mixture_high_SEM_pct": 17,
+    "high_vs_low_increase_pct": 36,
+    "high_vs_low_SEM_pct": 6
+  },
+  "correction": "Cross-review of marker identities: initial high-wheat30=225 was overlapping blend-high circle, corrected170;120min low/high wheat squares initially swapped, corrected310/290. Other independent readings preserved. No averaging or fit-to-outcome."
+}

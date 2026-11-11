@@ -1,0 +1,239 @@
+{
+  "status": "posthoc process transfer, NOT fresh validation",
+  "source": "10.3390/nu12092759 Fig1, Table2; local originalXML+JPG inspected",
+  "own_pixel_heights_RDS_SDS_RS": {
+    "hard": [
+      53,
+      63,
+      217
+    ],
+    "soft": [
+      147,
+      57,
+      128
+    ]
+  },
+  "normalized_external_fractions": {
+    "hard": [
+      0.15915915915915915,
+      0.1891891891891892,
+      0.6516516516516516
+    ],
+    "soft": [
+      0.4427710843373494,
+      0.1716867469879518,
+      0.3855421686746988
+    ]
+  },
+  "approx_SDI_right_axis_percent": {
+    "hard": 16,
+    "soft": 44.5
+  },
+  "observed_Wei_insulin_ratios": {
+    "hard": 0.6250861178091629,
+    "soft": 0.9315794006200482
+  },
+  "methods": {
+    "external_Zhao_RDS_background0": {
+      "ratios": {
+        "hard": 0.7475888067988391,
+        "soft": 0.8917871304999226
+      },
+      "mean_abs_log_vs_rice": 0.11130881966237322,
+      "pred_hard_soft": 0.8383040988489617,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.22261763932474635
+    },
+    "external_Zhao_RDS_background10": {
+      "ratios": {
+        "hard": 0.8185533399384702,
+        "soft": 0.9222108041349217
+      },
+      "mean_abs_log_vs_rice": 0.13987836224357855,
+      "pred_hard_soft": 0.8875989483839466,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.27975672448715705
+    },
+    "external_Zhao_RDSplusSDS_background0": {
+      "ratios": {
+        "hard": 0.7386064458736762,
+        "soft": 0.7935625194162139
+      },
+      "mean_abs_log_vs_rice": 0.16361245021585297,
+      "pred_hard_soft": 0.9307476447060954,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.327224900431706
+    },
+    "external_Zhao_RDSplusSDS_background10": {
+      "ratios": {
+        "hard": 0.7744388745725573,
+        "soft": 0.8218614433453799
+      },
+      "mean_abs_log_vs_rice": 0.16977945553088064,
+      "pred_hard_soft": 0.9422985843212337,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.33955891106176106
+    },
+    "local_Wei_RDS_background0": {
+      "ratios": {
+        "hard": 0.7144595879952943,
+        "soft": 1.012911128632575
+      },
+      "mean_abs_log_vs_rice": 0.10866967539495148,
+      "pred_hard_soft": 0.705352688700154,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.04993466359533352
+    },
+    "local_Wei_RDS_background10": {
+      "ratios": {
+        "hard": 0.7947382863106377,
+        "soft": 1.0092812095148986
+      },
+      "mean_abs_log_vs_rice": 0.16011784444946692,
+      "pred_hard_soft": 0.7874299836540314,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.16001117531683667
+    },
+    "local_Wei_RDSplusSDS_background0": {
+      "ratios": {
+        "hard": 0.6931008145021802,
+        "soft": 0.8331191913184159
+      },
+      "mean_abs_log_vs_rice": 0.10749537126566243,
+      "pred_hard_soft": 0.8319347600255662,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.21499074253132472
+    },
+    "local_Wei_RDSplusSDS_background10": {
+      "ratios": {
+        "hard": 0.7351712596547062,
+        "soft": 0.855995595819977
+      },
+      "mean_abs_log_vs_rice": 0.12341512227159089,
+      "pred_hard_soft": 0.8588493483432815,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.24683024454318184
+    },
+    "total_starch": {
+      "ratios": {
+        "hard": 0.8537708693149108,
+        "soft": 0.8537708693149108
+      },
+      "mean_abs_log_vs_rice": 0.1994959985987785,
+      "pred_hard_soft": 1.0,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.3989919971975569
+    },
+    "equality": {
+      "ratios": {
+        "hard": 1,
+        "soft": 1
+      },
+      "mean_abs_log_vs_rice": 0.27036985164425914,
+      "pred_hard_soft": 1.0,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.3989919971975569
+    },
+    "posthoc_process_limit": {
+      "ratios": {
+        "hard": 0.6666666666666666,
+        "soft": 1
+      },
+      "mean_abs_log_vs_rice": 0.06763729759017695,
+      "pred_hard_soft": 0.6666666666666666,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.006473110910607636
+    },
+    "Zhao_glucose_log_transfer_no_scaling": {
+      "ratios": {
+        "hard": 0.9266493055555556,
+        "soft": 0.9952256944444444
+      },
+      "mean_abs_log_vs_rice": 0.22988693408879202,
+      "pred_hard_soft": 0.9310946358482338,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.32759764000237734
+    },
+    "Zhao_glucose_additive_transfer_no_scaling": {
+      "ratios": {
+        "hard": 0.9266493055555556,
+        "soft": 0.9952256944444444
+      },
+      "mean_abs_log_vs_rice": 0.22988693408879202,
+      "pred_hard_soft": 0.9310946358482338,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.32759764000237734
+    },
+    "Zhao_glucose_log_transfer_Wei_whole_meal_fraction": {
+      "ratios": {
+        "hard": 0.9285752014646864,
+        "soft": 0.9953555091467687
+      },
+      "mean_abs_log_vs_rice": 0.23099024211441263,
+      "pred_hard_soft": 0.9329080845301924,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.3295433981649294
+    },
+    "Zhao_glucose_additive_transfer_Wei_whole_meal_fraction": {
+      "ratios": {
+        "hard": 0.928648381085488,
+        "soft": 0.9953558117866294
+      },
+      "mean_abs_log_vs_rice": 0.23102979683888666,
+      "pred_hard_soft": 0.932981321944156,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.329621899509915
+    },
+    "Zhao_glucose_log_transfer_Wei_staple_fraction": {
+      "ratios": {
+        "hard": 0.9188388264472114,
+        "soft": 0.9946966250809275
+      },
+      "mean_abs_log_vs_rice": 0.22538883213818459,
+      "pred_hard_soft": 0.9237377540840209,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.3196649336473575
+    },
+    "Zhao_glucose_additive_transfer_Wei_staple_fraction": {
+      "ratios": {
+        "hard": 0.9184992283950617,
+        "soft": 0.9946952160493827
+      },
+      "mean_abs_log_vs_rice": 0.22520329230726077,
+      "pred_hard_soft": 0.9233976534471056,
+      "observed_hard_soft": 0.6709960711809568,
+      "abs_log_hard_soft": 0.3192966870755338
+    }
+  },
+  "Zhao_concurrent_glucose_ratios": {
+    "hard": 0.9266493055555556,
+    "soft": 0.9952256944444444
+  },
+  "standalone_GI": {
+    "MP": 56.2,
+    "HP": 82.9,
+    "MP_HP": 0.6779252110977081,
+    "observed_Wei_insulin_hard_soft": 0.6709960711809568,
+    "contrast_abs_log_error": 0.01027369195595297,
+    "caution": "25gAC standalone glucose-relativeGI; no same-dose riceGI supplied here; cannot useGI/100 as potato/riceinsulin ratio"
+  },
+  "external_RDS_reading_sensitivity": {
+    "barheight_delta_px": 2,
+    "MALE_min": 0.10646355891355117,
+    "MALE_max": 0.11615373484888634,
+    "contrast_error_min": 0.21292711782710222,
+    "contrast_error_max": 0.2323074696977726,
+    "note": "rectangular barheight corner check; NOT samplingCI; axiszero and scaling assumed fixed"
+  },
+  "cautions": [
+    "duration2min mapped hard,6min soft on physical direction; article Results reverses HP/MP order in one sentence",
+    "Zhao microwave1cmcubes+30gwater versusWei pressurecooker.75cmslices30seconds vs20min; process mismatch",
+    "leftFig1axis label g/100gstarch inconsistent with bars summingabout16.2; normalize eachtriplet; SDI independently consistent",
+    "external potato fraction transfer retains currentWei rice assay; not entirely historicalmeasurementfree",
+    "+10g background assumption not assay of digestibility",
+    "glucoseiAUC to insulin endpoint transfer posthoc, not insulinvalidation",
+    "Table2 concurrent0\u2013120n17 ratios; excludepreload/HG arms",
+    "ZhaoHPandMPconcurrentTable2samelettera: no significantdifference established",
+    "GIstudy25gACreferences, mixedstudy50gACreference; keepdistinct"
+  ]
+}

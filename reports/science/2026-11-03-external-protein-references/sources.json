@@ -1,0 +1,44 @@
+{
+  "assets": {
+    "Thondre.xml": {
+      "url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0340386&type=manuscript",
+      "size": 125531,
+      "sha256": "29b73ee4be886dc2d02754bfd0b67e7971b1e6a22b2bc0bb27c2c720103bec3c"
+    },
+    "forest.pdf": {
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0022316624003924-mmc5.pdf",
+      "size": 347972,
+      "sha256": "f382957ab46e43caeaf9c6d6e7bdfa683e90fd3ae014961a4e786800d23ab5fa"
+    },
+    "acheson-fig4_lrg.jpg": {
+      "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916523022207-gr4_lrg.jpg",
+      "size": 34275,
+      "sha256": "bbb0d53567cc01b9aabeb17ec5ba38107509e5c6c6a2ce410380d8b7e2b1a942"
+    },
+    "moro-fig4.jpg": {
+      "url": "https://cdn.ncbi.nlm.nih.gov/pmc/blobs/ac8c/7443767/9f4c7c1b4183/nxz053fig4.jpg",
+      "size": 243465,
+      "sha256": "a0cf12f6deeb90e3cc674224cfda8caeb33633ad5e5bc5fcd24a8c306306a573"
+    }
+  },
+  "publications": {
+    "Maastricht mixed hydrolysates": "https://doi.org/10.1038/sj.ejcn.1602896",
+    "Maastricht graded protein": "https://doi.org/10.1017/S0007114507886314",
+    "Acheson": "https://doi.org/10.3945/ajcn.110.005850",
+    "Acheson author-uploaded full text": "https://www.researchgate.net/publication/49748957_Protein_choices_targeting_thermogenesis_and_metabolism",
+    "Power": "https://doi.org/10.1007/s00726-008-0156-0",
+    "Power author-uploaded full text": "https://www.researchgate.net/publication/23148702_Human_Insulinotropic_Response_to_Oral_Ingestion_of_Native_and_Hydrolysed_Whey_Protein",
+    "Moro": "https://doi.org/10.1093/jn/nxz053",
+    "Morifuji": "https://doi.org/10.1021/jf101912n",
+    "Oxford": "https://doi.org/10.1371/journal.pone.0340386",
+    "Wolever": "https://doi.org/10.1016/j.tjnut.2024.07.011"
+  },
+  "inherited_public_commit": "c5aa4259f732f1e29a819e8108b5b54e2360cba6",
+  "inherited_inputs": {
+    "profiles": "2026-11-03-common-control/profiles/target_profiles.csv",
+    "means": "2026-11-03-common-control/profiles/reading.json",
+    "forest": "2026-11-02-protein-source-transfer/transfer/comparisons.csv",
+    "legacy_holdout_forecasts": "2026-11-02-protein-source-transfer/transfer/RESULTS.json",
+    "graded": "2026-11-03-preparation-matched-protein/public/opus_study/readings.json"
+  }
+}

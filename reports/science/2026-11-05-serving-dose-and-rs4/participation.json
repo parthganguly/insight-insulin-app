@@ -1,0 +1,26 @@
+[
+  {
+    "task": "research",
+    "route": "installed Claude Code",
+    "requested_alias": "claude-opus-5-5",
+    "assistant_returned_models": [
+      "claude-opus-5-5"
+    ],
+    "tool_calls": 13,
+    "exit_code": 0,
+    "timed_out": false,
+    "process_exited": true
+  },
+  {
+    "task": "correction",
+    "route": "installed Claude Code",
+    "requested_alias": "claude-opus-5-5",
+    "assistant_returned_models": [
+      "claude-opus-5-5"
+    ],
+    "tool_calls": 31,
+    "exit_code": 0,
+    "timed_out": false,
+    "process_exited": true
+  }
+]

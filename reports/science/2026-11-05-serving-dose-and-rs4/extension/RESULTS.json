@@ -1,0 +1,628 @@
+{
+  "plans": [
+    "../EXTENSION_PLAN.md",
+    "../NATIVE_PLAN.md"
+  ],
+  "frozen_primary_files_sha256": {
+    "inputs.json": "1d496868296964ce951650b595d8f25427c7df6499498f68017c8d944e71d1df",
+    "outcomes.json": "5423ee95208b1a5afceaba017831a1047358e680a5a686bcede163e53ab09320",
+    "FORECASTS.json": "f6c7486cb0549eaceaaab0e863739feb21bd2a6cbc179c6a5dae5b4244f83b8e",
+    "FREEZE_RECEIPT.json": "dd082f3d2f15881068a007eed30c2e8cd760ad44332575497282043753812e58",
+    "RESULTS.json": "ec22e6c9d4189ec61cabc5d5ad3512c5e1832b3239e12fbf982913804c8009ec",
+    "RESULT.md": "d972c9390c267aeaace685b9a8925b7ee2f44abc23df7087bf9277ff2e015f13",
+    "rs_transfer.py": "065897dfb2601d6601762c47dd59616ffa401d1e6a3c48bc85b5b0d6899328e9"
+  },
+  "facts_sha256": "ebcd00707b4e20665c58dba6855d34f031e7e32fd5f957b03f4d19912261a5a8",
+  "params": {
+    "potato_trained": {
+      "training": "Gourineni 2020 Table 1 + Table 4 venous insulin iAUC 0-120 (two control contrasts, equal weight)",
+      "status": "outcome-informed model development (target outcomes were used); not validated",
+      "log_residuals": {
+        "medium": -0.3722941804356555,
+        "high": -0.4337438327747751
+      },
+      "fiber_density_differences": {
+        "medium": 0.5413253037024752,
+        "high": 0.7952318100653014
+      },
+      "log_generic": -0.4030190066052153,
+      "generic_factor": 0.6682993971000414,
+      "density_slope": -0.5904942487458439,
+      "training_fit_residuals": {
+        "medium": -0.05264470189874659,
+        "high": 0.03583597748853268
+      },
+      "training_density_support_max": 0.7952318100653014
+    },
+    "wheat_trained": {
+      "source": "../opus/FORECASTS.json (frozen 2026-11-05T04:14:06Z)",
+      "generic_factor": 0.4177894496460379,
+      "density_slope": -2.967444119963265,
+      "training_density_support_max": 0.29411764705882354,
+      "donor_log_se_ratio": {
+        "rho_plus1": 0.13693969472552203,
+        "rho_0": 0.2959139904657177,
+        "rho_minus1": 0.3954462030607584
+      }
+    }
+  },
+  "extension": {
+    "du_baked_bars": {
+      "status": "UNAVAILABLE",
+      "reason": "no numeric arm insulin data admitted; only an abstract statement of no significant difference. No verdict is computed.",
+      "verdict": null
+    },
+    "stewart_cookie": {
+      "exposure": "Table 3 numbers were read (by the coordinator and by this implementation) before this run; the cookie is exposed, not untouched validation",
+      "serving_dose_fibre_ingredient_kept_separate": {
+        "serving_g": [
+          47.02,
+          48.0
+        ],
+        "reported_dietary_fiber_g": [
+          0.55,
+          24.13
+        ],
+        "ingredient_VERSAFIBE1490_g": [
+          0,
+          25
+        ],
+        "ingredient_nominal_TDF_g_at_90pct": [
+          0,
+          22.5
+        ],
+        "available_cho_g": [
+          36.28,
+          12.71
+        ],
+        "total_cho_g": [
+          36.84,
+          36.84
+        ]
+      },
+      "fiber_density_difference": 1.8833452463876985,
+      "support": {
+        "potato_training_max": 0.7952318100653014,
+        "multiple_of_potato": 2.3682971714034493,
+        "wheat_donor": 0.29411764705882354,
+        "multiple_of_wheat": 6.403373837718175,
+        "extrapolated": true
+      },
+      "predicted_ratio": {
+        "equality": 1.0,
+        "available_cho": 0.35033076074972436,
+        "wheat_generic": 0.14636449572770513,
+        "potato_generic": 0.23412583619463964,
+        "wheat_graded": 0.001310168770925804,
+        "potato_graded": 0.1152119185495593
+      },
+      "observed_ratio": 0.5414847161572053,
+      "observed": {
+        "operator": "trapezoidal approximation including only positive area components above baseline (explicit; cites Wolever 2004); fasting sample as baseline; post-meal samples 15,30,45,60,90,120 min after consumption",
+        "matrix": "intravenous serum; Life Labs (Hamilton, ON, Canada); assay platform not stated",
+        "stat": "mean +/- SD",
+        "n": {
+          "control": 27,
+          "fiber": 25
+        },
+        "cv_of_mean": {
+          "control": 0.10420878221181017,
+          "fiber": 0.15161290322580645
+        },
+        "marginal_log_se_ratio_scenarios": {
+          "rho_plus1": 0.047404121013996284,
+          "rho_0": 0.1839726683902428,
+          "rho_minus1": 0.25582168543761663
+        },
+        "caution": "unequal n (27/25) with crossover attrition; paired covariance and the paired subset are not reported; SD suggests skew (analysis was on square-root scale); arithmetic means used"
+      },
+      "abs_log_error_primary": {
+        "equality": 0.6134404379492028,
+        "available_cho": 0.43543710209637054,
+        "wheat_generic": 1.3082147844385072,
+        "potato_generic": 0.8384561087015856,
+        "wheat_graded": 6.024158879350313,
+        "potato_graded": 1.547541638491131
+      },
+      "central_order_best_to_worst": [
+        "available_cho",
+        "equality",
+        "potato_generic",
+        "wheat_generic",
+        "potato_graded",
+        "wheat_graded"
+      ],
+      "tie_observed_ratio_vs_available_cho": {
+        "equality": 0.5918874561516947,
+        "wheat_generic": 0.22644201274285813,
+        "potato_generic": 0.2863939285411502,
+        "wheat_graded": 0.021424108434867677,
+        "potato_graded": 0.20090365619595474
+      },
+      "tie_note": "observed ratio at which a model and available_cho would have equal abs log error (geometric mean of the two forecasts); compare with the observed-ratio scenarios, not as an interval on error differences",
+      "secondary_high_over_low": null,
+      "attenuation_challenge": {
+        "D_ratio": 0.35033076074972436,
+        "observed_ratio": 0.5414847161572053,
+        "multiplier_needed_on_D_ratio": 1.5456385131536907,
+        "statement": "pred = D_ratio * m with m <= 1 gives pred <= D_ratio < observed, so its error is at least that of D alone; every fibre-attenuation model (generic or graded, wheat or potato) is therefore structurally worse than D on this cookie",
+        "min_error_any_attenuating_model": 0.43543710209637054,
+        "observed_ratio_scenario_95pct_marginal": {
+          "rho_plus1": [
+            0.4934407366623522,
+            0.59420650961066
+          ],
+          "rho_0": [
+            0.37755959017066565,
+            0.7765812482721295
+          ],
+          "rho_minus1": [
+            0.327964161132775,
+            0.8940174951407145
+          ]
+        },
+        "D_ratio_below_lower_scenario_limit": {
+          "rho_plus1": true,
+          "rho_0": true,
+          "rho_minus1": false
+        },
+        "exposed_development_comparators_not_scored_as_validation": {
+          "printed_kcal_ratio": 0.6040987424312995,
+          "energy_proxy_ratio_4D_4P_9fat": 0.5225465501061887,
+          "D_plus_P_ratio": 0.42339097022094146
+        },
+        "exposed_development_comparator_abs_log_error": {
+          "printed_kcal_ratio": 0.10942282438686557,
+          "energy_proxy_ratio_4D_4P_9fat": 0.03560077005002295,
+          "D_plus_P_ratio": 0.24601880938778642
+        }
+      }
+    }
+  },
+  "native": {
+    "primary_cookie_anchor": {
+      "anchor": "Stewart 2017 control cookie (development scale; sole primary anchor)",
+      "anchor_area_pmol_min_L": 13740,
+      "anchor_cv_of_mean": 0.10420878221181017,
+      "unit_basis": "CONDITIONAL: printed pmol/L*h x 60 -> pmol*min/L",
+      "observed": {
+        "pmol_min_L": {
+          "control": 19229,
+          "fiber": 12592
+        },
+        "sem": {
+          "control": 1865,
+          "fiber": 1686
+        },
+        "ratio": 0.6548442456706017,
+        "decrement": 6637,
+        "ratio_marginal_log_se_scenarios": {
+          "rho_plus1": 0.03690561323255462,
+          "rho_0": 0.16533178160540593,
+          "rho_minus1": 0.2308834591943831
+        }
+      },
+      "models": {
+        "constant": {
+          "anchor_score": 1.0,
+          "target_scores": {
+            "control": 1.0,
+            "fiber": 1.0
+          },
+          "predicted_pmol_min_L": {
+            "control": 13740.0,
+            "fiber": 13740.0
+          },
+          "abs_error": {
+            "control": 5489.0,
+            "fiber": 1148.0
+          },
+          "MAE_two_arm_primary": 3318.5,
+          "signed_error": {
+            "control": -5489.0,
+            "fiber": 1148.0
+          },
+          "predicted_decrement": 0.0,
+          "decrement_error": -6637.0,
+          "predicted_ratio": 1.0,
+          "ratio_abs_log_error_comparative": 0.4233578644934027,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              11201.661031168234,
+              16853.536227770597
+            ],
+            "fiber": [
+              11201.661031168234,
+              16853.536227770597
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.8630442403635762
+        },
+        "D": {
+          "anchor_score": 36.28,
+          "target_scores": {
+            "control": 38.8,
+            "fiber": 28.9
+          },
+          "predicted_pmol_min_L": {
+            "control": 14694.377067254685,
+            "fiber": 10945.038588754134
+          },
+          "abs_error": {
+            "control": 4534.622932745315,
+            "fiber": 1646.9614112458657
+          },
+          "MAE_two_arm_primary": 3090.7921719955903,
+          "signed_error": {
+            "control": -4534.622932745315,
+            "fiber": -1646.9614112458657
+          },
+          "predicted_decrement": 3749.338478500551,
+          "decrement_error": -2887.661521499449,
+          "predicted_ratio": 0.7448453608247423,
+          "ratio_abs_log_error_comparative": 0.12877921298256131,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              11979.725689341993,
+              18024.178766193472
+            ],
+            "fiber": [
+              8923.04310365937,
+              13425.225936675035
+            ]
+          }
+        },
+        "D_plus_P": {
+          "anchor_score": 41.64,
+          "target_scores": {
+            "control": 45.9,
+            "fiber": 35.0
+          },
+          "predicted_pmol_min_L": {
+            "control": 15145.677233429395,
+            "fiber": 11548.991354466858
+          },
+          "abs_error": {
+            "control": 4083.3227665706054,
+            "fiber": 1043.008645533142
+          },
+          "MAE_two_arm_primary": 2563.1657060518737,
+          "signed_error": {
+            "control": -4083.3227665706054,
+            "fiber": -1043.008645533142
+          },
+          "predicted_decrement": 3596.6858789625367,
+          "decrement_error": -3040.3141210374633,
+          "predicted_ratio": 0.7625272331154683,
+          "ratio_abs_log_error_comparative": 0.1522408089163168,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              12347.652289400143,
+              18577.745265481997
+            ],
+            "fiber": [
+              9415.42113570817,
+              14166.03669481198
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.7536344419468788
+        },
+        "energy_proxy_4D_4P_9fat": {
+          "anchor_score": 202.47,
+          "target_scores": {
+            "control": 327.6,
+            "fiber": 269.6
+          },
+          "predicted_pmol_min_L": {
+            "control": 22231.560231145355,
+            "fiber": 18295.56971403171
+          },
+          "abs_error": {
+            "control": 3002.560231145355,
+            "fiber": 5703.56971403171
+          },
+          "MAE_two_arm_primary": 4353.064972588532,
+          "signed_error": {
+            "control": 3002.560231145355,
+            "fiber": 5703.56971403171
+          },
+          "predicted_decrement": 3935.990517113645,
+          "decrement_error": -2701.009482886355,
+          "predicted_ratio": 0.822954822954823,
+          "ratio_abs_log_error_comparative": 0.22850389155264028,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              18124.48339907499,
+              27269.316284968874
+            ],
+            "fiber": [
+              14915.63102683339,
+              22441.41535539563
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.7829266134486981
+        },
+        "printed_kcal": {
+          "anchor_score": 214.7,
+          "target_scores": {
+            "control": 328,
+            "fiber": 270
+          },
+          "predicted_pmol_min_L": {
+            "control": 20990.777829529576,
+            "fiber": 17278.99394503959
+          },
+          "abs_error": {
+            "control": 1761.7778295295757,
+            "fiber": 4686.9939450395905
+          },
+          "MAE_two_arm_primary": 3224.385887284583,
+          "signed_error": {
+            "control": 1761.7778295295757,
+            "fiber": 4686.9939450395905
+          },
+          "predicted_decrement": 3711.783884489985,
+          "decrement_error": -2925.216115510015,
+          "predicted_ratio": 0.8231707317073171,
+          "ratio_abs_log_error_comparative": 0.22876621510763373,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              17112.9241649892,
+              25747.367874749678
+            ],
+            "fiber": [
+              14086.858306545986,
+              21194.479652995164
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.7830293102297664
+        }
+      },
+      "central_order_primary_MAE": [
+        "D_plus_P",
+        "D",
+        "printed_kcal",
+        "constant",
+        "energy_proxy_4D_4P_9fat"
+      ],
+      "central_order_comparative_ratio": [
+        "D",
+        "D_plus_P",
+        "energy_proxy_4D_4P_9fat",
+        "printed_kcal",
+        "constant"
+      ]
+    },
+    "stress_gourineni_anchor": {
+      "anchor": "Gourineni 2020 control cold-pressed bar (cross-recipe stress, not primary)",
+      "anchor_area_pmol_min_L": 11871.6,
+      "anchor_cv_of_mean": 0.09467131641901681,
+      "unit_basis": "source-based: printed min*pmol/L",
+      "observed": {
+        "pmol_min_L": {
+          "control": 19229,
+          "fiber": 12592
+        },
+        "sem": {
+          "control": 1865,
+          "fiber": 1686
+        },
+        "ratio": 0.6548442456706017,
+        "decrement": 6637,
+        "ratio_marginal_log_se_scenarios": {
+          "rho_plus1": 0.03690561323255462,
+          "rho_0": 0.16533178160540593,
+          "rho_minus1": 0.2308834591943831
+        }
+      },
+      "models": {
+        "constant": {
+          "anchor_score": 1.0,
+          "target_scores": {
+            "control": 1.0,
+            "fiber": 1.0
+          },
+          "predicted_pmol_min_L": {
+            "control": 11871.6,
+            "fiber": 11871.6
+          },
+          "abs_error": {
+            "control": 7357.4,
+            "fiber": 720.3999999999996
+          },
+          "MAE_two_arm_primary": 4038.8999999999996,
+          "signed_error": {
+            "control": -7357.4,
+            "fiber": -720.3999999999996
+          },
+          "predicted_decrement": 0.0,
+          "decrement_error": -6637.0,
+          "predicted_ratio": 1.0,
+          "ratio_abs_log_error_comparative": 0.4233578644934027,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              9861.055513677115,
+              14292.069075620326
+            ],
+            "fiber": [
+              9861.055513677115,
+              14292.069075620326
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.8630442403635762
+        },
+        "D": {
+          "anchor_score": 35.6,
+          "target_scores": {
+            "control": 38.8,
+            "fiber": 28.9
+          },
+          "predicted_pmol_min_L": {
+            "control": 12938.71011235955,
+            "fiber": 9637.33820224719
+          },
+          "abs_error": {
+            "control": 6290.289887640451,
+            "fiber": 2954.6617977528094
+          },
+          "MAE_two_arm_primary": 4622.47584269663,
+          "signed_error": {
+            "control": -6290.289887640451,
+            "fiber": -2954.6617977528094
+          },
+          "predicted_decrement": 3301.371910112359,
+          "decrement_error": -3335.628089887641,
+          "predicted_ratio": 0.7448453608247423,
+          "ratio_abs_log_error_comparative": 0.12877921298256131,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              10747.442526142473,
+              15576.749441968219
+            ],
+            "fiber": [
+              8005.18270632777,
+              11602.26955857942
+            ]
+          }
+        },
+        "D_plus_P": {
+          "anchor_score": 41.760000000000005,
+          "target_scores": {
+            "control": 45.9,
+            "fiber": 35.0
+          },
+          "predicted_pmol_min_L": {
+            "control": 13048.525862068962,
+            "fiber": 9949.85632183908
+          },
+          "abs_error": {
+            "control": 6180.474137931038,
+            "fiber": 2642.143678160921
+          },
+          "MAE_two_arm_primary": 4411.3089080459795,
+          "signed_error": {
+            "control": -6180.474137931038,
+            "fiber": -2642.143678160921
+          },
+          "predicted_decrement": 3098.669540229883,
+          "decrement_error": -3538.330459770117,
+          "predicted_ratio": 0.7625272331154686,
+          "ratio_abs_log_error_comparative": 0.152240808916317,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              10838.66015511924,
+              15708.955233979234
+            ],
+            "fiber": [
+              8264.773538761949,
+              11978.506169700942
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.7536344419468789
+        },
+        "energy_proxy_4D_4P_9fat": {
+          "anchor_score": 186.66000000000003,
+          "target_scores": {
+            "control": 327.6,
+            "fiber": 269.6
+          },
+          "predicted_pmol_min_L": {
+            "control": 20835.40212150434,
+            "fiber": 17146.594664095144
+          },
+          "abs_error": {
+            "control": 1606.4021215043394,
+            "fiber": 4554.594664095144
+          },
+          "MAE_two_arm_primary": 3080.498392799742,
+          "signed_error": {
+            "control": 1606.4021215043394,
+            "fiber": 4554.594664095144
+          },
+          "predicted_decrement": 3688.807457409195,
+          "decrement_error": -2948.192542590805,
+          "predicted_ratio": 0.8229548229548228,
+          "ratio_abs_log_error_comparative": 0.22850389155264011,
+          "anchor_mean_scale_band_95pct_marginal": {
+            "control": [
+              17306.770525450673,
+              25083.47706618032
+            ],
+            "fiber": [
+              14242.690273692006,
+              20642.568428089784
+            ]
+          },
+          "tie_observed_ratio_vs_best_ratio_model": 0.782926613448698
+        },
+        "printed_kcal": {
+          "status": "UNAVAILABLE",
+          "reason": "anchor food has no printed kcal"
+        }
+      },
+      "central_order_primary_MAE": [
+        "energy_proxy_4D_4P_9fat",
+        "constant",
+        "D_plus_P",
+        "D"
+      ],
+      "central_order_comparative_ratio": [
+        "D",
+        "D_plus_P",
+        "energy_proxy_4D_4P_9fat",
+        "constant"
+      ]
+    },
+    "cookie_unit_check": {
+      "printed_label": "pmol/L*h ('*' is a footnote marker; the Cmax row is also printed 'pmol/L*h', and glucose Cmax 'mmol/L*h', so the time unit in this table is not reliable)",
+      "if_pmol_h_L_mean_increment_pmol_L": 114.5,
+      "if_pmol_min_L_mean_increment_pmol_L": 1.9083333333333334,
+      "control_Cmax_pmol_L": 280,
+      "reading": "conversion x60 follows the printed time unit h; it is conditional because the same table prints Cmax with *h. Under a minute reading the 0-120 mean increment would be about 1.9 pmol/L despite a 280 pmol/L mean Cmax and significant arm differences at 45-120 min, so that reading is implausible but not excluded by source text"
+    },
+    "label_accounting": {
+      "rows": {
+        "cookie_control": {
+          "printed_kcal": 214.7,
+          "proxy_4D_4P_9fat": 202.47,
+          "printed_minus_proxy": 12.22999999999999,
+          "fiber_g": 0.55
+        },
+        "cookie_fiber": {
+          "printed_kcal": 129.7,
+          "proxy_4D_4P_9fat": 105.80000000000001,
+          "printed_minus_proxy": 23.899999999999977,
+          "fiber_g": 24.13
+        },
+        "scone_control": {
+          "printed_kcal": 328,
+          "proxy_4D_4P_9fat": 327.6,
+          "printed_minus_proxy": 0.39999999999997726,
+          "fiber_g": 4.0
+        },
+        "scone_fiber": {
+          "printed_kcal": 270,
+          "proxy_4D_4P_9fat": 269.6,
+          "printed_minus_proxy": 0.39999999999997726,
+          "fiber_g": 17.5
+        }
+      },
+      "cookie_control_printed_over_proxy": 1.0604040104706869,
+      "note": "scone kcal are Atwater values from the same label inputs (printed = proxy to rounding); cookie kcal method is not stated and exceeds the proxy, so the same scone score yields native levels differing by the cookie control printed/proxy factor"
+    },
+    "scone_0_180": {
+      "status": "reported only; different operator window; not predicted",
+      "values": {
+        "control": [
+          23850,
+          2138
+        ],
+        "fiber": [
+          14192,
+          1901
+        ]
+      }
+    },
+    "claim": "No new validated native claim follows from one favourable meal ratio; scone is one sequential exposed-development test"
+  }
+}

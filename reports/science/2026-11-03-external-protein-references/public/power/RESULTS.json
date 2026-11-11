@@ -1,0 +1,15 @@
+{
+  "status": "Exposed outside-lab transfer; point errors; no paired CI",
+  "endpoints": {
+    "T2_abstract_insulin_AUC": {
+      "status": "prediction abstained"
+    }
+  },
+  "coverage": {
+    "R1_nearest_dose": 0,
+    "R2_log_interpolation": 0,
+    "R2x_boundary_hold": 0,
+    "R3_flat": 0,
+    "R4_log_mean_three": 0
+  }
+}

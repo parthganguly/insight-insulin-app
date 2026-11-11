@@ -1,0 +1,30 @@
+{
+  "control": {
+    "coarse_points_pmol_per_L": [
+      45,
+      185,
+      230,
+      227,
+      158,
+      125,
+      97
+    ],
+    "signed_incremental_pmol_min_per_L": 13327.5,
+    "hours": 222.125,
+    "approx_conservative_reading_error_pmol_min_per_L": 1800
+  },
+  "fibre": {
+    "coarse_points_pmol_per_L": [
+      50,
+      175,
+      185,
+      132,
+      105,
+      66,
+      55
+    ],
+    "signed_incremental_pmol_min_per_L": 6922.5,
+    "hours": 115.375,
+    "approx_conservative_reading_error_pmol_min_per_L": 1800
+  }
+}

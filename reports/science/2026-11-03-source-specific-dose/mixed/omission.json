@@ -1,0 +1,72 @@
+[
+  {
+    "source": "pea",
+    "removed_knot": 25,
+    "forecasts": {
+      "pea_low": 1.0939696106362773,
+      "pea_high": 1.1879392212725546,
+      "whey_low": 1.2246575342465755,
+      "whey_high": 1.5561643835616439
+    },
+    "coverage": 4,
+    "mean_log_error_on_available": 0.06879009910584287,
+    "change": 1.1701777851937654,
+    "change_error": 0.20204396638170624
+  },
+  {
+    "source": "pea",
+    "removed_knot": 50,
+    "forecasts": {
+      "pea_low": 1.1542141500474834,
+      "pea_high": 1.3084283000949668,
+      "whey_low": 1.2246575342465755,
+      "whey_high": 1.5561643835616439
+    },
+    "coverage": 4,
+    "mean_log_error_on_available": 0.06751995390243627,
+    "change": 1.120926864826029,
+    "change_error": 0.24504375585455926
+  },
+  {
+    "source": "whey",
+    "removed_knot": 4.5,
+    "forecasts": {
+      "pea_low": 1.1542141500474834,
+      "pea_high": 1.3084283000949668,
+      "whey_low": 1.1849315068493151,
+      "whey_high": 1.5561643835616439
+    },
+    "coverage": 4,
+    "mean_log_error_on_available": 0.075764020962845,
+    "change": 1.1585070718548787,
+    "change_error": 0.21206748761292438
+  },
+  {
+    "source": "whey",
+    "removed_knot": 9,
+    "forecasts": {
+      "pea_low": 1.1542141500474834,
+      "pea_high": 1.3084283000949668,
+      "whey_low": 1.3926940639269407,
+      "whey_high": 1.5981735159817352
+    },
+    "coverage": 4,
+    "mean_log_error_on_available": 0.08674630052152349,
+    "change": 1.0122893558187038,
+    "change_error": 0.34698520208609396
+  },
+  {
+    "source": "whey",
+    "removed_knot": 18,
+    "forecasts": {
+      "pea_low": 1.1542141500474834,
+      "pea_high": 1.3084283000949668,
+      "whey_low": 1.2246575342465755,
+      "whey_high": null
+    },
+    "coverage": 3,
+    "mean_log_error_on_available": 0.043104285875781995,
+    "change": null,
+    "change_error": null
+  }
+]

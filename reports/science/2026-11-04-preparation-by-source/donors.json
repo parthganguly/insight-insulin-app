@@ -1,0 +1,70 @@
+{
+  "sources": {
+    "Heaton": {
+      "doi": "10.1093/ajcn/47.4.675",
+      "retained_csv_sha256": "7cb51d8720a673a0f0a89ff35466517f724e63eb5c263c9c850606f006dc5171",
+      "window": "180 min, lower of baseline and t10 origin; varying groups and cooking conditions"
+    },
+    "hummus": {
+      "doi": "10.1016/j.foodres.2024.114517",
+      "retained_chart_sha256": "d3ad5b7fcc815bf77e02d2694ab5278419ba49b736db0d62e473829fc38ede20",
+      "window": "0-120 signed integrated mean curve; approximate"
+    },
+    "Cai": {
+      "doi": "10.1038/s42255-025-01309-7",
+      "retained_results_sha256": "e88a2dd42aa59575481be81b239bed9003bf676148b95549e1d54b8d7d780464",
+      "window": "arithmetic participant-positive 0–120"
+    }
+  },
+  "Heaton": {
+    "wheat": {
+      "whole": {
+        "area180": 1211,
+        "H30": 5.0
+      },
+      "fine_flour": {
+        "area180": 2366,
+        "H30": 46.0
+      }
+    },
+    "maize": {
+      "whole": {
+        "area180": 1238,
+        "H30": 3.0
+      },
+      "fine_flour": {
+        "area180": 2341,
+        "H30": 42.0
+      }
+    },
+    "oats": {
+      "whole": {
+        "area180": 1111,
+        "H30": 18.0
+      },
+      "fine_flour": {
+        "area180": 1323,
+        "H30": 41.0
+      }
+    }
+  },
+  "hummus": {
+    "ICC": {
+      "area120": 1725.498338870432,
+      "H20": 2.4058455114822546
+    },
+    "RCC": {
+      "area120": 2443.106312292359,
+      "H20": 9.343632567849687
+    }
+  },
+  "Cai": {
+    "C_B": 0.28464849503830014,
+    "S_B": 0.7284656622643167,
+    "D20_C_S": 0.6164383561643835,
+    "fieller": [
+      0.2538077859070686,
+      0.5722141165959539
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "draws": 36,
+  "max_nearest_start_manhattan_pt": 0.066986083984375,
+  "by_path": {
+    "75": 9,
+    "141": 27
+  },
+  "multi_candidates": []
+}

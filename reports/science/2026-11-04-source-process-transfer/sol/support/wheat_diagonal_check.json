@@ -1,0 +1,39 @@
+{
+  "contrast": "HAW-R/LAW-W",
+  "status": "posthoc diagonal using pre-existing same-source readings, not a new external sample or statistical test",
+  "own_signed120_ratio": 0.6931483816729719,
+  "own_marker4px_ratio_envelope": [
+    0.6118447378951581,
+    0.7830898627711377
+  ],
+  "predictions": {
+    "heated_as_served": 0.1626612618117901,
+    "shared_as_served": 2.9222518514837574,
+    "amylopectin_dose": 0.358271375464684,
+    "total_starch": 1.0594795539033457,
+    "digestible_starch_derived": 0.894736842105263,
+    "carbohydrate_paper_definition": 1.0182370820668694,
+    "available_carbohydrate_derived": 0.8834355828220859,
+    "equal_serving": 1.0,
+    "heated_fixed_dose": 0.15352940149954925,
+    "shared_fixed_dose": 2.7581956071899323,
+    "amylopectin_fixed_dose": 0.3381578947368421
+  },
+  "abs_log_error": {
+    "heated_as_served": 1.4495742011726196,
+    "shared_as_served": 1.4388656888304756,
+    "amylopectin_dose": 0.6599533599749867,
+    "total_starch": 0.42428898841017015,
+    "digestible_starch_derived": 0.2552855526331341,
+    "carbohydrate_paper_definition": 0.38458396880305334,
+    "available_carbohydrate_derived": 0.242574286512597,
+    "equal_serving": 0.3665111877433588,
+    "heated_fixed_dose": 1.507352001839431,
+    "shared_fixed_dose": 1.3810878881636641,
+    "amylopectin_fixed_dose": 0.7177311606417983
+  },
+  "paper_rounded_carbohydrate_forecast": 1.0,
+  "root_signed120_comparator": 0.70693,
+  "root_ratio_inside_own_reading_envelope": true,
+  "limitations": "Fixed-sample signed mean-curve displayed-grid endpoint only; no populationCI and no individual positiveAUC claim."
+}

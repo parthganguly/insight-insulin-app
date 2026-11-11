@@ -1,0 +1,70 @@
+{
+  "witness_check": {
+    "young_two_predose": {
+      "areas": {
+        "high_aligned": 379.0324509001969,
+        "high_reassigned": 457.3361706253274,
+        "low_aligned": 398.1072431443605,
+        "low_reassigned": 500.660970755367
+      },
+      "ratio_examples": [
+        0.9520862969146062,
+        0.7570641073306268,
+        1.148776312164432,
+        0.9134647942205806
+      ],
+      "preference_reverses": true
+    },
+    "young_t0": {
+      "areas": {
+        "high_aligned": 367.8853428112927,
+        "high_reassigned": 445.43642961094974,
+        "low_aligned": 400.8264475936159,
+        "low_reassigned": 508.07530489233744
+      },
+      "ratio_examples": [
+        0.9178170378225115,
+        0.7240764100692684,
+        1.1112950063179523,
+        0.8767134031545559
+      ],
+      "preference_reverses": true
+    },
+    "old_two_predose": {
+      "areas": {
+        "high_aligned": 392.8995866656992,
+        "high_reassigned": 651.1877879953795,
+        "low_aligned": 437.49031109732397,
+        "low_reassigned": 555.0908253304775
+      },
+      "ratio_examples": [
+        0.89807608694286,
+        0.7078113503889809,
+        1.4884621932816164,
+        1.1731193496265948
+      ],
+      "preference_reverses": true
+    },
+    "old_t0": {
+      "areas": {
+        "high_aligned": 422.8453976403092,
+        "high_reassigned": 652.1702396017562,
+        "low_aligned": 447.9282666341752,
+        "low_reassigned": 563.5531385602204
+      },
+      "ratio_examples": [
+        0.9440024868661587,
+        0.7503203668080088,
+        1.4559702706468984,
+        1.1572471076426563
+      ],
+      "preference_reverses": true
+    }
+  },
+  "minimum_synthetic_concentration": 2.324340852150236,
+  "maximum_marginal_moment_error": 1.7763568394002505e-15,
+  "form_pair_errors_and_losses": "PASS",
+  "opus_E2_E3_and_errors_all_baselines_windows": "PASS"
+}
+PASS: centered family hierarchy, structural bound, and early.json ratios/errors (conditional exact Glynn leucine table1.85g).
+PASS: early direct and rescaled donor independently reconstructed from Astra coordinates; tracer-inclusive slope sensitivity 1.1946623535805534

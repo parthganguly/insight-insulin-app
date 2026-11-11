@@ -1,0 +1,5 @@
+arm,mean_insulin_mU_L_0min,mean_insulin_mU_L_15min,mean_insulin_mU_L_30min,mean_insulin_mU_L_60min,mean_insulin_mU_L_90min,mean_insulin_mU_L_120min,approx_mean_curve_net_incremental_area_mU_min_L,readout_sensitivity_low,readout_sensitivity_high
+potato,12.5,23.9,60.5,57.7,26.6,23.0,3183,2845,3520
+potato_plus_fat,12.5,23.9,49.6,48.7,23.9,25.9,2632,2294,2969
+lentil,9.6,14.0,21.9,31.7,27.6,21.6,1726,1389,2064
+lentil_plus_fat,12.5,20.0,23.6,23.9,21.7,18.9,1075,737,1412

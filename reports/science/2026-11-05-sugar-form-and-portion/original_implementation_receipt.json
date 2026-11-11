@@ -1,0 +1,358 @@
+{
+  "exact_original_sha256": {
+    "EXECUTION.json": "ae604ec4d67eb0033624289991742f0e1da379f8169b794b00ad85b5c23e9dc4",
+    "FREEZE_RECEIPT.json": "d0ad518b894764b976cc96a96be4c1c884c31294612ec540550c27c8678a2218",
+    "model.py": "b63aeaf0e36afd3ac188c2f00e006658f811422a719416bf71c5e21b6f49fb82",
+    "PARAMS.json": "e273a7086f86bfb394c3895d5d3107659c4ab0f0ca642e33eb51de909d5981b0",
+    "RESULTS.json": "8dcdec9c89948c90223b4e7c316397ad3505bedb71890e8de62e1141713ea1f7",
+    "STATUS.md": "ae740ba98e29b6e3f9edca6b3ded9ed32ec166c3b7661ba78117d7aca231738a"
+  },
+  "nominal_program_output": {
+    "a_unity": {
+      "formulations": [
+        {
+          "num": [
+            "fructose",
+            50.0
+          ],
+          "den": [
+            "glucose",
+            50.0
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.14814814814814814,
+            "glucose_moiety_only": 0.0
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            50.0
+          ],
+          "den": [
+            "glucose",
+            50.0
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.5740740740740741,
+            "glucose_moiety_only": 0.5
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            100.0
+          ],
+          "den": [
+            "glucose",
+            100.0
+          ],
+          "observed": 0.69375,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.5740740740740741,
+            "glucose_moiety_only": 0.5
+          }
+        },
+        {
+          "num": [
+            "free_mix_1_1",
+            100.0
+          ],
+          "den": [
+            "glucose",
+            100.0
+          ],
+          "observed": 0.590625,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.5740740740740741,
+            "glucose_moiety_only": 0.5
+          }
+        }
+      ],
+      "portions": [
+        {
+          "num": [
+            "glucose",
+            50.0
+          ],
+          "den": [
+            "glucose",
+            25.0
+          ],
+          "observed": 2.0123456790123457,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 2.0,
+            "composition": 2.0,
+            "glucose_moiety_only": 2.0
+          }
+        },
+        {
+          "num": [
+            "glucose",
+            100.0
+          ],
+          "den": [
+            "glucose",
+            50.0
+          ],
+          "observed": 1.9631901840490797,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 2.0,
+            "composition": 2.0,
+            "glucose_moiety_only": 2.0
+          }
+        },
+        {
+          "num": [
+            "fructose",
+            50.0
+          ],
+          "den": [
+            "fructose",
+            25.0
+          ],
+          "observed": 2.0,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 2.0,
+            "composition": 2.0,
+            "glucose_moiety_only": "UNDEFINED_zero_denominator_score"
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            50.0
+          ],
+          "den": [
+            "sucrose",
+            25.0
+          ],
+          "observed": 1.574468085106383,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 2.0,
+            "composition": 2.0,
+            "glucose_moiety_only": 2.0
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            100.0
+          ],
+          "den": [
+            "sucrose",
+            50.0
+          ],
+          "observed": 2.9999999999999996,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 2.0,
+            "composition": 2.0,
+            "glucose_moiety_only": 2.0
+          }
+        }
+      ],
+      "formulation_objective": {
+        "equality": 0.899399768179258,
+        "reference_dose_only": 0.899399768179258,
+        "composition": 0.11465455515011905,
+        "glucose_moiety_only": null
+      },
+      "portion_objective": {
+        "equality": 0.7187826637339075,
+        "reference_dose_only": 0.11157084138688535,
+        "composition": 0.11157084138688535,
+        "glucose_moiety_only": null
+      }
+    },
+    "a_learned": {
+      "formulations": [
+        {
+          "num": [
+            "fructose",
+            50.0
+          ],
+          "den": [
+            "glucose",
+            50.0
+          ],
+          "observed": 0.14723926380368096,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.14814814814814814,
+            "glucose_moiety_only": 0.0
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            50.0
+          ],
+          "den": [
+            "glucose",
+            50.0
+          ],
+          "observed": 0.4539877300613497,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.5740740740740741,
+            "glucose_moiety_only": 0.5
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            100.0
+          ],
+          "den": [
+            "glucose",
+            100.0
+          ],
+          "observed": 0.69375,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.5740740740740741,
+            "glucose_moiety_only": 0.5
+          }
+        },
+        {
+          "num": [
+            "free_mix_1_1",
+            100.0
+          ],
+          "den": [
+            "glucose",
+            100.0
+          ],
+          "observed": 0.590625,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.0,
+            "composition": 0.5740740740740741,
+            "glucose_moiety_only": 0.5
+          }
+        }
+      ],
+      "portions": [
+        {
+          "num": [
+            "glucose",
+            50.0
+          ],
+          "den": [
+            "glucose",
+            25.0
+          ],
+          "observed": 2.0123456790123457,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.7148917897401992,
+            "composition": 1.7148917897401992,
+            "glucose_moiety_only": 1.7148917897401992
+          }
+        },
+        {
+          "num": [
+            "glucose",
+            100.0
+          ],
+          "den": [
+            "glucose",
+            50.0
+          ],
+          "observed": 1.9631901840490797,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.7148917897401987,
+            "composition": 1.7148917897401987,
+            "glucose_moiety_only": 1.7148917897401987
+          }
+        },
+        {
+          "num": [
+            "fructose",
+            50.0
+          ],
+          "den": [
+            "fructose",
+            25.0
+          ],
+          "observed": 2.0,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.7148917897401992,
+            "composition": 1.7148917897401992,
+            "glucose_moiety_only": "UNDEFINED_zero_denominator_score"
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            50.0
+          ],
+          "den": [
+            "sucrose",
+            25.0
+          ],
+          "observed": 1.574468085106383,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.7148917897401992,
+            "composition": 1.7148917897401992,
+            "glucose_moiety_only": 1.7148917897401992
+          }
+        },
+        {
+          "num": [
+            "sucrose",
+            100.0
+          ],
+          "den": [
+            "sucrose",
+            50.0
+          ],
+          "observed": 2.9999999999999996,
+          "predicted": {
+            "equality": 1.0,
+            "reference_dose_only": 1.7148917897401987,
+            "composition": 1.714891789740199,
+            "glucose_moiety_only": 1.7148917897401987
+          }
+        }
+      ],
+      "formulation_objective": {
+        "equality": 0.899399768179258,
+        "reference_dose_only": 0.899399768179258,
+        "composition": 0.11465455515011905,
+        "glucose_moiety_only": null
+      },
+      "portion_objective": {
+        "equality": 0.7187826637339075,
+        "reference_dose_only": 0.20791017839197437,
+        "composition": 0.20791017839197434,
+        "glucose_moiety_only": null
+      }
+    }
+  },
+  "original_hydrolysis_external_a_WB": 0.621487532764775,
+  "original_hydrolysis_external_abs_log_error": 0.23408924789943159,
+  "superseded_error": "The original script multiplied 0.526 by 360/342 again. The public corrected script applies 360/342 to each nominal half only once.",
+  "failed_intermediate_check": "The source-reported snapshot check failed after the external input appeared. It was a stale-snapshot failure; the final original check passed. Passing exact replay did not detect the scientific implementation error."
+}

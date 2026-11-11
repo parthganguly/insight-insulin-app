@@ -1,0 +1,3 @@
+* text eol=lf
+# Preserve the original bytes of the sealed before-scoring plan.
+profiles/PLAN.md whitespace=-blank-at-eol

@@ -1,0 +1,60 @@
+{
+  "cookie": {
+    "servings": {
+      "control": {
+        "weight_g": 47.02,
+        "kcal": 214.7,
+        "fat_g": 3.99,
+        "protein_g": 5.36,
+        "total_cho_g": 36.84,
+        "available_cho_g": 36.28,
+        "fiber_g": 0.55,
+        "sugars_g": 11.51
+      },
+      "fiber": {
+        "weight_g": 48.0,
+        "kcal": 129.7,
+        "fat_g": 3.92,
+        "protein_g": 4.92,
+        "total_cho_g": 36.84,
+        "available_cho_g": 12.71,
+        "fiber_g": 24.13,
+        "sugars_g": 11.72
+      }
+    },
+    "areas": [
+      229,
+      124
+    ],
+    "study": "Stewart ML, Zimmer JP. A high fiber cookie made with resistant starch type 4 reduces post-prandial glucose and insulin responses in healthy adults. Nutrients 2017;9:237. PMC5372900"
+  },
+  "scone": {
+    "servings": {
+      "control": {
+        "weight_g": 83.9,
+        "kcal": 328,
+        "fat_g": 16.0,
+        "protein_g": 7.1,
+        "total_cho_g": 42.8,
+        "available_cho_g": 38.8,
+        "fiber_g": 4.0,
+        "sugars_g": 14.8
+      },
+      "fiber": {
+        "weight_g": 84.1,
+        "kcal": 270,
+        "fat_g": 14.4,
+        "protein_g": 6.1,
+        "total_cho_g": 46.4,
+        "available_cho_g": 28.9,
+        "fiber_g": 17.5,
+        "sugars_g": 14.9
+      }
+    },
+    "areas": [
+      19229,
+      12592
+    ],
+    "study": "Stewart ML, Wilcox ML, Bell M, Buggia MA, Maki KC. Type-4 resistant starch in substitution for available carbohydrate reduces postprandial glycemic response and hunger in acute, randomized, double-blind, controlled study. Nutrients 2018;10:129. doi 10.3390/nu10020129. PMC5852705"
+  }
+}

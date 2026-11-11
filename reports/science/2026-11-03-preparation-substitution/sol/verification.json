@@ -1,0 +1,148 @@
+{
+  "rice_potato_predictions": {
+    "fixed": 0.6978227033861079,
+    "scaled": 0.48695652536109585,
+    "direct": 0.5477386934673367,
+    "equality": 1.0
+  },
+  "lan2011": {
+    "ratio_native_medians": {
+      "observed": 0.45,
+      "absolute_log_errors": {
+        "fixed": 0.4387174811227034,
+        "scaled": 0.07892726602763539,
+        "direct": 0.1965507537224229,
+        "equality": 0.7985076962177716
+      }
+    },
+    "ratio_mean_individual_II": {
+      "observed": 0.46875,
+      "absolute_log_errors": {
+        "fixed": 0.3978954866024484,
+        "scaled": 0.03810527150738041,
+        "direct": 0.1557287592021678,
+        "equality": 0.7576857016975165
+      }
+    }
+  },
+  "wei2026": {
+    "observed_insulin_ratio": {
+      "HP": 0.6250861178091629,
+      "SP": 0.9315794006200482
+    },
+    "staple_exchange_fraction": 0.33381294964028774,
+    "whole_meal_exchange_fraction": 0.2918238993710692,
+    "untreated_total_starch_ratio": 0.8537708693149108,
+    "fractions": {
+      "HP": {
+        "RDS_g": 18.267760000000003,
+        "RDS_plus_SDS_g": 43.629920000000006,
+        "RDS_ratio": 0.7144595879952943,
+        "RDS_plus10g_ratio": 0.7947382863106377,
+        "RDS_plus_SDS_ratio": 0.6931008145021802,
+        "RDS_plus_SDS_plus10g_ratio": 0.7351712596547062,
+        "table5_recomputed_percent": [
+          30.795279838165886,
+          42.754821308159144
+        ]
+      },
+      "SP": {
+        "RDS_g": 25.898760000000003,
+        "RDS_plus_SDS_g": 52.443920000000006,
+        "RDS_ratio": 1.012911128632575,
+        "RDS_plus10g_ratio": 1.0092812095148986,
+        "RDS_plus_SDS_ratio": 0.8331191913184159,
+        "RDS_plus_SDS_plus10g_ratio": 0.855995595819977,
+        "table5_recomputed_percent": [
+          43.65940660822657,
+          44.74908968307485
+        ]
+      }
+    },
+    "additive_floor": {
+      "floor": 0.6666666666666666,
+      "observed": 0.6250861178091629,
+      "ratio_gap": -0.04158054885750373,
+      "native_gap": -965.6666666666661,
+      "gap_SEM_min": 836.3333333333333,
+      "gap_SEM_max": 2438.333333333333,
+      "max_abs_t19": 1.1546432841769623,
+      "min_abs_t19": 0.39603554340396424,
+      "two_sided_05_t19": 2.093024054,
+      "one_sided_05_t19": 1.729132812,
+      "any_admissible_correlation_reaches_one_sided_05": false
+    },
+    "posthoc_processing_bound": {
+      "HP": 0.6666666666666666,
+      "SP": 1.0,
+      "label": "assume hard-potato zero response, soft-potato like displaced rice, B=0; not fitted scientific law"
+    },
+    "unmodified_transport_to_mixture": {
+      "fixed": {
+        "staple_one_third": 1.1443429184077893,
+        "whole_meal_fraction": 1.1263681398890837
+      },
+      "scaled": {
+        "staple_one_third": 1.3511904710990121,
+        "whole_meal_fraction": 1.3074573180942297
+      },
+      "direct": {
+        "staple_one_third": 1.275229357798165,
+        "whole_meal_fraction": 1.2409555132421672
+      },
+      "equality": {
+        "staple_one_third": 1.0,
+        "whole_meal_fraction": 1.0
+      }
+    },
+    "unmodified_log_interpolation_to_mixture": {
+      "fixed": {
+        "staple_one_third": 1.127418010396083,
+        "whole_meal_fraction": 1.11070548279933
+      },
+      "scaled": {
+        "staple_one_third": 1.2710713701654621,
+        "whole_meal_fraction": 1.2336666695204925
+      },
+      "direct": {
+        "staple_one_third": 1.222199756398989,
+        "whole_meal_fraction": 1.1920391620979345
+      },
+      "equality": {
+        "staple_one_third": 1.0,
+        "whole_meal_fraction": 1.0
+      }
+    },
+    "RDS_RC_g": 25.568640000000002,
+    "RDS_plus_SDS_RC_g": 62.94888
+  },
+  "collier1984": {
+    "printed_native_mean_areas": {
+      "potato": 3333,
+      "potato_butter": 3024,
+      "lentil": 1796,
+      "lentil_butter": 1324
+    },
+    "printed_SEM": {
+      "potato": 590,
+      "potato_butter": 452,
+      "lentil": 333,
+      "lentil_butter": 256
+    },
+    "lentil_over_potato": 0.5388538853885388,
+    "lentil_butter_over_potato_butter": 0.43783068783068785,
+    "ratio_of_ratios": 0.8125220949552798,
+    "n": 7,
+    "sampling_minutes": [
+      0,
+      15,
+      30,
+      60,
+      90,
+      120,
+      180,
+      240
+    ],
+    "window_note": "Full experiment0\u2013240; printed incremental areas not expressly window-qualified in results; do not label these2h."
+  }
+}

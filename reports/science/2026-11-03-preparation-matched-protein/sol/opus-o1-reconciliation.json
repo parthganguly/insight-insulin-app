@@ -1,0 +1,322 @@
+[
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.6 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.6 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.6 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.6 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy intact 0.6 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.6 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.6 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.6 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.6 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 soy hydro 0.6 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.6 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.6 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.6 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.6 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey intact 0.6 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.6 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.6 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.6 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.6 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "primary_calibrate_0.3 whey hydro 0.6 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.3 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.3 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.3 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.3 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.3 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy intact 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.3 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.3 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.3 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.3 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.3 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 soy hydro 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.3 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.3 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.3 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.3 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.3 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey intact 0.4 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.3 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.3 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.3 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.3 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.3 bridge_cross_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.4 bridge_same_source",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.4 no_change",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.4 proportional_dose",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.4 no_form_adjustment",
+    "status": "PASS"
+  },
+  {
+    "label": "S1_calibrate_0.6 whey hydro 0.4 bridge_cross_source",
+    "status": "PASS"
+  }
+]

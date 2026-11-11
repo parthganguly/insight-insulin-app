@@ -1,0 +1,21 @@
+# Mixed-meal extraction receipt
+
+## Suklaew 2014
+
+Design identified before extraction: randomized crossover of 40 g sucrose or isomaltulose with the same breakfast. Twelve of sixteen randomized participants completed both visits. The breakfast contained 67 g carbohydrate including the intervention (27 g other carbohydrate), with white bread, ham and salad dressing. Published group summaries only. Source: https://digital.car.chula.ac.th/chulaetd/19253/ . Primary PDF: https://digiverse.chula.ac.th/digital/api/DownloadDigitalFile/dowload/304709 .
+
+The local excerpt contains original PDF pages 5, 59, 61, 64, 68, 69, 76, 77, 78, 79, 80, in that order. Printed pages 51, 53, 56, 68 and 71 contain the ingredients, nutrient totals, plasma insulin ELISA, 0–240-minute iAUC and first-meal concentrations. Tables 10 and 11 disagree about total energy (621 vs 625 kcal). Table 11's fat mass conflicts with its energy percentage. Both carbohydrate figures support 40 g intervention out of 67 g. The CSV transcribes Table 17. Early trapezoids on baseline-subtracted arm means yield ISO/SUC area ratios 0.473 (30 min), 0.576 (60 min), and 0.621 (120 min). Directly reported 0–240-minute participant summary iAUC means ± SEM are 4412.06 ± 610.88 vs 7367.70 ± 859.63 µIU·min/mL (paired p=.029). The authors report a between-treatment 30-minute contrast (p=.008); Table 17 p-values are within-arm tests against baseline.
+
+## Zhang 2025
+
+Design identified before extraction: four-condition crossover, 15 participants with metabolic syndrome. Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12348355/ . Article XML: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12348355/fullTextXML . Original figures: https://mdpi-res.com/d_attachment/nutrients/nutrients-17-02539/article_deploy/html/images/nutrients-17-02539-g001.png and https://mdpi-res.com/d_attachment/nutrients/nutrients-17-02539/article_deploy/html/images/nutrients-17-02539-g005.png .
+
+Table A1 provides 24 g background carbohydrate from the bread, 16 g fat and 4.1 g protein for MMT1. A adds 50 g test sugar to MMT1, then MMT2 at 180 min. B provides MMT1 at 0, the 50 g sugar at 180 and MMT2 at 240. For both visits MMT2 provides 65 g carbohydrate. Main text reports drink volume 500 mL, Table A1 reports mass 400 g. Both specify 50 g test sugar. Plasma insulin by Mercodia ELISA; plotted arm means ± SEM. The paper credits two Zhejiang public research programs and discloses one author employed by BENEO; see declared conflicts. The article's total AUC spans 540 minutes and both meals.
+
+Markers were manually read from Fig 5A/B at native 3996 × 928 resolution. Both panels use y=754 for 0 and y=149 for 600 pmol/L. CSVs include original image coordinates. Local aggregate means reconstructed as (754 − y) × 600/605. Manual localization and marker overlap produce uncertainty of several pmol/L. Use arm-specific mean fasting (A) or 180-minute (B) as baseline, perform linear trapezoidal integration, and divide ISO area by SUC area. A's mean fasting marker was assigned t=0; authors averaged two fasting samples. The areas are group-curve descriptive values without participant-level paired standard errors or confidence intervals.
+
+At 30/60/120/180 minutes A gives ratios 0.495/0.564/0.729/0.839. At 30/60 minutes after the dose B gives 0.468/0.537. The common-dose A vs B comparison uses different time of day, prior feeding and starting insulin. Only the first 60 minutes of B separate the test sugar from lunch. Small ratio differences across these conditions are imprecise. The study did not isolate the matrix effect.
+
+## Other candidates
+
+Dye et al. (https://doi.org/10.1002/mnfr.200900196) measured capillary/interstitial glucose. The trifle cognition trial (https://doi.org/10.1017/S0007114520000458) measured plasma glucose. Neither supplies measured insulin for this comparison. Sridonpai et al. (https://pubmed.ncbi.nlm.nih.gov/27276739/) measured insulin during a mixed breakfast/lunch protocol, but the accessible abstract describes an insulin tendency after lunch and supplies no early breakfast arm means. Zhang 2024 shares trial registration NCT03806920 with Zhang 2025; count the trial design and strata explicitly when comparing reports.

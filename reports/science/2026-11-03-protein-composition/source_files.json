@@ -1,0 +1,44 @@
+[
+  {
+    "filename": "PMC3745835.xml",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC3745835/fullTextXML",
+    "locator": "Full article methods, summary or Table 1",
+    "sha256": "cf60c25795bb6089a07832cbb4e85e310007ac8e7d45475814c473e604fe08c4"
+  },
+  {
+    "filename": "PMC3745835.pdf",
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC3745835.1/PMC3745835.1.pdf",
+    "locator": "Original Figure 2, page 3 (144 DPI rendering)",
+    "sha256": "48d5a76efdab889de2d9c036856efb62a1e3dc658a3e81b18b63ec219cfa1212"
+  },
+  {
+    "filename": "PMC4121211.xml",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4121211/fullTextXML",
+    "locator": "Full article methods, summary or Table 1",
+    "sha256": "0639e627f2756d01c6cf07a2db8af83a5eaabd8551b98b6fe330b7e31401c31c"
+  },
+  {
+    "filename": "PMC4121211.pdf",
+    "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC4121211.1/PMC4121211.1.pdf",
+    "locator": "Original Figure 2, page 3 (144 DPI rendering)",
+    "sha256": "b11f6c086e1d9198c425f2919ad3407add31ae2927c2c6126ce7ed0c27bf1c30"
+  },
+  {
+    "filename": "CV-fig1-large.jpg",
+    "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0002916523049444-gr1_lrg.jpg",
+    "locator": "Original publisher graphic",
+    "sha256": "3e05d34cb127729a5e9e0f172f6a4840e899eec0c69897f09b7a6dcbf8b9a52e"
+  },
+  {
+    "filename": "local_manders_fig1_large.jpg",
+    "url": "https://ars.els-cdn.com/content/image/1-s2.0-S002231662208244X-gr1_lrg.jpg",
+    "locator": "Original publisher graphic",
+    "sha256": "ed76a1ff8fc39e3f3833a07ea5e3a87ee96f2db6b79c03394faef1249968a65b"
+  },
+  {
+    "filename": "local_kalog_gr2_lrg.jpg",
+    "url": "https://ars.els-cdn.com/content/image/1-s2.0-S0026049508003120-gr2_lrg.jpg",
+    "locator": "Original publisher graphic",
+    "sha256": "83e0093f4b7a7b0ef2c04f3d0ae2910a7330fd3cba5a2e5ad9a5ca309a4c97d8"
+  }
+]

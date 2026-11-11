@@ -1,0 +1,10 @@
+{
+ "source":"https://doi.org/10.3390/nu14153111",
+ "source_location":"Table 1, plasma insulin block, net iAUC0-60 and net iAUC0-180 rows. Each reported value is a net incremental area divided by time in minutes.",
+ "source_xml_sha256":"be3651580711e0c25fdbc0e1402856a1dcc8b43238ec57edd8c4efcf918d75c9",
+ "groups_n":{"younger":10,"older":10},
+ "mixture_GP":{"younger_60":"46.2 ± 9.3","older_60":"39.8 ± 9.3","younger_180":"25.8 ± 6.2","older_180":"26.6 ± 6.2"},
+ "dispersion":"SEM",
+ "reported_raw_sum_paired_180":{"overall":{"GP":28.3,"G_plus_P":21.3,"p":0.002},"younger_p":0.04,"older_p":0.02},
+ "notes":"Published overall paired values differ from a simple equal-weight average of the Table 1 age means. The authors report baseline-covariate mixed modeling and a separate participant-wise paired comparison, without reconciling these values. Preserve both."
+}

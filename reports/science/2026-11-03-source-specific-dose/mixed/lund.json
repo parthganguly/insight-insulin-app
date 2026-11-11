@@ -1,0 +1,9 @@
+{
+ "source":"https://doi.org/10.1038/ejcn.2013.88",
+ "location":"Table 1, serum insulin iAUC 0–120 min. Native group means, SEM and Tukey superscripts.",
+ "available_glucose_g":25,
+ "reference":{"mean":7.3,"sem":1.1,"letter":"a"},
+ "whey":[{"protein_g":4.5,"mean":9.5,"sem":1.0,"letter":"ab"},{"protein_g":9,"mean":8.8,"sem":0.9,"letter":"a"},{"protein_g":18,"mean":12.0,"sem":1.0,"letter":"b"}],
+ "n_analyzed":11,"n_enrolled":12,
+ "endpoints":"Per-person trapezoidal incremental serum insulin area. Below-baseline handling not explicitly specified in the published calculation paragraph. ResearchGate plain-text unit extraction ambiguous; only within-study ratios are scored, and published percentage increases 30/21/64 independently cross-check the transcription."
+}

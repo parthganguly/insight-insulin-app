@@ -1,0 +1,82 @@
+{
+  "120": {
+    "soy_then_cho": {
+      "all_graph": {
+        "observed": 2548.80795,
+        "predicted": 2482.918725,
+        "error": -65.8892249999999,
+        "change_from_native_grid": -187.83922499999994
+      },
+      "primary_source": {
+        "observed": 2548.80795,
+        "predicted": 2482.918725,
+        "error": -65.8892249999999,
+        "change_from_native_grid": -187.83922499999994
+      }
+    },
+    "cho_then_soy": {
+      "all_graph": {
+        "observed": 2975.699625,
+        "predicted": 2571.3900750000003,
+        "error": -404.30954999999994,
+        "change_from_native_grid": -58.35127499999999
+      },
+      "primary_source": {
+        "observed": 2975.699625,
+        "predicted": 2571.3900750000003,
+        "error": -404.30954999999994,
+        "change_from_native_grid": -58.35127499999999
+      }
+    },
+    "contrast_all_graph": {
+      "observed": 426.8916750000003,
+      "predicted": 88.47135000000026,
+      "error": -338.42032500000005
+    },
+    "contrast_primary_source": {
+      "observed": 426.8916750000003,
+      "predicted": 88.47135000000026,
+      "error": -338.42032500000005
+    }
+  },
+  "150": {
+    "soy_then_cho": {
+      "all_graph": {
+        "observed": 2658.7790999999997,
+        "predicted": 2574.073125,
+        "error": -84.70597499999985,
+        "change_from_native_grid": -187.83922500000017
+      },
+      "primary_source": {
+        "observed": 2654.0,
+        "predicted": 2532.6852,
+        "error": -121.3148000000001,
+        "change_from_native_grid": -187.83922500000017
+      }
+    },
+    "cho_then_soy": {
+      "all_graph": {
+        "observed": 3046.311075,
+        "predicted": 2629.7283749999997,
+        "error": -416.5827000000004,
+        "change_from_native_grid": -58.35127499999999
+      },
+      "primary_source": {
+        "observed": 3062.4,
+        "predicted": 2603.62315,
+        "error": -458.7768500000002,
+        "change_from_native_grid": -58.35127499999999
+      }
+    },
+    "contrast_all_graph": {
+      "observed": 387.53197500000033,
+      "predicted": 55.655249999999796,
+      "error": -331.87672500000053
+    },
+    "contrast_primary_source": {
+      "observed": 408.4000000000001,
+      "predicted": 70.93795,
+      "error": -337.4620500000001
+    }
+  }
+}

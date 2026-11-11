@@ -1,0 +1,15 @@
+{
+  "route": "installed Claude Code",
+  "requested_alias": "claude-opus-5-5",
+  "init_model": "claude-opus-5-5",
+  "assistant_returned_models": [
+    "<synthetic>",
+    "claude-opus-5-5"
+  ],
+  "tool_calls": 1,
+  "exit_code": 1,
+  "is_error": true,
+  "timed_out": false,
+  "process_exited": true,
+  "action": "One workspace listing followed by quota notification; no scientific contribution."
+}

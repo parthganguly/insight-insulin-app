@@ -1,0 +1,447 @@
+{
+  "source_sha256": "9f4d968b04719be793a8cda23a3aa509fe15bd45102b8f009794e0cc2a8bbecb",
+  "pdf_page": 65,
+  "x_at_0_and_80_pt": [
+    185.88827514648438,
+    105.36907196044922
+  ],
+  "times_min": [
+    0,
+    15,
+    30,
+    60,
+    90,
+    120,
+    150
+  ],
+  "unit": "microU/mL",
+  "sem_stress_additive": 1.1,
+  "arms": {
+    "soy_then_cho": [
+      {
+        "stem_path_part": [
+          138,
+          -1
+        ],
+        "cap_path_part": [
+          139,
+          0
+        ],
+        "start_xy_pt": [
+          176.40756,
+          414.84039
+        ],
+        "end_xy_pt": [
+          177.48776,
+          414.84039
+        ],
+        "sem": 1.07323,
+        "stressed_upper": 2.17323
+      },
+      {
+        "stem_path_part": [
+          140,
+          0
+        ],
+        "cap_path_part": [
+          140,
+          1
+        ],
+        "start_xy_pt": [
+          153.7886,
+          403.55997
+        ],
+        "end_xy_pt": [
+          157.98834,
+          403.55997
+        ],
+        "sem": 4.17266,
+        "stressed_upper": 5.27266
+      },
+      {
+        "stem_path_part": [
+          140,
+          2
+        ],
+        "cap_path_part": [
+          140,
+          3
+        ],
+        "start_xy_pt": [
+          155.40891,
+          391.74026
+        ],
+        "end_xy_pt": [
+          159.60864,
+          391.74026
+        ],
+        "sem": 4.17266,
+        "stressed_upper": 5.27266
+      },
+      {
+        "stem_path_part": [
+          140,
+          4
+        ],
+        "cap_path_part": [
+          140,
+          5
+        ],
+        "start_xy_pt": [
+          133.26901,
+          368.64108
+        ],
+        "end_xy_pt": [
+          143.82886,
+          368.64108
+        ],
+        "sem": 10.49175,
+        "stressed_upper": 11.59175
+      },
+      {
+        "stem_path_part": [
+          140,
+          6
+        ],
+        "cap_path_part": [
+          140,
+          7
+        ],
+        "start_xy_pt": [
+          164.34848,
+          345.54187
+        ],
+        "end_xy_pt": [
+          170.10849,
+          345.54187
+        ],
+        "sem": 5.72287,
+        "stressed_upper": 6.82287
+      },
+      {
+        "stem_path_part": [
+          140,
+          8
+        ],
+        "cap_path_part": [
+          140,
+          9
+        ],
+        "start_xy_pt": [
+          170.10849,
+          322.98199
+        ],
+        "end_xy_pt": [
+          173.28802,
+          322.98199
+        ],
+        "sem": 3.15903,
+        "stressed_upper": 4.25903
+      },
+      {
+        "stem_path_part": [
+          140,
+          10
+        ],
+        "cap_path_part": [
+          140,
+          11
+        ],
+        "start_xy_pt": [
+          175.38843,
+          299.88177
+        ],
+        "end_xy_pt": [
+          175.92749,
+          299.88177
+        ],
+        "sem": 0.53559,
+        "stressed_upper": 1.63559
+      }
+    ],
+    "cho_then_soy": [
+      {
+        "stem_path_part": [
+          192,
+          0
+        ],
+        "cap_path_part": [
+          193,
+          0
+        ],
+        "start_xy_pt": [
+          174.84769,
+          414.84171
+        ],
+        "end_xy_pt": [
+          175.92685,
+          414.84171
+        ],
+        "sem": 1.0722,
+        "stressed_upper": 2.1722
+      },
+      {
+        "stem_path_part": [
+          194,
+          0
+        ],
+        "cap_path_part": [
+          194,
+          1
+        ],
+        "start_xy_pt": [
+          141.72794,
+          403.56131
+        ],
+        "end_xy_pt": [
+          149.58832,
+          403.56131
+        ],
+        "sem": 7.8097,
+        "stressed_upper": 8.9097
+      },
+      {
+        "stem_path_part": [
+          194,
+          2
+        ],
+        "cap_path_part": [
+          194,
+          3
+        ],
+        "start_xy_pt": [
+          140.64777,
+          391.74164
+        ],
+        "end_xy_pt": [
+          150.66748,
+          391.74164
+        ],
+        "sem": 9.95511,
+        "stressed_upper": 11.05511
+      },
+      {
+        "stem_path_part": [
+          194,
+          4
+        ],
+        "cap_path_part": [
+          194,
+          5
+        ],
+        "start_xy_pt": [
+          135.90793,
+          368.64252
+        ],
+        "end_xy_pt": [
+          148.56815,
+          368.64252
+        ],
+        "sem": 12.57858,
+        "stressed_upper": 13.67858
+      },
+      {
+        "stem_path_part": [
+          194,
+          6
+        ],
+        "cap_path_part": [
+          194,
+          7
+        ],
+        "start_xy_pt": [
+          157.98776,
+          345.5434
+        ],
+        "end_xy_pt": [
+          165.9071,
+          345.5434
+        ],
+        "sem": 7.86828,
+        "stressed_upper": 8.96828
+      },
+      {
+        "stem_path_part": [
+          194,
+          8
+        ],
+        "cap_path_part": [
+          194,
+          9
+        ],
+        "start_xy_pt": [
+          171.18701,
+          322.98352
+        ],
+        "end_xy_pt": [
+          173.76749,
+          322.98352
+        ],
+        "sem": 2.56384,
+        "stressed_upper": 3.66384
+      },
+      {
+        "stem_path_part": [
+          194,
+          10
+        ],
+        "cap_path_part": [
+          194,
+          11
+        ],
+        "start_xy_pt": [
+          173.76749,
+          299.88342
+        ],
+        "end_xy_pt": [
+          174.84769,
+          299.88342
+        ],
+        "sem": 1.07323,
+        "stressed_upper": 2.17323
+      }
+    ],
+    "pea_then_cho": [
+      {
+        "stem_path_part": [
+          251,
+          0
+        ],
+        "cap_path_part": [
+          252,
+          0
+        ],
+        "start_xy_pt": [
+          175.38715,
+          414.84302
+        ],
+        "end_xy_pt": [
+          174.30695,
+          414.84302
+        ],
+        "sem": 1.07323,
+        "stressed_upper": 2.17323
+      },
+      {
+        "stem_path_part": [
+          253,
+          0
+        ],
+        "cap_path_part": [
+          253,
+          1
+        ],
+        "start_xy_pt": [
+          156.42691,
+          403.56265
+        ],
+        "end_xy_pt": [
+          151.6871,
+          403.56265
+        ],
+        "sem": 4.70924,
+        "stressed_upper": 5.80924
+      },
+      {
+        "stem_path_part": [
+          253,
+          2
+        ],
+        "cap_path_part": [
+          253,
+          3
+        ],
+        "start_xy_pt": [
+          143.28769,
+          391.74304
+        ],
+        "end_xy_pt": [
+          137.46768,
+          391.74304
+        ],
+        "sem": 5.78248,
+        "stressed_upper": 6.88248
+      },
+      {
+        "stem_path_part": [
+          254,
+          0
+        ],
+        "cap_path_part": [
+          255,
+          0
+        ],
+        "start_xy_pt": [
+          118.02793,
+          368.64545
+        ],
+        "end_xy_pt": [
+          103.80857,
+          368.64545
+        ],
+        "sem": 14.12767,
+        "stressed_upper": 15.22767
+      },
+      {
+        "stem_path_part": [
+          256,
+          0
+        ],
+        "cap_path_part": [
+          256,
+          1
+        ],
+        "start_xy_pt": [
+          148.5676,
+          345.54492
+        ],
+        "end_xy_pt": [
+          141.72742,
+          345.54492
+        ],
+        "sem": 6.79607,
+        "stressed_upper": 7.89607
+      },
+      {
+        "stem_path_part": [
+          256,
+          2
+        ],
+        "cap_path_part": [
+          256,
+          3
+        ],
+        "start_xy_pt": [
+          173.28677,
+          322.98517
+        ],
+        "end_xy_pt": [
+          171.1864,
+          322.98517
+        ],
+        "sem": 2.08683,
+        "stressed_upper": 3.18683
+      },
+      {
+        "stem_path_part": [
+          256,
+          4
+        ],
+        "cap_path_part": [
+          256,
+          5
+        ],
+        "start_xy_pt": [
+          176.40628,
+          299.88513
+        ],
+        "end_xy_pt": [
+          175.38715,
+          299.88513
+        ],
+        "sem": 1.01256,
+        "stressed_upper": 2.11256
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "Pea": {
+    "author_doses": {
+      "Fahmi": [
+        0.06
+      ],
+      "Thondre": [
+        0.5,
+        1.0
+      ]
+    },
+    "multiple_doses_in_anchor_training": []
+  },
+  "Whey": {
+    "author_doses": {
+      "Acheson": [
+        1.25
+      ],
+      "Gunnerud": [
+        0.18,
+        0.36,
+        0.72
+      ],
+      "Roberts": [
+        0.4
+      ],
+      "Wolever": [
+        0.15
+      ]
+    },
+    "multiple_doses_in_anchor_training": [
+      "Gunnerud"
+    ]
+  }
+}

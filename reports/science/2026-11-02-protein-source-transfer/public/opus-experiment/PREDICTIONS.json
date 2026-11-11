@@ -1,0 +1,94 @@
+{
+  "status": "Frozen food-input forecasts; no Gunnerud insulin read",
+  "predictions": {
+    "no_change": {
+      "W": 1.0,
+      "W+5AA": 1.0,
+      "W+6AA": 1.0,
+      "S": 1.0,
+      "S+5AA": 1.0,
+      "S+6AA": 1.0
+    },
+    "printed_energy": {
+      "W": 1.100558659217877,
+      "W+5AA": 1.100558659217877,
+      "W+6AA": 1.1089385474860336,
+      "S": 1.100558659217877,
+      "S+5AA": 1.100558659217877,
+      "S+6AA": 1.1089385474860336
+    },
+    "total_protein": {
+      "W": 1.2282962962962964,
+      "W+5AA": 1.2282962962962964,
+      "W+6AA": 1.2390814814814815,
+      "S": 1.2282962962962964,
+      "S+5AA": 1.2282962962962964,
+      "S+6AA": 1.2390814814814815
+    },
+    "leucine_whey_equivalent": {
+      "W": 1.2282962962962962,
+      "W+5AA": 1.3346614684860298,
+      "W+6AA": 1.3346614684860298,
+      "S": 1.2015360623781677,
+      "S+5AA": 1.3212813515269655,
+      "S+6AA": 1.3212813515269655
+    },
+    "matched_subset_whey_equivalent": {
+      "W": 1.2282962962962964,
+      "W+5AA": 1.3161814058956915,
+      "W+6AA": 1.3161814058956915,
+      "S": null,
+      "S+5AA": null,
+      "S+6AA": null
+    },
+    "intact_protein_only": {
+      "W": 1.2282962962962964,
+      "W+5AA": 1.1500000000000001,
+      "W+6AA": 1.1500000000000001,
+      "S": 1.2282962962962964,
+      "S+5AA": 1.1500000000000001,
+      "S+6AA": 1.1500000000000001
+    }
+  },
+  "descriptors": {
+    "W": {
+      "added_protein_g": 9.0,
+      "leucine_g": 1.026,
+      "leucine_whey_equivalent_g": 8.999999999999998,
+      "intact_protein_g": 9.0
+    },
+    "W+5AA": {
+      "added_protein_g": 9.0,
+      "leucine_g": 1.8130000000000002,
+      "leucine_whey_equivalent_g": 15.903508771929824,
+      "intact_protein_g": 4.5
+    },
+    "W+6AA": {
+      "added_protein_g": 9.7,
+      "leucine_g": 1.8130000000000002,
+      "leucine_whey_equivalent_g": 15.903508771929824,
+      "intact_protein_g": 4.5
+    },
+    "S": {
+      "added_protein_g": 9.0,
+      "leucine_g": 0.828,
+      "leucine_whey_equivalent_g": 7.263157894736841,
+      "intact_protein_g": 9.0
+    },
+    "S+5AA": {
+      "added_protein_g": 9.0,
+      "leucine_g": 1.714,
+      "leucine_whey_equivalent_g": 15.035087719298243,
+      "intact_protein_g": 4.5
+    },
+    "S+6AA": {
+      "added_protein_g": 9.7,
+      "leucine_g": 1.714,
+      "leucine_whey_equivalent_g": 15.035087719298243,
+      "intact_protein_g": 4.5
+    }
+  },
+  "unavailable": {
+    "matched_subset_whey_equivalent": "soy isoleucine not printed (Table 2)"
+  }
+}

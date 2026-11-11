@@ -1,0 +1,13 @@
+{
+  "constant": 1.2670685255785012,
+  "signed_area_comparison": {
+    "mean_two_errors_per_bolus": 0.28052847767234784,
+    "mean_two_errors_constant": 0.28052847767234784,
+    "change_error_per_bolus": 0.1004495203305493,
+    "change_error_constant": 0.25834700783207587
+  },
+  "positive_area_stressed_mean_error_per_bolus_minus_constant_outer": [
+    -0.04380231866002621,
+    1.249000902703301e-16
+  ]
+}

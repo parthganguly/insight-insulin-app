@@ -1,0 +1,156 @@
+{
+  "thesis_sha256": "9f4d968b04719be793a8cda23a3aa509fe15bd45102b8f009794e0cc2a8bbecb",
+  "named_coordinates": [
+    "Asx",
+    "Ser",
+    "Glx",
+    "His",
+    "Gly",
+    "Thr",
+    "Arg",
+    "Ala",
+    "Tyr",
+    "Val",
+    "Met",
+    "Ile",
+    "Phe",
+    "Trp",
+    "Leu",
+    "Lys",
+    "Pro",
+    "Cys"
+  ],
+  "concurrent_percent_dry_product": {
+    "soy": [
+      12.1,
+      5.2,
+      19.7,
+      2.5,
+      4.3,
+      3.9,
+      7.4,
+      4.4,
+      3.1,
+      3.9,
+      1.2,
+      3.7,
+      4.9,
+      1.3,
+      7.5,
+      6.6,
+      6.4,
+      2.2
+    ],
+    "pea": [
+      11.7,
+      5.7,
+      19.9,
+      2.4,
+      4.0,
+      4.0,
+      9.8,
+      5.4,
+      3.7,
+      3.9,
+      0.9,
+      3.4,
+      4.6,
+      0.4,
+      7.3,
+      8.4,
+      4.0,
+      0.6
+    ]
+  },
+  "staggered_percent_dry_product": {
+    "soy": [
+      12.1,
+      5.2,
+      19.7,
+      2.5,
+      4.3,
+      3.9,
+      7.4,
+      4.4,
+      3.1,
+      3.9,
+      1.2,
+      3.7,
+      4.9,
+      1.3,
+      7.5,
+      6.6,
+      6.4,
+      2.2
+    ],
+    "pea": [
+      11.7,
+      5.7,
+      19.9,
+      2.4,
+      4.0,
+      4.0,
+      9.8,
+      5.4,
+      3.7,
+      3.9,
+      0.9,
+      3.4,
+      4.6,
+      0.4,
+      7.3,
+      8.4,
+      4.0,
+      0.6
+    ]
+  },
+  "concurrent_figure": {
+    "source": "Author thesis, chapter 2, Figure 2.2B, PDF page 27 (printed 26).",
+    "sha256": "9f4d968b04719be793a8cda23a3aa509fe15bd45102b8f009794e0cc2a8bbecb",
+    "render": "pdftoppm -f 27 -l 27 -scale-to 1600 -png -singlefile; 1132 x 1600 pixels. Top horizontal bar edges; exclude SEM whiskers.",
+    "printed_axis": "delta insulin area, microU * 2h / mL (source notation)",
+    "zero_y": 636,
+    "tick_3500_y": 490,
+    "top_y": {
+      "pea": 543,
+      "rice": 540,
+      "soy": 565,
+      "gluten": 560,
+      "whey": 526,
+      "egg": 535,
+      "CHO": 600
+    },
+    "reading_half_px": 1,
+    "window": "0-120 min from single drink; total area = area above minus below baseline at t=0 (signed net). n=8 men; repeated-measures analysis; no interpolation from the mean concentration curve."
+  },
+  "old_projection": {
+    "pea": 1.1076716983751969,
+    "soy": 1.2057135768062388
+  },
+  "staggered_150_native": {
+    "soy": [
+      1257.0,
+      188.6
+    ],
+    "CHO": [
+      1412.8,
+      332.5
+    ],
+    "soy_CHO": [
+      2654.0,
+      577.7
+    ],
+    "CHO_soy": [
+      3062.4,
+      691.7
+    ],
+    "pea_CHO": [
+      3534.6,
+      588.5
+    ]
+  },
+  "staggered_semantics": "Each [group mean, SEM], n=8 male, native signed net 150-minute insulin area. Table 4.2 single; 4.3 orders; 4.4 protein-first comparison. .017 paired Wilcoxon for pea v soy, .263 for order; tables round to .02/.26. No participant covariance. Ch2/ch4 participant overlap unknown.",
+  "mean_kg": 75.9,
+  "g_per_kg": 0.4,
+  "substitution_slope": 0.1022204575597254
+}

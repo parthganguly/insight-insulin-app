@@ -1,0 +1,67 @@
+{
+  "previous_review_refinement": {
+    "assay": 0.6164383561643835,
+    "posthoc_duration": 0.625,
+    "geometric_midpoint": 0.6207044164517759,
+    "clinical_interval": [
+      0.2538077859070686,
+      0.5722141165959539
+    ],
+    "uniformly_below_midpoint": true,
+    "log_loss_advantage_for_any_ratio_below_both_predictions": 0.013793322132335988,
+    "scope": "Exact fixed forecasts and absolute log error only; input uncertainty can reverse their order."
+  },
+  "unscored": {
+    "whole_over_ground_lentils": {
+      "doi": "10.1093/ajcn/38.3.382",
+      "H30_percent": [
+        12.1,
+        60.9
+      ],
+      "predictions": {
+        "equal": 1,
+        "grain": 0.5288338316958565,
+        "pulse": 0.706272310045895,
+        "release": 0.1986863711001642,
+        "power": 0.660870316164092,
+        "affine": 0.6830124500701873
+      },
+      "confirmed_numeric_insulin_area": null,
+      "error": null
+    },
+    "brown_whole_over_ground_rice": {
+      "doi": "10.1093/ajcn/34.10.1991",
+      "H30_percent": [
+        17.6,
+        68.2
+      ],
+      "predictions": {
+        "equal": 1,
+        "grain": 0.5288338316958565,
+        "pulse": 0.706272310045895,
+        "release": 0.25806451612903225,
+        "power": 0.7066793705704837,
+        "affine": 0.7065015460162025
+      },
+      "confirmed_numeric_insulin_area": null,
+      "error": null
+    },
+    "white_whole_over_ground_rice": {
+      "doi": "10.1093/ajcn/34.10.1991",
+      "H30_percent": [
+        30.8,
+        71.8
+      ],
+      "predictions": {
+        "equal": 1,
+        "grain": 0.5288338316958565,
+        "pulse": 0.706272310045895,
+        "release": 0.42896935933147634,
+        "power": 0.8049865733242317,
+        "affine": 0.7741089166686408
+      },
+      "confirmed_numeric_insulin_area": null,
+      "error": null
+    }
+  }
+}

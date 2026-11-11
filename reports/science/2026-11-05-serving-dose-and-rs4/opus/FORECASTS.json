@@ -1,0 +1,67 @@
+{
+  "status": "Frozen before target Table 4 insulin numbers; exposure in inputs.json",
+  "donor_ratio": 0.4177894496460379,
+  "donor_available_ratio": 1.0,
+  "raw_donor_reference": 0.4177894496460379,
+  "k_per_fiber_density": -2.967444119963265,
+  "donor_log_se_ratio": {
+    "rho_plus1": 0.13693969472552203,
+    "rho_0": 0.2959139904657177,
+    "rho_minus1": 0.3954462030607584
+  },
+  "forecasts": {
+    "medium": {
+      "equality": 1.0,
+      "available_cho": 0.9896067415730336,
+      "generic_enriched": 0.4134472559278066,
+      "graded_fiber_density": 0.19853294259556234,
+      "generic_enriched_band_rho0": [
+        0.2314904291303883,
+        0.7384263534193505
+      ],
+      "graded_band_rho0": [
+        0.06827047125660997,
+        0.5773408117764625
+      ]
+    },
+    "high": {
+      "equality": 1.0,
+      "available_cho": 0.9792134831460674,
+      "generic_enriched": 0.4091050622095753,
+      "graded_fiber_density": 0.09247549795253539,
+      "generic_enriched_band_rho0": [
+        0.22905922110375637,
+        0.7306710950950485
+      ],
+      "graded_band_rho0": [
+        0.019274245754799083,
+        0.4436862448659031
+      ]
+    }
+  },
+  "high_over_medium": {
+    "equality": 1.0,
+    "available_cho": 0.9894975872835652,
+    "generic_enriched": 0.9894975872835651,
+    "graded_fiber_density": 0.46579422408965204
+  },
+  "support": {
+    "medium": {
+      "fiber_density_difference": 0.5413253037024752,
+      "donor_difference": 0.29411764705882354,
+      "multiple_of_donor": 1.8405060325884157,
+      "extrapolated": true
+    },
+    "high": {
+      "fiber_density_difference": 0.7952318100653014,
+      "donor_difference": 0.29411764705882354,
+      "multiple_of_donor": 2.703788154222025,
+      "extrapolated": true
+    }
+  },
+  "notes": [
+    "generic factor cancels in high/medium; graded model extrapolates beyond donor fibre-density gap",
+    "fibre is TDF (donor measured) vs labeling-software dietary fibre (target calculated); not verified RS chemistry",
+    "no pure RS effect is claimed or extrapolated; forecasts are relative"
+  ]
+}

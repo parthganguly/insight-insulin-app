@@ -1,0 +1,845 @@
+{
+  "scope": "Outcome-exposed public aggregate source arithmetic. Own manual readings after exposure to other verifier code; not blinded.",
+  "source_hashes": {
+    "astra\\hoebler\\shot1.png": "eee1cf47f699da4616857848bede5120640fb9dcce1034db22e8770ae6298d16",
+    "astra\\hoebler\\shot2.png": "ff283bcec0ad56ca1d578918bcb887f3fc3175d5b6f37ca1daa92ec91bf3a75a",
+    "astra\\replication\\first.png": "c9e7ba61be9c69354e6ef1095971f86d87076745083d44e5dd9e29d64758bb09",
+    "astra\\replication\\source0.md": "8503547803abea8c6b450407ce0c059c7b88d3fcb6693041604e0cc3dd770c34"
+  },
+  "hummus_coefficients": {
+    "q_grams": 14.276159823706797,
+    "power": 0.2563060312078195,
+    "pair_lambda": 0.3955848727607704
+  },
+  "hoebler": {
+    "clinical_marker_y": {
+      "WWB": [
+        1080,
+        982,
+        795,
+        824,
+        750,
+        807,
+        819,
+        828,
+        876,
+        968,
+        984,
+        1017
+      ],
+      "HAWB": [
+        1080,
+        1037,
+        886,
+        844,
+        857,
+        921,
+        969,
+        1001,
+        1019,
+        1028,
+        1032,
+        1033
+      ],
+      "SP": [
+        1080,
+        1046,
+        891,
+        878,
+        889,
+        920,
+        955,
+        937,
+        940,
+        959,
+        950,
+        985
+      ]
+    },
+    "H_marker_y": {
+      "15": {
+        "WWB": 426,
+        "HAWB": 453,
+        "SP": 470
+      },
+      "30": {
+        "WWB": 350,
+        "HAWB": 395,
+        "SP": 429
+      }
+    },
+    "signed120": {
+      "WWB": 11531.800391389432,
+      "HAWB": 6661.4970645792555,
+      "SP": 6872.407045009784
+    },
+    "forecasts": [
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5776632302405498,
+        "predictions": {
+          "direct_released_grams": 0.7775537634408604,
+          "power": 0.937548081806557,
+          "pair_oriented_affine": 0.9120036338146404,
+          "coherent_q_plus_d": 0.8531082987738522,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.29716173855756234,
+          "power": 0.48427699156453247,
+          "pair_oriented_affine": 0.4566529222870568,
+          "coherent_q_plus_d": 0.3898954494276695,
+          "equality": 0.5487642267569227,
+          "starch_dose": 0.5048011033358066,
+          "reported_available_starch": 0.3310407429120522
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.57,
+        "predictions": {
+          "direct_released_grams": 0.7775537634408604,
+          "power": 0.937548081806557,
+          "pair_oriented_affine": 0.9120036338146404,
+          "coherent_q_plus_d": 0.8531082987738522,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.31051642995418083,
+          "power": 0.49763168296115107,
+          "pair_oriented_affine": 0.4700076136836754,
+          "coherent_q_plus_d": 0.40325014082428806,
+          "equality": 0.5621189181535413,
+          "starch_dose": 0.5181557947324253,
+          "reported_available_starch": 0.34439543430867076
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "contrast": "SP/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5959526536846125,
+        "predictions": {
+          "direct_released_grams": 0.679510155316607,
+          "power": 0.9057134358484727,
+          "pair_oriented_affine": 0.8732190655698009,
+          "coherent_q_plus_d": 0.7883654979313102,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.13121095497449523,
+          "power": 0.41856173625454307,
+          "pair_oriented_affine": 0.38202523479267264,
+          "coherent_q_plus_d": 0.2798005884008017,
+          "equality": 0.5175940551988103,
+          "starch_dose": 0.49585406856240455,
+          "reported_available_starch": 0.5496823697503109
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "contrast": "SP/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.61,
+        "predictions": {
+          "direct_released_grams": 0.679510155316607,
+          "power": 0.9057134358484727,
+          "pair_oriented_affine": 0.8732190655698009,
+          "coherent_q_plus_d": 0.7883654979313102,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.10791322159046497,
+          "power": 0.3952640028705127,
+          "pair_oriented_affine": 0.35872750140864246,
+          "coherent_q_plus_d": 0.25650285501677134,
+          "equality": 0.49429632181478017,
+          "starch_dose": 0.4725563351783743,
+          "reported_available_starch": 0.5263846363662806
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/SP",
+        "endpoint": "native_signed120",
+        "observed": 0.9693106099436186,
+        "predictions": {
+          "direct_released_grams": 1.1442857142857146,
+          "power": 1.0351486957110905,
+          "pair_oriented_affine": 1.0570772459269113,
+          "coherent_q_plus_d": 1.0821228237567837,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.165950783583067,
+          "power": 0.06571525530998931,
+          "pair_oriented_affine": 0.08667795612309957,
+          "coherent_q_plus_d": 0.11009486102686775,
+          "equality": 0.03117017155811226,
+          "starch_dose": 0.008947034773401879,
+          "reported_available_starch": 0.2186416268382589
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/SP",
+        "endpoint": "reported_II",
+        "observed": 0.9344262295081968,
+        "predictions": {
+          "direct_released_grams": 1.1442857142857146,
+          "power": 1.0351486957110905,
+          "pair_oriented_affine": 1.0570772459269113,
+          "coherent_q_plus_d": 1.0821228237567837,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.20260320836371584,
+          "power": 0.10236768009063807,
+          "pair_oriented_affine": 0.12333038090374837,
+          "coherent_q_plus_d": 0.14674728580751653,
+          "equality": 0.06782259633876109,
+          "starch_dose": 0.04559945955405077,
+          "reported_available_starch": 0.18198920205761002
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5776632302405498,
+        "predictions": {
+          "direct_released_grams": 0.7775537634408604,
+          "power": 0.937548081806557,
+          "pair_oriented_affine": 0.9120036338146404,
+          "coherent_q_plus_d": 0.8584502755454605,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.29716173855756234,
+          "power": 0.48427699156453247,
+          "pair_oriented_affine": 0.4566529222870568,
+          "coherent_q_plus_d": 0.3961377062781641,
+          "equality": 0.5487642267569227,
+          "starch_dose": 0.5048011033358066,
+          "reported_available_starch": 0.3310407429120522
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.57,
+        "predictions": {
+          "direct_released_grams": 0.7775537634408604,
+          "power": 0.937548081806557,
+          "pair_oriented_affine": 0.9120036338146404,
+          "coherent_q_plus_d": 0.8584502755454605,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.31051642995418083,
+          "power": 0.49763168296115107,
+          "pair_oriented_affine": 0.4700076136836754,
+          "coherent_q_plus_d": 0.40949239767478274,
+          "equality": 0.5621189181535413,
+          "starch_dose": 0.5181557947324253,
+          "reported_available_starch": 0.34439543430867076
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "contrast": "SP/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5959526536846125,
+        "predictions": {
+          "direct_released_grams": 0.679510155316607,
+          "power": 0.9057134358484727,
+          "pair_oriented_affine": 0.8732190655698009,
+          "coherent_q_plus_d": 0.7960619612759705,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.13121095497449523,
+          "power": 0.41856173625454307,
+          "pair_oriented_affine": 0.38202523479267264,
+          "coherent_q_plus_d": 0.28951579983057646,
+          "equality": 0.5175940551988103,
+          "starch_dose": 0.49585406856240455,
+          "reported_available_starch": 0.5496823697503109
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "contrast": "SP/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.61,
+        "predictions": {
+          "direct_released_grams": 0.679510155316607,
+          "power": 0.9057134358484727,
+          "pair_oriented_affine": 0.8732190655698009,
+          "coherent_q_plus_d": 0.7960619612759705,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.10791322159046497,
+          "power": 0.3952640028705127,
+          "pair_oriented_affine": 0.35872750140864246,
+          "coherent_q_plus_d": 0.26621806644654616,
+          "equality": 0.49429632181478017,
+          "starch_dose": 0.4725563351783743,
+          "reported_available_starch": 0.5263846363662806
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/SP",
+        "endpoint": "native_signed120",
+        "observed": 0.9693106099436186,
+        "predictions": {
+          "direct_released_grams": 1.1442857142857146,
+          "power": 1.0351486957110905,
+          "pair_oriented_affine": 1.0570772459269113,
+          "coherent_q_plus_d": 1.0783711787578578,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.165950783583067,
+          "power": 0.06571525530998931,
+          "pair_oriented_affine": 0.08667795612309957,
+          "coherent_q_plus_d": 0.10662190644758751,
+          "equality": 0.03117017155811226,
+          "starch_dose": 0.008947034773401879,
+          "reported_available_starch": 0.2186416268382589
+        }
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/SP",
+        "endpoint": "reported_II",
+        "observed": 0.9344262295081968,
+        "predictions": {
+          "direct_released_grams": 1.1442857142857146,
+          "power": 1.0351486957110905,
+          "pair_oriented_affine": 1.0570772459269113,
+          "coherent_q_plus_d": 1.0783711787578578,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.20260320836371584,
+          "power": 0.10236768009063807,
+          "pair_oriented_affine": 0.12333038090374837,
+          "coherent_q_plus_d": 0.1432743312282364,
+          "equality": 0.06782259633876109,
+          "starch_dose": 0.04559945955405077,
+          "reported_available_starch": 0.18198920205761002
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5776632302405498,
+        "predictions": {
+          "direct_released_grams": 0.7612414467253177,
+          "power": 0.9324670260551319,
+          "pair_oriented_affine": 0.9055507280822892,
+          "coherent_q_plus_d": 0.8213779486681745,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.27595953090695907,
+          "power": 0.47884273786876225,
+          "pair_oriented_affine": 0.44955224570719177,
+          "coherent_q_plus_d": 0.3519923029034939,
+          "equality": 0.5487642267569227,
+          "starch_dose": 0.5048011033358066,
+          "reported_available_starch": 0.3310407429120522
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.57,
+        "predictions": {
+          "direct_released_grams": 0.7612414467253177,
+          "power": 0.9324670260551319,
+          "pair_oriented_affine": 0.9055507280822892,
+          "coherent_q_plus_d": 0.8213779486681745,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.28931422230357773,
+          "power": 0.4921974292653809,
+          "pair_oriented_affine": 0.46290693710381037,
+          "coherent_q_plus_d": 0.3653469943001126,
+          "equality": 0.5621189181535413,
+          "starch_dose": 0.5181557947324253,
+          "reported_available_starch": 0.34439543430867076
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "contrast": "SP/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5959526536846125,
+        "predictions": {
+          "direct_released_grams": 0.6271260997067448,
+          "power": 0.8872802863047985,
+          "pair_oriented_affine": 0.8524967255966804,
+          "coherent_q_plus_d": 0.7210424504379739,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.05098641258821119,
+          "power": 0.39799970219005104,
+          "pair_oriented_affine": 0.35800814442465845,
+          "coherent_q_plus_d": 0.19053678893621628,
+          "equality": 0.5175940551988103,
+          "starch_dose": 0.49585406856240455,
+          "reported_available_starch": 0.5496823697503109
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "contrast": "SP/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.61,
+        "predictions": {
+          "direct_released_grams": 0.6271260997067448,
+          "power": 0.8872802863047985,
+          "pair_oriented_affine": 0.8524967255966804,
+          "coherent_q_plus_d": 0.7210424504379739,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.02768867920418081,
+          "power": 0.37470196880602086,
+          "pair_oriented_affine": 0.33471041104062826,
+          "coherent_q_plus_d": 0.16723905555218593,
+          "equality": 0.49429632181478017,
+          "starch_dose": 0.4725563351783743,
+          "reported_available_starch": 0.5263846363662806
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/SP",
+        "endpoint": "native_signed120",
+        "observed": 0.9693106099436186,
+        "predictions": {
+          "direct_released_grams": 1.2138570649208948,
+          "power": 1.0509272441276925,
+          "pair_oriented_affine": 1.084598619815724,
+          "coherent_q_plus_d": 1.1391533857254244,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.2249731183187478,
+          "power": 0.08084303567871104,
+          "pair_oriented_affine": 0.11238015445375032,
+          "coherent_q_plus_d": 0.1614555139672774,
+          "equality": 0.03117017155811226,
+          "starch_dose": 0.008947034773401879,
+          "reported_available_starch": 0.2186416268382589
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "contrast": "HAWB/SP",
+        "endpoint": "reported_II",
+        "observed": 0.9344262295081968,
+        "predictions": {
+          "direct_released_grams": 1.2138570649208948,
+          "power": 1.0509272441276925,
+          "pair_oriented_affine": 1.084598619815724,
+          "coherent_q_plus_d": 1.1391533857254244,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.26162554309939673,
+          "power": 0.11749546045936002,
+          "pair_oriented_affine": 0.14903257923439914,
+          "coherent_q_plus_d": 0.19810793874792632,
+          "equality": 0.06782259633876109,
+          "starch_dose": 0.04559945955405077,
+          "reported_available_starch": 0.18198920205761002
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5776632302405498,
+        "predictions": {
+          "direct_released_grams": 0.7612414467253177,
+          "power": 0.9324670260551319,
+          "pair_oriented_affine": 0.9055507280822892,
+          "coherent_q_plus_d": 0.8262407295277623,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.27595953090695907,
+          "power": 0.47884273786876225,
+          "pair_oriented_affine": 0.44955224570719177,
+          "coherent_q_plus_d": 0.3578951189415952,
+          "equality": 0.5487642267569227,
+          "starch_dose": 0.5048011033358066,
+          "reported_available_starch": 0.3310407429120522
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.57,
+        "predictions": {
+          "direct_released_grams": 0.7612414467253177,
+          "power": 0.9324670260551319,
+          "pair_oriented_affine": 0.9055507280822892,
+          "coherent_q_plus_d": 0.8262407295277623,
+          "equality": 1.0,
+          "starch_dose": 0.956989247311828,
+          "reported_available_starch": 0.8043478260869565
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.28931422230357773,
+          "power": 0.4921974292653809,
+          "pair_oriented_affine": 0.46290693710381037,
+          "coherent_q_plus_d": 0.3712498103382139,
+          "equality": 0.5621189181535413,
+          "starch_dose": 0.5181557947324253,
+          "reported_available_starch": 0.34439543430867076
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "contrast": "SP/WWB",
+        "endpoint": "native_signed120",
+        "observed": 0.5959526536846125,
+        "predictions": {
+          "direct_released_grams": 0.6271260997067449,
+          "power": 0.8872802863047986,
+          "pair_oriented_affine": 0.8524967255966804,
+          "coherent_q_plus_d": 0.728636750372016,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.0509864125882114,
+          "power": 0.3979997021900512,
+          "pair_oriented_affine": 0.35800814442465845,
+          "coherent_q_plus_d": 0.20101409922815033,
+          "equality": 0.5175940551988103,
+          "starch_dose": 0.49585406856240455,
+          "reported_available_starch": 0.5496823697503109
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "contrast": "SP/WWB",
+        "endpoint": "reported_II",
+        "observed": 0.61,
+        "predictions": {
+          "direct_released_grams": 0.6271260997067449,
+          "power": 0.8872802863047986,
+          "pair_oriented_affine": 0.8524967255966804,
+          "coherent_q_plus_d": 0.728636750372016,
+          "equality": 1.0,
+          "starch_dose": 0.978494623655914,
+          "reported_available_starch": 1.0326086956521738
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.027688679204181024,
+          "power": 0.37470196880602086,
+          "pair_oriented_affine": 0.33471041104062826,
+          "coherent_q_plus_d": 0.17771636584412023,
+          "equality": 0.49429632181478017,
+          "starch_dose": 0.4725563351783743,
+          "reported_available_starch": 0.5263846363662806
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/SP",
+        "endpoint": "native_signed120",
+        "observed": 0.9693106099436186,
+        "predictions": {
+          "direct_released_grams": 1.2138570649208946,
+          "power": 1.0509272441276925,
+          "pair_oriented_affine": 1.0845986198157238,
+          "coherent_q_plus_d": 1.133954235915102,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.2249731183187476,
+          "power": 0.08084303567871104,
+          "pair_oriented_affine": 0.11238015445375013,
+          "coherent_q_plus_d": 0.15688101971344487,
+          "equality": 0.03117017155811226,
+          "starch_dose": 0.008947034773401879,
+          "reported_available_starch": 0.2186416268382589
+        }
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "contrast": "HAWB/SP",
+        "endpoint": "reported_II",
+        "observed": 0.9344262295081968,
+        "predictions": {
+          "direct_released_grams": 1.2138570649208946,
+          "power": 1.0509272441276925,
+          "pair_oriented_affine": 1.0845986198157238,
+          "coherent_q_plus_d": 1.133954235915102,
+          "equality": 1.0,
+          "starch_dose": 0.978021978021978,
+          "reported_available_starch": 0.7789473684210526
+        },
+        "abs_log_error": {
+          "direct_released_grams": 0.26162554309939656,
+          "power": 0.11749546045936002,
+          "pair_oriented_affine": 0.14903257923439897,
+          "coherent_q_plus_d": 0.19353344449409365,
+          "equality": 0.06782259633876109,
+          "starch_dose": 0.04559945955405077,
+          "reported_available_starch": 0.18198920205761002
+        }
+      }
+    ],
+    "coherence_checks": [
+      {
+        "minute": 15,
+        "mass_conversion": 1.0,
+        "q_plus_d_triangle_residual": 2.220446049250313e-16,
+        "pair_triangle_residual": 0.025085247169065017,
+        "pair_reciprocal_product": 1.0152157967503492
+      },
+      {
+        "minute": 15,
+        "mass_conversion": 0.9,
+        "q_plus_d_triangle_residual": 2.220446049250313e-16,
+        "pair_triangle_residual": 0.025085247169065017,
+        "pair_reciprocal_product": 1.0152157967503492
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 1.0,
+        "q_plus_d_triangle_residual": 0.0,
+        "pair_triangle_residual": 0.033942282958557835,
+        "pair_reciprocal_product": 1.0179048403286062
+      },
+      {
+        "minute": 30,
+        "mass_conversion": 0.9,
+        "q_plus_d_triangle_residual": -2.220446049250313e-16,
+        "pair_triangle_residual": 0.03394228295855806,
+        "pair_reciprocal_product": 1.0179048403286062
+      }
+    ],
+    "table1_ambiguity": {
+      "total_starch_g": {
+        "WWB": 93.0,
+        "HAWB": 89.0,
+        "SP": 91.0
+      },
+      "RS_g": {
+        "WWB": 1.3,
+        "HAWB": 16.5,
+        "SP": 2.5
+      },
+      "available_starch_g_printed": {
+        "WWB": 92.0,
+        "HAWB": 74.0,
+        "SP": 95.0
+      },
+      "available_by_difference": {
+        "WWB": 91.7,
+        "HAWB": 72.5,
+        "SP": 88.5
+      },
+      "note": "Spaghetti printedavailable95 exceeds total91; source also definesavailable as total-RS. Do not silentlyfix. Primaryreleasedgrams use measured totalstarch; reportedavailable kept separate. H glucose-equivalent/starchbasis ambiguity retained as1/.9massconversion sensitivity."
+    }
+  },
+  "costabile": {
+    "own_marker_y": {
+      "85HAF": [
+        893,
+        331,
+        206,
+        437,
+        513,
+        701,
+        834
+      ],
+      "70HAF": [
+        866,
+        214,
+        339,
+        311,
+        460,
+        615,
+        800
+      ],
+      "control": [
+        875,
+        282,
+        235,
+        286,
+        474,
+        762,
+        834
+      ]
+    },
+    "own_areas": {
+      "85HAF": {
+        "signed120": 12044.491525423728,
+        "signed240": 17275.423728813555
+      },
+      "70HAF": {
+        "signed120": 12311.440677966102,
+        "signed240": 18502.118644067796
+      },
+      "control": {
+        "signed120": 12854.87288135593,
+        "signed240": 17100.635593220337
+      }
+    },
+    "contrasts": [
+      {
+        "pair": "85HAF/control",
+        "own_signed120_ratio": 0.9369592088998765,
+        "own_signed240_ratio": 1.0102211484854116,
+        "published_breakfast_ratio": 1.0227272727272727,
+        "equality_forecast": 1.0
+      },
+      {
+        "pair": "70HAF/control",
+        "own_signed120_ratio": 0.9577255871446232,
+        "own_signed240_ratio": 1.0819550269466642,
+        "published_breakfast_ratio": 1.0606060606060606,
+        "equality_forecast": 1.0
+      },
+      {
+        "pair": "85HAF/70HAF",
+        "own_signed120_ratio": 0.9783169850283943,
+        "own_signed240_ratio": 0.9336997595328065,
+        "published_breakfast_ratio": 0.9642857142857143,
+        "equality_forecast": 1.0
+      }
+    ],
+    "comparison_to_other_digitization": {
+      "85HAF": {
+        "signed120_difference_vs_astra": -38.22321476715297,
+        "signed240_difference_vs_astra": -94.67171127127949
+      },
+      "70HAF": {
+        "signed120_difference_vs_astra": -16.23694663623246,
+        "signed240_difference_vs_astra": -3.7138055610521405
+      },
+      "control": {
+        "signed120_difference_vs_astra": -19.994562970687184,
+        "signed240_difference_vs_astra": -18.134290130670706
+      }
+    },
+    "source_note": "Original breakfast insulin13500/14000/13200 areas,SD9700/12000/12000; prose printsmg/dLmin inconsistent with insulinplotuU/mL. Firstbreakfast outcomes only; laterlunch effect separate. NSdoesnotimplyratio1."
+  },
+  "two_pool": {
+    "R": {
+      "bmax_recomputed": 0.6925862845779851,
+      "wmin_recomputed": 0.16143926792874186,
+      "weight_boundary_forecast": 0.38209982788296043,
+      "drop_one_forecasts": [
+        0.12320916346938517,
+        0.07060733365567269,
+        0.2038231147479132
+      ],
+      "all_root_snapshot_fields_match": true
+    },
+    "W": {
+      "bmax_recomputed": 0.6191655296453004,
+      "wmin_recomputed": 0.21178822619652807,
+      "weight_boundary_forecast": 0.3780487804878049,
+      "drop_one_forecasts": [
+        0.11257491009852595,
+        0.06451317430264868,
+        0.18623102513352668
+      ],
+      "all_root_snapshot_fields_match": true
+    }
+  },
+  "limitations": [
+    "No samplingCI or independent performance estimate from dependent same-study contrasts.",
+    "q+d is calibrated to one frozenhummus pair and assumestransfer ofgram-scaleoffset across foods/assays/portions.",
+    "Readings and totalstarch/Hconversion uncertainty limit descriptive ranking.",
+    "Necessaryw,bconditions concern modeladmission under deterministic displayed-grid lowerbound, not identifiednutrientpotency or populationparameterbounds."
+  ]
+}

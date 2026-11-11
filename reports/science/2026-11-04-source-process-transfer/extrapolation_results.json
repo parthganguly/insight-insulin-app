@@ -1,0 +1,34 @@
+{
+  "paper_marginal_ratio": 0.6583143507972665,
+  "forms": {
+    "R": {
+      "admissible_participant_positive_ratio_envelope": [
+        0.38209982788296043,
+        1.0980689132904204
+      ],
+      "max_transfer_exponent_for_nonexcluded_prediction_at_reported_dose": 0.6925862845779851,
+      "min_amylose_weight_for_nonexcluded_two_pool_score": 0.16143926792874186,
+      "two_pool_assumptions": "Linear serving dose and amylopectin weight one in both arms. Inequality on the model only, not an identified nutrient potency.",
+      "drop_one_training_source_forecasts": [
+        0.12320916346938517,
+        0.07060733365567269,
+        0.20382311474791323
+      ]
+    },
+    "W": {
+      "admissible_participant_positive_ratio_envelope": [
+        0.3780487804878049,
+        1.2548932384341638
+      ],
+      "max_transfer_exponent_for_nonexcluded_prediction_at_reported_dose": 0.6191655296453004,
+      "min_amylose_weight_for_nonexcluded_two_pool_score": 0.21178822619652807,
+      "two_pool_assumptions": "Linear serving dose and amylopectin weight one in both arms. Inequality on the model only, not an identified nutrient potency.",
+      "drop_one_training_source_forecasts": [
+        0.11257491009852595,
+        0.06451317430264868,
+        0.18623102513352674
+      ]
+    }
+  },
+  "note": "Each exponent or weight condition is a necessary condition for admission under the displayed-grid outer lower bound, not a fitted replacement, confidence interval, personal effect or upper bound on population parameters."
+}

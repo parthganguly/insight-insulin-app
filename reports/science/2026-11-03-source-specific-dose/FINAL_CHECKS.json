@@ -1,0 +1,6 @@
+[
+  {
+    "script": "check_final_narrow.py",
+    "receipt": "FINAL_NARROW_RECEIPT.json"
+  }
+]

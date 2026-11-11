@@ -1,0 +1,20 @@
+{
+  "training": "Gourineni 2020 Table 1 + Table 4 venous insulin iAUC 0-120 (two control contrasts, equal weight)",
+  "status": "outcome-informed model development (target outcomes were used); not validated",
+  "log_residuals": {
+    "medium": -0.3722941804356555,
+    "high": -0.4337438327747751
+  },
+  "fiber_density_differences": {
+    "medium": 0.5413253037024752,
+    "high": 0.7952318100653014
+  },
+  "log_generic": -0.4030190066052153,
+  "generic_factor": 0.6682993971000414,
+  "density_slope": -0.5904942487458439,
+  "training_fit_residuals": {
+    "medium": -0.05264470189874659,
+    "high": 0.03583597748853268
+  },
+  "training_density_support_max": 0.7952318100653014
+}

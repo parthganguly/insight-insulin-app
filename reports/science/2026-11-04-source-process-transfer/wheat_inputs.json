@@ -1,0 +1,128 @@
+{
+  "source": "10.1093/jn/nxz067",
+  "figure2": {
+    "original": "https://ars.els-cdn.com/content/image/1-s2.0-S002231662216685X-gr2_lrg.jpg",
+    "sha256": "00938781a5fa898dffe960b334506d4ba54996413044db16365258a47e5bdfce",
+    "crop": [
+      0,
+      495,
+      1184,
+      1135
+    ],
+    "x": [
+      130,
+      211,
+      293,
+      455,
+      780,
+      1105
+    ],
+    "tick_0": 495.5,
+    "tick_1800": 47.5,
+    "time": [
+      0,
+      15,
+      30,
+      60,
+      120,
+      180
+    ],
+    "marker_error_px": 3,
+    "baseline_error_px": 5
+  },
+  "serving_g": 121,
+  "endpoint": "Figure 2 signed aggregate incremental 0\u2013120 or 180 by group baseline; Table 3 author incremental 180 ignoring below-baseline area, marginal means; distinct operators.",
+  "arms": {
+    "LAW-R": {
+      "y": [
+        417,
+        359,
+        206,
+        151,
+        313,
+        376
+      ],
+      "amylose_fraction": 0.24,
+      "Starch": 35.2,
+      "Sugars": 6.1,
+      "Resistant starch": 0.4,
+      "Protein": 10.8,
+      "Fat": 3.4,
+      "Moisture": 37.0,
+      "Fiber": 3.3
+    },
+    "LAW-W": {
+      "y": [
+        416,
+        360,
+        192,
+        202,
+        341,
+        404
+      ],
+      "amylose_fraction": 0.24,
+      "Starch": 26.9,
+      "Sugars": 6.0,
+      "Resistant starch": 0.3,
+      "Protein": 12.1,
+      "Fat": 3.7,
+      "Moisture": 37.3,
+      "Fiber": 8.2
+    },
+    "HAW-R": {
+      "y": [
+        422,
+        399,
+        276,
+        253,
+        378,
+        405
+      ],
+      "amylose_fraction": 0.743,
+      "Starch": 28.5,
+      "Sugars": 5.0,
+      "Resistant starch": 4.7,
+      "Protein": 13.1,
+      "Fat": 2.8,
+      "Moisture": 44.0,
+      "Fiber": 5.5
+    },
+    "HAW-W": {
+      "y": [
+        417,
+        382,
+        276,
+        276,
+        373,
+        403
+      ],
+      "amylose_fraction": 0.743,
+      "Starch": 19.9,
+      "Sugars": 5.2,
+      "Resistant starch": 3.2,
+      "Protein": 15.2,
+      "Fat": 3.6,
+      "Moisture": 43.4,
+      "Fiber": 10.4
+    }
+  },
+  "table3_marginals": {
+    "LAW": [
+      87.8,
+      9.3
+    ],
+    "HAW": [
+      57.8,
+      6.1
+    ],
+    "refined": [
+      80.8,
+      9.2
+    ],
+    "wholemeal": [
+      64.8,
+      7.1
+    ]
+  },
+  "reported_prose_reduction": 0.24
+}

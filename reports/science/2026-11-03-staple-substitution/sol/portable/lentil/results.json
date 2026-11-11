@@ -1,0 +1,711 @@
+{
+  "estimand": "ratios of printed geometric mean insulin iAUC; not printed participant RIR or arithmetic native mean",
+  "methods": {
+    "Wolever_mean": {
+      "all6_control_MALE": 0.507753087996968,
+      "all3_red_green_MALE": 0.09118221625365792,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.0,
+          "predicted_red_control": 1.0,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.18672685026187097,
+            0.14776088172848725
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.038965968533383716
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 1.0,
+          "predicted_red_control": 1.0,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.37037378829689427,
+            0.5389965007326869
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.16862271243579263
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 1.0,
+          "predicted_red_control": 1.0,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9343092373768332,
+            0.8683512695850358
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.06595796779179741
+        }
+      ]
+    },
+    "Wolever_C": {
+      "all6_control_MALE": 0.4982242274432436,
+      "all3_red_green_MALE": 0.11038681290893433,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.0316508932047086,
+          "predicted_red_control": 1.0099950189067501,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.21788717831267104,
+            0.15770628079399918
+          ],
+          "red_green_prediction": 0.9790085246466594,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.060180897518671866
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.9717845572412956,
+          "predicted_red_control": 0.9835409917240892,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.341752640278734,
+            0.5224005381458628
+          ],
+          "red_green_prediction": 1.0120977786642007,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.18064789786712887
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 0.9857583336467213,
+          "predicted_red_control": 0.9620222230579233,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9199651852345982,
+            0.829633541893596
+          ],
+          "red_green_prediction": 0.9759209638116997,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.0903316433410023
+        }
+      ]
+    },
+    "Wolever_CP": {
+      "all6_control_MALE": 0.5068765553742391,
+      "all3_red_green_MALE": 0.09755193388645593,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.013245922927035,
+          "predicted_red_control": 1.0047003546888778,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.19988581302188724,
+            0.15245022424419494
+          ],
+          "red_green_prediction": 0.9915661459426641,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.0474355887776923
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.9933477221120206,
+          "predicted_red_control": 0.9965256780177836,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.36369928538885776,
+            0.535516129277911
+          ],
+          "red_green_prediction": 1.0031992381268124,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.17181684388905327
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 0.9972501749898572,
+          "predicted_red_control": 0.9898528196506784,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9315556246526031,
+            0.8581522556599809
+          ],
+          "red_green_prediction": 0.9925822471384835,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.07340336899262223
+        }
+      ]
+    },
+    "Wolever_CPF": {
+      "all6_control_MALE": 0.5108891903954181,
+      "all3_red_green_MALE": 0.11049818085032577,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.0414982207735997,
+          "predicted_red_control": 1.016923503355281,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.22738712364862418,
+            0.16454277802615574
+          ],
+          "red_green_prediction": 0.9764044556887815,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.06284434562246843
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.9871555170320295,
+          "predicted_red_control": 0.9961206581376881,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.35744610171811325,
+            0.535109614706485
+          ],
+          "red_green_prediction": 1.0090817920286899,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.17766351298837169
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 1.001610161650236,
+          "predicted_red_control": 0.9768522668084075,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9359181041066338,
+            0.8449314201664965
+          ],
+          "red_green_prediction": 0.9752819052863464,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.0909866839401372
+        }
+      ]
+    },
+    "Wolever_CPF_nonnegative": {
+      "all6_control_MALE": 0.5103346360141175,
+      "all3_red_green_MALE": 0.11150496282574968,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.0422096773412093,
+          "predicted_red_control": 1.017242544319496,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.22806999920512655,
+            0.1648564603503648
+          ],
+          "red_green_prediction": 0.976044040307314,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.06321353885476172
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.9883652102743856,
+          "predicted_red_control": 0.997109447396301,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.3586707847870699,
+            0.5361017624138448
+          ],
+          "red_green_prediction": 1.0088471721090708,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.17743097762677484
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 0.9997803774057461,
+          "predicted_red_control": 0.9722599705016475,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9340895906620057,
+            0.8402192186662933
+          ],
+          "red_green_prediction": 0.9724735476650289,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.09387037199571246
+        }
+      ]
+    },
+    "equality": {
+      "all6_control_MALE": 0.507753087996968,
+      "all3_red_green_MALE": 0.09118221625365792,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.0,
+          "predicted_red_control": 1.0,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.18672685026187097,
+            0.14776088172848725
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.038965968533383716
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 1.0,
+          "predicted_red_control": 1.0,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.37037378829689427,
+            0.5389965007326869
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.16862271243579263
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 1.0,
+          "predicted_red_control": 1.0,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9343092373768332,
+            0.8683512695850358
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.06595796779179741
+        }
+      ]
+    },
+    "proportional_C": {
+      "all6_control_MALE": 0.49109206771636055,
+      "all3_red_green_MALE": 0.11983971776592435,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.0424107142857144,
+          "predicted_red_control": 1.0133928571428572,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.22826287551578323,
+            0.16106484735485013
+          ],
+          "red_green_prediction": 0.9721627408993575,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.0671980281609331
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.9560439560439561,
+          "predicted_red_control": 0.9743589743589743,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.325422400434628,
+            0.5130210143294263
+          ],
+          "red_green_prediction": 1.0191570881226053,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.18759861389479826
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 0.9776951672862454,
+          "predicted_red_control": 0.9405204460966543,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.9117518899527587,
+            0.807029378710717
+          ],
+          "red_green_prediction": 0.9619771863117871,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.10472251124204168
+        }
+      ]
+    },
+    "proportional_energy": {
+      "all6_control_MALE": 0.8329051419463371,
+      "all3_red_green_MALE": 0.13348925964864652,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 1.3151041666666667,
+          "predicted_red_control": 1.1927083333333333,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.460642726949504,
+            0.3239875132549453
+          ],
+          "red_green_prediction": 0.9069306930693068,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.13665521369455869
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 1.6185567010309279,
+          "predicted_red_control": 1.4793814432989691,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.8519086151418196,
+            0.9306205574289799
+          ],
+          "red_green_prediction": 0.9140127388535032,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.07871194228716039
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 1.4526315789473685,
+          "predicted_red_control": 1.2894736842105263,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            1.3076860309334972,
+            1.1225854079692767
+          ],
+          "red_green_prediction": 0.8876811594202898,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.18510062296422047
+        }
+      ]
+    },
+    "common_substitution": {
+      "all6_control_MALE": 0.3951469791488431,
+      "all3_red_green_MALE": 0.09118221625365792,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 0.5076273320233438,
+          "predicted_red_control": 0.5076273320233438,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.49128084873599154,
+            0.5302468172693753
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.038965968533383716
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.5860869862404113,
+          "predicted_red_control": 0.5860869862404113,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.16391327144116252,
+            0.00470944099463011
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.16862271243579263
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 0.7327398838230956,
+          "predicted_red_control": 0.7327398838230956,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.6233447321218484,
+            0.557386764330051
+          ],
+          "red_green_prediction": 1.0,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.06595796779179741
+        }
+      ]
+    },
+    "same_color": {
+      "all6_control_MALE": 0.40389064050927487,
+      "all3_red_green_MALE": 0.1473897870655888,
+      "recipes": [
+        {
+          "recipe": "muffin",
+          "predicted_green_control": 0.5208248298625562,
+          "predicted_red_control": 0.49476425362657994,
+          "observed_green_control": 0.8296703296703297,
+          "observed_red_control": 0.8626373626373627,
+          "two_control_log_errors": [
+            0.46561466257499273,
+            0.5559130034303741
+          ],
+          "red_green_prediction": 0.9499628766876311,
+          "red_green_observed": 1.0397350993377483,
+          "red_green_log_error": 0.09029834085538133
+        },
+        {
+          "recipe": "chili",
+          "predicted_green_control": 0.5709132291580128,
+          "predicted_red_control": 0.6016640321103812,
+          "observed_green_control": 0.6904761904761905,
+          "observed_red_control": 0.5833333333333334,
+          "two_control_log_errors": [
+            0.19014425552245784,
+            0.030940425075925315
+          ],
+          "red_green_prediction": 1.0538624809898345,
+          "red_green_observed": 0.8448275862068967,
+          "red_green_log_error": 0.22108468059838315
+        },
+        {
+          "recipe": "soup",
+          "predicted_green_control": 0.7568801811263751,
+          "predicted_red_control": 0.7093695286697395,
+          "observed_green_control": 0.3928571428571429,
+          "observed_red_control": 0.4196428571428572,
+          "two_control_log_errors": [
+            0.6557589180974506,
+            0.5249725783544488
+          ],
+          "red_green_prediction": 0.9372283042397396,
+          "red_green_observed": 1.0681818181818181,
+          "red_green_log_error": 0.1307863397430019
+        }
+      ]
+    }
+  },
+  "single_donor": [
+    {
+      "target": "muffin",
+      "donor": "chili",
+      "method": "common_substitution",
+      "predicted_ratios": [
+        0.6346477588219924,
+        0.6346477588219924
+      ],
+      "two_control_MALE": 0.2874412785196115,
+      "red_green_log_error": 0.038965968533383716
+    },
+    {
+      "target": "muffin",
+      "donor": "chili",
+      "method": "same_color",
+      "predicted_ratios": [
+        0.6904761904761905,
+        0.5833333333333334
+      ],
+      "two_control_MALE": 0.2874412785196115,
+      "red_green_log_error": 0.20758868096917635
+    },
+    {
+      "target": "muffin",
+      "donor": "soup",
+      "method": "common_substitution",
+      "predicted_ratios": [
+        0.4060291786036455,
+        0.4060291786036455
+      ],
+      "two_control_MALE": 0.7340863874857555,
+      "red_green_log_error": 0.038965968533383716
+    },
+    {
+      "target": "muffin",
+      "donor": "soup",
+      "method": "same_color",
+      "predicted_ratios": [
+        0.3928571428571429,
+        0.4196428571428572
+      ],
+      "two_control_MALE": 0.7340863874857555,
+      "red_green_log_error": 0.026991999258413696
+    },
+    {
+      "target": "chili",
+      "donor": "muffin",
+      "method": "common_substitution",
+      "predicted_ratios": [
+        0.8459932771868134,
+        0.8459932771868134
+      ],
+      "two_control_MALE": 0.2874412785196115,
+      "red_green_log_error": 0.16862271243579263
+    },
+    {
+      "target": "chili",
+      "donor": "muffin",
+      "method": "same_color",
+      "predicted_ratios": [
+        0.8296703296703297,
+        0.8626373626373627
+      ],
+      "two_control_MALE": 0.2874412785196115,
+      "red_green_log_error": 0.20758868096917638
+    },
+    {
+      "target": "chili",
+      "donor": "soup",
+      "method": "common_substitution",
+      "predicted_ratios": [
+        0.4060291786036455,
+        0.4060291786036455
+      ],
+      "two_control_MALE": 0.44664510896614396,
+      "red_green_log_error": 0.16862271243579263
+    },
+    {
+      "target": "chili",
+      "donor": "soup",
+      "method": "same_color",
+      "predicted_ratios": [
+        0.3928571428571429,
+        0.4196428571428572
+      ],
+      "two_control_MALE": 0.44664510896614396,
+      "red_green_log_error": 0.23458068022759004
+    },
+    {
+      "target": "soup",
+      "donor": "muffin",
+      "method": "common_substitution",
+      "predicted_ratios": [
+        0.8459932771868134,
+        0.8459932771868134
+      ],
+      "two_control_MALE": 0.7340863874857555,
+      "red_green_log_error": 0.06595796779179741
+    },
+    {
+      "target": "soup",
+      "donor": "muffin",
+      "method": "same_color",
+      "predicted_ratios": [
+        0.8296703296703297,
+        0.8626373626373627
+      ],
+      "two_control_MALE": 0.7340863874857555,
+      "red_green_log_error": 0.026991999258413668
+    },
+    {
+      "target": "soup",
+      "donor": "chili",
+      "method": "common_substitution",
+      "predicted_ratios": [
+        0.6346477588219924,
+        0.6346477588219924
+      ],
+      "two_control_MALE": 0.44664510896614396,
+      "red_green_log_error": 0.06595796779179741
+    },
+    {
+      "target": "soup",
+      "donor": "chili",
+      "method": "same_color",
+      "predicted_ratios": [
+        0.6904761904761905,
+        0.5833333333333334
+      ],
+      "two_control_MALE": 0.44664510896614396,
+      "red_green_log_error": 0.23458068022759004
+    }
+  ],
+  "native_estimand_mismatched_stress": {
+    "mean": {
+      "predicted_nmol_min_L": [
+        5.83,
+        5.83,
+        5.83,
+        5.83,
+        5.83,
+        5.83,
+        5.83,
+        5.83,
+        5.83
+      ],
+      "per_recipe_MAE_vs_GM": [
+        10.503333333333332,
+        1.1766666666666667,
+        2.643333333333333
+      ]
+    },
+    "C": {
+      "predicted_nmol_min_L": [
+        16.57170319880408,
+        17.096212406969556,
+        16.737337685593175,
+        11.74069733412206,
+        11.409428360543867,
+        11.54745709953478,
+        11.63027434292933,
+        11.464639856140233,
+        11.188582378158403
+      ],
+      "per_recipe_MAE_vs_GM": [
+        1.5539489645862172,
+        5.19919426473357,
+        4.661165525742654
+      ]
+    },
+    "CP": {
+      "predicted_nmol_min_L": [
+        7.700383005810836,
+        7.802381685614455,
+        7.736577537178353,
+        6.852936890329092,
+        6.807349249785837,
+        6.829127581048279,
+        6.834474170129606,
+        6.815680562125408,
+        6.765123528132521
+      ],
+      "per_recipe_MAE_vs_GM": [
+        8.586885923798784,
+        1.4945133135016748,
+        2.9487766400427744
+      ]
+    },
+    "CPF": {
+      "predicted_nmol_min_L": [
+        15.560791167218033,
+        16.206536314487124,
+        15.824134268747278,
+        11.753114276121478,
+        11.602151599981223,
+        11.707519927897584,
+        11.74847651759917,
+        11.767393463936507,
+        11.476525917762094
+      ],
+      "per_recipe_MAE_vs_GM": [
+        1.2899598053387897,
+        5.320928601333428,
+        4.897465299765924
+      ]
+    },
+    "CPF_nonnegative": {
+      "predicted_nmol_min_L": [
+        16.64950613692072,
+        17.352276418850625,
+        16.936585984384294,
+        11.681237657670902,
+        11.545328913788971,
+        11.647472425745093,
+        11.58251609478186,
+        11.579972312549137,
+        11.26121675664747
+      ],
+      "per_recipe_MAE_vs_GM": [
+        1.679785422104733,
+        5.258012999068321,
+        4.707901721326156
+      ]
+    }
+  }
+}

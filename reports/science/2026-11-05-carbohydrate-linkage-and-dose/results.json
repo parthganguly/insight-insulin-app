@@ -1,0 +1,2259 @@
+{
+  "clock": {
+    "fitted_k_c": {
+      "equality": [
+        1,
+        1
+      ],
+      "empirical120": [
+        1,
+        0.654771347866157
+      ],
+      "amplitude": [
+        1,
+        0.520757979630314
+      ],
+      "stretch": [
+        1.764,
+        1.0
+      ],
+      "joint": [
+        1.586,
+        0.8031038085414244
+      ]
+    },
+    "studies": {
+      "Holub": {
+        "units": "pmol/L x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 15845.389272012335,
+            "isomaltulose": 7830.630968459048,
+            "observed_ratio": 0.49418987656493035,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 15845.389272012335,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.7048354701276632
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 10375.10689109946,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.2813662786084068
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 8251.612903748995,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.05236559451114404
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 8120.191197607206,
+                "ratio": 0.5124639766313521,
+                "absolute_log_ratio_error": 0.036310610187865876
+              },
+              "joint": {
+                "test_area_given_reference_curve": 7670.794317842557,
+                "ratio": 0.4841026109337344,
+                "absolute_log_ratio_error": 0.020622918546516614
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 23214.31698119973,
+            "isomaltulose": 15200.069619572363,
+            "observed_ratio": 0.654771347866157,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 23214.31698119973,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.4234691915192563
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 15200.069619572363,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.0
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 12089.04080962726,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.22900068409726296
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 17281.403234897418,
+                "ratio": 0.744428675153048,
+                "absolute_log_ratio_error": 0.12833095772536818
+              },
+              "joint": {
+                "test_area_given_reference_curve": 14879.930534381103,
+                "ratio": 0.6409807596937578,
+                "absolute_log_ratio_error": 0.021286647071083208
+              }
+            }
+          },
+          "0-180": {
+            "sucrose": 24290.61838912859,
+            "isomaltulose": 18497.106156402013,
+            "observed_ratio": 0.7614917767873913,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 24290.61838912859,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.27247590540858696
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 15904.800943152186,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.1509932861106694
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 12649.533356293558,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.3799939702079324
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 21899.5402405201,
+                "ratio": 0.9015637185392269,
+                "absolute_log_ratio_error": 0.16885134714802652
+              },
+              "joint": {
+                "test_area_given_reference_curve": 18337.630631663083,
+                "ratio": 0.7549264632912844,
+                "absolute_log_ratio_error": 0.008659028682368598
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 7368.927709187394,
+            "isomaltulose": 7369.438651113315,
+            "observed_ratio": 1.0000693373508447,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 7368.927709187394,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 6.933494712172019e-05
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 4824.962728472902,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.4235385264663781
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 3837.4279058782654,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.652539210563641
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 9161.212037290214,
+                "ratio": 1.243221863320527,
+                "absolute_log_ratio_error": 0.21763695185552176
+              },
+              "joint": {
+                "test_area_given_reference_curve": 7209.136216538547,
+                "ratio": 0.9783155027495218,
+                "absolute_log_ratio_error": 0.021992395970230113
+              }
+            }
+          },
+          "120-180": {
+            "sucrose": 1076.3014079288628,
+            "isomaltulose": 3297.03653682965,
+            "observed_ratio": 3.063302261375063,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 1076.3014079288628,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 1.1194935044625365
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 704.731323579824,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 1.5429626959817926
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 560.492546666297,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 1.7719633800790555
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 4618.137005622681,
+                "ratio": 4.290746970692351,
+                "absolute_log_ratio_error": 0.3369673323629342
+              },
+              "joint": {
+                "test_area_given_reference_curve": 3457.700097281976,
+                "ratio": 3.212576023602591,
+                "absolute_log_ratio_error": 0.047579610413450185
+              }
+            }
+          }
+        }
+      },
+      "vanCan_morning": {
+        "units": "microU/mL x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 3068.625,
+            "isomaltulose": 1272.567,
+            "observed_ratio": 0.4147026762800929,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 3068.625,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.8801934582177273
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2009.247727345786,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.4567242666984708
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1598.0109552430722,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.2277235826012078
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1531.8121179292575,
+                "ratio": 0.4991851783548845,
+                "absolute_log_ratio_error": 0.1854153050545238
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1455.416099197248,
+                "ratio": 0.47428933127939976,
+                "absolute_log_ratio_error": 0.13425571825323723
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 4454.8755,
+            "isomaltulose": 2583.3975,
+            "observed_ratio": 0.579903411442138,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 4454.8755,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.5448937213059785
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2916.92483571092,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.12142452978672208
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 2319.911964884585,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.10757615431054077
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 3384.8723428046956,
+                "ratio": 0.7598130055047992,
+                "absolute_log_ratio_error": 0.27021079994166364
+              },
+              "joint": {
+                "test_area_given_reference_curve": 2924.610845501213,
+                "ratio": 0.6564966508045428,
+                "absolute_log_ratio_error": 0.12405603446120822
+              }
+            }
+          },
+          "0-180": {
+            "sucrose": 4519.539,
+            "isomaltulose": 3112.8555,
+            "observed_ratio": 0.6887550920569554,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 4519.539,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.3728695253562001
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2959.2646427636632,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.05059966616305623
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 2353.5859985004095,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.2796003502603193
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 4225.892719491879,
+                "ratio": 0.9350273821050951,
+                "absolute_log_ratio_error": 0.3056900609078315
+              },
+              "joint": {
+                "test_area_given_reference_curve": 3521.7907856988536,
+                "ratio": 0.7792367287236273,
+                "absolute_log_ratio_error": 0.12342913404379446
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 1386.2505,
+            "isomaltulose": 1310.8304999999998,
+            "observed_ratio": 0.9455942486585215,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 1386.2505,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.05594171456271568
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 907.6771083651341,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.3675274769565407
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 721.9010096415127,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.5965281610538037
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1853.0602248754378,
+                "ratio": 1.336742691797361,
+                "absolute_log_ratio_error": 0.34617754225204794
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1469.194746303965,
+                "ratio": 1.0598335194858108,
+                "absolute_log_ratio_error": 0.1140535532630776
+              }
+            }
+          },
+          "120-180": {
+            "sucrose": 64.66350000000004,
+            "isomaltulose": 529.4580000000001,
+            "observed_ratio": 8.187895799021081,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 64.66350000000004,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 2.1026569416581102
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 42.33980705274327,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 2.5261261331773666
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 33.67403361582483,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 2.7551268172746295
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 841.0203766871831,
+                "ratio": 13.006106639559915,
+                "absolute_log_ratio_error": 0.4627620470140332
+              },
+              "joint": {
+                "test_area_given_reference_curve": 597.1799401976406,
+                "ratio": 9.235193582123458,
+                "absolute_log_ratio_error": 0.1203646335626188
+              }
+            }
+          }
+        }
+      },
+      "vanCan_lunch": {
+        "units": "microU/mL x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 4175.452499999999,
+            "isomaltulose": 3102.9885000000004,
+            "observed_ratio": 0.7431502334178154,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 4175.452499999999,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.29685705629481735
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2733.9666613761146,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.12661213522443887
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 2174.4002079423435,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.3556128193217018
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 2022.868369529671,
+                "ratio": 0.4844668618621985,
+                "absolute_log_ratio_error": 0.4278491902649004
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1926.7979215829896,
+                "ratio": 0.461458469850391,
+                "absolute_log_ratio_error": 0.47650616228365356
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 7069.575,
+            "isomaltulose": 5635.3515,
+            "observed_ratio": 0.7971273379234254,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 7069.575,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.22674084140645126
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 4628.955151590887,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.19672835011280504
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 3681.537593844977,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.425729034210068
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 4672.020608936091,
+                "ratio": 0.6608630092949139,
+                "absolute_log_ratio_error": 0.18746786686552663
+              },
+              "joint": {
+                "test_area_given_reference_curve": 4101.292300796786,
+                "ratio": 0.5801327945168961,
+                "absolute_log_ratio_error": 0.3177574041780463
+              }
+            }
+          },
+          "0-180": {
+            "sucrose": 9110.744999999999,
+            "isomaltulose": 7465.7925,
+            "observed_ratio": 0.8194491778663545,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 9110.744999999999,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.1991228987477389
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 5965.454783714849,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.2243462927715174
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 4744.493159126984,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.45334697686878034
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 6353.415972927946,
+                "ratio": 0.6973541651015309,
+                "absolute_log_ratio_error": 0.16133897069133898
+              },
+              "joint": {
+                "test_area_given_reference_curve": 5477.299158085851,
+                "ratio": 0.6011911383850443,
+                "absolute_log_ratio_error": 0.309719462342714
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 2894.1224999999995,
+            "isomaltulose": 2532.363,
+            "observed_ratio": 0.8750020083807787,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 2894.1224999999995,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.13352909733483825
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1894.9884902147717,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.2899400941844181
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1507.1373859026332,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.518940778281681
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 2649.15223940642,
+                "ratio": 0.9153559462000729,
+                "absolute_log_ratio_error": 0.04508682022309512
+              },
+              "joint": {
+                "test_area_given_reference_curve": 2174.494379213796,
+                "ratio": 0.7513484239916577,
+                "absolute_log_ratio_error": 0.1523566907465956
+              }
+            }
+          },
+          "120-180": {
+            "sucrose": 2041.1699999999996,
+            "isomaltulose": 1830.4409999999998,
+            "observed_ratio": 0.896760681373918,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 2041.1699999999996,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.10896625143475272
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1336.4996321239635,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.31450294008450363
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1062.955565282008,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.5435036241817665
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1681.3953639918557,
+                "ratio": 0.8237409740452074,
+                "absolute_log_ratio_error": 0.08493289894370819
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1376.0068572890652,
+                "ratio": 0.6741265339433097,
+                "absolute_log_ratio_error": 0.2853711984343071
+              }
+            }
+          }
+        }
+      },
+      "Suraphad_water": {
+        "units": "microIU/mL x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 2015.794979079498,
+            "isomaltulose": 771.0251046025105,
+            "observed_ratio": 0.38249182709771157,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 2015.794979079498,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.9610479930086318
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1319.8847954737146,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.5375788014893754
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1049.7413206543704,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.30857811739211244
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1012.4277029223945,
+                "ratio": 0.5022473582034191,
+                "absolute_log_ratio_error": 0.27238545778419915
+              },
+              "joint": {
+                "test_area_given_reference_curve": 961.4295699771184,
+                "ratio": 0.47694809241768726,
+                "absolute_log_ratio_error": 0.22070037806612886
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 2670.397489539749,
+            "isomaltulose": 1476.8828451882846,
+            "observed_ratio": 0.5530573073759254,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 2670.397489539749,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.5922936528544686
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1748.4997635643433,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.168824461335212
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1390.6308014625824,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.060176222762050695
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 2179.957314886726,
+                "ratio": 0.8163418829690587,
+                "absolute_log_ratio_error": 0.38937161531803255
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1855.6569330993157,
+                "ratio": 0.6948991453025758,
+                "absolute_log_ratio_error": 0.22830509423441783
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 654.6025104602511,
+            "isomaltulose": 705.8577405857741,
+            "observed_ratio": 1.0782997762863533,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 654.6025104602511,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.07538551943703144
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 428.61496809062874,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.49885471095628775
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 340.88948080821183,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.7278553950535508
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1167.5296119643317,
+                "ratio": 1.7835703244453516,
+                "absolute_log_ratio_error": 0.5032316361857329
+              },
+              "joint": {
+                "test_area_given_reference_curve": 894.2273631221972,
+                "ratio": 1.3660616157635355,
+                "absolute_log_ratio_error": 0.2365463474025882
+              }
+            }
+          }
+        }
+      },
+      "Suraphad_tea": {
+        "units": "microIU/mL x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 1176.673640167364,
+            "isomaltulose": 494.2468619246862,
+            "observed_ratio": 0.4200373366521468,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 1176.673640167364,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.8674116748649829
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 770.4521853709624,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.44394248334572656
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 612.7621875378036,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.21494179924846346
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 571.0347429578635,
+                "ratio": 0.4852957723066206,
+                "absolute_log_ratio_error": 0.1444149407510649
+              },
+              "joint": {
+                "test_area_given_reference_curve": 541.1853063560684,
+                "ratio": 0.4599281295016458,
+                "absolute_log_ratio_error": 0.09072663294539926
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 1826.8828451882844,
+            "isomaltulose": 1037.55230125523,
+            "observed_ratio": 0.567935871743487,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 1826.8828451882844,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.5657467684949385
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1196.1905429374929,
+                "ratio": 0.6547713478661571,
+                "absolute_log_ratio_error": 0.14227757697568236
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 951.3638194815306,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.08672310712158075
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1301.8825628145923,
+                "ratio": 0.7126250959351562,
+                "absolute_log_ratio_error": 0.22694695948675384
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1130.405405958211,
+                "ratio": 0.6187618483229601,
+                "absolute_log_ratio_error": 0.0857119520171497
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 650.2092050209205,
+            "isomaltulose": 543.305439330544,
+            "observed_ratio": 0.8355855855855856,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 650.2092050209205,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.17962249982478962
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 425.73835756653057,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.24384669169446682
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 338.6016319437272,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.4728473757917296
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 730.8478198567288,
+                "ratio": 1.1240194912854453,
+                "absolute_log_ratio_error": 0.29653359214722125
+              },
+              "joint": {
+                "test_area_given_reference_curve": 589.2200996021428,
+                "ratio": 0.9062007966854062,
+                "absolute_log_ratio_error": 0.08112813222494643
+              }
+            }
+          }
+        }
+      },
+      "Keesing": {
+        "units": "microIU/L as printed x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 1676.25,
+            "isomaltulose": -303.75,
+            "observed_ratio": -0.18120805369127516,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 1676.25,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": null
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1097.5604718606457,
+                "ratio": 0.6547713478661571,
+                "absolute_log_ratio_error": null
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 872.9205633553139,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": null
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 922.2026123374519,
+                "ratio": 0.5501581579940056,
+                "absolute_log_ratio_error": null
+              },
+              "joint": {
+                "test_area_given_reference_curve": 869.5138065420949,
+                "ratio": 0.5187256116582222,
+                "absolute_log_ratio_error": null
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 1623.75,
+            "isomaltulose": -911.25,
+            "observed_ratio": -0.5612009237875288,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 1623.75,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": null
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 1063.1849760976725,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": null
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 845.5807694247223,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": null
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1770.5151210143922,
+                "ratio": 1.0903865256439675,
+                "absolute_log_ratio_error": null
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1469.9033873100045,
+                "ratio": 0.9052522785588942,
+                "absolute_log_ratio_error": null
+              }
+            }
+          },
+          "0-180": {
+            "sucrose": 360.0,
+            "isomaltulose": -2002.5,
+            "observed_ratio": -5.5625,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 360.0,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": null
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 235.71768523181652,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": null
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 187.47287266691305,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": null
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1816.0781965847564,
+                "ratio": 5.044661657179879,
+                "absolute_log_ratio_error": null
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1373.4687386496548,
+                "ratio": 3.8151909406934856,
+                "absolute_log_ratio_error": null
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": -52.5,
+            "isomaltulose": -607.5,
+            "observed_ratio": 11.571428571428571,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": -52.5,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": null
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": -34.375495762973244,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": null
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": -27.339793930591487,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": null
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 848.3125086769403,
+                "ratio": -16.158333498608386,
+                "absolute_log_ratio_error": null
+              },
+              "joint": {
+                "test_area_given_reference_curve": 600.3895807679097,
+                "ratio": -11.435992014626851,
+                "absolute_log_ratio_error": null
+              }
+            }
+          },
+          "120-180": {
+            "sucrose": -1263.75,
+            "isomaltulose": -1091.25,
+            "observed_ratio": 0.8635014836795252,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": -1263.75,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": null
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": -827.467290865856,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": null
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": -658.1078967578093,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": null
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 45.56307557036423,
+                "ratio": -0.0360538679092892,
+                "absolute_log_ratio_error": null
+              },
+              "joint": {
+                "test_area_given_reference_curve": -96.43464866034982,
+                "ratio": 0.07630832732767542,
+                "absolute_log_ratio_error": null
+              }
+            }
+          }
+        }
+      },
+      "Suklaew": {
+        "units": "microIU/mL x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 3317.7393,
+            "isomaltulose": 1909.99335,
+            "observed_ratio": 0.575691209372599,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 3317.7393,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.5521838568757003
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2172.36063332952,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.12871466535644382
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1727.7392148080924,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.10028601874081912
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1359.394073677634,
+                "ratio": 0.4097350487054947,
+                "absolute_log_ratio_error": 0.34006069396947636
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1314.8537712691586,
+                "ratio": 0.39631015350397136,
+                "absolute_log_ratio_error": 0.3733743014863701
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 6531.5808,
+            "isomaltulose": 4053.93015,
+            "observed_ratio": 0.6206660032438089,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 6531.5808,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.47696217870133145
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 4276.6919641127115,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.05349298718207498
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 3401.3728212001497,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.17550769691518792
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 3920.3193292918068,
+                "ratio": 0.6002098801704798,
+                "absolute_log_ratio_error": 0.033513705946382026
+              },
+              "joint": {
+                "test_area_given_reference_curve": 3568.9699856484767,
+                "ratio": 0.5464174898744998,
+                "absolute_log_ratio_error": 0.12740978324935975
+              }
+            }
+          },
+          "0-180": {
+            "sucrose": 7456.31559,
+            "isomaltulose": 4432.87488,
+            "observed_ratio": 0.5945127759808246,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 7456.31559,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.5200130727864615
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 4882.18180897974,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.09654388126720514
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 3882.9358421344127,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.13245680283005778
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 5881.995021518812,
+                "ratio": 0.7888607919717642,
+                "absolute_log_ratio_error": 0.28284766305281406
+              },
+              "joint": {
+                "test_area_given_reference_curve": 5081.282429949042,
+                "ratio": 0.6814736271039518,
+                "absolute_log_ratio_error": 0.13651534588536576
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 3213.8415,
+            "isomaltulose": 2143.9368000000004,
+            "observed_ratio": 0.6670947524947949,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 3213.8415,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.40482318544241913
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2104.331330783192,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.018646006076837224
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1673.6336063920578,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.24764669017410015
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 2560.925255614173,
+                "ratio": 0.7968424253698176,
+                "absolute_log_ratio_error": 0.1777248560042585
+              },
+              "joint": {
+                "test_area_given_reference_curve": 2254.1162143793176,
+                "ratio": 0.7013775304038229,
+                "absolute_log_ratio_error": 0.05011420830081161
+              }
+            }
+          },
+          "120-180": {
+            "sucrose": 924.7347899999999,
+            "isomaltulose": 378.94473,
+            "observed_ratio": 0.40978746998369125,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 924.7347899999999,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.8921166195752662
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 605.4898448670275,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.4686474280560098
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 481.5630209342626,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.23964674395874686
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 1961.6756922270051,
+                "ratio": 2.121338694553717,
+                "absolute_log_ratio_error": 1.6441639686675533
+              },
+              "joint": {
+                "test_area_given_reference_curve": 1512.3124443005647,
+                "ratio": 1.6354012638591924,
+                "absolute_log_ratio_error": 1.3840048151342041
+              }
+            }
+          }
+        }
+      },
+      "Zhang_A": {
+        "units": "pmol/L x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 17739.669421487604,
+            "isomaltulose": 10004.13223140496,
+            "observed_ratio": 0.5639412997903565,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 17739.669421487604,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.5728051112865021
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 11615.427257807489,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.14933591976724583
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 9238.074407243546,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.07966476433001718
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 7821.682234483717,
+                "ratio": 0.44091476840089905,
+                "absolute_log_ratio_error": 0.24609857985983757
+              },
+              "joint": {
+                "test_area_given_reference_curve": 7412.392498604119,
+                "ratio": 0.4178427637228504,
+                "absolute_log_ratio_error": 0.2998449692805192
+              }
+            }
+          },
+          "0-120": {
+            "sucrose": 32779.33884297521,
+            "isomaltulose": 23898.347107438018,
+            "observed_ratio": 0.729067392784207,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 32779.33884297521,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.31598910572612854
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 21462.971876376352,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.10748008579312776
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 17070.102269485244,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.33648076989039083
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 20765.323638872535,
+                "ratio": 0.6334881779753363,
+                "absolute_log_ratio_error": 0.14052483511276756
+              },
+              "joint": {
+                "test_area_given_reference_curve": 18751.33751149962,
+                "ratio": 0.5720474595697385,
+                "absolute_log_ratio_error": 0.24254421404236984
+              }
+            }
+          },
+          "0-180": {
+            "sucrose": 36022.31404958678,
+            "isomaltulose": 30205.785123966944,
+            "observed_ratio": 0.8385298368779682,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 36022.31404958678,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.17610511471693127
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 23586.379123505936,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.24736407680232514
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 18758.907486071486,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.4763647608995879
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 30080.948020969226,
+                "ratio": 0.8350642876401855,
+                "absolute_log_ratio_error": 0.004141451192168664
+              },
+              "joint": {
+                "test_area_given_reference_curve": 25680.503100135225,
+                "ratio": 0.7129054248093152,
+                "absolute_log_ratio_error": 0.16230139667511256
+              }
+            }
+          },
+          "60-120": {
+            "sucrose": 15039.669421487604,
+            "isomaltulose": 13894.214876033056,
+            "observed_ratio": 0.9238377843719089,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 15039.669421487604,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.07921878079162896
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 9847.544618568863,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.3442504107276275
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 7832.027862241698,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.5732510948248903
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 12943.641404388822,
+                "ratio": 0.8606333717612086,
+                "absolute_log_ratio_error": 0.07086790121827517
+              },
+              "joint": {
+                "test_area_given_reference_curve": 11338.945012895501,
+                "ratio": 0.7539357877570918,
+                "absolute_log_ratio_error": 0.20322929593492475
+              }
+            }
+          },
+          "120-180": {
+            "sucrose": 3242.9752066115702,
+            "isomaltulose": 6307.438016528925,
+            "observed_ratio": 1.9449541284403669,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 3242.9752066115702,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.6652383924428686
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 2123.4072471295867,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 1.0887075839621252
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 1688.8052165862414,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 1.317708268059388
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 9315.624382096688,
+                "ratio": 2.8725549190461246,
+                "absolute_log_ratio_error": 0.3899634570171863
+              },
+              "joint": {
+                "test_area_given_reference_curve": 6929.165588635603,
+                "ratio": 2.1366693074029253,
+                "absolute_log_ratio_error": 0.09400982573484219
+              }
+            }
+          }
+        }
+      },
+      "Zhang_B": {
+        "units": "pmol/L x min",
+        "intervals": {
+          "0-60": {
+            "sucrose": 8442.14876033058,
+            "isomaltulose": 4537.190082644628,
+            "observed_ratio": 0.5374449339207048,
+            "forecasts": {
+              "equality": {
+                "test_area_given_reference_curve": 8442.14876033058,
+                "ratio": 1.0,
+                "absolute_log_ratio_error": 0.6209289727481462
+              },
+              "empirical120": {
+                "test_area_given_reference_curve": 5527.67712268826,
+                "ratio": 0.654771347866157,
+                "absolute_log_ratio_error": 0.19745978122889002
+              },
+              "amplitude": {
+                "test_area_given_reference_curve": 4396.316332168312,
+                "ratio": 0.520757979630314,
+                "absolute_log_ratio_error": 0.03154090286837304
+              },
+              "stretch": {
+                "test_area_given_reference_curve": 3942.6323742517748,
+                "ratio": 0.46701763806604474,
+                "absolute_log_ratio_error": 0.14045928040027952
+              },
+              "joint": {
+                "test_area_given_reference_curve": 3737.6219548953504,
+                "ratio": 0.4427334865808491,
+                "absolute_log_ratio_error": 0.19385832765599945
+              }
+            }
+          }
+        }
+      }
+    },
+    "nominal_same_unit_source_only_levels": {
+      "sucrose": {
+        "prediction_from_50g_water": 23214.31698119973,
+        "observed_50g_plus_breakfast": 32779.33884297521,
+        "absolute_log_error": 0.345029203991398
+      },
+      "isomaltulose": {
+        "prediction_from_50g_water": 15200.069619572363,
+        "observed_50g_plus_breakfast": 23898.347107438018,
+        "absolute_log_error": 0.45250928978452576
+      }
+    }
+  },
+  "recipe": {
+    "q": 0.654771347866157,
+    "w": 0.5740740740740741,
+    "signed_mixed": {
+      "Suklaew": {
+        "observed": 0.6206660032438089,
+        "predictions": {
+          "equal_grams_or_constituents": 1,
+          "whole_reference": 0.654771347866157,
+          "carbohydrate_dilution": 0.793893342009646,
+          "combined": 0.8413330138450833
+        },
+        "absolute_log_errors": {
+          "equal_grams_or_constituents": 0.47696217870133145,
+          "whole_reference": 0.053492987182075194,
+          "carbohydrate_dilution": 0.2461560219805903,
+          "combined": 0.30419445497172415
+        },
+        "background_and_substitution": [
+          27,
+          40
+        ]
+      },
+      "Zhang_A": {
+        "observed": 0.729067392784207,
+        "predictions": {
+          "equal_grams_or_constituents": 1,
+          "whole_reference": 0.654771347866157,
+          "carbohydrate_dilution": 0.7667373972068627,
+          "combined": 0.8119801789151593
+        },
+        "absolute_log_errors": {
+          "equal_grams_or_constituents": 0.31598910572612854,
+          "whole_reference": 0.10748008579312789,
+          "carbohydrate_dilution": 0.05037819296402936,
+          "combined": 0.10770975640472977
+        },
+        "background_and_substitution": [
+          24,
+          50
+        ]
+      },
+      "vanCan_lunch": {
+        "observed": 0.7971273379234254,
+        "predictions": {
+          "equal_grams_or_constituents": 1,
+          "whole_reference": 0.654771347866157,
+          "carbohydrate_dilution": 0.8430778853937076,
+          "combined": 0.8882871793721385
+        },
+        "absolute_log_errors": {
+          "equal_grams_or_constituents": 0.22674084140645126,
+          "whole_reference": 0.19672835011280518,
+          "carbohydrate_dilution": 0.056044906898274904,
+          "combined": 0.10828065332776304
+        },
+        "background_and_substitution": [
+          30,
+          25
+        ]
+      }
+    },
+    "tea_native_bars_and_prose": {
+      "water": {
+        "bar": {
+          "observed": 0.5518814139110605,
+          "predictions": {
+            "equal": 1,
+            "reference": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equal": 0.5944220856555513,
+            "reference": 0.1709528941362949
+          }
+        },
+        "prose_implied": {
+          "observed": 0.58,
+          "predictions": {
+            "equal": 1,
+            "reference": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equal": 0.5447271754416722,
+            "reference": 0.12125798392241585
+          }
+        }
+      },
+      "tea": {
+        "bar": {
+          "observed": 0.5747899159663865,
+          "predictions": {
+            "equal": 1,
+            "reference": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equal": 0.5537506684830247,
+            "reference": 0.13028147696376838
+          }
+        },
+        "prose_implied": {
+          "observed": 0.5321649484536082,
+          "predictions": {
+            "equal": 1,
+            "reference": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equal": 0.6308017842129152,
+            "reference": 0.2073325926936588
+          }
+        }
+      }
+    },
+    "Keller_acute_signed120": null,
+    "Kahlhofer_companion_rounded_tAUC": {
+      "observed": 0.72,
+      "predictions": {
+        "equal_grams": 1,
+        "previous_constituents": 0.6404243439419319,
+        "whole_reference": 0.654771347866157,
+        "dilution_w1": 0.654771347866157,
+        "combined": 0.41933151088915804
+      },
+      "absolute_log_errors": {
+        "equal_grams": 0.32850406697203605,
+        "previous_constituents": 0.11712021795930497,
+        "whole_reference": 0.09496512454722025,
+        "dilution_w1": 0.09496512454722025,
+        "combined": 0.5405894094785614
+      }
+    },
+    "Suklaew_native_240": {
+      "observed": 0.5988381720211193,
+      "predictions": {
+        "equal": 1,
+        "unadjusted_q120": 0.654771347866157
+      },
+      "absolute_log_errors": {
+        "equal": 0.5127638809381918,
+        "unadjusted_q120": 0.0892946894189354
+      }
+    },
+    "Keesing_published_iAUC_window_unspecified": {
+      "observed": 0.2443820224719101,
+      "predictions": {
+        "equal": 1,
+        "unadjusted_q120": 0.654771347866157
+      },
+      "absolute_log_errors": {
+        "equal": 1.4090226121974467,
+        "unadjusted_q120": 0.9855534206781904
+      }
+    }
+  },
+  "polymer": {
+    "author_adjusted120": {
+      "HV_50": {
+        "observed": 0.4129999999999999,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "PwO33_calibration": 0.42000000000000004
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.8843076860211044,
+          "class_q": 0.4608384945018481,
+          "class_amplitude": 0.23183781040458523,
+          "PwO33_calibration": 0.016807118316381407
+        }
+      },
+      "PwO_33": {
+        "observed": 0.42000000000000004,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.8675005677047231,
+          "class_q": 0.44403137618546656,
+          "class_amplitude": 0.21503069208820377,
+          "HV50_calibration": 0.016807118316381514
+        }
+      },
+      "PwO_50": {
+        "observed": 0.44999999999999996,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "PwO33_calibration": 0.42000000000000004,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.7985076962177716,
+          "class_q": 0.37503850469851535,
+          "class_amplitude": 0.14603782060125248,
+          "PwO33_calibration": 0.06899287148695131,
+          "HV50_calibration": 0.08579998980333278
+        }
+      },
+      "T2D_50": {
+        "observed": 0.522,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "PwO33_calibration": 0.42000000000000004,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.6500876910994983,
+          "class_q": 0.22661849958024197,
+          "class_amplitude": 0.0023821845170210226,
+          "PwO33_calibration": 0.2174128766052247,
+          "HV50_calibration": 0.23421999492160622
+        }
+      },
+      "PwO BMI 25-29.9_33": {
+        "observed": 0.47,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.7550225842780328,
+          "class_q": 0.33155339275877654,
+          "class_amplitude": 0.10255270866151357,
+          "HV50_calibration": 0.12928510174307165
+        }
+      },
+      "PwO BMI 25-29.9_50": {
+        "observed": 0.391,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.9390477189967713,
+          "class_q": 0.515578527477515,
+          "class_amplitude": 0.286577843380252,
+          "HV50_calibration": 0.05474003297566685
+        }
+      },
+      "PwO BMI >=30_33": {
+        "observed": 0.385,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.9545119446943529,
+          "class_q": 0.5310427531750964,
+          "class_amplitude": 0.3020420690778335,
+          "HV50_calibration": 0.07020425867324835
+        }
+      },
+      "PwO BMI >=30_50": {
+        "observed": 0.482,
+        "predictions": {
+          "equal_grams": 1,
+          "class_q": 0.654771347866157,
+          "class_amplitude": 0.520757979630314,
+          "HV50_calibration": 0.4129999999999999
+        },
+        "absolute_log_errors": {
+          "equal_grams": 0.7298111649315369,
+          "class_q": 0.3063419734122805,
+          "class_amplitude": 0.07734128931501758,
+          "HV50_calibration": 0.15449652108956774
+        }
+      }
+    },
+    "time_matched_class": {
+      "60": {
+        "HV_50": {
+          "observed": 0.42000000000000004,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.8675005677047231,
+            "Holub_signed_same_window": 0.16266509757705966
+          }
+        },
+        "PwO_33": {
+          "observed": 0.401,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.9137938516755677,
+            "Holub_signed_same_window": 0.20895838154790447
+          }
+        },
+        "PwO_50": {
+          "observed": 0.42399999999999993,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.8580218237501795,
+            "Holub_signed_same_window": 0.15318635362251623
+          }
+        },
+        "T2D_50": {
+          "observed": 0.5800000000000001,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.5447271754416719,
+            "Holub_signed_same_window": 0.16010829468599133
+          }
+        },
+        "PwO BMI 25-29.9_33": {
+          "observed": 0.42000000000000004,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.8675005677047231,
+            "Holub_signed_same_window": 0.16266509757705966
+          }
+        },
+        "PwO BMI 25-29.9_50": {
+          "observed": 0.388,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.9467499393588635,
+            "Holub_signed_same_window": 0.24191446923120033
+          }
+        },
+        "PwO BMI >=30_33": {
+          "observed": 0.38,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.9675840262617057,
+            "Holub_signed_same_window": 0.26274855613404224
+          }
+        },
+        "PwO BMI >=30_50": {
+          "observed": 0.46399999999999997,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.49418987656493035
+          },
+          "absolute_log_errors": {
+            "equality": 0.7678707267558819,
+            "Holub_signed_same_window": 0.06303525662821863
+          }
+        }
+      },
+      "120": {
+        "HV_50": {
+          "observed": 0.4129999999999999,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.8843076860211044,
+            "Holub_signed_same_window": 0.4608384945018481
+          }
+        },
+        "PwO_33": {
+          "observed": 0.42000000000000004,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.8675005677047231,
+            "Holub_signed_same_window": 0.44403137618546656
+          }
+        },
+        "PwO_50": {
+          "observed": 0.44999999999999996,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.7985076962177716,
+            "Holub_signed_same_window": 0.37503850469851535
+          }
+        },
+        "T2D_50": {
+          "observed": 0.522,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.6500876910994983,
+            "Holub_signed_same_window": 0.22661849958024197
+          }
+        },
+        "PwO BMI 25-29.9_33": {
+          "observed": 0.47,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.7550225842780328,
+            "Holub_signed_same_window": 0.33155339275877654
+          }
+        },
+        "PwO BMI 25-29.9_50": {
+          "observed": 0.391,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.9390477189967713,
+            "Holub_signed_same_window": 0.515578527477515
+          }
+        },
+        "PwO BMI >=30_33": {
+          "observed": 0.385,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.9545119446943529,
+            "Holub_signed_same_window": 0.5310427531750964
+          }
+        },
+        "PwO BMI >=30_50": {
+          "observed": 0.482,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.654771347866157
+          },
+          "absolute_log_errors": {
+            "equality": 0.7298111649315369,
+            "Holub_signed_same_window": 0.3063419734122805
+          }
+        }
+      },
+      "180": {
+        "HV_50": {
+          "observed": 0.42399999999999993,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.8580218237501795,
+            "Holub_signed_same_window": 0.5855459183415925,
+            "Holub_author_window_unspecified": 0.42937493273300703
+          }
+        },
+        "PwO_33": {
+          "observed": 0.42600000000000005,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.8533159327127665,
+            "Holub_signed_same_window": 0.5808400273041796,
+            "Holub_author_window_unspecified": 0.42466904169559405
+          }
+        },
+        "PwO_50": {
+          "observed": 0.475,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.7444404749474958,
+            "Holub_signed_same_window": 0.47196456953890886,
+            "Holub_author_window_unspecified": 0.31579358393032353
+          }
+        },
+        "T2D_50": {
+          "observed": 0.616,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.4845083154486173,
+            "Holub_signed_same_window": 0.21203241004003034,
+            "Holub_author_window_unspecified": 0.05586142443144492
+          }
+        },
+        "PwO BMI 25-29.9_33": {
+          "observed": 0.481,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.731888008876376,
+            "Holub_signed_same_window": 0.4594121034677889,
+            "Holub_author_window_unspecified": 0.30324111785920344
+          }
+        },
+        "PwO BMI 25-29.9_50": {
+          "observed": 0.41900000000000004,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.8698843590599993,
+            "Holub_signed_same_window": 0.5974084536514123,
+            "Holub_author_window_unspecified": 0.44123746804282676
+          }
+        },
+        "PwO BMI >=30_33": {
+          "observed": 0.39,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.9416085398584448,
+            "Holub_signed_same_window": 0.6691326344498578,
+            "Holub_author_window_unspecified": 0.5129616488412725
+          }
+        },
+        "PwO BMI >=30_50": {
+          "observed": 0.499,
+          "predictions": {
+            "equality": 1,
+            "Holub_signed_same_window": 0.7614917767873913,
+            "Holub_author_window_unspecified": 0.6513899002013107
+          },
+          "absolute_log_errors": {
+            "equality": 0.6951491832306183,
+            "Holub_signed_same_window": 0.4226732778220314,
+            "Holub_author_window_unspecified": 0.26650229221344596
+          }
+        }
+      }
+    },
+    "strata": {
+      "60": {
+        "PwO BMI 25-29.9": {
+          "low": 0.42000000000000004,
+          "high": 0.388,
+          "contrast_change": 0.9238095238095237,
+          "post_hoc_change_transfer": {
+            "observed": 0.388,
+            "predictions": {
+              "own_low_ratio": 0.42000000000000004,
+              "other_stratum_dose_change": 0.5128421052631579
+            },
+            "absolute_log_errors": {
+              "own_low_ratio": 0.07924937165414069,
+              "other_stratum_dose_change": 0.27896267115996437
+            }
+          }
+        },
+        "PwO BMI >=30": {
+          "low": 0.38,
+          "high": 0.46399999999999997,
+          "contrast_change": 1.2210526315789472,
+          "post_hoc_change_transfer": {
+            "observed": 0.46399999999999997,
+            "predictions": {
+              "own_low_ratio": 0.38,
+              "other_stratum_dose_change": 0.35104761904761905
+            },
+            "absolute_log_errors": {
+              "own_low_ratio": 0.19971329950582378,
+              "other_stratum_dose_change": 0.2789626711599642
+            }
+          }
+        },
+        "PwO": {
+          "low": 0.401,
+          "high": 0.42399999999999993,
+          "contrast_change": 1.0573566084788029
+        }
+      },
+      "120": {
+        "PwO BMI 25-29.9": {
+          "low": 0.47,
+          "high": 0.391,
+          "contrast_change": 0.8319148936170213,
+          "post_hoc_change_transfer": {
+            "observed": 0.391,
+            "predictions": {
+              "own_low_ratio": 0.47,
+              "other_stratum_dose_change": 0.5884155844155844
+            },
+            "absolute_log_errors": {
+              "own_low_ratio": 0.18402513471873835,
+              "other_stratum_dose_change": 0.40872591448155443
+            }
+          }
+        },
+        "PwO BMI >=30": {
+          "low": 0.385,
+          "high": 0.482,
+          "contrast_change": 1.251948051948052,
+          "post_hoc_change_transfer": {
+            "observed": 0.482,
+            "predictions": {
+              "own_low_ratio": 0.385,
+              "other_stratum_dose_change": 0.3202872340425532
+            },
+            "absolute_log_errors": {
+              "own_low_ratio": 0.22470077976281602,
+              "other_stratum_dose_change": 0.4087259144815545
+            }
+          }
+        },
+        "PwO": {
+          "low": 0.42000000000000004,
+          "high": 0.44999999999999996,
+          "contrast_change": 1.0714285714285712
+        }
+      },
+      "180": {
+        "PwO BMI 25-29.9": {
+          "low": 0.481,
+          "high": 0.41900000000000004,
+          "contrast_change": 0.8711018711018712,
+          "post_hoc_change_transfer": {
+            "observed": 0.41900000000000004,
+            "predictions": {
+              "own_low_ratio": 0.481,
+              "other_stratum_dose_change": 0.6154333333333333
+            },
+            "absolute_log_errors": {
+              "own_low_ratio": 0.1379963501836234,
+              "other_stratum_dose_change": 0.38445570681144975
+            }
+          }
+        },
+        "PwO BMI >=30": {
+          "low": 0.39,
+          "high": 0.499,
+          "contrast_change": 1.2794871794871794,
+          "post_hoc_change_transfer": {
+            "observed": 0.499,
+            "predictions": {
+              "own_low_ratio": 0.39,
+              "other_stratum_dose_change": 0.33972972972972976
+            },
+            "absolute_log_errors": {
+              "own_low_ratio": 0.24645935662782656,
+              "other_stratum_dose_change": 0.3844557068114499
+            }
+          }
+        },
+        "PwO": {
+          "low": 0.42600000000000005,
+          "high": 0.475,
+          "contrast_change": 1.1150234741784035
+        }
+      }
+    },
+    "individual_index_mean_SD_percent": {
+      "HV_50": [
+        44,
+        14
+      ],
+      "PwO_33": [
+        44,
+        16
+      ],
+      "PwO_50": [
+        50,
+        24
+      ],
+      "T2D_50": [
+        63,
+        44
+      ]
+    },
+    "index33_to_50": {
+      "observed": 0.5,
+      "predictions": {
+        "index33": 0.44,
+        "equality": 1
+      },
+      "absolute_log_errors": {
+        "index33": 0.12783337150988489,
+        "equality": 0.6931471805599453
+      }
+    },
+    "signed_areas_120": {
+      "HV_50": {
+        "OM": 1647.6,
+        "MD": 4094.7
+      },
+      "PwO_33": {
+        "OM": 1645.1,
+        "MD": 4105.4
+      },
+      "PwO_50": {
+        "OM": 2508.5,
+        "MD": 5595.3
+      },
+      "T2D_50": {
+        "OM": 1572.2,
+        "MD": 3095.6
+      }
+    },
+    "same_arm_measured_33_to_50": {
+      "OM": {
+        "portion": {
+          "observed": 1.5248313172451524,
+          "predictions": {
+            "no_change": 1.0,
+            "WB": 1.3817072290285097,
+            "linear": 1.5151515151515151
+          },
+          "absolute_log_errors": {
+            "no_change": 0.4218837922989331,
+            "WB": 0.098563935250871,
+            "linear": 0.006368348337267258
+          }
+        },
+        "low_arm_calibrated_area": {
+          "observed": 2508.5,
+          "predictions": {
+            "no_change": 1645.1,
+            "WB": 2273.0465624748012,
+            "linear": 2492.5757575757575
+          },
+          "absolute_log_errors": {
+            "no_change": 0.4218837922989331,
+            "WB": 0.098563935250871,
+            "linear": 0.006368348337267147
+          }
+        },
+        "absolute_difference": 863.4000000000001
+      },
+      "MD": {
+        "portion": {
+          "observed": 1.3629122618989624,
+          "predictions": {
+            "no_change": 1.0,
+            "WB": 1.3817072290285097,
+            "linear": 1.5151515151515151
+          },
+          "absolute_log_errors": {
+            "no_change": 0.3096237793284329,
+            "WB": 0.013696077719629154,
+            "linear": 0.10589166463323293
+          }
+        },
+        "low_arm_calibrated_area": {
+          "observed": 5595.3,
+          "predictions": {
+            "no_change": 4105.4,
+            "WB": 5672.460858053643,
+            "linear": 6220.30303030303
+          },
+          "absolute_log_errors": {
+            "no_change": 0.3096237793284329,
+            "WB": 0.013696077719629154,
+            "linear": 0.10589166463323293
+          }
+        },
+        "absolute_difference": 1489.9000000000005
+      }
+    },
+    "MD33_calibrated_50g_levels": {
+      "linear": {
+        "OM": {
+          "observed": 2508.5,
+          "predictions": {
+            "equal": 6220.30303030303,
+            "class_q": 4072.8761992874556,
+            "class_amplitude": 3239.2724387489257,
+            "PwO33_adjusted_ratio": 2612.5272727272727,
+            "PwO33_matched_signed_ratio": 2492.5757575757575,
+            "HV50_adjusted_ratio": 2568.985151515151
+          },
+          "absolute_log_errors": {
+            "equal": 0.9081336593204365,
+            "class_q": 0.4846644678011802,
+            "class_amplitude": 0.2556637837039172,
+            "PwO33_adjusted_ratio": 0.04063309161571356,
+            "PwO33_matched_signed_ratio": 0.006368348337267147,
+            "HV50_adjusted_ratio": 0.023825973299331987
+          }
+        },
+        "MD": {
+          "observed": 5595.3,
+          "predictions": {
+            "equal": 6220.30303030303,
+            "class_q": 6220.30303030303,
+            "class_amplitude": 6220.30303030303,
+            "PwO33_adjusted_ratio": 6220.30303030303,
+            "PwO33_matched_signed_ratio": 6220.30303030303,
+            "HV50_adjusted_ratio": 6220.30303030303
+          },
+          "absolute_log_errors": {
+            "equal": 0.10589166463323293,
+            "class_q": 0.10589166463323293,
+            "class_amplitude": 0.10589166463323293,
+            "PwO33_adjusted_ratio": 0.10589166463323293,
+            "PwO33_matched_signed_ratio": 0.10589166463323293,
+            "HV50_adjusted_ratio": 0.10589166463323293
+          }
+        }
+      },
+      "WB": {
+        "OM": {
+          "observed": 2508.5,
+          "predictions": {
+            "equal": 5672.460858053643,
+            "class_q": 3714.1648417458014,
+            "class_amplitude": 2953.9792559720527,
+            "PwO33_adjusted_ratio": 2382.4335603825302,
+            "PwO33_matched_signed_ratio": 2273.0465624748012,
+            "HV50_adjusted_ratio": 2342.726334376154
+          },
+          "absolute_log_errors": {
+            "equal": 0.8159380724068327,
+            "class_q": 0.3924688808875763,
+            "class_amplitude": 0.16346819679031344,
+            "PwO33_adjusted_ratio": 0.051562495297890254,
+            "PwO33_matched_signed_ratio": 0.098563935250871,
+            "HV50_adjusted_ratio": 0.06836961361427181
+          }
+        },
+        "MD": {
+          "observed": 5595.3,
+          "predictions": {
+            "equal": 5672.460858053643,
+            "class_q": 5672.460858053643,
+            "class_amplitude": 5672.460858053643,
+            "PwO33_adjusted_ratio": 5672.460858053643,
+            "PwO33_matched_signed_ratio": 5672.460858053643,
+            "HV50_adjusted_ratio": 5672.460858053643
+          },
+          "absolute_log_errors": {
+            "equal": 0.013696077719629154,
+            "class_q": 0.013696077719629154,
+            "class_amplitude": 0.013696077719629154,
+            "PwO33_adjusted_ratio": 0.013696077719629154,
+            "PwO33_matched_signed_ratio": 0.013696077719629154,
+            "HV50_adjusted_ratio": 0.013696077719629154
+          }
+        }
+      }
+    },
+    "exposed_HV50_native_transfer": {
+      "PwO_33": {
+        "OM": {
+          "observed": 1645.1,
+          "predictions": {
+            "flat": 1647.6,
+            "linear": 1087.416,
+            "WB": 1192.437851800516
+          },
+          "absolute_log_errors": {
+            "flat": 0.0015185109365510347,
+            "linear": 0.4139969330251149,
+            "WB": 0.32180134611151123
+          }
+        },
+        "MD": {
+          "observed": 4105.4,
+          "predictions": {
+            "flat": 4094.7,
+            "linear": 2702.502,
+            "WB": 2963.5076910461116
+          },
+          "absolute_log_errors": {
+            "flat": 0.0026097257528189437,
+            "linear": 0.41812516971448477,
+            "WB": 0.3259295828008809
+          }
+        },
+        "signed_ratio": {
+          "observed": 0.4007161299751547,
+          "predictions": {
+            "HV50_signed_ratio": 0.4023738002784087
+          },
+          "absolute_log_errors": {
+            "HV50_signed_ratio": 0.004128236689369936
+          }
+        }
+      },
+      "PwO_50": {
+        "OM": {
+          "observed": 2508.5,
+          "predictions": {
+            "flat": 1647.6,
+            "linear": 1647.6,
+            "WB": 1647.6
+          },
+          "absolute_log_errors": {
+            "flat": 0.4203652813623821,
+            "linear": 0.4203652813623821,
+            "WB": 0.4203652813623821
+          }
+        },
+        "MD": {
+          "observed": 5595.3,
+          "predictions": {
+            "flat": 4094.7,
+            "linear": 4094.7,
+            "WB": 4094.7
+          },
+          "absolute_log_errors": {
+            "flat": 0.3122335050812518,
+            "linear": 0.3122335050812518,
+            "WB": 0.3122335050812518
+          }
+        },
+        "signed_ratio": {
+          "observed": 0.44832269940843206,
+          "predictions": {
+            "HV50_signed_ratio": 0.4023738002784087
+          },
+          "absolute_log_errors": {
+            "HV50_signed_ratio": 0.1081317762811302
+          }
+        }
+      },
+      "T2D_50": {
+        "OM": {
+          "observed": 1572.2,
+          "predictions": {
+            "flat": 1647.6,
+            "linear": 1647.6,
+            "WB": 1647.6
+          },
+          "absolute_log_errors": {
+            "flat": 0.04684377120226952,
+            "linear": 0.04684377120226952,
+            "WB": 0.04684377120226952
+          }
+        },
+        "MD": {
+          "observed": 3095.6,
+          "predictions": {
+            "flat": 4094.7,
+            "linear": 4094.7,
+            "WB": 4094.7
+          },
+          "absolute_log_errors": {
+            "flat": 0.27971170613395535,
+            "linear": 0.27971170613395535,
+            "WB": 0.27971170613395535
+          }
+        },
+        "signed_ratio": {
+          "observed": 0.5078821553172245,
+          "predictions": {
+            "HV50_signed_ratio": 0.4023738002784087
+          },
+          "absolute_log_errors": {
+            "HV50_signed_ratio": 0.23286793493168592
+          }
+        }
+      }
+    }
+  }
+}

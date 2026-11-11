@@ -1,0 +1,92 @@
+{
+  "cases": {
+    "astra": {
+      "total_starch": {
+        "WWB": 93.0,
+        "HAWB": 89.0,
+        "SP": 91.0
+      },
+      "clinical_signed120": {
+        "WWB": 11550.293542074363,
+        "HAWB": 6673.825831702544,
+        "SP": 6884.7358121330735
+      },
+      "H30marker_y": {
+        "WWB": 350,
+        "HAWB": 395,
+        "SP": 429
+      },
+      "H_axis_zero_y": 570,
+      "H_axis80_y": 183
+    },
+    "sol": {
+      "total_starch": {
+        "WWB": 93.0,
+        "HAWB": 89.0,
+        "SP": 91.0
+      },
+      "clinical_signed120": {
+        "WWB": 11531.800391389432,
+        "HAWB": 6661.4970645792555,
+        "SP": 6872.407045009784
+      },
+      "H30marker_y": {
+        "WWB": 350,
+        "HAWB": 395,
+        "SP": 429
+      },
+      "H_axis_zero_y": 570,
+      "H_axis80_y": 184
+    }
+  },
+  "coordinator_expected": {
+    "conditional": "All nonnegative offsets, fixed food measurements, H30 and signed120; simultaneous +/-2-pixel reading bounds only. Any positive common change of mass scale still has this envelope. No population intervals.",
+    "pairs": {
+      "HAWB/WWB": {
+        "H30_marker_range": [
+          0.7457618909231815,
+          0.7770050310742824
+        ],
+        "all_q_nonnegative_envelope": [
+          0.7457618909231815,
+          1
+        ],
+        "signed120_reading_range": [
+          0.5652749413811361,
+          0.5905387748827915
+        ],
+        "intervals_overlap": false
+      },
+      "SP/WWB": {
+        "H30_marker_range": [
+          0.6126610481449192,
+          0.6418565650586958
+        ],
+        "all_q_nonnegative_envelope": [
+          0.6126610481449192,
+          1
+        ],
+        "signed120_reading_range": [
+          0.5833900612661675,
+          0.6089462762278074
+        ],
+        "intervals_overlap": false
+      },
+      "HAWB/SP": {
+        "H30_marker_range": [
+          1.183201413970645,
+          1.2453948928769072
+        ],
+        "all_q_nonnegative_envelope": [
+          1,
+          1.2453948928769072
+        ],
+        "signed120_reading_range": [
+          0.9432664394799949,
+          0.9961752884740046
+        ],
+        "intervals_overlap": false
+      }
+    }
+  }
+}

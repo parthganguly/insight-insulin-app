@@ -1,0 +1,86 @@
+{
+  "fasting": {
+    "donor_signed120_T_over_I": 1.523585197801347,
+    "target_signed120_T_over_I": 1.663223853275601,
+    "target_positive120_ratio_bound": [
+      1.128297777773025,
+      2.1470860924020725
+    ],
+    "including_2px_reading_bound": [
+      1.0868090463323903,
+      2.2470361772766605
+    ],
+    "target_arm_positive120_bounds": {
+      "T": [
+        6691.408053347011,
+        8638.06104129264
+      ],
+      "G": [
+        11384.534496024622,
+        13161.91331110541
+      ],
+      "I": [
+        4023.155416012559,
+        5930.5337519623245
+      ],
+      "S": [
+        6783.908948194663,
+        8903.218210361068
+      ]
+    },
+    "signed_ALE_donor": 0.08769155895871894,
+    "signed_ALE_equality": 0.5087577992551204,
+    "generic_same_donor_G_over_S": 1.76325167,
+    "signed_ALE_generic_same_donor": 0.058401844965285596,
+    "generic_vs_matched_midpoint": 1.6390436676338143,
+    "constituent_prediction": 1.7419354838709677,
+    "signed_ALE_constituent": 0.04623904282400782,
+    "constituent_vs_matched_midpoint": 1.6291062331078148,
+    "signed_2px_T_over_I_bounds": [
+      1.5661480659191953,
+      1.7673661219682326
+    ]
+  },
+  "mixed": {
+    "donor_signed120_T_over_I": 1.3888305272422703,
+    "target_signed120_T_over_I": 1.4879847988450368,
+    "target_positive120_ratio_bound": [
+      1.1825613635465044,
+      1.7587384664279653
+    ],
+    "including_2px_reading_bound": [
+      1.159752368507273,
+      1.7974223213246867
+    ],
+    "target_arm_positive120_bounds": {
+      "T": [
+        13023.954860220569,
+        15393.79328032829
+      ],
+      "G": [
+        15358.245704026675,
+        18024.31392664786
+      ],
+      "I": [
+        8752.747252747253,
+        11013.343799058086
+      ],
+      "S": [
+        13116.40502354788,
+        14670.565149136577
+      ]
+    },
+    "signed_ALE_donor": 0.06896067482518019,
+    "signed_ALE_equality": 0.39742272052876976,
+    "generic_same_donor_G_over_S": 1.61118669,
+    "signed_ALE_generic_same_donor": 0.07954826149573424,
+    "generic_vs_matched_midpoint": 1.4958827695238783,
+    "constituent_prediction": 1.7419354838709677,
+    "signed_ALE_constituent": 0.15757412155035835,
+    "constituent_vs_matched_midpoint": 1.555394861919807,
+    "signed_2px_T_over_I_bounds": [
+      1.4453149056297943,
+      1.5320548526251763
+    ]
+  }
+}

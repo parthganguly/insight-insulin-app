@@ -1,0 +1,170 @@
+{
+  "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10131617/ supplemental table1; recipe and assay https://pmc.ncbi.nlm.nih.gov/articles/PMC7859705/ table1,table2,fig3A",
+  "target": {
+    "operator": "arithmetic mean individual insulin incremental AUC0-120min",
+    "means": [
+      4523,
+      4189,
+      2540
+    ],
+    "SEM": [
+      1125,
+      880.8,
+      755.9
+    ],
+    "ratios": {
+      "30/control": 0.9261552067212028,
+      "60/control": 0.5615741764315719,
+      "60/30": 0.6063499641919312
+    },
+    "warning": "SEM is not paired-difference or ratio uncertainty; covariance unavailable"
+  },
+  "recipe_wheat_flour_g": [
+    78.03333333333333,
+    57.38333333333333,
+    29.233333333333334
+  ],
+  "recipe_ratios": {
+    "30/control": 0.7353695002135839,
+    "60/control": 0.37462622810764634,
+    "60/30": 0.5094394423467906
+  },
+  "assay": {
+    "observed_visual_approximate_H20": {
+      "hydrolysis_percent": [
+        38.5,
+        31.5,
+        24.5
+      ],
+      "hydrolysed_starch_g": [
+        17.4405,
+        14.1435,
+        10.4125
+      ],
+      "ratios": {
+        "30/control": 0.8109572546658639,
+        "60/control": 0.5970299016656633,
+        "60/30": 0.7362039099232863
+      },
+      "plus_bread_sugars_and_jam_0g_ratios": {
+        "30/control": 0.8709437885200861,
+        "60/control": 0.7961436598104008,
+        "60/30": 0.9141160087532327
+      },
+      "plus_bread_sugars_and_jam_0_4g_ratios": {
+        "30/control": 0.8734496735516128,
+        "60/control": 0.8001019392733186,
+        "60/30": 0.9160252313335372
+      },
+      "reading_sensitivity_ratio_bounds": {
+        "30/control": [
+          0.7219633172539722,
+          0.9097039523420727
+        ],
+        "60/control": [
+          0.5212165808192298,
+          0.6811515316459524
+        ],
+        "60/30": [
+          0.6357411162450554,
+          0.8502887773205994
+        ]
+      }
+    },
+    "observed_visual_approximate_H120": {
+      "hydrolysis_percent": [
+        70.5,
+        54.5,
+        47.5
+      ],
+      "hydrolysed_starch_g": [
+        31.936499999999995,
+        24.470499999999998,
+        20.1875
+      ],
+      "ratios": {
+        "30/control": 0.7662235999561631,
+        "60/control": 0.6321137256743852,
+        "60/30": 0.8249729265850719
+      },
+      "plus_bread_sugars_and_jam_0g_ratios": {
+        "30/control": 0.8047065265949016,
+        "60/control": 0.7452480797774994,
+        "60/30": 0.9261116384018913
+      },
+      "plus_bread_sugars_and_jam_0_4g_ratios": {
+        "30/control": 0.8069323151881242,
+        "60/control": 0.7481515250808487,
+        "60/30": 0.9271552409032328
+      },
+      "reading_sensitivity_ratio_bounds": {
+        "30/control": [
+          0.7177437771180635,
+          0.8175343613541516
+        ],
+        "60/control": [
+          0.5887950064702747,
+          0.6779620051239911
+        ],
+        "60/30": [
+          0.7622642253188009,
+          0.8924594336621062
+        ]
+      }
+    },
+    "fit_model_H20": {
+      "hydrolysis_percent": [
+        37.610831750793764,
+        30.5023194893332,
+        21.22457016046712
+      ],
+      "hydrolysed_starch_g": [
+        17.037706783109574,
+        13.695541450710607,
+        9.020442318198526
+      ],
+      "ratios": {
+        "30/control": 0.8038371375358895,
+        "60/control": 0.5294399318540328,
+        "60/30": 0.6586407956678845
+      },
+      "plus_bread_sugars_and_jam_0g_ratios": {
+        "30/control": 0.8660367404440162,
+        "60/control": 0.7420274721278166,
+        "60/30": 0.8568083055545425
+      },
+      "plus_bread_sugars_and_jam_0_4g_ratios": {
+        "30/control": 0.8686897794448202,
+        "60/control": 0.7471364190125772,
+        "60/30": 0.8600727632482014
+      }
+    },
+    "fit_model_H120": {
+      "hydrolysis_percent": [
+        67.73790827655193,
+        51.16784773954971,
+        43.93493729960546
+      ],
+      "hydrolysed_starch_g": [
+        30.685272449278024,
+        22.974363635057816,
+        18.67234835233232
+      ],
+      "ratios": {
+        "30/control": 0.7487097816398357,
+        "60/control": 0.608511734194221,
+        "60/30": 0.8127471406363213
+      },
+      "plus_bread_sugars_and_jam_0g_ratios": {
+        "30/control": 0.7900776911036416,
+        "60/control": 0.7278262836473858,
+        "60/30": 0.9212084986613174
+      },
+      "plus_bread_sugars_and_jam_0_4g_ratios": {
+        "30/control": 0.7925586557253441,
+        "60/control": 0.7310429658798661,
+        "60/30": 0.9223834231055373
+      }
+    }
+  }
+}

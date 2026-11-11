@@ -1,0 +1,23 @@
+{
+  "utc": "2026-11-03T12:50:40.483214+00:00",
+  "python": "3.13.12",
+  "platform": "Windows",
+  "sha256": {
+    "DESIGN_POWER.json": "5caa36663a4d10505aa9121950e0d49a8228f7158445002f1678b3d2335b73cd",
+    "FREEZE_RECEIPT.json": "e539f0c07cba73dc22b78abc67aa1b3bc96cd91c2410388d033851205f0512e0",
+    "PLAN.md": "32038a0d7aef2384e5803b3134e2be3d184b71bf40453deb2a7833907e5f9e88",
+    "PREDICTIONS.json": "e36e51496f3c52d649eefb6c0aa0481e8b96cd1cf859294b3c98e248769cf8cc",
+    "PREDICTION_RECEIPT.json": "243ad05387135fd64ac89a8fb75aee2fdf55de1015054696baaed4d38905e5a9",
+    "RESULT.md": "db9dba5d1b48c9d34022046cf4004ca21b309a7a2a8fe56ebcc0533a76293b92",
+    "design_power.py": "50c80550f3ea09f9d9581ef9cab287e4542533d55ee5ef5e0ea302273d362e3c",
+    "inputs.json": "6891dd30394699759ee3ed19d0bd9c3adbd45e88aab49e9ce49565ed15281401",
+    "katsanos.py": "3f7096c2140962d7530bc13c079b435212595c8b28405df1628b7434bfa850de",
+    "outcomes_TEMPLATE.json": "0c48bdd8ae2dc7002bb64107f5f1db75a98412a8a149af3f4b206c11db812d23"
+  },
+  "access": [
+    "journals.physiology.org full/pdf: HTTP 403 (WebFetch, urllib)",
+    "Europe PMC: not in EPMC, no PMCID",
+    "PubMed abstract read after prediction freeze (no insulin content)"
+  ],
+  "pending": "outcomes.json from Astra/Sol transcription; then: python -I -X utf8 katsanos.py score; katsanos.py --check"
+}

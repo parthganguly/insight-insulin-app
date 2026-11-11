@@ -1,0 +1,22 @@
+study,arm,n_insulin,window_min,endpoint,unit,mean,uncertainty,error_type,apparent_amylose_percent,cooking_minutes,provenance
+Larsen2000,BR16 unprocessed,9,180,serum insulin iAUC,pmol min/L,7595,1474,SEM,27,17.5,original table 3
+Larsen2000,BR16 traditional parboil,9,180,serum insulin iAUC,pmol min/L,7719,1292,SEM,27,21,original table 3
+Larsen2000,BR16 pressure parboil,9,180,serum insulin iAUC,pmol min/L,7590,1600,SEM,27,21,original table 3
+Larsen2000,white bread reference,9,180,serum insulin iAUC,pmol min/L,16562,3142,SEM,,,original table 3
+Karupaiah2011,UKMRC9 brown,9,180,plasma II reported,glucose index,39,,,19,,primary abstract
+Karupaiah2011,UKMRC9 polished,9,180,plasma II reported,glucose index,63,,,23,,primary abstract
+Karupaiah2011,commercial white,9,180,plasma II reported,glucose index,68,,,26.5,,primary abstract
+Parvin2008,BR16 non-parboiled (quarantined),17,180,plasma insulin iAUC,as printed ?u/ml *180 min,1078,1268,SD,29,17,primary table 3
+Parvin2008,BR16 parboiled,17,180,plasma insulin iAUC,as printed ?u/ml *180 min,12811,1505,SD,29,22,primary table 3
+Parvin2008,BR25 parboiled,17,180,plasma insulin iAUC,as printed ?u/ml *180 min,16125,2983,SD,13,20,primary table 3
+Parvin2008,BR32 parboiled,17,180,plasma insulin iAUC,as printed ?u/ml *180 min,13011,1949,SD,27,21,primary table 3
+Parvin2008,white bread,17,180,plasma insulin iAUC,as printed ?u/ml *180 min,20184,1643,SD,,,primary table 3
+Panlasigui1991,IR62,11,60,plasma insulin iAUC,pmol min/L,9240,1340,SEM,27,22,experiment 1 table 1
+Panlasigui1991,IR36,11,60,plasma insulin iAUC,pmol min/L,7131,1633,SEM,26.7,22,experiment 1 table 1
+Panlasigui1991,IR42,11,60,plasma insulin iAUC,pmol min/L,9415,1390,SEM,26.7,22,experiment 1 table 1
+Se2016,UKMRC9 dehusked,12,180,plasma II,glucose index,51,5.3,SEM,19.8,44,original tables 1 and 2; dry basis
+Se2016,UKMRC10 dehusked,12,180,plasma II,glucose index,69,7.7,SEM,19.0,45,original tables 1 and 2; dry basis
+Se2016,UKMRC11 dehusked,11,180,plasma II,glucose index,69,5.9,SEM,17.5,41,original tables 1 and 2; dry basis
+Se2016,Thai red dehusked,12,180,plasma II,glucose index,59,4.0,SEM,18,40,original tables 1 and 2; dry basis
+Se2016,Basmati polished,12,180,plasma II,glucose index,52,5.3,SEM,21.5,26,original tables 1 and 2; dry basis
+Se2016,Jasmine polished,12,180,plasma II,glucose index,76,7.1,SEM,23,32,original tables 1 and 2; dry basis

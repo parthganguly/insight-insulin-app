@@ -1,0 +1,4 @@
+* text eol=lf
+astra/FREEZE.json -text whitespace=cr-at-eol
+# Preserve the single pre-scoring trailing space in this sealed protocol.
+substitution/protocol.md whitespace=-blank-at-eol

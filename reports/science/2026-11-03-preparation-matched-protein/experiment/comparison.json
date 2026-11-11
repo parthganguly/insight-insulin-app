@@ -1,0 +1,177 @@
+{
+  "matched_profile_differences_pp": {
+    "pea": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "soy": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "external_concurrent_native": {
+    "CHO": 863.013698630137,
+    "soy": 1702.054794520548,
+    "pea": 2229.4520547945203
+  },
+  "nominal_leucine_difference_g_scenario": -0.060720000000000066,
+  "primary_table_and_secondary_curve": {
+    "published_150": {
+      "native_pea": 3534.6,
+      "native_soy_reference": 2654.0,
+      "observed_ratio": 1.3318010550113037,
+      "predictions": {
+        "same_composition_reference": {
+          "ratio": 1.0,
+          "absolute_log_error": 0.28653220286354386,
+          "conditional_native_pea_using_local_soy": 2654.0
+        },
+        "source_matched_response": {
+          "ratio": 1.3098591549295773,
+          "absolute_log_error": 0.016612586751603504,
+          "conditional_native_pea_using_local_soy": 3476.366197183098
+        },
+        "three_reference_projection": {
+          "ratio": 0.9186855980416669,
+          "absolute_log_error": 0.37134353114518415,
+          "conditional_native_pea_using_local_soy": 2438.191577202584
+        },
+        "substitution_slope_dry_product_mean_weight_scenario": {
+          "ratio": 0.9938123963716925,
+          "absolute_log_error": 0.2927390290465704,
+          "conditional_native_pea_using_local_soy": 2637.578099970472
+        }
+      },
+      "pea_net_minus_external_ratio_times_soy": 58.23380281690197,
+      "observed_native_difference": 880.5999999999999
+    },
+    "curve_net_120": {
+      "native_pea": 3537.9222,
+      "native_soy_reference": 2548.80795,
+      "observed_ratio": 1.3880693521848126,
+      "predictions": {
+        "same_composition_reference": {
+          "ratio": 1.0,
+          "absolute_log_error": 0.327913826387394,
+          "conditional_native_pea_using_local_soy": 2548.80795
+        },
+        "source_matched_response": {
+          "ratio": 1.3098591549295773,
+          "absolute_log_error": 0.057994210275453574,
+          "conditional_native_pea_using_local_soy": 3338.5794274647883
+        },
+        "three_reference_projection": {
+          "ratio": 0.9186855980416669,
+          "absolute_log_error": 0.4127251546690343,
+          "conditional_native_pea_using_local_soy": 2341.553155839105
+        },
+        "substitution_slope_dry_product_mean_weight_scenario": {
+          "ratio": 0.9938123963716925,
+          "absolute_log_error": 0.33412065257042045,
+          "conditional_native_pea_using_local_soy": 2533.036936680721
+        }
+      },
+      "pea_net_minus_external_ratio_times_soy": 199.34277253521168,
+      "observed_native_difference": 989.1142500000001
+    }
+  },
+  "external_ratio_shared_reading_box": [
+    1.273972602739726,
+    1.3478260869565217
+  ],
+  "source_referenced_level_test": {
+    "target_reference_CHO": 1412.8,
+    "target_ratios": {
+      "soy": 1.8785390713476784,
+      "pea": 2.501840317100793
+    },
+    "candidates": {
+      "external_concurrent_control_ratios": {
+        "predicted_ratios": {
+          "soy": 1.9722222222222223,
+          "pea": 2.583333333333333
+        },
+        "abs_log_error": {
+          "soy": 0.048666553542748146,
+          "pea": 0.03205396679114479
+        },
+        "two_meal_mean_error": 0.040360260166946466
+      },
+      "equal_input_energy_vs_CHO": {
+        "predicted_ratios": {
+          "pea": 2,
+          "soy": 2
+        },
+        "abs_log_error": {
+          "soy": 0.062652795517488,
+          "pea": 0.2238794073460558
+        },
+        "two_meal_mean_error": 0.1432661014317719
+      },
+      "unchanged_vs_CHO": {
+        "predicted_ratios": {
+          "pea": 1,
+          "soy": 1
+        },
+        "abs_log_error": {
+          "soy": 0.6304943850424574,
+          "pea": 0.9170265879060011
+        },
+        "two_meal_mean_error": 0.7737604864742292
+      },
+      "old_profile_ratios": {
+        "predicted_ratios": {
+          "pea": 1.1076716983751969,
+          "soy": 1.2057135768062388
+        },
+        "abs_log_error": {
+          "soy": 0.4434228134469886,
+          "pea": 0.8147663445921727
+        },
+        "two_meal_mean_error": 0.6290945790195807
+      }
+    }
+  },
+  "absolute_native_food_inputs_alone": {
+    "predicted_arms": 0,
+    "eligible_arms": 2
+  },
+  "common_CHO_subtraction_sensitivity": {
+    "external_ratio_of_increments": 1.6285714285714281,
+    "target_ratio_of_increments": 1.7094747019013858,
+    "target_pea_conditional_on_measured_CHO_and_soy": 3434.182857142857,
+    "conditional_level_uses_two_local_measurements": true
+  }
+}

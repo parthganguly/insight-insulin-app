@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": [
+    "all frozen Dutch candidate levels and derived contrasts",
+    "all Oxford methods native and relative levels and loss",
+    "all Oxford source and dose contrasts and loss",
+    "all donor omission forecasts coverage and losses",
+    "both frozen leucine dose conventions",
+    "all Opus scored point predictions contrasts and losses in both tolerance files"
+  ],
+  "limitations": [
+    "Point estimates and graph reading stress only; no paired inference.",
+    "Opus score bounds not independently checked here."
+  ]
+}

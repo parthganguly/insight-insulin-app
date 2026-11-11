@@ -1,0 +1,43 @@
+{
+  "utc": "2026-11-03T06:32:05.845087+00:00",
+  "python": "3.13.12",
+  "platform": "Windows",
+  "commands": [
+    "python -I -X utf8 verify_v2.py",
+    "python -I -X utf8 verify_v2.py --check",
+    "python -I -X utf8 challenge.py",
+    "python -I -X utf8 challenge.py --check",
+    "python -I -X utf8 transfer.py --check",
+    "python -I -X utf8 addendum.py --check"
+  ],
+  "sha256": {
+    "target_inputs_v2.json": "c26b4178165d8ea39623d0190294750e24d0a6b23dcc1cd07036b9a0742dc70b",
+    "verify_v2.py": "6c8cd1c9ee7e09b326954859ad9f5b83dcf6d3b9443fc2a0424bebab9cae7b22",
+    "VERIFIED_v2.json": "465ce10afbb6d12fd628e21a6eee95aed8dd7d3f4766235ed673a3b04cf26c2b",
+    "challenge.py": "47440e51d8da758566f4e3a5318f4b11c25beacc2934acf1e5aeb7c1ad08c993",
+    "CHALLENGE.json": "83ce264a3b6818ec0f682c21d834a52fbe1c4ea393950a17f22f03bf34e7655d",
+    "V2_RESULT.md": "83f95d33c23ec05d542df1b70dc7b9c1a62ea6f1f289cd44d9b04bff1900848e",
+    "CHALLENGE.md": "a01e80f21cf717ef1be554f8787abb1710fa1c764805e4a8f6e17a936c2d9a99"
+  },
+  "v1_preserved": {
+    "SPEC.md": "b571d401ef61a792049b0a1b70006d437b7e7c079818c48fd34b1f1ddc680926",
+    "transfer.py": "0ea627e7ee32d8f86773a11d7234136d4f29bfeab664be2b6d730b25a1e3815c",
+    "PREDICTIONS.json": "0badfd6cf056884e1850ffc6e98771be1c1107b99b3daff64e2082fce2565805",
+    "RESULTS.json": "7b8e002f44566da24f3f58a7de7e42281cd9d5e2610a5c89504afa67650c82ee",
+    "addendum.py": "47131d5ccf8c008ad414282ea1dad2687e05c1f1148fc99754c555c28f35937c",
+    "ADDENDUM.json": "f57a23aea3fc5b86742f8eb3cfc4deb42fb1e2267a29cf267afd41b4aee9dfe3",
+    "RESULT.md": "7788eb9076f6099310fb9ba1a625edb392728fc84d422fd054cb7e7b2fcbb88c",
+    "EXECUTION.json": "ffd9f312e2fb1039c842f25492e461e761f617e82a05f3ca6dd76315def53365"
+  },
+  "frozen_match": {
+    "SPEC.md": true,
+    "transfer.py": true,
+    "../readings.json": true
+  },
+  "access_receipts": [
+    "ResearchGate publication 23148702: HTTP 403 (WebFetch) and HTTP 403 (urllib)",
+    "Springer Fig2 media URL: HTTP 200 text/html 3038 bytes (not an image)",
+    "raw/Power-Fig2.* : HTML, identical hash prefix 32ed63159c77e21e"
+  ],
+  "source_reading_credit": "Design facts admitted from Sol and coordinator reads of the author-uploaded full text"
+}

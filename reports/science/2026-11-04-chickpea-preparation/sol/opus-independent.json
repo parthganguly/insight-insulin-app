@@ -1,0 +1,1623 @@
+{
+  "scope": "Fresh independent check of Opus diagnostic, using supplied public aggregates only; no source extraction or participant-record check, no app edits, no coefficients selected.",
+  "arithmetic_status": "PASS",
+  "arithmetic_checks": {
+    "total": 331,
+    "passed": 331,
+    "failed": []
+  },
+  "verified_artifacts_sha256": {
+    "opus/diagnostic.py": "fb9ed3111cd3735d45ba4d1a10173803d29b6a3761d13000e7d47989f7353708",
+    "opus/DIAGNOSTIC.md": "a38d216a727efdd8e165fbc1308bef74965a5ee0c504fa98aab5587f963b26f8",
+    "opus/DIAGNOSTIC.json": "8b8ab6e8e79a93c241955435a0b7fb621efe0c15c34c5e2ecacb6d000e22e5bf"
+  },
+  "endpoint": "ratio of arithmetic arm means of participant-positive insulin area, published time-zero through 120 min; first-bite offset unknown; ten complete crossover triplets",
+  "observed": {
+    "C_B": 0.28464849503830014,
+    "S_B": 0.7284656622643167,
+    "C_S": 0.39075073786390524
+  },
+  "paired_delta_log_SE": {
+    "C_B": 0.1860046972981438,
+    "S_B": 0.15152137448625908,
+    "C_S": 0.1668182650352029
+  },
+  "normal_theory_Fieller_95_t9": {
+    "C_B": [
+      0.17368173530056102,
+      0.42673130736207643
+    ],
+    "S_B": [
+      0.49768819501336764,
+      1.0253870023220968
+    ],
+    "C_S": [
+      0.2538077859103953,
+      0.5722141165901125
+    ]
+  },
+  "critical_value_t9_independent_CDF_inversion": 2.2621571627982,
+  "normal_theory_Fieller_95_z_sensitivity_only": {
+    "C_B": [
+      0.1879715651485412,
+      0.4041203717563868
+    ],
+    "S_B": [
+      0.5273375663823476,
+      0.9780493281284486
+    ],
+    "C_S": [
+      0.27170832387765703,
+      0.5420639036769093
+    ]
+  },
+  "z_sensitivity_C_D20_shift_pp_to_upper_C_S": 2.1789973370912215,
+  "SEM_interpretation": "SE of log ratio of correlated arm means, computed by paired delta method from covariance of means. Not SD/SEM of participant log ratios, and not assay-reading SEM. Intended Fieller intervals use Student t9 (approximately 2.2621571628); 'normal-theory' denotes normal paired variates with estimated variance. Normal-z intervals are supplied separately as a sensitivity, not a correction. Observed-SE distances are descriptive, not exact finite-sample tests.",
+  "central_rules_inside_C_S_interval": [],
+  "comparison_distances": {
+    "D20_anchored_vs_posthoc_5080_anchored": {
+      "C_B": {
+        "delta_log": 0.013793322132335873,
+        "in_observed_paired_SE_units": 0.07415577312129268
+      },
+      "S_B": {
+        "delta_log": 0.0,
+        "in_observed_paired_SE_units": 0.0
+      },
+      "C_S": {
+        "delta_log": 0.013793322132335986,
+        "in_observed_paired_SE_units": 0.0826847235788314
+      },
+      "shared_inputs": [
+        "S_B"
+      ]
+    },
+    "D20_standalone_vs_D20_anchored": {
+      "C_B": {
+        "delta_log": 0.036382564000721776,
+        "in_observed_paired_SE_units": 0.19560024305410295
+      },
+      "S_B": {
+        "delta_log": 0.036382564000721776,
+        "in_observed_paired_SE_units": 0.24011506049280973
+      },
+      "C_S": {
+        "delta_log": 0.0,
+        "in_observed_paired_SE_units": 0.0
+      },
+      "shared_inputs": [
+        "C_S"
+      ]
+    },
+    "D20_standalone_vs_hummus_shared_factor": {
+      "C_B": {
+        "delta_log": 0.4474143873773495,
+        "in_observed_paired_SE_units": 2.405392949083412
+      },
+      "S_B": {
+        "delta_log": 0.036382564000721776,
+        "in_observed_paired_SE_units": 0.24011506049280973
+      },
+      "C_S": {
+        "delta_log": 0.4837969513780713,
+        "in_observed_paired_SE_units": 2.9001437658878535
+      },
+      "shared_inputs": []
+    },
+    "D20_anchored_vs_hummus_shared_factor": {
+      "C_B": {
+        "delta_log": 0.4837969513780713,
+        "in_observed_paired_SE_units": 2.600993192137515
+      },
+      "S_B": {
+        "delta_log": 0.0,
+        "in_observed_paired_SE_units": 0.0
+      },
+      "C_S": {
+        "delta_log": 0.4837969513780713,
+        "in_observed_paired_SE_units": 2.9001437658878535
+      },
+      "shared_inputs": [
+        "S_B"
+      ]
+    }
+  },
+  "late_declines_pp": {
+    "Broken": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Intact-S": [
+      0.0,
+      1.337792642140471,
+      0.0
+    ],
+    "Intact-C": [
+      0.0,
+      3.4782608695652115,
+      0.0
+    ]
+  },
+  "assumed_sensitivity_boxes": {
+    "delta_min_observed_decrement": {
+      "assumed_delta_pp": 1.337792642140471,
+      "ranges": {
+        "C_B": [
+          0.4045307443365695,
+          0.5017301038062285
+        ],
+        "S_B": [
+          0.6763754045307442,
+          0.7923875432525953
+        ],
+        "C_S": [
+          0.5458515283842793,
+          0.6937799043062203
+        ]
+      },
+      "worst_primary_error_continuous_box": {
+        "shifts_B_S_C_pp": [
+          -1.337792642140471,
+          1.337792642140471,
+          1.337792642140471
+        ],
+        "primary_error": 0.325458684856746
+      },
+      "best_shared_factor_primary_error": 0.46984271067750066,
+      "strictly_better_than_every_shared_factor_throughout_box": true,
+      "proof": "Loss is convex in log B, log S, log C, so maximum over log rectangular box occurs at a vertex.",
+      "intersects_all_three_marginal_intervals": true,
+      "independent_exact_extrema": {
+        "primary_standalone": [
+          0.1757363355319137,
+          0.325458684856746
+        ],
+        "primary_anchored": [
+          0.16713857755153125,
+          0.28704245590538263
+        ],
+        "C_S_error": [
+          0.33427715510306244,
+          0.574084911810765
+        ]
+      },
+      "anchored_minus_5080_primary": [
+        -0.06770231850310174,
+        0.052201559850749646
+      ]
+    },
+    "delta_max_observed_decrement": {
+      "assumed_delta_pp": 3.4782608695652115,
+      "ranges": {
+        "C_B": [
+          0.33538461538461556,
+          0.5897435897435895
+        ],
+        "S_B": [
+          0.593846153846154,
+          0.8974358974358971
+        ],
+        "C_S": [
+          0.44489795918367375,
+          0.8341968911917095
+        ]
+      },
+      "worst_primary_error_continuous_box": {
+        "shifts_B_S_C_pp": [
+          -3.4782608695652115,
+          3.4782608695652115,
+          3.4782608695652115
+        ],
+        "primary_error": 0.4685169925614059
+      },
+      "best_shared_factor_primary_error": 0.46984271067750066,
+      "strictly_better_than_every_shared_factor_throughout_box": true,
+      "proof": "Loss is convex in log B, log S, log C, so maximum over log rectangular box occurs at a vertex.",
+      "intersects_all_three_marginal_intervals": true,
+      "independent_exact_extrema": {
+        "primary_standalone": [
+          0.0820114552793394,
+          0.4685169925614061
+        ],
+        "primary_anchored": [
+          0.06488754651970936,
+          0.3791997987172893
+        ],
+        "C_S_error": [
+          0.1297750930394187,
+          0.7583995974345784
+        ]
+      },
+      "anchored_minus_5080_primary": [
+        -0.16995334953492364,
+        0.14435890266265633
+      ]
+    }
+  },
+  "exact_primary_breakeven_half_width_pp": {
+    "standalone": 3.4983955983058657,
+    "anchored": 5.618729096989965
+  },
+  "C_D20_shift_pp_to_upper_C_S_interval_holding_S_fixed": 1.2956666845171085,
+  "bread_recomputed": {
+    "equality": {
+      "mean_error_vs_control": 0.3268624289980345,
+      "separation_error": 0.5002979609344526
+    },
+    "total_starch": {
+      "mean_error_vs_control": 0.29052633184833626,
+      "separation_error": 0.44536424211661524
+    },
+    "wheat_flour_recipe": {
+      "mean_error_vs_control": 0.3177419009174953,
+      "separation_error": 0.17414632947194267
+    },
+    "partly_accessible_hummus_reference": {
+      "mean_error_vs_control": 0.16565969754427218,
+      "separation_error": 0.33131939508854436
+    },
+    "figure_H20": {
+      "mean_error_vs_control": 0.11111034540120272,
+      "separation_error": 0.22222069080240536
+    },
+    "figure_H120": {
+      "mean_error_vs_control": 0.1546160338960176,
+      "separation_error": 0.30923206779203516
+    }
+  },
+  "kanata_recomputed": {
+    "same_bake_equal": 0.02539819060561046,
+    "measured_total_starch": 0.07694334244317615,
+    "same_starch_nominal30_measured_porridge_response": 0.26696726850244473,
+    "measured_total_nominal30_measured_porridge_response": 0.31851242034001054,
+    "same_starch_nominal30_measured_porridge_H20": 0.20518116630481958,
+    "measured_total_nominal30_measured_porridge_H20": 0.2567263181423853,
+    "same_starch_nominal30_hummus_reference": 0.11764321050073903,
+    "measured_total_nominal30_hummus_reference": 0.16918836233830487,
+    "same_starch_nominal30_zero_limit": 0.38207313454434294,
+    "measured_total_nominal30_zero_limit": 0.43361828638190864
+  },
+  "interpretation_status": "V2_SUBSTANTIVE_INTERPRETATION_SUPPORTED_WITH_SOURCE_LIMITS",
+  "v1_corrections_resolved_by_v2": [
+    "The nonzero D20-versus-50/80 difference is small relative to observed paired log SE, not a structural impossibility of discrimination. V2 corrects this.",
+    "Standalone and anchored D20 differ on C/B and S/B; C/S is identical. V2 corrects this.",
+    "A late nonmonotone hydrolysis reading diagnoses some combination of experimental variation, rounding/digitization, or protocol effects. It does not estimate a D20 per-point SD, SEM, error bar, or minimum empirical noise scale for every point. Even under monotonic truth and equal bounded measurement errors, a decrement d implies only that at least one of the two late errors has magnitude at least d/2; it supplies no lower bound on early-time error.",
+    "The +/-1.337793 and +/-3.478261 pp boxes are assumed post-result sensitivity scenarios. Central D20 C/S=0.616438 lies above Fieller upper=0.572214. V2 correctly distinguishes illustrative sensitivity from measured assay precision.",
+    "Retain the concrete descriptive comparison: frozen D20 primary mean absolute log error=0.233387 versus hummus=0.469843. It also has smaller C/S error (0.455888 versus 0.939685). Both observations are true, with neither proving prospective assay-specific value over a duration label.",
+    "D20's primary-error advantage survives throughout both assumed boxes, even relative to the theoretical best possible shared-factor rule, conditional on fixed target means and this loss. This is conditional robustness, not population validation."
+  ],
+  "remaining_source_and_inference_limits": [
+    "Cai assay n=3, SEM bands, nonlinear fit, source-file availability, and the Bajka marker-extreme span 0.025-0.265 are source assertions not independently verifiable from the supplied aggregate inputs. Arithmetic review does not newly certify these source assertions.",
+    "Marginal range intersections do not constitute a joint 95% compatibility test or whole-model acceptance.",
+    "Bajka results are development comparisons with known outcomes. Kanata's nominal unmeasured served-bread transfers lose to equality at the central aggregate endpoint, so it does not directly test a measured served-bread D20 rule. Evidence does not establish assay coverage as the causal reason for between-study differences.",
+    "The phrase 'survives only up to about +/-3.5 points' concerns a guarantee across every perturbation, not inevitable failure at larger perturbations. The central reading remains within every larger box.",
+    "The markdown table header uses unescaped pipes in mean |log| and needs escaping to render correctly."
+  ],
+  "checks": [
+    {
+      "check": "C_B observed ratio",
+      "pass": true
+    },
+    {
+      "check": "C_B paired log SE",
+      "pass": true
+    },
+    {
+      "check": "C_B paired difference SE",
+      "pass": true
+    },
+    {
+      "check": "C_B Opus observed ratio",
+      "pass": true
+    },
+    {
+      "check": "C_B Opus log SE",
+      "pass": true
+    },
+    {
+      "check": "C_B Fieller endpoint 0",
+      "pass": true
+    },
+    {
+      "check": "C_B Fieller endpoint 1",
+      "pass": true
+    },
+    {
+      "check": "S_B observed ratio",
+      "pass": true
+    },
+    {
+      "check": "S_B paired log SE",
+      "pass": true
+    },
+    {
+      "check": "S_B paired difference SE",
+      "pass": true
+    },
+    {
+      "check": "S_B Opus observed ratio",
+      "pass": true
+    },
+    {
+      "check": "S_B Opus log SE",
+      "pass": true
+    },
+    {
+      "check": "S_B Fieller endpoint 0",
+      "pass": true
+    },
+    {
+      "check": "S_B Fieller endpoint 1",
+      "pass": true
+    },
+    {
+      "check": "C_S observed ratio",
+      "pass": true
+    },
+    {
+      "check": "C_S paired log SE",
+      "pass": true
+    },
+    {
+      "check": "C_S paired difference SE",
+      "pass": true
+    },
+    {
+      "check": "C_S Opus observed ratio",
+      "pass": true
+    },
+    {
+      "check": "C_S Opus log SE",
+      "pass": true
+    },
+    {
+      "check": "C_S Fieller endpoint 0",
+      "pass": true
+    },
+    {
+      "check": "C_S Fieller endpoint 1",
+      "pass": true
+    },
+    {
+      "check": "Broken SD/sqrt(n)",
+      "pass": true
+    },
+    {
+      "check": "Broken covariance diagonal",
+      "pass": true
+    },
+    {
+      "check": "Intact-S SD/sqrt(n)",
+      "pass": true
+    },
+    {
+      "check": "Intact-S covariance diagonal",
+      "pass": true
+    },
+    {
+      "check": "Intact-C SD/sqrt(n)",
+      "pass": true
+    },
+    {
+      "check": "Intact-C covariance diagonal",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_B error",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "same_starch S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "same_starch S_B error",
+      "pass": true
+    },
+    {
+      "check": "same_starch S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "same_starch S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "same_starch S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_S error",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "same_starch C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "same_starch primary error",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_B error",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "hummus_process S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "hummus_process S_B error",
+      "pass": true
+    },
+    {
+      "check": "hummus_process S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "hummus_process S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "hummus_process S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_S error",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "hummus_process C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "hummus_process primary error",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_B error",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 S_B error",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_S error",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "prior_ingredient_H120 primary error",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_B error",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 S_B error",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_S error",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "S_anchor_H20 primary error",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_B error",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 S_B error",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_S error",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "external_beta_H20 primary error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_B error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time S_B error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_S error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "posthoc_S_anchor_time primary error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_B error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only S_B error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_S error",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "posthoc_time_only primary error",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H20 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H20 S_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H20 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H20 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H20 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_S error",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H20 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H20 primary error",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H60 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H60 S_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H60 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H60 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H60 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_S error",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H60 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H60 primary error",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H90 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H90 S_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H90 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H90 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H90 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_S error",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H90 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H90 primary error",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H120 S_B reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H120 S_B error",
+      "pass": true
+    },
+    {
+      "check": "local_H120 S_B Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H120 S_B Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H120 S_B Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_S reconstruction",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_S error",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_S Opus pred",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_S Opus inside_clinical_95",
+      "pass": true
+    },
+    {
+      "check": "local_H120 C_S Opus z_vs_paired_SE",
+      "pass": true
+    },
+    {
+      "check": "local_H120 primary error",
+      "pass": true
+    },
+    {
+      "check": "no rule centrally inside C/S CI",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored C_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored C_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored S_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored S_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored C_S delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored C_S in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored shared",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored primary S_anchor_H20",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_posthoc_5080_anchored primary posthoc_S_anchor_time",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored C_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored C_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored S_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored S_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored C_S delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored C_S in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored shared",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored primary local_H20",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_D20_anchored primary S_anchor_H20",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor C_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor C_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor S_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor S_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor C_S delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor C_S in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor shared",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor primary local_H20",
+      "pass": true
+    },
+    {
+      "check": "D20_standalone_vs_hummus_shared_factor primary hummus_process",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor C_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor C_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor S_B delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor S_B in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor C_S delta_log",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor C_S in_observed_paired_SE_units",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor shared",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor primary S_anchor_H20",
+      "pass": true
+    },
+    {
+      "check": "D20_anchored_vs_hummus_shared_factor primary hummus_process",
+      "pass": true
+    },
+    {
+      "check": "Broken hydro 20",
+      "pass": true
+    },
+    {
+      "check": "Broken hydro 60",
+      "pass": true
+    },
+    {
+      "check": "Broken hydro 90",
+      "pass": true
+    },
+    {
+      "check": "Broken hydro 120",
+      "pass": true
+    },
+    {
+      "check": "Broken decline 0",
+      "pass": true
+    },
+    {
+      "check": "Broken decline 1",
+      "pass": true
+    },
+    {
+      "check": "Broken decline 2",
+      "pass": true
+    },
+    {
+      "check": "Intact-S hydro 20",
+      "pass": true
+    },
+    {
+      "check": "Intact-S hydro 60",
+      "pass": true
+    },
+    {
+      "check": "Intact-S hydro 90",
+      "pass": true
+    },
+    {
+      "check": "Intact-S hydro 120",
+      "pass": true
+    },
+    {
+      "check": "Intact-S decline 0",
+      "pass": true
+    },
+    {
+      "check": "Intact-S decline 1",
+      "pass": true
+    },
+    {
+      "check": "Intact-S decline 2",
+      "pass": true
+    },
+    {
+      "check": "Intact-C hydro 20",
+      "pass": true
+    },
+    {
+      "check": "Intact-C hydro 60",
+      "pass": true
+    },
+    {
+      "check": "Intact-C hydro 90",
+      "pass": true
+    },
+    {
+      "check": "Intact-C hydro 120",
+      "pass": true
+    },
+    {
+      "check": "Intact-C decline 0",
+      "pass": true
+    },
+    {
+      "check": "Intact-C decline 1",
+      "pass": true
+    },
+    {
+      "check": "Intact-C decline 2",
+      "pass": true
+    },
+    {
+      "check": "best shared primary bound",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement exact primary_standalone 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement exact primary_standalone 1",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement exact primary_anchored 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement exact primary_anchored 1",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement exact C_S_error 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement exact C_S_error 1",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement standalone_below_hummus_throughout",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement anchored_below_hummus_throughout",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement anchored minus 5080 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement anchored minus 5080 1",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement delta",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement C_B range 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement C_B range 1",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement S_B range 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement S_B range 1",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement C_S range 0",
+      "pass": true
+    },
+    {
+      "check": "delta_min_observed_decrement C_S range 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement exact primary_standalone 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement exact primary_standalone 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement exact primary_anchored 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement exact primary_anchored 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement exact C_S_error 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement exact C_S_error 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement standalone_below_hummus_throughout",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement anchored_below_hummus_throughout",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement anchored minus 5080 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement anchored minus 5080 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement delta",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement C_B range 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement C_B range 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement S_B range 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement S_B range 1",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement C_S range 0",
+      "pass": true
+    },
+    {
+      "check": "delta_max_observed_decrement C_S range 1",
+      "pass": true
+    },
+    {
+      "check": "C shift needed",
+      "pass": true
+    },
+    {
+      "check": "C/S time 20",
+      "pass": true
+    },
+    {
+      "check": "C/S time 60",
+      "pass": true
+    },
+    {
+      "check": "C/S time 90",
+      "pass": true
+    },
+    {
+      "check": "C/S time 120",
+      "pass": true
+    },
+    {
+      "check": "standalone exact primary breakeven",
+      "pass": true
+    },
+    {
+      "check": "anchored exact primary breakeven",
+      "pass": true
+    },
+    {
+      "check": "central primary_standalone",
+      "pass": true
+    },
+    {
+      "check": "central primary_anchored",
+      "pass": true
+    },
+    {
+      "check": "central C_S_error",
+      "pass": true
+    },
+    {
+      "check": "central hummus_primary",
+      "pass": true
+    },
+    {
+      "check": "central posthoc_5080_anchored_primary",
+      "pass": true
+    },
+    {
+      "check": "bread equality mean_error_vs_control",
+      "pass": true
+    },
+    {
+      "check": "bread equality separation_error",
+      "pass": true
+    },
+    {
+      "check": "bread total_starch mean_error_vs_control",
+      "pass": true
+    },
+    {
+      "check": "bread total_starch separation_error",
+      "pass": true
+    },
+    {
+      "check": "bread wheat_flour_recipe mean_error_vs_control",
+      "pass": true
+    },
+    {
+      "check": "bread wheat_flour_recipe separation_error",
+      "pass": true
+    },
+    {
+      "check": "bread partly_accessible_hummus_reference mean_error_vs_control",
+      "pass": true
+    },
+    {
+      "check": "bread partly_accessible_hummus_reference separation_error",
+      "pass": true
+    },
+    {
+      "check": "bread figure_H20 mean_error_vs_control",
+      "pass": true
+    },
+    {
+      "check": "bread figure_H20 separation_error",
+      "pass": true
+    },
+    {
+      "check": "bread figure_H120 mean_error_vs_control",
+      "pass": true
+    },
+    {
+      "check": "bread figure_H120 separation_error",
+      "pass": true
+    },
+    {
+      "check": "Kanata same_bake_equal",
+      "pass": true
+    },
+    {
+      "check": "Kanata measured_total_starch",
+      "pass": true
+    },
+    {
+      "check": "Kanata same_starch_nominal30_measured_porridge_response",
+      "pass": true
+    },
+    {
+      "check": "Kanata measured_total_nominal30_measured_porridge_response",
+      "pass": true
+    },
+    {
+      "check": "Kanata same_starch_nominal30_measured_porridge_H20",
+      "pass": true
+    },
+    {
+      "check": "Kanata measured_total_nominal30_measured_porridge_H20",
+      "pass": true
+    },
+    {
+      "check": "Kanata same_starch_nominal30_hummus_reference",
+      "pass": true
+    },
+    {
+      "check": "Kanata measured_total_nominal30_hummus_reference",
+      "pass": true
+    },
+    {
+      "check": "Kanata same_starch_nominal30_zero_limit",
+      "pass": true
+    },
+    {
+      "check": "Kanata measured_total_nominal30_zero_limit",
+      "pass": true
+    },
+    {
+      "check": "Kanata own assay coverage",
+      "pass": true
+    }
+  ]
+}

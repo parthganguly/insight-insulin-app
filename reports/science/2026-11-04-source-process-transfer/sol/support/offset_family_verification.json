@@ -1,0 +1,323 @@
+{
+  "theorem": "For d_b>0 and q>=0, (q+d_a)/(q+d_b)=w*(d_a/d_b)+(1-w), w=d_b/(q+d_b) in(0,1]. It lies between direct release and1;1 is a q->infinity limit unless d_a=d_b.",
+  "mathematical_scope": [
+    "Every finite common nonnegative q, not merely the fitted hummus q.",
+    "Any common positive rescaling of both d values leaves the union over q unchanged (replace q by q/scale).",
+    "Closed envelopes include limiting1; they are outer envelopes, not claims all endpoints attained for finite q.",
+    "One common q across all foods is stronger than pairwise envelope membership; pairwise failure is already sufficient for impossibility under stated inputs."
+  ],
+  "numerical_scope": [
+    "H30 released grams from printed totalstarch, own/native screenshot readings; target signed120 arithmetic mean-curve ratio.",
+    "The fixed-axis+/-2px numeric nonoverlap is deterministic reading sensitivity, not samplingCI or biological rejection.",
+    "The SP/WWB and HAWB/SP disjointness is narrow; axis-zero or wider-marker stresses can admit overlap. See all cases.",
+    "No assertion about other assay times, food-specific backgrounds, negative q, nonlinear transformations, participant-positive AUCs, reportedII or population effects."
+  ],
+  "results": {
+    "astra": {
+      "fixed_axes_marker2px": {
+        "HAWB/WWB": {
+          "direct_release_range": [
+            0.7457618909231812,
+            0.7770050310742824
+          ],
+          "closed_all_q_outer_envelope": [
+            0.7457618909231812,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5652749413811361,
+            0.5905387748827915
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.15522311604038974
+        },
+        "SP/WWB": {
+          "direct_release_range": [
+            0.6126610481449191,
+            0.6418565650586959
+          ],
+          "closed_all_q_outer_envelope": [
+            0.6126610481449191,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5833900612661675,
+            0.6089462762278074
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.00371477191711167
+        },
+        "HAWB/SP": {
+          "direct_release_range": [
+            1.1832014139706446,
+            1.2453948928769072
+          ],
+          "closed_all_q_outer_envelope": [
+            1.0,
+            1.2453948928769072
+          ],
+          "signed120_reading_range": [
+            0.9432664394799949,
+            0.9961752884740046
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.0038247115259953945
+        }
+      },
+      "marker2px_plus_axis_zero1px_stress": {
+        "HAWB/WWB": {
+          "direct_release_range": [
+            0.74480611103002,
+            0.7778268768105269
+          ],
+          "closed_all_q_outer_envelope": [
+            0.74480611103002,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5590838889516706,
+            0.5969826754639812
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.14782343556603883
+        },
+        "SP/WWB": {
+          "direct_release_range": [
+            0.6110056925996205,
+            0.6433937251436147
+          ],
+          "closed_all_q_outer_envelope": [
+            0.6110056925996205,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5771273590236186,
+            0.6154647528649151
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        },
+        "HAWB/SP": {
+          "direct_release_range": [
+            1.1817765567765568,
+            1.2473323777671603
+          ],
+          "closed_all_q_outer_envelope": [
+            1.0,
+            1.2473323777671603
+          ],
+          "signed120_reading_range": [
+            0.9304745783963386,
+            1.0098557535408914
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        }
+      },
+      "fixed_axes_marker3px_stress": {
+        "HAWB/WWB": {
+          "direct_release_range": [
+            0.7381262355947732,
+            0.7849957881175363
+          ],
+          "closed_all_q_outer_envelope": [
+            0.7381262355947732,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5590838889516706,
+            0.5969826754639812
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.141143560130792
+        },
+        "SP/WWB": {
+          "direct_release_range": [
+            0.6055258209171127,
+            0.6493236212278877
+          ],
+          "closed_all_q_outer_envelope": [
+            0.6055258209171127,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5771273590236186,
+            0.6154647528649151
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        },
+        "HAWB/SP": {
+          "direct_release_range": [
+            1.168192918192918,
+            1.2615066093326963
+          ],
+          "closed_all_q_outer_envelope": [
+            1.0,
+            1.2615066093326963
+          ],
+          "signed120_reading_range": [
+            0.9304745783963386,
+            1.0098557535408914
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        }
+      }
+    },
+    "sol": {
+      "fixed_axes_marker2px": {
+        "HAWB/WWB": {
+          "direct_release_range": [
+            0.7457618909231812,
+            0.7770050310742824
+          ],
+          "closed_all_q_outer_envelope": [
+            0.7457618909231812,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5651136363636363,
+            0.5904157043879907
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.1553461865351905
+        },
+        "SP/WWB": {
+          "direct_release_range": [
+            0.6126610481449191,
+            0.6418565650586959
+          ],
+          "closed_all_q_outer_envelope": [
+            0.6126610481449191,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5832575757575758,
+            0.6088529638183218
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.003808084326597294
+        },
+        "HAWB/SP": {
+          "direct_release_range": [
+            1.1832014139706446,
+            1.2453948928769072
+          ],
+          "closed_all_q_outer_envelope": [
+            1.0,
+            1.2453948928769072
+          ],
+          "signed120_reading_range": [
+            0.943166013402453,
+            0.9961683335498115
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.003831666450188509
+        }
+      },
+      "marker2px_plus_axis_zero1px_stress": {
+        "HAWB/WWB": {
+          "direct_release_range": [
+            0.74480611103002,
+            0.7778268768105269
+          ],
+          "closed_all_q_outer_envelope": [
+            0.74480611103002,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5589134125636672,
+            0.5968695652173913
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.14793654581262872
+        },
+        "SP/WWB": {
+          "direct_release_range": [
+            0.6110056925996205,
+            0.6433937251436147
+          ],
+          "closed_all_q_outer_envelope": [
+            0.6110056925996205,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5769854744387851,
+            0.6153816425120773
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        },
+        "HAWB/SP": {
+          "direct_release_range": [
+            1.1817765567765568,
+            1.2473323777671603
+          ],
+          "closed_all_q_outer_envelope": [
+            1.0,
+            1.2473323777671603
+          ],
+          "signed120_reading_range": [
+            0.9303523205426113,
+            1.009873798469888
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        }
+      },
+      "fixed_axes_marker3px_stress": {
+        "HAWB/WWB": {
+          "direct_release_range": [
+            0.7381262355947732,
+            0.7849957881175363
+          ],
+          "closed_all_q_outer_envelope": [
+            0.7381262355947732,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5589134125636672,
+            0.5968695652173913
+          ],
+          "overlap": false,
+          "positive_gap_if_disjoint": 0.14125667037738188
+        },
+        "SP/WWB": {
+          "direct_release_range": [
+            0.6055258209171127,
+            0.6493236212278877
+          ],
+          "closed_all_q_outer_envelope": [
+            0.6055258209171127,
+            1.0
+          ],
+          "signed120_reading_range": [
+            0.5769854744387851,
+            0.6153816425120773
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        },
+        "HAWB/SP": {
+          "direct_release_range": [
+            1.168192918192918,
+            1.2615066093326963
+          ],
+          "closed_all_q_outer_envelope": [
+            1.0,
+            1.2615066093326963
+          ],
+          "signed120_reading_range": [
+            0.9303523205426113,
+            1.009873798469888
+          ],
+          "overlap": true,
+          "positive_gap_if_disjoint": 0.0
+        }
+      }
+    }
+  },
+  "coordinator_numeric_values_checked": 18,
+  "checks_passed": true
+}

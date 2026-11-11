@@ -1,0 +1,193 @@
+{
+  "source": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11357280/fullTextXML",
+  "doi": "10.3390/nu16162669",
+  "article_sha256": "a18a48302db8ca2f849ddb21597e9c77cac887a575e1425f348b962a357f550c",
+  "outcomes": "0-120 min capillary plasma insulin iAUC, nmol/L * min. Table 3 geometric means and 95% CIs.",
+  "relative": "Author-reported treatment/control response, separate estimand; estimator of group summary unspecified.",
+  "figure2": "Figure 2 D-F show medians and 95% CIs. Arithmetic mean concentration series and arithmetic absolute iAUC not established.",
+  "overlap": "Figure 1 reports 42 unique, 4 completed three studies, 18 two, and 20 one.",
+  "calculation": "2h trapezoidal iAUC, ref. 24 Brouns et al. Trial does not explicitly specify treatment of below-baseline excursions.",
+  "availability": "Crown Copyright restricts public access; corresponding author accepts reasonable requests.",
+  "arms": [
+    {
+      "family": "muffin",
+      "treatment": "Wheat Control",
+      "n": 24,
+      "serving_g": 128.0,
+      "energy_kcal": 384.0,
+      "protein_g": 9.5,
+      "fat_g": 9.9,
+      "carbohydrate_by_difference_g": 58.3,
+      "fibre_g": 4.2,
+      "available_carbohydrate_g": 44.8,
+      "insulin_iAUC_geometric_mean": 18.2,
+      "CI95": [
+        15.1,
+        21.9
+      ],
+      "Tukey_letters": "a",
+      "author_relative_response_percent": 100,
+      "ratio_of_geometric_means_percent": 100.0
+    },
+    {
+      "family": "muffin",
+      "treatment": "Green Lentil",
+      "n": 24,
+      "serving_g": 204.0,
+      "energy_kcal": 505.0,
+      "protein_g": 20.0,
+      "fat_g": 10.4,
+      "carbohydrate_by_difference_g": 71.5,
+      "fibre_g": 15.1,
+      "available_carbohydrate_g": 46.7,
+      "insulin_iAUC_geometric_mean": 15.1,
+      "CI95": [
+        12.3,
+        18.5
+      ],
+      "Tukey_letters": "b",
+      "author_relative_response_percent": 86,
+      "ratio_of_geometric_means_percent": 82.97
+    },
+    {
+      "family": "muffin",
+      "treatment": "Red Lentil",
+      "n": 24,
+      "serving_g": 178.0,
+      "energy_kcal": 458.0,
+      "protein_g": 16.8,
+      "fat_g": 10.3,
+      "carbohydrate_by_difference_g": 65.2,
+      "fibre_g": 9.8,
+      "available_carbohydrate_g": 45.4,
+      "insulin_iAUC_geometric_mean": 15.7,
+      "CI95": [
+        13.0,
+        18.9
+      ],
+      "Tukey_letters": "a,b",
+      "author_relative_response_percent": 92,
+      "ratio_of_geometric_means_percent": 86.26
+    },
+    {
+      "family": "chili",
+      "treatment": "Rice Control",
+      "n": 24,
+      "serving_g": 237.0,
+      "energy_kcal": 194.0,
+      "protein_g": 4.8,
+      "fat_g": 2.2,
+      "carbohydrate_by_difference_g": 35.9,
+      "fibre_g": 5.0,
+      "available_carbohydrate_g": 27.3,
+      "insulin_iAUC_geometric_mean": 8.4,
+      "CI95": [
+        7.1,
+        9.9
+      ],
+      "Tukey_letters": "a",
+      "author_relative_response_percent": 100,
+      "ratio_of_geometric_means_percent": 100.0
+    },
+    {
+      "family": "chili",
+      "treatment": "Green Lentil",
+      "n": 24,
+      "serving_g": 305.0,
+      "energy_kcal": 314.0,
+      "protein_g": 17.0,
+      "fat_g": 3.3,
+      "carbohydrate_by_difference_g": 46.8,
+      "fibre_g": 16.9,
+      "available_carbohydrate_g": 26.1,
+      "insulin_iAUC_geometric_mean": 5.8,
+      "CI95": [
+        4.7,
+        7.1
+      ],
+      "Tukey_letters": "b",
+      "author_relative_response_percent": 75,
+      "ratio_of_geometric_means_percent": 69.05
+    },
+    {
+      "family": "chili",
+      "treatment": "Red Lentil",
+      "n": 24,
+      "serving_g": 283.0,
+      "energy_kcal": 287.0,
+      "protein_g": 14.7,
+      "fat_g": 3.0,
+      "carbohydrate_by_difference_g": 43.5,
+      "fibre_g": 13.1,
+      "available_carbohydrate_g": 26.6,
+      "insulin_iAUC_geometric_mean": 4.9,
+      "CI95": [
+        3.7,
+        6.4
+      ],
+      "Tukey_letters": "b",
+      "author_relative_response_percent": 63,
+      "ratio_of_geometric_means_percent": 58.33
+    },
+    {
+      "family": "soup",
+      "treatment": "Potato Control",
+      "n": 20,
+      "serving_g": 471.0,
+      "energy_kcal": 190.0,
+      "protein_g": 5.6,
+      "fat_g": 1.3,
+      "carbohydrate_by_difference_g": 36.7,
+      "fibre_g": 5.8,
+      "available_carbohydrate_g": 26.9,
+      "insulin_iAUC_geometric_mean": 11.2,
+      "CI95": [
+        9.1,
+        13.8
+      ],
+      "Tukey_letters": "a",
+      "author_relative_response_percent": 100,
+      "ratio_of_geometric_means_percent": 100.0
+    },
+    {
+      "family": "soup",
+      "treatment": "Green Lentil",
+      "n": 20,
+      "serving_g": 361.0,
+      "energy_kcal": 276.0,
+      "protein_g": 15.7,
+      "fat_g": 1.7,
+      "carbohydrate_by_difference_g": 43.1,
+      "fibre_g": 13.9,
+      "available_carbohydrate_g": 26.3,
+      "insulin_iAUC_geometric_mean": 4.4,
+      "CI95": [
+        3.1,
+        6.2
+      ],
+      "Tukey_letters": "b",
+      "author_relative_response_percent": 46,
+      "ratio_of_geometric_means_percent": 39.29
+    },
+    {
+      "family": "soup",
+      "treatment": "Red Lentil",
+      "n": 20,
+      "serving_g": 339.0,
+      "energy_kcal": 245.0,
+      "protein_g": 13.3,
+      "fat_g": 1.6,
+      "carbohydrate_by_difference_g": 38.3,
+      "fibre_g": 9.7,
+      "available_carbohydrate_g": 25.3,
+      "insulin_iAUC_geometric_mean": 4.7,
+      "CI95": [
+        3.8,
+        5.9
+      ],
+      "Tukey_letters": "b",
+      "author_relative_response_percent": 45,
+      "ratio_of_geometric_means_percent": 41.96
+    }
+  ]
+}

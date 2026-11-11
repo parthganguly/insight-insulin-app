@@ -1,0 +1,128 @@
+{
+  "arm_area_units": "pg\u00b7min/mL, displayed 0\u2013120 grid",
+  "arms": {
+    "LAW-R": {
+      "signed_lower": 83199.77678571429,
+      "gross_upper": 121047.99107142858,
+      "with_marker_reading": [
+        79583.70535714286,
+        122554.68750000001
+      ]
+    },
+    "LAW-W": {
+      "signed_lower": 71357.14285714287,
+      "gross_upper": 109687.50000000001,
+      "with_marker_reading": [
+        67741.07142857143,
+        111194.19642857145
+      ]
+    },
+    "HAW-R": {
+      "signed_lower": 50444.196428571435,
+      "gross_upper": 85881.69642857143,
+      "with_marker_reading": [
+        46828.12500000001,
+        87388.39285714287
+      ]
+    },
+    "HAW-W": {
+      "signed_lower": 45652.90178571429,
+      "gross_upper": 83501.11607142858,
+      "with_marker_reading": [
+        42036.83035714286,
+        85007.81250000001
+      ]
+    }
+  },
+  "ratio_bounds": {
+    "HAW-R/LAW-R": {
+      "ratio_envelope": [
+        0.4167289021657954,
+        1.032234697573343
+      ],
+      "with_reading": [
+        0.38209982788296043,
+        1.0980689132904204
+      ],
+      "inside_outer_envelope": {
+        "equal_serving": true,
+        "starch": true,
+        "stated_carbohydrate": true,
+        "starch_less_RS": true,
+        "starch_less_RS_plus_sugar": true,
+        "amylopectin_dose": false,
+        "heated": false,
+        "shared": false,
+        "fixed_dose_heated": false,
+        "fixed_dose_unit": false
+      }
+    },
+    "HAW-W/LAW-W": {
+      "ratio_envelope": [
+        0.4162087912087912,
+        1.1701858108108107
+      ],
+      "with_reading": [
+        0.3780487804878049,
+        1.2548932384341638
+      ],
+      "inside_outer_envelope": {
+        "equal_serving": true,
+        "starch": true,
+        "stated_carbohydrate": true,
+        "starch_less_RS": true,
+        "starch_less_RS_plus_sugar": true,
+        "amylopectin_dose": false,
+        "heated": false,
+        "shared": false,
+        "fixed_dose_heated": false,
+        "fixed_dose_unit": false
+      }
+    },
+    "LAW-W/LAW-R": {
+      "ratio_envelope": [
+        0.5894946477470749,
+        1.3183629119884102
+      ],
+      "with_reading": [
+        0.5527415785591345,
+        1.3971980310488454
+      ],
+      "inside_outer_envelope": {
+        "equal_serving": true,
+        "starch": true,
+        "stated_carbohydrate": true,
+        "starch_less_RS": true,
+        "starch_less_RS_plus_sugar": true,
+        "amylopectin_dose": true,
+        "heated": true,
+        "shared": true,
+        "fixed_dose_heated": true,
+        "fixed_dose_unit": true
+      }
+    },
+    "HAW-W/HAW-R": {
+      "ratio_envelope": [
+        0.531578947368421,
+        1.6553166069295102
+      ],
+      "with_reading": [
+        0.4810344827586207,
+        1.8153153153153154
+      ],
+      "inside_outer_envelope": {
+        "equal_serving": true,
+        "starch": true,
+        "stated_carbohydrate": true,
+        "starch_less_RS": true,
+        "starch_less_RS_plus_sugar": true,
+        "amylopectin_dose": true,
+        "heated": true,
+        "shared": true,
+        "fixed_dose_heated": true,
+        "fixed_dose_unit": true
+      }
+    }
+  },
+  "assumptions": "Each plotted time mean for an arm represents the same complete sample within that arm; fasting baseline, nonnegative concentrations, linear segments on the displayed grid. Only the graph conventions and coordinate errors specified here. Not population inference, sharpness, or equality with individual study AUC."
+}

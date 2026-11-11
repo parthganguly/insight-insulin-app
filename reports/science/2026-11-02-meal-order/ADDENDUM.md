@@ -1,0 +1,3 @@
+# Additional locked test
+
+The coordinator identified Imai 2023 PMC10005673 after the original plan. Use Shukla 2015 Table 1 ratio 5202.8/10097.9 and invariant ratio 1 to predict slow vegetables/fish/rice versus slow rice first. Predict only this equal-pace comparison. Report any fast arm as context only. Compare absolute log errors of ratios of reported condition means. Target population now healthy women, source metformin-treated T2D. Treat additional test separately. At freeze no author or coordinator numeric target values have been conveyed to the implementer. Coordinator disclosed above-baseline 120 possible and meal schedules. Apply only if source gives native participant-level area summary. No tuning.

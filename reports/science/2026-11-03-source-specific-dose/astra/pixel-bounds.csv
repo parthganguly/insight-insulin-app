@@ -1,0 +1,4 @@
+start,end,arm_abs_err_at_6pixels,difference_of_differences,lower_digitizing_bound,upper_digitizing_bound
+0,120,1719.0,9474.7,2598.8,16350.5
+60,120,982.3,7366.9,3437.9,11296.0
+0,180,2701.2,20873.0,10068.1,31677.9

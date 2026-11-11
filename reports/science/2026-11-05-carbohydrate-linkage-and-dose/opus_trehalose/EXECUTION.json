@@ -1,0 +1,105 @@
+{
+  "runs": [
+    {
+      "utc": "2026-11-05T09:49:39Z",
+      "command": "python -I -X utf8 trehalose.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "RESULTS.json_sha256": "19816fb38d35cb9496015c1736fe471bbaafa89bfc844ce85fa0d6c7e8eac091"
+    },
+    {
+      "utc": "2026-11-05T09:49:47Z",
+      "command": "python -I -X utf8 trehalose.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "RESULTS.json_sha256": "151d5aad8a20e6b5efbf9e4dad8fe44bc0f8b46f4bd9b7da407a378cb59a0dca"
+    },
+    {
+      "utc": "2026-11-05T09:54:11Z",
+      "command": "python -I -X utf8 trehalose.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "plan_freeze": "raw bytes"
+    },
+    {
+      "utc": "2026-11-05T09:54:49Z",
+      "command": "python -I -X utf8 trehalose.py run",
+      "python": "3.13.12",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "plan_freeze": "raw bytes"
+    }
+  ],
+  "checks": [
+    {
+      "utc": "2026-11-05T09:49:39Z",
+      "command": "python -I -X utf8 trehalose.py --check",
+      "result": "PASS"
+    },
+    {
+      "utc": "2026-11-05T09:49:48Z",
+      "command": "python -I -X utf8 trehalose.py --check",
+      "result": "PASS"
+    },
+    {
+      "utc": "2026-11-05T09:54:50Z",
+      "command": "python -I -X utf8 trehalose.py --check --sources source_download --record",
+      "result": "PASS",
+      "plan_freeze": "raw bytes",
+      "source_audit": {
+        "PMC5292800.xml": "MATCH",
+        "Fig1.png": "MATCH"
+      },
+      "problems": []
+    },
+    {
+      "utc": "2026-11-05T09:55:00Z",
+      "command": "python -I -X utf8 trehalose.py --check --sources nonexistent_dir_negative_test --record",
+      "result": "FAIL",
+      "plan_freeze": "raw bytes",
+      "source_audit": {
+        "PMC5292800.xml": "MISSING",
+        "Fig1.png": "MISSING"
+      },
+      "problems": [
+        "source audit: {\"PMC5292800.xml\": \"MISSING\", \"Fig1.png\": \"MISSING\"}"
+      ]
+    }
+  ],
+  "portable_tests": [
+    {
+      "utc": "2026-11-05T09:54:50Z",
+      "command": "python -I -X utf8 portable_test.py --record",
+      "result": "PASS",
+      "trials": [
+        {
+          "line_endings": "as stored",
+          "files_present": [
+            "public\\TREHALOSE_PLAN.md",
+            "public\\opus_trehalose\\RESULTS.json",
+            "public\\opus_trehalose\\inputs.json",
+            "public\\opus_trehalose\\trehalose.py",
+            "public\\receipts\\TREHALOSE_FREEZE.json"
+          ],
+          "source_download_present": false,
+          "exit_code": 0,
+          "output": "PASS check (plan freeze via raw bytes); source audit not requested",
+          "files_unchanged": true
+        },
+        {
+          "line_endings": "CRLF",
+          "files_present": [
+            "public\\TREHALOSE_PLAN.md",
+            "public\\opus_trehalose\\RESULTS.json",
+            "public\\opus_trehalose\\inputs.json",
+            "public\\opus_trehalose\\trehalose.py",
+            "public\\receipts\\TREHALOSE_FREEZE.json"
+          ],
+          "source_download_present": false,
+          "exit_code": 0,
+          "output": "PASS check (plan freeze via LF-normalised bytes); source audit not requested",
+          "files_unchanged": true
+        }
+      ]
+    }
+  ]
+}

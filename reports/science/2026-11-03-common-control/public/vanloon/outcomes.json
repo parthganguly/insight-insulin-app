@@ -1,0 +1,25 @@
+{
+  "source": "van Loon et al. 2000 doi 10.1093/ajcn/72.1.96",
+  "admission": "AMENDMENT_B.md: initial Opus visual reading of scanned bar tops after freeze; graph-reading bounds, not sampling uncertainty",
+  "endpoints": {
+    "insulin_AUC_second_hour": {
+      "definition": "Plasma insulin area above time-0 baseline, 60-120 min, during 30-min repeated dosing; group mean; nmol*h/L",
+      "locator": "Figure 6 (bars); Results p.99 text anchors",
+      "means": {"1": 18.0, "2": 14.0, "3": 36.5, "4": 33.0, "5": 28.0, "6": 22.0, "7": 32.5, "8": 23.0, "9": 36.5, "10": 30.0},
+      "reading_half_width": 1.5,
+      "dispersion": "SEM bars shown; not transcribed",
+      "letters": {"vs_drink1_significant": ["3", "9"], "vs_drink2_significant": ["3", "4", "7", "9"]},
+      "text_anchor_ratio_vs_drink1": {"3": 2.01, "9": 2.03}
+    },
+    "insulin_AUC_total_2h": {
+      "definition": "Plasma insulin area above time-0 baseline, 0-120 min, during repeated dosing; group mean; nmol*2h/L. Not single-bolus.",
+      "locator": "Figure 5 (bars); Results p.99 text anchors",
+      "means": {"1": 33.0, "2": 23.5, "3": 52.0, "4": 51.5, "5": 47.5, "6": 36.5, "7": 52.5, "8": 36.0, "9": 51.0, "10": 47.0},
+      "reading_half_width": 2.0,
+      "dispersion": "SEM bars shown; not transcribed",
+      "letters": {"vs_drink2_significant": ["3", "4", "7", "9"]},
+      "text_anchor_ratio_vs_drink1": {"3": 1.57, "4": 1.55, "7": 1.54, "9": 1.42},
+      "flag": "drink 9 reading (51.0) inconsistent with text-implied ~47; unreliable"
+    }
+  }
+}

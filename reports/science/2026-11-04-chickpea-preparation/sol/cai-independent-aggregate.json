@@ -1,0 +1,250 @@
+{
+  "source": "https://pmc-oa-opendata.s3.amazonaws.com/PMC12286859.1/42255_2025_1309_MOESM4_ESM.xlsx",
+  "source_sha256": "00eb9d8e0337ef722010a699fecbd291e51ae35533589f25c561902dd030152c",
+  "operator": "participant positive above own t0; exact baseline-crossing split; 0-120min",
+  "complete_paired_n": 10,
+  "matching_subject_sets": true,
+  "max_absolute_difference_from_digitized_group_means_uU_mL": 0.0479343054525998,
+  "group_concentration_means": {
+    "Broken": {
+      "0.0": 8.659,
+      "15.0": 31.598,
+      "30.0": 41.496,
+      "45.0": 43.091,
+      "60.0": 22.515,
+      "90.0": 18.53,
+      "120.0": 9.611,
+      "150.0": 12.939,
+      "180.0": 8.957
+    },
+    "Intact-S": {
+      "0.0": 7.354,
+      "15.0": 20.943,
+      "30.0": 25.259,
+      "45.0": 26.375,
+      "60.0": 22.376,
+      "90.0": 16.036,
+      "120.0": 13.156,
+      "150.0": 14.656,
+      "180.0": 10.241
+    },
+    "Intact-C": {
+      "0.0": 9.071,
+      "15.0": 18.128,
+      "30.0": 16.624,
+      "45.0": 16.851,
+      "60.0": 12.105,
+      "90.0": 12.258000000000001,
+      "120.0": 9.721,
+      "150.0": 11.137,
+      "180.0": 10.251
+    }
+  },
+  "endpoints": {
+    "exact_positive": {
+      "Broken": {
+        "n": 10,
+        "mean": 1983.0586995359351,
+        "SD": 832.2634114809989,
+        "SEM": 263.1847993501886
+      },
+      "Intact-S": {
+        "n": 10,
+        "mean": 1444.5901688664596,
+        "SD": 713.990081980847,
+        "SEM": 225.7834885829822
+      },
+      "Intact-C": {
+        "n": 10,
+        "mean": 564.4746743955126,
+        "SD": 323.16087773100435,
+        "SEM": 102.19244242891601
+      }
+    },
+    "signed": {
+      "Broken": {
+        "n": 10,
+        "mean": 1975.29,
+        "SD": 837.3279351604124,
+        "SEM": 264.78634235926893
+      },
+      "Intact-S": {
+        "n": 10,
+        "mean": 1443.21,
+        "SD": 716.0970419573034,
+        "SEM": 226.4497678294239
+      },
+      "Intact-C": {
+        "n": 10,
+        "mean": 539.475,
+        "SD": 344.58256993063367,
+        "SEM": 108.96657629750511
+      }
+    },
+    "positive_nodes": {
+      "Broken": {
+        "n": 10,
+        "mean": 1990.56,
+        "SD": 829.2485836587241,
+        "SEM": 262.23142708302527
+      },
+      "Intact-S": {
+        "n": 10,
+        "mean": 1446.9,
+        "SD": 710.50990668674,
+        "SEM": 224.68296052437975
+      },
+      "Intact-C": {
+        "n": 10,
+        "mean": 583.995,
+        "SD": 318.83904677752383,
+        "SEM": 100.82575948139444
+      }
+    }
+  },
+  "contrasts": {
+    "C/B": {
+      "ratio_of_means": 0.28464849503830014,
+      "delta_SEM_log_ratio": 0.18600469729814378,
+      "delta_SEM_ratio": 0.0529459571559712,
+      "paired_mean_difference": -1418.5840251404225,
+      "paired_difference_SEM": 249.06396910116106,
+      "sensitivity_ratios": {
+        "exact_positive": 0.28464849503830014,
+        "signed": 0.27311179624257703,
+        "positive_nodes": 0.2933822642874367
+      }
+    },
+    "S/B": {
+      "ratio_of_means": 0.7284656622643167,
+      "delta_SEM_log_ratio": 0.1515213744862591,
+      "delta_SEM_ratio": 0.11037811841233229,
+      "paired_mean_difference": -538.4685306694755,
+      "paired_difference_SEM": 256.0784234260485,
+      "sensitivity_ratios": {
+        "exact_positive": 0.7284656622643167,
+        "signed": 0.7306319578391022,
+        "positive_nodes": 0.7268808777429467
+      }
+    },
+    "C/S": {
+      "ratio_of_means": 0.39075073786390524,
+      "delta_SEM_log_ratio": 0.1668182650352029,
+      "delta_SEM_ratio": 0.06518436015168204,
+      "paired_mean_difference": -880.115494470947,
+      "paired_difference_SEM": 193.56566872643157,
+      "sensitivity_ratios": {
+        "exact_positive": 0.39075073786390524,
+        "signed": 0.3738021493753508,
+        "positive_nodes": 0.40361808003317434
+      }
+    }
+  },
+  "integration_checks": {
+    "crossing_triangles_verified": true,
+    "linearity_signed_mean_curve_matches_mean_individual": true
+  },
+  "donor": {
+    "signed_mean_curve_AUC0_120": {
+      "ICC": 1725.4983388704318,
+      "RCC": 2443.106312292359
+    },
+    "R": 0.7062723100458949,
+    "hummus_D20_ratio": 0.25748502994011974,
+    "externally_fitted_beta": 0.2563060312078196
+  },
+  "forecast_comparison": {
+    "tie": {
+      "predicted_ratios": {
+        "C/B": 1,
+        "S/B": 1,
+        "C/S": 1
+      },
+      "absolute_log_ratio_errors": {
+        "C/B": 1.2565002106592718,
+        "S/B": 0.3168147893042703,
+        "C/S": 0.9396854213550013
+      },
+      "primary_mean_absolute_log_ratio_error": 0.786657499981771,
+      "secondary_C_S_absolute_log_ratio_error": 0.9396854213550013
+    },
+    "categorical_hummus": {
+      "predicted_ratios": {
+        "C/B": 0.7062723100458949,
+        "S/B": 0.7062723100458949,
+        "C/S": 1
+      },
+      "absolute_log_ratio_errors": {
+        "C/B": 0.9087458030843641,
+        "S/B": 0.030939618270637223,
+        "C/S": 0.9396854213550013
+      },
+      "primary_mean_absolute_log_ratio_error": 0.46984271067750066,
+      "secondary_C_S_absolute_log_ratio_error": 0.9396854213550013
+    },
+    "D20": {
+      "predicted_ratios": {
+        "C/B": 0.451505016722408,
+        "S/B": 0.7324414715719064,
+        "C/S": 0.6164383561643835
+      },
+      "absolute_log_ratio_errors": {
+        "C/B": 0.46133141570701464,
+        "S/B": 0.005442945730084746,
+        "C/S": 0.45588846997692983
+      },
+      "primary_mean_absolute_log_ratio_error": 0.2333871807185497,
+      "secondary_C_S_absolute_log_ratio_error": 0.45588846997692983
+    },
+    "anchored_S": {
+      "predicted_ratios": {
+        "C/B": 0.4353733418091132,
+        "S/B": 0.7062723100458949,
+        "C/S": 0.6164383561643835
+      },
+      "absolute_log_ratio_errors": {
+        "C/B": 0.42494885170629254,
+        "S/B": 0.030939618270637223,
+        "C/S": 0.45588846997692983
+      },
+      "primary_mean_absolute_log_ratio_error": 0.2279442349884649,
+      "secondary_C_S_absolute_log_ratio_error": 0.45588846997692983
+    },
+    "external_power": {
+      "predicted_ratios": {
+        "C/B": 0.8156201311382902,
+        "S/B": 0.9232950038038015,
+        "C/S": 0.883379773288157
+      },
+      "absolute_log_ratio_errors": {
+        "C/B": 1.0526936526847541,
+        "S/B": 0.23700830784790877,
+        "C/S": 0.8156853448368452
+      },
+      "primary_mean_absolute_log_ratio_error": 0.6448509802663315,
+      "secondary_C_S_absolute_log_ratio_error": 0.8156853448368452
+    },
+    "external_assay120": {
+      "predicted_ratios": {
+        "C/B": 0.34444444444444444,
+        "S/B": 0.34444444444444444,
+        "C/S": 1
+      },
+      "absolute_log_ratio_errors": {
+        "C/B": 0.19067774481415287,
+        "S/B": 0.7490076765408485,
+        "C/S": 0.9396854213550013
+      },
+      "primary_mean_absolute_log_ratio_error": 0.4698427106775007,
+      "secondary_C_S_absolute_log_ratio_error": 0.9396854213550013
+    }
+  },
+  "qualifications": [
+    "Ten complete crossover participants only; group means not individual predictive validation.",
+    "Delta SEM uses actual paired covariance, asymptotic approximation only; not a small-sample exact confidence interval.",
+    "Donor is graph-derived signed group-curve AUC, different operator from participant-positive target.",
+    "Assay D20 is independent graph reading in astra/aggregate.csv, not raw assay records.",
+    "One externally fitted exponent from one donor contrast is not an identified biological relation.",
+    "Only safe cohort aggregates serialized. Raw workbook, subject identifiers and individual records/results remain transient in memory."
+  ]
+}

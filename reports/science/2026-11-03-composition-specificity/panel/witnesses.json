@@ -1,0 +1,158 @@
+{
+  "young_two_predose": {
+    "synthetic_mean_positive_areas": {
+      "high": {
+        "aligned": 379.0324509001969,
+        "reassigned": 457.33617062532744
+      },
+      "low": {
+        "aligned": 398.10724314436044,
+        "reassigned": 500.6609707553669
+      }
+    },
+    "attained_examples": [
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "aligned",
+        "ratio": 0.9520862969146063,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "reassigned",
+        "ratio": 0.7570641073306268,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "aligned",
+        "ratio": 1.1487763121644325,
+        "frozen_slope_closer_than_tie": true
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "reassigned",
+        "ratio": 0.9134647942205808,
+        "frozen_slope_closer_than_tie": false
+      }
+    ],
+    "conventions": "mean of individual linearly interpolated above-baseline area; not participant records or extreme attainable bounds"
+  },
+  "young_t0": {
+    "synthetic_mean_positive_areas": {
+      "high": {
+        "aligned": 367.8853428112927,
+        "reassigned": 445.43642961094986
+      },
+      "low": {
+        "aligned": 400.82644759361585,
+        "reassigned": 508.0753048923375
+      }
+    },
+    "attained_examples": [
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "aligned",
+        "ratio": 0.9178170378225116,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "reassigned",
+        "ratio": 0.7240764100692683,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "aligned",
+        "ratio": 1.1112950063179527,
+        "frozen_slope_closer_than_tie": true
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "reassigned",
+        "ratio": 0.876713403154556,
+        "frozen_slope_closer_than_tie": false
+      }
+    ],
+    "conventions": "mean of individual linearly interpolated above-baseline area; not participant records or extreme attainable bounds"
+  },
+  "old_two_predose": {
+    "synthetic_mean_positive_areas": {
+      "high": {
+        "aligned": 392.89958666569913,
+        "reassigned": 651.1877879953796
+      },
+      "low": {
+        "aligned": 437.49031109732397,
+        "reassigned": 555.0908253304775
+      }
+    },
+    "attained_examples": [
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "aligned",
+        "ratio": 0.8980760869428599,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "reassigned",
+        "ratio": 0.7078113503889808,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "aligned",
+        "ratio": 1.4884621932816167,
+        "frozen_slope_closer_than_tie": true
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "reassigned",
+        "ratio": 1.173119349626595,
+        "frozen_slope_closer_than_tie": true
+      }
+    ],
+    "conventions": "mean of individual linearly interpolated above-baseline area; not participant records or extreme attainable bounds"
+  },
+  "old_t0": {
+    "synthetic_mean_positive_areas": {
+      "high": {
+        "aligned": 422.8453976403093,
+        "reassigned": 652.1702396017562
+      },
+      "low": {
+        "aligned": 447.9282666341752,
+        "reassigned": 563.5531385602204
+      }
+    },
+    "attained_examples": [
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "aligned",
+        "ratio": 0.9440024868661588,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "aligned",
+        "low_assignment": "reassigned",
+        "ratio": 0.750320366808009,
+        "frozen_slope_closer_than_tie": false
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "aligned",
+        "ratio": 1.4559702706468984,
+        "frozen_slope_closer_than_tie": true
+      },
+      {
+        "high_assignment": "reassigned",
+        "low_assignment": "reassigned",
+        "ratio": 1.1572471076426563,
+        "frozen_slope_closer_than_tie": true
+      }
+    ],
+    "conventions": "mean of individual linearly interpolated above-baseline area; not participant records or extreme attainable bounds"
+  }
+}
